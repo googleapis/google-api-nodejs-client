@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -63,6 +65,7 @@ export class Books {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.bookshelves = new Resource$Bookshelves(this);
     this.cloudloading = new Resource$Cloudloading(this);
@@ -77,6 +80,10 @@ export class Books {
     this.promooffer = new Resource$Promooffer(this);
     this.series = new Resource$Series(this);
     this.volumes = new Resource$Volumes(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -875,8 +882,14 @@ export class Resource$Bookshelves {
   volumes: Resource$Bookshelves$Volumes;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.volumes = new Resource$Bookshelves$Volumes(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.bookshelves.get
@@ -892,31 +905,43 @@ export class Resource$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
-       callback?: BodyResponseCallback<Schema$Bookshelf>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'shelf'],
-          pathParams: ['shelf', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bookshelf>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Bookshelf>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>):
+      void|AxiosPromise<Schema$Bookshelf> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves/{shelf}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'shelf'],
+      pathParams: ['shelf', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bookshelf>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bookshelf>(parameters);
+    }
+  }
 
 
   /**
@@ -932,37 +957,57 @@ export class Resource$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
-       callback?: BodyResponseCallback<Schema$Bookshelves>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/users/{userId}/bookshelves')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bookshelves>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Bookshelves>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>):
+      void|AxiosPromise<Schema$Bookshelves> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/users/{userId}/bookshelves')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bookshelves>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bookshelves>(parameters);
+    }
+  }
 }
 export class Resource$Bookshelves$Volumes {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.bookshelves.volumes.list
@@ -981,31 +1026,44 @@ export class Resource$Bookshelves$Volumes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/users/{userId}/bookshelves/{shelf}/volumes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId', 'shelf'],
-          pathParams: ['shelf', 'userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/books/v1/users/{userId}/bookshelves/{shelf}/volumes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId', 'shelf'],
+      pathParams: ['shelf', 'userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }
 
 
@@ -1013,7 +1071,13 @@ export class Resource$Cloudloading {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.cloudloading.addBook
@@ -1029,33 +1093,48 @@ export class Resource$Cloudloading {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addBook =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BooksCloudloadingResource>,
-       callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/cloudloading/addBook')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BooksCloudloadingResource>(
-            parameters, callback!);
-      };
+  addBook(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BooksCloudloadingResource>;
+  addBook(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+  addBook(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
+      void|AxiosPromise<Schema$BooksCloudloadingResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/cloudloading/addBook')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BooksCloudloadingResource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
+    }
+  }
 
 
   /**
@@ -1070,30 +1149,42 @@ export class Resource$Cloudloading {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteBook =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/cloudloading/deleteBook')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  deleteBook(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deleteBook(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  deleteBook(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/cloudloading/deleteBook')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1107,40 +1198,61 @@ export class Resource$Cloudloading {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateBook =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BooksCloudloadingResource>,
-       callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/cloudloading/updateBook')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BooksCloudloadingResource>(
-            parameters, callback!);
-      };
+  updateBook(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BooksCloudloadingResource>;
+  updateBook(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>): void;
+  updateBook(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BooksCloudloadingResource>,
+      callback?: BodyResponseCallback<Schema$BooksCloudloadingResource>):
+      void|AxiosPromise<Schema$BooksCloudloadingResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/cloudloading/updateBook')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BooksCloudloadingResource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
+    }
+  }
 }
 
 export class Resource$Dictionary {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.dictionary.listOfflineMetadata
@@ -1154,38 +1266,58 @@ export class Resource$Dictionary {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listOfflineMetadata =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
-       callback?: BodyResponseCallback<Schema$Metadata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['cpksver'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Metadata>(parameters, callback!);
-      };
+  listOfflineMetadata(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Metadata>;
+  listOfflineMetadata(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Metadata>,
+      callback?: BodyResponseCallback<Schema$Metadata>): void;
+  listOfflineMetadata(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Metadata>,
+      callback?: BodyResponseCallback<Schema$Metadata>):
+      void|AxiosPromise<Schema$Metadata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/dictionary/listOfflineMetadata')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['cpksver'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Metadata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Metadata>(parameters);
+    }
+  }
 }
 
 export class Resource$Familysharing {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.familysharing.getFamilyInfo
@@ -1199,31 +1331,46 @@ export class Resource$Familysharing {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getFamilyInfo =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FamilyInfo>,
-       callback?: BodyResponseCallback<Schema$FamilyInfo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/familysharing/getFamilyInfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FamilyInfo>(parameters, callback!);
-      };
+  getFamilyInfo(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FamilyInfo>;
+  getFamilyInfo(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FamilyInfo>,
+      callback?: BodyResponseCallback<Schema$FamilyInfo>): void;
+  getFamilyInfo(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FamilyInfo>,
+      callback?: BodyResponseCallback<Schema$FamilyInfo>):
+      void|AxiosPromise<Schema$FamilyInfo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/familysharing/getFamilyInfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FamilyInfo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FamilyInfo>(parameters);
+    }
+  }
 
 
   /**
@@ -1241,30 +1388,42 @@ export class Resource$Familysharing {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  share =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/familysharing/share')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  share(params: any, options?: MethodOptions): AxiosPromise<void>;
+  share(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  share(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/familysharing/share')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1282,30 +1441,42 @@ export class Resource$Familysharing {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unshare =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/familysharing/unshare')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  unshare(params: any, options?: MethodOptions): AxiosPromise<void>;
+  unshare(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  unshare(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/familysharing/unshare')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Layers {
@@ -1314,9 +1485,15 @@ export class Resource$Layers {
   volumeAnnotations: Resource$Layers$Volumeannotations;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.annotationData = new Resource$Layers$Annotationdata(root);
     this.volumeAnnotations = new Resource$Layers$Volumeannotations(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.layers.get
@@ -1333,32 +1510,44 @@ export class Resource$Layers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Layersummary>,
-       callback?: BodyResponseCallback<Schema$Layersummary>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/volumes/{volumeId}/layersummary/{summaryId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId', 'summaryId'],
-          pathParams: ['summaryId', 'volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Layersummary>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Layersummary>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Layersummary>,
+      callback?: BodyResponseCallback<Schema$Layersummary>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Layersummary>,
+      callback?: BodyResponseCallback<Schema$Layersummary>):
+      void|AxiosPromise<Schema$Layersummary> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/books/v1/volumes/{volumeId}/layersummary/{summaryId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId', 'summaryId'],
+      pathParams: ['summaryId', 'volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Layersummary>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Layersummary>(parameters);
+    }
+  }
 
 
   /**
@@ -1377,37 +1566,58 @@ export class Resource$Layers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Layersummaries>,
-       callback?: BodyResponseCallback<Schema$Layersummaries>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId'],
-          pathParams: ['volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Layersummaries>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Layersummaries>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Layersummaries>,
+      callback?: BodyResponseCallback<Schema$Layersummaries>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Layersummaries>,
+      callback?: BodyResponseCallback<Schema$Layersummaries>):
+      void|AxiosPromise<Schema$Layersummaries> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layersummary')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId'],
+      pathParams: ['volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Layersummaries>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Layersummaries>(parameters);
+    }
+  }
 }
 export class Resource$Layers$Annotationdata {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.layers.annotationData.get
@@ -1430,34 +1640,47 @@ export class Resource$Layers$Annotationdata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotationdata>,
-       callback?: BodyResponseCallback<Schema$Annotationdata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
-          pathParams: ['annotationDataId', 'layerId', 'volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotationdata>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$Annotationdata>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotationdata>,
+      callback?: BodyResponseCallback<Schema$Annotationdata>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotationdata>,
+      callback?: BodyResponseCallback<Schema$Annotationdata>):
+      void|AxiosPromise<Schema$Annotationdata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/books/v1/volumes/{volumeId}/layers/{layerId}/data/{annotationDataId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['volumeId', 'layerId', 'annotationDataId', 'contentVersion'],
+      pathParams: ['annotationDataId', 'layerId', 'volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotationdata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotationdata>(parameters);
+    }
+  }
 
 
   /**
@@ -1484,39 +1707,60 @@ export class Resource$Layers$Annotationdata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotationsdata>,
-       callback?: BodyResponseCallback<Schema$Annotationsdata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/volumes/{volumeId}/layers/{layerId}/data')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId', 'layerId', 'contentVersion'],
-          pathParams: ['layerId', 'volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotationsdata>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Annotationsdata>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotationsdata>,
+      callback?: BodyResponseCallback<Schema$Annotationsdata>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotationsdata>,
+      callback?: BodyResponseCallback<Schema$Annotationsdata>):
+      void|AxiosPromise<Schema$Annotationsdata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}/data')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId', 'layerId', 'contentVersion'],
+      pathParams: ['layerId', 'volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotationsdata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotationsdata>(parameters);
+    }
+  }
 }
 
 export class Resource$Layers$Volumeannotations {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.layers.volumeAnnotations.get
@@ -1534,33 +1778,46 @@ export class Resource$Layers$Volumeannotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Volumeannotation>,
-       callback?: BodyResponseCallback<Schema$Volumeannotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId', 'layerId', 'annotationId'],
-          pathParams: ['annotationId', 'layerId', 'volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumeannotation>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$Volumeannotation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Volumeannotation>,
+      callback?: BodyResponseCallback<Schema$Volumeannotation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Volumeannotation>,
+      callback?: BodyResponseCallback<Schema$Volumeannotation>):
+      void|AxiosPromise<Schema$Volumeannotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/books/v1/volumes/{volumeId}/layers/{layerId}/annotations/{annotationId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId', 'layerId', 'annotationId'],
+      pathParams: ['annotationId', 'layerId', 'volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumeannotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumeannotation>(parameters);
+    }
+  }
 
 
   /**
@@ -1589,31 +1846,46 @@ export class Resource$Layers$Volumeannotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Volumeannotations>,
-       callback?: BodyResponseCallback<Schema$Volumeannotations>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId', 'layerId', 'contentVersion'],
-          pathParams: ['layerId', 'volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumeannotations>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Volumeannotations>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Volumeannotations>,
+      callback?: BodyResponseCallback<Schema$Volumeannotations>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Volumeannotations>,
+      callback?: BodyResponseCallback<Schema$Volumeannotations>):
+      void|AxiosPromise<Schema$Volumeannotations> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/layers/{layerId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId', 'layerId', 'contentVersion'],
+      pathParams: ['layerId', 'volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumeannotations>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumeannotations>(parameters);
+    }
+  }
 }
 
 
@@ -1621,7 +1893,13 @@ export class Resource$Myconfig {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.myconfig.getUserSettings
@@ -1634,31 +1912,46 @@ export class Resource$Myconfig {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getUserSettings =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
-       callback?: BodyResponseCallback<Schema$Usersettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/myconfig/getUserSettings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Usersettings>(parameters, callback!);
-      };
+  getUserSettings(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Usersettings>;
+  getUserSettings(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>): void;
+  getUserSettings(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>):
+      void|AxiosPromise<Schema$Usersettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/myconfig/getUserSettings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Usersettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Usersettings>(parameters);
+    }
+  }
 
 
   /**
@@ -1676,31 +1969,46 @@ export class Resource$Myconfig {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  releaseDownloadAccess =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DownloadAccesses>,
-       callback?: BodyResponseCallback<Schema$DownloadAccesses>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['volumeIds', 'cpksver'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DownloadAccesses>(parameters, callback!);
-      };
+  releaseDownloadAccess(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DownloadAccesses>;
+  releaseDownloadAccess(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DownloadAccesses>,
+      callback?: BodyResponseCallback<Schema$DownloadAccesses>): void;
+  releaseDownloadAccess(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DownloadAccesses>,
+      callback?: BodyResponseCallback<Schema$DownloadAccesses>):
+      void|AxiosPromise<Schema$DownloadAccesses> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/myconfig/releaseDownloadAccess')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['volumeIds', 'cpksver'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DownloadAccesses>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DownloadAccesses>(parameters);
+    }
+  }
 
 
   /**
@@ -1720,31 +2028,46 @@ export class Resource$Myconfig {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  requestAccess =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RequestAccess>,
-       callback?: BodyResponseCallback<Schema$RequestAccess>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/myconfig/requestAccess')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RequestAccess>(parameters, callback!);
-      };
+  requestAccess(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RequestAccess>;
+  requestAccess(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RequestAccess>,
+      callback?: BodyResponseCallback<Schema$RequestAccess>): void;
+  requestAccess(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RequestAccess>,
+      callback?: BodyResponseCallback<Schema$RequestAccess>):
+      void|AxiosPromise<Schema$RequestAccess> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/myconfig/requestAccess')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['source', 'volumeId', 'nonce', 'cpksver'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RequestAccess>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RequestAccess>(parameters);
+    }
+  }
 
 
   /**
@@ -1767,30 +2090,44 @@ export class Resource$Myconfig {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  syncVolumeLicenses =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['source', 'nonce', 'cpksver'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  syncVolumeLicenses(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Volumes>;
+  syncVolumeLicenses(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  syncVolumeLicenses(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/myconfig/syncVolumeLicenses')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['source', 'nonce', 'cpksver'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 
 
   /**
@@ -1807,31 +2144,46 @@ export class Resource$Myconfig {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateUserSettings =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
-       callback?: BodyResponseCallback<Schema$Usersettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/myconfig/updateUserSettings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Usersettings>(parameters, callback!);
-      };
+  updateUserSettings(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Usersettings>;
+  updateUserSettings(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>): void;
+  updateUserSettings(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Usersettings>,
+      callback?: BodyResponseCallback<Schema$Usersettings>):
+      void|AxiosPromise<Schema$Usersettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/myconfig/updateUserSettings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Usersettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Usersettings>(parameters);
+    }
+  }
 }
 
 export class Resource$Mylibrary {
@@ -1841,16 +2193,27 @@ export class Resource$Mylibrary {
   readingpositions: Resource$Mylibrary$Readingpositions;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.annotations = new Resource$Mylibrary$Annotations(root);
     this.bookshelves = new Resource$Mylibrary$Bookshelves(root);
     this.readingpositions = new Resource$Mylibrary$Readingpositions(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Mylibrary$Annotations {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.mylibrary.annotations.delete
@@ -1865,31 +2228,42 @@ export class Resource$Mylibrary$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['annotationId'],
+      pathParams: ['annotationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1908,31 +2282,45 @@ export class Resource$Mylibrary$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-       callback?: BodyResponseCallback<Schema$Annotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/mylibrary/annotations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotation>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>):
+      void|AxiosPromise<Schema$Annotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotation>(parameters);
+    }
+  }
 
 
   /**
@@ -1956,31 +2344,45 @@ export class Resource$Mylibrary$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotations>,
-       callback?: BodyResponseCallback<Schema$Annotations>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/mylibrary/annotations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotations>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotations>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotations>,
+      callback?: BodyResponseCallback<Schema$Annotations>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotations>,
+      callback?: BodyResponseCallback<Schema$Annotations>):
+      void|AxiosPromise<Schema$Annotations> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotations>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotations>(parameters);
+    }
+  }
 
 
   /**
@@ -1996,31 +2398,46 @@ export class Resource$Mylibrary$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  summary =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AnnotationsSummary>,
-       callback?: BodyResponseCallback<Schema$AnnotationsSummary>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/mylibrary/annotations/summary')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['layerIds', 'volumeId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnnotationsSummary>(parameters, callback!);
-      };
+  summary(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnnotationsSummary>;
+  summary(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnnotationsSummary>,
+      callback?: BodyResponseCallback<Schema$AnnotationsSummary>): void;
+  summary(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotationsSummary>,
+      callback?: BodyResponseCallback<Schema$AnnotationsSummary>):
+      void|AxiosPromise<Schema$AnnotationsSummary> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations/summary')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['layerIds', 'volumeId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnnotationsSummary>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnnotationsSummary>(parameters);
+    }
+  }
 
 
   /**
@@ -2037,32 +2454,45 @@ export class Resource$Mylibrary$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-       callback?: BodyResponseCallback<Schema$Annotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotation>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>):
+      void|AxiosPromise<Schema$Annotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/annotations/{annotationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['annotationId'],
+      pathParams: ['annotationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotation>(parameters);
+    }
+  }
 }
 
 export class Resource$Mylibrary$Bookshelves {
@@ -2070,8 +2500,14 @@ export class Resource$Mylibrary$Bookshelves {
   volumes: Resource$Mylibrary$Bookshelves$Volumes;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.volumes = new Resource$Mylibrary$Bookshelves$Volumes(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.mylibrary.bookshelves.addVolume
@@ -2088,31 +2524,42 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addVolume =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/bookshelves/{shelf}/addVolume')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['shelf', 'volumeId'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  addVolume(params: any, options?: MethodOptions): AxiosPromise<void>;
+  addVolume(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  addVolume(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/addVolume')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['shelf', 'volumeId'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2128,31 +2575,43 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clearVolumes =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['shelf'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  clearVolumes(params: any, options?: MethodOptions): AxiosPromise<void>;
+  clearVolumes(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  clearVolumes(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/books/v1/mylibrary/bookshelves/{shelf}/clearVolumes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['shelf'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2169,31 +2628,43 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
-       callback?: BodyResponseCallback<Schema$Bookshelf>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['shelf'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bookshelf>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Bookshelf>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Bookshelf>,
+      callback?: BodyResponseCallback<Schema$Bookshelf>):
+      void|AxiosPromise<Schema$Bookshelf> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['shelf'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bookshelf>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bookshelf>(parameters);
+    }
+  }
 
 
   /**
@@ -2208,31 +2679,45 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
-       callback?: BodyResponseCallback<Schema$Bookshelves>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/mylibrary/bookshelves')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bookshelves>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Bookshelves>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Bookshelves>,
+      callback?: BodyResponseCallback<Schema$Bookshelves>):
+      void|AxiosPromise<Schema$Bookshelves> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bookshelves>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bookshelves>(parameters);
+    }
+  }
 
 
   /**
@@ -2250,31 +2735,43 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  moveVolume =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['shelf', 'volumeId', 'volumePosition'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  moveVolume(params: any, options?: MethodOptions): AxiosPromise<void>;
+  moveVolume(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  moveVolume(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/moveVolume')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['shelf', 'volumeId', 'volumePosition'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2292,37 +2789,55 @@ export class Resource$Mylibrary$Bookshelves {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  removeVolume =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['shelf', 'volumeId'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  removeVolume(params: any, options?: MethodOptions): AxiosPromise<void>;
+  removeVolume(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  removeVolume(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/books/v1/mylibrary/bookshelves/{shelf}/removeVolume')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['shelf', 'volumeId'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 export class Resource$Mylibrary$Bookshelves$Volumes {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.mylibrary.bookshelves.volumes.list
@@ -2343,31 +2858,43 @@ export class Resource$Mylibrary$Bookshelves$Volumes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/bookshelves/{shelf}/volumes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['shelf'],
-          pathParams: ['shelf'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/bookshelves/{shelf}/volumes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['shelf'],
+      pathParams: ['shelf'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }
 
 
@@ -2375,7 +2902,13 @@ export class Resource$Mylibrary$Readingpositions {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.mylibrary.readingpositions.get
@@ -2391,32 +2924,44 @@ export class Resource$Mylibrary$Readingpositions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReadingPosition>,
-       callback?: BodyResponseCallback<Schema$ReadingPosition>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/books/v1/mylibrary/readingpositions/{volumeId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId'],
-          pathParams: ['volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReadingPosition>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ReadingPosition>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReadingPosition>,
+      callback?: BodyResponseCallback<Schema$ReadingPosition>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReadingPosition>,
+      callback?: BodyResponseCallback<Schema$ReadingPosition>):
+      void|AxiosPromise<Schema$ReadingPosition> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/mylibrary/readingpositions/{volumeId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId'],
+      pathParams: ['volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReadingPosition>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReadingPosition>(parameters);
+    }
+  }
 
 
   /**
@@ -2437,32 +2982,43 @@ export class Resource$Mylibrary$Readingpositions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setPosition =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId', 'timestamp', 'position'],
-          pathParams: ['volumeId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  setPosition(params: any, options?: MethodOptions): AxiosPromise<void>;
+  setPosition(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  setPosition(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/books/v1/mylibrary/readingpositions/{volumeId}/setPosition')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId', 'timestamp', 'position'],
+      pathParams: ['volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 
@@ -2470,7 +3026,13 @@ export class Resource$Notification {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.notification.get
@@ -2486,38 +3048,56 @@ export class Resource$Notification {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Notification>,
-       callback?: BodyResponseCallback<Schema$Notification>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/notification/get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['notification_id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Notification>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Notification>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+      callback?: BodyResponseCallback<Schema$Notification>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+      callback?: BodyResponseCallback<Schema$Notification>):
+      void|AxiosPromise<Schema$Notification> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/notification/get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['notification_id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Notification>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Notification>(parameters);
+    }
+  }
 }
 
 export class Resource$Onboarding {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.onboarding.listCategories
@@ -2531,31 +3111,45 @@ export class Resource$Onboarding {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listCategories =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Category>,
-       callback?: BodyResponseCallback<Schema$Category>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/onboarding/listCategories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Category>(parameters, callback!);
-      };
+  listCategories(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Category>;
+  listCategories(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Category>,
+      callback?: BodyResponseCallback<Schema$Category>): void;
+  listCategories(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Category>,
+      callback?: BodyResponseCallback<Schema$Category>):
+      void|AxiosPromise<Schema$Category> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/onboarding/listCategories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Category>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Category>(parameters);
+    }
+  }
 
 
   /**
@@ -2574,37 +3168,57 @@ export class Resource$Onboarding {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listCategoryVolumes =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volume2>,
-       callback?: BodyResponseCallback<Schema$Volume2>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volume2>(parameters, callback!);
-      };
+  listCategoryVolumes(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Volume2>;
+  listCategoryVolumes(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volume2>,
+      callback?: BodyResponseCallback<Schema$Volume2>): void;
+  listCategoryVolumes(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volume2>,
+      callback?: BodyResponseCallback<Schema$Volume2>):
+      void|AxiosPromise<Schema$Volume2> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/onboarding/listCategoryVolumes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volume2>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volume2>(parameters);
+    }
+  }
 }
 
 export class Resource$Personalizedstream {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.personalizedstream.get
@@ -2620,38 +3234,57 @@ export class Resource$Personalizedstream {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Discoveryclusters>,
-       callback?: BodyResponseCallback<Schema$Discoveryclusters>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/personalizedstream/get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Discoveryclusters>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$Discoveryclusters>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Discoveryclusters>,
+      callback?: BodyResponseCallback<Schema$Discoveryclusters>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Discoveryclusters>,
+      callback?: BodyResponseCallback<Schema$Discoveryclusters>):
+      void|AxiosPromise<Schema$Discoveryclusters> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/personalizedstream/get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Discoveryclusters>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Discoveryclusters>(parameters);
+    }
+  }
 }
 
 export class Resource$Promooffer {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.promooffer.accept
@@ -2671,30 +3304,42 @@ export class Resource$Promooffer {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  accept =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/promooffer/accept')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  accept(params: any, options?: MethodOptions): AxiosPromise<void>;
+  accept(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  accept(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/promooffer/accept')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2714,30 +3359,42 @@ export class Resource$Promooffer {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  dismiss =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/promooffer/dismiss')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  dismiss(params: any, options?: MethodOptions): AxiosPromise<void>;
+  dismiss(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  dismiss(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/promooffer/dismiss')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2757,30 +3414,41 @@ export class Resource$Promooffer {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Offers>,
-       callback?: BodyResponseCallback<Schema$Offers>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/promooffer/get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Offers>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Offers>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Offers>,
+      callback?: BodyResponseCallback<Schema$Offers>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Offers>,
+      callback?: BodyResponseCallback<Schema$Offers>):
+      void|AxiosPromise<Schema$Offers> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/promooffer/get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Offers>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Offers>(parameters);
+    }
+  }
 }
 
 export class Resource$Series {
@@ -2788,8 +3456,14 @@ export class Resource$Series {
   membership: Resource$Series$Membership;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.membership = new Resource$Series$Membership(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.series.get
@@ -2803,36 +3477,53 @@ export class Resource$Series {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Series>,
-       callback?: BodyResponseCallback<Schema$Series>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/series/get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['series_id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Series>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Series>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Series>,
+      callback?: BodyResponseCallback<Schema$Series>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Series>,
+      callback?: BodyResponseCallback<Schema$Series>):
+      void|AxiosPromise<Schema$Series> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/series/get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['series_id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Series>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Series>(parameters);
+    }
+  }
 }
 export class Resource$Series$Membership {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.series.membership.get
@@ -2848,31 +3539,44 @@ export class Resource$Series$Membership {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Seriesmembership>,
-       callback?: BodyResponseCallback<Schema$Seriesmembership>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/series/membership/get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['series_id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Seriesmembership>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$Seriesmembership>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Seriesmembership>,
+      callback?: BodyResponseCallback<Schema$Seriesmembership>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Seriesmembership>,
+      callback?: BodyResponseCallback<Schema$Seriesmembership>):
+      void|AxiosPromise<Schema$Seriesmembership> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/series/membership/get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['series_id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Seriesmembership>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Seriesmembership>(parameters);
+    }
+  }
 }
 
 
@@ -2884,11 +3588,17 @@ export class Resource$Volumes {
   useruploaded: Resource$Volumes$Useruploaded;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
     this.associated = new Resource$Volumes$Associated(root);
     this.mybooks = new Resource$Volumes$Mybooks(root);
     this.recommended = new Resource$Volumes$Recommended(root);
     this.useruploaded = new Resource$Volumes$Useruploaded(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.volumes.get
@@ -2908,30 +3618,41 @@ export class Resource$Volumes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volume>,
-       callback?: BodyResponseCallback<Schema$Volume>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/{volumeId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId'],
-          pathParams: ['volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volume>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Volume>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Volume>,
+      callback?: BodyResponseCallback<Schema$Volume>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volume>,
+      callback?: BodyResponseCallback<Schema$Volume>):
+      void|AxiosPromise<Schema$Volume> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId'],
+      pathParams: ['volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volume>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volume>(parameters);
+    }
+  }
 
 
   /**
@@ -2959,36 +3680,54 @@ export class Resource$Volumes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['q'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['q'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }
 export class Resource$Volumes$Associated {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.volumes.associated.list
@@ -3006,37 +3745,56 @@ export class Resource$Volumes$Associated {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/{volumeId}/associated')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['volumeId'],
-          pathParams: ['volumeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/{volumeId}/associated')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['volumeId'],
+      pathParams: ['volumeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }
 
 export class Resource$Volumes$Mybooks {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.volumes.mybooks.list
@@ -3056,37 +3814,56 @@ export class Resource$Volumes$Mybooks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/mybooks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/mybooks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }
 
 export class Resource$Volumes$Recommended {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.volumes.recommended.list
@@ -3102,30 +3879,43 @@ export class Resource$Volumes$Recommended {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/recommended')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/recommended')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 
 
   /**
@@ -3143,41 +3933,66 @@ export class Resource$Volumes$Recommended {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
-       callback?: BodyResponseCallback<
-           Schema$BooksVolumesRecommendedRateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/recommended/rate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['rating', 'volumeId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
-            parameters, callback!);
-      };
+  rate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BooksVolumesRecommendedRateResponse>;
+  rate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
+      void;
+  rate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BooksVolumesRecommendedRateResponse>):
+      void|AxiosPromise<Schema$BooksVolumesRecommendedRateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/recommended/rate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['rating', 'volumeId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Volumes$Useruploaded {
   root: Books;
   constructor(root: Books) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * books.volumes.useruploaded.list
@@ -3196,28 +4011,41 @@ export class Resource$Volumes$Useruploaded {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
-       callback?: BodyResponseCallback<Schema$Volumes>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/books/v1/volumes/useruploaded')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Volumes>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Volumes>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Volumes>,
+      callback?: BodyResponseCallback<Schema$Volumes>):
+      void|AxiosPromise<Schema$Volumes> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/books/v1/volumes/useruploaded')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Volumes>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Volumes>(parameters);
+    }
+  }
 }

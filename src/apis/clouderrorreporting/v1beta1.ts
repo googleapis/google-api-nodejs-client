@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,8 +55,13 @@ export class Clouderrorreporting {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -423,10 +430,16 @@ export class Resource$Projects {
   groupStats: Resource$Projects$Groupstats;
   constructor(root: Clouderrorreporting) {
     this.root = root;
+    this.getRoot.bind(this);
     this.events = new Resource$Projects$Events(root);
     this.groups = new Resource$Projects$Groups(root);
     this.groupStats = new Resource$Projects$Groupstats(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouderrorreporting.projects.deleteEvents
@@ -440,38 +453,59 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteEvents =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
-       callback?: BodyResponseCallback<Schema$DeleteEventsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{projectName}/events')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback!);
-      };
+  deleteEvents(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DeleteEventsResponse>;
+  deleteEvents(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
+  deleteEvents(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
+      callback?: BodyResponseCallback<Schema$DeleteEventsResponse>):
+      void|AxiosPromise<Schema$DeleteEventsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{projectName}/events')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectName'],
+      pathParams: ['projectName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeleteEventsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeleteEventsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Events {
   root: Clouderrorreporting;
   constructor(root: Clouderrorreporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouderrorreporting.projects.events.list
@@ -492,32 +526,47 @@ export class Resource$Projects$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
-       callback?: BodyResponseCallback<Schema$ListEventsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{projectName}/events')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListEventsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListEventsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEventsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEventsResponse>):
+      void|AxiosPromise<Schema$ListEventsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{projectName}/events')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName'],
+      pathParams: ['projectName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListEventsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListEventsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -538,41 +587,62 @@ export class Resource$Projects$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  report =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ReportErrorEventResponse>,
-       callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{projectName}/events:report')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReportErrorEventResponse>(
-            parameters, callback!);
-      };
+  report(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReportErrorEventResponse>;
+  report(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ReportErrorEventResponse>,
+      callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
+  report(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ReportErrorEventResponse>,
+      callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>):
+      void|AxiosPromise<Schema$ReportErrorEventResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{projectName}/events:report')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName'],
+      pathParams: ['projectName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReportErrorEventResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReportErrorEventResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Groups {
   root: Clouderrorreporting;
   constructor(root: Clouderrorreporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouderrorreporting.projects.groups.get
@@ -586,32 +656,44 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-       callback?: BodyResponseCallback<Schema$ErrorGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{groupName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['groupName'],
-          pathParams: ['groupName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>):
+      void|AxiosPromise<Schema$ErrorGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{groupName}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['groupName'],
+      pathParams: ['groupName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ErrorGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -628,39 +710,58 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
-       callback?: BodyResponseCallback<Schema$ErrorGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ErrorGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+      callback?: BodyResponseCallback<Schema$ErrorGroup>):
+      void|AxiosPromise<Schema$ErrorGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ErrorGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ErrorGroup>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Groupstats {
   root: Clouderrorreporting;
   constructor(root: Clouderrorreporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * clouderrorreporting.projects.groupStats.list
@@ -685,31 +786,47 @@ export class Resource$Projects$Groupstats {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListGroupStatsResponse>,
-       callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{projectName}/groupStats')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName'],
-          pathParams: ['projectName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListGroupStatsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListGroupStatsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>):
+      void|AxiosPromise<Schema$ListGroupStatsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://clouderrorreporting.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{projectName}/groupStats')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName'],
+      pathParams: ['projectName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListGroupStatsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListGroupStatsResponse>(parameters);
+    }
+  }
 }

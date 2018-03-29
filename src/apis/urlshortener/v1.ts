@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Urlshortener {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.url = new Resource$Url(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -182,7 +189,13 @@ export class Resource$Url {
   root: Urlshortener;
   constructor(root: Urlshortener) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * urlshortener.url.get
@@ -197,30 +210,41 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
-       callback?: BodyResponseCallback<Schema$Url>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/urlshortener/v1/url')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['shortUrl'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Url>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>):
+      void|AxiosPromise<Schema$Url> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/urlshortener/v1/url')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['shortUrl'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Url>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Url>(parameters);
+    }
+  }
 
 
   /**
@@ -235,30 +259,43 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
-       callback?: BodyResponseCallback<Schema$Url>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/urlshortener/v1/url')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Url>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+      callback?: BodyResponseCallback<Schema$Url>):
+      void|AxiosPromise<Schema$Url> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/urlshortener/v1/url')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Url>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Url>(parameters);
+    }
+  }
 
 
   /**
@@ -274,29 +311,43 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
-       callback?: BodyResponseCallback<Schema$UrlHistory>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/urlshortener/v1/url/history')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlHistory>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$UrlHistory>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
+      callback?: BodyResponseCallback<Schema$UrlHistory>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
+      callback?: BodyResponseCallback<Schema$UrlHistory>):
+      void|AxiosPromise<Schema$UrlHistory> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/urlshortener/v1/url/history')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlHistory>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlHistory>(parameters);
+    }
+  }
 }

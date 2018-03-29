@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,8 +55,13 @@ export class Language {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.documents = new Resource$Documents(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -577,7 +584,13 @@ export class Resource$Documents {
   root: Language;
   constructor(root: Language) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * language.documents.analyzeEntities
@@ -593,32 +606,48 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeEntities =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
-       callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:analyzeEntities')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback!);
-      };
+  analyzeEntities(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnalyzeEntitiesResponse>;
+  analyzeEntities(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
+  analyzeEntities(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>):
+      void|AxiosPromise<Schema$AnalyzeEntitiesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:analyzeEntities')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -634,34 +663,51 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeEntitySentiment =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
-       callback?:
-           BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:analyzeEntitySentiment')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
-            parameters, callback!);
-      };
+  analyzeEntitySentiment(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
+  analyzeEntitySentiment(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>):
+      void;
+  analyzeEntitySentiment(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>):
+      void|AxiosPromise<Schema$AnalyzeEntitySentimentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:analyzeEntitySentiment')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -676,33 +722,48 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeSentiment =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
-       callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:analyzeSentiment')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnalyzeSentimentResponse>(
-            parameters, callback!);
-      };
+  analyzeSentiment(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnalyzeSentimentResponse>;
+  analyzeSentiment(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
+  analyzeSentiment(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>):
+      void|AxiosPromise<Schema$AnalyzeSentimentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:analyzeSentiment')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -719,32 +780,47 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeSyntax =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
-       callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:analyzeSyntax')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback!);
-      };
+  analyzeSyntax(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnalyzeSyntaxResponse>;
+  analyzeSyntax(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
+  analyzeSyntax(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
+      void|AxiosPromise<Schema$AnalyzeSyntaxResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:analyzeSyntax')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -760,31 +836,46 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotateText =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
-       callback?: BodyResponseCallback<Schema$AnnotateTextResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:annotateText')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback!);
-      };
+  annotateText(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnnotateTextResponse>;
+  annotateText(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
+      callback?: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
+  annotateText(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
+      callback?: BodyResponseCallback<Schema$AnnotateTextResponse>):
+      void|AxiosPromise<Schema$AnnotateTextResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:annotateText')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnnotateTextResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnnotateTextResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -799,29 +890,44 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  classifyText =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
-       callback?: BodyResponseCallback<Schema$ClassifyTextResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/documents:classifyText')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ClassifyTextResponse>(parameters, callback!);
-      };
+  classifyText(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ClassifyTextResponse>;
+  classifyText(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
+      callback?: BodyResponseCallback<Schema$ClassifyTextResponse>): void;
+  classifyText(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
+      callback?: BodyResponseCallback<Schema$ClassifyTextResponse>):
+      void|AxiosPromise<Schema$ClassifyTextResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://language.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/documents:classifyText')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ClassifyTextResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ClassifyTextResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -56,6 +58,7 @@ export class Storage {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.bucketAccessControls = new Resource$Bucketaccesscontrols(this);
     this.buckets = new Resource$Buckets(this);
@@ -64,6 +67,10 @@ export class Storage {
         new Resource$Defaultobjectaccesscontrols(this);
     this.objectAccessControls = new Resource$Objectaccesscontrols(this);
     this.objects = new Resource$Objects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -507,7 +514,13 @@ export class Resource$Bucketaccesscontrols {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.bucketAccessControls.delete
@@ -523,30 +536,42 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -563,31 +588,44 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-       callback?: BodyResponseCallback<Schema$BucketAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BucketAccessControl>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>):
+      void|AxiosPromise<Schema$BucketAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BucketAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -603,31 +641,46 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-       callback?: BodyResponseCallback<Schema$BucketAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BucketAccessControl>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BucketAccessControl>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>):
+      void|AxiosPromise<Schema$BucketAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BucketAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -642,31 +695,46 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControls>,
-       callback?: BodyResponseCallback<Schema$BucketAccessControls>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BucketAccessControls>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BucketAccessControls>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControls>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControls>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BucketAccessControls>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControls>):
+      void|AxiosPromise<Schema$BucketAccessControls> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BucketAccessControls>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BucketAccessControls>(parameters);
+    }
+  }
 
 
   /**
@@ -684,31 +752,46 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-       callback?: BodyResponseCallback<Schema$BucketAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BucketAccessControl>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BucketAccessControl>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>):
+      void|AxiosPromise<Schema$BucketAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BucketAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -725,38 +808,59 @@ export class Resource$Bucketaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
-       callback?: BodyResponseCallback<Schema$BucketAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BucketAccessControl>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BucketAccessControl>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+      callback?: BodyResponseCallback<Schema$BucketAccessControl>):
+      void|AxiosPromise<Schema$BucketAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BucketAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BucketAccessControl>(parameters);
+    }
+  }
 }
 
 export class Resource$Buckets {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.buckets.delete
@@ -772,30 +876,42 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -813,30 +929,41 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-       callback?: BodyResponseCallback<Schema$Bucket>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bucket>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>):
+      void|AxiosPromise<Schema$Bucket> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bucket>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bucket>(parameters);
+    }
+  }
 
 
   /**
@@ -853,30 +980,42 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-       callback?: BodyResponseCallback<Schema$Bucket>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bucket>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>):
+      void|AxiosPromise<Schema$Bucket> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bucket>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bucket>(parameters);
+    }
+  }
 
 
   /**
@@ -894,30 +1033,42 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Buckets>,
-       callback?: BodyResponseCallback<Schema$Buckets>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['project'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Buckets>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Buckets>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Buckets>,
+      callback?: BodyResponseCallback<Schema$Buckets>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
+      callback?: BodyResponseCallback<Schema$Buckets>):
+      void|AxiosPromise<Schema$Buckets> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['project'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Buckets>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Buckets>(parameters);
+    }
+  }
 
 
   /**
@@ -936,30 +1087,43 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-       callback?: BodyResponseCallback<Schema$Bucket>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bucket>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>):
+      void|AxiosPromise<Schema$Bucket> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bucket>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bucket>(parameters);
+    }
+  }
 
 
   /**
@@ -978,37 +1142,56 @@ export class Resource$Buckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-       callback?: BodyResponseCallback<Schema$Bucket>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Bucket>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+      callback?: BodyResponseCallback<Schema$Bucket>):
+      void|AxiosPromise<Schema$Bucket> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Bucket>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Bucket>(parameters);
+    }
+  }
 }
 
 export class Resource$Channels {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.channels.stop
@@ -1022,37 +1205,55 @@ export class Resource$Channels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/channels/stop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  stop(params: any, options?: MethodOptions): AxiosPromise<void>;
+  stop(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  stop(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/channels/stop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Defaultobjectaccesscontrols {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.defaultObjectAccessControls.delete
@@ -1068,31 +1269,43 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1109,32 +1322,45 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1150,31 +1376,46 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1191,31 +1432,46 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControls>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControls>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControls>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
+      void|AxiosPromise<Schema$ObjectAccessControls> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/defaultObjectAcl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControls>(parameters);
+    }
+  }
 
 
   /**
@@ -1233,32 +1489,47 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1275,39 +1546,60 @@ export class Resource$Defaultobjectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'entity'],
-          pathParams: ['bucket', 'entity'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/defaultObjectAcl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'entity'],
+      pathParams: ['bucket', 'entity'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 }
 
 export class Resource$Objectaccesscontrols {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.objectAccessControls.delete
@@ -1325,31 +1617,43 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object', 'entity'],
-          pathParams: ['bucket', 'entity', 'object'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object', 'entity'],
+      pathParams: ['bucket', 'entity', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1368,32 +1672,45 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object', 'entity'],
-          pathParams: ['bucket', 'entity', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object', 'entity'],
+      pathParams: ['bucket', 'entity', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1411,31 +1728,46 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1452,31 +1784,46 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControls>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControls>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControls>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControls>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
+      void|AxiosPromise<Schema$ObjectAccessControls> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControls>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControls>(parameters);
+    }
+  }
 
 
   /**
@@ -1496,32 +1843,47 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object', 'entity'],
-          pathParams: ['bucket', 'entity', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object', 'entity'],
+      pathParams: ['bucket', 'entity', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 
 
   /**
@@ -1540,39 +1902,60 @@ export class Resource$Objectaccesscontrols {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
-       callback?: BodyResponseCallback<Schema$ObjectAccessControl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object', 'entity'],
-          pathParams: ['bucket', 'entity', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ObjectAccessControl>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ObjectAccessControl>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+      callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
+      void|AxiosPromise<Schema$ObjectAccessControl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/storage/v1beta2/b/{bucket}/o/{object}/acl/{entity}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object', 'entity'],
+      pathParams: ['bucket', 'entity', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ObjectAccessControl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ObjectAccessControl>(parameters);
+    }
+  }
 }
 
 export class Resource$Objects {
   root: Storage;
   constructor(root: Storage) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * storage.objects.compose
@@ -1591,32 +1974,45 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  compose =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['destinationBucket', 'destinationObject'],
-          pathParams: ['destinationBucket', 'destinationObject'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  compose(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  compose(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  compose(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/storage/v1beta2/b/{destinationBucket}/o/{destinationObject}/compose')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['destinationBucket', 'destinationObject'],
+      pathParams: ['destinationBucket', 'destinationObject'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1646,38 +2042,49 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  copy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [
-            'sourceBucket', 'sourceObject', 'destinationBucket',
-            'destinationObject'
-          ],
-          pathParams: [
-            'destinationBucket', 'destinationObject', 'sourceBucket',
-            'sourceObject'
-          ],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  copy(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  copy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  copy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/storage/v1beta2/b/{sourceBucket}/o/{sourceObject}/copyTo/b/{destinationBucket}/o/{destinationObject}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [
+        'sourceBucket', 'sourceObject', 'destinationBucket', 'destinationObject'
+      ],
+      pathParams: [
+        'destinationBucket', 'destinationObject', 'sourceBucket', 'sourceObject'
+      ],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1700,30 +2107,42 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1745,30 +2164,41 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1793,32 +2223,45 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/storage/v1beta2/b/{bucket}/o')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/storage/v1beta2/b/{bucket}/o')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1839,30 +2282,43 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Objects>,
-       callback?: BodyResponseCallback<Schema$Objects>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Objects>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Objects>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Objects>,
+      callback?: BodyResponseCallback<Schema$Objects>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Objects>,
+      callback?: BodyResponseCallback<Schema$Objects>):
+      void|AxiosPromise<Schema$Objects> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Objects>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Objects>(parameters);
+    }
+  }
 
 
   /**
@@ -1886,30 +2342,43 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1932,30 +2401,43 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
-       callback?: BodyResponseCallback<Schema$Object>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['bucket', 'object'],
-          pathParams: ['bucket', 'object'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Object>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+      callback?: BodyResponseCallback<Schema$Object>):
+      void|AxiosPromise<Schema$Object> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/{object}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['bucket', 'object'],
+      pathParams: ['bucket', 'object'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Object>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Object>(parameters);
+    }
+  }
 
 
   /**
@@ -1977,28 +2459,41 @@ export class Resource$Objects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watchAll =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['bucket'],
-          pathParams: ['bucket'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watchAll(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watchAll(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watchAll(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1beta2/b/{bucket}/o/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['bucket'],
+      pathParams: ['bucket'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }

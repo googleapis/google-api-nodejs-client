@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -58,6 +60,7 @@ export class Calendar {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.acl = new Resource$Acl(this);
     this.calendarList = new Resource$Calendarlist(this);
@@ -67,6 +70,10 @@ export class Calendar {
     this.events = new Resource$Events(this);
     this.freebusy = new Resource$Freebusy(this);
     this.settings = new Resource$Settings(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -876,7 +883,9 @@ export interface Schema$EventAttendee {
    */
   organizer: boolean;
   /**
-   * Whether the attendee is a resource. Read-only. The default is False.
+   * Whether the attendee is a resource. Can only be set when the attendee is
+   * added to the event for the first time. Subsequent modifications are
+   * ignored. Optional. The default is False.
    */
   resource: boolean;
   /**
@@ -1126,7 +1135,13 @@ export class Resource$Acl {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.acl.delete
@@ -1141,31 +1156,42 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'ruleId'],
-          pathParams: ['calendarId', 'ruleId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'ruleId'],
+      pathParams: ['calendarId', 'ruleId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1181,31 +1207,41 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-       callback?: BodyResponseCallback<Schema$AclRule>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'ruleId'],
-          pathParams: ['calendarId', 'ruleId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AclRule>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AclRule>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>):
+      void|AxiosPromise<Schema$AclRule> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'ruleId'],
+      pathParams: ['calendarId', 'ruleId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AclRule>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AclRule>(parameters);
+    }
+  }
 
 
   /**
@@ -1222,30 +1258,43 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-       callback?: BodyResponseCallback<Schema$AclRule>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AclRule>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$AclRule>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>):
+      void|AxiosPromise<Schema$AclRule> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AclRule>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AclRule>(parameters);
+    }
+  }
 
 
   /**
@@ -1264,30 +1313,43 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Acl>,
-       callback?: BodyResponseCallback<Schema$Acl>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Acl>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Acl>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Acl>,
+      callback?: BodyResponseCallback<Schema$Acl>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Acl>,
+      callback?: BodyResponseCallback<Schema$Acl>):
+      void|AxiosPromise<Schema$Acl> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Acl>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Acl>(parameters);
+    }
+  }
 
 
   /**
@@ -1305,31 +1367,43 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-       callback?: BodyResponseCallback<Schema$AclRule>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'ruleId'],
-          pathParams: ['calendarId', 'ruleId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AclRule>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$AclRule>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>):
+      void|AxiosPromise<Schema$AclRule> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'ruleId'],
+      pathParams: ['calendarId', 'ruleId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AclRule>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AclRule>(parameters);
+    }
+  }
 
 
   /**
@@ -1347,31 +1421,43 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
-       callback?: BodyResponseCallback<Schema$AclRule>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'ruleId'],
-          pathParams: ['calendarId', 'ruleId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AclRule>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$AclRule>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AclRule>,
+      callback?: BodyResponseCallback<Schema$AclRule>):
+      void|AxiosPromise<Schema$AclRule> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/{ruleId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'ruleId'],
+      pathParams: ['calendarId', 'ruleId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AclRule>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AclRule>(parameters);
+    }
+  }
 
 
   /**
@@ -1391,37 +1477,56 @@ export class Resource$Acl {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/acl/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Calendarlist {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.calendarList.delete
@@ -1435,31 +1540,42 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/users/me/calendarList/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1474,32 +1590,44 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-       callback?: BodyResponseCallback<Schema$CalendarListEntry>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/users/me/calendarList/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$CalendarListEntry>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>):
+      void|AxiosPromise<Schema$CalendarListEntry> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CalendarListEntry>(parameters);
+    }
+  }
 
 
   /**
@@ -1515,31 +1643,46 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-       callback?: BodyResponseCallback<Schema$CalendarListEntry>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/calendarList')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CalendarListEntry>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>):
+      void|AxiosPromise<Schema$CalendarListEntry> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CalendarListEntry>(parameters);
+    }
+  }
 
 
   /**
@@ -1559,31 +1702,45 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CalendarList>,
-       callback?: BodyResponseCallback<Schema$CalendarList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/calendarList')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CalendarList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$CalendarList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CalendarList>,
+      callback?: BodyResponseCallback<Schema$CalendarList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CalendarList>,
+      callback?: BodyResponseCallback<Schema$CalendarList>):
+      void|AxiosPromise<Schema$CalendarList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CalendarList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CalendarList>(parameters);
+    }
+  }
 
 
   /**
@@ -1601,32 +1758,46 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-       callback?: BodyResponseCallback<Schema$CalendarListEntry>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/users/me/calendarList/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CalendarListEntry>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>):
+      void|AxiosPromise<Schema$CalendarListEntry> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CalendarListEntry>(parameters);
+    }
+  }
 
 
   /**
@@ -1643,32 +1814,46 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
-       callback?: BodyResponseCallback<Schema$CalendarListEntry>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/users/me/calendarList/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CalendarListEntry>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CalendarListEntry>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CalendarListEntry>,
+      callback?: BodyResponseCallback<Schema$CalendarListEntry>):
+      void|AxiosPromise<Schema$CalendarListEntry> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CalendarListEntry>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CalendarListEntry>(parameters);
+    }
+  }
 
 
   /**
@@ -1689,37 +1874,56 @@ export class Resource$Calendarlist {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/calendarList/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/calendarList/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Calendars {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.calendars.clear
@@ -1734,30 +1938,42 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clear =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/clear')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  clear(params: any, options?: MethodOptions): AxiosPromise<void>;
+  clear(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  clear(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/clear')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1773,30 +1989,42 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1811,31 +2039,42 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-       callback?: BodyResponseCallback<Schema$Calendar>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Calendar>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Calendar>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>):
+      void|AxiosPromise<Schema$Calendar> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Calendar>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Calendar>(parameters);
+    }
+  }
 
 
   /**
@@ -1850,31 +2089,44 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-       callback?: BodyResponseCallback<Schema$Calendar>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Calendar>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Calendar>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>):
+      void|AxiosPromise<Schema$Calendar> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Calendar>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Calendar>(parameters);
+    }
+  }
 
 
   /**
@@ -1891,31 +2143,44 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-       callback?: BodyResponseCallback<Schema$Calendar>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Calendar>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Calendar>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>):
+      void|AxiosPromise<Schema$Calendar> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Calendar>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Calendar>(parameters);
+    }
+  }
 
 
   /**
@@ -1931,38 +2196,57 @@ export class Resource$Calendars {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
-       callback?: BodyResponseCallback<Schema$Calendar>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Calendar>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Calendar>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Calendar>,
+      callback?: BodyResponseCallback<Schema$Calendar>):
+      void|AxiosPromise<Schema$Calendar> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Calendar>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Calendar>(parameters);
+    }
+  }
 }
 
 export class Resource$Channels {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.channels.stop
@@ -1976,37 +2260,55 @@ export class Resource$Channels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/channels/stop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  stop(params: any, options?: MethodOptions): AxiosPromise<void>;
+  stop(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  stop(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/channels/stop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Colors {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.colors.get
@@ -2019,37 +2321,54 @@ export class Resource$Colors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Colors>,
-       callback?: BodyResponseCallback<Schema$Colors>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/colors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Colors>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Colors>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Colors>,
+      callback?: BodyResponseCallback<Schema$Colors>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Colors>,
+      callback?: BodyResponseCallback<Schema$Colors>):
+      void|AxiosPromise<Schema$Colors> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/calendar/v3/colors').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Colors>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Colors>(parameters);
+    }
+  }
 }
 
 export class Resource$Events {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.events.delete
@@ -2065,31 +2384,43 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2108,31 +2439,42 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2151,53 +2493,74 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>, callback?: BodyResponseCallback<Schema$Event>): void|AxiosPromise<Schema$Event> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context: this.root}; createAPIRequest<Schema$Event>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://www.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['calendarId'], pathParams: ['calendarId'], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$Event>(parameters, callback);
+  } else { return createAPIRequest<Schema$Event>(parameters);
+  }}
 
 
   /**
-   * calendar.events.insert
-   * @desc Creates an event.
-   * @alias calendar.events.insert
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-   * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-   * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-   * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
-   * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-   * @param {().Event} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+ * calendar.events.insert
+ * @desc Creates an event.
+ * @alias calendar.events.insert
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
+ * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
+ * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
+ * @param {boolean=} params.sendNotifications Whether to send notifications about the creation of the new event. Optional. The default is False.
+ * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
+ * @param {().Event} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2222,32 +2585,45 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  instances =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Events>,
-       callback?: BodyResponseCallback<Schema$Events>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Events>(parameters, callback!);
-      };
+  instances(params: any, options?: MethodOptions): AxiosPromise<Schema$Events>;
+  instances(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>): void;
+  instances(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>):
+      void|AxiosPromise<Schema$Events> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/calendar/v3/calendars/{calendarId}/events/{eventId}/instances')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Events>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Events>(parameters);
+    }
+  }
 
 
   /**
@@ -2279,30 +2655,43 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Events>,
-       callback?: BodyResponseCallback<Schema$Events>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Events>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Events>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Events>,
+      callback?: BodyResponseCallback<Schema$Events>):
+      void|AxiosPromise<Schema$Events> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Events>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Events>(parameters);
+    }
+  }
 
 
   /**
@@ -2321,32 +2710,44 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  move =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/calendar/v3/calendars/{calendarId}/events/{eventId}/move')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId', 'destination'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+  move(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  move(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  move(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/{eventId}/move')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId', 'destination'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2368,31 +2769,44 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2409,31 +2823,44 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  quickAdd =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/quickAdd')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'text'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+  quickAdd(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  quickAdd(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  quickAdd(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/quickAdd')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'text'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2455,31 +2882,44 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
-       callback?: BodyResponseCallback<Schema$Event>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/{eventId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId', 'eventId'],
-          pathParams: ['calendarId', 'eventId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Event>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Event>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Event>,
+      callback?: BodyResponseCallback<Schema$Event>):
+      void|AxiosPromise<Schema$Event> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/calendar/v3/calendars/{calendarId}/events/{eventId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId', 'eventId'],
+      pathParams: ['calendarId', 'eventId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Event>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Event>(parameters);
+    }
+  }
 
 
   /**
@@ -2512,38 +2952,56 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Event>
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/calendar/v3/calendars/{calendarId}/events/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['calendarId'],
-          pathParams: ['calendarId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/calendars/{calendarId}/events/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['calendarId'],
+      pathParams: ['calendarId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Freebusy {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.freebusy.query
@@ -2557,38 +3015,59 @@ export class Resource$Freebusy {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FreeBusyResponse>,
-       callback?: BodyResponseCallback<Schema$FreeBusyResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/freeBusy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FreeBusyResponse>(parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FreeBusyResponse>;
+  query(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FreeBusyResponse>,
+      callback?: BodyResponseCallback<Schema$FreeBusyResponse>): void;
+  query(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FreeBusyResponse>,
+      callback?: BodyResponseCallback<Schema$FreeBusyResponse>):
+      void|AxiosPromise<Schema$FreeBusyResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/freeBusy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FreeBusyResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FreeBusyResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Settings {
   root: Calendar;
   constructor(root: Calendar) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * calendar.settings.get
@@ -2602,30 +3081,41 @@ export class Resource$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Setting>,
-       callback?: BodyResponseCallback<Schema$Setting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/settings/{setting}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['setting'],
-          pathParams: ['setting'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Setting>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Setting>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Setting>,
+      callback?: BodyResponseCallback<Schema$Setting>):
+      void|AxiosPromise<Schema$Setting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings/{setting}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['setting'],
+      pathParams: ['setting'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Setting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Setting>(parameters);
+    }
+  }
 
 
   /**
@@ -2642,31 +3132,44 @@ export class Resource$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Settings>,
-       callback?: BodyResponseCallback<Schema$Settings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/settings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Settings>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Settings>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Settings>,
+      callback?: BodyResponseCallback<Schema$Settings>):
+      void|AxiosPromise<Schema$Settings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Settings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Settings>(parameters);
+    }
+  }
 
 
   /**
@@ -2684,28 +3187,41 @@ export class Resource$Settings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/calendar/v3/users/me/settings/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/calendar/v3/users/me/settings/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }

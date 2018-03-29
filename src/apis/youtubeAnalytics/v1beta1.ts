@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,10 +55,15 @@ export class Youtubeanalytics {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.groupItems = new Resource$Groupitems(this);
     this.groups = new Resource$Groups(this);
     this.reports = new Resource$Reports(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -133,7 +140,13 @@ export class Resource$Groupitems {
   root: Youtubeanalytics;
   constructor(root: Youtubeanalytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtubeAnalytics.groupItems.delete
@@ -148,30 +161,42 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -187,31 +212,45 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
-       callback?: BodyResponseCallback<Schema$GroupItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GroupItem>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$GroupItem>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
+      callback?: BodyResponseCallback<Schema$GroupItem>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
+      callback?: BodyResponseCallback<Schema$GroupItem>):
+      void|AxiosPromise<Schema$GroupItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GroupItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GroupItem>(parameters);
+    }
+  }
 
 
   /**
@@ -228,39 +267,60 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GroupItemListResponse>,
-       callback?: BodyResponseCallback<Schema$GroupItemListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['groupId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GroupItemListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GroupItemListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GroupItemListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupItemListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GroupItemListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupItemListResponse>):
+      void|AxiosPromise<Schema$GroupItemListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groupItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['groupId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GroupItemListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GroupItemListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Groups {
   root: Youtubeanalytics;
   constructor(root: Youtubeanalytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtubeAnalytics.groups.delete
@@ -275,30 +335,42 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -314,30 +386,43 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
-       callback?: BodyResponseCallback<Schema$Group>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Group>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>):
+      void|AxiosPromise<Schema$Group> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Group>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Group>(parameters);
+    }
+  }
 
 
   /**
@@ -357,31 +442,46 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
-       callback?: BodyResponseCallback<Schema$GroupListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GroupListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GroupListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
+      callback?: BodyResponseCallback<Schema$GroupListResponse>):
+      void|AxiosPromise<Schema$GroupListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GroupListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GroupListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -397,37 +497,56 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
-       callback?: BodyResponseCallback<Schema$Group>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Group>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>):
+      void|AxiosPromise<Schema$Group> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/groups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Group>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Group>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports {
   root: Youtubeanalytics;
   constructor(root: Youtubeanalytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtubeAnalytics.reports.query
@@ -451,29 +570,43 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
-       callback?: BodyResponseCallback<Schema$ResultTable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/analytics/v1beta1/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResultTable>(parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions): AxiosPromise<Schema$ResultTable>;
+  query(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
+      callback?: BodyResponseCallback<Schema$ResultTable>): void;
+  query(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
+      callback?: BodyResponseCallback<Schema$ResultTable>):
+      void|AxiosPromise<Schema$ResultTable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/analytics/v1beta1/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResultTable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResultTable>(parameters);
+    }
+  }
 }

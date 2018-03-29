@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,12 +55,17 @@ export class Gamesconfiguration {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.achievementConfigurations =
         new Resource$Achievementconfigurations(this);
     this.imageConfigurations = new Resource$Imageconfigurations(this);
     this.leaderboardConfigurations =
         new Resource$Leaderboardconfigurations(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -359,7 +366,13 @@ export class Resource$Achievementconfigurations {
   root: Gamesconfiguration;
   constructor(root: Gamesconfiguration) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gamesConfiguration.achievementConfigurations.delete
@@ -373,31 +386,43 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/achievements/{achievementId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['achievementId'],
-          pathParams: ['achievementId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/achievements/{achievementId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['achievementId'],
+      pathParams: ['achievementId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -413,34 +438,47 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AchievementConfiguration>,
-       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/achievements/{achievementId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['achievementId'],
-          pathParams: ['achievementId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AchievementConfiguration>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
+      void|AxiosPromise<Schema$AchievementConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/achievements/{achievementId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['achievementId'],
+      pathParams: ['achievementId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AchievementConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -456,35 +494,50 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AchievementConfiguration>,
-       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/games/v1configuration/applications/{applicationId}/achievements')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['applicationId'],
-          pathParams: ['applicationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AchievementConfiguration>(
-            parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AchievementConfiguration>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
+      void|AxiosPromise<Schema$AchievementConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/games/v1configuration/applications/{applicationId}/achievements')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['applicationId'],
+      pathParams: ['applicationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AchievementConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -501,36 +554,55 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$AchievementConfigurationListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/games/v1configuration/applications/{applicationId}/achievements')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['applicationId'],
-          pathParams: ['applicationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AchievementConfigurationListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AchievementConfigurationListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
+      void|AxiosPromise<Schema$AchievementConfigurationListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/games/v1configuration/applications/{applicationId}/achievements')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['applicationId'],
+      pathParams: ['applicationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AchievementConfigurationListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AchievementConfigurationListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -547,34 +619,49 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AchievementConfiguration>,
-       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/achievements/{achievementId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['achievementId'],
-          pathParams: ['achievementId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AchievementConfiguration>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AchievementConfiguration>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
+      void|AxiosPromise<Schema$AchievementConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/achievements/{achievementId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['achievementId'],
+      pathParams: ['achievementId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AchievementConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -591,41 +678,62 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AchievementConfiguration>,
-       callback?: BodyResponseCallback<Schema$AchievementConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/achievements/{achievementId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['achievementId'],
-          pathParams: ['achievementId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AchievementConfiguration>(
-            parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AchievementConfiguration>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AchievementConfiguration>,
+      callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
+      void|AxiosPromise<Schema$AchievementConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/achievements/{achievementId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['achievementId'],
+      pathParams: ['achievementId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AchievementConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AchievementConfiguration>(parameters);
+    }
+  }
 }
 
 export class Resource$Imageconfigurations {
   root: Gamesconfiguration;
   constructor(root: Gamesconfiguration) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gamesConfiguration.imageConfigurations.upload
@@ -643,44 +751,65 @@ export class Resource$Imageconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
-       callback?: BodyResponseCallback<Schema$ImageConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/games/v1configuration/images/{resourceId}/imageType/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['resourceId', 'imageType'],
-          pathParams: ['imageType', 'resourceId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImageConfiguration>(parameters, callback!);
-      };
+  upload(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImageConfiguration>;
+  upload(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+      callback?: BodyResponseCallback<Schema$ImageConfiguration>): void;
+  upload(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+      callback?: BodyResponseCallback<Schema$ImageConfiguration>):
+      void|AxiosPromise<Schema$ImageConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/games/v1configuration/images/{resourceId}/imageType/{imageType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/games/v1configuration/images/{resourceId}/imageType/{imageType}')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['resourceId', 'imageType'],
+      pathParams: ['imageType', 'resourceId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImageConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImageConfiguration>(parameters);
+    }
+  }
 }
 
 export class Resource$Leaderboardconfigurations {
   root: Gamesconfiguration;
   constructor(root: Gamesconfiguration) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * gamesConfiguration.leaderboardConfigurations.delete
@@ -694,31 +823,43 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/leaderboards/{leaderboardId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['leaderboardId'],
-          pathParams: ['leaderboardId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/leaderboards/{leaderboardId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['leaderboardId'],
+      pathParams: ['leaderboardId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -734,34 +875,47 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaderboardConfiguration>,
-       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/leaderboards/{leaderboardId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['leaderboardId'],
-          pathParams: ['leaderboardId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaderboardConfiguration>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+      void|AxiosPromise<Schema$LeaderboardConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/leaderboards/{leaderboardId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['leaderboardId'],
+      pathParams: ['leaderboardId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -777,35 +931,50 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaderboardConfiguration>,
-       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/games/v1configuration/applications/{applicationId}/leaderboards')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['applicationId'],
-          pathParams: ['applicationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaderboardConfiguration>(
-            parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaderboardConfiguration>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+      void|AxiosPromise<Schema$LeaderboardConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/games/v1configuration/applications/{applicationId}/leaderboards')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['applicationId'],
+      pathParams: ['applicationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -822,36 +991,55 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$LeaderboardConfigurationListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/games/v1configuration/applications/{applicationId}/leaderboards')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['applicationId'],
-          pathParams: ['applicationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaderboardConfigurationListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
+      void|AxiosPromise<Schema$LeaderboardConfigurationListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/games/v1configuration/applications/{applicationId}/leaderboards')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['applicationId'],
+      pathParams: ['applicationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -868,34 +1056,49 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaderboardConfiguration>,
-       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/leaderboards/{leaderboardId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['leaderboardId'],
-          pathParams: ['leaderboardId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaderboardConfiguration>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaderboardConfiguration>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+      void|AxiosPromise<Schema$LeaderboardConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/leaderboards/{leaderboardId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['leaderboardId'],
+      pathParams: ['leaderboardId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -912,32 +1115,47 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaderboardConfiguration>,
-       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/games/v1configuration/leaderboards/{leaderboardId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['leaderboardId'],
-          pathParams: ['leaderboardId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaderboardConfiguration>(
-            parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaderboardConfiguration>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaderboardConfiguration>,
+      callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
+      void|AxiosPromise<Schema$LeaderboardConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/games/v1configuration/leaderboards/{leaderboardId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['leaderboardId'],
+      pathParams: ['leaderboardId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaderboardConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
+    }
+  }
 }

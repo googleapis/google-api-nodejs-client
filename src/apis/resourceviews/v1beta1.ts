@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,9 +55,14 @@ export class Resourceviews {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.regionViews = new Resource$Regionviews(this);
     this.zoneViews = new Resource$Zoneviews(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -228,7 +235,13 @@ export class Resource$Regionviews {
   root: Resourceviews;
   constructor(root: Resourceviews) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * resourceviews.regionViews.addresources
@@ -245,32 +258,44 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addresources =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region', 'resourceViewName'],
-          pathParams: ['projectName', 'region', 'resourceViewName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  addresources(params: any, options?: MethodOptions): AxiosPromise<void>;
+  addresources(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  addresources(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/addResources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region', 'resourceViewName'],
+      pathParams: ['projectName', 'region', 'resourceViewName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -287,32 +312,44 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region', 'resourceViewName'],
-          pathParams: ['projectName', 'region', 'resourceViewName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region', 'resourceViewName'],
+      pathParams: ['projectName', 'region', 'resourceViewName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -329,33 +366,45 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
-       callback?: BodyResponseCallback<Schema$ResourceView>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region', 'resourceViewName'],
-          pathParams: ['projectName', 'region', 'resourceViewName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResourceView>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ResourceView>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+      callback?: BodyResponseCallback<Schema$ResourceView>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+      callback?: BodyResponseCallback<Schema$ResourceView>):
+      void|AxiosPromise<Schema$ResourceView> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region', 'resourceViewName'],
+      pathParams: ['projectName', 'region', 'resourceViewName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResourceView>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResourceView>(parameters);
+    }
+  }
 
 
   /**
@@ -372,35 +421,50 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RegionViewsInsertResponse>,
-       callback?: BodyResponseCallback<Schema$RegionViewsInsertResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region'],
-          pathParams: ['projectName', 'region'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RegionViewsInsertResponse>(
-            parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RegionViewsInsertResponse>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsInsertResponse>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsInsertResponse>):
+      void|AxiosPromise<Schema$RegionViewsInsertResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region'],
+      pathParams: ['projectName', 'region'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RegionViewsInsertResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RegionViewsInsertResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -418,34 +482,50 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RegionViewsListResponse>,
-       callback?: BodyResponseCallback<Schema$RegionViewsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region'],
-          pathParams: ['projectName', 'region'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RegionViewsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RegionViewsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsListResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsListResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsListResponse>):
+      void|AxiosPromise<Schema$RegionViewsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region'],
+      pathParams: ['projectName', 'region'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RegionViewsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RegionViewsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -464,36 +544,53 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listresources =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$RegionViewsListResourcesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region', 'resourceViewName'],
-          pathParams: ['projectName', 'region', 'resourceViewName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RegionViewsListResourcesResponse>(
-            parameters, callback!);
-      };
+  listresources(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RegionViewsListResourcesResponse>;
+  listresources(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
+      void;
+  listresources(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
+      callback?: BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
+      void|AxiosPromise<Schema$RegionViewsListResourcesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/resources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region', 'resourceViewName'],
+      pathParams: ['projectName', 'region', 'resourceViewName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RegionViewsListResourcesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RegionViewsListResourcesResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -511,39 +608,57 @@ export class Resource$Regionviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  removeresources =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'region', 'resourceViewName'],
-          pathParams: ['projectName', 'region', 'resourceViewName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  removeresources(params: any, options?: MethodOptions): AxiosPromise<void>;
+  removeresources(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  removeresources(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/regions/{region}/resourceViews/{resourceViewName}/removeResources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'region', 'resourceViewName'],
+      pathParams: ['projectName', 'region', 'resourceViewName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Zoneviews {
   root: Resourceviews;
   constructor(root: Resourceviews) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * resourceviews.zoneViews.addresources
@@ -560,32 +675,44 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addresources =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'resourceViewName'],
-          pathParams: ['projectName', 'resourceViewName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  addresources(params: any, options?: MethodOptions): AxiosPromise<void>;
+  addresources(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  addresources(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/addResources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'resourceViewName'],
+      pathParams: ['projectName', 'resourceViewName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -602,32 +729,44 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'resourceViewName'],
-          pathParams: ['projectName', 'resourceViewName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'resourceViewName'],
+      pathParams: ['projectName', 'resourceViewName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -644,33 +783,45 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
-       callback?: BodyResponseCallback<Schema$ResourceView>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'resourceViewName'],
-          pathParams: ['projectName', 'resourceViewName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ResourceView>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ResourceView>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+      callback?: BodyResponseCallback<Schema$ResourceView>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+      callback?: BodyResponseCallback<Schema$ResourceView>):
+      void|AxiosPromise<Schema$ResourceView> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'resourceViewName'],
+      pathParams: ['projectName', 'resourceViewName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ResourceView>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ResourceView>(parameters);
+    }
+  }
 
 
   /**
@@ -687,34 +838,50 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
-       callback?: BodyResponseCallback<Schema$ZoneViewsInsertResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone'],
-          pathParams: ['projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ZoneViewsInsertResponse>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ZoneViewsInsertResponse>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsInsertResponse>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsInsertResponse>):
+      void|AxiosPromise<Schema$ZoneViewsInsertResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone'],
+      pathParams: ['projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ZoneViewsInsertResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ZoneViewsInsertResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -732,34 +899,49 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ZoneViewsListResponse>,
-       callback?: BodyResponseCallback<Schema$ZoneViewsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone'],
-          pathParams: ['projectName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ZoneViewsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ZoneViewsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ZoneViewsListResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ZoneViewsListResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsListResponse>):
+      void|AxiosPromise<Schema$ZoneViewsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone'],
+      pathParams: ['projectName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ZoneViewsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ZoneViewsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -778,36 +960,53 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listresources =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'resourceViewName'],
-          pathParams: ['projectName', 'resourceViewName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ZoneViewsListResourcesResponse>(
-            parameters, callback!);
-      };
+  listresources(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ZoneViewsListResourcesResponse>;
+  listresources(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
+      void;
+  listresources(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
+      void|AxiosPromise<Schema$ZoneViewsListResourcesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/resources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'resourceViewName'],
+      pathParams: ['projectName', 'resourceViewName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ZoneViewsListResourcesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ZoneViewsListResourcesResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -825,30 +1024,42 @@ export class Resource$Zoneviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  removeresources =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectName', 'zone', 'resourceViewName'],
-          pathParams: ['projectName', 'resourceViewName', 'zone'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  removeresources(params: any, options?: MethodOptions): AxiosPromise<void>;
+  removeresources(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  removeresources(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/resourceviews/v1beta1/projects/{projectName}/zones/{zone}/resourceViews/{resourceViewName}/removeResources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectName', 'zone', 'resourceViewName'],
+      pathParams: ['projectName', 'resourceViewName', 'zone'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }

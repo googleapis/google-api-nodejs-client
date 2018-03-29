@@ -21,6 +21,7 @@
 import { GoogleApis } from '../..';
 import { createAPIRequest } from '../../lib/apirequest';
 import { MethodOptions, GlobalOptions, BodyResponseCallback } from '../../lib/api';
+import {AxiosPromise} from 'axios';
 
 // TODO: We will eventually get the `any` in here cleared out, but in the interim we
 // want to turn on no-implicit-any.
@@ -65,12 +66,17 @@ export class {{ Name }} {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     {% if api.resources %}
       {% for rname, r in api.resources|dictsort %}
         this.{{ rname }} = new Resource${{ rname|capitalize }}(this);
       {% endfor %}
     {% endif %}
+  }
+
+  getRoot() {
+    return this.root;
   }
 
 {% if api.methods %}

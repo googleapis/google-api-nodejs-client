@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -65,6 +67,7 @@ export class Drive {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.about = new Resource$About(this);
     this.apps = new Resource$Apps(this);
@@ -80,6 +83,10 @@ export class Drive {
     this.replies = new Resource$Replies(this);
     this.revisions = new Resource$Revisions(this);
     this.teamdrives = new Resource$Teamdrives(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1558,7 +1565,13 @@ export class Resource$About {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.about.get
@@ -1575,37 +1588,53 @@ export class Resource$About {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$About>,
-       callback?: BodyResponseCallback<Schema$About>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$About>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$About>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$About>,
+      callback?: BodyResponseCallback<Schema$About>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$About>,
+      callback?: BodyResponseCallback<Schema$About>):
+      void|AxiosPromise<Schema$About> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/about').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$About>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$About>(parameters);
+    }
+  }
 }
 
 export class Resource$Apps {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.apps.get
@@ -1619,30 +1648,41 @@ export class Resource$Apps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$App>,
-       callback?: BodyResponseCallback<Schema$App>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/apps/{appId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['appId'],
-          pathParams: ['appId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$App>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$App>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$App>,
+      callback?: BodyResponseCallback<Schema$App>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$App>,
+      callback?: BodyResponseCallback<Schema$App>):
+      void|AxiosPromise<Schema$App> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/apps/{appId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['appId'],
+      pathParams: ['appId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$App>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$App>(parameters);
+    }
+  }
 
 
   /**
@@ -1659,36 +1699,55 @@ export class Resource$Apps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AppList>,
-       callback?: BodyResponseCallback<Schema$AppList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$AppList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AppList>,
+      callback?: BodyResponseCallback<Schema$AppList>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AppList>,
+      callback?: BodyResponseCallback<Schema$AppList>):
+      void|AxiosPromise<Schema$AppList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppList>(parameters);
+    }
+  }
 }
 
 export class Resource$Changes {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.changes.get
@@ -1705,30 +1764,41 @@ export class Resource$Changes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Change>,
-       callback?: BodyResponseCallback<Schema$Change>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/changes/{changeId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['changeId'],
-          pathParams: ['changeId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Change>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Change>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Change>,
+      callback?: BodyResponseCallback<Schema$Change>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Change>,
+      callback?: BodyResponseCallback<Schema$Change>):
+      void|AxiosPromise<Schema$Change> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/changes/{changeId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['changeId'],
+      pathParams: ['changeId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Change>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Change>(parameters);
+    }
+  }
 
 
   /**
@@ -1744,31 +1814,46 @@ export class Resource$Changes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getStartPageToken =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
-       callback?: BodyResponseCallback<Schema$StartPageToken>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/changes/startPageToken')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$StartPageToken>(parameters, callback!);
-      };
+  getStartPageToken(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StartPageToken>;
+  getStartPageToken(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
+      callback?: BodyResponseCallback<Schema$StartPageToken>): void;
+  getStartPageToken(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
+      callback?: BodyResponseCallback<Schema$StartPageToken>):
+      void|AxiosPromise<Schema$StartPageToken> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/changes/startPageToken')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StartPageToken>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StartPageToken>(parameters);
+    }
+  }
 
 
   /**
@@ -1792,31 +1877,44 @@ export class Resource$Changes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
-       callback?: BodyResponseCallback<Schema$ChangeList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/changes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChangeList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ChangeList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
+      callback?: BodyResponseCallback<Schema$ChangeList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
+      callback?: BodyResponseCallback<Schema$ChangeList>):
+      void|AxiosPromise<Schema$ChangeList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/changes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChangeList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChangeList>(parameters);
+    }
+  }
 
 
   /**
@@ -1841,37 +1939,56 @@ export class Resource$Changes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/changes/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/changes/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Channels {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.channels.stop
@@ -1885,37 +2002,55 @@ export class Resource$Channels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/channels/stop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  stop(params: any, options?: MethodOptions): AxiosPromise<void>;
+  stop(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  stop(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/channels/stop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Children {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.children.delete
@@ -1930,30 +2065,42 @@ export class Resource$Children {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['folderId', 'childId'],
-          pathParams: ['childId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['folderId', 'childId'],
+      pathParams: ['childId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1969,31 +2116,44 @@ export class Resource$Children {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-       callback?: BodyResponseCallback<Schema$ChildReference>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['folderId', 'childId'],
-          pathParams: ['childId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChildReference>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ChildReference>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>):
+      void|AxiosPromise<Schema$ChildReference> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children/{childId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['folderId', 'childId'],
+      pathParams: ['childId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChildReference>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChildReference>(parameters);
+    }
+  }
 
 
   /**
@@ -2010,31 +2170,46 @@ export class Resource$Children {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-       callback?: BodyResponseCallback<Schema$ChildReference>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{folderId}/children')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['folderId'],
-          pathParams: ['folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChildReference>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChildReference>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+      callback?: BodyResponseCallback<Schema$ChildReference>):
+      void|AxiosPromise<Schema$ChildReference> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['folderId'],
+      pathParams: ['folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChildReference>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChildReference>(parameters);
+    }
+  }
 
 
   /**
@@ -2053,38 +2228,58 @@ export class Resource$Children {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChildList>,
-       callback?: BodyResponseCallback<Schema$ChildList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{folderId}/children')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['folderId'],
-          pathParams: ['folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChildList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ChildList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChildList>,
+      callback?: BodyResponseCallback<Schema$ChildList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChildList>,
+      callback?: BodyResponseCallback<Schema$ChildList>):
+      void|AxiosPromise<Schema$ChildList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{folderId}/children')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['folderId'],
+      pathParams: ['folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChildList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChildList>(parameters);
+    }
+  }
 }
 
 export class Resource$Comments {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.comments.delete
@@ -2099,30 +2294,42 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2139,30 +2346,41 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 
 
   /**
@@ -2178,30 +2396,43 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 
 
   /**
@@ -2220,31 +2451,45 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-       callback?: BodyResponseCallback<Schema$CommentList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$CommentList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>):
+      void|AxiosPromise<Schema$CommentList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentList>(parameters);
+    }
+  }
 
 
   /**
@@ -2261,30 +2506,43 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 
 
   /**
@@ -2301,37 +2559,56 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/comments/{commentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 }
 
 export class Resource$Files {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.files.copy
@@ -2354,30 +2631,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  copy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/copy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  copy(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  copy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  copy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/copy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2395,30 +2685,42 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2432,30 +2734,42 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  emptyTrash =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/trash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  emptyTrash(params: any, options?: MethodOptions): AxiosPromise<void>;
+  emptyTrash(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  emptyTrash(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/trash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2472,30 +2786,42 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/export')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'mimeType'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  export(params: any, options?: MethodOptions): AxiosPromise<void>;
+  export(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  export(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/export')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'mimeType'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2511,31 +2837,46 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generateIds =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
-       callback?: BodyResponseCallback<Schema$GeneratedIds>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/generateIds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GeneratedIds>(parameters, callback!);
-      };
+  generateIds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GeneratedIds>;
+  generateIds(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
+      callback?: BodyResponseCallback<Schema$GeneratedIds>): void;
+  generateIds(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
+      callback?: BodyResponseCallback<Schema$GeneratedIds>):
+      void|AxiosPromise<Schema$GeneratedIds> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/generateIds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GeneratedIds>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GeneratedIds>(parameters);
+    }
+  }
 
 
   /**
@@ -2555,30 +2896,41 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2605,32 +2957,44 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/drive/v2/files')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl + '/upload/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2655,31 +3019,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-       callback?: BodyResponseCallback<Schema$FileList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FileList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>):
+      void|AxiosPromise<Schema$FileList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FileList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FileList>(parameters);
+    }
+  }
 
 
   /**
@@ -2710,30 +3086,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2749,30 +3138,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  touch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/touch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  touch(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  touch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  touch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/touch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2789,30 +3191,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  trash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/trash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  trash(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  trash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  trash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/trash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2828,30 +3243,43 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  untrash =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/untrash')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  untrash(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  untrash(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  untrash(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/untrash')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2884,32 +3312,45 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -2930,37 +3371,56 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  watch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/watch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  watch(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  watch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  watch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/watch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Parents {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.parents.delete
@@ -2975,30 +3435,42 @@ export class Resource$Parents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'parentId'],
-          pathParams: ['fileId', 'parentId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'parentId'],
+      pathParams: ['fileId', 'parentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3014,31 +3486,44 @@ export class Resource$Parents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-       callback?: BodyResponseCallback<Schema$ParentReference>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'parentId'],
-          pathParams: ['fileId', 'parentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ParentReference>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ParentReference>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>):
+      void|AxiosPromise<Schema$ParentReference> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents/{parentId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'parentId'],
+      pathParams: ['fileId', 'parentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ParentReference>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ParentReference>(parameters);
+    }
+  }
 
 
   /**
@@ -3055,31 +3540,46 @@ export class Resource$Parents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-       callback?: BodyResponseCallback<Schema$ParentReference>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/parents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ParentReference>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ParentReference>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+      callback?: BodyResponseCallback<Schema$ParentReference>):
+      void|AxiosPromise<Schema$ParentReference> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ParentReference>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ParentReference>(parameters);
+    }
+  }
 
 
   /**
@@ -3094,38 +3594,58 @@ export class Resource$Parents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ParentList>,
-       callback?: BodyResponseCallback<Schema$ParentList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/parents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ParentList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ParentList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ParentList>,
+      callback?: BodyResponseCallback<Schema$ParentList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ParentList>,
+      callback?: BodyResponseCallback<Schema$ParentList>):
+      void|AxiosPromise<Schema$ParentList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/parents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ParentList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ParentList>(parameters);
+    }
+  }
 }
 
 export class Resource$Permissions {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.permissions.delete
@@ -3142,31 +3662,43 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'permissionId'],
-          pathParams: ['fileId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/permissions/{permissionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'permissionId'],
+      pathParams: ['fileId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3184,32 +3716,44 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-       callback?: BodyResponseCallback<Schema$Permission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'permissionId'],
-          pathParams: ['fileId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Permission>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Permission>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>):
+      void|AxiosPromise<Schema$Permission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/permissions/{permissionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'permissionId'],
+      pathParams: ['fileId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Permission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Permission>(parameters);
+    }
+  }
 
 
   /**
@@ -3224,31 +3768,46 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIdForEmail =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
-       callback?: BodyResponseCallback<Schema$PermissionId>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/permissionIds/{email}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['email'],
-          pathParams: ['email'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PermissionId>(parameters, callback!);
-      };
+  getIdForEmail(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PermissionId>;
+  getIdForEmail(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
+      callback?: BodyResponseCallback<Schema$PermissionId>): void;
+  getIdForEmail(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
+      callback?: BodyResponseCallback<Schema$PermissionId>):
+      void|AxiosPromise<Schema$PermissionId> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/permissionIds/{email}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['email'],
+      pathParams: ['email'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PermissionId>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PermissionId>(parameters);
+    }
+  }
 
 
   /**
@@ -3268,31 +3827,45 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-       callback?: BodyResponseCallback<Schema$Permission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Permission>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Permission>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>):
+      void|AxiosPromise<Schema$Permission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Permission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Permission>(parameters);
+    }
+  }
 
 
   /**
@@ -3311,31 +3884,46 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
-       callback?: BodyResponseCallback<Schema$PermissionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PermissionList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PermissionList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
+      callback?: BodyResponseCallback<Schema$PermissionList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
+      callback?: BodyResponseCallback<Schema$PermissionList>):
+      void|AxiosPromise<Schema$PermissionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/permissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PermissionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PermissionList>(parameters);
+    }
+  }
 
 
   /**
@@ -3356,32 +3944,46 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-       callback?: BodyResponseCallback<Schema$Permission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'permissionId'],
-          pathParams: ['fileId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Permission>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Permission>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>):
+      void|AxiosPromise<Schema$Permission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/permissions/{permissionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'permissionId'],
+      pathParams: ['fileId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Permission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Permission>(parameters);
+    }
+  }
 
 
   /**
@@ -3402,39 +4004,59 @@ export class Resource$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Permission>,
-       callback?: BodyResponseCallback<Schema$Permission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/permissions/{permissionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'permissionId'],
-          pathParams: ['fileId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Permission>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Permission>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+      callback?: BodyResponseCallback<Schema$Permission>):
+      void|AxiosPromise<Schema$Permission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/permissions/{permissionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'permissionId'],
+      pathParams: ['fileId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Permission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Permission>(parameters);
+    }
+  }
 }
 
 export class Resource$Properties {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.properties.delete
@@ -3450,31 +4072,42 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'propertyKey'],
-          pathParams: ['fileId', 'propertyKey'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'propertyKey'],
+      pathParams: ['fileId', 'propertyKey'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3491,32 +4124,42 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Property>,
-       callback?: BodyResponseCallback<Schema$Property>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'propertyKey'],
-          pathParams: ['fileId', 'propertyKey'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Property>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>):
+      void|AxiosPromise<Schema$Property> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'propertyKey'],
+      pathParams: ['fileId', 'propertyKey'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Property>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Property>(parameters);
+    }
+  }
 
 
   /**
@@ -3532,31 +4175,44 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Property>,
-       callback?: BodyResponseCallback<Schema$Property>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/properties')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Property>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>):
+      void|AxiosPromise<Schema$Property> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Property>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Property>(parameters);
+    }
+  }
 
 
   /**
@@ -3571,31 +4227,45 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
-       callback?: BodyResponseCallback<Schema$PropertyList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/properties')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PropertyList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$PropertyList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
+      callback?: BodyResponseCallback<Schema$PropertyList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
+      callback?: BodyResponseCallback<Schema$PropertyList>):
+      void|AxiosPromise<Schema$PropertyList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PropertyList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PropertyList>(parameters);
+    }
+  }
 
 
   /**
@@ -3614,32 +4284,44 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Property>,
-       callback?: BodyResponseCallback<Schema$Property>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'propertyKey'],
-          pathParams: ['fileId', 'propertyKey'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Property>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>):
+      void|AxiosPromise<Schema$Property> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'propertyKey'],
+      pathParams: ['fileId', 'propertyKey'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Property>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Property>(parameters);
+    }
+  }
 
 
   /**
@@ -3657,39 +4339,57 @@ export class Resource$Properties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Property>,
-       callback?: BodyResponseCallback<Schema$Property>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/properties/{propertyKey}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'propertyKey'],
-          pathParams: ['fileId', 'propertyKey'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Property>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+      callback?: BodyResponseCallback<Schema$Property>):
+      void|AxiosPromise<Schema$Property> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/properties/{propertyKey}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'propertyKey'],
+      pathParams: ['fileId', 'propertyKey'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Property>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Property>(parameters);
+    }
+  }
 }
 
 export class Resource$Realtime {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.realtime.get
@@ -3705,30 +4405,40 @@ export class Resource$Realtime {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<void>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3748,39 +4458,57 @@ export class Resource$Realtime {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}/realtime')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<void>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/realtime')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/drive/v2/files/{fileId}/realtime')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Replies {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.replies.delete
@@ -3796,32 +4524,44 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId', 'replyId'],
-          pathParams: ['commentId', 'fileId', 'replyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId', 'replyId'],
+      pathParams: ['commentId', 'fileId', 'replyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3839,33 +4579,45 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-       callback?: BodyResponseCallback<Schema$CommentReply>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId', 'replyId'],
-          pathParams: ['commentId', 'fileId', 'replyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentReply>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CommentReply>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>):
+      void|AxiosPromise<Schema$CommentReply> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId', 'replyId'],
+      pathParams: ['commentId', 'fileId', 'replyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentReply>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentReply>(parameters);
+    }
+  }
 
 
   /**
@@ -3882,32 +4634,47 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-       callback?: BodyResponseCallback<Schema$CommentReply>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/comments/{commentId}/replies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentReply>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentReply>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>):
+      void|AxiosPromise<Schema$CommentReply> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/comments/{commentId}/replies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentReply>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentReply>(parameters);
+    }
+  }
 
 
   /**
@@ -3926,32 +4693,47 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
-       callback?: BodyResponseCallback<Schema$CommentReplyList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/comments/{commentId}/replies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId'],
-          pathParams: ['commentId', 'fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentReplyList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentReplyList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
+      callback?: BodyResponseCallback<Schema$CommentReplyList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
+      callback?: BodyResponseCallback<Schema$CommentReplyList>):
+      void|AxiosPromise<Schema$CommentReplyList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/drive/v2/files/{fileId}/comments/{commentId}/replies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId'],
+      pathParams: ['commentId', 'fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentReplyList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentReplyList>(parameters);
+    }
+  }
 
 
   /**
@@ -3969,33 +4751,48 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-       callback?: BodyResponseCallback<Schema$CommentReply>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId', 'replyId'],
-          pathParams: ['commentId', 'fileId', 'replyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentReply>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentReply>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>):
+      void|AxiosPromise<Schema$CommentReply> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId', 'replyId'],
+      pathParams: ['commentId', 'fileId', 'replyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentReply>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentReply>(parameters);
+    }
+  }
 
 
   /**
@@ -4013,40 +4810,61 @@ export class Resource$Replies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-       callback?: BodyResponseCallback<Schema$CommentReply>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'commentId', 'replyId'],
-          pathParams: ['commentId', 'fileId', 'replyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentReply>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentReply>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+      callback?: BodyResponseCallback<Schema$CommentReply>):
+      void|AxiosPromise<Schema$CommentReply> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/drive/v2/files/{fileId}/comments/{commentId}/replies/{replyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'commentId', 'replyId'],
+      pathParams: ['commentId', 'fileId', 'replyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentReply>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentReply>(parameters);
+    }
+  }
 }
 
 export class Resource$Revisions {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.revisions.delete
@@ -4061,31 +4879,42 @@ export class Resource$Revisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'revisionId'],
-          pathParams: ['fileId', 'revisionId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'revisionId'],
+      pathParams: ['fileId', 'revisionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -4101,32 +4930,42 @@ export class Resource$Revisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-       callback?: BodyResponseCallback<Schema$Revision>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'revisionId'],
-          pathParams: ['fileId', 'revisionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Revision>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Revision>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>):
+      void|AxiosPromise<Schema$Revision> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'revisionId'],
+      pathParams: ['fileId', 'revisionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Revision>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Revision>(parameters);
+    }
+  }
 
 
   /**
@@ -4143,31 +4982,45 @@ export class Resource$Revisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
-       callback?: BodyResponseCallback<Schema$RevisionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/files/{fileId}/revisions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['fileId'],
-          pathParams: ['fileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RevisionList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$RevisionList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
+      callback?: BodyResponseCallback<Schema$RevisionList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
+      callback?: BodyResponseCallback<Schema$RevisionList>):
+      void|AxiosPromise<Schema$RevisionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['fileId'],
+      pathParams: ['fileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RevisionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RevisionList>(parameters);
+    }
+  }
 
 
   /**
@@ -4184,32 +5037,44 @@ export class Resource$Revisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-       callback?: BodyResponseCallback<Schema$Revision>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'revisionId'],
-          pathParams: ['fileId', 'revisionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Revision>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Revision>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>):
+      void|AxiosPromise<Schema$Revision> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'revisionId'],
+      pathParams: ['fileId', 'revisionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Revision>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Revision>(parameters);
+    }
+  }
 
 
   /**
@@ -4226,39 +5091,57 @@ export class Resource$Revisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Revision>,
-       callback?: BodyResponseCallback<Schema$Revision>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/drive/v2/files/{fileId}/revisions/{revisionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['fileId', 'revisionId'],
-          pathParams: ['fileId', 'revisionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Revision>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Revision>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+      callback?: BodyResponseCallback<Schema$Revision>):
+      void|AxiosPromise<Schema$Revision> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/files/{fileId}/revisions/{revisionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['fileId', 'revisionId'],
+      pathParams: ['fileId', 'revisionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Revision>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Revision>(parameters);
+    }
+  }
 }
 
 export class Resource$Teamdrives {
   root: Drive;
   constructor(root: Drive) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * drive.teamdrives.delete
@@ -4273,30 +5156,42 @@ export class Resource$Teamdrives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['teamDriveId'],
-          pathParams: ['teamDriveId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['teamDriveId'],
+      pathParams: ['teamDriveId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -4312,31 +5207,43 @@ export class Resource$Teamdrives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-       callback?: BodyResponseCallback<Schema$TeamDrive>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['teamDriveId'],
-          pathParams: ['teamDriveId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TeamDrive>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>):
+      void|AxiosPromise<Schema$TeamDrive> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['teamDriveId'],
+      pathParams: ['teamDriveId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TeamDrive>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TeamDrive>(parameters);
+    }
+  }
 
 
   /**
@@ -4352,31 +5259,45 @@ export class Resource$Teamdrives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-       callback?: BodyResponseCallback<Schema$TeamDrive>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/teamdrives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['requestId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TeamDrive>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>):
+      void|AxiosPromise<Schema$TeamDrive> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/teamdrives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['requestId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TeamDrive>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TeamDrive>(parameters);
+    }
+  }
 
 
   /**
@@ -4394,31 +5315,46 @@ export class Resource$Teamdrives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
-       callback?: BodyResponseCallback<Schema$TeamDriveList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/teamdrives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TeamDriveList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TeamDriveList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
+      callback?: BodyResponseCallback<Schema$TeamDriveList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
+      callback?: BodyResponseCallback<Schema$TeamDriveList>):
+      void|AxiosPromise<Schema$TeamDriveList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/teamdrives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TeamDriveList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TeamDriveList>(parameters);
+    }
+  }
 
 
   /**
@@ -4434,29 +5370,43 @@ export class Resource$Teamdrives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-       callback?: BodyResponseCallback<Schema$TeamDrive>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['teamDriveId'],
-          pathParams: ['teamDriveId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TeamDrive>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+      callback?: BodyResponseCallback<Schema$TeamDrive>):
+      void|AxiosPromise<Schema$TeamDrive> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v2/teamdrives/{teamDriveId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['teamDriveId'],
+      pathParams: ['teamDriveId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TeamDrive>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TeamDrive>(parameters);
+    }
+  }
 }

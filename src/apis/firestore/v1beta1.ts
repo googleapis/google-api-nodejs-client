@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Firestore {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -250,8 +257,8 @@ export interface Schema$Document {
   name: string;
   /**
    * Output only. The time at which the document was last changed.  This value
-   * is initally set to the `create_time` then increases monotonically with each
-   * change to the document. It can also be compared to values from other
+   * is initially set to the `create_time` then increases monotonically with
+   * each change to the document. It can also be compared to values from other
    * documents and the `read_time` of a query.
    */
   updateTime: string;
@@ -1141,7 +1148,12 @@ export class Resource$Projects {
   databases: Resource$Projects$Databases;
   constructor(root: Firestore) {
     this.root = root;
+    this.getRoot.bind(this);
     this.databases = new Resource$Projects$Databases(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Databases {
@@ -1150,15 +1162,26 @@ export class Resource$Projects$Databases {
   indexes: Resource$Projects$Databases$Indexes;
   constructor(root: Firestore) {
     this.root = root;
+    this.getRoot.bind(this);
     this.documents = new Resource$Projects$Databases$Documents(root);
     this.indexes = new Resource$Projects$Databases$Indexes(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Databases$Documents {
   root: Firestore;
   constructor(root: Firestore) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firestore.projects.databases.documents.batchGet
@@ -1174,33 +1197,48 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
-       callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{database}/documents:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetDocumentsResponse>(
-            parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetDocumentsResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>): void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>):
+      void|AxiosPromise<Schema$BatchGetDocumentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:batchGet')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetDocumentsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetDocumentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1216,34 +1254,48 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  beginTransaction =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BeginTransactionResponse>,
-       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{database}/documents:beginTransaction')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BeginTransactionResponse>(
-            parameters, callback!);
-      };
+  beginTransaction(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BeginTransactionResponse>;
+  beginTransaction(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+  beginTransaction(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
+      void|AxiosPromise<Schema$BeginTransactionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:beginTransaction')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1259,31 +1311,46 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-       callback?: BodyResponseCallback<Schema$CommitResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{database}/documents:commit')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommitResponse>(parameters, callback!);
-      };
+  commit(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommitResponse>;
+  commit(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+  commit(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>):
+      void|AxiosPromise<Schema$CommitResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:commit')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommitResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommitResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1302,31 +1369,45 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createDocument =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Document>,
-       callback?: BodyResponseCallback<Schema$Document>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/{collectionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent', 'collectionId'],
-          pathParams: ['collectionId', 'parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Document>(parameters, callback!);
-      };
+  createDocument(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Document>;
+  createDocument(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>): void;
+  createDocument(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>):
+      void|AxiosPromise<Schema$Document> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/{collectionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent', 'collectionId'],
+      pathParams: ['collectionId', 'parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Document>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Document>(parameters);
+    }
+  }
 
 
   /**
@@ -1343,30 +1424,42 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1384,31 +1477,41 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Document>,
-       callback?: BodyResponseCallback<Schema$Document>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Document>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Document>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>):
+      void|AxiosPromise<Schema$Document> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Document>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Document>(parameters);
+    }
+  }
 
 
   /**
@@ -1431,32 +1534,47 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDocumentsResponse>,
-       callback?: BodyResponseCallback<Schema$ListDocumentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/{collectionId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent', 'collectionId'],
-          pathParams: ['collectionId', 'parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDocumentsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDocumentsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListDocumentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDocumentsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDocumentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDocumentsResponse>):
+      void|AxiosPromise<Schema$ListDocumentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/{collectionId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent', 'collectionId'],
+      pathParams: ['collectionId', 'parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDocumentsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDocumentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1472,33 +1590,48 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listCollectionIds =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCollectionIdsResponse>,
-       callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}:listCollectionIds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCollectionIdsResponse>(
-            parameters, callback!);
-      };
+  listCollectionIds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCollectionIdsResponse>;
+  listCollectionIds(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCollectionIdsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>): void;
+  listCollectionIds(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCollectionIdsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>):
+      void|AxiosPromise<Schema$ListCollectionIdsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}:listCollectionIds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCollectionIdsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCollectionIdsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1514,31 +1647,46 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listen =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
-       callback?: BodyResponseCallback<Schema$ListenResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{database}/documents:listen')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListenResponse>(parameters, callback!);
-      };
+  listen(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListenResponse>;
+  listen(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
+      callback?: BodyResponseCallback<Schema$ListenResponse>): void;
+  listen(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
+      callback?: BodyResponseCallback<Schema$ListenResponse>):
+      void|AxiosPromise<Schema$ListenResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:listen')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListenResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListenResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1558,31 +1706,43 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Document>,
-       callback?: BodyResponseCallback<Schema$Document>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Document>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Document>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+      callback?: BodyResponseCallback<Schema$Document>):
+      void|AxiosPromise<Schema$Document> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Document>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Document>(parameters);
+    }
+  }
 
 
   /**
@@ -1598,30 +1758,43 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{database}/documents:rollback')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  rollback(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  rollback(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  rollback(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:rollback')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1637,31 +1810,46 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runQuery =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
-       callback?: BodyResponseCallback<Schema$RunQueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}:runQuery')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RunQueryResponse>(parameters, callback!);
-      };
+  runQuery(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RunQueryResponse>;
+  runQuery(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
+  runQuery(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      callback?: BodyResponseCallback<Schema$RunQueryResponse>):
+      void|AxiosPromise<Schema$RunQueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}:runQuery')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RunQueryResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1677,38 +1865,59 @@ export class Resource$Projects$Databases$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  write =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
-       callback?: BodyResponseCallback<Schema$WriteResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{database}/documents:write')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['database'],
-          pathParams: ['database'],
-          context: this.root
-        };
-        createAPIRequest<Schema$WriteResponse>(parameters, callback!);
-      };
+  write(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$WriteResponse>;
+  write(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
+      callback?: BodyResponseCallback<Schema$WriteResponse>): void;
+  write(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
+      callback?: BodyResponseCallback<Schema$WriteResponse>):
+      void|AxiosPromise<Schema$WriteResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{database}/documents:write')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['database'],
+      pathParams: ['database'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$WriteResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$WriteResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Databases$Indexes {
   root: Firestore;
   constructor(root: Firestore) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firestore.projects.databases.indexes.create
@@ -1730,31 +1939,45 @@ export class Resource$Projects$Databases$Indexes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/indexes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/indexes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -1769,30 +1992,42 @@ export class Resource$Projects$Databases$Indexes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1807,30 +2042,40 @@ export class Resource$Projects$Databases$Indexes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Index>,
-       callback?: BodyResponseCallback<Schema$Index>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Index>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Index>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Index>,
+      callback?: BodyResponseCallback<Schema$Index>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Index>,
+      callback?: BodyResponseCallback<Schema$Index>):
+      void|AxiosPromise<Schema$Index> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Index>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Index>(parameters);
+    }
+  }
 
 
   /**
@@ -1848,29 +2093,44 @@ export class Resource$Projects$Databases$Indexes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListIndexesResponse>,
-       callback?: BodyResponseCallback<Schema$ListIndexesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta1/{parent}/indexes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListIndexesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListIndexesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListIndexesResponse>,
+      callback?: BodyResponseCallback<Schema$ListIndexesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListIndexesResponse>,
+      callback?: BodyResponseCallback<Schema$ListIndexesResponse>):
+      void|AxiosPromise<Schema$ListIndexesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{parent}/indexes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListIndexesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListIndexesResponse>(parameters);
+    }
+  }
 }

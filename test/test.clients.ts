@@ -15,12 +15,9 @@ import * as assert from 'assert';
 import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
-import * as pify from 'pify';
 import * as url from 'url';
-
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
-
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
@@ -96,8 +93,7 @@ describe('Clients', () => {
     const datastore =
         google.datastore({version: 'v1beta3', params: {myParam: '123'}});
     createNock('myParam=123');
-    const res =
-        await pify(datastore.projects.lookup)({projectId: 'test-project-id'});
+    const res = await datastore.projects.lookup({projectId: 'test-project-id'});
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
@@ -110,8 +106,9 @@ describe('Clients', () => {
     createNock('myParam=123');
     const res2 =
         // tslint:disable-next-line no-any
-        await pify((datastore2 as any).projects.lookup)(
-            {projectId: 'test-project-id'});
+        await (datastore2 as any).projects.lookup({
+          projectId: 'test-project-id'
+        });
     const query2 = Utils.getQs(res2) || '';
     assert.notEqual(
         query2.indexOf('myParam=123'), -1, 'Default param in query');
@@ -123,7 +120,7 @@ describe('Clients', () => {
         google.datastore({version: 'v1beta3', params: {myParam: '123'}});
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
-    const res = await pify(datastore.projects.lookup)(
+    const res = await datastore.projects.lookup(
         {projectId: 'test-project-id', myParam: '456'});
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
@@ -138,8 +135,10 @@ describe('Clients', () => {
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     // tslint:disable-next-line no-any
-    const res2 = await pify((datastore2 as any).projects.lookup)(
-        {projectId: 'test-project-id', myParam: '456'});
+    const res2 = await (datastore2 as any).projects.lookup({
+      projectId: 'test-project-id',
+      myParam: '456'
+    });
     // If the default param handling is broken, query might be undefined,
     // thus concealing the assertion message with some generic "cannot
     // call .indexOf of undefined"
@@ -161,7 +160,7 @@ describe('Clients', () => {
        });
        // No params given - only callback
        createNock('myParam=123');
-       const res = await pify(datastore.projects.lookup)();
+       const res = await datastore.projects.lookup();
        // If the default param handling is broken, req or query might be
        // undefined, thus concealing the assertion message with some generic
        // "cannot call .indexOf of undefined"
@@ -185,7 +184,7 @@ describe('Clients', () => {
        // No params given - only callback
        createNock('myParam=123');
        // tslint:disable-next-line no-any
-       const res3 = await pify((datastore2 as any).projects.lookup)();
+       const res3 = await (datastore2 as any).projects.lookup();
        // If the default param handling is broken, req or query might be
        // undefined, thus concealing the assertion message with some
        // generic "cannot call .indexOf of undefined"

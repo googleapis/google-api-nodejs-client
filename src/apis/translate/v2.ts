@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Translate {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.detections = new Resource$Detections(this);
     this.languages = new Resource$Languages(this);
     this.translations = new Resource$Translations(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -180,7 +187,13 @@ export class Resource$Detections {
   root: Translate;
   constructor(root: Translate) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * language.detections.detect
@@ -194,33 +207,48 @@ export class Resource$Detections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  detect =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DetectionsListResponse>,
-       callback?: BodyResponseCallback<Schema$DetectionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://translation.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/language/translate/v2/detect')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DetectionsListResponse>(parameters, callback!);
-      };
+  detect(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DetectionsListResponse>;
+  detect(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+  detect(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
+      void|AxiosPromise<Schema$DetectionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/language/translate/v2/detect')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DetectionsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -235,40 +263,61 @@ export class Resource$Detections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DetectionsListResponse>,
-       callback?: BodyResponseCallback<Schema$DetectionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://translation.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/language/translate/v2/detect')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['q'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DetectionsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DetectionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DetectionsListResponse>,
+      callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
+      void|AxiosPromise<Schema$DetectionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/language/translate/v2/detect')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['q'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DetectionsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DetectionsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Languages {
   root: Translate;
   constructor(root: Translate) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * language.languages.list
@@ -283,40 +332,60 @@ export class Resource$Languages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LanguagesListResponse>,
-       callback?: BodyResponseCallback<Schema$LanguagesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://translation.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/language/translate/v2/languages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LanguagesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LanguagesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
+      void|AxiosPromise<Schema$LanguagesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/language/translate/v2/languages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LanguagesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Translations {
   root: Translate;
   constructor(root: Translate) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * language.translations.list
@@ -335,34 +404,48 @@ export class Resource$Translations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TranslationsListResponse>,
-       callback?: BodyResponseCallback<Schema$TranslationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://translation.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/language/translate/v2')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['q', 'target'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TranslationsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TranslationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
+      void|AxiosPromise<Schema$TranslationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/language/translate/v2')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['q', 'target'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TranslationsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -377,32 +460,46 @@ export class Resource$Translations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  translate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TranslationsListResponse>,
-       callback?: BodyResponseCallback<Schema$TranslationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://translation.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/language/translate/v2')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TranslationsListResponse>(
-            parameters, callback!);
-      };
+  translate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TranslationsListResponse>;
+  translate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+  translate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TranslationsListResponse>,
+      callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
+      void|AxiosPromise<Schema$TranslationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/language/translate/v2')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TranslationsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TranslationsListResponse>(parameters);
+    }
+  }
 }

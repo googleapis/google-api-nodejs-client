@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Dialogflow {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -2368,9 +2375,15 @@ export class Resource$Projects {
   operations: Resource$Projects$Operations;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.agent = new Resource$Projects$Agent(root);
     this.operations = new Resource$Projects$Operations(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.getAgent
@@ -2384,34 +2397,49 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAgent =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/agent')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
-            parameters, callback!);
-      };
+  getAgent(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Agent>;
+  getAgent(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>):
+      void;
+  getAgent(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Agent>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Agent> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/agent').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Agent>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Agent {
   root: Dialogflow;
@@ -2421,11 +2449,17 @@ export class Resource$Projects$Agent {
   sessions: Resource$Projects$Agent$Sessions;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.entityTypes = new Resource$Projects$Agent$Entitytypes(root);
     this.intents = new Resource$Projects$Agent$Intents(root);
     this.runtimes = new Resource$Projects$Agent$Runtimes(root);
     this.sessions = new Resource$Projects$Agent$Sessions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.export
@@ -2441,33 +2475,48 @@ export class Resource$Projects$Agent {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/agent:export')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  export(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  export(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  export(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/agent:export')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2487,55 +2536,75 @@ export class Resource$Projects$Agent {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.root}; createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+  } else {
+    return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+  }}
 
 
   /**
-   * dialogflow.projects.agent.restore
-   * @desc Restores the specified agent from a ZIP file.  Replaces the current
-   * agent version with a new one. All the intents and entity types in the older
-   * version are deleted.   Operation <response: google.protobuf.Empty,
-   * metadata: google.protobuf.Struct>
-   * @alias dialogflow.projects.agent.restore
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
-   * @param {().GoogleCloudDialogflowV2RestoreAgentRequest} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  restore =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/agent:restore')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+ * dialogflow.projects.agent.restore
+ * @desc Restores the specified agent from a ZIP file.  Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.   Operation <response: google.protobuf.Empty,            metadata: google.protobuf.Struct>
+ * @alias dialogflow.projects.agent.restore
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.parent Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`.
+ * @param {().GoogleCloudDialogflowV2RestoreAgentRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  restore(params: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+  restore(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  restore(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/agent:restore')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2556,34 +2625,52 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SearchAgentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/agent:search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SearchAgentsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SearchAgentsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SearchAgentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/agent:search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SearchAgentsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2SearchAgentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2600,41 +2687,62 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Google
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  train =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/agent:train')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  train(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  train(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  train(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/agent:train')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Agent$Entitytypes {
   root: Dialogflow;
   entities: Resource$Projects$Agent$Entitytypes$Entities;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.entities = new Resource$Projects$Agent$Entitytypes$Entities(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.entityTypes.batchDelete
@@ -2650,33 +2758,48 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchDelete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchDelete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes:batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2694,33 +2817,48 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2737,34 +2875,52 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2779,30 +2935,45 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -2818,33 +2989,49 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2862,34 +3049,52 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListEntityTypesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2907,39 +3112,63 @@ export class Resource$Projects$Agent$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>,
+      callback?:
+          BodyResponseCallback<Schema$GoogleCloudDialogflowV2EntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2EntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2EntityType>(
+          parameters);
+    }
+  }
 }
 export class Resource$Projects$Agent$Entitytypes$Entities {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.entityTypes.entities.batchCreate
@@ -2956,33 +3185,48 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchCreate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entities:batchCreate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchCreate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchCreate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchCreate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entities:batchCreate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -2999,33 +3243,48 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entities:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchDelete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchDelete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entities:batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -3043,33 +3302,48 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entities:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entities:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 }
 
 
@@ -3077,7 +3351,13 @@ export class Resource$Projects$Agent$Intents {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.intents.batchDelete
@@ -3093,33 +3373,48 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/intents:batchDelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchDelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchDelete(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchDelete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/intents:batchDelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -3136,33 +3431,48 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/intents:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunningOperation>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/intents:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 
 
   /**
@@ -3180,34 +3490,50 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/intents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/intents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(parameters);
+    }
+  }
 
 
   /**
@@ -3222,30 +3548,45 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3262,33 +3603,47 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(parameters);
+    }
+  }
 
 
   /**
@@ -3307,34 +3662,52 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListIntentsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListIntentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/intents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2ListIntentsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListIntentsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListIntentsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListIntentsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListIntentsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListIntentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/intents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2ListIntentsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListIntentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3353,33 +3726,49 @@ export class Resource$Projects$Agent$Intents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Intent>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Intent>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Intent> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Intent>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Agent$Runtimes {
@@ -3387,7 +3776,12 @@ export class Resource$Projects$Agent$Runtimes {
   sessions: Resource$Projects$Agent$Runtimes$Sessions;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.sessions = new Resource$Projects$Agent$Runtimes$Sessions(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Agent$Runtimes$Sessions {
@@ -3396,11 +3790,17 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
   entityTypes: Resource$Projects$Agent$Runtimes$Sessions$Entitytypes;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.contexts =
         new Resource$Projects$Agent$Runtimes$Sessions$Contexts(root);
     this.entityTypes =
         new Resource$Projects$Agent$Runtimes$Sessions$Entitytypes(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.runtimes.sessions.deleteContexts
@@ -3414,31 +3814,46 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteContexts =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  deleteContexts(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  deleteContexts(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  deleteContexts(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3457,40 +3872,64 @@ export class Resource$Projects$Agent$Runtimes$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  detectIntent =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2DetectIntentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{session}:detectIntent')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
-            parameters, callback!);
-      };
+  detectIntent(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse>;
+  detectIntent(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>): void;
+  detectIntent(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{session}:detectIntent')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.runtimes.sessions.contexts.create
@@ -3505,34 +3944,51 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3547,30 +4003,45 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3585,33 +4056,48 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3628,34 +4114,52 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListContextsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3672,40 +4176,63 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.runtimes.sessions.entityTypes.create
@@ -3720,34 +4247,52 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3762,30 +4307,45 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3800,33 +4360,49 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3844,35 +4420,55 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<
+      Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>):
+      void|AxiosPromise<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3889,33 +4485,51 @@ export class Resource$Projects$Agent$Runtimes$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 }
 
 
@@ -3926,9 +4540,15 @@ export class Resource$Projects$Agent$Sessions {
   entityTypes: Resource$Projects$Agent$Sessions$Entitytypes;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.contexts = new Resource$Projects$Agent$Sessions$Contexts(root);
     this.entityTypes = new Resource$Projects$Agent$Sessions$Entitytypes(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.sessions.deleteContexts
@@ -3942,31 +4562,46 @@ export class Resource$Projects$Agent$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteContexts =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  deleteContexts(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  deleteContexts(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  deleteContexts(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3985,40 +4620,64 @@ export class Resource$Projects$Agent$Sessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  detectIntent =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2DetectIntentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{session}:detectIntent')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['session'],
-          pathParams: ['session'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
-            parameters, callback!);
-      };
+  detectIntent(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse>;
+  detectIntent(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>): void;
+  detectIntent(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2DetectIntentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2DetectIntentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{session}:detectIntent')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['session'],
+      pathParams: ['session'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2DetectIntentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2DetectIntentResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Agent$Sessions$Contexts {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.sessions.contexts.create
@@ -4033,34 +4692,51 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4075,30 +4751,45 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4113,33 +4804,48 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4156,34 +4862,52 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListContextsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/contexts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2ListContextsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2ListContextsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/contexts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2ListContextsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListContextsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4200,40 +4924,63 @@ export class Resource$Projects$Agent$Sessions$Contexts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
-       callback?:
-           BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2Context>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>,
+      callback?: BodyResponseCallback<Schema$GoogleCloudDialogflowV2Context>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2Context> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2Context>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Agent$Sessions$Entitytypes {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.agent.sessions.entityTypes.create
@@ -4248,34 +4995,52 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4290,30 +5055,45 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4328,33 +5108,49 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4372,35 +5168,55 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/entityTypes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<
+      Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>):
+      void|AxiosPromise<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/entityTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudDialogflowV2ListSessionEntityTypesResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4417,33 +5233,51 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudDialogflowV2SessionEntityType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleCloudDialogflowV2SessionEntityType>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudDialogflowV2SessionEntityType>):
+      void|AxiosPromise<Schema$GoogleCloudDialogflowV2SessionEntityType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleCloudDialogflowV2SessionEntityType>(
+          parameters);
+    }
+  }
 }
 
 
@@ -4452,7 +5286,13 @@ export class Resource$Projects$Operations {
   root: Dialogflow;
   constructor(root: Dialogflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dialogflow.projects.operations.get
@@ -4468,30 +5308,43 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+      void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+    }
+  }
 }

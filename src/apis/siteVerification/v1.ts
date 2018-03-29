@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Siteverification {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.webResource = new Resource$Webresource(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -110,7 +117,13 @@ export class Resource$Webresource {
   root: Siteverification;
   constructor(root: Siteverification) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * siteVerification.webResource.delete
@@ -124,30 +137,42 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -162,34 +187,51 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -204,34 +246,52 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getToken =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceGettokenResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/token')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
-            parameters, callback!);
-      };
+  getToken(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
+  getToken(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
+      callback?: BodyResponseCallback<
+          Schema$SiteVerificationWebResourceGettokenResponse>): void;
+  getToken(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
+      callback?: BodyResponseCallback<
+          Schema$SiteVerificationWebResourceGettokenResponse>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/token')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$SiteVerificationWebResourceGettokenResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -247,34 +307,53 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['verificationMethod'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['verificationMethod'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -288,34 +367,53 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -332,34 +430,53 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -375,32 +492,51 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
-       callback?: BodyResponseCallback<
-           Schema$SiteVerificationWebResourceResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/siteVerification/v1/webResource/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SiteVerificationWebResourceResource>(
-            parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SiteVerificationWebResourceResource>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
+      callback?:
+          BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
+      void|AxiosPromise<Schema$SiteVerificationWebResourceResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/siteVerification/v1/webResource/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
+          parameters);
+    }
+  }
 }

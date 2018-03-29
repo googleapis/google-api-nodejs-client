@@ -14,11 +14,8 @@
 import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
-import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -65,7 +62,7 @@ describe('Compute client', () => {
 async function testNoTokens(
     urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
   try {
-    await pify(urlshortener.url.get)({shortUrl: '123', auth: oauth2client});
+    await urlshortener.url.get({shortUrl: '123', auth: oauth2client});
     assert.fail('expected to throw');
   } catch (e) {
     assert.equal(e.message, 'No access, refresh token or API key is set.');
@@ -74,14 +71,14 @@ async function testNoTokens(
 
 async function testNoBearer(
     urlshortener: APIEndpoint, oauth2client: OAuth2Client) {
-  await pify(urlshortener.url.list)({auth: oauth2client});
+  await urlshortener.url.list({auth: oauth2client});
   assert.equal(oauth2client.credentials.token_type, 'Bearer');
 }
 
 async function testExpired(
     drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-  await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
+  await drive.files.get({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
   if (!expiryDate) return;
@@ -94,7 +91,7 @@ async function testExpired(
 async function testNoAccessToken(
     drive: APIEndpoint, oauth2client: OAuth2Client, now: number) {
   nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-  await pify(drive.files.get)({fileId: 'wat', auth: oauth2client});
+  await drive.files.get({fileId: 'wat', auth: oauth2client});
   const expiryDate = oauth2client.credentials.expiry_date;
   assert.notEqual(expiryDate, undefined);
   assert(expiryDate! > now);
@@ -202,7 +199,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    await pify(localDrive.files.get)({fileId: 'wat', auth: oauth2client});
+    await localDrive.files.get({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
       refresh_token: 'abc',
@@ -224,7 +221,7 @@ describe('OAuth2 client', () => {
     };
 
     nock(Utils.baseUrl).get('/drive/v2/files/wat').reply(200);
-    await pify(remoteDrive.files.get)({fileId: 'wat', auth: oauth2client});
+    await remoteDrive.files.get({fileId: 'wat', auth: oauth2client});
     assert.equal(JSON.stringify(oauth2client.credentials), JSON.stringify({
       access_token: 'abc123',
       refresh_token: 'abc',

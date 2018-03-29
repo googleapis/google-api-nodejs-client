@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -47,7 +49,6 @@ export class Androidpublisher {
   root = this;
 
   edits: Resource$Edits;
-  entitlements: Resource$Entitlements;
   inappproducts: Resource$Inappproducts;
   purchases: Resource$Purchases;
   reviews: Resource$Reviews;
@@ -55,12 +56,16 @@ export class Androidpublisher {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.edits = new Resource$Edits(this);
-    this.entitlements = new Resource$Entitlements(this);
     this.inappproducts = new Resource$Inappproducts(this);
     this.purchases = new Resource$Purchases(this);
     this.reviews = new Resource$Reviews(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -238,34 +243,6 @@ export interface Schema$DeviceMetadata {
    * Screen width in pixels
    */
   screenWidthPx: number;
-}
-/**
- * An Entitlement resource indicates a user&#39;s current entitlement to an
- * inapp item or subscription.
- */
-export interface Schema$Entitlement {
-  /**
-   * This kind represents an entitlement object in the androidpublisher service.
-   */
-  kind: string;
-  /**
-   * The SKU of the product.
-   */
-  productId: string;
-  /**
-   * The type of the inapp product. Possible values are:   - In-app item:
-   * &quot;inapp&quot;  - Subscription: &quot;subs&quot;
-   */
-  productType: string;
-  /**
-   * The token which can be verified using the subscriptions or products API.
-   */
-  token: string;
-}
-export interface Schema$EntitlementsListResponse {
-  pageInfo: Schema$PageInfo;
-  resources: Schema$Entitlement[];
-  tokenPagination: Schema$TokenPagination;
 }
 export interface Schema$ExpansionFile {
   /**
@@ -896,6 +873,7 @@ export class Resource$Edits {
   tracks: Resource$Edits$Tracks;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
     this.apklistings = new Resource$Edits$Apklistings(root);
     this.apks = new Resource$Edits$Apks(root);
     this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(root);
@@ -906,6 +884,11 @@ export class Resource$Edits {
     this.testers = new Resource$Edits$Testers(root);
     this.tracks = new Resource$Edits$Tracks(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.commit
@@ -920,32 +903,45 @@ export class Resource$Edits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-       callback?: BodyResponseCallback<Schema$AppEdit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppEdit>(parameters, callback!);
-      };
+  commit(params: any, options?: MethodOptions): AxiosPromise<Schema$AppEdit>;
+  commit(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>): void;
+  commit(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>):
+      void|AxiosPromise<Schema$AppEdit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}:commit')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppEdit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppEdit>(parameters);
+    }
+  }
 
 
   /**
@@ -963,32 +959,44 @@ export class Resource$Edits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1005,32 +1013,43 @@ export class Resource$Edits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-       callback?: BodyResponseCallback<Schema$AppEdit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppEdit>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AppEdit>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>):
+      void|AxiosPromise<Schema$AppEdit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppEdit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppEdit>(parameters);
+    }
+  }
 
 
   /**
@@ -1047,31 +1066,44 @@ export class Resource$Edits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-       callback?: BodyResponseCallback<Schema$AppEdit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/androidpublisher/v2/applications/{packageName}/edits')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppEdit>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$AppEdit>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>):
+      void|AxiosPromise<Schema$AppEdit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/androidpublisher/v2/applications/{packageName}/edits')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName'],
+      pathParams: ['packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppEdit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppEdit>(parameters);
+    }
+  }
 
 
   /**
@@ -1088,38 +1120,57 @@ export class Resource$Edits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  validate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
-       callback?: BodyResponseCallback<Schema$AppEdit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppEdit>(parameters, callback!);
-      };
+  validate(params: any, options?: MethodOptions): AxiosPromise<Schema$AppEdit>;
+  validate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>): void;
+  validate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AppEdit>,
+      callback?: BodyResponseCallback<Schema$AppEdit>):
+      void|AxiosPromise<Schema$AppEdit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}:validate')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppEdit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppEdit>(parameters);
+    }
+  }
 }
 export class Resource$Edits$Apklistings {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.apklistings.delete
@@ -1137,33 +1188,44 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
+      pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1180,32 +1242,44 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteall =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'apkVersionCode'],
-          pathParams: ['apkVersionCode', 'editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  deleteall(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deleteall(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  deleteall(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode'],
+      pathParams: ['apkVersionCode', 'editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1224,34 +1298,45 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
-       callback?: BodyResponseCallback<Schema$ApkListing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApkListing>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>):
+      void|AxiosPromise<Schema$ApkListing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
+      pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApkListing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApkListing>(parameters);
+    }
+  }
 
 
   /**
@@ -1268,34 +1353,50 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ApkListingsListResponse>,
-       callback?: BodyResponseCallback<Schema$ApkListingsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'apkVersionCode'],
-          pathParams: ['apkVersionCode', 'editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApkListingsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ApkListingsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ApkListingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ApkListingsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ApkListingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ApkListingsListResponse>):
+      void|AxiosPromise<Schema$ApkListingsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode'],
+      pathParams: ['apkVersionCode', 'editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApkListingsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApkListingsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1315,34 +1416,47 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
-       callback?: BodyResponseCallback<Schema$ApkListing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApkListing>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>):
+      void|AxiosPromise<Schema$ApkListing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
+      pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApkListing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApkListing>(parameters);
+    }
+  }
 
 
   /**
@@ -1362,41 +1476,60 @@ export class Resource$Edits$Apklistings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
-       callback?: BodyResponseCallback<Schema$ApkListing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'language'],
-          pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApkListing>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$ApkListing>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ApkListing>,
+      callback?: BodyResponseCallback<Schema$ApkListing>):
+      void|AxiosPromise<Schema$ApkListing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'apkVersionCode', 'language'],
+      pathParams: ['apkVersionCode', 'editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApkListing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApkListing>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Apks {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.apks.addexternallyhosted
@@ -1415,36 +1548,53 @@ export class Resource$Edits$Apks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addexternallyhosted =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
-            parameters, callback!);
-      };
+  addexternallyhosted(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ApksAddExternallyHostedResponse>;
+  addexternallyhosted(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+      callback?: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
+      void;
+  addexternallyhosted(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>,
+      callback?: BodyResponseCallback<Schema$ApksAddExternallyHostedResponse>):
+      void|AxiosPromise<Schema$ApksAddExternallyHostedResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/externallyHosted')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApksAddExternallyHostedResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1459,33 +1609,48 @@ export class Resource$Edits$Apks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ApksListResponse>,
-       callback?: BodyResponseCallback<Schema$ApksListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ApksListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ApksListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ApksListResponse>,
+      callback?: BodyResponseCallback<Schema$ApksListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ApksListResponse>,
+      callback?: BodyResponseCallback<Schema$ApksListResponse>):
+      void|AxiosPromise<Schema$ApksListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ApksListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ApksListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1503,43 +1668,62 @@ export class Resource$Edits$Apks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Apk>,
-       callback?: BodyResponseCallback<Schema$Apk>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Apk>(parameters, callback!);
-      };
+  upload(params: any, options?: MethodOptions): AxiosPromise<Schema$Apk>;
+  upload(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Apk>,
+      callback?: BodyResponseCallback<Schema$Apk>): void;
+  upload(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Apk>,
+      callback?: BodyResponseCallback<Schema$Apk>):
+      void|AxiosPromise<Schema$Apk> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Apk>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Apk>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Deobfuscationfiles {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.deobfuscationfiles.upload
@@ -1560,51 +1744,72 @@ export class Resource$Edits$Deobfuscationfiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
-       callback?:
-           BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: [
-            'packageName', 'editId', 'apkVersionCode', 'deobfuscationFileType'
-          ],
-          pathParams: [
-            'apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'
-          ],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
-            parameters, callback!);
-      };
+  upload(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DeobfuscationFilesUploadResponse>;
+  upload(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
+      void;
+  upload(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$DeobfuscationFilesUploadResponse>):
+      void|AxiosPromise<Schema$DeobfuscationFilesUploadResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/deobfuscationFiles/{deobfuscationFileType}')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams:
+          ['packageName', 'editId', 'apkVersionCode', 'deobfuscationFileType'],
+      pathParams:
+          ['apkVersionCode', 'deobfuscationFileType', 'editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeobfuscationFilesUploadResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Details {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.details.get
@@ -1620,33 +1825,45 @@ export class Resource$Edits$Details {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-       callback?: BodyResponseCallback<Schema$AppDetails>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppDetails>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>):
+      void|AxiosPromise<Schema$AppDetails> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppDetails>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppDetails>(parameters);
+    }
+  }
 
 
   /**
@@ -1664,33 +1881,47 @@ export class Resource$Edits$Details {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-       callback?: BodyResponseCallback<Schema$AppDetails>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppDetails>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>):
+      void|AxiosPromise<Schema$AppDetails> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppDetails>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppDetails>(parameters);
+    }
+  }
 
 
   /**
@@ -1707,40 +1938,60 @@ export class Resource$Edits$Details {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
-       callback?: BodyResponseCallback<Schema$AppDetails>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppDetails>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$AppDetails>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AppDetails>,
+      callback?: BodyResponseCallback<Schema$AppDetails>):
+      void|AxiosPromise<Schema$AppDetails> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/details')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppDetails>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppDetails>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Expansionfiles {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.expansionfiles.get
@@ -1757,35 +2008,47 @@ export class Resource$Edits$Expansionfiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-       callback?: BodyResponseCallback<Schema$ExpansionFile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-          pathParams:
-              ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ExpansionFile>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>):
+      void|AxiosPromise<Schema$ExpansionFile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
+      pathParams:
+          ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ExpansionFile>(parameters);
+    }
+  }
 
 
   /**
@@ -1806,35 +2069,50 @@ export class Resource$Edits$Expansionfiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-       callback?: BodyResponseCallback<Schema$ExpansionFile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-          pathParams:
-              ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ExpansionFile>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>):
+      void|AxiosPromise<Schema$ExpansionFile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams:
+          ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
+      pathParams:
+          ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ExpansionFile>(parameters);
+    }
+  }
 
 
   /**
@@ -1854,35 +2132,50 @@ export class Resource$Edits$Expansionfiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
-       callback?: BodyResponseCallback<Schema$ExpansionFile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-          pathParams:
-              ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ExpansionFile>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ExpansionFile>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ExpansionFile>,
+      callback?: BodyResponseCallback<Schema$ExpansionFile>):
+      void|AxiosPromise<Schema$ExpansionFile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams:
+          ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
+      pathParams:
+          ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ExpansionFile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ExpansionFile>(parameters);
+    }
+  }
 
 
   /**
@@ -1903,49 +2196,71 @@ export class Resource$Edits$Expansionfiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ExpansionFilesUploadResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams:
-              ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
-          pathParams:
-              ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ExpansionFilesUploadResponse>(
-            parameters, callback!);
-      };
+  upload(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ExpansionFilesUploadResponse>;
+  upload(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
+      void;
+  upload(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ExpansionFilesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ExpansionFilesUploadResponse>):
+      void|AxiosPromise<Schema$ExpansionFilesUploadResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/apks/{apkVersionCode}/expansionFiles/{expansionFileType}')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams:
+          ['packageName', 'editId', 'apkVersionCode', 'expansionFileType'],
+      pathParams:
+          ['apkVersionCode', 'editId', 'expansionFileType', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ExpansionFilesUploadResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ExpansionFilesUploadResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Images {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.images.delete
@@ -1963,34 +2278,45 @@ export class Resource$Edits$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['packageName', 'editId', 'language', 'imageType', 'imageId'],
-          pathParams:
-              ['editId', 'imageId', 'imageType', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}/{imageId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams:
+          ['packageName', 'editId', 'language', 'imageType', 'imageId'],
+      pathParams: ['editId', 'imageId', 'imageType', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2008,34 +2334,50 @@ export class Resource$Edits$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteall =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
-       callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback!);
-      };
+  deleteall(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImagesDeleteAllResponse>;
+  deleteall(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>): void;
+  deleteall(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ImagesDeleteAllResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesDeleteAllResponse>):
+      void|AxiosPromise<Schema$ImagesDeleteAllResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language', 'imageType'],
+      pathParams: ['editId', 'imageType', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImagesDeleteAllResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2053,33 +2395,48 @@ export class Resource$Edits$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ImagesListResponse>,
-       callback?: BodyResponseCallback<Schema$ImagesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImagesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImagesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ImagesListResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImagesListResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesListResponse>):
+      void|AxiosPromise<Schema$ImagesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language', 'imageType'],
+      pathParams: ['editId', 'imageType', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImagesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImagesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2101,44 +2458,65 @@ export class Resource$Edits$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ImagesUploadResponse>,
-       callback?: BodyResponseCallback<Schema$ImagesUploadResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['packageName', 'editId', 'language', 'imageType'],
-          pathParams: ['editId', 'imageType', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback!);
-      };
+  upload(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImagesUploadResponse>;
+  upload(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ImagesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesUploadResponse>): void;
+  upload(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImagesUploadResponse>,
+      callback?: BodyResponseCallback<Schema$ImagesUploadResponse>):
+      void|AxiosPromise<Schema$ImagesUploadResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}/{imageType}')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['packageName', 'editId', 'language', 'imageType'],
+      pathParams: ['editId', 'imageType', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImagesUploadResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImagesUploadResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Listings {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.listings.delete
@@ -2154,32 +2532,44 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language'],
+      pathParams: ['editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2195,32 +2585,44 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteall =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  deleteall(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deleteall(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  deleteall(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2237,32 +2639,43 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-       callback?: BodyResponseCallback<Schema$Listing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Listing>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Listing>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>):
+      void|AxiosPromise<Schema$Listing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language'],
+      pathParams: ['editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Listing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Listing>(parameters);
+    }
+  }
 
 
   /**
@@ -2278,33 +2691,48 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListingsListResponse>,
-       callback?: BodyResponseCallback<Schema$ListingsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListingsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListingsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ListingsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListingsListResponse>,
+      callback?: BodyResponseCallback<Schema$ListingsListResponse>):
+      void|AxiosPromise<Schema$ListingsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListingsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListingsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2323,32 +2751,45 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-       callback?: BodyResponseCallback<Schema$Listing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Listing>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Listing>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>):
+      void|AxiosPromise<Schema$Listing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language'],
+      pathParams: ['editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Listing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Listing>(parameters);
+    }
+  }
 
 
   /**
@@ -2366,39 +2807,58 @@ export class Resource$Edits$Listings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
-       callback?: BodyResponseCallback<Schema$Listing>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'language'],
-          pathParams: ['editId', 'language', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Listing>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Listing>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Listing>,
+      callback?: BodyResponseCallback<Schema$Listing>):
+      void|AxiosPromise<Schema$Listing> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/listings/{language}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'language'],
+      pathParams: ['editId', 'language', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Listing>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Listing>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Testers {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.testers.get
@@ -2413,32 +2873,43 @@ export class Resource$Edits$Testers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-       callback?: BodyResponseCallback<Schema$Testers>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Testers>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Testers>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>):
+      void|AxiosPromise<Schema$Testers> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Testers>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Testers>(parameters);
+    }
+  }
 
 
   /**
@@ -2455,32 +2926,45 @@ export class Resource$Edits$Testers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-       callback?: BodyResponseCallback<Schema$Testers>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Testers>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Testers>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>):
+      void|AxiosPromise<Schema$Testers> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Testers>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Testers>(parameters);
+    }
+  }
 
 
   /**
@@ -2497,39 +2981,58 @@ export class Resource$Edits$Testers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
-       callback?: BodyResponseCallback<Schema$Testers>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Testers>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Testers>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Testers>,
+      callback?: BodyResponseCallback<Schema$Testers>):
+      void|AxiosPromise<Schema$Testers> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/testers/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Testers>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Testers>(parameters);
+    }
+  }
 }
 
 export class Resource$Edits$Tracks {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.edits.tracks.get
@@ -2546,32 +3049,43 @@ export class Resource$Edits$Tracks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
-       callback?: BodyResponseCallback<Schema$Track>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Track>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Track>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>):
+      void|AxiosPromise<Schema$Track> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Track>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Track>(parameters);
+    }
+  }
 
 
   /**
@@ -2587,33 +3101,48 @@ export class Resource$Edits$Tracks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TracksListResponse>,
-       callback?: BodyResponseCallback<Schema$TracksListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId'],
-          pathParams: ['editId', 'packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TracksListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TracksListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TracksListResponse>,
+      callback?: BodyResponseCallback<Schema$TracksListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TracksListResponse>,
+      callback?: BodyResponseCallback<Schema$TracksListResponse>):
+      void|AxiosPromise<Schema$TracksListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId'],
+      pathParams: ['editId', 'packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TracksListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TracksListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2634,32 +3163,45 @@ export class Resource$Edits$Tracks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
-       callback?: BodyResponseCallback<Schema$Track>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Track>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Track>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>):
+      void|AxiosPromise<Schema$Track> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Track>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Track>(parameters);
+    }
+  }
 
 
   /**
@@ -2679,93 +3221,59 @@ export class Resource$Edits$Tracks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
-       callback?: BodyResponseCallback<Schema$Track>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'editId', 'track'],
-          pathParams: ['editId', 'packageName', 'track'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Track>(parameters, callback!);
-      };
-}
-
-
-export class Resource$Entitlements {
-  root: Androidpublisher;
-  constructor(root: Androidpublisher) {
-    this.root = root;
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Track>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Track>,
+      callback?: BodyResponseCallback<Schema$Track>):
+      void|AxiosPromise<Schema$Track> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/edits/{editId}/tracks/{track}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'editId', 'track'],
+      pathParams: ['editId', 'packageName', 'track'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Track>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Track>(parameters);
+    }
   }
-
-  /**
-   * androidpublisher.entitlements.list
-   * @desc Lists the user's current inapp item or subscription entitlements
-   * @alias androidpublisher.entitlements.list
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {integer=} params.maxResults
-   * @param {string} params.packageName The package name of the application the inapp product was sold in (for example, 'com.some.thing').
-   * @param {string=} params.productId The product id of the inapp product (for example, 'sku1'). This can be used to restrict the result set.
-   * @param {integer=} params.startIndex
-   * @param {string=} params.token
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$EntitlementsListResponse>,
-       callback?: BodyResponseCallback<Schema$EntitlementsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/entitlements')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntitlementsListResponse>(
-            parameters, callback!);
-      };
 }
+
 
 export class Resource$Inappproducts {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.inappproducts.delete
@@ -2780,32 +3288,44 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'sku'],
-          pathParams: ['packageName', 'sku'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'sku'],
+      pathParams: ['packageName', 'sku'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2821,33 +3341,45 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-       callback?: BodyResponseCallback<Schema$InAppProduct>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'sku'],
-          pathParams: ['packageName', 'sku'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InAppProduct>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$InAppProduct>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>):
+      void|AxiosPromise<Schema$InAppProduct> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'sku'],
+      pathParams: ['packageName', 'sku'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InAppProduct>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InAppProduct>(parameters);
+    }
+  }
 
 
   /**
@@ -2864,33 +3396,48 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-       callback?: BodyResponseCallback<Schema$InAppProduct>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InAppProduct>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InAppProduct>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>):
+      void|AxiosPromise<Schema$InAppProduct> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName'],
+      pathParams: ['packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InAppProduct>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InAppProduct>(parameters);
+    }
+  }
 
 
   /**
@@ -2909,35 +3456,50 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InappproductsListResponse>,
-       callback?: BodyResponseCallback<Schema$InappproductsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InappproductsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InappproductsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InappproductsListResponse>,
+      callback?: BodyResponseCallback<Schema$InappproductsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InappproductsListResponse>,
+      callback?: BodyResponseCallback<Schema$InappproductsListResponse>):
+      void|AxiosPromise<Schema$InappproductsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName'],
+      pathParams: ['packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InappproductsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InappproductsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2956,33 +3518,48 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-       callback?: BodyResponseCallback<Schema$InAppProduct>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'sku'],
-          pathParams: ['packageName', 'sku'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InAppProduct>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InAppProduct>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>):
+      void|AxiosPromise<Schema$InAppProduct> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'sku'],
+      pathParams: ['packageName', 'sku'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InAppProduct>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InAppProduct>(parameters);
+    }
+  }
 
 
   /**
@@ -3000,33 +3577,48 @@ export class Resource$Inappproducts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
-       callback?: BodyResponseCallback<Schema$InAppProduct>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'sku'],
-          pathParams: ['packageName', 'sku'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InAppProduct>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InAppProduct>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InAppProduct>,
+      callback?: BodyResponseCallback<Schema$InAppProduct>):
+      void|AxiosPromise<Schema$InAppProduct> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/inappproducts/{sku}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'sku'],
+      pathParams: ['packageName', 'sku'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InAppProduct>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InAppProduct>(parameters);
+    }
+  }
 }
 
 export class Resource$Purchases {
@@ -3036,16 +3628,27 @@ export class Resource$Purchases {
   voidedpurchases: Resource$Purchases$Voidedpurchases;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
     this.products = new Resource$Purchases$Products(root);
     this.subscriptions = new Resource$Purchases$Subscriptions(root);
     this.voidedpurchases = new Resource$Purchases$Voidedpurchases(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Purchases$Products {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.purchases.products.get
@@ -3061,40 +3664,59 @@ export class Resource$Purchases$Products {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProductPurchase>,
-       callback?: BodyResponseCallback<Schema$ProductPurchase>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'productId', 'token'],
-          pathParams: ['packageName', 'productId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProductPurchase>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ProductPurchase>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProductPurchase>,
+      callback?: BodyResponseCallback<Schema$ProductPurchase>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProductPurchase>,
+      callback?: BodyResponseCallback<Schema$ProductPurchase>):
+      void|AxiosPromise<Schema$ProductPurchase> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/products/{productId}/tokens/{token}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'productId', 'token'],
+      pathParams: ['packageName', 'productId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProductPurchase>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProductPurchase>(parameters);
+    }
+  }
 }
 
 export class Resource$Purchases$Subscriptions {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.purchases.subscriptions.cancel
@@ -3111,32 +3733,44 @@ export class Resource$Purchases$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<void>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3155,36 +3789,55 @@ export class Resource$Purchases$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  defer =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
-       callback?:
-           BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
-            parameters, callback!);
-      };
+  defer(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SubscriptionPurchasesDeferResponse>;
+  defer(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+      callback?:
+          BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
+      void;
+  defer(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>,
+      callback?:
+          BodyResponseCallback<Schema$SubscriptionPurchasesDeferResponse>):
+      void|AxiosPromise<Schema$SubscriptionPurchasesDeferResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:defer')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubscriptionPurchasesDeferResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3202,33 +3855,46 @@ export class Resource$Purchases$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
-       callback?: BodyResponseCallback<Schema$SubscriptionPurchase>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
+      void|AxiosPromise<Schema$SubscriptionPurchase> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
+    }
+  }
 
 
   /**
@@ -3246,32 +3912,44 @@ export class Resource$Purchases$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  refund =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  refund(params: any, options?: MethodOptions): AxiosPromise<void>;
+  refund(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  refund(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3290,39 +3968,57 @@ export class Resource$Purchases$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  revoke =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  revoke(params: any, options?: MethodOptions): AxiosPromise<void>;
+  revoke(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  revoke(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Purchases$Voidedpurchases {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.purchases.voidedpurchases.list
@@ -3341,35 +4037,52 @@ export class Resource$Purchases$Voidedpurchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
-       callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/purchases/voidedpurchases')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VoidedPurchasesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VoidedPurchasesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+      callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VoidedPurchasesListResponse>,
+      callback?: BodyResponseCallback<Schema$VoidedPurchasesListResponse>):
+      void|AxiosPromise<Schema$VoidedPurchasesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/purchases/voidedpurchases')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName'],
+      pathParams: ['packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VoidedPurchasesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VoidedPurchasesListResponse>(parameters);
+    }
+  }
 }
 
 
@@ -3377,7 +4090,13 @@ export class Resource$Reviews {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.reviews.get
@@ -3393,32 +4112,43 @@ export class Resource$Reviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Review>,
-       callback?: BodyResponseCallback<Schema$Review>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'reviewId'],
-          pathParams: ['packageName', 'reviewId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Review>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Review>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Review>,
+      callback?: BodyResponseCallback<Schema$Review>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Review>,
+      callback?: BodyResponseCallback<Schema$Review>):
+      void|AxiosPromise<Schema$Review> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'reviewId'],
+      pathParams: ['packageName', 'reviewId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Review>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Review>(parameters);
+    }
+  }
 
 
   /**
@@ -3438,32 +4168,47 @@ export class Resource$Reviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReviewsListResponse>,
-       callback?: BodyResponseCallback<Schema$ReviewsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/androidpublisher/v2/applications/{packageName}/reviews')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName'],
-          pathParams: ['packageName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReviewsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReviewsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReviewsListResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReviewsListResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsListResponse>):
+      void|AxiosPromise<Schema$ReviewsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/androidpublisher/v2/applications/{packageName}/reviews')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName'],
+      pathParams: ['packageName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReviewsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReviewsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3480,31 +4225,46 @@ export class Resource$Reviews {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reply =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReviewsReplyResponse>,
-       callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}:reply')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'reviewId'],
-          pathParams: ['packageName', 'reviewId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback!);
-      };
+  reply(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReviewsReplyResponse>;
+  reply(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReviewsReplyResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>): void;
+  reply(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReviewsReplyResponse>,
+      callback?: BodyResponseCallback<Schema$ReviewsReplyResponse>):
+      void|AxiosPromise<Schema$ReviewsReplyResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v2/applications/{packageName}/reviews/{reviewId}:reply')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'reviewId'],
+      pathParams: ['packageName', 'reviewId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReviewsReplyResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReviewsReplyResponse>(parameters);
+    }
+  }
 }

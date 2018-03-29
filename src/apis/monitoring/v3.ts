@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,9 +56,14 @@ export class Monitoring {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
     this.uptimeCheckIps = new Resource$Uptimecheckips(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1796,6 +1803,7 @@ export class Resource$Projects {
   uptimeCheckConfigs: Resource$Projects$Uptimecheckconfigs;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
     this.alertPolicies = new Resource$Projects$Alertpolicies(root);
     this.collectdTimeSeries = new Resource$Projects$Collectdtimeseries(root);
     this.groups = new Resource$Projects$Groups(root);
@@ -1809,12 +1817,22 @@ export class Resource$Projects {
     this.timeSeries = new Resource$Projects$Timeseries(root);
     this.uptimeCheckConfigs = new Resource$Projects$Uptimecheckconfigs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
 }
 export class Resource$Projects$Alertpolicies {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.alertPolicies.create
@@ -1829,31 +1847,46 @@ export class Resource$Projects$Alertpolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-       callback?: BodyResponseCallback<Schema$AlertPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/alertPolicies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AlertPolicy>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AlertPolicy>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>):
+      void|AxiosPromise<Schema$AlertPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/alertPolicies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AlertPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AlertPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -1868,29 +1901,42 @@ export class Resource$Projects$Alertpolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1905,30 +1951,42 @@ export class Resource$Projects$Alertpolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-       callback?: BodyResponseCallback<Schema$AlertPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AlertPolicy>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AlertPolicy>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>):
+      void|AxiosPromise<Schema$AlertPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AlertPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AlertPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -1947,33 +2005,48 @@ export class Resource$Projects$Alertpolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
-       callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/alertPolicies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAlertPoliciesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAlertPoliciesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAlertPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListAlertPoliciesResponse>):
+      void|AxiosPromise<Schema$ListAlertPoliciesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/alertPolicies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAlertPoliciesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAlertPoliciesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1993,37 +2066,57 @@ export class Resource$Projects$Alertpolicies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
-       callback?: BodyResponseCallback<Schema$AlertPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AlertPolicy>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$AlertPolicy>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AlertPolicy>,
+      callback?: BodyResponseCallback<Schema$AlertPolicy>):
+      void|AxiosPromise<Schema$AlertPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AlertPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AlertPolicy>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Collectdtimeseries {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.collectdTimeSeries.create
@@ -2083,34 +2176,51 @@ export class Resource$Projects$Collectdtimeseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/collectdTimeSeries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreateCollectdTimeSeriesResponse>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$CreateCollectdTimeSeriesResponse>):
+      void|AxiosPromise<Schema$CreateCollectdTimeSeriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/collectdTimeSeries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Groups {
@@ -2118,8 +2228,14 @@ export class Resource$Projects$Groups {
   members: Resource$Projects$Groups$Members;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
     this.members = new Resource$Projects$Groups$Members(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.groups.create
@@ -2181,30 +2297,42 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
-       callback?: BodyResponseCallback<Schema$Group>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Group>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>):
+      void|AxiosPromise<Schema$Group> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Group>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Group>(parameters);
+    }
+  }
 
 
   /**
@@ -2265,29 +2393,42 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2348,29 +2489,40 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
-       callback?: BodyResponseCallback<Schema$Group>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Group>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>):
+      void|AxiosPromise<Schema$Group> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Group>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Group>(parameters);
+    }
+  }
 
 
   /**
@@ -2442,31 +2594,45 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
-       callback?: BodyResponseCallback<Schema$ListGroupsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/groups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListGroupsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListGroupsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupsResponse>):
+      void|AxiosPromise<Schema$ListGroupsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListGroupsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListGroupsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2536,35 +2702,54 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
-       callback?: BodyResponseCallback<Schema$Group>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Group>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      callback?: BodyResponseCallback<Schema$Group>):
+      void|AxiosPromise<Schema$Group> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Group>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Group>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Groups$Members {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.groups.members.list
@@ -2636,33 +2821,47 @@ export class Resource$Projects$Groups$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListGroupMembersResponse>,
-       callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/members')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListGroupMembersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListGroupMembersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListGroupMembersResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListGroupMembersResponse>,
+      callback?: BodyResponseCallback<Schema$ListGroupMembersResponse>):
+      void|AxiosPromise<Schema$ListGroupMembersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/members').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListGroupMembersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListGroupMembersResponse>(parameters);
+    }
+  }
 }
 
 
@@ -2670,7 +2869,13 @@ export class Resource$Projects$Metricdescriptors {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.metricDescriptors.create
@@ -2729,31 +2934,46 @@ export class Resource$Projects$Metricdescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-       callback?: BodyResponseCallback<Schema$MetricDescriptor>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/metricDescriptors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MetricDescriptor>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MetricDescriptor>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>):
+      void|AxiosPromise<Schema$MetricDescriptor> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/metricDescriptors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MetricDescriptor>(parameters);
+    }
+  }
 
 
   /**
@@ -2814,29 +3034,42 @@ export class Resource$Projects$Metricdescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2897,30 +3130,43 @@ export class Resource$Projects$Metricdescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
-       callback?: BodyResponseCallback<Schema$MetricDescriptor>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MetricDescriptor>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$MetricDescriptor>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MetricDescriptor>,
+      callback?: BodyResponseCallback<Schema$MetricDescriptor>):
+      void|AxiosPromise<Schema$MetricDescriptor> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MetricDescriptor>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MetricDescriptor>(parameters);
+    }
+  }
 
 
   /**
@@ -2991,41 +3237,63 @@ export class Resource$Projects$Metricdescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListMetricDescriptorsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/metricDescriptors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMetricDescriptorsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMetricDescriptorsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListMetricDescriptorsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMetricDescriptorsResponse>):
+      void|AxiosPromise<Schema$ListMetricDescriptorsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/metricDescriptors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMetricDescriptorsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMetricDescriptorsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Monitoredresourcedescriptors {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.monitoredResourceDescriptors.get
@@ -3088,32 +3356,47 @@ export class Resource$Projects$Monitoredresourcedescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
-       callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MonitoredResourceDescriptor>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MonitoredResourceDescriptor>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+      callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$MonitoredResourceDescriptor>,
+      callback?: BodyResponseCallback<Schema$MonitoredResourceDescriptor>):
+      void|AxiosPromise<Schema$MonitoredResourceDescriptor> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MonitoredResourceDescriptor>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MonitoredResourceDescriptor>(parameters);
+    }
+  }
 
 
   /**
@@ -3185,41 +3468,65 @@ export class Resource$Projects$Monitoredresourcedescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListMonitoredResourceDescriptorsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/monitoredResourceDescriptors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListMonitoredResourceDescriptorsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListMonitoredResourceDescriptorsResponse>):
+      void|AxiosPromise<Schema$ListMonitoredResourceDescriptorsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/monitoredResourceDescriptors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Notificationchanneldescriptors {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.notificationChannelDescriptors.get
@@ -3235,33 +3542,47 @@ export class Resource$Projects$Notificationchanneldescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$NotificationChannelDescriptor>,
-       callback?:
-           BodyResponseCallback<Schema$NotificationChannelDescriptor>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$NotificationChannelDescriptor>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$NotificationChannelDescriptor>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+      callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$NotificationChannelDescriptor>,
+      callback?: BodyResponseCallback<Schema$NotificationChannelDescriptor>):
+      void|AxiosPromise<Schema$NotificationChannelDescriptor> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$NotificationChannelDescriptor>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$NotificationChannelDescriptor>(parameters);
+    }
+  }
 
 
   /**
@@ -3280,41 +3601,65 @@ export class Resource$Projects$Notificationchanneldescriptors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListNotificationChannelDescriptorsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/notificationChannelDescriptors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListNotificationChannelDescriptorsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListNotificationChannelDescriptorsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListNotificationChannelDescriptorsResponse>):
+      void|AxiosPromise<Schema$ListNotificationChannelDescriptorsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/notificationChannelDescriptors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$ListNotificationChannelDescriptorsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Notificationchannels {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.notificationChannels.create
@@ -3331,31 +3676,46 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-       callback?: BodyResponseCallback<Schema$NotificationChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/notificationChannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$NotificationChannel>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$NotificationChannel>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>):
+      void|AxiosPromise<Schema$NotificationChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/notificationChannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$NotificationChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$NotificationChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -3371,29 +3731,42 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3412,30 +3785,43 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-       callback?: BodyResponseCallback<Schema$NotificationChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$NotificationChannel>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$NotificationChannel>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>):
+      void|AxiosPromise<Schema$NotificationChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$NotificationChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$NotificationChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -3468,34 +3854,52 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getVerificationCode =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GetNotificationChannelVerificationCodeResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GetNotificationChannelVerificationCodeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}:getVerificationCode')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
-            parameters, callback!);
-      };
+  getVerificationCode(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse>;
+  getVerificationCode(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GetNotificationChannelVerificationCodeResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GetNotificationChannelVerificationCodeResponse>): void;
+  getVerificationCode(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GetNotificationChannelVerificationCodeResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GetNotificationChannelVerificationCodeResponse>):
+      void|AxiosPromise<Schema$GetNotificationChannelVerificationCodeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}:getVerificationCode')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GetNotificationChannelVerificationCodeResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3515,34 +3919,51 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListNotificationChannelsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/notificationChannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListNotificationChannelsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListNotificationChannelsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListNotificationChannelsResponse>,
+      callback?: BodyResponseCallback<Schema$ListNotificationChannelsResponse>):
+      void|AxiosPromise<Schema$ListNotificationChannelsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/notificationChannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListNotificationChannelsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListNotificationChannelsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3560,30 +3981,45 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-       callback?: BodyResponseCallback<Schema$NotificationChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$NotificationChannel>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$NotificationChannel>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>):
+      void|AxiosPromise<Schema$NotificationChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$NotificationChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$NotificationChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -3600,30 +4036,44 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sendVerificationCode =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}:sendVerificationCode')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  sendVerificationCode(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  sendVerificationCode(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  sendVerificationCode(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}:sendVerificationCode')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3641,38 +4091,58 @@ export class Resource$Projects$Notificationchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verify =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
-       callback?: BodyResponseCallback<Schema$NotificationChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}:verify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$NotificationChannel>(parameters, callback!);
-      };
+  verify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$NotificationChannel>;
+  verify(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>): void;
+  verify(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NotificationChannel>,
+      callback?: BodyResponseCallback<Schema$NotificationChannel>):
+      void|AxiosPromise<Schema$NotificationChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}:verify').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$NotificationChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$NotificationChannel>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Timeseries {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.timeSeries.create
@@ -3736,30 +4206,43 @@ export class Resource$Projects$Timeseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/timeSeries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/timeSeries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3838,39 +4321,61 @@ export class Resource$Projects$Timeseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTimeSeriesResponse>,
-       callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}/timeSeries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTimeSeriesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListTimeSeriesResponse>):
+      void|AxiosPromise<Schema$ListTimeSeriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}/timeSeries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTimeSeriesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Uptimecheckconfigs {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.projects.uptimeCheckConfigs.create
@@ -3885,31 +4390,46 @@ export class Resource$Projects$Uptimecheckconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-       callback?: BodyResponseCallback<Schema$UptimeCheckConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UptimeCheckConfig>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
+      void|AxiosPromise<Schema$UptimeCheckConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -3926,29 +4446,42 @@ export class Resource$Projects$Uptimecheckconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3963,30 +4496,43 @@ export class Resource$Projects$Uptimecheckconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-       callback?: BodyResponseCallback<Schema$UptimeCheckConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$UptimeCheckConfig>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
+      void|AxiosPromise<Schema$UptimeCheckConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -4004,34 +4550,51 @@ export class Resource$Projects$Uptimecheckconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListUptimeCheckConfigsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckConfigsResponse>):
+      void|AxiosPromise<Schema$ListUptimeCheckConfigsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4051,30 +4614,45 @@ export class Resource$Projects$Uptimecheckconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
-       callback?: BodyResponseCallback<Schema$UptimeCheckConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UptimeCheckConfig>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UptimeCheckConfig>,
+      callback?: BodyResponseCallback<Schema$UptimeCheckConfig>):
+      void|AxiosPromise<Schema$UptimeCheckConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UptimeCheckConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
+    }
+  }
 }
 
 
@@ -4082,7 +4660,13 @@ export class Resource$Uptimecheckips {
   root: Monitoring;
   constructor(root: Monitoring) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * monitoring.uptimeCheckIps.list
@@ -4097,31 +4681,45 @@ export class Resource$Uptimecheckips {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
-       callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v3/uptimeCheckIps')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListUptimeCheckIpsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListUptimeCheckIpsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>,
+      callback?: BodyResponseCallback<Schema$ListUptimeCheckIpsResponse>):
+      void|AxiosPromise<Schema$ListUptimeCheckIpsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v3/uptimeCheckIps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters);
+    }
+  }
 }

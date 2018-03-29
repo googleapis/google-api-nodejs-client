@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -56,6 +58,7 @@ export class Fusiontables {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.column = new Resource$Column(this);
     this.query = new Resource$Query(this);
@@ -63,6 +66,10 @@ export class Fusiontables {
     this.table = new Resource$Table(this);
     this.task = new Resource$Task(this);
     this.template = new Resource$Template(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -643,7 +650,13 @@ export class Resource$Column {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.column.delete
@@ -658,31 +671,43 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'columnId'],
-          pathParams: ['columnId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'columnId'],
+      pathParams: ['columnId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -698,31 +723,42 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
-       callback?: BodyResponseCallback<Schema$Column>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'columnId'],
-          pathParams: ['columnId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Column>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Column>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>):
+      void|AxiosPromise<Schema$Column> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'columnId'],
+      pathParams: ['columnId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Column>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Column>(parameters);
+    }
+  }
 
 
   /**
@@ -738,30 +774,43 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
-       callback?: BodyResponseCallback<Schema$Column>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Column>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Column>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>):
+      void|AxiosPromise<Schema$Column> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Column>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Column>(parameters);
+    }
+  }
 
 
   /**
@@ -778,31 +827,45 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ColumnList>,
-       callback?: BodyResponseCallback<Schema$ColumnList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ColumnList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ColumnList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ColumnList>,
+      callback?: BodyResponseCallback<Schema$ColumnList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ColumnList>,
+      callback?: BodyResponseCallback<Schema$ColumnList>):
+      void|AxiosPromise<Schema$ColumnList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/columns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ColumnList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ColumnList>(parameters);
+    }
+  }
 
 
   /**
@@ -820,31 +883,44 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
-       callback?: BodyResponseCallback<Schema$Column>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'columnId'],
-          pathParams: ['columnId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Column>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Column>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>):
+      void|AxiosPromise<Schema$Column> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'columnId'],
+      pathParams: ['columnId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Column>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Column>(parameters);
+    }
+  }
 
 
   /**
@@ -861,38 +937,57 @@ export class Resource$Column {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
-       callback?: BodyResponseCallback<Schema$Column>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'columnId'],
-          pathParams: ['columnId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Column>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Column>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Column>,
+      callback?: BodyResponseCallback<Schema$Column>):
+      void|AxiosPromise<Schema$Column> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/columns/{columnId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'columnId'],
+      pathParams: ['columnId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Column>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Column>(parameters);
+    }
+  }
 }
 
 export class Resource$Query {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.query.sql
@@ -909,31 +1004,43 @@ export class Resource$Query {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sql =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
-       callback?: BodyResponseCallback<Schema$Sqlresponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/query')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['sql'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Sqlresponse>(parameters, callback!);
-      };
+  sql(params: any, options?: MethodOptions): AxiosPromise<Schema$Sqlresponse>;
+  sql(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>): void;
+  sql(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>):
+      void|AxiosPromise<Schema$Sqlresponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/query')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['sql'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Sqlresponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Sqlresponse>(parameters);
+    }
+  }
 
 
   /**
@@ -951,38 +1058,59 @@ export class Resource$Query {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sqlGet =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
-       callback?: BodyResponseCallback<Schema$Sqlresponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/query')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['sql'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Sqlresponse>(parameters, callback!);
-      };
+  sqlGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Sqlresponse>;
+  sqlGet(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>): void;
+  sqlGet(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Sqlresponse>,
+      callback?: BodyResponseCallback<Schema$Sqlresponse>):
+      void|AxiosPromise<Schema$Sqlresponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/query')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['sql'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Sqlresponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Sqlresponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Style {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.style.delete
@@ -997,31 +1125,43 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'styleId'],
-          pathParams: ['styleId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'styleId'],
+      pathParams: ['styleId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1037,32 +1177,44 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-       callback?: BodyResponseCallback<Schema$StyleSetting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'styleId'],
-          pathParams: ['styleId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StyleSetting>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$StyleSetting>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>):
+      void|AxiosPromise<Schema$StyleSetting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'styleId'],
+      pathParams: ['styleId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StyleSetting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StyleSetting>(parameters);
+    }
+  }
 
 
   /**
@@ -1078,31 +1230,46 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-       callback?: BodyResponseCallback<Schema$StyleSetting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StyleSetting>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StyleSetting>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>):
+      void|AxiosPromise<Schema$StyleSetting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StyleSetting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StyleSetting>(parameters);
+    }
+  }
 
 
   /**
@@ -1119,31 +1286,46 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StyleSettingList>,
-       callback?: BodyResponseCallback<Schema$StyleSettingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StyleSettingList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StyleSettingList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StyleSettingList>,
+      callback?: BodyResponseCallback<Schema$StyleSettingList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StyleSettingList>,
+      callback?: BodyResponseCallback<Schema$StyleSettingList>):
+      void|AxiosPromise<Schema$StyleSettingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/styles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StyleSettingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StyleSettingList>(parameters);
+    }
+  }
 
 
   /**
@@ -1160,32 +1342,47 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-       callback?: BodyResponseCallback<Schema$StyleSetting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'styleId'],
-          pathParams: ['styleId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StyleSetting>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StyleSetting>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>):
+      void|AxiosPromise<Schema$StyleSetting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'styleId'],
+      pathParams: ['styleId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StyleSetting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StyleSetting>(parameters);
+    }
+  }
 
 
   /**
@@ -1202,39 +1399,60 @@ export class Resource$Style {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
-       callback?: BodyResponseCallback<Schema$StyleSetting>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'styleId'],
-          pathParams: ['styleId', 'tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$StyleSetting>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$StyleSetting>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$StyleSetting>,
+      callback?: BodyResponseCallback<Schema$StyleSetting>):
+      void|AxiosPromise<Schema$StyleSetting> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/fusiontables/v2/tables/{tableId}/styles/{styleId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'styleId'],
+      pathParams: ['styleId', 'tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$StyleSetting>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$StyleSetting>(parameters);
+    }
+  }
 }
 
 export class Resource$Table {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.table.copy
@@ -1249,30 +1467,43 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  copy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/copy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  copy(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  copy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  copy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/copy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -1287,30 +1518,42 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1325,30 +1568,41 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -1371,33 +1625,45 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  importRows =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Import>,
-       callback?: BodyResponseCallback<Schema$Import>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/import')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/import')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Import>(parameters, callback!);
-      };
+  importRows(params: any, options?: MethodOptions): AxiosPromise<Schema$Import>;
+  importRows(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Import>,
+      callback?: BodyResponseCallback<Schema$Import>): void;
+  importRows(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Import>,
+      callback?: BodyResponseCallback<Schema$Import>):
+      void|AxiosPromise<Schema$Import> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/import')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/import')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Import>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Import>(parameters);
+    }
+  }
 
 
   /**
@@ -1417,32 +1683,45 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  importTable =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/import')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/import')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['name'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  importTable(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  importTable(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  importTable(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/import')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/import')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['name'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -1457,30 +1736,43 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -1496,31 +1788,45 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TableList>,
-       callback?: BodyResponseCallback<Schema$TableList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$TableList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$TableList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TableList>,
+      callback?: BodyResponseCallback<Schema$TableList>):
+      void|AxiosPromise<Schema$TableList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TableList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TableList>(parameters);
+    }
+  }
 
 
   /**
@@ -1539,30 +1845,43 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 
 
   /**
@@ -1579,30 +1898,43 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  refetchSheet =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/refetch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  refetchSheet(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  refetchSheet(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  refetchSheet(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/refetch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -1626,33 +1958,45 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  replaceRows =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/replace')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/replace')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  replaceRows(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  replaceRows(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  replaceRows(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/replace')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/fusiontables/v2/tables/{tableId}/replace')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -1670,37 +2014,56 @@ export class Resource$Table {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
-       callback?: BodyResponseCallback<Schema$Table>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Table>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Table>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Table>,
+      callback?: BodyResponseCallback<Schema$Table>):
+      void|AxiosPromise<Schema$Table> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Table>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Table>(parameters);
+    }
+  }
 }
 
 export class Resource$Task {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.task.delete
@@ -1716,31 +2079,42 @@ export class Resource$Task {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'taskId'],
-          pathParams: ['tableId', 'taskId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'taskId'],
+      pathParams: ['tableId', 'taskId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1756,31 +2130,41 @@ export class Resource$Task {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
-       callback?: BodyResponseCallback<Schema$Task>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'taskId'],
-          pathParams: ['tableId', 'taskId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Task>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+      callback?: BodyResponseCallback<Schema$Task>):
+      void|AxiosPromise<Schema$Task> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks/{taskId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'taskId'],
+      pathParams: ['tableId', 'taskId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Task>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Task>(parameters);
+    }
+  }
 
 
   /**
@@ -1798,38 +2182,57 @@ export class Resource$Task {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-       callback?: BodyResponseCallback<Schema$TaskList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TaskList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+      callback?: BodyResponseCallback<Schema$TaskList>):
+      void|AxiosPromise<Schema$TaskList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/tasks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TaskList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TaskList>(parameters);
+    }
+  }
 }
 
 export class Resource$Template {
   root: Fusiontables;
   constructor(root: Fusiontables) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * fusiontables.template.delete
@@ -1844,32 +2247,43 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'templateId'],
-          pathParams: ['tableId', 'templateId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'templateId'],
+      pathParams: ['tableId', 'templateId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1885,33 +2299,43 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Template>,
-       callback?: BodyResponseCallback<Schema$Template>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'templateId'],
-          pathParams: ['tableId', 'templateId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Template>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Template>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>):
+      void|AxiosPromise<Schema$Template> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'templateId'],
+      pathParams: ['tableId', 'templateId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Template>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Template>(parameters);
+    }
+  }
 
 
   /**
@@ -1927,31 +2351,44 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Template>,
-       callback?: BodyResponseCallback<Schema$Template>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Template>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Template>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>):
+      void|AxiosPromise<Schema$Template> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Template>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Template>(parameters);
+    }
+  }
 
 
   /**
@@ -1968,31 +2405,45 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TemplateList>,
-       callback?: BodyResponseCallback<Schema$TemplateList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['tableId'],
-          pathParams: ['tableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TemplateList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$TemplateList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TemplateList>,
+      callback?: BodyResponseCallback<Schema$TemplateList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TemplateList>,
+      callback?: BodyResponseCallback<Schema$TemplateList>):
+      void|AxiosPromise<Schema$TemplateList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/fusiontables/v2/tables/{tableId}/templates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['tableId'],
+      pathParams: ['tableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TemplateList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TemplateList>(parameters);
+    }
+  }
 
 
   /**
@@ -2009,33 +2460,45 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Template>,
-       callback?: BodyResponseCallback<Schema$Template>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'templateId'],
-          pathParams: ['tableId', 'templateId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Template>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Template>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>):
+      void|AxiosPromise<Schema$Template> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'templateId'],
+      pathParams: ['tableId', 'templateId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Template>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Template>(parameters);
+    }
+  }
 
 
   /**
@@ -2052,31 +2515,43 @@ export class Resource$Template {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Template>,
-       callback?: BodyResponseCallback<Schema$Template>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['tableId', 'templateId'],
-          pathParams: ['tableId', 'templateId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Template>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Template>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Template>,
+      callback?: BodyResponseCallback<Schema$Template>):
+      void|AxiosPromise<Schema$Template> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/fusiontables/v2/tables/{tableId}/templates/{templateId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['tableId', 'templateId'],
+      pathParams: ['tableId', 'templateId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Template>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Template>(parameters);
+    }
+  }
 }

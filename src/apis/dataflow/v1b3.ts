@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Dataflow {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -3205,10 +3212,16 @@ export class Resource$Projects {
   templates: Resource$Projects$Templates;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.jobs = new Resource$Projects$Jobs(root);
     this.locations = new Resource$Projects$Locations(root);
     this.templates = new Resource$Projects$Templates(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.workerMessages
@@ -3223,33 +3236,48 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  workerMessages =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-       callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/WorkerMessages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendWorkerMessagesResponse>(
-            parameters, callback!);
-      };
+  workerMessages(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SendWorkerMessagesResponse>;
+  workerMessages(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>): void;
+  workerMessages(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+      void|AxiosPromise<Schema$SendWorkerMessagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/WorkerMessages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Jobs {
   root: Dataflow;
@@ -3258,10 +3286,16 @@ export class Resource$Projects$Jobs {
   workItems: Resource$Projects$Jobs$Workitems;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.debug = new Resource$Projects$Jobs$Debug(root);
     this.messages = new Resource$Projects$Jobs$Messages(root);
     this.workItems = new Resource$Projects$Jobs$Workitems(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.jobs.aggregated
@@ -3280,31 +3314,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  aggregated =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-       callback?: BodyResponseCallback<Schema$ListJobsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback!);
-      };
+  aggregated(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListJobsResponse>;
+  aggregated(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+  aggregated(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>):
+      void|AxiosPromise<Schema$ListJobsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs:aggregated')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListJobsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3323,30 +3372,43 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -3364,30 +3426,41 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -3405,32 +3478,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getMetrics =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-       callback?: BodyResponseCallback<Schema$JobMetrics>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/jobs/{jobId}/metrics')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$JobMetrics>(parameters, callback!);
-      };
+  getMetrics(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$JobMetrics>;
+  getMetrics(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>): void;
+  getMetrics(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>):
+      void|AxiosPromise<Schema$JobMetrics> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/metrics')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$JobMetrics>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$JobMetrics>(parameters);
+    }
+  }
 
 
   /**
@@ -3450,31 +3537,46 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-       callback?: BodyResponseCallback<Schema$ListJobsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListJobsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>):
+      void|AxiosPromise<Schema$ListJobsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListJobsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3492,36 +3594,55 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Jobs$Debug {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.jobs.debug.getConfig
@@ -3537,33 +3658,49 @@ export class Resource$Projects$Jobs$Debug {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getConfig =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetDebugConfigResponse>,
-       callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback!);
-      };
+  getConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetDebugConfigResponse>;
+  getConfig(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+  getConfig(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
+      void|AxiosPromise<Schema$GetDebugConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getConfig')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3580,42 +3717,62 @@ export class Resource$Projects$Jobs$Debug {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sendCapture =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-       callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendDebugCaptureResponse>(
-            parameters, callback!);
-      };
+  sendCapture(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SendDebugCaptureResponse>;
+  sendCapture(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+  sendCapture(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
+      void|AxiosPromise<Schema$SendDebugCaptureResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Jobs$Messages {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.jobs.messages.list
@@ -3636,40 +3793,61 @@ export class Resource$Projects$Jobs$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListJobMessagesResponse>,
-       callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListJobMessagesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
+      void|AxiosPromise<Schema$ListJobMessagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/jobs/{jobId}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Jobs$Workitems {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.jobs.workItems.lease
@@ -3685,33 +3863,48 @@ export class Resource$Projects$Jobs$Workitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  lease =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-       callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback!);
-      };
+  lease(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaseWorkItemResponse>;
+  lease(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+  lease(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
+      void|AxiosPromise<Schema$LeaseWorkItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:lease')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3728,36 +3921,52 @@ export class Resource$Projects$Jobs$Workitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reportStatus =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ReportWorkItemStatusResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'jobId'],
-          pathParams: ['jobId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters, callback!);
-      };
+  reportStatus(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReportWorkItemStatusResponse>;
+  reportStatus(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+      void;
+  reportStatus(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+      void|AxiosPromise<Schema$ReportWorkItemStatusResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/jobs/{jobId}/workItems:reportStatus')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'jobId'],
+      pathParams: ['jobId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReportWorkItemStatusResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReportWorkItemStatusResponse>(parameters);
+    }
+  }
 }
 
 
@@ -3767,9 +3976,15 @@ export class Resource$Projects$Locations {
   templates: Resource$Projects$Locations$Templates;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.jobs = new Resource$Projects$Locations$Jobs(root);
     this.templates = new Resource$Projects$Locations$Templates(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.workerMessages
@@ -3785,35 +4000,50 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  workerMessages =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-       callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendWorkerMessagesResponse>(
-            parameters, callback!);
-      };
+  workerMessages(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SendWorkerMessagesResponse>;
+  workerMessages(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>): void;
+  workerMessages(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+      void|AxiosPromise<Schema$SendWorkerMessagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/WorkerMessages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendWorkerMessagesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Jobs {
   root: Dataflow;
@@ -3822,10 +4052,16 @@ export class Resource$Projects$Locations$Jobs {
   workItems: Resource$Projects$Locations$Jobs$Workitems;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
     this.debug = new Resource$Projects$Locations$Jobs$Debug(root);
     this.messages = new Resource$Projects$Locations$Jobs$Messages(root);
     this.workItems = new Resource$Projects$Locations$Jobs$Workitems(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.jobs.create
@@ -3843,31 +4079,44 @@ export class Resource$Projects$Locations$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/locations/{location}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/locations/{location}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -3885,32 +4134,43 @@ export class Resource$Projects$Locations$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -3928,33 +4188,48 @@ export class Resource$Projects$Locations$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getMetrics =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-       callback?: BodyResponseCallback<Schema$JobMetrics>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$JobMetrics>(parameters, callback!);
-      };
+  getMetrics(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$JobMetrics>;
+  getMetrics(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>): void;
+  getMetrics(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+      callback?: BodyResponseCallback<Schema$JobMetrics>):
+      void|AxiosPromise<Schema$JobMetrics> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/metrics')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$JobMetrics>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$JobMetrics>(parameters);
+    }
+  }
 
 
   /**
@@ -3974,32 +4249,47 @@ export class Resource$Projects$Locations$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-       callback?: BodyResponseCallback<Schema$ListJobsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1b3/projects/{projectId}/locations/{location}/jobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListJobsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListJobsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobsResponse>):
+      void|AxiosPromise<Schema$ListJobsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/locations/{location}/jobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListJobsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListJobsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4017,38 +4307,57 @@ export class Resource$Projects$Locations$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Jobs$Debug {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.jobs.debug.getConfig
@@ -4065,34 +4374,50 @@ export class Resource$Projects$Locations$Jobs$Debug {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getConfig =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetDebugConfigResponse>,
-       callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback!);
-      };
+  getConfig(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetDebugConfigResponse>;
+  getConfig(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+  getConfig(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetDebugConfigResponse>,
+      callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
+      void|AxiosPromise<Schema$GetDebugConfigResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getConfig')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetDebugConfigResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetDebugConfigResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4110,42 +4435,63 @@ export class Resource$Projects$Locations$Jobs$Debug {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sendCapture =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-       callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SendDebugCaptureResponse>(
-            parameters, callback!);
-      };
+  sendCapture(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SendDebugCaptureResponse>;
+  sendCapture(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+  sendCapture(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+      callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
+      void|AxiosPromise<Schema$SendDebugCaptureResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/sendCapture')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SendDebugCaptureResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SendDebugCaptureResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Locations$Jobs$Messages {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.jobs.messages.list
@@ -4166,41 +4512,63 @@ export class Resource$Projects$Locations$Jobs$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListJobMessagesResponse>,
-       callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListJobMessagesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListJobMessagesResponse>,
+      callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
+      void|AxiosPromise<Schema$ListJobMessagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/messages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListJobMessagesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListJobMessagesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Locations$Jobs$Workitems {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.jobs.workItems.lease
@@ -4217,34 +4585,49 @@ export class Resource$Projects$Locations$Jobs$Workitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  lease =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-       callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback!);
-      };
+  lease(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LeaseWorkItemResponse>;
+  lease(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+  lease(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+      callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
+      void|AxiosPromise<Schema$LeaseWorkItemResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:lease')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LeaseWorkItemResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LeaseWorkItemResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4262,36 +4645,52 @@ export class Resource$Projects$Locations$Jobs$Workitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reportStatus =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ReportWorkItemStatusResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location', 'jobId'],
-          pathParams: ['jobId', 'location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReportWorkItemStatusResponse>(
-            parameters, callback!);
-      };
+  reportStatus(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReportWorkItemStatusResponse>;
+  reportStatus(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+      void;
+  reportStatus(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+      callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+      void|AxiosPromise<Schema$ReportWorkItemStatusResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/workItems:reportStatus')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location', 'jobId'],
+      pathParams: ['jobId', 'location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReportWorkItemStatusResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReportWorkItemStatusResponse>(parameters);
+    }
+  }
 }
 
 
@@ -4299,7 +4698,13 @@ export class Resource$Projects$Locations$Templates {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.locations.templates.create
@@ -4315,32 +4720,44 @@ export class Resource$Projects$Locations$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/templates')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v1b3/projects/{projectId}/locations/{location}/templates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -4358,33 +4775,46 @@ export class Resource$Projects$Locations$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
-       callback?: BodyResponseCallback<Schema$GetTemplateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/templates:get')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetTemplateResponse>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GetTemplateResponse>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
+      void|AxiosPromise<Schema$GetTemplateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/templates:get')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetTemplateResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4403,34 +4833,50 @@ export class Resource$Projects$Locations$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  launch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LaunchTemplateResponse>,
-       callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v1b3/projects/{projectId}/locations/{location}/templates:launch')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'location'],
-          pathParams: ['location', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback!);
-      };
+  launch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LaunchTemplateResponse>;
+  launch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+  launch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
+      void|AxiosPromise<Schema$LaunchTemplateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v1b3/projects/{projectId}/locations/{location}/templates:launch')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'location'],
+      pathParams: ['location', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
+    }
+  }
 }
 
 
@@ -4438,7 +4884,13 @@ export class Resource$Projects$Templates {
   root: Dataflow;
   constructor(root: Dataflow) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dataflow.projects.templates.create
@@ -4453,30 +4905,43 @@ export class Resource$Projects$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
-       callback?: BodyResponseCallback<Schema$Job>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/templates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Job>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+      callback?: BodyResponseCallback<Schema$Job>):
+      void|AxiosPromise<Schema$Job> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Job>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Job>(parameters);
+    }
+  }
 
 
   /**
@@ -4494,31 +4959,44 @@ export class Resource$Projects$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
-       callback?: BodyResponseCallback<Schema$GetTemplateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/templates:get')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetTemplateResponse>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GetTemplateResponse>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
+      void|AxiosPromise<Schema$GetTemplateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:get')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetTemplateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetTemplateResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4537,30 +5015,46 @@ export class Resource$Projects$Templates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  launch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LaunchTemplateResponse>,
-       callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback!);
-      };
+  launch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LaunchTemplateResponse>;
+  launch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+  launch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LaunchTemplateResponse>,
+      callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
+      void|AxiosPromise<Schema$LaunchTemplateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1b3/projects/{projectId}/templates:launch')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LaunchTemplateResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -110,6 +112,7 @@ export class Dfareporting {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accountActiveAdSummaries = new Resource$Accountactiveadsummaries(this);
     this.accountPermissionGroups = new Resource$Accountpermissiongroups(this);
@@ -173,6 +176,10 @@ export class Dfareporting {
     this.userRolePermissions = new Resource$Userrolepermissions(this);
     this.userRoles = new Resource$Userroles(this);
     this.videoFormats = new Resource$Videoformats(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -7470,7 +7477,13 @@ export class Resource$Accountactiveadsummaries {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.accountActiveAdSummaries.get
@@ -7485,41 +7498,61 @@ export class Resource$Accountactiveadsummaries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AccountActiveAdSummary>,
-       callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'summaryAccountId'],
-          pathParams: ['profileId', 'summaryAccountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountActiveAdSummary>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AccountActiveAdSummary>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AccountActiveAdSummary>,
+      callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AccountActiveAdSummary>,
+      callback?: BodyResponseCallback<Schema$AccountActiveAdSummary>):
+      void|AxiosPromise<Schema$AccountActiveAdSummary> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'summaryAccountId'],
+      pathParams: ['profileId', 'summaryAccountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountActiveAdSummary>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountActiveAdSummary>(parameters);
+    }
+  }
 }
 
 export class Resource$Accountpermissiongroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.accountPermissionGroups.get
@@ -7534,34 +7567,48 @@ export class Resource$Accountpermissiongroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AccountPermissionGroup>,
-       callback?: BodyResponseCallback<Schema$AccountPermissionGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissionGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountPermissionGroup>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AccountPermissionGroup>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionGroup>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionGroup>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionGroup>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionGroup>):
+      void|AxiosPromise<Schema$AccountPermissionGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissionGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountPermissionGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountPermissionGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -7576,43 +7623,68 @@ export class Resource$Accountpermissiongroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$AccountPermissionGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissionGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountPermissionGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AccountPermissionGroupsListResponse>):
+      void|AxiosPromise<Schema$AccountPermissionGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissionGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Accountpermissions {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.accountPermissions.get
@@ -7627,33 +7699,46 @@ export class Resource$Accountpermissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
-       callback?: BodyResponseCallback<Schema$AccountPermission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissions/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountPermission>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AccountPermission>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
+      callback?: BodyResponseCallback<Schema$AccountPermission>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountPermission>,
+      callback?: BodyResponseCallback<Schema$AccountPermission>):
+      void|AxiosPromise<Schema$AccountPermission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissions/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountPermission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountPermission>(parameters);
+    }
+  }
 
 
   /**
@@ -7668,43 +7753,66 @@ export class Resource$Accountpermissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AccountPermissionsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$AccountPermissionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountPermissionsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountPermissionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AccountPermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountPermissionsListResponse>):
+      void|AxiosPromise<Schema$AccountPermissionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountPermissions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountPermissionsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountPermissionsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Accounts {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.accounts.get
@@ -7719,32 +7827,42 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accounts/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/accounts/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 
 
   /**
@@ -7767,32 +7885,47 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountsListResponse>,
-       callback?: BodyResponseCallback<Schema$AccountsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountsListResponse>):
+      void|AxiosPromise<Schema$AccountsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -7809,31 +7942,44 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 
 
   /**
@@ -7849,38 +7995,57 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 }
 
 export class Resource$Accountuserprofiles {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.accountUserProfiles.get
@@ -7895,33 +8060,46 @@ export class Resource$Accountuserprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-       callback?: BodyResponseCallback<Schema$AccountUserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountUserProfile>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AccountUserProfile>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>):
+      void|AxiosPromise<Schema$AccountUserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountUserProfile>(parameters);
+    }
+  }
 
 
   /**
@@ -7937,33 +8115,48 @@ export class Resource$Accountuserprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-       callback?: BodyResponseCallback<Schema$AccountUserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountUserProfile>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountUserProfile>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>):
+      void|AxiosPromise<Schema$AccountUserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountUserProfile>(parameters);
+    }
+  }
 
 
   /**
@@ -7988,36 +8181,53 @@ export class Resource$Accountuserprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$AccountUserProfilesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountUserProfilesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountUserProfilesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AccountUserProfilesListResponse>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfilesListResponse>):
+      void|AxiosPromise<Schema$AccountUserProfilesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountUserProfilesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountUserProfilesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -8035,33 +8245,48 @@ export class Resource$Accountuserprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-       callback?: BodyResponseCallback<Schema$AccountUserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountUserProfile>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountUserProfile>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>):
+      void|AxiosPromise<Schema$AccountUserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountUserProfile>(parameters);
+    }
+  }
 
 
   /**
@@ -8077,40 +8302,61 @@ export class Resource$Accountuserprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
-       callback?: BodyResponseCallback<Schema$AccountUserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountUserProfile>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountUserProfile>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountUserProfile>,
+      callback?: BodyResponseCallback<Schema$AccountUserProfile>):
+      void|AxiosPromise<Schema$AccountUserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/accountUserProfiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountUserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountUserProfile>(parameters);
+    }
+  }
 }
 
 export class Resource$Ads {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.ads.get
@@ -8125,31 +8371,42 @@ export class Resource$Ads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-       callback?: BodyResponseCallback<Schema$Ad>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/ads/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ad>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>):
+      void|AxiosPromise<Schema$Ad> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/ads/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ad>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ad>(parameters);
+    }
+  }
 
 
   /**
@@ -8165,31 +8422,43 @@ export class Resource$Ads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-       callback?: BodyResponseCallback<Schema$Ad>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/ads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ad>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>):
+      void|AxiosPromise<Schema$Ad> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/ads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ad>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ad>(parameters);
+    }
+  }
 
 
   /**
@@ -8228,32 +8497,46 @@ export class Resource$Ads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
-       callback?: BodyResponseCallback<Schema$AdsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/ads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdsListResponse>):
+      void|AxiosPromise<Schema$AdsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/ads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -8270,31 +8553,43 @@ export class Resource$Ads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-       callback?: BodyResponseCallback<Schema$Ad>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/ads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ad>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>):
+      void|AxiosPromise<Schema$Ad> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/ads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ad>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ad>(parameters);
+    }
+  }
 
 
   /**
@@ -8310,38 +8605,56 @@ export class Resource$Ads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
-       callback?: BodyResponseCallback<Schema$Ad>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/ads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Ad>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Ad>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Ad>,
+      callback?: BodyResponseCallback<Schema$Ad>):
+      void|AxiosPromise<Schema$Ad> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/ads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Ad>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Ad>(parameters);
+    }
+  }
 }
 
 export class Resource$Advertisergroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.advertiserGroups.delete
@@ -8356,32 +8669,44 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -8397,33 +8722,46 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-       callback?: BodyResponseCallback<Schema$AdvertiserGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserGroup>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$AdvertiserGroup>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
+      void|AxiosPromise<Schema$AdvertiserGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -8439,33 +8777,48 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-       callback?: BodyResponseCallback<Schema$AdvertiserGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserGroup>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertiserGroup>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
+      void|AxiosPromise<Schema$AdvertiserGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -8487,36 +8840,52 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$AdvertiserGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertiserGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AdvertiserGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroupsListResponse>):
+      void|AxiosPromise<Schema$AdvertiserGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserGroupsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserGroupsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -8534,33 +8903,48 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-       callback?: BodyResponseCallback<Schema$AdvertiserGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserGroup>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertiserGroup>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
+      void|AxiosPromise<Schema$AdvertiserGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -8576,40 +8960,61 @@ export class Resource$Advertisergroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
-       callback?: BodyResponseCallback<Schema$AdvertiserGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertiserGroup>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdvertiserGroup>,
+      callback?: BodyResponseCallback<Schema$AdvertiserGroup>):
+      void|AxiosPromise<Schema$AdvertiserGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserGroup>(parameters);
+    }
+  }
 }
 
 export class Resource$Advertiserlandingpages {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.advertiserLandingPages.get
@@ -8624,33 +9029,45 @@ export class Resource$Advertiserlandingpages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-       callback?: BodyResponseCallback<Schema$LandingPage>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LandingPage>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>):
+      void|AxiosPromise<Schema$LandingPage> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LandingPage>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LandingPage>(parameters);
+    }
+  }
 
 
   /**
@@ -8666,33 +9083,48 @@ export class Resource$Advertiserlandingpages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-       callback?: BodyResponseCallback<Schema$LandingPage>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LandingPage>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LandingPage>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>):
+      void|AxiosPromise<Schema$LandingPage> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LandingPage>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LandingPage>(parameters);
+    }
+  }
 
 
   /**
@@ -8716,36 +9148,55 @@ export class Resource$Advertiserlandingpages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertiserLandingPagesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$AdvertiserLandingPagesListResponse>):
+      void|AxiosPromise<Schema$AdvertiserLandingPagesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -8763,33 +9214,47 @@ export class Resource$Advertiserlandingpages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-       callback?: BodyResponseCallback<Schema$LandingPage>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LandingPage>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$LandingPage>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>):
+      void|AxiosPromise<Schema$LandingPage> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LandingPage>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LandingPage>(parameters);
+    }
+  }
 
 
   /**
@@ -8805,40 +9270,61 @@ export class Resource$Advertiserlandingpages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
-       callback?: BodyResponseCallback<Schema$LandingPage>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LandingPage>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LandingPage>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LandingPage>,
+      callback?: BodyResponseCallback<Schema$LandingPage>):
+      void|AxiosPromise<Schema$LandingPage> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertiserLandingPages')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LandingPage>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LandingPage>(parameters);
+    }
+  }
 }
 
 export class Resource$Advertisers {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.advertisers.get
@@ -8853,33 +9339,45 @@ export class Resource$Advertisers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-       callback?: BodyResponseCallback<Schema$Advertiser>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/advertisers/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Advertiser>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>):
+      void|AxiosPromise<Schema$Advertiser> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/advertisers/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Advertiser>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Advertiser>(parameters);
+    }
+  }
 
 
   /**
@@ -8895,32 +9393,46 @@ export class Resource$Advertisers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-       callback?: BodyResponseCallback<Schema$Advertiser>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Advertiser>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>):
+      void|AxiosPromise<Schema$Advertiser> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Advertiser>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Advertiser>(parameters);
+    }
+  }
 
 
   /**
@@ -8948,33 +9460,49 @@ export class Resource$Advertisers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$AdvertisersListResponse>,
-       callback?: BodyResponseCallback<Schema$AdvertisersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdvertisersListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AdvertisersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$AdvertisersListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertisersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AdvertisersListResponse>,
+      callback?: BodyResponseCallback<Schema$AdvertisersListResponse>):
+      void|AxiosPromise<Schema$AdvertisersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdvertisersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdvertisersListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -8991,32 +9519,46 @@ export class Resource$Advertisers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-       callback?: BodyResponseCallback<Schema$Advertiser>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Advertiser>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>):
+      void|AxiosPromise<Schema$Advertiser> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Advertiser>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Advertiser>(parameters);
+    }
+  }
 
 
   /**
@@ -9032,39 +9574,59 @@ export class Resource$Advertisers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
-       callback?: BodyResponseCallback<Schema$Advertiser>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Advertiser>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Advertiser>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Advertiser>,
+      callback?: BodyResponseCallback<Schema$Advertiser>):
+      void|AxiosPromise<Schema$Advertiser> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/advertisers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Advertiser>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Advertiser>(parameters);
+    }
+  }
 }
 
 export class Resource$Browsers {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.browsers.list
@@ -9078,39 +9640,60 @@ export class Resource$Browsers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BrowsersListResponse>,
-       callback?: BodyResponseCallback<Schema$BrowsersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/browsers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BrowsersListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BrowsersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$BrowsersListResponse>,
+      callback?: BodyResponseCallback<Schema$BrowsersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BrowsersListResponse>,
+      callback?: BodyResponseCallback<Schema$BrowsersListResponse>):
+      void|AxiosPromise<Schema$BrowsersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/browsers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BrowsersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BrowsersListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Campaigncreativeassociations {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.campaignCreativeAssociations.insert
@@ -9128,35 +9711,52 @@ export class Resource$Campaigncreativeassociations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CampaignCreativeAssociation>,
-       callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'campaignId'],
-          pathParams: ['campaignId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CampaignCreativeAssociation>(
-            parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CampaignCreativeAssociation>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+      callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
+      void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CampaignCreativeAssociation>,
+      callback?: BodyResponseCallback<Schema$CampaignCreativeAssociation>):
+      void|AxiosPromise<Schema$CampaignCreativeAssociation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'campaignId'],
+      pathParams: ['campaignId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CampaignCreativeAssociation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CampaignCreativeAssociation>(parameters);
+    }
+  }
 
 
   /**
@@ -9176,43 +9776,67 @@ export class Resource$Campaigncreativeassociations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$CampaignCreativeAssociationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'campaignId'],
-          pathParams: ['campaignId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CampaignCreativeAssociationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+      callback?: BodyResponseCallback<
+          Schema$CampaignCreativeAssociationsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
+      callback?: BodyResponseCallback<
+          Schema$CampaignCreativeAssociationsListResponse>):
+      void|AxiosPromise<Schema$CampaignCreativeAssociationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'campaignId'],
+      pathParams: ['campaignId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Campaigns {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.campaigns.get
@@ -9227,33 +9851,43 @@ export class Resource$Campaigns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-       callback?: BodyResponseCallback<Schema$Campaign>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Campaign>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>):
+      void|AxiosPromise<Schema$Campaign> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/campaigns/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Campaign>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Campaign>(parameters);
+    }
+  }
 
 
   /**
@@ -9269,32 +9903,45 @@ export class Resource$Campaigns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-       callback?: BodyResponseCallback<Schema$Campaign>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Campaign>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>):
+      void|AxiosPromise<Schema$Campaign> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Campaign>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Campaign>(parameters);
+    }
+  }
 
 
   /**
@@ -9323,33 +9970,48 @@ export class Resource$Campaigns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CampaignsListResponse>,
-       callback?: BodyResponseCallback<Schema$CampaignsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CampaignsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CampaignsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CampaignsListResponse>,
+      callback?: BodyResponseCallback<Schema$CampaignsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CampaignsListResponse>,
+      callback?: BodyResponseCallback<Schema$CampaignsListResponse>):
+      void|AxiosPromise<Schema$CampaignsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CampaignsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CampaignsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -9366,32 +10028,45 @@ export class Resource$Campaigns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-       callback?: BodyResponseCallback<Schema$Campaign>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Campaign>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>):
+      void|AxiosPromise<Schema$Campaign> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Campaign>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Campaign>(parameters);
+    }
+  }
 
 
   /**
@@ -9407,39 +10082,58 @@ export class Resource$Campaigns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
-       callback?: BodyResponseCallback<Schema$Campaign>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Campaign>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Campaign>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Campaign>,
+      callback?: BodyResponseCallback<Schema$Campaign>):
+      void|AxiosPromise<Schema$Campaign> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/campaigns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Campaign>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Campaign>(parameters);
+    }
+  }
 }
 
 export class Resource$Changelogs {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.changeLogs.get
@@ -9454,33 +10148,44 @@ export class Resource$Changelogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
-       callback?: BodyResponseCallback<Schema$ChangeLog>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/changeLogs/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChangeLog>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ChangeLog>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
+      callback?: BodyResponseCallback<Schema$ChangeLog>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChangeLog>,
+      callback?: BodyResponseCallback<Schema$ChangeLog>):
+      void|AxiosPromise<Schema$ChangeLog> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/changeLogs/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChangeLog>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChangeLog>(parameters);
+    }
+  }
 
 
   /**
@@ -9505,40 +10210,62 @@ export class Resource$Changelogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ChangeLogsListResponse>,
-       callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/changeLogs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChangeLogsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChangeLogsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ChangeLogsListResponse>,
+      callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ChangeLogsListResponse>,
+      callback?: BodyResponseCallback<Schema$ChangeLogsListResponse>):
+      void|AxiosPromise<Schema$ChangeLogsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/changeLogs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChangeLogsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChangeLogsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Cities {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.cities.list
@@ -9556,39 +10283,60 @@ export class Resource$Cities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
-       callback?: BodyResponseCallback<Schema$CitiesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/cities')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CitiesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CitiesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$CitiesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$CitiesListResponse>):
+      void|AxiosPromise<Schema$CitiesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/cities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CitiesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CitiesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Connectiontypes {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.connectionTypes.get
@@ -9603,33 +10351,46 @@ export class Resource$Connectiontypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
-       callback?: BodyResponseCallback<Schema$ConnectionType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/connectionTypes/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConnectionType>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ConnectionType>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
+      callback?: BodyResponseCallback<Schema$ConnectionType>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ConnectionType>,
+      callback?: BodyResponseCallback<Schema$ConnectionType>):
+      void|AxiosPromise<Schema$ConnectionType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/connectionTypes/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConnectionType>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConnectionType>(parameters);
+    }
+  }
 
 
   /**
@@ -9644,42 +10405,64 @@ export class Resource$Connectiontypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ConnectionTypesListResponse>,
-       callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/connectionTypes')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConnectionTypesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConnectionTypesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ConnectionTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$ConnectionTypesListResponse>):
+      void|AxiosPromise<Schema$ConnectionTypesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/connectionTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConnectionTypesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConnectionTypesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Contentcategories {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.contentCategories.delete
@@ -9694,32 +10477,44 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -9735,33 +10530,46 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-       callback?: BodyResponseCallback<Schema$ContentCategory>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContentCategory>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ContentCategory>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>):
+      void|AxiosPromise<Schema$ContentCategory> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContentCategory>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContentCategory>(parameters);
+    }
+  }
 
 
   /**
@@ -9777,33 +10585,48 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-       callback?: BodyResponseCallback<Schema$ContentCategory>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContentCategory>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContentCategory>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>):
+      void|AxiosPromise<Schema$ContentCategory> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContentCategory>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContentCategory>(parameters);
+    }
+  }
 
 
   /**
@@ -9825,36 +10648,52 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ContentCategoriesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ContentCategoriesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContentCategoriesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContentCategoriesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+      callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ContentCategoriesListResponse>,
+      callback?: BodyResponseCallback<Schema$ContentCategoriesListResponse>):
+      void|AxiosPromise<Schema$ContentCategoriesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContentCategoriesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContentCategoriesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -9872,33 +10711,48 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-       callback?: BodyResponseCallback<Schema$ContentCategory>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContentCategory>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContentCategory>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>):
+      void|AxiosPromise<Schema$ContentCategory> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContentCategory>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContentCategory>(parameters);
+    }
+  }
 
 
   /**
@@ -9914,40 +10768,61 @@ export class Resource$Contentcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
-       callback?: BodyResponseCallback<Schema$ContentCategory>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContentCategory>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContentCategory>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContentCategory>,
+      callback?: BodyResponseCallback<Schema$ContentCategory>):
+      void|AxiosPromise<Schema$ContentCategory> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/contentCategories')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContentCategory>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContentCategory>(parameters);
+    }
+  }
 }
 
 export class Resource$Conversions {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.conversions.batchinsert
@@ -9962,36 +10837,53 @@ export class Resource$Conversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchinsert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ConversionsBatchInsertResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/conversions/batchinsert')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionsBatchInsertResponse>(
-            parameters, callback!);
-      };
+  batchinsert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConversionsBatchInsertResponse>;
+  batchinsert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
+      void;
+  batchinsert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ConversionsBatchInsertResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchInsertResponse>):
+      void|AxiosPromise<Schema$ConversionsBatchInsertResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/conversions/batchinsert')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionsBatchInsertResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionsBatchInsertResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -10007,43 +10899,66 @@ export class Resource$Conversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchupdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/conversions/batchupdate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
-            parameters, callback!);
-      };
+  batchupdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConversionsBatchUpdateResponse>;
+  batchupdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
+      void;
+  batchupdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>,
+      callback?: BodyResponseCallback<Schema$ConversionsBatchUpdateResponse>):
+      void|AxiosPromise<Schema$ConversionsBatchUpdateResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/conversions/batchupdate')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Countries {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.countries.get
@@ -10058,32 +10973,43 @@ export class Resource$Countries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Country>,
-       callback?: BodyResponseCallback<Schema$Country>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/countries/{dartId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'dartId'],
-          pathParams: ['dartId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Country>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Country>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Country>,
+      callback?: BodyResponseCallback<Schema$Country>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Country>,
+      callback?: BodyResponseCallback<Schema$Country>):
+      void|AxiosPromise<Schema$Country> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/countries/{dartId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'dartId'],
+      pathParams: ['dartId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Country>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Country>(parameters);
+    }
+  }
 
 
   /**
@@ -10098,40 +11024,61 @@ export class Resource$Countries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CountriesListResponse>,
-       callback?: BodyResponseCallback<Schema$CountriesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/countries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CountriesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CountriesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CountriesListResponse>,
+      callback?: BodyResponseCallback<Schema$CountriesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CountriesListResponse>,
+      callback?: BodyResponseCallback<Schema$CountriesListResponse>):
+      void|AxiosPromise<Schema$CountriesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/countries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CountriesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CountriesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Creativeassets {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.creativeAssets.insert
@@ -10150,45 +11097,66 @@ export class Resource$Creativeassets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreativeAssetMetadata>,
-       callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/dfareporting/v3.0/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['profileId', 'advertiserId'],
-          pathParams: ['advertiserId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeAssetMetadata>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeAssetMetadata>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeAssetMetadata>,
+      callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreativeAssetMetadata>,
+      callback?: BodyResponseCallback<Schema$CreativeAssetMetadata>):
+      void|AxiosPromise<Schema$CreativeAssetMetadata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/dfareporting/v3.0/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['profileId', 'advertiserId'],
+      pathParams: ['advertiserId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeAssetMetadata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeAssetMetadata>(parameters);
+    }
+  }
 }
 
 export class Resource$Creativefields {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.creativeFields.delete
@@ -10203,32 +11171,44 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -10244,33 +11224,45 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-       callback?: BodyResponseCallback<Schema$CreativeField>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeField>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CreativeField>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>):
+      void|AxiosPromise<Schema$CreativeField> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeField>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeField>(parameters);
+    }
+  }
 
 
   /**
@@ -10286,33 +11278,47 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-       callback?: BodyResponseCallback<Schema$CreativeField>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeField>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeField>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>):
+      void|AxiosPromise<Schema$CreativeField> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeField>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeField>(parameters);
+    }
+  }
 
 
   /**
@@ -10335,35 +11341,49 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreativeFieldsListResponse>,
-       callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeFieldsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreativeFieldsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldsListResponse>):
+      void|AxiosPromise<Schema$CreativeFieldsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -10381,33 +11401,47 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-       callback?: BodyResponseCallback<Schema$CreativeField>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeField>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeField>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>):
+      void|AxiosPromise<Schema$CreativeField> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeField>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeField>(parameters);
+    }
+  }
 
 
   /**
@@ -10423,40 +11457,60 @@ export class Resource$Creativefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
-       callback?: BodyResponseCallback<Schema$CreativeField>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeField>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeField>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeField>,
+      callback?: BodyResponseCallback<Schema$CreativeField>):
+      void|AxiosPromise<Schema$CreativeField> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeField>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeField>(parameters);
+    }
+  }
 }
 
 export class Resource$Creativefieldvalues {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.creativeFieldValues.delete
@@ -10472,32 +11526,44 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId', 'id'],
-          pathParams: ['creativeFieldId', 'id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId', 'id'],
+      pathParams: ['creativeFieldId', 'id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -10514,33 +11580,46 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-       callback?: BodyResponseCallback<Schema$CreativeFieldValue>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId', 'id'],
-          pathParams: ['creativeFieldId', 'id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldValue>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$CreativeFieldValue>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
+      void|AxiosPromise<Schema$CreativeFieldValue> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId', 'id'],
+      pathParams: ['creativeFieldId', 'id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldValue>(parameters);
+    }
+  }
 
 
   /**
@@ -10557,33 +11636,48 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-       callback?: BodyResponseCallback<Schema$CreativeFieldValue>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId'],
-          pathParams: ['creativeFieldId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldValue>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeFieldValue>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
+      void|AxiosPromise<Schema$CreativeFieldValue> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId'],
+      pathParams: ['creativeFieldId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldValue>(parameters);
+    }
+  }
 
 
   /**
@@ -10606,36 +11700,53 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CreativeFieldValuesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId'],
-          pathParams: ['creativeFieldId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldValuesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeFieldValuesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreativeFieldValuesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValuesListResponse>):
+      void|AxiosPromise<Schema$CreativeFieldValuesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId'],
+      pathParams: ['creativeFieldId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldValuesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldValuesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -10654,33 +11765,48 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-       callback?: BodyResponseCallback<Schema$CreativeFieldValue>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId', 'id'],
-          pathParams: ['creativeFieldId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldValue>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeFieldValue>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
+      void|AxiosPromise<Schema$CreativeFieldValue> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId', 'id'],
+      pathParams: ['creativeFieldId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldValue>(parameters);
+    }
+  }
 
 
   /**
@@ -10697,40 +11823,61 @@ export class Resource$Creativefieldvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
-       callback?: BodyResponseCallback<Schema$CreativeFieldValue>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'creativeFieldId'],
-          pathParams: ['creativeFieldId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeFieldValue>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeFieldValue>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeFieldValue>,
+      callback?: BodyResponseCallback<Schema$CreativeFieldValue>):
+      void|AxiosPromise<Schema$CreativeFieldValue> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'creativeFieldId'],
+      pathParams: ['creativeFieldId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeFieldValue>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeFieldValue>(parameters);
+    }
+  }
 }
 
 export class Resource$Creativegroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.creativeGroups.get
@@ -10745,33 +11892,45 @@ export class Resource$Creativegroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-       callback?: BodyResponseCallback<Schema$CreativeGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeGroup>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CreativeGroup>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>):
+      void|AxiosPromise<Schema$CreativeGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -10787,33 +11946,47 @@ export class Resource$Creativegroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-       callback?: BodyResponseCallback<Schema$CreativeGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeGroup>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeGroup>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>):
+      void|AxiosPromise<Schema$CreativeGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -10837,35 +12010,49 @@ export class Resource$Creativegroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreativeGroupsListResponse>,
-       callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreativeGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativeGroupsListResponse>):
+      void|AxiosPromise<Schema$CreativeGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeGroupsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeGroupsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -10883,33 +12070,47 @@ export class Resource$Creativegroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-       callback?: BodyResponseCallback<Schema$CreativeGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeGroup>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeGroup>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>):
+      void|AxiosPromise<Schema$CreativeGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -10925,40 +12126,60 @@ export class Resource$Creativegroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
-       callback?: BodyResponseCallback<Schema$CreativeGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativeGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativeGroup>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CreativeGroup>,
+      callback?: BodyResponseCallback<Schema$CreativeGroup>):
+      void|AxiosPromise<Schema$CreativeGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creativeGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativeGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativeGroup>(parameters);
+    }
+  }
 }
 
 export class Resource$Creatives {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.creatives.get
@@ -10973,33 +12194,43 @@ export class Resource$Creatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-       callback?: BodyResponseCallback<Schema$Creative>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/creatives/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Creative>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>):
+      void|AxiosPromise<Schema$Creative> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creatives/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Creative>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Creative>(parameters);
+    }
+  }
 
 
   /**
@@ -11015,32 +12246,45 @@ export class Resource$Creatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-       callback?: BodyResponseCallback<Schema$Creative>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Creative>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>):
+      void|AxiosPromise<Schema$Creative> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Creative>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Creative>(parameters);
+    }
+  }
 
 
   /**
@@ -11072,33 +12316,48 @@ export class Resource$Creatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreativesListResponse>,
-       callback?: BodyResponseCallback<Schema$CreativesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreativesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreativesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CreativesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreativesListResponse>,
+      callback?: BodyResponseCallback<Schema$CreativesListResponse>):
+      void|AxiosPromise<Schema$CreativesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreativesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreativesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -11115,32 +12374,45 @@ export class Resource$Creatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-       callback?: BodyResponseCallback<Schema$Creative>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Creative>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>):
+      void|AxiosPromise<Schema$Creative> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Creative>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Creative>(parameters);
+    }
+  }
 
 
   /**
@@ -11156,39 +12428,58 @@ export class Resource$Creatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Creative>,
-       callback?: BodyResponseCallback<Schema$Creative>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Creative>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+      callback?: BodyResponseCallback<Schema$Creative>):
+      void|AxiosPromise<Schema$Creative> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/creatives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Creative>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Creative>(parameters);
+    }
+  }
 }
 
 export class Resource$Dimensionvalues {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.dimensionValues.query
@@ -11205,40 +12496,61 @@ export class Resource$Dimensionvalues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
-       callback?: BodyResponseCallback<Schema$DimensionValueList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/dimensionvalues/query')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DimensionValueList>(parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DimensionValueList>;
+  query(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
+      callback?: BodyResponseCallback<Schema$DimensionValueList>): void;
+  query(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DimensionValueList>,
+      callback?: BodyResponseCallback<Schema$DimensionValueList>):
+      void|AxiosPromise<Schema$DimensionValueList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/dimensionvalues/query')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DimensionValueList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DimensionValueList>(parameters);
+    }
+  }
 }
 
 export class Resource$Directorysitecontacts {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.directorySiteContacts.get
@@ -11253,33 +12565,46 @@ export class Resource$Directorysitecontacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DirectorySiteContact>,
-       callback?: BodyResponseCallback<Schema$DirectorySiteContact>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/directorySiteContacts/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectorySiteContact>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$DirectorySiteContact>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DirectorySiteContact>,
+      callback?: BodyResponseCallback<Schema$DirectorySiteContact>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DirectorySiteContact>,
+      callback?: BodyResponseCallback<Schema$DirectorySiteContact>):
+      void|AxiosPromise<Schema$DirectorySiteContact> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/directorySiteContacts/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectorySiteContact>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectorySiteContact>(parameters);
+    }
+  }
 
 
   /**
@@ -11302,43 +12627,67 @@ export class Resource$Directorysitecontacts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$DirectorySiteContactsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/directorySiteContacts')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectorySiteContactsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DirectorySiteContactsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$DirectorySiteContactsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DirectorySiteContactsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$DirectorySiteContactsListResponse>):
+      void|AxiosPromise<Schema$DirectorySiteContactsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/directorySiteContacts')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectorySiteContactsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectorySiteContactsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Directorysites {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.directorySites.get
@@ -11353,33 +12702,45 @@ export class Resource$Directorysites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-       callback?: BodyResponseCallback<Schema$DirectorySite>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/directorySites/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectorySite>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DirectorySite>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>):
+      void|AxiosPromise<Schema$DirectorySite> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/directorySites/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectorySite>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectorySite>(parameters);
+    }
+  }
 
 
   /**
@@ -11395,33 +12756,47 @@ export class Resource$Directorysites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
-       callback?: BodyResponseCallback<Schema$DirectorySite>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/directorySites')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectorySite>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DirectorySite>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DirectorySite>,
+      callback?: BodyResponseCallback<Schema$DirectorySite>):
+      void|AxiosPromise<Schema$DirectorySite> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/directorySites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectorySite>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectorySite>(parameters);
+    }
+  }
 
 
   /**
@@ -11450,42 +12825,62 @@ export class Resource$Directorysites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DirectorySitesListResponse>,
-       callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/directorySites')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectorySitesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DirectorySitesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DirectorySitesListResponse>,
+      callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DirectorySitesListResponse>,
+      callback?: BodyResponseCallback<Schema$DirectorySitesListResponse>):
+      void|AxiosPromise<Schema$DirectorySitesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/directorySites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectorySitesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectorySitesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Dynamictargetingkeys {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.dynamicTargetingKeys.delete
@@ -11502,32 +12897,44 @@ export class Resource$Dynamictargetingkeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
-          pathParams: ['objectId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'objectId', 'name', 'objectType'],
+      pathParams: ['objectId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -11546,33 +12953,48 @@ export class Resource$Dynamictargetingkeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
-       callback?: BodyResponseCallback<Schema$DynamicTargetingKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DynamicTargetingKey>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DynamicTargetingKey>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKey>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DynamicTargetingKey>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKey>):
+      void|AxiosPromise<Schema$DynamicTargetingKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DynamicTargetingKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DynamicTargetingKey>(parameters);
+    }
+  }
 
 
   /**
@@ -11591,43 +13013,66 @@ export class Resource$Dynamictargetingkeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DynamicTargetingKeysListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>,
+      callback?: BodyResponseCallback<Schema$DynamicTargetingKeysListResponse>):
+      void|AxiosPromise<Schema$DynamicTargetingKeysListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/dynamicTargetingKeys')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Eventtags {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.eventTags.delete
@@ -11642,32 +13087,43 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/eventTags/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -11683,33 +13139,43 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-       callback?: BodyResponseCallback<Schema$EventTag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/eventTags/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EventTag>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>):
+      void|AxiosPromise<Schema$EventTag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EventTag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EventTag>(parameters);
+    }
+  }
 
 
   /**
@@ -11725,32 +13191,45 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-       callback?: BodyResponseCallback<Schema$EventTag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EventTag>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>):
+      void|AxiosPromise<Schema$EventTag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EventTag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EventTag>(parameters);
+    }
+  }
 
 
   /**
@@ -11775,33 +13254,48 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$EventTagsListResponse>,
-       callback?: BodyResponseCallback<Schema$EventTagsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EventTagsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EventTagsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EventTagsListResponse>,
+      callback?: BodyResponseCallback<Schema$EventTagsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$EventTagsListResponse>,
+      callback?: BodyResponseCallback<Schema$EventTagsListResponse>):
+      void|AxiosPromise<Schema$EventTagsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EventTagsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EventTagsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -11818,32 +13312,45 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-       callback?: BodyResponseCallback<Schema$EventTag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EventTag>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>):
+      void|AxiosPromise<Schema$EventTag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EventTag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EventTag>(parameters);
+    }
+  }
 
 
   /**
@@ -11859,39 +13366,58 @@ export class Resource$Eventtags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
-       callback?: BodyResponseCallback<Schema$EventTag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EventTag>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$EventTag>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EventTag>,
+      callback?: BodyResponseCallback<Schema$EventTag>):
+      void|AxiosPromise<Schema$EventTag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/eventTags')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EventTag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EventTag>(parameters);
+    }
+  }
 }
 
 export class Resource$Files {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.files.get
@@ -11907,31 +13433,42 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/reports/{reportId}/files/{fileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['reportId', 'fileId'],
-          pathParams: ['fileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/reports/{reportId}/files/{fileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['reportId', 'fileId'],
+      pathParams: ['fileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -11951,39 +13488,57 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-       callback?: BodyResponseCallback<Schema$FileList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/files')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FileList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>):
+      void|AxiosPromise<Schema$FileList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/files')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FileList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FileList>(parameters);
+    }
+  }
 }
 
 export class Resource$Floodlightactivities {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.floodlightActivities.delete
@@ -11998,32 +13553,44 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -12039,36 +13606,55 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generatetag =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-       callback?: BodyResponseCallback<
-           Schema$FloodlightActivitiesGenerateTagResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/generatetag')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
-            parameters, callback!);
-      };
+  generatetag(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse>;
+  generatetag(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>):
+      void;
+  generatetag(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>):
+      void|AxiosPromise<Schema$FloodlightActivitiesGenerateTagResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/generatetag')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -12084,33 +13670,46 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivity>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivity>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$FloodlightActivity>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>):
+      void|AxiosPromise<Schema$FloodlightActivity> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivity>(parameters);
+    }
+  }
 
 
   /**
@@ -12126,33 +13725,48 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivity>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivity>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivity>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>):
+      void|AxiosPromise<Schema$FloodlightActivity> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivity>(parameters);
+    }
+  }
 
 
   /**
@@ -12181,36 +13795,53 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$FloodlightActivitiesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivitiesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivitiesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivitiesListResponse>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivitiesListResponse>):
+      void|AxiosPromise<Schema$FloodlightActivitiesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivitiesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivitiesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -12228,33 +13859,48 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivity>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivity>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivity>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>):
+      void|AxiosPromise<Schema$FloodlightActivity> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivity>(parameters);
+    }
+  }
 
 
   /**
@@ -12270,40 +13916,61 @@ export class Resource$Floodlightactivities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivity>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivity>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivity>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FloodlightActivity>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivity>):
+      void|AxiosPromise<Schema$FloodlightActivity> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivity>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivity>(parameters);
+    }
+  }
 }
 
 export class Resource$Floodlightactivitygroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.floodlightActivityGroups.get
@@ -12318,34 +13985,48 @@ export class Resource$Floodlightactivitygroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivityGroup>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$FloodlightActivityGroup>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+      void|AxiosPromise<Schema$FloodlightActivityGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -12361,34 +14042,50 @@ export class Resource$Floodlightactivitygroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivityGroup>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivityGroup>;
+  insert(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+      void|AxiosPromise<Schema$FloodlightActivityGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -12413,36 +14110,55 @@ export class Resource$Floodlightactivitygroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$FloodlightActivityGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivityGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>):
+      void|AxiosPromise<Schema$FloodlightActivityGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -12460,34 +14176,50 @@ export class Resource$Floodlightactivitygroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivityGroup>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivityGroup>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+      void|AxiosPromise<Schema$FloodlightActivityGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -12503,41 +14235,63 @@ export class Resource$Floodlightactivitygroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightActivityGroup>,
-       callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightActivityGroup>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightActivityGroup>,
+      callback?: BodyResponseCallback<Schema$FloodlightActivityGroup>):
+      void|AxiosPromise<Schema$FloodlightActivityGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightActivityGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightActivityGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
+    }
+  }
 }
 
 export class Resource$Floodlightconfigurations {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.floodlightConfigurations.get
@@ -12552,34 +14306,48 @@ export class Resource$Floodlightconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightConfiguration>,
-       callback?: BodyResponseCallback<Schema$FloodlightConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$FloodlightConfiguration>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
+      void|AxiosPromise<Schema$FloodlightConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -12595,36 +14363,55 @@ export class Resource$Floodlightconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$FloodlightConfigurationsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightConfigurationsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>):
+      void|AxiosPromise<Schema$FloodlightConfigurationsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -12642,34 +14429,50 @@ export class Resource$Floodlightconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightConfiguration>,
-       callback?: BodyResponseCallback<Schema$FloodlightConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightConfiguration>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
+      void|AxiosPromise<Schema$FloodlightConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
+    }
+  }
 
 
   /**
@@ -12685,41 +14488,63 @@ export class Resource$Floodlightconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FloodlightConfiguration>,
-       callback?: BodyResponseCallback<Schema$FloodlightConfiguration>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FloodlightConfiguration>;
+  update(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>): void;
+  update(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FloodlightConfiguration>,
+      callback?: BodyResponseCallback<Schema$FloodlightConfiguration>):
+      void|AxiosPromise<Schema$FloodlightConfiguration> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/floodlightConfigurations')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FloodlightConfiguration>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
+    }
+  }
 }
 
 export class Resource$Inventoryitems {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.inventoryItems.get
@@ -12735,33 +14560,45 @@ export class Resource$Inventoryitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
-       callback?: BodyResponseCallback<Schema$InventoryItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId', 'id'],
-          pathParams: ['id', 'profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InventoryItem>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$InventoryItem>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
+      callback?: BodyResponseCallback<Schema$InventoryItem>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InventoryItem>,
+      callback?: BodyResponseCallback<Schema$InventoryItem>):
+      void|AxiosPromise<Schema$InventoryItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId', 'id'],
+      pathParams: ['id', 'profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InventoryItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InventoryItem>(parameters);
+    }
+  }
 
 
   /**
@@ -12787,42 +14624,63 @@ export class Resource$Inventoryitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$InventoryItemsListResponse>,
-       callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/inventoryItems')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId'],
-          pathParams: ['profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$InventoryItemsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$InventoryItemsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$InventoryItemsListResponse>,
+      callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$InventoryItemsListResponse>,
+      callback?: BodyResponseCallback<Schema$InventoryItemsListResponse>):
+      void|AxiosPromise<Schema$InventoryItemsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/inventoryItems')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId'],
+      pathParams: ['profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$InventoryItemsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$InventoryItemsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Languages {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.languages.list
@@ -12836,40 +14694,61 @@ export class Resource$Languages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LanguagesListResponse>,
-       callback?: BodyResponseCallback<Schema$LanguagesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/languages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LanguagesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LanguagesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LanguagesListResponse>,
+      callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
+      void|AxiosPromise<Schema$LanguagesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/languages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LanguagesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LanguagesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Metros {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.metros.list
@@ -12883,39 +14762,60 @@ export class Resource$Metros {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
-       callback?: BodyResponseCallback<Schema$MetrosListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/metros')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MetrosListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MetrosListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
+      callback?: BodyResponseCallback<Schema$MetrosListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MetrosListResponse>,
+      callback?: BodyResponseCallback<Schema$MetrosListResponse>):
+      void|AxiosPromise<Schema$MetrosListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/metros')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MetrosListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MetrosListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Mobilecarriers {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.mobileCarriers.get
@@ -12930,33 +14830,45 @@ export class Resource$Mobilecarriers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
-       callback?: BodyResponseCallback<Schema$MobileCarrier>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/mobileCarriers/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MobileCarrier>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$MobileCarrier>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
+      callback?: BodyResponseCallback<Schema$MobileCarrier>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MobileCarrier>,
+      callback?: BodyResponseCallback<Schema$MobileCarrier>):
+      void|AxiosPromise<Schema$MobileCarrier> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/mobileCarriers/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MobileCarrier>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MobileCarrier>(parameters);
+    }
+  }
 
 
   /**
@@ -12971,42 +14883,62 @@ export class Resource$Mobilecarriers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$MobileCarriersListResponse>,
-       callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/mobileCarriers')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MobileCarriersListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MobileCarriersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$MobileCarriersListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$MobileCarriersListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileCarriersListResponse>):
+      void|AxiosPromise<Schema$MobileCarriersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/mobileCarriers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MobileCarriersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MobileCarriersListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Operatingsystems {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.operatingSystems.get
@@ -13021,33 +14953,46 @@ export class Resource$Operatingsystems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
-       callback?: BodyResponseCallback<Schema$OperatingSystem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystems/{dartId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'dartId'],
-          pathParams: ['dartId', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OperatingSystem>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$OperatingSystem>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
+      callback?: BodyResponseCallback<Schema$OperatingSystem>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OperatingSystem>,
+      callback?: BodyResponseCallback<Schema$OperatingSystem>):
+      void|AxiosPromise<Schema$OperatingSystem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystems/{dartId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'dartId'],
+      pathParams: ['dartId', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OperatingSystem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OperatingSystem>(parameters);
+    }
+  }
 
 
   /**
@@ -13062,43 +15007,65 @@ export class Resource$Operatingsystems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OperatingSystemsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$OperatingSystemsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystems')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OperatingSystemsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OperatingSystemsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemsListResponse>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemsListResponse>):
+      void|AxiosPromise<Schema$OperatingSystemsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystems')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OperatingSystemsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OperatingSystemsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Operatingsystemversions {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.operatingSystemVersions.get
@@ -13113,34 +15080,48 @@ export class Resource$Operatingsystemversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OperatingSystemVersion>,
-       callback?: BodyResponseCallback<Schema$OperatingSystemVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystemVersions/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OperatingSystemVersion>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$OperatingSystemVersion>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemVersion>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemVersion>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemVersion>,
+      callback?: BodyResponseCallback<Schema$OperatingSystemVersion>):
+      void|AxiosPromise<Schema$OperatingSystemVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystemVersions/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OperatingSystemVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OperatingSystemVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -13155,43 +15136,68 @@ export class Resource$Operatingsystemversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$OperatingSystemVersionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystemVersions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OperatingSystemVersionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$OperatingSystemVersionsListResponse>):
+      void|AxiosPromise<Schema$OperatingSystemVersionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/operatingSystemVersions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Orderdocuments {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.orderDocuments.get
@@ -13207,33 +15213,45 @@ export class Resource$Orderdocuments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
-       callback?: BodyResponseCallback<Schema$OrderDocument>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId', 'id'],
-          pathParams: ['id', 'profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrderDocument>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$OrderDocument>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
+      callback?: BodyResponseCallback<Schema$OrderDocument>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrderDocument>,
+      callback?: BodyResponseCallback<Schema$OrderDocument>):
+      void|AxiosPromise<Schema$OrderDocument> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId', 'id'],
+      pathParams: ['id', 'profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrderDocument>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrderDocument>(parameters);
+    }
+  }
 
 
   /**
@@ -13259,42 +15277,63 @@ export class Resource$Orderdocuments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$OrderDocumentsListResponse>,
-       callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orderDocuments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId'],
-          pathParams: ['profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrderDocumentsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrderDocumentsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+      callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$OrderDocumentsListResponse>,
+      callback?: BodyResponseCallback<Schema$OrderDocumentsListResponse>):
+      void|AxiosPromise<Schema$OrderDocumentsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orderDocuments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId'],
+      pathParams: ['profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrderDocumentsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrderDocumentsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Orders {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.orders.get
@@ -13310,32 +15349,43 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Order>,
-       callback?: BodyResponseCallback<Schema$Order>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orders/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId', 'id'],
-          pathParams: ['id', 'profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Order>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Order>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Order>,
+      callback?: BodyResponseCallback<Schema$Order>):
+      void|AxiosPromise<Schema$Order> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orders/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId', 'id'],
+      pathParams: ['id', 'profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Order>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Order>(parameters);
+    }
+  }
 
 
   /**
@@ -13359,40 +15409,61 @@ export class Resource$Orders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
-       callback?: BodyResponseCallback<Schema$OrdersListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orders')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'projectId'],
-          pathParams: ['profileId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrdersListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrdersListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrdersListResponse>,
+      callback?: BodyResponseCallback<Schema$OrdersListResponse>):
+      void|AxiosPromise<Schema$OrdersListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/projects/{projectId}/orders')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'projectId'],
+      pathParams: ['profileId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrdersListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrdersListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Placementgroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.placementGroups.get
@@ -13407,33 +15478,46 @@ export class Resource$Placementgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-       callback?: BodyResponseCallback<Schema$PlacementGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementGroup>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$PlacementGroup>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>):
+      void|AxiosPromise<Schema$PlacementGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -13449,33 +15533,47 @@ export class Resource$Placementgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-       callback?: BodyResponseCallback<Schema$PlacementGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementGroup>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementGroup>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>):
+      void|AxiosPromise<Schema$PlacementGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -13510,35 +15608,51 @@ export class Resource$Placementgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlacementGroupsListResponse>,
-       callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlacementGroupsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementGroupsListResponse>):
+      void|AxiosPromise<Schema$PlacementGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementGroupsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementGroupsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -13556,33 +15670,47 @@ export class Resource$Placementgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-       callback?: BodyResponseCallback<Schema$PlacementGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementGroup>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementGroup>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>):
+      void|AxiosPromise<Schema$PlacementGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -13598,40 +15726,60 @@ export class Resource$Placementgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
-       callback?: BodyResponseCallback<Schema$PlacementGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementGroup>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementGroup>,
+      callback?: BodyResponseCallback<Schema$PlacementGroup>):
+      void|AxiosPromise<Schema$PlacementGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placementGroups')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementGroup>(parameters);
+    }
+  }
 }
 
 export class Resource$Placements {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.placements.generatetags
@@ -13648,36 +15796,53 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generatetags =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placements/generatetags')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
-            parameters, callback!);
-      };
+  generatetags(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementsGenerateTagsResponse>;
+  generatetags(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
+      void;
+  generatetags(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsGenerateTagsResponse>):
+      void|AxiosPromise<Schema$PlacementsGenerateTagsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placements/generatetags')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -13693,33 +15858,44 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-       callback?: BodyResponseCallback<Schema$Placement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placements/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Placement>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Placement>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>):
+      void|AxiosPromise<Schema$Placement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placements/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Placement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Placement>(parameters);
+    }
+  }
 
 
   /**
@@ -13735,32 +15911,46 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-       callback?: BodyResponseCallback<Schema$Placement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/placements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Placement>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Placement>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>):
+      void|AxiosPromise<Schema$Placement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Placement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Placement>(parameters);
+    }
+  }
 
 
   /**
@@ -13798,33 +15988,49 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlacementsListResponse>,
-       callback?: BodyResponseCallback<Schema$PlacementsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/placements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlacementsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlacementsListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementsListResponse>):
+      void|AxiosPromise<Schema$PlacementsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -13841,32 +16047,46 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-       callback?: BodyResponseCallback<Schema$Placement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/placements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Placement>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Placement>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>):
+      void|AxiosPromise<Schema$Placement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Placement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Placement>(parameters);
+    }
+  }
 
 
   /**
@@ -13882,39 +16102,59 @@ export class Resource$Placements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Placement>,
-       callback?: BodyResponseCallback<Schema$Placement>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/placements')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Placement>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Placement>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Placement>,
+      callback?: BodyResponseCallback<Schema$Placement>):
+      void|AxiosPromise<Schema$Placement> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/placements')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Placement>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Placement>(parameters);
+    }
+  }
 }
 
 export class Resource$Placementstrategies {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.placementStrategies.delete
@@ -13929,32 +16169,44 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -13970,33 +16222,46 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-       callback?: BodyResponseCallback<Schema$PlacementStrategy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementStrategy>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$PlacementStrategy>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>):
+      void|AxiosPromise<Schema$PlacementStrategy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementStrategy>(parameters);
+    }
+  }
 
 
   /**
@@ -14012,33 +16277,48 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-       callback?: BodyResponseCallback<Schema$PlacementStrategy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementStrategy>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementStrategy>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>):
+      void|AxiosPromise<Schema$PlacementStrategy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementStrategy>(parameters);
+    }
+  }
 
 
   /**
@@ -14060,36 +16340,53 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$PlacementStrategiesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementStrategiesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementStrategiesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlacementStrategiesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategiesListResponse>):
+      void|AxiosPromise<Schema$PlacementStrategiesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementStrategiesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementStrategiesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -14107,33 +16404,48 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-       callback?: BodyResponseCallback<Schema$PlacementStrategy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementStrategy>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementStrategy>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>):
+      void|AxiosPromise<Schema$PlacementStrategy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementStrategy>(parameters);
+    }
+  }
 
 
   /**
@@ -14149,40 +16461,61 @@ export class Resource$Placementstrategies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
-       callback?: BodyResponseCallback<Schema$PlacementStrategy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlacementStrategy>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlacementStrategy>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlacementStrategy>,
+      callback?: BodyResponseCallback<Schema$PlacementStrategy>):
+      void|AxiosPromise<Schema$PlacementStrategy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/placementStrategies')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlacementStrategy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlacementStrategy>(parameters);
+    }
+  }
 }
 
 export class Resource$Platformtypes {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.platformTypes.get
@@ -14197,33 +16530,45 @@ export class Resource$Platformtypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
-       callback?: BodyResponseCallback<Schema$PlatformType>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/platformTypes/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlatformType>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$PlatformType>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
+      callback?: BodyResponseCallback<Schema$PlatformType>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlatformType>,
+      callback?: BodyResponseCallback<Schema$PlatformType>):
+      void|AxiosPromise<Schema$PlatformType> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/platformTypes/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlatformType>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlatformType>(parameters);
+    }
+  }
 
 
   /**
@@ -14238,42 +16583,62 @@ export class Resource$Platformtypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlatformTypesListResponse>,
-       callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/platformTypes')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlatformTypesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlatformTypesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlatformTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlatformTypesListResponse>,
+      callback?: BodyResponseCallback<Schema$PlatformTypesListResponse>):
+      void|AxiosPromise<Schema$PlatformTypesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/platformTypes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlatformTypesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlatformTypesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Postalcodes {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.postalCodes.get
@@ -14288,33 +16653,45 @@ export class Resource$Postalcodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
-       callback?: BodyResponseCallback<Schema$PostalCode>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/postalCodes/{code}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'code'],
-          pathParams: ['code', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PostalCode>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$PostalCode>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
+      callback?: BodyResponseCallback<Schema$PostalCode>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PostalCode>,
+      callback?: BodyResponseCallback<Schema$PostalCode>):
+      void|AxiosPromise<Schema$PostalCode> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/postalCodes/{code}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'code'],
+      pathParams: ['code', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PostalCode>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PostalCode>(parameters);
+    }
+  }
 
 
   /**
@@ -14329,40 +16706,62 @@ export class Resource$Postalcodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PostalCodesListResponse>,
-       callback?: BodyResponseCallback<Schema$PostalCodesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/postalCodes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PostalCodesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PostalCodesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PostalCodesListResponse>,
+      callback?: BodyResponseCallback<Schema$PostalCodesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PostalCodesListResponse>,
+      callback?: BodyResponseCallback<Schema$PostalCodesListResponse>):
+      void|AxiosPromise<Schema$PostalCodesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/postalCodes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PostalCodesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PostalCodesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.projects.get
@@ -14377,32 +16776,42 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
-       callback?: BodyResponseCallback<Schema$Project>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/projects/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Project>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>):
+      void|AxiosPromise<Schema$Project> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/projects/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Project>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Project>(parameters);
+    }
+  }
 
 
   /**
@@ -14425,39 +16834,60 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProjectsListResponse>,
-       callback?: BodyResponseCallback<Schema$ProjectsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/projects')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProjectsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProjectsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProjectsListResponse>,
+      callback?: BodyResponseCallback<Schema$ProjectsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectsListResponse>,
+      callback?: BodyResponseCallback<Schema$ProjectsListResponse>):
+      void|AxiosPromise<Schema$ProjectsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/projects')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProjectsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProjectsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Regions {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.regions.list
@@ -14471,39 +16901,60 @@ export class Resource$Regions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
-       callback?: BodyResponseCallback<Schema$RegionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/regions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RegionsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RegionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
+      callback?: BodyResponseCallback<Schema$RegionsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RegionsListResponse>,
+      callback?: BodyResponseCallback<Schema$RegionsListResponse>):
+      void|AxiosPromise<Schema$RegionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/regions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RegionsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RegionsListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Remarketinglists {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.remarketingLists.get
@@ -14518,33 +16969,46 @@ export class Resource$Remarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-       callback?: BodyResponseCallback<Schema$RemarketingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingList>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$RemarketingList>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>):
+      void|AxiosPromise<Schema$RemarketingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingList>(parameters);
+    }
+  }
 
 
   /**
@@ -14560,33 +17024,48 @@ export class Resource$Remarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-       callback?: BodyResponseCallback<Schema$RemarketingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingList>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingList>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>):
+      void|AxiosPromise<Schema$RemarketingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingList>(parameters);
+    }
+  }
 
 
   /**
@@ -14610,36 +17089,52 @@ export class Resource$Remarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RemarketingListsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$RemarketingListsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'advertiserId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingListsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingListsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RemarketingListsListResponse>,
+      callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RemarketingListsListResponse>,
+      callback?: BodyResponseCallback<Schema$RemarketingListsListResponse>):
+      void|AxiosPromise<Schema$RemarketingListsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'advertiserId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingListsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingListsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -14657,33 +17152,48 @@ export class Resource$Remarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-       callback?: BodyResponseCallback<Schema$RemarketingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingList>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingList>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>):
+      void|AxiosPromise<Schema$RemarketingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingList>(parameters);
+    }
+  }
 
 
   /**
@@ -14699,40 +17209,61 @@ export class Resource$Remarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
-       callback?: BodyResponseCallback<Schema$RemarketingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingList>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingList>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingList>,
+      callback?: BodyResponseCallback<Schema$RemarketingList>):
+      void|AxiosPromise<Schema$RemarketingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingLists')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingList>(parameters);
+    }
+  }
 }
 
 export class Resource$Remarketinglistshares {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.remarketingListShares.get
@@ -14747,33 +17278,46 @@ export class Resource$Remarketinglistshares {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
-       callback?: BodyResponseCallback<Schema$RemarketingListShare>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares/{remarketingListId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'remarketingListId'],
-          pathParams: ['profileId', 'remarketingListId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingListShare>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$RemarketingListShare>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>):
+      void|AxiosPromise<Schema$RemarketingListShare> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares/{remarketingListId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'remarketingListId'],
+      pathParams: ['profileId', 'remarketingListId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingListShare>(parameters);
+    }
+  }
 
 
   /**
@@ -14791,33 +17335,48 @@ export class Resource$Remarketinglistshares {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
-       callback?: BodyResponseCallback<Schema$RemarketingListShare>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'remarketingListId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingListShare>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingListShare>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>):
+      void|AxiosPromise<Schema$RemarketingListShare> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'remarketingListId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingListShare>(parameters);
+    }
+  }
 
 
   /**
@@ -14833,33 +17392,48 @@ export class Resource$Remarketinglistshares {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
-       callback?: BodyResponseCallback<Schema$RemarketingListShare>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingListShare>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingListShare>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingListShare>,
+      callback?: BodyResponseCallback<Schema$RemarketingListShare>):
+      void|AxiosPromise<Schema$RemarketingListShare> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/remarketingListShares')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingListShare>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingListShare>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports {
@@ -14868,9 +17442,15 @@ export class Resource$Reports {
   files: Resource$Reports$Files;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
     this.compatibleFields = new Resource$Reports$Compatiblefields(root);
     this.files = new Resource$Reports$Files(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.reports.delete
@@ -14885,32 +17465,44 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -14926,32 +17518,43 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 
 
   /**
@@ -14967,31 +17570,44 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 
 
   /**
@@ -15011,32 +17627,46 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReportList>,
-       callback?: BodyResponseCallback<Schema$ReportList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReportList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ReportList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReportList>,
+      callback?: BodyResponseCallback<Schema$ReportList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReportList>,
+      callback?: BodyResponseCallback<Schema$ReportList>):
+      void|AxiosPromise<Schema$ReportList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReportList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReportList>(parameters);
+    }
+  }
 
 
   /**
@@ -15053,32 +17683,45 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 
 
   /**
@@ -15095,32 +17738,43 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  run =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/run')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  run(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  run(params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  run(params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/run')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -15137,38 +17791,57 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 }
 export class Resource$Reports$Compatiblefields {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.reports.compatibleFields.query
@@ -15185,40 +17858,61 @@ export class Resource$Reports$Compatiblefields {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
-       callback?: BodyResponseCallback<Schema$CompatibleFields>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/compatiblefields/query')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CompatibleFields>(parameters, callback!);
-      };
+  query(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CompatibleFields>;
+  query(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
+      callback?: BodyResponseCallback<Schema$CompatibleFields>): void;
+  query(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CompatibleFields>,
+      callback?: BodyResponseCallback<Schema$CompatibleFields>):
+      void|AxiosPromise<Schema$CompatibleFields> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/compatiblefields/query')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CompatibleFields>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CompatibleFields>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports$Files {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.reports.files.get
@@ -15234,32 +17928,43 @@ export class Resource$Reports$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
-       callback?: BodyResponseCallback<Schema$File>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/files/{fileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId', 'fileId'],
-          pathParams: ['fileId', 'profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$File>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+      callback?: BodyResponseCallback<Schema$File>):
+      void|AxiosPromise<Schema$File> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/files/{fileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId', 'fileId'],
+      pathParams: ['fileId', 'profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$File>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$File>(parameters);
+    }
+  }
 
 
   /**
@@ -15279,33 +17984,46 @@ export class Resource$Reports$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FileList>,
-       callback?: BodyResponseCallback<Schema$FileList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/files')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'reportId'],
-          pathParams: ['profileId', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FileList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+      callback?: BodyResponseCallback<Schema$FileList>):
+      void|AxiosPromise<Schema$FileList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/reports/{reportId}/files')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'reportId'],
+      pathParams: ['profileId', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FileList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FileList>(parameters);
+    }
+  }
 }
 
 
@@ -15313,7 +18031,13 @@ export class Resource$Sites {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.sites.get
@@ -15328,31 +18052,42 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
-       callback?: BodyResponseCallback<Schema$Site>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sites/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Site>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>):
+      void|AxiosPromise<Schema$Site> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/sites/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Site>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Site>(parameters);
+    }
+  }
 
 
   /**
@@ -15368,31 +18103,43 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
-       callback?: BodyResponseCallback<Schema$Site>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Site>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>):
+      void|AxiosPromise<Schema$Site> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Site>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Site>(parameters);
+    }
+  }
 
 
   /**
@@ -15423,32 +18170,46 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-       callback?: BodyResponseCallback<Schema$SitesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SitesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SitesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+      callback?: BodyResponseCallback<Schema$SitesListResponse>):
+      void|AxiosPromise<Schema$SitesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SitesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SitesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -15465,31 +18226,43 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
-       callback?: BodyResponseCallback<Schema$Site>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Site>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>):
+      void|AxiosPromise<Schema$Site> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Site>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Site>(parameters);
+    }
+  }
 
 
   /**
@@ -15505,38 +18278,56 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
-       callback?: BodyResponseCallback<Schema$Site>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sites')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Site>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Site>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Site>,
+      callback?: BodyResponseCallback<Schema$Site>):
+      void|AxiosPromise<Schema$Site> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sites')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Site>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Site>(parameters);
+    }
+  }
 }
 
 export class Resource$Sizes {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.sizes.get
@@ -15551,31 +18342,42 @@ export class Resource$Sizes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Size>,
-       callback?: BodyResponseCallback<Schema$Size>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sizes/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Size>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Size>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>):
+      void|AxiosPromise<Schema$Size> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/sizes/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Size>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Size>(parameters);
+    }
+  }
 
 
   /**
@@ -15591,31 +18393,43 @@ export class Resource$Sizes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Size>,
-       callback?: BodyResponseCallback<Schema$Size>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sizes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Size>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Size>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Size>,
+      callback?: BodyResponseCallback<Schema$Size>):
+      void|AxiosPromise<Schema$Size> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sizes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Size>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Size>(parameters);
+    }
+  }
 
 
   /**
@@ -15634,39 +18448,59 @@ export class Resource$Sizes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
-       callback?: BodyResponseCallback<Schema$SizesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/sizes')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SizesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SizesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
+      callback?: BodyResponseCallback<Schema$SizesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SizesListResponse>,
+      callback?: BodyResponseCallback<Schema$SizesListResponse>):
+      void|AxiosPromise<Schema$SizesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}/sizes')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SizesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SizesListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Subaccounts {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.subaccounts.get
@@ -15681,33 +18515,45 @@ export class Resource$Subaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-       callback?: BodyResponseCallback<Schema$Subaccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subaccount>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>):
+      void|AxiosPromise<Schema$Subaccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subaccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subaccount>(parameters);
+    }
+  }
 
 
   /**
@@ -15723,32 +18569,46 @@ export class Resource$Subaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-       callback?: BodyResponseCallback<Schema$Subaccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subaccount>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>):
+      void|AxiosPromise<Schema$Subaccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subaccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subaccount>(parameters);
+    }
+  }
 
 
   /**
@@ -15770,33 +18630,49 @@ export class Resource$Subaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SubaccountsListResponse>,
-       callback?: BodyResponseCallback<Schema$SubaccountsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubaccountsListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SubaccountsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SubaccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubaccountsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SubaccountsListResponse>,
+      callback?: BodyResponseCallback<Schema$SubaccountsListResponse>):
+      void|AxiosPromise<Schema$SubaccountsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubaccountsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubaccountsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -15813,32 +18689,46 @@ export class Resource$Subaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-       callback?: BodyResponseCallback<Schema$Subaccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subaccount>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>):
+      void|AxiosPromise<Schema$Subaccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subaccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subaccount>(parameters);
+    }
+  }
 
 
   /**
@@ -15854,39 +18744,59 @@ export class Resource$Subaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
-       callback?: BodyResponseCallback<Schema$Subaccount>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subaccount>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Subaccount>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subaccount>,
+      callback?: BodyResponseCallback<Schema$Subaccount>):
+      void|AxiosPromise<Schema$Subaccount> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/subaccounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subaccount>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subaccount>(parameters);
+    }
+  }
 }
 
 export class Resource$Targetableremarketinglists {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.targetableRemarketingLists.get
@@ -15901,35 +18811,48 @@ export class Resource$Targetableremarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TargetableRemarketingList>,
-       callback?: BodyResponseCallback<Schema$TargetableRemarketingList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetableRemarketingLists/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetableRemarketingList>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$TargetableRemarketingList>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TargetableRemarketingList>,
+      callback?: BodyResponseCallback<Schema$TargetableRemarketingList>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TargetableRemarketingList>,
+      callback?: BodyResponseCallback<Schema$TargetableRemarketingList>):
+      void|AxiosPromise<Schema$TargetableRemarketingList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetableRemarketingLists/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetableRemarketingList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetableRemarketingList>(parameters);
+    }
+  }
 
 
   /**
@@ -15952,43 +18875,68 @@ export class Resource$Targetableremarketinglists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$TargetableRemarketingListsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetableRemarketingLists')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'advertiserId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TargetableRemarketingListsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>):
+      void|AxiosPromise<Schema$TargetableRemarketingListsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetableRemarketingLists')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'advertiserId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Targetingtemplates {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.targetingTemplates.get
@@ -16003,33 +18951,46 @@ export class Resource$Targetingtemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-       callback?: BodyResponseCallback<Schema$TargetingTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetingTemplate>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$TargetingTemplate>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>):
+      void|AxiosPromise<Schema$TargetingTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetingTemplate>(parameters);
+    }
+  }
 
 
   /**
@@ -16045,33 +19006,48 @@ export class Resource$Targetingtemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-       callback?: BodyResponseCallback<Schema$TargetingTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetingTemplate>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TargetingTemplate>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>):
+      void|AxiosPromise<Schema$TargetingTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetingTemplate>(parameters);
+    }
+  }
 
 
   /**
@@ -16094,36 +19070,53 @@ export class Resource$Targetingtemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$TargetingTemplatesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetingTemplatesListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TargetingTemplatesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TargetingTemplatesListResponse>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplatesListResponse>):
+      void|AxiosPromise<Schema$TargetingTemplatesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetingTemplatesListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetingTemplatesListResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -16141,33 +19134,48 @@ export class Resource$Targetingtemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-       callback?: BodyResponseCallback<Schema$TargetingTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetingTemplate>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TargetingTemplate>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>):
+      void|AxiosPromise<Schema$TargetingTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetingTemplate>(parameters);
+    }
+  }
 
 
   /**
@@ -16183,40 +19191,61 @@ export class Resource$Targetingtemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
-       callback?: BodyResponseCallback<Schema$TargetingTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TargetingTemplate>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TargetingTemplate>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TargetingTemplate>,
+      callback?: BodyResponseCallback<Schema$TargetingTemplate>):
+      void|AxiosPromise<Schema$TargetingTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/targetingTemplates')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TargetingTemplate>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TargetingTemplate>(parameters);
+    }
+  }
 }
 
 export class Resource$Userprofiles {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.userProfiles.get
@@ -16230,31 +19259,43 @@ export class Resource$Userprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
-       callback?: BodyResponseCallback<Schema$UserProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserProfile>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$UserProfile>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserProfile>,
+      callback?: BodyResponseCallback<Schema$UserProfile>):
+      void|AxiosPromise<Schema$UserProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles/{profileId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserProfile>(parameters);
+    }
+  }
 
 
   /**
@@ -16268,38 +19309,59 @@ export class Resource$Userprofiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
-       callback?: BodyResponseCallback<Schema$UserProfileList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/dfareporting/v3.0/userprofiles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserProfileList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UserProfileList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
+      callback?: BodyResponseCallback<Schema$UserProfileList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserProfileList>,
+      callback?: BodyResponseCallback<Schema$UserProfileList>):
+      void|AxiosPromise<Schema$UserProfileList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v3.0/userprofiles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserProfileList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserProfileList>(parameters);
+    }
+  }
 }
 
 export class Resource$Userrolepermissiongroups {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.userRolePermissionGroups.get
@@ -16314,34 +19376,48 @@ export class Resource$Userrolepermissiongroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UserRolePermissionGroup>,
-       callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissionGroups/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRolePermissionGroup>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$UserRolePermissionGroup>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionGroup>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionGroup>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionGroup>):
+      void|AxiosPromise<Schema$UserRolePermissionGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissionGroups/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRolePermissionGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRolePermissionGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -16356,43 +19432,68 @@ export class Resource$Userrolepermissiongroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-       callback?: BodyResponseCallback<
-           Schema$UserRolePermissionGroupsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissionGroups')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UserRolePermissionGroupsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>):
+      void|AxiosPromise<Schema$UserRolePermissionGroupsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissionGroups')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Userrolepermissions {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.userRolePermissions.get
@@ -16407,33 +19508,46 @@ export class Resource$Userrolepermissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
-       callback?: BodyResponseCallback<Schema$UserRolePermission>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissions/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRolePermission>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$UserRolePermission>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
+      callback?: BodyResponseCallback<Schema$UserRolePermission>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserRolePermission>,
+      callback?: BodyResponseCallback<Schema$UserRolePermission>):
+      void|AxiosPromise<Schema$UserRolePermission> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissions/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRolePermission>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRolePermission>(parameters);
+    }
+  }
 
 
   /**
@@ -16449,43 +19563,66 @@ export class Resource$Userrolepermissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$UserRolePermissionsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRolePermissionsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UserRolePermissionsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UserRolePermissionsListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolePermissionsListResponse>):
+      void|AxiosPromise<Schema$UserRolePermissionsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/userRolePermissions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRolePermissionsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRolePermissionsListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Userroles {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.userRoles.delete
@@ -16500,32 +19637,43 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRoles/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -16541,33 +19689,43 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-       callback?: BodyResponseCallback<Schema$UserRole>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/userRoles/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRole>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>):
+      void|AxiosPromise<Schema$UserRole> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRole>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRole>(parameters);
+    }
+  }
 
 
   /**
@@ -16583,32 +19741,45 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-       callback?: BodyResponseCallback<Schema$UserRole>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRole>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>):
+      void|AxiosPromise<Schema$UserRole> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRole>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRole>(parameters);
+    }
+  }
 
 
   /**
@@ -16632,33 +19803,48 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UserRolesListResponse>,
-       callback?: BodyResponseCallback<Schema$UserRolesListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRolesListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UserRolesListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserRolesListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolesListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UserRolesListResponse>,
+      callback?: BodyResponseCallback<Schema$UserRolesListResponse>):
+      void|AxiosPromise<Schema$UserRolesListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRolesListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRolesListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -16675,32 +19861,45 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-       callback?: BodyResponseCallback<Schema$UserRole>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRole>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>):
+      void|AxiosPromise<Schema$UserRole> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRole>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRole>(parameters);
+    }
+  }
 
 
   /**
@@ -16716,39 +19915,58 @@ export class Resource$Userroles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
-       callback?: BodyResponseCallback<Schema$UserRole>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserRole>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$UserRole>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserRole>,
+      callback?: BodyResponseCallback<Schema$UserRole>):
+      void|AxiosPromise<Schema$UserRole> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/userRoles')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserRole>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserRole>(parameters);
+    }
+  }
 }
 
 export class Resource$Videoformats {
   root: Dfareporting;
   constructor(root: Dfareporting) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dfareporting.videoFormats.get
@@ -16763,33 +19981,45 @@ export class Resource$Videoformats {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
-       callback?: BodyResponseCallback<Schema$VideoFormat>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/videoFormats/{id}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId', 'id'],
-          pathParams: ['id', 'profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoFormat>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$VideoFormat>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
+      callback?: BodyResponseCallback<Schema$VideoFormat>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VideoFormat>,
+      callback?: BodyResponseCallback<Schema$VideoFormat>):
+      void|AxiosPromise<Schema$VideoFormat> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/dfareporting/v3.0/userprofiles/{profileId}/videoFormats/{id}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId', 'id'],
+      pathParams: ['id', 'profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoFormat>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoFormat>(parameters);
+    }
+  }
 
 
   /**
@@ -16804,33 +20034,47 @@ export class Resource$Videoformats {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VideoFormatsListResponse>,
-       callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/dfareporting/v3.0/userprofiles/{profileId}/videoFormats')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['profileId'],
-          pathParams: ['profileId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoFormatsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VideoFormatsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VideoFormatsListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VideoFormatsListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoFormatsListResponse>):
+      void|AxiosPromise<Schema$VideoFormatsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/dfareporting/v3.0/userprofiles/{profileId}/videoFormats')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['profileId'],
+      pathParams: ['profileId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoFormatsListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoFormatsListResponse>(parameters);
+    }
+  }
 }

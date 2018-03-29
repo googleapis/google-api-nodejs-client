@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Discovery {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.apis = new Resource$Apis(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -373,7 +380,13 @@ export class Resource$Apis {
   root: Discovery;
   constructor(root: Discovery) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * discovery.apis.getRest
@@ -388,31 +401,46 @@ export class Resource$Apis {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRest =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
-       callback?: BodyResponseCallback<Schema$RestDescription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['api', 'version'],
-          pathParams: ['api', 'version'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RestDescription>(parameters, callback!);
-      };
+  getRest(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RestDescription>;
+  getRest(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
+      callback?: BodyResponseCallback<Schema$RestDescription>): void;
+  getRest(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
+      callback?: BodyResponseCallback<Schema$RestDescription>):
+      void|AxiosPromise<Schema$RestDescription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/discovery/v1/apis/{api}/{version}/rest')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['api', 'version'],
+      pathParams: ['api', 'version'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RestDescription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RestDescription>(parameters);
+    }
+  }
 
 
   /**
@@ -428,29 +456,43 @@ export class Resource$Apis {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
-       callback?: BodyResponseCallback<Schema$DirectoryList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/discovery/v1/apis')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DirectoryList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DirectoryList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
+      callback?: BodyResponseCallback<Schema$DirectoryList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
+      callback?: BodyResponseCallback<Schema$DirectoryList>):
+      void|AxiosPromise<Schema$DirectoryList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/discovery/v1/apis').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DirectoryList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DirectoryList>(parameters);
+    }
+  }
 }

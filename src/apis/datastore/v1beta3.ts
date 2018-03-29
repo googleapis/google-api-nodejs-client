@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Datastore {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -337,6 +344,141 @@ export interface Schema$GoogleDatastoreAdminV1beta1ImportEntitiesMetadata {
  * Measures the progress of a particular metric.
  */
 export interface Schema$GoogleDatastoreAdminV1beta1Progress {
+  /**
+   * The amount of work that has been completed. Note that this may be greater
+   * than work_estimated.
+   */
+  workCompleted: string;
+  /**
+   * An estimate of how much work needs to be performed. May be zero if the work
+   * estimate is unavailable.
+   */
+  workEstimated: string;
+}
+/**
+ * Metadata common to all Datastore Admin operations.
+ */
+export interface Schema$GoogleDatastoreAdminV1CommonMetadata {
+  /**
+   * The time the operation ended, either successfully or otherwise.
+   */
+  endTime: string;
+  /**
+   * The client-assigned labels which were provided when the operation was
+   * created. May also include additional labels.
+   */
+  labels: any;
+  /**
+   * The type of the operation. Can be used as a filter in
+   * ListOperationsRequest.
+   */
+  operationType: string;
+  /**
+   * The time that work began on the operation.
+   */
+  startTime: string;
+  /**
+   * The current state of the Operation.
+   */
+  state: string;
+}
+/**
+ * Identifies a subset of entities in a project. This is specified as
+ * combinations of kinds and namespaces (either or both of which may be all, as
+ * described in the following examples). Example usage:  Entire project:
+ * kinds=[], namespace_ids=[]  Kinds Foo and Bar in all namespaces:
+ * kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[]  Kinds Foo and Bar
+ * only in the default namespace:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
+ * namespace_ids=[&#39;&#39;]  Kinds Foo and Bar in both the default and Baz
+ * namespaces:   kinds=[&#39;Foo&#39;, &#39;Bar&#39;],
+ * namespace_ids=[&#39;&#39;, &#39;Baz&#39;]  The entire Baz namespace:
+ * kinds=[], namespace_ids=[&#39;Baz&#39;]
+ */
+export interface Schema$GoogleDatastoreAdminV1EntityFilter {
+  /**
+   * If empty, then this represents all kinds.
+   */
+  kinds: string[];
+  /**
+   * An empty list represents all namespaces. This is the preferred usage for
+   * projects that don&#39;t use namespaces.  An empty string element represents
+   * the default namespace. This should be used if the project has data in
+   * non-default namespaces, but doesn&#39;t want to include them. Each
+   * namespace in this list must be unique.
+   */
+  namespaceIds: string[];
+}
+/**
+ * Metadata for ExportEntities operations.
+ */
+export interface Schema$GoogleDatastoreAdminV1ExportEntitiesMetadata {
+  /**
+   * Metadata common to all Datastore Admin operations.
+   */
+  common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+  /**
+   * Description of which entities are being exported.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+  /**
+   * Location for the export metadata and data files. This will be the same
+   * value as the
+   * google.datastore.admin.v1.ExportEntitiesRequest.output_url_prefix field.
+   * The final output location is provided in
+   * google.datastore.admin.v1.ExportEntitiesResponse.output_url.
+   */
+  outputUrlPrefix: string;
+  /**
+   * An estimate of the number of bytes processed.
+   */
+  progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+  /**
+   * An estimate of the number of entities processed.
+   */
+  progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+}
+/**
+ * The response for google.datastore.admin.v1.DatastoreAdmin.ExportEntities.
+ */
+export interface Schema$GoogleDatastoreAdminV1ExportEntitiesResponse {
+  /**
+   * Location of the output metadata file. This can be used to begin an import
+   * into Cloud Datastore (this project or another project). See
+   * google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present if
+   * the operation completed successfully.
+   */
+  outputUrl: string;
+}
+/**
+ * Metadata for ImportEntities operations.
+ */
+export interface Schema$GoogleDatastoreAdminV1ImportEntitiesMetadata {
+  /**
+   * Metadata common to all Datastore Admin operations.
+   */
+  common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+  /**
+   * Description of which entities are being imported.
+   */
+  entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+  /**
+   * The location of the import metadata file. This will be the same value as
+   * the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
+   */
+  inputUrl: string;
+  /**
+   * An estimate of the number of bytes processed.
+   */
+  progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+  /**
+   * An estimate of the number of entities processed.
+   */
+  progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+}
+/**
+ * Measures the progress of a particular metric.
+ */
+export interface Schema$GoogleDatastoreAdminV1Progress {
   /**
    * The amount of work that has been completed. Note that this may be greater
    * than work_estimated.
@@ -904,7 +1046,13 @@ export class Resource$Projects {
   root: Datastore;
   constructor(root: Datastore) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * datastore.projects.allocateIds
@@ -920,31 +1068,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  allocateIds =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
-       callback?: BodyResponseCallback<Schema$AllocateIdsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:allocateIds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback!);
-      };
+  allocateIds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AllocateIdsResponse>;
+  allocateIds(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
+  allocateIds(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
+      callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
+      void|AxiosPromise<Schema$AllocateIdsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:allocateIds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AllocateIdsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AllocateIdsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -960,34 +1123,48 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  beginTransaction =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BeginTransactionResponse>,
-       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1beta3/projects/{projectId}:beginTransaction')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BeginTransactionResponse>(
-            parameters, callback!);
-      };
+  beginTransaction(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BeginTransactionResponse>;
+  beginTransaction(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+  beginTransaction(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BeginTransactionResponse>,
+      callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
+      void|AxiosPromise<Schema$BeginTransactionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:beginTransaction')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BeginTransactionResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1004,31 +1181,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-       callback?: BodyResponseCallback<Schema$CommitResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:commit')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommitResponse>(parameters, callback!);
-      };
+  commit(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommitResponse>;
+  commit(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+  commit(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      callback?: BodyResponseCallback<Schema$CommitResponse>):
+      void|AxiosPromise<Schema$CommitResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:commit')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommitResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommitResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1044,31 +1236,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  lookup =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
-       callback?: BodyResponseCallback<Schema$LookupResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:lookup')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LookupResponse>(parameters, callback!);
-      };
+  lookup(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LookupResponse>;
+  lookup(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+      callback?: BodyResponseCallback<Schema$LookupResponse>): void;
+  lookup(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+      callback?: BodyResponseCallback<Schema$LookupResponse>):
+      void|AxiosPromise<Schema$LookupResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:lookup')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LookupResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LookupResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1085,31 +1292,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reserveIds =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
-       callback?: BodyResponseCallback<Schema$ReserveIdsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:reserveIds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback!);
-      };
+  reserveIds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ReserveIdsResponse>;
+  reserveIds(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+      callback?: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
+  reserveIds(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+      callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
+      void|AxiosPromise<Schema$ReserveIdsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:reserveIds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReserveIdsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReserveIdsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1125,31 +1347,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
-       callback?: BodyResponseCallback<Schema$RollbackResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:rollback')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RollbackResponse>(parameters, callback!);
-      };
+  rollback(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RollbackResponse>;
+  rollback(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+      callback?: BodyResponseCallback<Schema$RollbackResponse>): void;
+  rollback(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+      callback?: BodyResponseCallback<Schema$RollbackResponse>):
+      void|AxiosPromise<Schema$RollbackResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:rollback')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RollbackResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RollbackResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1165,29 +1402,44 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runQuery =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
-       callback?: BodyResponseCallback<Schema$RunQueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1beta3/projects/{projectId}:runQuery')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RunQueryResponse>(parameters, callback!);
-      };
+  runQuery(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RunQueryResponse>;
+  runQuery(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
+  runQuery(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      callback?: BodyResponseCallback<Schema$RunQueryResponse>):
+      void|AxiosPromise<Schema$RunQueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/projects/{projectId}:runQuery')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RunQueryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RunQueryResponse>(parameters);
+    }
+  }
 }

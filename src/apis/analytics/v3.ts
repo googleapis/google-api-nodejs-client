@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,11 +56,16 @@ export class Analytics {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.data = new Resource$Data(this);
     this.management = new Resource$Management(this);
     this.metadata = new Resource$Metadata(this);
     this.provisioning = new Resource$Provisioning(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -2582,16 +2589,27 @@ export class Resource$Data {
   realtime: Resource$Data$Realtime;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
     this.ga = new Resource$Data$Ga(root);
     this.mcf = new Resource$Data$Mcf(root);
     this.realtime = new Resource$Data$Realtime(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Data$Ga {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.data.ga.get
@@ -2617,37 +2635,54 @@ export class Resource$Data$Ga {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$GaData>,
-       callback?: BodyResponseCallback<Schema$GaData>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/data/ga')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GaData>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$GaData>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$GaData>,
+      callback?: BodyResponseCallback<Schema$GaData>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GaData>,
+      callback?: BodyResponseCallback<Schema$GaData>):
+      void|AxiosPromise<Schema$GaData> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/data/ga')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GaData>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GaData>(parameters);
+    }
+  }
 }
 
 export class Resource$Data$Mcf {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.data.mcf.get
@@ -2670,37 +2705,54 @@ export class Resource$Data$Mcf {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$McfData>,
-       callback?: BodyResponseCallback<Schema$McfData>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/data/mcf')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$McfData>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$McfData>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$McfData>,
+      callback?: BodyResponseCallback<Schema$McfData>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$McfData>,
+      callback?: BodyResponseCallback<Schema$McfData>):
+      void|AxiosPromise<Schema$McfData> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/data/mcf')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['ids', 'start-date', 'end-date', 'metrics'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$McfData>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$McfData>(parameters);
+    }
+  }
 }
 
 export class Resource$Data$Realtime {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.data.realtime.get
@@ -2719,31 +2771,43 @@ export class Resource$Data$Realtime {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
-       callback?: BodyResponseCallback<Schema$RealtimeData>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/data/realtime')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['ids', 'metrics'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RealtimeData>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$RealtimeData>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
+      callback?: BodyResponseCallback<Schema$RealtimeData>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RealtimeData>,
+      callback?: BodyResponseCallback<Schema$RealtimeData>):
+      void|AxiosPromise<Schema$RealtimeData> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/data/realtime')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['ids', 'metrics'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RealtimeData>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RealtimeData>(parameters);
+    }
+  }
 }
 
 
@@ -2770,6 +2834,7 @@ export class Resource$Management {
   webpropertyUserLinks: Resource$Management$Webpropertyuserlinks;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
     this.accounts = new Resource$Management$Accounts(root);
     this.accountSummaries = new Resource$Management$Accountsummaries(root);
     this.accountUserLinks = new Resource$Management$Accountuserlinks(root);
@@ -2793,12 +2858,22 @@ export class Resource$Management {
     this.webpropertyUserLinks =
         new Resource$Management$Webpropertyuserlinks(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
 }
 export class Resource$Management$Accounts {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.accounts.list
@@ -2813,38 +2888,57 @@ export class Resource$Management$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-       callback?: BodyResponseCallback<Schema$Accounts>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Accounts>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Accounts>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>):
+      void|AxiosPromise<Schema$Accounts> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/management/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Accounts>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Accounts>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Accountsummaries {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.accountSummaries.list
@@ -2860,38 +2954,59 @@ export class Resource$Management$Accountsummaries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
-       callback?: BodyResponseCallback<Schema$AccountSummaries>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/accountSummaries')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountSummaries>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountSummaries>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
+      callback?: BodyResponseCallback<Schema$AccountSummaries>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountSummaries>,
+      callback?: BodyResponseCallback<Schema$AccountSummaries>):
+      void|AxiosPromise<Schema$AccountSummaries> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/management/accountSummaries')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountSummaries>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountSummaries>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Accountuserlinks {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.accountUserLinks.delete
@@ -2906,32 +3021,44 @@ export class Resource$Management$Accountuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'linkId'],
-          pathParams: ['accountId', 'linkId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'linkId'],
+      pathParams: ['accountId', 'linkId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2947,33 +3074,48 @@ export class Resource$Management$Accountuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 
 
   /**
@@ -2990,33 +3132,48 @@ export class Resource$Management$Accountuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-       callback?: BodyResponseCallback<Schema$EntityUserLinks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLinks>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>):
+      void|AxiosPromise<Schema$EntityUserLinks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLinks>(parameters);
+    }
+  }
 
 
   /**
@@ -3033,40 +3190,61 @@ export class Resource$Management$Accountuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'linkId'],
-          pathParams: ['accountId', 'linkId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'linkId'],
+      pathParams: ['accountId', 'linkId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Customdatasources {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.customDataSources.list
@@ -3083,40 +3261,61 @@ export class Resource$Management$Customdatasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
-       callback?: BodyResponseCallback<Schema$CustomDataSources>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDataSources>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomDataSources>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
+      callback?: BodyResponseCallback<Schema$CustomDataSources>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDataSources>,
+      callback?: BodyResponseCallback<Schema$CustomDataSources>):
+      void|AxiosPromise<Schema$CustomDataSources> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDataSources>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDataSources>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Customdimensions {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.customDimensions.get
@@ -3132,33 +3331,46 @@ export class Resource$Management$Customdimensions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-       callback?: BodyResponseCallback<Schema$CustomDimension>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDimension>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$CustomDimension>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>):
+      void|AxiosPromise<Schema$CustomDimension> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+      pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDimension>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDimension>(parameters);
+    }
+  }
 
 
   /**
@@ -3175,33 +3387,48 @@ export class Resource$Management$Customdimensions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-       callback?: BodyResponseCallback<Schema$CustomDimension>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDimension>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomDimension>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>):
+      void|AxiosPromise<Schema$CustomDimension> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDimension>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDimension>(parameters);
+    }
+  }
 
 
   /**
@@ -3219,33 +3446,48 @@ export class Resource$Management$Customdimensions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
-       callback?: BodyResponseCallback<Schema$CustomDimensions>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDimensions>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomDimensions>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
+      callback?: BodyResponseCallback<Schema$CustomDimensions>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDimensions>,
+      callback?: BodyResponseCallback<Schema$CustomDimensions>):
+      void|AxiosPromise<Schema$CustomDimensions> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDimensions>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDimensions>(parameters);
+    }
+  }
 
 
   /**
@@ -3265,33 +3507,48 @@ export class Resource$Management$Customdimensions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-       callback?: BodyResponseCallback<Schema$CustomDimension>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDimension>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomDimension>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>):
+      void|AxiosPromise<Schema$CustomDimension> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+      pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDimension>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDimension>(parameters);
+    }
+  }
 
 
   /**
@@ -3310,40 +3567,61 @@ export class Resource$Management$Customdimensions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
-       callback?: BodyResponseCallback<Schema$CustomDimension>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
-          pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomDimension>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomDimension>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomDimension>,
+      callback?: BodyResponseCallback<Schema$CustomDimension>):
+      void|AxiosPromise<Schema$CustomDimension> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDimensions/{customDimensionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customDimensionId'],
+      pathParams: ['accountId', 'customDimensionId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomDimension>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomDimension>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Custommetrics {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.customMetrics.get
@@ -3359,33 +3637,45 @@ export class Resource$Management$Custommetrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-       callback?: BodyResponseCallback<Schema$CustomMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomMetric>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CustomMetric>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>):
+      void|AxiosPromise<Schema$CustomMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+      pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomMetric>(parameters);
+    }
+  }
 
 
   /**
@@ -3402,33 +3692,48 @@ export class Resource$Management$Custommetrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-       callback?: BodyResponseCallback<Schema$CustomMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomMetric>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomMetric>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>):
+      void|AxiosPromise<Schema$CustomMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomMetric>(parameters);
+    }
+  }
 
 
   /**
@@ -3446,33 +3751,48 @@ export class Resource$Management$Custommetrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
-       callback?: BodyResponseCallback<Schema$CustomMetrics>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomMetrics>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomMetrics>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
+      callback?: BodyResponseCallback<Schema$CustomMetrics>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomMetrics>,
+      callback?: BodyResponseCallback<Schema$CustomMetrics>):
+      void|AxiosPromise<Schema$CustomMetrics> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomMetrics>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomMetrics>(parameters);
+    }
+  }
 
 
   /**
@@ -3492,33 +3812,48 @@ export class Resource$Management$Custommetrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-       callback?: BodyResponseCallback<Schema$CustomMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomMetric>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomMetric>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>):
+      void|AxiosPromise<Schema$CustomMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+      pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomMetric>(parameters);
+    }
+  }
 
 
   /**
@@ -3537,40 +3872,61 @@ export class Resource$Management$Custommetrics {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
-       callback?: BodyResponseCallback<Schema$CustomMetric>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
-          pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomMetric>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomMetric>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomMetric>,
+      callback?: BodyResponseCallback<Schema$CustomMetric>):
+      void|AxiosPromise<Schema$CustomMetric> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customMetrics/{customMetricId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customMetricId'],
+      pathParams: ['accountId', 'customMetricId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomMetric>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomMetric>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Experiments {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.experiments.delete
@@ -3587,34 +3943,45 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+      pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3632,35 +3999,46 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-       callback?: BodyResponseCallback<Schema$Experiment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Experiment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>):
+      void|AxiosPromise<Schema$Experiment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+      pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Experiment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Experiment>(parameters);
+    }
+  }
 
 
   /**
@@ -3678,33 +4056,47 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-       callback?: BodyResponseCallback<Schema$Experiment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Experiment>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>):
+      void|AxiosPromise<Schema$Experiment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Experiment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Experiment>(parameters);
+    }
+  }
 
 
   /**
@@ -3723,33 +4115,47 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Experiments>,
-       callback?: BodyResponseCallback<Schema$Experiments>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Experiments>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Experiments>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Experiments>,
+      callback?: BodyResponseCallback<Schema$Experiments>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Experiments>,
+      callback?: BodyResponseCallback<Schema$Experiments>):
+      void|AxiosPromise<Schema$Experiments> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Experiments>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Experiments>(parameters);
+    }
+  }
 
 
   /**
@@ -3768,35 +4174,48 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-       callback?: BodyResponseCallback<Schema$Experiment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Experiment>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>):
+      void|AxiosPromise<Schema$Experiment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+      pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Experiment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Experiment>(parameters);
+    }
+  }
 
 
   /**
@@ -3815,42 +4234,61 @@ export class Resource$Management$Experiments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
-       callback?: BodyResponseCallback<Schema$Experiment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
-          pathParams:
-              ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Experiment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Experiment>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Experiment>,
+      callback?: BodyResponseCallback<Schema$Experiment>):
+      void|AxiosPromise<Schema$Experiment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/experiments/{experimentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'experimentId'],
+      pathParams: ['accountId', 'experimentId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Experiment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Experiment>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Filters {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.filters.delete
@@ -3865,32 +4303,45 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'filterId'],
+      pathParams: ['accountId', 'filterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -3906,32 +4357,43 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'filterId'],
+      pathParams: ['accountId', 'filterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -3947,31 +4409,44 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/analytics/v3/management/accounts/{accountId}/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/analytics/v3/management/accounts/{accountId}/filters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -3988,31 +4463,44 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filters>,
-       callback?: BodyResponseCallback<Schema$Filters>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/analytics/v3/management/accounts/{accountId}/filters')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filters>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Filters>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filters>,
+      callback?: BodyResponseCallback<Schema$Filters>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filters>,
+      callback?: BodyResponseCallback<Schema$Filters>):
+      void|AxiosPromise<Schema$Filters> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/analytics/v3/management/accounts/{accountId}/filters')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filters>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filters>(parameters);
+    }
+  }
 
 
   /**
@@ -4029,32 +4517,45 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'filterId'],
+      pathParams: ['accountId', 'filterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 
 
   /**
@@ -4071,39 +4572,58 @@ export class Resource$Management$Filters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
-       callback?: BodyResponseCallback<Schema$Filter>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'filterId'],
-          pathParams: ['accountId', 'filterId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Filter>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Filter>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Filter>,
+      callback?: BodyResponseCallback<Schema$Filter>):
+      void|AxiosPromise<Schema$Filter> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/filters/{filterId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'filterId'],
+      pathParams: ['accountId', 'filterId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Filter>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Filter>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Goals {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.goals.get
@@ -4120,32 +4640,43 @@ export class Resource$Management$Goals {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-       callback?: BodyResponseCallback<Schema$Goal>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Goal>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>):
+      void|AxiosPromise<Schema$Goal> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+      pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Goal>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Goal>(parameters);
+    }
+  }
 
 
   /**
@@ -4163,32 +4694,45 @@ export class Resource$Management$Goals {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-       callback?: BodyResponseCallback<Schema$Goal>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Goal>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>):
+      void|AxiosPromise<Schema$Goal> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Goal>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Goal>(parameters);
+    }
+  }
 
 
   /**
@@ -4207,32 +4751,45 @@ export class Resource$Management$Goals {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Goals>,
-       callback?: BodyResponseCallback<Schema$Goals>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Goals>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Goals>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Goals>,
+      callback?: BodyResponseCallback<Schema$Goals>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Goals>,
+      callback?: BodyResponseCallback<Schema$Goals>):
+      void|AxiosPromise<Schema$Goals> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Goals>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Goals>(parameters);
+    }
+  }
 
 
   /**
@@ -4251,32 +4808,45 @@ export class Resource$Management$Goals {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-       callback?: BodyResponseCallback<Schema$Goal>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Goal>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>):
+      void|AxiosPromise<Schema$Goal> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+      pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Goal>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Goal>(parameters);
+    }
+  }
 
 
   /**
@@ -4295,39 +4865,58 @@ export class Resource$Management$Goals {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
-       callback?: BodyResponseCallback<Schema$Goal>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
-          pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Goal>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Goal>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Goal>,
+      callback?: BodyResponseCallback<Schema$Goal>):
+      void|AxiosPromise<Schema$Goal> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/goals/{goalId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'goalId'],
+      pathParams: ['accountId', 'goalId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Goal>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Goal>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Profilefilterlinks {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.profileFilterLinks.delete
@@ -4344,32 +4933,44 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -4387,33 +4988,46 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-       callback?: BodyResponseCallback<Schema$ProfileFilterLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ProfileFilterLink>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
+      void|AxiosPromise<Schema$ProfileFilterLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProfileFilterLink>(parameters);
+    }
+  }
 
 
   /**
@@ -4431,33 +5045,48 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-       callback?: BodyResponseCallback<Schema$ProfileFilterLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProfileFilterLink>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
+      void|AxiosPromise<Schema$ProfileFilterLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProfileFilterLink>(parameters);
+    }
+  }
 
 
   /**
@@ -4476,33 +5105,48 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
-       callback?: BodyResponseCallback<Schema$ProfileFilterLinks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProfileFilterLinks>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLinks>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLinks>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLinks>):
+      void|AxiosPromise<Schema$ProfileFilterLinks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProfileFilterLinks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProfileFilterLinks>(parameters);
+    }
+  }
 
 
   /**
@@ -4522,33 +5166,48 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-       callback?: BodyResponseCallback<Schema$ProfileFilterLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProfileFilterLink>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
+      void|AxiosPromise<Schema$ProfileFilterLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProfileFilterLink>(parameters);
+    }
+  }
 
 
   /**
@@ -4567,40 +5226,61 @@ export class Resource$Management$Profilefilterlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
-       callback?: BodyResponseCallback<Schema$ProfileFilterLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProfileFilterLink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProfileFilterLink>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProfileFilterLink>,
+      callback?: BodyResponseCallback<Schema$ProfileFilterLink>):
+      void|AxiosPromise<Schema$ProfileFilterLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/profileFilterLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProfileFilterLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProfileFilterLink>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Profiles {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.profiles.delete
@@ -4616,32 +5296,44 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -4658,32 +5350,43 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-       callback?: BodyResponseCallback<Schema$Profile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profile>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>):
+      void|AxiosPromise<Schema$Profile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profile>(parameters);
+    }
+  }
 
 
   /**
@@ -4700,32 +5403,45 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-       callback?: BodyResponseCallback<Schema$Profile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profile>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>):
+      void|AxiosPromise<Schema$Profile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profile>(parameters);
+    }
+  }
 
 
   /**
@@ -4743,33 +5459,46 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Profiles>,
-       callback?: BodyResponseCallback<Schema$Profiles>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profiles>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Profiles>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Profiles>,
+      callback?: BodyResponseCallback<Schema$Profiles>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Profiles>,
+      callback?: BodyResponseCallback<Schema$Profiles>):
+      void|AxiosPromise<Schema$Profiles> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profiles>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profiles>(parameters);
+    }
+  }
 
 
   /**
@@ -4788,32 +5517,45 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-       callback?: BodyResponseCallback<Schema$Profile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profile>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>):
+      void|AxiosPromise<Schema$Profile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profile>(parameters);
+    }
+  }
 
 
   /**
@@ -4831,39 +5573,58 @@ export class Resource$Management$Profiles {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
-       callback?: BodyResponseCallback<Schema$Profile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Profile>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Profile>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Profile>,
+      callback?: BodyResponseCallback<Schema$Profile>):
+      void|AxiosPromise<Schema$Profile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Profile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Profile>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Profileuserlinks {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.profileUserLinks.delete
@@ -4880,32 +5641,44 @@ export class Resource$Management$Profileuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -4923,33 +5696,48 @@ export class Resource$Management$Profileuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 
 
   /**
@@ -4968,33 +5756,48 @@ export class Resource$Management$Profileuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-       callback?: BodyResponseCallback<Schema$EntityUserLinks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLinks>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>):
+      void|AxiosPromise<Schema$EntityUserLinks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLinks>(parameters);
+    }
+  }
 
 
   /**
@@ -5013,40 +5816,61 @@ export class Resource$Management$Profileuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Remarketingaudience {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.remarketingAudience.delete
@@ -5062,33 +5886,44 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+      pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5105,34 +5940,46 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-       callback?: BodyResponseCallback<Schema$RemarketingAudience>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$RemarketingAudience>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>):
+      void|AxiosPromise<Schema$RemarketingAudience> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+      pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingAudience>(parameters);
+    }
+  }
 
 
   /**
@@ -5149,33 +5996,48 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-       callback?: BodyResponseCallback<Schema$RemarketingAudience>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingAudience>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>):
+      void|AxiosPromise<Schema$RemarketingAudience> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingAudience>(parameters);
+    }
+  }
 
 
   /**
@@ -5194,33 +6056,48 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudiences>,
-       callback?: BodyResponseCallback<Schema$RemarketingAudiences>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingAudiences>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingAudiences>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudiences>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudiences>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingAudiences>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudiences>):
+      void|AxiosPromise<Schema$RemarketingAudiences> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingAudiences>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingAudiences>(parameters);
+    }
+  }
 
 
   /**
@@ -5239,34 +6116,48 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-       callback?: BodyResponseCallback<Schema$RemarketingAudience>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingAudience>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>):
+      void|AxiosPromise<Schema$RemarketingAudience> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+      pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingAudience>(parameters);
+    }
+  }
 
 
   /**
@@ -5284,41 +6175,61 @@ export class Resource$Management$Remarketingaudience {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
-       callback?: BodyResponseCallback<Schema$RemarketingAudience>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'remarketingAudienceId'],
-          pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RemarketingAudience>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RemarketingAudience>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RemarketingAudience>,
+      callback?: BodyResponseCallback<Schema$RemarketingAudience>):
+      void|AxiosPromise<Schema$RemarketingAudience> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/remarketingAudiences/{remarketingAudienceId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'remarketingAudienceId'],
+      pathParams: ['accountId', 'remarketingAudienceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RemarketingAudience>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RemarketingAudience>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Segments {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.segments.list
@@ -5333,38 +6244,57 @@ export class Resource$Management$Segments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Segments>,
-       callback?: BodyResponseCallback<Schema$Segments>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/management/segments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Segments>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Segments>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Segments>,
+      callback?: BodyResponseCallback<Schema$Segments>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Segments>,
+      callback?: BodyResponseCallback<Schema$Segments>):
+      void|AxiosPromise<Schema$Segments> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/management/segments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Segments>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Segments>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Unsampledreports {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.unsampledReports.delete
@@ -5381,34 +6311,46 @@ export class Resource$Management$Unsampledreports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
-          pathParams:
-              ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
+      pathParams:
+          ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5426,35 +6368,48 @@ export class Resource$Management$Unsampledreports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-       callback?: BodyResponseCallback<Schema$UnsampledReport>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
-          pathParams:
-              ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UnsampledReport>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$UnsampledReport>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>):
+      void|AxiosPromise<Schema$UnsampledReport> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports/{unsampledReportId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'profileId', 'unsampledReportId'],
+      pathParams:
+          ['accountId', 'profileId', 'unsampledReportId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UnsampledReport>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UnsampledReport>(parameters);
+    }
+  }
 
 
   /**
@@ -5472,33 +6427,48 @@ export class Resource$Management$Unsampledreports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
-       callback?: BodyResponseCallback<Schema$UnsampledReport>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UnsampledReport>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UnsampledReport>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReport>,
+      callback?: BodyResponseCallback<Schema$UnsampledReport>):
+      void|AxiosPromise<Schema$UnsampledReport> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UnsampledReport>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UnsampledReport>(parameters);
+    }
+  }
 
 
   /**
@@ -5517,40 +6487,61 @@ export class Resource$Management$Unsampledreports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
-       callback?: BodyResponseCallback<Schema$UnsampledReports>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'profileId'],
-          pathParams: ['accountId', 'profileId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UnsampledReports>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UnsampledReports>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
+      callback?: BodyResponseCallback<Schema$UnsampledReports>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UnsampledReports>,
+      callback?: BodyResponseCallback<Schema$UnsampledReports>):
+      void|AxiosPromise<Schema$UnsampledReports> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/profiles/{profileId}/unsampledReports')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'profileId'],
+      pathParams: ['accountId', 'profileId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UnsampledReports>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UnsampledReports>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Uploads {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.uploads.deleteUploadData
@@ -5567,32 +6558,44 @@ export class Resource$Management$Uploads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteUploadData =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  deleteUploadData(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deleteUploadData(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  deleteUploadData(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/deleteUploadData')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+      pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5610,34 +6613,45 @@ export class Resource$Management$Uploads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Upload>,
-       callback?: BodyResponseCallback<Schema$Upload>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
-          pathParams:
-              ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Upload>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Upload>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>):
+      void|AxiosPromise<Schema$Upload> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads/{uploadId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'customDataSourceId', 'uploadId'],
+      pathParams:
+          ['accountId', 'customDataSourceId', 'uploadId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Upload>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Upload>(parameters);
+    }
+  }
 
 
   /**
@@ -5656,32 +6670,45 @@ export class Resource$Management$Uploads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Uploads>,
-       callback?: BodyResponseCallback<Schema$Uploads>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Uploads>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Uploads>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Uploads>,
+      callback?: BodyResponseCallback<Schema$Uploads>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Uploads>,
+      callback?: BodyResponseCallback<Schema$Uploads>):
+      void|AxiosPromise<Schema$Uploads> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+      pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Uploads>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Uploads>(parameters);
+    }
+  }
 
 
   /**
@@ -5701,43 +6728,62 @@ export class Resource$Management$Uploads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  uploadData =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Upload>,
-       callback?: BodyResponseCallback<Schema$Upload>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl:
-              (rootUrl +
-               '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
-                  .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
-          pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Upload>(parameters, callback!);
-      };
+  uploadData(params: any, options?: MethodOptions): AxiosPromise<Schema$Upload>;
+  uploadData(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>): void;
+  uploadData(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Upload>,
+      callback?: BodyResponseCallback<Schema$Upload>):
+      void|AxiosPromise<Schema$Upload> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl +
+           '/upload/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/customDataSources/{customDataSourceId}/uploads')
+              .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['accountId', 'webPropertyId', 'customDataSourceId'],
+      pathParams: ['accountId', 'customDataSourceId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Upload>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Upload>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Webproperties {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.webproperties.get
@@ -5752,33 +6798,45 @@ export class Resource$Management$Webproperties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-       callback?: BodyResponseCallback<Schema$Webproperty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Webproperty>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>):
+      void|AxiosPromise<Schema$Webproperty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Webproperty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Webproperty>(parameters);
+    }
+  }
 
 
   /**
@@ -5796,33 +6854,47 @@ export class Resource$Management$Webproperties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-       callback?: BodyResponseCallback<Schema$Webproperty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Webproperty>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Webproperty>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>):
+      void|AxiosPromise<Schema$Webproperty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/analytics/v3/management/accounts/{accountId}/webproperties')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Webproperty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Webproperty>(parameters);
+    }
+  }
 
 
   /**
@@ -5839,33 +6911,47 @@ export class Resource$Management$Webproperties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
-       callback?: BodyResponseCallback<Schema$Webproperties>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Webproperties>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Webproperties>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
+      callback?: BodyResponseCallback<Schema$Webproperties>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Webproperties>,
+      callback?: BodyResponseCallback<Schema$Webproperties>):
+      void|AxiosPromise<Schema$Webproperties> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/analytics/v3/management/accounts/{accountId}/webproperties')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Webproperties>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Webproperties>(parameters);
+    }
+  }
 
 
   /**
@@ -5883,33 +6969,47 @@ export class Resource$Management$Webproperties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-       callback?: BodyResponseCallback<Schema$Webproperty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Webproperty>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Webproperty>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>):
+      void|AxiosPromise<Schema$Webproperty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Webproperty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Webproperty>(parameters);
+    }
+  }
 
 
   /**
@@ -5926,40 +7026,61 @@ export class Resource$Management$Webproperties {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
-       callback?: BodyResponseCallback<Schema$Webproperty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Webproperty>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Webproperty>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Webproperty>,
+      callback?: BodyResponseCallback<Schema$Webproperty>):
+      void|AxiosPromise<Schema$Webproperty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Webproperty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Webproperty>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Webpropertyadwordslinks {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.webPropertyAdWordsLinks.delete
@@ -5975,34 +7096,45 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+      pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6019,35 +7151,47 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-       callback?: BodyResponseCallback<Schema$EntityAdWordsLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$EntityAdWordsLink>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
+      void|AxiosPromise<Schema$EntityAdWordsLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+      pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
+    }
+  }
 
 
   /**
@@ -6064,33 +7208,48 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-       callback?: BodyResponseCallback<Schema$EntityAdWordsLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityAdWordsLink>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
+      void|AxiosPromise<Schema$EntityAdWordsLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
+    }
+  }
 
 
   /**
@@ -6108,33 +7267,48 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
-       callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityAdWordsLinks>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLinks>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLinks>):
+      void|AxiosPromise<Schema$EntityAdWordsLinks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityAdWordsLinks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityAdWordsLinks>(parameters);
+    }
+  }
 
 
   /**
@@ -6153,35 +7327,49 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-       callback?: BodyResponseCallback<Schema$EntityAdWordsLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityAdWordsLink>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
+      void|AxiosPromise<Schema$EntityAdWordsLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+      pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
+    }
+  }
 
 
   /**
@@ -6199,42 +7387,62 @@ export class Resource$Management$Webpropertyadwordslinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
-       callback?: BodyResponseCallback<Schema$EntityAdWordsLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams:
-              ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
-          pathParams:
-              ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityAdWordsLink>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityAdWordsLink>,
+      callback?: BodyResponseCallback<Schema$EntityAdWordsLink>):
+      void|AxiosPromise<Schema$EntityAdWordsLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityAdWordsLinks/{webPropertyAdWordsLinkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams:
+          ['accountId', 'webPropertyId', 'webPropertyAdWordsLinkId'],
+      pathParams: ['accountId', 'webPropertyAdWordsLinkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityAdWordsLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
+    }
+  }
 }
 
 export class Resource$Management$Webpropertyuserlinks {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.management.webpropertyUserLinks.delete
@@ -6250,32 +7458,44 @@ export class Resource$Management$Webpropertyuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6292,33 +7512,48 @@ export class Resource$Management$Webpropertyuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 
 
   /**
@@ -6336,33 +7571,48 @@ export class Resource$Management$Webpropertyuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
-       callback?: BodyResponseCallback<Schema$EntityUserLinks>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId'],
-          pathParams: ['accountId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLinks>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLinks>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLinks>,
+      callback?: BodyResponseCallback<Schema$EntityUserLinks>):
+      void|AxiosPromise<Schema$EntityUserLinks> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId'],
+      pathParams: ['accountId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLinks>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLinks>(parameters);
+    }
+  }
 
 
   /**
@@ -6380,33 +7630,48 @@ export class Resource$Management$Webpropertyuserlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
-       callback?: BodyResponseCallback<Schema$EntityUserLink>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'webPropertyId', 'linkId'],
-          pathParams: ['accountId', 'linkId', 'webPropertyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$EntityUserLink>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$EntityUserLink>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EntityUserLink>,
+      callback?: BodyResponseCallback<Schema$EntityUserLink>):
+      void|AxiosPromise<Schema$EntityUserLink> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/analytics/v3/management/accounts/{accountId}/webproperties/{webPropertyId}/entityUserLinks/{linkId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'webPropertyId', 'linkId'],
+      pathParams: ['accountId', 'linkId', 'webPropertyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$EntityUserLink>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$EntityUserLink>(parameters);
+    }
+  }
 }
 
 
@@ -6415,14 +7680,25 @@ export class Resource$Metadata {
   columns: Resource$Metadata$Columns;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
     this.columns = new Resource$Metadata$Columns(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Metadata$Columns {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.metadata.columns.list
@@ -6436,30 +7712,43 @@ export class Resource$Metadata$Columns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Columns>,
-       callback?: BodyResponseCallback<Schema$Columns>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/metadata/{reportType}/columns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['reportType'],
-          pathParams: ['reportType'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Columns>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Columns>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Columns>,
+      callback?: BodyResponseCallback<Schema$Columns>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Columns>,
+      callback?: BodyResponseCallback<Schema$Columns>):
+      void|AxiosPromise<Schema$Columns> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/metadata/{reportType}/columns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['reportType'],
+      pathParams: ['reportType'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Columns>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Columns>(parameters);
+    }
+  }
 }
 
 
@@ -6467,7 +7756,13 @@ export class Resource$Provisioning {
   root: Analytics;
   constructor(root: Analytics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * analytics.provisioning.createAccountTicket
@@ -6481,32 +7776,46 @@ export class Resource$Provisioning {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createAccountTicket =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
-       callback?: BodyResponseCallback<Schema$AccountTicket>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/analytics/v3/provisioning/createAccountTicket')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountTicket>(parameters, callback!);
-      };
+  createAccountTicket(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountTicket>;
+  createAccountTicket(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
+      callback?: BodyResponseCallback<Schema$AccountTicket>): void;
+  createAccountTicket(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountTicket>,
+      callback?: BodyResponseCallback<Schema$AccountTicket>):
+      void|AxiosPromise<Schema$AccountTicket> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/provisioning/createAccountTicket')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountTicket>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountTicket>(parameters);
+    }
+  }
 
 
   /**
@@ -6521,29 +7830,44 @@ export class Resource$Provisioning {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createAccountTree =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
-       callback?: BodyResponseCallback<Schema$AccountTreeResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/analytics/v3/provisioning/createAccountTree')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AccountTreeResponse>(parameters, callback!);
-      };
+  createAccountTree(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AccountTreeResponse>;
+  createAccountTree(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
+      callback?: BodyResponseCallback<Schema$AccountTreeResponse>): void;
+  createAccountTree(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AccountTreeResponse>,
+      callback?: BodyResponseCallback<Schema$AccountTreeResponse>):
+      void|AxiosPromise<Schema$AccountTreeResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/analytics/v3/provisioning/createAccountTree')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AccountTreeResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AccountTreeResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Sheets {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.spreadsheets = new Resource$Spreadsheets(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -4195,10 +4202,16 @@ export class Resource$Spreadsheets {
   values: Resource$Spreadsheets$Values;
   constructor(root: Sheets) {
     this.root = root;
+    this.getRoot.bind(this);
     this.developerMetadata = new Resource$Spreadsheets$Developermetadata(root);
     this.sheets = new Resource$Spreadsheets$Sheets(root);
     this.values = new Resource$Spreadsheets$Values(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sheets.spreadsheets.batchUpdate
@@ -4282,34 +4295,51 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>):
+      void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>):
+      void|AxiosPromise<Schema$BatchUpdateSpreadsheetResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4374,31 +4404,45 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
-       callback?: BodyResponseCallback<Schema$Spreadsheet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/spreadsheets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Spreadsheet>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>):
+      void|AxiosPromise<Schema$Spreadsheet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Spreadsheet>(parameters);
+    }
+  }
 
 
   /**
@@ -4483,31 +4527,43 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
-       callback?: BodyResponseCallback<Schema$Spreadsheet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>):
+      void|AxiosPromise<Schema$Spreadsheet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Spreadsheet>(parameters);
+    }
+  }
 
 
   /**
@@ -4595,38 +4651,58 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getByDataFilter =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
-       callback?: BodyResponseCallback<Schema$Spreadsheet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}:getByDataFilter')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Spreadsheet>(parameters, callback!);
-      };
+  getByDataFilter(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Spreadsheet>;
+  getByDataFilter(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
+  getByDataFilter(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      callback?: BodyResponseCallback<Schema$Spreadsheet>):
+      void|AxiosPromise<Schema$Spreadsheet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}:getByDataFilter')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Spreadsheet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Spreadsheet>(parameters);
+    }
+  }
 }
 export class Resource$Spreadsheets$Developermetadata {
   root: Sheets;
   constructor(root: Sheets) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sheets.spreadsheets.developerMetadata.get
@@ -4692,33 +4768,46 @@ export class Resource$Spreadsheets$Developermetadata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
-       callback?: BodyResponseCallback<Schema$DeveloperMetadata>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/developerMetadata/{metadataId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'metadataId'],
-          pathParams: ['metadataId', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DeveloperMetadata>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$DeveloperMetadata>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
+      callback?: BodyResponseCallback<Schema$DeveloperMetadata>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
+      callback?: BodyResponseCallback<Schema$DeveloperMetadata>):
+      void|AxiosPromise<Schema$DeveloperMetadata> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v4/spreadsheets/{spreadsheetId}/developerMetadata/{metadataId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'metadataId'],
+      pathParams: ['metadataId', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DeveloperMetadata>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DeveloperMetadata>(parameters);
+    }
+  }
 
 
   /**
@@ -4789,43 +4878,65 @@ export class Resource$Spreadsheets$Developermetadata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
-       callback?:
-           BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/developerMetadata:search')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchDeveloperMetadataResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
+      callback?: BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>):
+      void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
+      callback?: BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>):
+      void|AxiosPromise<Schema$SearchDeveloperMetadataResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v4/spreadsheets/{spreadsheetId}/developerMetadata:search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Spreadsheets$Sheets {
   root: Sheets;
   constructor(root: Sheets) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sheets.spreadsheets.sheets.copyTo
@@ -4901,40 +5012,60 @@ export class Resource$Spreadsheets$Sheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  copyTo =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
-       callback?: BodyResponseCallback<Schema$SheetProperties>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'sheetId'],
-          pathParams: ['sheetId', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SheetProperties>(parameters, callback!);
-      };
+  copyTo(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SheetProperties>;
+  copyTo(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
+      callback?: BodyResponseCallback<Schema$SheetProperties>): void;
+  copyTo(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
+      callback?: BodyResponseCallback<Schema$SheetProperties>):
+      void|AxiosPromise<Schema$SheetProperties> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v4/spreadsheets/{spreadsheetId}/sheets/{sheetId}:copyTo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'sheetId'],
+      pathParams: ['sheetId', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SheetProperties>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SheetProperties>(parameters);
+    }
+  }
 }
 
 export class Resource$Spreadsheets$Values {
   root: Sheets;
   constructor(root: Sheets) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * sheets.spreadsheets.values.append
@@ -5027,32 +5158,47 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  append =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
-       callback?: BodyResponseCallback<Schema$AppendValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values/{range}:append')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['range', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AppendValuesResponse>(parameters, callback!);
-      };
+  append(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AppendValuesResponse>;
+  append(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
+      callback?: BodyResponseCallback<Schema$AppendValuesResponse>): void;
+  append(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
+      callback?: BodyResponseCallback<Schema$AppendValuesResponse>):
+      void|AxiosPromise<Schema$AppendValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v4/spreadsheets/{spreadsheetId}/values/{range}:append')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'range'],
+      pathParams: ['range', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AppendValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AppendValuesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5127,34 +5273,49 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchClear =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchClearValuesResponse>,
-       callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values:batchClear')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchClearValuesResponse>(
-            parameters, callback!);
-      };
+  batchClear(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchClearValuesResponse>;
+  batchClear(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchClearValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>): void;
+  batchClear(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchClearValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>):
+      void|AxiosPromise<Schema$BatchClearValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchClear')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchClearValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchClearValuesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5228,36 +5389,55 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchClearByDataFilter =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
-       callback?: BodyResponseCallback<
-           Schema$BatchClearValuesByDataFilterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/values:batchClearByDataFilter')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
-            parameters, callback!);
-      };
+  batchClearByDataFilter(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
+  batchClearByDataFilter(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>):
+      void;
+  batchClearByDataFilter(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>):
+      void|AxiosPromise<Schema$BatchClearValuesByDataFilterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v4/spreadsheets/{spreadsheetId}/values:batchClearByDataFilter')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -5342,33 +5522,48 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetValuesResponse>,
-       callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetValuesResponse>(parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetValuesResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>): void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>):
+      void|AxiosPromise<Schema$BatchGetValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values:batchGet')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetValuesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5457,36 +5652,55 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGetByDataFilter =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/values:batchGetByDataFilter')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
-            parameters, callback!);
-      };
+  batchGetByDataFilter(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
+  batchGetByDataFilter(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>):
+      void;
+  batchGetByDataFilter(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>):
+      void|AxiosPromise<Schema$BatchGetValuesByDataFilterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v4/spreadsheets/{spreadsheetId}/values:batchGetByDataFilter')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -5563,34 +5777,49 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
-       callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values:batchUpdate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchUpdateValuesResponse>(
-            parameters, callback!);
-      };
+  batchUpdate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchUpdateValuesResponse>;
+  batchUpdate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>): void;
+  batchUpdate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>):
+      void|AxiosPromise<Schema$BatchUpdateValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v4/spreadsheets/{spreadsheetId}/values:batchUpdate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchUpdateValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchUpdateValuesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5668,36 +5897,55 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdateByDataFilter =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
-       callback?: BodyResponseCallback<
-           Schema$BatchUpdateValuesByDataFilterResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/v4/spreadsheets/{spreadsheetId}/values:batchUpdateByDataFilter')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId'],
-          pathParams: ['spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
-            parameters, callback!);
-      };
+  batchUpdateByDataFilter(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
+  batchUpdateByDataFilter(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>):
+      void;
+  batchUpdateByDataFilter(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
+      callback?:
+          BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>):
+      void|AxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/v4/spreadsheets/{spreadsheetId}/values:batchUpdateByDataFilter')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId'],
+      pathParams: ['spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -5772,32 +6020,47 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clear =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
-       callback?: BodyResponseCallback<Schema$ClearValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values/{range}:clear')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['range', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ClearValuesResponse>(parameters, callback!);
-      };
+  clear(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ClearValuesResponse>;
+  clear(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
+      callback?: BodyResponseCallback<Schema$ClearValuesResponse>): void;
+  clear(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
+      callback?: BodyResponseCallback<Schema$ClearValuesResponse>):
+      void|AxiosPromise<Schema$ClearValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/v4/spreadsheets/{spreadsheetId}/values/{range}:clear')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'range'],
+      pathParams: ['range', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ClearValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ClearValuesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5882,32 +6145,43 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
-       callback?: BodyResponseCallback<Schema$ValueRange>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values/{range}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['range', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ValueRange>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ValueRange>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
+      callback?: BodyResponseCallback<Schema$ValueRange>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
+      callback?: BodyResponseCallback<Schema$ValueRange>):
+      void|AxiosPromise<Schema$ValueRange> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'range'],
+      pathParams: ['range', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ValueRange>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ValueRange>(parameters);
+    }
+  }
 
 
   /**
@@ -5990,30 +6264,44 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
-       callback?: BodyResponseCallback<Schema$UpdateValuesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v4/spreadsheets/{spreadsheetId}/values/{range}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['spreadsheetId', 'range'],
-          pathParams: ['range', 'spreadsheetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UpdateValuesResponse>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UpdateValuesResponse>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateValuesResponse>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateValuesResponse>):
+      void|AxiosPromise<Schema$UpdateValuesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://sheets.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v4/spreadsheets/{spreadsheetId}/values/{range}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['spreadsheetId', 'range'],
+      pathParams: ['range', 'spreadsheetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UpdateValuesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UpdateValuesResponse>(parameters);
+    }
+  }
 }

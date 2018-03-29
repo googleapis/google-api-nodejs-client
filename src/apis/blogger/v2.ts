@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -55,12 +57,17 @@ export class Blogger {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.blogs = new Resource$Blogs(this);
     this.comments = new Resource$Comments(this);
     this.pages = new Resource$Pages(this);
     this.posts = new Resource$Posts(this);
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -344,7 +351,13 @@ export class Resource$Blogs {
   root: Blogger;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.blogs.get
@@ -358,37 +371,54 @@ export class Resource$Blogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Blog>,
-       callback?: BodyResponseCallback<Schema$Blog>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/blogs/{blogId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId'],
-          pathParams: ['blogId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Blog>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Blog>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Blog>,
+      callback?: BodyResponseCallback<Schema$Blog>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Blog>,
+      callback?: BodyResponseCallback<Schema$Blog>):
+      void|AxiosPromise<Schema$Blog> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId'],
+      pathParams: ['blogId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Blog>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Blog>(parameters);
+    }
+  }
 }
 
 export class Resource$Comments {
   root: Blogger;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.comments.get
@@ -404,32 +434,43 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId', 'postId', 'commentId'],
-          pathParams: ['blogId', 'commentId', 'postId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/blogger/v2/blogs/{blogId}/posts/{postId}/comments/{commentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId', 'postId', 'commentId'],
+      pathParams: ['blogId', 'commentId', 'postId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 
 
   /**
@@ -449,39 +490,59 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-       callback?: BodyResponseCallback<Schema$CommentList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId', 'postId'],
-          pathParams: ['blogId', 'postId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$CommentList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+      callback?: BodyResponseCallback<Schema$CommentList>):
+      void|AxiosPromise<Schema$CommentList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}/comments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId', 'postId'],
+      pathParams: ['blogId', 'postId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentList>(parameters);
+    }
+  }
 }
 
 export class Resource$Pages {
   root: Blogger;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.pages.get
@@ -496,30 +557,41 @@ export class Resource$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
-       callback?: BodyResponseCallback<Schema$Page>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId', 'pageId'],
-          pathParams: ['blogId', 'pageId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Page>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+      callback?: BodyResponseCallback<Schema$Page>):
+      void|AxiosPromise<Schema$Page> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages/{pageId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId', 'pageId'],
+      pathParams: ['blogId', 'pageId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Page>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Page>(parameters);
+    }
+  }
 
 
   /**
@@ -535,38 +607,57 @@ export class Resource$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PageList>,
-       callback?: BodyResponseCallback<Schema$PageList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId'],
-          pathParams: ['blogId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PageList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$PageList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$PageList>,
+      callback?: BodyResponseCallback<Schema$PageList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PageList>,
+      callback?: BodyResponseCallback<Schema$PageList>):
+      void|AxiosPromise<Schema$PageList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/pages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId'],
+      pathParams: ['blogId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PageList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PageList>(parameters);
+    }
+  }
 }
 
 export class Resource$Posts {
   root: Blogger;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.posts.get
@@ -581,30 +672,41 @@ export class Resource$Posts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Post>,
-       callback?: BodyResponseCallback<Schema$Post>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId', 'postId'],
-          pathParams: ['blogId', 'postId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Post>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Post>,
+      callback?: BodyResponseCallback<Schema$Post>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+      callback?: BodyResponseCallback<Schema$Post>):
+      void|AxiosPromise<Schema$Post> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts/{postId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId', 'postId'],
+      pathParams: ['blogId', 'postId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Post>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Post>(parameters);
+    }
+  }
 
 
   /**
@@ -623,31 +725,44 @@ export class Resource$Posts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PostList>,
-       callback?: BodyResponseCallback<Schema$PostList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['blogId'],
-          pathParams: ['blogId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PostList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$PostList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$PostList>,
+      callback?: BodyResponseCallback<Schema$PostList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PostList>,
+      callback?: BodyResponseCallback<Schema$PostList>):
+      void|AxiosPromise<Schema$PostList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/blogs/{blogId}/posts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['blogId'],
+      pathParams: ['blogId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PostList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PostList>(parameters);
+    }
+  }
 }
 
 export class Resource$Users {
@@ -655,8 +770,14 @@ export class Resource$Users {
   blogs: Resource$Users$Blogs;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
     this.blogs = new Resource$Users$Blogs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.users.get
@@ -670,36 +791,53 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$User>,
-       callback?: BodyResponseCallback<Schema$User>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/users/{userId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$User>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$User>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+      callback?: BodyResponseCallback<Schema$User>):
+      void|AxiosPromise<Schema$User> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/users/{userId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$User>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$User>(parameters);
+    }
+  }
 }
 export class Resource$Users$Blogs {
   root: Blogger;
   constructor(root: Blogger) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * blogger.users.blogs.list
@@ -713,29 +851,42 @@ export class Resource$Users$Blogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
-       callback?: BodyResponseCallback<Schema$BlogList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/blogger/v2/users/{userId}/blogs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['userId'],
-          pathParams: ['userId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$BlogList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$BlogList>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
+      callback?: BodyResponseCallback<Schema$BlogList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
+      callback?: BodyResponseCallback<Schema$BlogList>):
+      void|AxiosPromise<Schema$BlogList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/blogger/v2/users/{userId}/blogs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['userId'],
+      pathParams: ['userId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BlogList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BlogList>(parameters);
+    }
+  }
 }

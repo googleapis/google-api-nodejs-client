@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -61,6 +63,7 @@ export class Genomics {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.annotations = new Resource$Annotations(this);
     this.annotationsets = new Resource$Annotationsets(this);
@@ -73,6 +76,10 @@ export class Genomics {
     this.referencesets = new Resource$Referencesets(this);
     this.variants = new Resource$Variants(this);
     this.variantsets = new Resource$Variantsets(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -2243,7 +2250,13 @@ export class Resource$Annotations {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.annotations.batchCreate
@@ -2318,34 +2331,51 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchCreate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotations:batchCreate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchCreateAnnotationsResponse>(
-            parameters, callback!);
-      };
+  batchCreate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchCreateAnnotationsResponse>;
+  batchCreate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
+      void;
+  batchCreate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
+      void|AxiosPromise<Schema$BatchCreateAnnotationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations:batchCreate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchCreateAnnotationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchCreateAnnotationsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2421,31 +2451,44 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-       callback?: BodyResponseCallback<Schema$Annotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/annotations').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>):
+      void|AxiosPromise<Schema$Annotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotation>(parameters);
+    }
+  }
 
 
   /**
@@ -2510,30 +2553,43 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotations/{annotationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations/{annotationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['annotationId'],
+      pathParams: ['annotationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2601,31 +2657,43 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-       callback?: BodyResponseCallback<Schema$Annotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotations/{annotationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>):
+      void|AxiosPromise<Schema$Annotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations/{annotationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['annotationId'],
+      pathParams: ['annotationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotation>(parameters);
+    }
+  }
 
 
   /**
@@ -2713,33 +2781,48 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchAnnotationsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotations/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchAnnotationsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchAnnotationsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnnotationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnnotationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>):
+      void|AxiosPromise<Schema$SearchAnnotationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchAnnotationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchAnnotationsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2815,38 +2898,58 @@ export class Resource$Annotations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-       callback?: BodyResponseCallback<Schema$Annotation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotations/{annotationId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['annotationId'],
-          pathParams: ['annotationId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Annotation>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+      callback?: BodyResponseCallback<Schema$Annotation>):
+      void|AxiosPromise<Schema$Annotation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotations/{annotationId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['annotationId'],
+      pathParams: ['annotationId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Annotation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Annotation>(parameters);
+    }
+  }
 }
 
 export class Resource$Annotationsets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.annotationsets.create
@@ -2916,31 +3019,45 @@ export class Resource$Annotationsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-       callback?: BodyResponseCallback<Schema$AnnotationSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotationsets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnnotationSet>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnnotationSet>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>):
+      void|AxiosPromise<Schema$AnnotationSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotationsets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnnotationSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnnotationSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3006,30 +3123,43 @@ export class Resource$Annotationsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['annotationSetId'],
-          pathParams: ['annotationSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['annotationSetId'],
+      pathParams: ['annotationSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3098,31 +3228,43 @@ export class Resource$Annotationsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-       callback?: BodyResponseCallback<Schema$AnnotationSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['annotationSetId'],
-          pathParams: ['annotationSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnnotationSet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>):
+      void|AxiosPromise<Schema$AnnotationSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['annotationSetId'],
+      pathParams: ['annotationSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnnotationSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnnotationSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3209,34 +3351,50 @@ export class Resource$Annotationsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$SearchAnnotationSetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotationsets/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchAnnotationSetsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchAnnotationSetsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
+      void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
+      void|AxiosPromise<Schema$SearchAnnotationSetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotationsets/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchAnnotationSetsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchAnnotationSetsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3314,38 +3472,59 @@ export class Resource$Annotationsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-       callback?: BodyResponseCallback<Schema$AnnotationSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['annotationSetId'],
-          pathParams: ['annotationSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AnnotationSet>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AnnotationSet>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+      callback?: BodyResponseCallback<Schema$AnnotationSet>):
+      void|AxiosPromise<Schema$AnnotationSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/annotationsets/{annotationSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['annotationSetId'],
+      pathParams: ['annotationSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AnnotationSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AnnotationSet>(parameters);
+    }
+  }
 }
 
 export class Resource$Callsets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.callsets.create
@@ -3414,29 +3593,42 @@ export class Resource$Callsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-       callback?: BodyResponseCallback<Schema$CallSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/callsets').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CallSet>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>):
+      void|AxiosPromise<Schema$CallSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/callsets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CallSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CallSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3502,30 +3694,43 @@ export class Resource$Callsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/callsets/{callSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['callSetId'],
-          pathParams: ['callSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/callsets/{callSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['callSetId'],
+      pathParams: ['callSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3594,30 +3799,41 @@ export class Resource$Callsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-       callback?: BodyResponseCallback<Schema$CallSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/callsets/{callSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['callSetId'],
-          pathParams: ['callSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CallSet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>):
+      void|AxiosPromise<Schema$CallSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/callsets/{callSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['callSetId'],
+      pathParams: ['callSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CallSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CallSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3695,30 +3911,43 @@ export class Resource$Callsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-       callback?: BodyResponseCallback<Schema$CallSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/callsets/{callSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['callSetId'],
-          pathParams: ['callSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CallSet>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+      callback?: BodyResponseCallback<Schema$CallSet>):
+      void|AxiosPromise<Schema$CallSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/callsets/{callSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['callSetId'],
+      pathParams: ['callSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CallSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CallSet>(parameters);
+    }
+  }
 
 
   /**
@@ -3803,39 +4032,61 @@ export class Resource$Callsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchCallSetsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/callsets/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchCallSetsResponse>(parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchCallSetsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchCallSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchCallSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>):
+      void|AxiosPromise<Schema$SearchCallSetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/callsets/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchCallSetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchCallSetsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Datasets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.datasets.create
@@ -3904,29 +4155,42 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -3995,30 +4259,43 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['datasetId'],
-          pathParams: ['datasetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['datasetId'],
+      pathParams: ['datasetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -4087,30 +4364,41 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['datasetId'],
-          pathParams: ['datasetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['datasetId'],
+      pathParams: ['datasetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -4189,30 +4477,44 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -4293,30 +4595,45 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListDatasetsResponse>,
-       callback?: BodyResponseCallback<Schema$ListDatasetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDatasetsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListDatasetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListDatasetsResponse>,
+      callback?: BodyResponseCallback<Schema$ListDatasetsResponse>):
+      void|AxiosPromise<Schema$ListDatasetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDatasetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDatasetsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4394,30 +4711,43 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets/{datasetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['datasetId'],
-          pathParams: ['datasetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets/{datasetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['datasetId'],
+      pathParams: ['datasetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 
 
   /**
@@ -4496,30 +4826,44 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -4597,33 +4941,48 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4699,37 +5058,56 @@ export class Resource$Datasets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-       callback?: BodyResponseCallback<Schema$Dataset>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/datasets/{datasetId}:undelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['datasetId'],
-          pathParams: ['datasetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Dataset>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+  undelete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>): void;
+  undelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+      callback?: BodyResponseCallback<Schema$Dataset>):
+      void|AxiosPromise<Schema$Dataset> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets/{datasetId}:undelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['datasetId'],
+      pathParams: ['datasetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Dataset>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Dataset>(parameters);
+    }
+  }
 }
 
 export class Resource$Operations {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.operations.cancel
@@ -4801,30 +5179,42 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -4893,30 +5283,42 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -4999,31 +5401,47 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOperationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListOperationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOperationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOperationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
+      void|AxiosPromise<Schema$ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOperationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Readgroupsets {
@@ -5031,8 +5449,14 @@ export class Resource$Readgroupsets {
   coveragebuckets: Resource$Readgroupsets$Coveragebuckets;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
     this.coveragebuckets = new Resource$Readgroupsets$Coveragebuckets(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.readgroupsets.delete
@@ -5100,30 +5524,43 @@ export class Resource$Readgroupsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['readGroupSetId'],
+      pathParams: ['readGroupSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -5204,31 +5641,45 @@ export class Resource$Readgroupsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}:export')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  export(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  export(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  export(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}:export')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['readGroupSetId'],
+      pathParams: ['readGroupSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -5298,31 +5749,43 @@ export class Resource$Readgroupsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
-       callback?: BodyResponseCallback<Schema$ReadGroupSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReadGroupSet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+      callback?: BodyResponseCallback<Schema$ReadGroupSet>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+      callback?: BodyResponseCallback<Schema$ReadGroupSet>):
+      void|AxiosPromise<Schema$ReadGroupSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['readGroupSetId'],
+      pathParams: ['readGroupSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReadGroupSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReadGroupSet>(parameters);
+    }
+  }
 
 
   /**
@@ -5401,115 +5864,129 @@ export class Resource$Readgroupsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.root}; createAPIRequest<Schema$Operation>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$Operation>(parameters, callback);
+  } else { return createAPIRequest<Schema$Operation>(parameters);
+  }}
 
 
   /**
-   * genomics.readgroupsets.patch
-   * @desc Updates a read group set.  For the definitions of read group sets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * This method supports patch semantics.
-   * @example
-   * * // BEFORE RUNNING:
-   * // ---------------
-   * // 1. If not already done, enable the Genomics API
-   * //    and check the quota for your project at
-   * //    https://console.developers.google.com/apis/api/genomics
-   * // 2. This sample uses Application Default Credentials for authentication.
-   * //    If not already done, install the gcloud CLI from
-   * //    https://cloud.google.com/sdk and run
-   * //    `gcloud beta auth application-default login`.
-   * //    For more information, see
-   * //
-   * https://developers.google.com/identity/protocols/application-default-credentials
-   * // 3. Install the Node.js client library by running
-   * //    `npm install googleapis --save`
-   *
-   * var google = require('googleapis');
-   * var genomics = google.genomics('v1');
-   *
-   * authorize(function(authClient) {
-   *   var request = {
-   *     // The ID of the read group set to be updated. The caller must have
-   * WRITE
-   *     // permissions to the dataset associated with this read group set.
-   *     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder
-   * value.
-   *
-   *     resource: {
-   *       // TODO: Add desired properties to the request body. Only these
-   * properties
-   *       // will be changed.
-   *     },
-   *
-   *     auth: authClient,
-   *   };
-   *
-   *   genomics.readgroupsets.patch(request, function(err, response) {
-   *     if (err) {
-   *       console.error(err);
-   *       return;
-   *     }
-   *
-   *     // TODO: Change code below to process the `response` object:
-   *     console.log(JSON.stringify(response, null, 2));
-   *   });
-   * });
-   *
-   * function authorize(callback) {
-   *   google.auth.getApplicationDefault(function(err, authClient) {
-   *     if (err) {
-   *       console.error('authentication failed: ', err);
-   *       return;
-   *     }
-   *     if (authClient.createScopedRequired &&
-   * authClient.createScopedRequired()) { var scopes =
-   * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-   * authClient.createScoped(scopes);
-   *     }
-   *     callback(authClient);
-   *   });
-   * }
-   * @alias genomics.readgroupsets.patch
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
-   * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields:  * name. * referenceSetId.  Leaving `updateMask` unset is equivalent to specifying all mutable fields.
-   * @param {().ReadGroupSet} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
-       callback?: BodyResponseCallback<Schema$ReadGroupSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReadGroupSet>(parameters, callback!);
-      };
+ * genomics.readgroupsets.patch
+ * @desc Updates a read group set.  For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)  This method supports patch semantics.
+ * @example
+ * * // BEFORE RUNNING:
+* // ---------------
+* // 1. If not already done, enable the Genomics API
+* //    and check the quota for your project at
+* //    https://console.developers.google.com/apis/api/genomics
+* // 2. This sample uses Application Default Credentials for authentication.
+* //    If not already done, install the gcloud CLI from
+* //    https://cloud.google.com/sdk and run
+* //    `gcloud beta auth application-default login`.
+* //    For more information, see
+* //    https://developers.google.com/identity/protocols/application-default-credentials
+* // 3. Install the Node.js client library by running
+* //    `npm install googleapis --save`
+*
+* var google = require('googleapis');
+* var genomics = google.genomics('v1');
+*
+* authorize(function(authClient) {
+*   var request = {
+*     // The ID of the read group set to be updated. The caller must have WRITE
+*     // permissions to the dataset associated with this read group set.
+*     readGroupSetId: 'my-read-group-set-id',  // TODO: Update placeholder value.
+*
+*     resource: {
+*       // TODO: Add desired properties to the request body. Only these properties
+*       // will be changed.
+*     },
+*
+*     auth: authClient,
+*   };
+*
+*   genomics.readgroupsets.patch(request, function(err, response) {
+*     if (err) {
+*       console.error(err);
+*       return;
+*     }
+*
+*     // TODO: Change code below to process the `response` object:
+*     console.log(JSON.stringify(response, null, 2));
+*   });
+* });
+*
+* function authorize(callback) {
+*   google.auth.getApplicationDefault(function(err, authClient) {
+*     if (err) {
+*       console.error('authentication failed: ', err);
+*       return;
+*     }
+*     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+*       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+*       authClient = authClient.createScoped(scopes);
+*     }
+*     callback(authClient);
+*   });
+* }
+ * @alias genomics.readgroupsets.patch
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
+ * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields:  * name. * referenceSetId.  Leaving `updateMask` unset is equivalent to specifying all mutable fields.
+ * @param {().ReadGroupSet} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+      callback?: BodyResponseCallback<Schema$ReadGroupSet>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+      callback?: BodyResponseCallback<Schema$ReadGroupSet>):
+      void|AxiosPromise<Schema$ReadGroupSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/readgroupsets/{readGroupSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['readGroupSetId'],
+      pathParams: ['readGroupSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReadGroupSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReadGroupSet>(parameters);
+    }
+  }
 
 
   /**
@@ -5596,39 +6073,62 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Operat
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/readgroupsets/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchReadGroupSetsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchReadGroupSetsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
+      void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
+      void|AxiosPromise<Schema$SearchReadGroupSetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/readgroupsets/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchReadGroupSetsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchReadGroupSetsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Readgroupsets$Coveragebuckets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.readgroupsets.coveragebuckets.list
@@ -5725,34 +6225,51 @@ export class Resource$Readgroupsets$Coveragebuckets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
-       callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/readgroupsets/{readGroupSetId}/coveragebuckets')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['readGroupSetId'],
-          pathParams: ['readGroupSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListCoverageBucketsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListCoverageBucketsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
+      callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
+      void|AxiosPromise<Schema$ListCoverageBucketsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/readgroupsets/{readGroupSetId}/coveragebuckets')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['readGroupSetId'],
+      pathParams: ['readGroupSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListCoverageBucketsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListCoverageBucketsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -5760,7 +6277,13 @@ export class Resource$Reads {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.reads.search
@@ -5856,31 +6379,45 @@ export class Resource$Reads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SearchReadsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchReadsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/reads/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchReadsResponse>(parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchReadsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SearchReadsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReadsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SearchReadsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReadsResponse>):
+      void|AxiosPromise<Schema$SearchReadsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/reads/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchReadsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchReadsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$References {
@@ -5888,8 +6425,14 @@ export class Resource$References {
   bases: Resource$References$Bases;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
     this.bases = new Resource$References$Bases(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.references.get
@@ -5959,31 +6502,43 @@ export class Resource$References {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Reference>,
-       callback?: BodyResponseCallback<Schema$Reference>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/references/{referenceId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['referenceId'],
-          pathParams: ['referenceId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Reference>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Reference>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Reference>,
+      callback?: BodyResponseCallback<Schema$Reference>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Reference>,
+      callback?: BodyResponseCallback<Schema$Reference>):
+      void|AxiosPromise<Schema$Reference> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/references/{referenceId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['referenceId'],
+      pathParams: ['referenceId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Reference>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Reference>(parameters);
+    }
+  }
 
 
   /**
@@ -6069,39 +6624,60 @@ export class Resource$References {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchReferencesResponse>,
-       callback?: BodyResponseCallback<Schema$SearchReferencesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/references/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchReferencesResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchReferencesResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchReferencesResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReferencesResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchReferencesResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReferencesResponse>):
+      void|AxiosPromise<Schema$SearchReferencesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/references/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchReferencesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchReferencesResponse>(parameters);
+    }
+  }
 }
 export class Resource$References$Bases {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.references.bases.list
@@ -6187,31 +6763,46 @@ export class Resource$References$Bases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
-       callback?: BodyResponseCallback<Schema$ListBasesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/references/{referenceId}/bases')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['referenceId'],
-          pathParams: ['referenceId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListBasesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListBasesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListBasesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
+      callback?: BodyResponseCallback<Schema$ListBasesResponse>):
+      void|AxiosPromise<Schema$ListBasesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/references/{referenceId}/bases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['referenceId'],
+      pathParams: ['referenceId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListBasesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListBasesResponse>(parameters);
+    }
+  }
 }
 
 
@@ -6219,7 +6810,13 @@ export class Resource$Referencesets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.referencesets.get
@@ -6290,31 +6887,43 @@ export class Resource$Referencesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
-       callback?: BodyResponseCallback<Schema$ReferenceSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/referencesets/{referenceSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['referenceSetId'],
-          pathParams: ['referenceSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ReferenceSet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ReferenceSet>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
+      callback?: BodyResponseCallback<Schema$ReferenceSet>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
+      callback?: BodyResponseCallback<Schema$ReferenceSet>):
+      void|AxiosPromise<Schema$ReferenceSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/referencesets/{referenceSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['referenceSetId'],
+      pathParams: ['referenceSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ReferenceSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ReferenceSet>(parameters);
+    }
+  }
 
 
   /**
@@ -6401,40 +7010,63 @@ export class Resource$Referencesets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/referencesets/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchReferenceSetsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchReferenceSetsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
+      void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
+      void|AxiosPromise<Schema$SearchReferenceSetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/referencesets/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchReferenceSetsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchReferenceSetsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Variants {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.variants.create
@@ -6503,29 +7135,42 @@ export class Resource$Variants {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
-       callback?: BodyResponseCallback<Schema$Variant>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variant>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>):
+      void|AxiosPromise<Schema$Variant> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variants').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variant>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variant>(parameters);
+    }
+  }
 
 
   /**
@@ -6591,30 +7236,43 @@ export class Resource$Variants {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants/{variantId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['variantId'],
-          pathParams: ['variantId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variants/{variantId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['variantId'],
+      pathParams: ['variantId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -6683,30 +7341,41 @@ export class Resource$Variants {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
-       callback?: BodyResponseCallback<Schema$Variant>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants/{variantId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['variantId'],
-          pathParams: ['variantId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variant>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>):
+      void|AxiosPromise<Schema$Variant> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variants/{variantId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['variantId'],
+      pathParams: ['variantId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variant>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variant>(parameters);
+    }
+  }
 
 
   /**
@@ -6786,134 +7455,116 @@ export class Resource$Variants {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>) => {if(typeof options === 'function') {
+import(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params: any, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void;
+import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {if(typeof options === 'function') {
     callback = options;
     options = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.root}; createAPIRequest<Schema$Operation>(parameters, callback!);};
+  } if(typeof params === 'function') {
+    callback = params;
+    params = {};
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+    createAPIRequest<Schema$Operation>(parameters, callback);
+  } else { return createAPIRequest<Schema$Operation>(parameters);
+  }}
 
 
   /**
-   * genomics.variants.merge
-   * @desc Merges the given variants with existing variants.  For the
-   * definitions of variants and other genomics resources, see [Fundamentals of
-   * Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Each variant will be merged with an existing variant that matches its
-   * reference sequence, start, end, reference bases, and alternative bases. If
-   * no such variant exists, a new one will be created.  When variants are
-   * merged, the call information from the new variant is added to the existing
-   * variant. Variant info fields are merged as specified in the infoMergeConfig
-   * field of the MergeVariantsRequest.  Please exercise caution when using this
-   * method!  It is easy to introduce mistakes in existing variants and
-   * difficult to back out of them.  For example, suppose you were trying to
-   * merge a new variant with an existing one and both variants contain calls
-   * that belong to callsets with the same callset ID.      // Existing variant
-   * - irrelevant fields trimmed for clarity     {         "variantSetId":
-   * "10473108253681171589",         "referenceName": "1",         "start":
-   * "10582",         "referenceBases": "G",         "alternateBases": [
-   * "A"         ],         "calls": [             {
-   * "callSetId": "10473108253681171589-0",                 "callSetName":
-   * "CALLSET0",                 "genotype": [                     0,
-   * 1                 ],             }         ]     }      // New variant with
-   * conflicting call information     {         "variantSetId":
-   * "10473108253681171589",         "referenceName": "1",         "start":
-   * "10582",         "referenceBases": "G",         "alternateBases": [
-   * "A"         ],         "calls": [             {
-   * "callSetId": "10473108253681171589-0",                 "callSetName":
-   * "CALLSET0",                 "genotype": [                     1,
-   * 1                 ],             }         ]     }  The resulting merged
-   * variant would overwrite the existing calls with those from the new variant:
-   * {         "variantSetId": "10473108253681171589",         "referenceName":
-   * "1",         "start": "10582",         "referenceBases": "G",
-   * "alternateBases": [             "A"         ],         "calls": [
-   * {                 "callSetId": "10473108253681171589-0",
-   * "callSetName": "CALLSET0",                 "genotype": [
-   * 1,                     1                 ],             }         ]     }
-   * This may be the desired outcome, but it is up to the user to determine if
-   * if that is indeed the case.
-   * @example
-   * * // BEFORE RUNNING:
-   * // ---------------
-   * // 1. If not already done, enable the Genomics API
-   * //    and check the quota for your project at
-   * //    https://console.developers.google.com/apis/api/genomics
-   * // 2. This sample uses Application Default Credentials for authentication.
-   * //    If not already done, install the gcloud CLI from
-   * //    https://cloud.google.com/sdk and run
-   * //    `gcloud beta auth application-default login`.
-   * //    For more information, see
-   * //
-   * https://developers.google.com/identity/protocols/application-default-credentials
-   * // 3. Install the Node.js client library by running
-   * //    `npm install googleapis --save`
-   *
-   * var google = require('googleapis');
-   * var genomics = google.genomics('v1');
-   *
-   * authorize(function(authClient) {
-   *   var request = {
-   *     resource: {
-   *       // TODO: Add desired properties to the request body.
-   *     },
-   *
-   *     auth: authClient,
-   *   };
-   *
-   *   genomics.variants.merge(request, function(err) {
-   *     if (err) {
-   *       console.error(err);
-   *       return;
-   *     }
-   *   });
-   * });
-   *
-   * function authorize(callback) {
-   *   google.auth.getApplicationDefault(function(err, authClient) {
-   *     if (err) {
-   *       console.error('authentication failed: ', err);
-   *       return;
-   *     }
-   *     if (authClient.createScopedRequired &&
-   * authClient.createScopedRequired()) { var scopes =
-   * ['https://www.googleapis.com/auth/cloud-platform']; authClient =
-   * authClient.createScoped(scopes);
-   *     }
-   *     callback(authClient);
-   *   });
-   * }
-   * @alias genomics.variants.merge
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {().MergeVariantsRequest} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  merge =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants:merge')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+ * genomics.variants.merge
+ * @desc Merges the given variants with existing variants.  For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)  Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the infoMergeConfig field of the MergeVariantsRequest.  Please exercise caution when using this method!  It is easy to introduce mistakes in existing variants and difficult to back out of them.  For example, suppose you were trying to merge a new variant with an existing one and both variants contain calls that belong to callsets with the same callset ID.      // Existing variant - irrelevant fields trimmed for clarity     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     0,                     1                 ],             }         ]     }      // New variant with conflicting call information     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  The resulting merged variant would overwrite the existing calls with those from the new variant:      {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  This may be the desired outcome, but it is up to the user to determine if if that is indeed the case.
+ * @example
+ * * // BEFORE RUNNING:
+* // ---------------
+* // 1. If not already done, enable the Genomics API
+* //    and check the quota for your project at
+* //    https://console.developers.google.com/apis/api/genomics
+* // 2. This sample uses Application Default Credentials for authentication.
+* //    If not already done, install the gcloud CLI from
+* //    https://cloud.google.com/sdk and run
+* //    `gcloud beta auth application-default login`.
+* //    For more information, see
+* //    https://developers.google.com/identity/protocols/application-default-credentials
+* // 3. Install the Node.js client library by running
+* //    `npm install googleapis --save`
+*
+* var google = require('googleapis');
+* var genomics = google.genomics('v1');
+*
+* authorize(function(authClient) {
+*   var request = {
+*     resource: {
+*       // TODO: Add desired properties to the request body.
+*     },
+*
+*     auth: authClient,
+*   };
+*
+*   genomics.variants.merge(request, function(err) {
+*     if (err) {
+*       console.error(err);
+*       return;
+*     }
+*   });
+* });
+*
+* function authorize(callback) {
+*   google.auth.getApplicationDefault(function(err, authClient) {
+*     if (err) {
+*       console.error('authentication failed: ', err);
+*       return;
+*     }
+*     if (authClient.createScopedRequired && authClient.createScopedRequired()) {
+*       var scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+*       authClient = authClient.createScoped(scopes);
+*     }
+*     callback(authClient);
+*   });
+* }
+ * @alias genomics.variants.merge
+ * @memberOf! ()
+ *
+ * @param {object} params Parameters for request
+ * @param {().MergeVariantsRequest} params.resource Request body data
+ * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+ * @param {callback} callback The callback that handles the response.
+ * @return {object} Request object
+ */
+  merge(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  merge(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  merge(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variants:merge').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -6992,30 +7643,43 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Operat
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
-       callback?: BodyResponseCallback<Schema$Variant>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants/{variantId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['variantId'],
-          pathParams: ['variantId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variant>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+      callback?: BodyResponseCallback<Schema$Variant>):
+      void|AxiosPromise<Schema$Variant> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variants/{variantId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['variantId'],
+      pathParams: ['variantId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variant>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variant>(parameters);
+    }
+  }
 
 
   /**
@@ -7100,39 +7764,61 @@ import = (params: any, options: MethodOptions|BodyResponseCallback<Schema$Operat
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchVariantsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchVariantsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variants/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchVariantsResponse>(parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchVariantsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchVariantsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchVariantsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchVariantsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchVariantsResponse>):
+      void|AxiosPromise<Schema$SearchVariantsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/variants/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchVariantsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchVariantsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Variantsets {
   root: Genomics;
   constructor(root: Genomics) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * genomics.variantsets.create
@@ -7204,31 +7890,44 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-       callback?: BodyResponseCallback<Schema$VariantSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1/variantsets').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VariantSet>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>):
+      void|AxiosPromise<Schema$VariantSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VariantSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VariantSet>(parameters);
+    }
+  }
 
 
   /**
@@ -7295,30 +7994,43 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variantsets/{variantSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['variantSetId'],
-          pathParams: ['variantSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets/{variantSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['variantSetId'],
+      pathParams: ['variantSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -7394,31 +8106,45 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variantsets/{variantSetId}:export')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['variantSetId'],
-          pathParams: ['variantSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  export(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  export(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  export(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets/{variantSetId}:export')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['variantSetId'],
+      pathParams: ['variantSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -7487,31 +8213,43 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-       callback?: BodyResponseCallback<Schema$VariantSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variantsets/{variantSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['variantSetId'],
-          pathParams: ['variantSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VariantSet>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>):
+      void|AxiosPromise<Schema$VariantSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets/{variantSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['variantSetId'],
+      pathParams: ['variantSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VariantSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VariantSet>(parameters);
+    }
+  }
 
 
   /**
@@ -7588,31 +8326,45 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-       callback?: BodyResponseCallback<Schema$VariantSet>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variantsets/{variantSetId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['variantSetId'],
-          pathParams: ['variantSetId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$VariantSet>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+      callback?: BodyResponseCallback<Schema$VariantSet>):
+      void|AxiosPromise<Schema$VariantSet> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets/{variantSetId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['variantSetId'],
+      pathParams: ['variantSetId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VariantSet>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VariantSet>(parameters);
+    }
+  }
 
 
   /**
@@ -7699,31 +8451,46 @@ export class Resource$Variantsets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchVariantSetsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/variantsets/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchVariantSetsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchVariantSetsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchVariantSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchVariantSetsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>):
+      void|AxiosPromise<Schema$SearchVariantSetsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/variantsets/search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchVariantSetsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchVariantSetsResponse>(parameters);
+    }
+  }
 }

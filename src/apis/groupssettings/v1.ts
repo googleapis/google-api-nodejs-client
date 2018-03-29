@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Groupssettings {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.groups = new Resource$Groups(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -205,7 +212,13 @@ export class Resource$Groups {
   root: Groupssettings;
   constructor(root: Groupssettings) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * groupsSettings.groups.get
@@ -219,30 +232,41 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-       callback?: BodyResponseCallback<Schema$Groups>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['groupUniqueId'],
-          pathParams: ['groupUniqueId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Groups>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>):
+      void|AxiosPromise<Schema$Groups> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['groupUniqueId'],
+      pathParams: ['groupUniqueId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Groups>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Groups>(parameters);
+    }
+  }
 
 
   /**
@@ -258,30 +282,43 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-       callback?: BodyResponseCallback<Schema$Groups>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['groupUniqueId'],
-          pathParams: ['groupUniqueId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Groups>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>):
+      void|AxiosPromise<Schema$Groups> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['groupUniqueId'],
+      pathParams: ['groupUniqueId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Groups>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Groups>(parameters);
+    }
+  }
 
 
   /**
@@ -297,28 +334,41 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
-       callback?: BodyResponseCallback<Schema$Groups>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['groupUniqueId'],
-          pathParams: ['groupUniqueId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Groups>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      callback?: BodyResponseCallback<Schema$Groups>):
+      void|AxiosPromise<Schema$Groups> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/groups/v1/groups/{groupUniqueId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['groupUniqueId'],
+      pathParams: ['groupUniqueId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Groups>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Groups>(parameters);
+    }
+  }
 }

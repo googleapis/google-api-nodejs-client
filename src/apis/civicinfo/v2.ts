@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Civicinfo {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.divisions = new Resource$Divisions(this);
     this.elections = new Resource$Elections(this);
     this.representatives = new Resource$Representatives(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -830,7 +837,13 @@ export class Resource$Divisions {
   root: Civicinfo;
   constructor(root: Civicinfo) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * civicinfo.divisions.search
@@ -845,39 +858,61 @@ export class Resource$Divisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$DivisionSearchResponse>,
-       callback?: BodyResponseCallback<Schema$DivisionSearchResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/civicinfo/v2/divisions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DivisionSearchResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DivisionSearchResponse>,
+      callback?: BodyResponseCallback<Schema$DivisionSearchResponse>):
+      void|AxiosPromise<Schema$DivisionSearchResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/divisions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DivisionSearchResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DivisionSearchResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Elections {
   root: Civicinfo;
   constructor(root: Civicinfo) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * civicinfo.elections.electionQuery
@@ -891,32 +926,48 @@ export class Resource$Elections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  electionQuery =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ElectionsQueryResponse>,
-       callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/civicinfo/v2/elections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback!);
-      };
+  electionQuery(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ElectionsQueryResponse>;
+  electionQuery(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
+  electionQuery(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ElectionsQueryResponse>,
+      callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>):
+      void|AxiosPromise<Schema$ElectionsQueryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/elections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ElectionsQueryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ElectionsQueryResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -936,38 +987,59 @@ export class Resource$Elections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  voterInfoQuery =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
-       callback?: BodyResponseCallback<Schema$VoterInfoResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/civicinfo/v2/voterinfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['address'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VoterInfoResponse>(parameters, callback!);
-      };
+  voterInfoQuery(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VoterInfoResponse>;
+  voterInfoQuery(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback?: BodyResponseCallback<Schema$VoterInfoResponse>): void;
+  voterInfoQuery(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
+      callback?: BodyResponseCallback<Schema$VoterInfoResponse>):
+      void|AxiosPromise<Schema$VoterInfoResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/voterinfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['address'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VoterInfoResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VoterInfoResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Representatives {
   root: Civicinfo;
   constructor(root: Civicinfo) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * civicinfo.representatives.representativeInfoByAddress
@@ -986,33 +1058,48 @@ export class Resource$Representatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  representativeInfoByAddress =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RepresentativeInfoResponse>,
-       callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/civicinfo/v2/representatives')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$RepresentativeInfoResponse>(
-            parameters, callback!);
-      };
+  representativeInfoByAddress(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RepresentativeInfoResponse>;
+  representativeInfoByAddress(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>): void;
+  representativeInfoByAddress(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RepresentativeInfoResponse>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
+      void|AxiosPromise<Schema$RepresentativeInfoResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RepresentativeInfoResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1031,30 +1118,46 @@ export class Resource$Representatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  representativeInfoByDivision =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$RepresentativeInfoData>,
-       callback?: BodyResponseCallback<Schema$RepresentativeInfoData>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['ocdId'],
-          pathParams: ['ocdId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback!);
-      };
+  representativeInfoByDivision(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$RepresentativeInfoData>;
+  representativeInfoByDivision(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
+  representativeInfoByDivision(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$RepresentativeInfoData>,
+      callback?: BodyResponseCallback<Schema$RepresentativeInfoData>):
+      void|AxiosPromise<Schema$RepresentativeInfoData> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/representatives/{ocdId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['ocdId'],
+      pathParams: ['ocdId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$RepresentativeInfoData>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$RepresentativeInfoData>(parameters);
+    }
+  }
 }

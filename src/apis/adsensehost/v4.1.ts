@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -57,6 +59,7 @@ export class Adsensehost {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accounts = new Resource$Accounts(this);
     this.adclients = new Resource$Adclients(this);
@@ -64,6 +67,10 @@ export class Adsensehost {
     this.customchannels = new Resource$Customchannels(this);
     this.reports = new Resource$Reports(this);
     this.urlchannels = new Resource$Urlchannels(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -395,10 +402,16 @@ export class Resource$Accounts {
   reports: Resource$Accounts$Reports;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
     this.adclients = new Resource$Accounts$Adclients(root);
     this.adunits = new Resource$Accounts$Adunits(root);
     this.reports = new Resource$Accounts$Reports(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.accounts.get
@@ -412,30 +425,41 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 
 
   /**
@@ -451,37 +475,56 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
-       callback?: BodyResponseCallback<Schema$Accounts>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['filterAdClientId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Accounts>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Accounts>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Accounts>,
+      callback?: BodyResponseCallback<Schema$Accounts>):
+      void|AxiosPromise<Schema$Accounts> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['filterAdClientId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Accounts>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Accounts>(parameters);
+    }
+  }
 }
 export class Resource$Accounts$Adclients {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.accounts.adclients.get
@@ -497,33 +540,44 @@ export class Resource$Accounts$Adclients {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-       callback?: BodyResponseCallback<Schema$AdClient>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId'],
-          pathParams: ['accountId', 'adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdClient>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AdClient>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>):
+      void|AxiosPromise<Schema$AdClient> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId'],
+      pathParams: ['accountId', 'adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdClient>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdClient>(parameters);
+    }
+  }
 
 
   /**
@@ -540,39 +594,58 @@ export class Resource$Accounts$Adclients {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
-       callback?: BodyResponseCallback<Schema$AdClients>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/accounts/{accountId}/adclients')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdClients>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$AdClients>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>):
+      void|AxiosPromise<Schema$AdClients> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/adclients')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdClients>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdClients>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Adunits {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.accounts.adunits.delete
@@ -589,32 +662,45 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-       callback?: BodyResponseCallback<Schema$AdUnit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId', 'adUnitId'],
-          pathParams: ['accountId', 'adClientId', 'adUnitId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnit>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>):
+      void|AxiosPromise<Schema$AdUnit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId', 'adUnitId'],
+      pathParams: ['accountId', 'adClientId', 'adUnitId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnit>(parameters);
+    }
+  }
 
 
   /**
@@ -631,32 +717,43 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-       callback?: BodyResponseCallback<Schema$AdUnit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId', 'adUnitId'],
-          pathParams: ['accountId', 'adClientId', 'adUnitId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnit>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>):
+      void|AxiosPromise<Schema$AdUnit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId', 'adUnitId'],
+      pathParams: ['accountId', 'adClientId', 'adUnitId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnit>(parameters);
+    }
+  }
 
 
   /**
@@ -675,32 +772,45 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAdCode =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
-       callback?: BodyResponseCallback<Schema$AdCode>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId', 'adUnitId'],
-          pathParams: ['accountId', 'adClientId', 'adUnitId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdCode>(parameters, callback!);
-      };
+  getAdCode(params: any, options?: MethodOptions): AxiosPromise<Schema$AdCode>;
+  getAdCode(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdCode>,
+      callback?: BodyResponseCallback<Schema$AdCode>): void;
+  getAdCode(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdCode>,
+      callback?: BodyResponseCallback<Schema$AdCode>):
+      void|AxiosPromise<Schema$AdCode> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits/{adUnitId}/adcode')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId', 'adUnitId'],
+      pathParams: ['accountId', 'adClientId', 'adUnitId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdCode>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdCode>(parameters);
+    }
+  }
 
 
   /**
@@ -718,32 +828,45 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-       callback?: BodyResponseCallback<Schema$AdUnit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId'],
-          pathParams: ['accountId', 'adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnit>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>):
+      void|AxiosPromise<Schema$AdUnit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId'],
+      pathParams: ['accountId', 'adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnit>(parameters);
+    }
+  }
 
 
   /**
@@ -762,32 +885,45 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
-       callback?: BodyResponseCallback<Schema$AdUnits>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId'],
-          pathParams: ['accountId', 'adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnits>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnits>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
+      callback?: BodyResponseCallback<Schema$AdUnits>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnits>,
+      callback?: BodyResponseCallback<Schema$AdUnits>):
+      void|AxiosPromise<Schema$AdUnits> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId'],
+      pathParams: ['accountId', 'adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnits>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnits>(parameters);
+    }
+  }
 
 
   /**
@@ -806,32 +942,45 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-       callback?: BodyResponseCallback<Schema$AdUnit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId', 'adUnitId'],
-          pathParams: ['accountId', 'adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnit>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>):
+      void|AxiosPromise<Schema$AdUnit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId', 'adUnitId'],
+      pathParams: ['accountId', 'adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnit>(parameters);
+    }
+  }
 
 
   /**
@@ -849,39 +998,58 @@ export class Resource$Accounts$Adunits {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
-       callback?: BodyResponseCallback<Schema$AdUnit>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'adClientId'],
-          pathParams: ['accountId', 'adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdUnit>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$AdUnit>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$AdUnit>,
+      callback?: BodyResponseCallback<Schema$AdUnit>):
+      void|AxiosPromise<Schema$AdUnit> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/accounts/{accountId}/adclients/{adClientId}/adunits')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'adClientId'],
+      pathParams: ['accountId', 'adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdUnit>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdUnit>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Reports {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.accounts.reports.generate
@@ -906,31 +1074,43 @@ export class Resource$Accounts$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'startDate', 'endDate'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  generate(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  generate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  generate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/accounts/{accountId}/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'startDate', 'endDate'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 }
 
 
@@ -938,7 +1118,13 @@ export class Resource$Adclients {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.adclients.get
@@ -953,31 +1139,42 @@ export class Resource$Adclients {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
-       callback?: BodyResponseCallback<Schema$AdClient>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdClient>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$AdClient>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdClient>,
+      callback?: BodyResponseCallback<Schema$AdClient>):
+      void|AxiosPromise<Schema$AdClient> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/adclients/{adClientId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdClient>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdClient>(parameters);
+    }
+  }
 
 
   /**
@@ -993,38 +1190,58 @@ export class Resource$Adclients {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
-       callback?: BodyResponseCallback<Schema$AdClients>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/adclients')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AdClients>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$AdClients>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AdClients>,
+      callback?: BodyResponseCallback<Schema$AdClients>):
+      void|AxiosPromise<Schema$AdClients> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/adclients')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AdClients>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AdClients>(parameters);
+    }
+  }
 }
 
 export class Resource$Associationsessions {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.associationsessions.start
@@ -1042,31 +1259,46 @@ export class Resource$Associationsessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  start =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
-       callback?: BodyResponseCallback<Schema$AssociationSession>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/associationsessions/start')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['productCode', 'websiteUrl'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AssociationSession>(parameters, callback!);
-      };
+  start(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AssociationSession>;
+  start(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>): void;
+  start(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>):
+      void|AxiosPromise<Schema$AssociationSession> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/associationsessions/start')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['productCode', 'websiteUrl'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AssociationSession>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AssociationSession>(parameters);
+    }
+  }
 
 
   /**
@@ -1082,38 +1314,59 @@ export class Resource$Associationsessions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verify =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
-       callback?: BodyResponseCallback<Schema$AssociationSession>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/associationsessions/verify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['token'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$AssociationSession>(parameters, callback!);
-      };
+  verify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$AssociationSession>;
+  verify(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>): void;
+  verify(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AssociationSession>,
+      callback?: BodyResponseCallback<Schema$AssociationSession>):
+      void|AxiosPromise<Schema$AssociationSession> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/associationsessions/verify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['token'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$AssociationSession>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$AssociationSession>(parameters);
+    }
+  }
 }
 
 export class Resource$Customchannels {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.customchannels.delete
@@ -1128,33 +1381,48 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-       callback?: BodyResponseCallback<Schema$CustomChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'customChannelId'],
-          pathParams: ['adClientId', 'customChannelId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannel>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomChannel>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>):
+      void|AxiosPromise<Schema$CustomChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId', 'customChannelId'],
+      pathParams: ['adClientId', 'customChannelId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1170,33 +1438,45 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-       callback?: BodyResponseCallback<Schema$CustomChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'customChannelId'],
-          pathParams: ['adClientId', 'customChannelId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannel>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CustomChannel>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>):
+      void|AxiosPromise<Schema$CustomChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/adclients/{adClientId}/customchannels/{customChannelId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId', 'customChannelId'],
+      pathParams: ['adClientId', 'customChannelId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1212,32 +1492,47 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-       callback?: BodyResponseCallback<Schema$CustomChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannel>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomChannel>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>):
+      void|AxiosPromise<Schema$CustomChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1254,32 +1549,47 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
-       callback?: BodyResponseCallback<Schema$CustomChannels>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannels>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomChannels>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
+      callback?: BodyResponseCallback<Schema$CustomChannels>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannels>,
+      callback?: BodyResponseCallback<Schema$CustomChannels>):
+      void|AxiosPromise<Schema$CustomChannels> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannels>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannels>(parameters);
+    }
+  }
 
 
   /**
@@ -1297,32 +1607,47 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-       callback?: BodyResponseCallback<Schema$CustomChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'customChannelId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannel>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomChannel>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>):
+      void|AxiosPromise<Schema$CustomChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId', 'customChannelId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1338,39 +1663,60 @@ export class Resource$Customchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
-       callback?: BodyResponseCallback<Schema$CustomChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CustomChannel>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CustomChannel>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CustomChannel>,
+      callback?: BodyResponseCallback<Schema$CustomChannel>):
+      void|AxiosPromise<Schema$CustomChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/customchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CustomChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CustomChannel>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.reports.generate
@@ -1394,37 +1740,56 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/adsensehost/v4.1/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['startDate', 'endDate'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  generate(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  generate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  generate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/adsensehost/v4.1/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['startDate', 'endDate'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 }
 
 export class Resource$Urlchannels {
   root: Adsensehost;
   constructor(root: Adsensehost) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * adsensehost.urlchannels.delete
@@ -1439,33 +1804,47 @@ export class Resource$Urlchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
-       callback?: BodyResponseCallback<Schema$UrlChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId', 'urlChannelId'],
-          pathParams: ['adClientId', 'urlChannelId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlChannel>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$UrlChannel>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>):
+      void|AxiosPromise<Schema$UrlChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/adsensehost/v4.1/adclients/{adClientId}/urlchannels/{urlChannelId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId', 'urlChannelId'],
+      pathParams: ['adClientId', 'urlChannelId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1481,32 +1860,46 @@ export class Resource$Urlchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
-       callback?: BodyResponseCallback<Schema$UrlChannel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlChannel>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$UrlChannel>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlChannel>,
+      callback?: BodyResponseCallback<Schema$UrlChannel>):
+      void|AxiosPromise<Schema$UrlChannel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlChannel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlChannel>(parameters);
+    }
+  }
 
 
   /**
@@ -1523,30 +1916,44 @@ export class Resource$Urlchannels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
-       callback?: BodyResponseCallback<Schema$UrlChannels>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['adClientId'],
-          pathParams: ['adClientId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UrlChannels>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$UrlChannels>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
+      callback?: BodyResponseCallback<Schema$UrlChannels>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlChannels>,
+      callback?: BodyResponseCallback<Schema$UrlChannels>):
+      void|AxiosPromise<Schema$UrlChannels> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/adsensehost/v4.1/adclients/{adClientId}/urlchannels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['adClientId'],
+      pathParams: ['adClientId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UrlChannels>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UrlChannels>(parameters);
+    }
+  }
 }

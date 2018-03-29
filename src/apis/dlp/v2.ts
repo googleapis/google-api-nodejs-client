@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -55,10 +57,15 @@ export class Dlp {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.infoTypes = new Resource$Infotypes(this);
     this.organizations = new Resource$Organizations(this);
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1135,6 +1142,11 @@ export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
    */
   bytesLimitPerFile: string;
   fileSet: Schema$GooglePrivacyDlpV2FileSet;
+  /**
+   * List of file type groups to include in the scan. If empty, all files are
+   * scanned and available data format processors are applied.
+   */
+  fileTypes: string[];
 }
 /**
  * Represents a color in the RGB color space.
@@ -1997,8 +2009,7 @@ export interface Schema$GooglePrivacyDlpV2InspectConfig {
   includeQuote: boolean;
   /**
    * Restricts what info_types to look for. The values must correspond to
-   * InfoType values returned by ListInfoTypes or found in documentation. Empty
-   * info_types runs all enabled detectors.
+   * InfoType values returned by ListInfoTypes or found in documentation.
    */
   infoTypes: Schema$GooglePrivacyDlpV2InfoType[];
   limits: Schema$GooglePrivacyDlpV2FindingLimits;
@@ -2987,7 +2998,7 @@ export interface Schema$GooglePrivacyDlpV2SummaryResult {
 }
 /**
  * Message for detecting output from deidentification transformations such as
- * [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/content/deidentify#CryptoReplaceFfxFpeConfig).
+ * [`CryptoReplaceFfxFpeConfig`](/dlp/docs/reference/rest/v2/organizations.deidentifyTemplates#cryptoreplaceffxfpeconfig).
  * These types of transformations are those that perform pseudonymization,
  * thereby producing a &quot;surrogate&quot; as output. This should be used in
  * conjunction with a field on the transformation such as `surrogate_info_type`.
@@ -3358,11 +3369,19 @@ export class Resource$Infotypes {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.infoTypes.list
-   * @desc Returns sensitive information types DLP supports.
+   * @desc Returns a list of the sensitive information types that the DLP API
+   * supports. For more information, see [Listing supported predefined
+   * infoTypes](/dlp/docs/listing-infotypes).
    * @alias dlp.infoTypes.list
    * @memberOf! ()
    *
@@ -3373,33 +3392,52 @@ export class Resource$Infotypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListInfoTypesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/infoTypes').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ListInfoTypesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/infoTypes').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Organizations {
@@ -3408,16 +3446,27 @@ export class Resource$Organizations {
   inspectTemplates: Resource$Organizations$Inspecttemplates;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.deidentifyTemplates =
         new Resource$Organizations$Deidentifytemplates(root);
     this.inspectTemplates = new Resource$Organizations$Inspecttemplates(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Organizations$Deidentifytemplates {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.organizations.deidentifyTemplates.create
@@ -3433,34 +3482,53 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3475,30 +3543,45 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3513,33 +3596,50 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3556,35 +3656,53 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void|
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3600,40 +3718,65 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Organizations$Inspecttemplates {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.organizations.inspectTemplates.create
@@ -3649,34 +3792,52 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/inspectTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/inspectTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3691,30 +3852,45 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -3729,33 +3905,49 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3772,34 +3964,52 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/inspectTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/inspectTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3815,33 +4025,51 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 }
 
 
@@ -3855,6 +4083,7 @@ export class Resource$Projects {
   jobTriggers: Resource$Projects$Jobtriggers;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
     this.content = new Resource$Projects$Content(root);
     this.deidentifyTemplates = new Resource$Projects$Deidentifytemplates(root);
     this.dlpJobs = new Resource$Projects$Dlpjobs(root);
@@ -3862,12 +4091,22 @@ export class Resource$Projects {
     this.inspectTemplates = new Resource$Projects$Inspecttemplates(root);
     this.jobTriggers = new Resource$Projects$Jobtriggers(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
 }
 export class Resource$Projects$Content {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.content.deidentify
@@ -3884,34 +4123,52 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deidentify =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/content:deidentify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
-            parameters, callback!);
-      };
+  deidentify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>;
+  deidentify(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse>): void;
+  deidentify(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/content:deidentify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3930,34 +4187,52 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  inspect =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2InspectContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/content:inspect')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
-            parameters, callback!);
-      };
+  inspect(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse>;
+  inspect(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2InspectContentResponse>): void;
+  inspect(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2InspectContentResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/content:inspect')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -3973,41 +4248,65 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reidentify =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ReidentifyContentResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/content:reidentify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
-            parameters, callback!);
-      };
+  reidentify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>;
+  reidentify(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse>): void;
+  reidentify(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ReidentifyContentResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/content:reidentify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Deidentifytemplates {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.deidentifyTemplates.create
@@ -4023,34 +4322,53 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4065,30 +4383,45 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4103,33 +4436,50 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4146,35 +4496,53 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>): void|
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/deidentifyTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4190,40 +4558,65 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2DeidentifyTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DeidentifyTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Dlpjobs {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.dlpJobs.cancel
@@ -4239,31 +4632,45 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}:cancel')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  cancel(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  cancel(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4280,33 +4687,48 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/dlpJobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/dlpJobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
+    }
+  }
 
 
   /**
@@ -4323,30 +4745,45 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4361,32 +4798,45 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
-       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
-            parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2DlpJob>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2DlpJob> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
+    }
+  }
 
 
   /**
@@ -4405,41 +4855,66 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListDlpJobsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/dlpJobs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/dlpJobs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Image {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.image.redact
@@ -4456,41 +4931,66 @@ export class Resource$Projects$Image {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  redact =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2RedactImageResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/image:redact')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
-            parameters, callback!);
-      };
+  redact(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse>;
+  redact(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>):
+      void;
+  redact(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2RedactImageResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/image:redact')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Inspecttemplates {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.inspectTemplates.create
@@ -4506,34 +5006,52 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/inspectTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/inspectTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4548,30 +5066,45 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4586,33 +5119,49 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4629,34 +5178,52 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/inspectTemplates')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/inspectTemplates')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4672,40 +5239,64 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>,
+      callback?:
+          BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectTemplate>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2InspectTemplate> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Jobtriggers {
   root: Dlp;
   constructor(root: Dlp) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * dlp.projects.jobTriggers.create
@@ -4721,34 +5312,50 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/jobTriggers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/jobTriggers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(parameters);
+    }
+  }
 
 
   /**
@@ -4763,30 +5370,45 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobufEmpty>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
+      void|AxiosPromise<Schema$GoogleProtobufEmpty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobufEmpty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+    }
+  }
 
 
   /**
@@ -4801,33 +5423,47 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-            parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+  get(params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void;
+  get(params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(parameters);
+    }
+  }
 
 
   /**
@@ -4845,34 +5481,52 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GooglePrivacyDlpV2ListJobTriggersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{parent}/jobTriggers')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListJobTriggersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GooglePrivacyDlpV2ListJobTriggersResponse>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{parent}/jobTriggers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4888,31 +5542,47 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-       callback?:
-           BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-            parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
+  patch(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void;
+  patch(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
+      callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>):
+      void|AxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(parameters);
+    }
+  }
 }

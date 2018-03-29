@@ -14,7 +14,6 @@
 import * as assert from 'assert';
 import * as nock from 'nock';
 import * as path from 'path';
-import * as pify from 'pify';
 import * as url from 'url';
 
 import {GoogleApis} from '../src';
@@ -26,7 +25,7 @@ async function testSingleRequest(urlshortener: APIEndpoint) {
   const obj = {longUrl: 'http://someurl...'};
   const reqPath = '/urlshortener/v1/url?longUrl=http%3A%2F%2Fsomeurl...';
   nock(Utils.baseUrl).post(reqPath).reply(200);
-  const res = await pify(urlshortener.url.insert)(obj);
+  const res = await urlshortener.url.insert(obj);
   assert.equal(Utils.getQs(res), 'longUrl=http%3A%2F%2Fsomeurl...');
   assert.equal(res.config.method.toLowerCase(), 'post');
 }
@@ -34,7 +33,7 @@ async function testSingleRequest(urlshortener: APIEndpoint) {
 async function testParams(urlshortener: APIEndpoint) {
   const params = {shortUrl: 'a'};
   nock(Utils.baseUrl).get('/urlshortener/v1/url?shortUrl=a').reply(200);
-  const res = await pify(urlshortener.url.get)(params);
+  const res = await urlshortener.url.get(params);
   assert.equal(Utils.getQs(res), 'shortUrl=a');
   assert.equal(res.config.method.toLowerCase(), 'get');
 }
@@ -42,7 +41,7 @@ async function testParams(urlshortener: APIEndpoint) {
 async function testInsert(urlshortener: APIEndpoint) {
   const obj = {longUrl: 'http://google.com/'};
   nock(Utils.baseUrl).post('/resource').reply(200);
-  const res = await pify(urlshortener.url.insert)({resource: obj});
+  const res = await urlshortener.url.insert({resource: obj});
   assert.notEqual(res.data, null);
   assert.notEqual(res.data.kind, null);
   assert.notEqual(res.data.id, null);

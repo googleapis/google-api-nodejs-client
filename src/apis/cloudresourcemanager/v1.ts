@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -56,12 +58,17 @@ export class Cloudresourcemanager {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.folders = new Resource$Folders(this);
     this.liens = new Resource$Liens(this);
     this.operations = new Resource$Operations(this);
     this.organizations = new Resource$Organizations(this);
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1019,7 +1026,13 @@ export class Resource$Folders {
   root: Cloudresourcemanager;
   constructor(root: Cloudresourcemanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudresourcemanager.folders.clearOrgPolicy
@@ -1087,31 +1100,45 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clearOrgPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  clearOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  clearOrgPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  clearOrgPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1184,32 +1211,47 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getEffectiveOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getEffectiveOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getEffectiveOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getEffectiveOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -1283,32 +1325,47 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -1396,36 +1453,53 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listAvailableOrgPolicyConstraints =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListAvailableOrgPolicyConstraintsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/{resource}:listAvailableOrgPolicyConstraints')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback!);
-      };
+  listAvailableOrgPolicyConstraints(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>):
+      void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -1510,33 +1584,49 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listOrgPolicies =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-       callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:listOrgPolicies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback!);
-      };
+  listOrgPolicies(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOrgPoliciesResponse>;
+  listOrgPolicies(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+  listOrgPolicies(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
+      void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1609,39 +1699,60 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  setOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  setOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  setOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 }
 
 export class Resource$Liens {
   root: Cloudresourcemanager;
   constructor(root: Cloudresourcemanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudresourcemanager.liens.create
@@ -1712,30 +1823,43 @@ export class Resource$Liens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Lien>,
-       callback?: BodyResponseCallback<Schema$Lien>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Lien>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Lien>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Lien>,
+      callback?: BodyResponseCallback<Schema$Lien>):
+      void|AxiosPromise<Schema$Lien> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Lien>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Lien>(parameters);
+    }
+  }
 
 
   /**
@@ -1801,30 +1925,43 @@ export class Resource$Liens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1906,38 +2043,59 @@ export class Resource$Liens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
-       callback?: BodyResponseCallback<Schema$ListLiensResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLiensResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLiensResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
+      callback?: BodyResponseCallback<Schema$ListLiensResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListLiensResponse>,
+      callback?: BodyResponseCallback<Schema$ListLiensResponse>):
+      void|AxiosPromise<Schema$ListLiensResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/liens').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLiensResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLiensResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Operations {
   root: Cloudresourcemanager;
   constructor(root: Cloudresourcemanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudresourcemanager.operations.get
@@ -2005,38 +2163,56 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 }
 
 export class Resource$Organizations {
   root: Cloudresourcemanager;
   constructor(root: Cloudresourcemanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudresourcemanager.organizations.clearOrgPolicy
@@ -2103,31 +2279,45 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clearOrgPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  clearOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  clearOrgPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  clearOrgPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -2196,31 +2386,43 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Organization>,
-       callback?: BodyResponseCallback<Schema$Organization>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Organization>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Organization>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Organization>,
+      callback?: BodyResponseCallback<Schema$Organization>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Organization>,
+      callback?: BodyResponseCallback<Schema$Organization>):
+      void|AxiosPromise<Schema$Organization> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Organization>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Organization>(parameters);
+    }
+  }
 
 
   /**
@@ -2294,32 +2496,47 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getEffectiveOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getEffectiveOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getEffectiveOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getEffectiveOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -2395,31 +2612,45 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -2494,32 +2725,47 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -2608,36 +2854,53 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listAvailableOrgPolicyConstraints =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListAvailableOrgPolicyConstraintsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/{resource}:listAvailableOrgPolicyConstraints')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback!);
-      };
+  listAvailableOrgPolicyConstraints(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>):
+      void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2724,33 +2987,49 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listOrgPolicies =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-       callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:listOrgPolicies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback!);
-      };
+  listOrgPolicies(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOrgPoliciesResponse>;
+  listOrgPolicies(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+  listOrgPolicies(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
+      void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2836,34 +3115,51 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SearchOrganizationsResponse>,
-       callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/organizations:search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchOrganizationsResponse>(
-            parameters, callback!);
-      };
+  search(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchOrganizationsResponse>;
+  search(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
+      void;
+  search(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchOrganizationsResponse>,
+      callback?: BodyResponseCallback<Schema$SearchOrganizationsResponse>):
+      void|AxiosPromise<Schema$SearchOrganizationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/organizations:search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchOrganizationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchOrganizationsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2939,31 +3235,45 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -3037,32 +3347,47 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  setOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  setOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  setOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -3138,41 +3463,62 @@ export class Resource$Organizations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects {
   root: Cloudresourcemanager;
   constructor(root: Cloudresourcemanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * cloudresourcemanager.projects.clearOrgPolicy
@@ -3240,31 +3586,45 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clearOrgPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  clearOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  clearOrgPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  clearOrgPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3341,31 +3701,45 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Operation>,
-       callback?: BodyResponseCallback<Schema$Operation>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Operation>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      callback?: BodyResponseCallback<Schema$Operation>):
+      void|AxiosPromise<Schema$Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Operation>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Operation>(parameters);
+    }
+  }
 
 
   /**
@@ -3440,31 +3814,44 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -3534,31 +3921,42 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
-       callback?: BodyResponseCallback<Schema$Project>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Project>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>):
+      void|AxiosPromise<Schema$Project> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Project>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Project>(parameters);
+    }
+  }
 
 
   /**
@@ -3631,32 +4029,47 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAncestry =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
-       callback?: BodyResponseCallback<Schema$GetAncestryResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}:getAncestry')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetAncestryResponse>(parameters, callback!);
-      };
+  getAncestry(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetAncestryResponse>;
+  getAncestry(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback?: BodyResponseCallback<Schema$GetAncestryResponse>): void;
+  getAncestry(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetAncestryResponse>,
+      callback?: BodyResponseCallback<Schema$GetAncestryResponse>):
+      void|AxiosPromise<Schema$GetAncestryResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:getAncestry')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetAncestryResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetAncestryResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3729,32 +4142,47 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getEffectiveOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getEffectiveOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getEffectiveOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getEffectiveOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -3830,31 +4258,45 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{resource}:getIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  getIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  getIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  getIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{resource}:getIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -3928,32 +4370,47 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:getOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  getOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  getOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  getOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -4037,31 +4494,46 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListProjectsResponse>,
-       callback?: BodyResponseCallback<Schema$ListProjectsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListProjectsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListProjectsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProjectsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListProjectsResponse>,
+      callback?: BodyResponseCallback<Schema$ListProjectsResponse>):
+      void|AxiosPromise<Schema$ListProjectsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListProjectsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListProjectsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4149,36 +4621,53 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listAvailableOrgPolicyConstraints =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
-       callback?: BodyResponseCallback<
-           Schema$ListAvailableOrgPolicyConstraintsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/v1/{resource}:listAvailableOrgPolicyConstraints')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
-            parameters, callback!);
-      };
+  listAvailableOrgPolicyConstraints(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse>;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>): void;
+  listAvailableOrgPolicyConstraints(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$ListAvailableOrgPolicyConstraintsResponse>):
+      void|AxiosPromise<Schema$ListAvailableOrgPolicyConstraintsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -4263,33 +4752,49 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listOrgPolicies =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
-       callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:listOrgPolicies')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback!);
-      };
+  listOrgPolicies(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListOrgPoliciesResponse>;
+  listOrgPolicies(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>): void;
+  listOrgPolicies(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListOrgPoliciesResponse>,
+      callback?: BodyResponseCallback<Schema$ListOrgPoliciesResponse>):
+      void|AxiosPromise<Schema$ListOrgPoliciesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListOrgPoliciesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4385,31 +4890,45 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
-       callback?: BodyResponseCallback<Schema$Policy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{resource}:setIamPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Policy>(parameters, callback!);
-      };
+  setIamPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Policy>;
+  setIamPolicy(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>): void;
+  setIamPolicy(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      callback?: BodyResponseCallback<Schema$Policy>):
+      void|AxiosPromise<Schema$Policy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{resource}:setIamPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Policy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Policy>(parameters);
+    }
+  }
 
 
   /**
@@ -4482,32 +5001,47 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setOrgPolicy =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
-       callback?: BodyResponseCallback<Schema$OrgPolicy>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resource}:setOrgPolicy')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$OrgPolicy>(parameters, callback!);
-      };
+  setOrgPolicy(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$OrgPolicy>;
+  setOrgPolicy(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>): void;
+  setOrgPolicy(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OrgPolicy>,
+      callback?: BodyResponseCallback<Schema$OrgPolicy>):
+      void|AxiosPromise<Schema$OrgPolicy> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$OrgPolicy>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$OrgPolicy>(parameters);
+    }
+  }
 
 
   /**
@@ -4580,34 +5114,49 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{resource}:testIamPermissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resource'],
-          pathParams: ['resource'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-            parameters, callback!);
-      };
+  testIamPermissions(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestIamPermissionsResponse>;
+  testIamPermissions(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
+  testIamPermissions(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+      void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{resource}:testIamPermissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resource'],
+      pathParams: ['resource'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TestIamPermissionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -4681,31 +5230,44 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}:undelete')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  undelete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  undelete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}:undelete')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -4782,29 +5344,42 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
-       callback?: BodyResponseCallback<Schema$Project>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/projects/{projectId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Project>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Project>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Project>,
+      callback?: BodyResponseCallback<Schema$Project>):
+      void|AxiosPromise<Schema$Project> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://cloudresourcemanager.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{projectId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Project>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Project>(parameters);
+    }
+  }
 }

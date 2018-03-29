@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -78,6 +80,7 @@ export class Youtube {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.activities = new Resource$Activities(this);
     this.captions = new Resource$Captions(this);
@@ -106,6 +109,10 @@ export class Youtube {
     this.videoCategories = new Resource$Videocategories(this);
     this.videos = new Resource$Videos(this);
     this.watermarks = new Resource$Watermarks(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -4999,7 +5006,13 @@ export class Resource$Activities {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.activities.insert
@@ -5020,31 +5033,44 @@ export class Resource$Activities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Activity>,
-       callback?: BodyResponseCallback<Schema$Activity>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/activities')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Activity>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Activity>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Activity>,
+      callback?: BodyResponseCallback<Schema$Activity>):
+      void|AxiosPromise<Schema$Activity> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/activities')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Activity>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Activity>(parameters);
+    }
+  }
 
 
   /**
@@ -5070,38 +5096,59 @@ export class Resource$Activities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ActivityListResponse>,
-       callback?: BodyResponseCallback<Schema$ActivityListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/activities')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ActivityListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ActivityListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ActivityListResponse>,
+      callback?: BodyResponseCallback<Schema$ActivityListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ActivityListResponse>,
+      callback?: BodyResponseCallback<Schema$ActivityListResponse>):
+      void|AxiosPromise<Schema$ActivityListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/activities')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ActivityListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ActivityListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Captions {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.captions.delete
@@ -5117,30 +5164,42 @@ export class Resource$Captions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/captions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/captions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5162,30 +5221,42 @@ export class Resource$Captions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  download =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/captions/{id}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: ['id'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  download(params: any, options?: MethodOptions): AxiosPromise<void>;
+  download(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  download(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/captions/{id}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: ['id'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5207,32 +5278,45 @@ export class Resource$Captions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-       callback?: BodyResponseCallback<Schema$Caption>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/captions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Caption>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Caption>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>):
+      void|AxiosPromise<Schema$Caption> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/captions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Caption>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Caption>(parameters);
+    }
+  }
 
 
   /**
@@ -5254,31 +5338,46 @@ export class Resource$Captions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
-       callback?: BodyResponseCallback<Schema$CaptionListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/captions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part', 'videoId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CaptionListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CaptionListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
+      callback?: BodyResponseCallback<Schema$CaptionListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CaptionListResponse>,
+      callback?: BodyResponseCallback<Schema$CaptionListResponse>):
+      void|AxiosPromise<Schema$CaptionListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/captions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part', 'videoId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CaptionListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CaptionListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5302,39 +5401,58 @@ export class Resource$Captions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Caption>,
-       callback?: BodyResponseCallback<Schema$Caption>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/captions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Caption>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Caption>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Caption>,
+      callback?: BodyResponseCallback<Schema$Caption>):
+      void|AxiosPromise<Schema$Caption> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/captions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/youtube/v3/captions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Caption>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Caption>(parameters);
+    }
+  }
 }
 
 export class Resource$Channelbanners {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.channelBanners.insert
@@ -5361,41 +5479,62 @@ export class Resource$Channelbanners {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ChannelBannerResource>,
-       callback?: BodyResponseCallback<Schema$ChannelBannerResource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channelBanners/insert')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/channelBanners/insert')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChannelBannerResource>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChannelBannerResource>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback?: BodyResponseCallback<Schema$ChannelBannerResource>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ChannelBannerResource>,
+      callback?: BodyResponseCallback<Schema$ChannelBannerResource>):
+      void|AxiosPromise<Schema$ChannelBannerResource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channelBanners/insert')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/youtube/v3/channelBanners/insert')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChannelBannerResource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChannelBannerResource>(parameters);
+    }
+  }
 }
 
 export class Resource$Channels {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.channels.list
@@ -5420,31 +5559,46 @@ export class Resource$Channels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
-       callback?: BodyResponseCallback<Schema$ChannelListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChannelListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChannelListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChannelListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelListResponse>):
+      void|AxiosPromise<Schema$ChannelListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChannelListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChannelListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5463,37 +5617,56 @@ export class Resource$Channels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
-       callback?: BodyResponseCallback<Schema$Channel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Channel>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+      callback?: BodyResponseCallback<Schema$Channel>):
+      void|AxiosPromise<Schema$Channel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Channel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Channel>(parameters);
+    }
+  }
 }
 
 export class Resource$Channelsections {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.channelSections.delete
@@ -5508,30 +5681,42 @@ export class Resource$Channelsections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channelSections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channelSections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5549,31 +5734,46 @@ export class Resource$Channelsections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-       callback?: BodyResponseCallback<Schema$ChannelSection>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channelSections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChannelSection>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChannelSection>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>):
+      void|AxiosPromise<Schema$ChannelSection> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channelSections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChannelSection>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChannelSection>(parameters);
+    }
+  }
 
 
   /**
@@ -5593,33 +5793,48 @@ export class Resource$Channelsections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ChannelSectionListResponse>,
-       callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channelSections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChannelSectionListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChannelSectionListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ChannelSectionListResponse>,
+      callback?: BodyResponseCallback<Schema$ChannelSectionListResponse>):
+      void|AxiosPromise<Schema$ChannelSectionListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channelSections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChannelSectionListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChannelSectionListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5636,38 +5851,59 @@ export class Resource$Channelsections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
-       callback?: BodyResponseCallback<Schema$ChannelSection>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/channelSections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ChannelSection>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ChannelSection>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ChannelSection>,
+      callback?: BodyResponseCallback<Schema$ChannelSection>):
+      void|AxiosPromise<Schema$ChannelSection> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/channelSections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ChannelSection>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ChannelSection>(parameters);
+    }
+  }
 }
 
 export class Resource$Comments {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.comments.delete
@@ -5681,30 +5917,42 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5721,30 +5969,43 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 
 
   /**
@@ -5764,31 +6025,46 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
-       callback?: BodyResponseCallback<Schema$CommentListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentListResponse>):
+      void|AxiosPromise<Schema$CommentListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -5804,30 +6080,42 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  markAsSpam =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments/markAsSpam')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  markAsSpam(params: any, options?: MethodOptions): AxiosPromise<void>;
+  markAsSpam(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  markAsSpam(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments/markAsSpam')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5846,30 +6134,42 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setModerationStatus =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments/setModerationStatus')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id', 'moderationStatus'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  setModerationStatus(params: any, options?: MethodOptions): AxiosPromise<void>;
+  setModerationStatus(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  setModerationStatus(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments/setModerationStatus')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id', 'moderationStatus'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -5885,37 +6185,56 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
-       callback?: BodyResponseCallback<Schema$Comment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/comments')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Comment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+      callback?: BodyResponseCallback<Schema$Comment>):
+      void|AxiosPromise<Schema$Comment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/comments')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Comment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Comment>(parameters);
+    }
+  }
 }
 
 export class Resource$Commentthreads {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.commentThreads.insert
@@ -5931,31 +6250,46 @@ export class Resource$Commentthreads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-       callback?: BodyResponseCallback<Schema$CommentThread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/commentThreads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentThread>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentThread>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>):
+      void|AxiosPromise<Schema$CommentThread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentThread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentThread>(parameters);
+    }
+  }
 
 
   /**
@@ -5981,33 +6315,48 @@ export class Resource$Commentthreads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CommentThreadListResponse>,
-       callback?: BodyResponseCallback<Schema$CommentThreadListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/commentThreads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentThreadListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentThreadListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentThreadListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CommentThreadListResponse>,
+      callback?: BodyResponseCallback<Schema$CommentThreadListResponse>):
+      void|AxiosPromise<Schema$CommentThreadListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentThreadListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentThreadListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -6023,38 +6372,59 @@ export class Resource$Commentthreads {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
-       callback?: BodyResponseCallback<Schema$CommentThread>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/commentThreads')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CommentThread>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CommentThread>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentThread>,
+      callback?: BodyResponseCallback<Schema$CommentThread>):
+      void|AxiosPromise<Schema$CommentThread> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CommentThread>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CommentThread>(parameters);
+    }
+  }
 }
 
 export class Resource$Fanfundingevents {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.fanFundingEvents.list
@@ -6071,40 +6441,63 @@ export class Resource$Fanfundingevents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$FanFundingEventListResponse>,
-       callback?: BodyResponseCallback<Schema$FanFundingEventListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/fanFundingEvents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$FanFundingEventListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FanFundingEventListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$FanFundingEventListResponse>,
+      callback?: BodyResponseCallback<Schema$FanFundingEventListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$FanFundingEventListResponse>,
+      callback?: BodyResponseCallback<Schema$FanFundingEventListResponse>):
+      void|AxiosPromise<Schema$FanFundingEventListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/fanFundingEvents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FanFundingEventListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FanFundingEventListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Guidecategories {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.guideCategories.list
@@ -6122,40 +6515,61 @@ export class Resource$Guidecategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GuideCategoryListResponse>,
-       callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/guideCategories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GuideCategoryListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GuideCategoryListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GuideCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$GuideCategoryListResponse>):
+      void|AxiosPromise<Schema$GuideCategoryListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/guideCategories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GuideCategoryListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GuideCategoryListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$I18nlanguages {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.i18nLanguages.list
@@ -6171,40 +6585,61 @@ export class Resource$I18nlanguages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$I18nLanguageListResponse>,
-       callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/i18nLanguages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$I18nLanguageListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$I18nLanguageListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$I18nLanguageListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nLanguageListResponse>):
+      void|AxiosPromise<Schema$I18nLanguageListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/i18nLanguages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$I18nLanguageListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$I18nLanguageListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$I18nregions {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.i18nRegions.list
@@ -6219,39 +6654,61 @@ export class Resource$I18nregions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$I18nRegionListResponse>,
-       callback?: BodyResponseCallback<Schema$I18nRegionListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/i18nRegions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$I18nRegionListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nRegionListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$I18nRegionListResponse>,
+      callback?: BodyResponseCallback<Schema$I18nRegionListResponse>):
+      void|AxiosPromise<Schema$I18nRegionListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/i18nRegions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$I18nRegionListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$I18nRegionListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Livebroadcasts {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.liveBroadcasts.bind
@@ -6272,31 +6729,46 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  bind =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcast>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts/bind')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id', 'part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcast>(parameters, callback!);
-      };
+  bind(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcast>;
+  bind(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>): void;
+  bind(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>):
+      void|AxiosPromise<Schema$LiveBroadcast> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/bind')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id', 'part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcast>(parameters);
+    }
+  }
 
 
   /**
@@ -6318,31 +6790,46 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  control =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcast>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts/control')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id', 'part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcast>(parameters, callback!);
-      };
+  control(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcast>;
+  control(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>): void;
+  control(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>):
+      void|AxiosPromise<Schema$LiveBroadcast> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/control')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id', 'part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcast>(parameters);
+    }
+  }
 
 
   /**
@@ -6359,30 +6846,42 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6400,31 +6899,46 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcast>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcast>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcast>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>):
+      void|AxiosPromise<Schema$LiveBroadcast> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcast>(parameters);
+    }
+  }
 
 
   /**
@@ -6448,33 +6962,48 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LiveBroadcastListResponse>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcastListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcastListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LiveBroadcastListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcastListResponse>):
+      void|AxiosPromise<Schema$LiveBroadcastListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcastListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcastListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -6498,31 +7027,46 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  transition =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcast>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts/transition')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['broadcastStatus', 'id', 'part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcast>(parameters, callback!);
-      };
+  transition(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcast>;
+  transition(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>): void;
+  transition(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>):
+      void|AxiosPromise<Schema$LiveBroadcast> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts/transition')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['broadcastStatus', 'id', 'part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcast>(parameters);
+    }
+  }
 
 
   /**
@@ -6541,38 +7085,59 @@ export class Resource$Livebroadcasts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
-       callback?: BodyResponseCallback<Schema$LiveBroadcast>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveBroadcasts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveBroadcast>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveBroadcast>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveBroadcast>,
+      callback?: BodyResponseCallback<Schema$LiveBroadcast>):
+      void|AxiosPromise<Schema$LiveBroadcast> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveBroadcasts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveBroadcast>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveBroadcast>(parameters);
+    }
+  }
 }
 
 export class Resource$Livechatbans {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.liveChatBans.delete
@@ -6586,30 +7151,42 @@ export class Resource$Livechatbans {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/bans')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6625,38 +7202,59 @@ export class Resource$Livechatbans {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
-       callback?: BodyResponseCallback<Schema$LiveChatBan>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/bans')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveChatBan>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveChatBan>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
+      callback?: BodyResponseCallback<Schema$LiveChatBan>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveChatBan>,
+      callback?: BodyResponseCallback<Schema$LiveChatBan>):
+      void|AxiosPromise<Schema$LiveChatBan> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/bans')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveChatBan>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveChatBan>(parameters);
+    }
+  }
 }
 
 export class Resource$Livechatmessages {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.liveChatMessages.delete
@@ -6670,30 +7268,42 @@ export class Resource$Livechatmessages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6709,31 +7319,46 @@ export class Resource$Livechatmessages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
-       callback?: BodyResponseCallback<Schema$LiveChatMessage>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveChatMessage>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveChatMessage>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessage>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveChatMessage>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessage>):
+      void|AxiosPromise<Schema$LiveChatMessage> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveChatMessage>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveChatMessage>(parameters);
+    }
+  }
 
 
   /**
@@ -6753,40 +7378,63 @@ export class Resource$Livechatmessages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LiveChatMessageListResponse>,
-       callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['liveChatId', 'part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveChatMessageListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveChatMessageListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatMessageListResponse>):
+      void|AxiosPromise<Schema$LiveChatMessageListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['liveChatId', 'part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveChatMessageListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Livechatmoderators {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.liveChatModerators.delete
@@ -6800,30 +7448,42 @@ export class Resource$Livechatmoderators {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6839,31 +7499,46 @@ export class Resource$Livechatmoderators {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
-       callback?: BodyResponseCallback<Schema$LiveChatModerator>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveChatModerator>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveChatModerator>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
+      callback?: BodyResponseCallback<Schema$LiveChatModerator>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveChatModerator>,
+      callback?: BodyResponseCallback<Schema$LiveChatModerator>):
+      void|AxiosPromise<Schema$LiveChatModerator> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveChatModerator>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveChatModerator>(parameters);
+    }
+  }
 
 
   /**
@@ -6881,41 +7556,63 @@ export class Resource$Livechatmoderators {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$LiveChatModeratorListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveChat/moderators')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['liveChatId', 'part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveChatModeratorListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveChatModeratorListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LiveChatModeratorListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveChatModeratorListResponse>):
+      void|AxiosPromise<Schema$LiveChatModeratorListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/moderators')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['liveChatId', 'part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveChatModeratorListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveChatModeratorListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Livestreams {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.liveStreams.delete
@@ -6931,30 +7628,42 @@ export class Resource$Livestreams {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveStreams')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -6973,31 +7682,45 @@ export class Resource$Livestreams {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-       callback?: BodyResponseCallback<Schema$LiveStream>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveStreams')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveStream>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$LiveStream>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>):
+      void|AxiosPromise<Schema$LiveStream> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveStream>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveStream>(parameters);
+    }
+  }
 
 
   /**
@@ -7019,32 +7742,48 @@ export class Resource$Livestreams {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$LiveStreamListResponse>,
-       callback?: BodyResponseCallback<Schema$LiveStreamListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveStreams')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LiveStreamListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveStreamListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LiveStreamListResponse>,
+      callback?: BodyResponseCallback<Schema$LiveStreamListResponse>):
+      void|AxiosPromise<Schema$LiveStreamListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveStreamListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveStreamListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -7064,38 +7803,58 @@ export class Resource$Livestreams {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
-       callback?: BodyResponseCallback<Schema$LiveStream>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/liveStreams')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$LiveStream>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$LiveStream>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LiveStream>,
+      callback?: BodyResponseCallback<Schema$LiveStream>):
+      void|AxiosPromise<Schema$LiveStream> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveStreams')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LiveStream>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LiveStream>(parameters);
+    }
+  }
 }
 
 export class Resource$Playlistitems {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.playlistItems.delete
@@ -7110,30 +7869,42 @@ export class Resource$Playlistitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlistItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -7150,31 +7921,46 @@ export class Resource$Playlistitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-       callback?: BodyResponseCallback<Schema$PlaylistItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlistItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlaylistItem>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlaylistItem>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>):
+      void|AxiosPromise<Schema$PlaylistItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlaylistItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlaylistItem>(parameters);
+    }
+  }
 
 
   /**
@@ -7197,33 +7983,48 @@ export class Resource$Playlistitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PlaylistItemListResponse>,
-       callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlistItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlaylistItemListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlaylistItemListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PlaylistItemListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistItemListResponse>):
+      void|AxiosPromise<Schema$PlaylistItemListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlaylistItemListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlaylistItemListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -7241,38 +8042,59 @@ export class Resource$Playlistitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
-       callback?: BodyResponseCallback<Schema$PlaylistItem>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlistItems')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlaylistItem>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlaylistItem>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlaylistItem>,
+      callback?: BodyResponseCallback<Schema$PlaylistItem>):
+      void|AxiosPromise<Schema$PlaylistItem> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlistItems')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlaylistItem>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlaylistItem>(parameters);
+    }
+  }
 }
 
 export class Resource$Playlists {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.playlists.delete
@@ -7287,30 +8109,42 @@ export class Resource$Playlists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -7328,31 +8162,44 @@ export class Resource$Playlists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-       callback?: BodyResponseCallback<Schema$Playlist>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Playlist>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Playlist>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>):
+      void|AxiosPromise<Schema$Playlist> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Playlist>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Playlist>(parameters);
+    }
+  }
 
 
   /**
@@ -7378,31 +8225,46 @@ export class Resource$Playlists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PlaylistListResponse>,
-       callback?: BodyResponseCallback<Schema$PlaylistListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$PlaylistListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PlaylistListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PlaylistListResponse>,
+      callback?: BodyResponseCallback<Schema$PlaylistListResponse>):
+      void|AxiosPromise<Schema$PlaylistListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PlaylistListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PlaylistListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -7420,38 +8282,57 @@ export class Resource$Playlists {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
-       callback?: BodyResponseCallback<Schema$Playlist>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/playlists')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Playlist>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Playlist>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Playlist>,
+      callback?: BodyResponseCallback<Schema$Playlist>):
+      void|AxiosPromise<Schema$Playlist> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/playlists')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Playlist>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Playlist>(parameters);
+    }
+  }
 }
 
 export class Resource$Search {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.search.list
@@ -7498,38 +8379,58 @@ export class Resource$Search {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
-       callback?: BodyResponseCallback<Schema$SearchListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/search')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SearchListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SearchListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
+      callback?: BodyResponseCallback<Schema$SearchListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SearchListResponse>,
+      callback?: BodyResponseCallback<Schema$SearchListResponse>):
+      void|AxiosPromise<Schema$SearchListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SearchListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SearchListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Sponsors {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.sponsors.list
@@ -7546,38 +8447,59 @@ export class Resource$Sponsors {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
-       callback?: BodyResponseCallback<Schema$SponsorListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/sponsors')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SponsorListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SponsorListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
+      callback?: BodyResponseCallback<Schema$SponsorListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SponsorListResponse>,
+      callback?: BodyResponseCallback<Schema$SponsorListResponse>):
+      void|AxiosPromise<Schema$SponsorListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/sponsors')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SponsorListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SponsorListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Subscriptions {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.subscriptions.delete
@@ -7591,30 +8513,42 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -7630,31 +8564,46 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
-       callback?: BodyResponseCallback<Schema$Subscription>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Subscription>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Subscription>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Subscription>,
+      callback?: BodyResponseCallback<Schema$Subscription>):
+      void|AxiosPromise<Schema$Subscription> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Subscription>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Subscription>(parameters);
+    }
+  }
 
 
   /**
@@ -7680,40 +8629,61 @@ export class Resource$Subscriptions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SubscriptionListResponse>,
-       callback?: BodyResponseCallback<Schema$SubscriptionListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/subscriptions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubscriptionListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SubscriptionListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SubscriptionListResponse>,
+      callback?: BodyResponseCallback<Schema$SubscriptionListResponse>):
+      void|AxiosPromise<Schema$SubscriptionListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/subscriptions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubscriptionListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubscriptionListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Superchatevents {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.superChatEvents.list
@@ -7730,40 +8700,61 @@ export class Resource$Superchatevents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SuperChatEventListResponse>,
-       callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/superChatEvents')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SuperChatEventListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SuperChatEventListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SuperChatEventListResponse>,
+      callback?: BodyResponseCallback<Schema$SuperChatEventListResponse>):
+      void|AxiosPromise<Schema$SuperChatEventListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/superChatEvents')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SuperChatEventListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SuperChatEventListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Thumbnails {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.thumbnails.set
@@ -7781,40 +8772,59 @@ export class Resource$Thumbnails {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  set =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ThumbnailSetResponse>,
-       callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/thumbnails/set')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['videoId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback!);
-      };
+  set(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ThumbnailSetResponse>;
+  set(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>): void;
+  set(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ThumbnailSetResponse>,
+      callback?: BodyResponseCallback<Schema$ThumbnailSetResponse>):
+      void|AxiosPromise<Schema$ThumbnailSetResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/thumbnails/set')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/youtube/v3/thumbnails/set')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['videoId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ThumbnailSetResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ThumbnailSetResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Videoabusereportreasons {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.videoAbuseReportReasons.list
@@ -7830,41 +8840,66 @@ export class Resource$Videoabusereportreasons {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
-       callback?:
-           BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videoAbuseReportReasons')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VideoAbuseReportReasonListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>,
+      callback?:
+          BodyResponseCallback<Schema$VideoAbuseReportReasonListResponse>):
+      void|AxiosPromise<Schema$VideoAbuseReportReasonListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videoAbuseReportReasons')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoAbuseReportReasonListResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Videocategories {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.videoCategories.list
@@ -7882,40 +8917,61 @@ export class Resource$Videocategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VideoCategoryListResponse>,
-       callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videoCategories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoCategoryListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VideoCategoryListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VideoCategoryListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoCategoryListResponse>):
+      void|AxiosPromise<Schema$VideoCategoryListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videoCategories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoCategoryListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoCategoryListResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Videos {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.videos.delete
@@ -7930,30 +8986,41 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -7970,32 +9037,48 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRating =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$VideoGetRatingResponse>,
-       callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos/getRating')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['id'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback!);
-      };
+  getRating(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VideoGetRatingResponse>;
+  getRating(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>): void;
+  getRating(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback?: BodyResponseCallback<Schema$VideoGetRatingResponse>):
+      void|AxiosPromise<Schema$VideoGetRatingResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos/getRating')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['id'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoGetRatingResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoGetRatingResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -8019,32 +9102,44 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Video>,
-       callback?: BodyResponseCallback<Schema$Video>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/videos')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Video>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Video>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>):
+      void|AxiosPromise<Schema$Video> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl:
+          (rootUrl + '/upload/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Video>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Video>(parameters);
+    }
+  }
 
 
   /**
@@ -8071,31 +9166,45 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
-       callback?: BodyResponseCallback<Schema$VideoListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$VideoListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$VideoListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VideoListResponse>,
+      callback?: BodyResponseCallback<Schema$VideoListResponse>):
+      void|AxiosPromise<Schema$VideoListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$VideoListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$VideoListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -8112,30 +9221,42 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rate =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos/rate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['id', 'rating'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  rate(params: any, options?: MethodOptions): AxiosPromise<void>;
+  rate(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  rate(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos/rate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['id', 'rating'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -8151,30 +9272,42 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reportAbuse =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos/reportAbuse')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  reportAbuse(params: any, options?: MethodOptions): AxiosPromise<void>;
+  reportAbuse(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  reportAbuse(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos/reportAbuse')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -8191,37 +9324,55 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Video>,
-       callback?: BodyResponseCallback<Schema$Video>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/videos')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['part'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Video>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Video>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Video>,
+      callback?: BodyResponseCallback<Schema$Video>):
+      void|AxiosPromise<Schema$Video> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videos').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['part'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Video>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Video>(parameters);
+    }
+  }
 }
 
 export class Resource$Watermarks {
   root: Youtube;
   constructor(root: Youtube) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * youtube.watermarks.set
@@ -8240,32 +9391,42 @@ export class Resource$Watermarks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  set =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/watermarks/set')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-          requiredParams: ['channelId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  set(params: any, options?: MethodOptions): AxiosPromise<void>;
+  set(params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  set(params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/set')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      mediaUrl: (rootUrl + '/upload/youtube/v3/watermarks/set')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+      requiredParams: ['channelId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -8281,28 +9442,40 @@ export class Resource$Watermarks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unset =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/youtube/v3/watermarks/unset')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['channelId'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  unset(params: any, options?: MethodOptions): AxiosPromise<void>;
+  unset(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  unset(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/watermarks/unset')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['channelId'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }

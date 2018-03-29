@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Androidpublisher {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.purchases = new Resource$Purchases(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -87,7 +94,13 @@ export class Resource$Purchases {
   root: Androidpublisher;
   constructor(root: Androidpublisher) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * androidpublisher.purchases.cancel
@@ -104,32 +117,44 @@ export class Resource$Purchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  cancel(params: any, options?: MethodOptions): AxiosPromise<void>;
+  cancel(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  cancel(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}/cancel')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -147,31 +172,44 @@ export class Resource$Purchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
-       callback?: BodyResponseCallback<Schema$SubscriptionPurchase>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['packageName', 'subscriptionId', 'token'],
-          pathParams: ['packageName', 'subscriptionId', 'token'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+      callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
+      void|AxiosPromise<Schema$SubscriptionPurchase> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/androidpublisher/v1/applications/{packageName}/subscriptions/{subscriptionId}/purchases/{token}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['packageName', 'subscriptionId', 'token'],
+      pathParams: ['packageName', 'subscriptionId', 'token'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SubscriptionPurchase>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
+    }
+  }
 }

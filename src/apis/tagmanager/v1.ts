@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Tagmanager {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.accounts = new Resource$Accounts(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1001,9 +1008,15 @@ export class Resource$Accounts {
   permissions: Resource$Accounts$Permissions;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
     this.containers = new Resource$Accounts$Containers(root);
     this.permissions = new Resource$Accounts$Permissions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.get
@@ -1017,30 +1030,41 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tagmanager/v1/accounts/{accountId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 
 
   /**
@@ -1054,31 +1078,46 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListAccountsResponse>,
-       callback?: BodyResponseCallback<Schema$ListAccountsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tagmanager/v1/accounts')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAccountsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAccountsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccountsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListAccountsResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccountsResponse>):
+      void|AxiosPromise<Schema$ListAccountsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAccountsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAccountsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1095,30 +1134,43 @@ export class Resource$Accounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
-       callback?: BodyResponseCallback<Schema$Account>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/tagmanager/v1/accounts/{accountId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Account>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+      callback?: BodyResponseCallback<Schema$Account>):
+      void|AxiosPromise<Schema$Account> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Account>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Account>(parameters);
+    }
+  }
 }
 export class Resource$Accounts$Containers {
   root: Tagmanager;
@@ -1133,6 +1185,7 @@ export class Resource$Accounts$Containers {
   versions: Resource$Accounts$Containers$Versions;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
     this.environments = new Resource$Accounts$Containers$Environments(root);
     this.folders = new Resource$Accounts$Containers$Folders(root);
     this.move_folders = new Resource$Accounts$Containers$Move_folders(root);
@@ -1143,6 +1196,11 @@ export class Resource$Accounts$Containers {
     this.variables = new Resource$Accounts$Containers$Variables(root);
     this.versions = new Resource$Accounts$Containers$Versions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.create
@@ -1157,32 +1215,45 @@ export class Resource$Accounts$Containers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Container>,
-       callback?: BodyResponseCallback<Schema$Container>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Container>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Container>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>):
+      void|AxiosPromise<Schema$Container> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Container>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Container>(parameters);
+    }
+  }
 
 
   /**
@@ -1198,32 +1269,44 @@ export class Resource$Accounts$Containers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1239,33 +1322,45 @@ export class Resource$Accounts$Containers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Container>,
-       callback?: BodyResponseCallback<Schema$Container>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Container>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Container>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>):
+      void|AxiosPromise<Schema$Container> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Container>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Container>(parameters);
+    }
+  }
 
 
   /**
@@ -1280,33 +1375,48 @@ export class Resource$Accounts$Containers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListContainersResponse>,
-       callback?: BodyResponseCallback<Schema$ListContainersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListContainersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListContainersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListContainersResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListContainersResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainersResponse>):
+      void|AxiosPromise<Schema$ListContainersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/containers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListContainersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListContainersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1324,39 +1434,59 @@ export class Resource$Accounts$Containers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Container>,
-       callback?: BodyResponseCallback<Schema$Container>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Container>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Container>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Container>,
+      callback?: BodyResponseCallback<Schema$Container>):
+      void|AxiosPromise<Schema$Container> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Container>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Container>(parameters);
+    }
+  }
 }
 export class Resource$Accounts$Containers$Environments {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.environments.create
@@ -1372,33 +1502,48 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Environment>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 
 
   /**
@@ -1415,32 +1560,44 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'environmentId'],
-          pathParams: ['accountId', 'containerId', 'environmentId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'environmentId'],
+      pathParams: ['accountId', 'containerId', 'environmentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1457,33 +1614,45 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'environmentId'],
-          pathParams: ['accountId', 'containerId', 'environmentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'environmentId'],
+      pathParams: ['accountId', 'containerId', 'environmentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 
 
   /**
@@ -1499,35 +1668,50 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListEnvironmentsResponse>,
-       callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListEnvironmentsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListEnvironmentsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListEnvironmentsResponse>,
+      callback?: BodyResponseCallback<Schema$ListEnvironmentsResponse>):
+      void|AxiosPromise<Schema$ListEnvironmentsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListEnvironmentsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListEnvironmentsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1546,33 +1730,47 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'environmentId'],
-          pathParams: ['accountId', 'containerId', 'environmentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'environmentId'],
+      pathParams: ['accountId', 'containerId', 'environmentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 
 
   /**
@@ -1591,33 +1789,48 @@ export class Resource$Accounts$Containers$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'environmentId'],
-          pathParams: ['accountId', 'containerId', 'environmentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Environment>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/environments/{environmentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'environmentId'],
+      pathParams: ['accountId', 'containerId', 'environmentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Folders {
@@ -1625,8 +1838,14 @@ export class Resource$Accounts$Containers$Folders {
   entities: Resource$Accounts$Containers$Folders$Entities;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
     this.entities = new Resource$Accounts$Containers$Folders$Entities(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.folders.create
@@ -1642,32 +1861,45 @@ export class Resource$Accounts$Containers$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-       callback?: BodyResponseCallback<Schema$Folder>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Folder>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>):
+      void|AxiosPromise<Schema$Folder> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Folder>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Folder>(parameters);
+    }
+  }
 
 
   /**
@@ -1684,32 +1916,44 @@ export class Resource$Accounts$Containers$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'folderId'],
-          pathParams: ['accountId', 'containerId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'folderId'],
+      pathParams: ['accountId', 'containerId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -1726,32 +1970,43 @@ export class Resource$Accounts$Containers$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-       callback?: BodyResponseCallback<Schema$Folder>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'folderId'],
-          pathParams: ['accountId', 'containerId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Folder>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>):
+      void|AxiosPromise<Schema$Folder> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'folderId'],
+      pathParams: ['accountId', 'containerId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Folder>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Folder>(parameters);
+    }
+  }
 
 
   /**
@@ -1767,33 +2022,48 @@ export class Resource$Accounts$Containers$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
-       callback?: BodyResponseCallback<Schema$ListFoldersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListFoldersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListFoldersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFoldersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
+      callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
+      void|AxiosPromise<Schema$ListFoldersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListFoldersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListFoldersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1812,38 +2082,57 @@ export class Resource$Accounts$Containers$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
-       callback?: BodyResponseCallback<Schema$Folder>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'folderId'],
-          pathParams: ['accountId', 'containerId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Folder>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      callback?: BodyResponseCallback<Schema$Folder>):
+      void|AxiosPromise<Schema$Folder> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'folderId'],
+      pathParams: ['accountId', 'containerId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Folder>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Folder>(parameters);
+    }
+  }
 }
 export class Resource$Accounts$Containers$Folders$Entities {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.folders.entities.list
@@ -1859,33 +2148,48 @@ export class Resource$Accounts$Containers$Folders$Entities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
-       callback?: BodyResponseCallback<Schema$FolderEntities>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'folderId'],
-          pathParams: ['accountId', 'containerId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$FolderEntities>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$FolderEntities>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
+      callback?: BodyResponseCallback<Schema$FolderEntities>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$FolderEntities>,
+      callback?: BodyResponseCallback<Schema$FolderEntities>):
+      void|AxiosPromise<Schema$FolderEntities> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/folders/{folderId}/entities')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'folderId'],
+      pathParams: ['accountId', 'containerId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$FolderEntities>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$FolderEntities>(parameters);
+    }
+  }
 }
 
 
@@ -1893,7 +2197,13 @@ export class Resource$Accounts$Containers$Move_folders {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.move_folders.update
@@ -1913,39 +2223,57 @@ export class Resource$Accounts$Containers$Move_folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'folderId'],
-          pathParams: ['accountId', 'containerId', 'folderId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<void>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/move_folders/{folderId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'folderId'],
+      pathParams: ['accountId', 'containerId', 'folderId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Reauthorize_environments {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.reauthorize_environments.update
@@ -1962,40 +2290,61 @@ export class Resource$Accounts$Containers$Reauthorize_environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Environment>,
-       callback?: BodyResponseCallback<Schema$Environment>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'environmentId'],
-          pathParams: ['accountId', 'containerId', 'environmentId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Environment>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Environment>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      callback?: BodyResponseCallback<Schema$Environment>):
+      void|AxiosPromise<Schema$Environment> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/reauthorize_environments/{environmentId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'environmentId'],
+      pathParams: ['accountId', 'containerId', 'environmentId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Environment>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Environment>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Tags {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.tags.create
@@ -2011,32 +2360,45 @@ export class Resource$Accounts$Containers$Tags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-       callback?: BodyResponseCallback<Schema$Tag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Tag>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>):
+      void|AxiosPromise<Schema$Tag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Tag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Tag>(parameters);
+    }
+  }
 
 
   /**
@@ -2053,32 +2415,44 @@ export class Resource$Accounts$Containers$Tags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'tagId'],
-          pathParams: ['accountId', 'containerId', 'tagId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'tagId'],
+      pathParams: ['accountId', 'containerId', 'tagId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2095,32 +2469,43 @@ export class Resource$Accounts$Containers$Tags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-       callback?: BodyResponseCallback<Schema$Tag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'tagId'],
-          pathParams: ['accountId', 'containerId', 'tagId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Tag>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>):
+      void|AxiosPromise<Schema$Tag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'tagId'],
+      pathParams: ['accountId', 'containerId', 'tagId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Tag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Tag>(parameters);
+    }
+  }
 
 
   /**
@@ -2136,33 +2521,48 @@ export class Resource$Accounts$Containers$Tags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTagsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTagsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTagsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTagsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTagsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTagsResponse>):
+      void|AxiosPromise<Schema$ListTagsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTagsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTagsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2181,39 +2581,58 @@ export class Resource$Accounts$Containers$Tags {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
-       callback?: BodyResponseCallback<Schema$Tag>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'tagId'],
-          pathParams: ['accountId', 'containerId', 'tagId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Tag>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Tag>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tag>,
+      callback?: BodyResponseCallback<Schema$Tag>):
+      void|AxiosPromise<Schema$Tag> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/tags/{tagId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'tagId'],
+      pathParams: ['accountId', 'containerId', 'tagId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Tag>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Tag>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Triggers {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.triggers.create
@@ -2229,32 +2648,45 @@ export class Resource$Accounts$Containers$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-       callback?: BodyResponseCallback<Schema$Trigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Trigger>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>):
+      void|AxiosPromise<Schema$Trigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Trigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Trigger>(parameters);
+    }
+  }
 
 
   /**
@@ -2271,32 +2703,44 @@ export class Resource$Accounts$Containers$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'triggerId'],
-          pathParams: ['accountId', 'containerId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'triggerId'],
+      pathParams: ['accountId', 'containerId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2313,32 +2757,43 @@ export class Resource$Accounts$Containers$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-       callback?: BodyResponseCallback<Schema$Trigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'triggerId'],
-          pathParams: ['accountId', 'containerId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Trigger>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>):
+      void|AxiosPromise<Schema$Trigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'triggerId'],
+      pathParams: ['accountId', 'containerId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Trigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Trigger>(parameters);
+    }
+  }
 
 
   /**
@@ -2354,33 +2809,48 @@ export class Resource$Accounts$Containers$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListTriggersResponse>,
-       callback?: BodyResponseCallback<Schema$ListTriggersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTriggersResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTriggersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTriggersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTriggersResponse>,
+      callback?: BodyResponseCallback<Schema$ListTriggersResponse>):
+      void|AxiosPromise<Schema$ListTriggersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTriggersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTriggersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2399,39 +2869,58 @@ export class Resource$Accounts$Containers$Triggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
-       callback?: BodyResponseCallback<Schema$Trigger>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'triggerId'],
-          pathParams: ['accountId', 'containerId', 'triggerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Trigger>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Trigger>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Trigger>,
+      callback?: BodyResponseCallback<Schema$Trigger>):
+      void|AxiosPromise<Schema$Trigger> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/triggers/{triggerId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'triggerId'],
+      pathParams: ['accountId', 'containerId', 'triggerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Trigger>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Trigger>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Variables {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.variables.create
@@ -2447,33 +2936,46 @@ export class Resource$Accounts$Containers$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 
 
   /**
@@ -2490,32 +2992,44 @@ export class Resource$Accounts$Containers$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'variableId'],
-          pathParams: ['accountId', 'containerId', 'variableId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'variableId'],
+      pathParams: ['accountId', 'containerId', 'variableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2532,33 +3046,44 @@ export class Resource$Accounts$Containers$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'variableId'],
-          pathParams: ['accountId', 'containerId', 'variableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'variableId'],
+      pathParams: ['accountId', 'containerId', 'variableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 
 
   /**
@@ -2574,34 +3099,49 @@ export class Resource$Accounts$Containers$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListVariablesResponse>,
-       callback?: BodyResponseCallback<Schema$ListVariablesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListVariablesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListVariablesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListVariablesResponse>,
+      callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
+      void|AxiosPromise<Schema$ListVariablesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListVariablesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListVariablesResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2620,40 +3160,59 @@ export class Resource$Accounts$Containers$Variables {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Variable>,
-       callback?: BodyResponseCallback<Schema$Variable>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'variableId'],
-          pathParams: ['accountId', 'containerId', 'variableId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Variable>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+      callback?: BodyResponseCallback<Schema$Variable>):
+      void|AxiosPromise<Schema$Variable> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/variables/{variableId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'variableId'],
+      pathParams: ['accountId', 'containerId', 'variableId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Variable>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Variable>(parameters);
+    }
+  }
 }
 
 export class Resource$Accounts$Containers$Versions {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.containers.versions.create
@@ -2669,36 +3228,53 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreateContainerVersionResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CreateContainerVersionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreateContainerVersionResponse>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreateContainerVersionResponse>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$CreateContainerVersionResponse>):
+      void|AxiosPromise<Schema$CreateContainerVersionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreateContainerVersionResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreateContainerVersionResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2715,32 +3291,44 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -2757,33 +3345,46 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-       callback?: BodyResponseCallback<Schema$ContainerVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ContainerVersion>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>):
+      void|AxiosPromise<Schema$ContainerVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContainerVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -2801,36 +3402,52 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListContainerVersionsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListContainerVersionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId'],
-          pathParams: ['accountId', 'containerId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListContainerVersionsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListContainerVersionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListContainerVersionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContainerVersionsResponse>):
+      void|AxiosPromise<Schema$ListContainerVersionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId'],
+      pathParams: ['accountId', 'containerId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListContainerVersionsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListContainerVersionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2848,36 +3465,53 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  publish =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$PublishContainerVersionResponse>,
-       callback?:
-           BodyResponseCallback<Schema$PublishContainerVersionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PublishContainerVersionResponse>(
-            parameters, callback!);
-      };
+  publish(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PublishContainerVersionResponse>;
+  publish(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
+      void;
+  publish(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$PublishContainerVersionResponse>,
+      callback?: BodyResponseCallback<Schema$PublishContainerVersionResponse>):
+      void|AxiosPromise<Schema$PublishContainerVersionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/publish')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PublishContainerVersionResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PublishContainerVersionResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2897,33 +3531,48 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restore =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-       callback?: BodyResponseCallback<Schema$ContainerVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback!);
-      };
+  restore(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContainerVersion>;
+  restore(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+  restore(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>):
+      void|AxiosPromise<Schema$ContainerVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/restore')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContainerVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -2940,33 +3589,48 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-       callback?: BodyResponseCallback<Schema$ContainerVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback!);
-      };
+  undelete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContainerVersion>;
+  undelete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+  undelete(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>):
+      void|AxiosPromise<Schema$ContainerVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}/undelete')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContainerVersion>(parameters);
+    }
+  }
 
 
   /**
@@ -2985,33 +3649,48 @@ export class Resource$Accounts$Containers$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
-       callback?: BodyResponseCallback<Schema$ContainerVersion>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'containerId', 'containerVersionId'],
-          pathParams: ['accountId', 'containerId', 'containerVersionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContainerVersion>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContainerVersion>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContainerVersion>,
+      callback?: BodyResponseCallback<Schema$ContainerVersion>):
+      void|AxiosPromise<Schema$ContainerVersion> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/containers/{containerId}/versions/{containerVersionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'containerId', 'containerVersionId'],
+      pathParams: ['accountId', 'containerId', 'containerVersionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContainerVersion>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContainerVersion>(parameters);
+    }
+  }
 }
 
 
@@ -3019,7 +3698,13 @@ export class Resource$Accounts$Permissions {
   root: Tagmanager;
   constructor(root: Tagmanager) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * tagmanager.accounts.permissions.create
@@ -3034,32 +3719,45 @@ export class Resource$Accounts$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-       callback?: BodyResponseCallback<Schema$UserAccess>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/tagmanager/v1/accounts/{accountId}/permissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserAccess>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>):
+      void|AxiosPromise<Schema$UserAccess> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserAccess>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserAccess>(parameters);
+    }
+  }
 
 
   /**
@@ -3076,32 +3774,44 @@ export class Resource$Accounts$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'permissionId'],
-          pathParams: ['accountId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'permissionId'],
+      pathParams: ['accountId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -3117,33 +3827,45 @@ export class Resource$Accounts$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-       callback?: BodyResponseCallback<Schema$UserAccess>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'permissionId'],
-          pathParams: ['accountId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserAccess>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>):
+      void|AxiosPromise<Schema$UserAccess> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'permissionId'],
+      pathParams: ['accountId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserAccess>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserAccess>(parameters);
+    }
+  }
 
 
   /**
@@ -3159,34 +3881,48 @@ export class Resource$Accounts$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListAccountUsersResponse>,
-       callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/tagmanager/v1/accounts/{accountId}/permissions')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['accountId'],
-          pathParams: ['accountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListAccountUsersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListAccountUsersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListAccountUsersResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListAccountUsersResponse>,
+      callback?: BodyResponseCallback<Schema$ListAccountUsersResponse>):
+      void|AxiosPromise<Schema$ListAccountUsersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/tagmanager/v1/accounts/{accountId}/permissions')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListAccountUsersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListAccountUsersResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -3203,31 +3939,45 @@ export class Resource$Accounts$Permissions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
-       callback?: BodyResponseCallback<Schema$UserAccess>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['accountId', 'permissionId'],
-          pathParams: ['accountId', 'permissionId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$UserAccess>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$UserAccess>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UserAccess>,
+      callback?: BodyResponseCallback<Schema$UserAccess>):
+      void|AxiosPromise<Schema$UserAccess> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/tagmanager/v1/accounts/{accountId}/permissions/{permissionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['accountId', 'permissionId'],
+      pathParams: ['accountId', 'permissionId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UserAccess>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UserAccess>(parameters);
+    }
+  }
 }

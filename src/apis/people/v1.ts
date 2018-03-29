@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,9 +54,14 @@ export class People {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.contactGroups = new Resource$Contactgroups(this);
     this.people = new Resource$People(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1272,8 +1279,14 @@ export class Resource$Contactgroups {
   members: Resource$Contactgroups$Members;
   constructor(root: People) {
     this.root = root;
+    this.getRoot.bind(this);
     this.members = new Resource$Contactgroups$Members(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * people.contactGroups.batchGet
@@ -1289,34 +1302,50 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchGetContactGroupsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/contactGroups:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchGetContactGroupsResponse>(
-            parameters, callback!);
-      };
+  batchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchGetContactGroupsResponse>;
+  batchGet(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
+      void;
+  batchGet(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchGetContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$BatchGetContactGroupsResponse>):
+      void|AxiosPromise<Schema$BatchGetContactGroupsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/contactGroups:batchGet')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchGetContactGroupsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchGetContactGroupsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1331,31 +1360,45 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-       callback?: BodyResponseCallback<Schema$ContactGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/contactGroups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContactGroup>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContactGroup>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>):
+      void|AxiosPromise<Schema$ContactGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContactGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContactGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -1372,30 +1415,42 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1412,31 +1467,42 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-       callback?: BodyResponseCallback<Schema$ContactGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContactGroup>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ContactGroup>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>):
+      void|AxiosPromise<Schema$ContactGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContactGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContactGroup>(parameters);
+    }
+  }
 
 
   /**
@@ -1454,33 +1520,47 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListContactGroupsResponse>,
-       callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/contactGroups')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListContactGroupsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListContactGroupsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListContactGroupsResponse>,
+      callback?: BodyResponseCallback<Schema$ListContactGroupsResponse>):
+      void|AxiosPromise<Schema$ListContactGroupsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/contactGroups').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListContactGroupsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListContactGroupsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1497,37 +1577,57 @@ export class Resource$Contactgroups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
-       callback?: BodyResponseCallback<Schema$ContactGroup>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ContactGroup>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ContactGroup>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ContactGroup>,
+      callback?: BodyResponseCallback<Schema$ContactGroup>):
+      void|AxiosPromise<Schema$ContactGroup> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ContactGroup>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ContactGroup>(parameters);
+    }
+  }
 }
 export class Resource$Contactgroups$Members {
   root: People;
   constructor(root: People) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * people.contactGroups.members.modify
@@ -1543,34 +1643,52 @@ export class Resource$Contactgroups$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  modify =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}/members:modify')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
-            parameters, callback!);
-      };
+  modify(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ModifyContactGroupMembersResponse>;
+  modify(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback?:
+          BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>): void;
+  modify(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>,
+      callback?:
+          BodyResponseCallback<Schema$ModifyContactGroupMembersResponse>):
+      void|AxiosPromise<Schema$ModifyContactGroupMembersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}/members:modify')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
+          parameters);
+    }
+  }
 }
 
 
@@ -1579,8 +1697,14 @@ export class Resource$People {
   connections: Resource$People$Connections;
   constructor(root: People) {
     this.root = root;
+    this.getRoot.bind(this);
     this.connections = new Resource$People$Connections(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * people.people.createContact
@@ -1595,30 +1719,44 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createContact =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
-       callback?: BodyResponseCallback<Schema$Person>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/people:createContact')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Person>(parameters, callback!);
-      };
+  createContact(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Person>;
+  createContact(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>): void;
+  createContact(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>):
+      void|AxiosPromise<Schema$Person> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:createContact')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Person>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Person>(parameters);
+    }
+  }
 
 
   /**
@@ -1633,30 +1771,44 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteContact =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}:deleteContact')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  deleteContact(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
+  deleteContact(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  deleteContact(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}:deleteContact')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1675,30 +1827,40 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
-       callback?: BodyResponseCallback<Schema$Person>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Person>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Person>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>):
+      void|AxiosPromise<Schema$Person> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Person>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Person>(parameters);
+    }
+  }
 
 
   /**
@@ -1718,31 +1880,46 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getBatchGet =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
-       callback?: BodyResponseCallback<Schema$GetPeopleResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/people:batchGet')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetPeopleResponse>(parameters, callback!);
-      };
+  getBatchGet(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetPeopleResponse>;
+  getBatchGet(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback?: BodyResponseCallback<Schema$GetPeopleResponse>): void;
+  getBatchGet(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetPeopleResponse>,
+      callback?: BodyResponseCallback<Schema$GetPeopleResponse>):
+      void|AxiosPromise<Schema$GetPeopleResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/v1/people:batchGet').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetPeopleResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetPeopleResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1766,36 +1943,56 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateContact =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
-       callback?: BodyResponseCallback<Schema$Person>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}:updateContact')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Person>(parameters, callback!);
-      };
+  updateContact(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Person>;
+  updateContact(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>): void;
+  updateContact(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+      callback?: BodyResponseCallback<Schema$Person>):
+      void|AxiosPromise<Schema$Person> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}:updateContact')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Person>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Person>(parameters);
+    }
+  }
 }
 export class Resource$People$Connections {
   root: People;
   constructor(root: People) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * people.people.connections.list
@@ -1818,30 +2015,46 @@ export class Resource$People$Connections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListConnectionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListConnectionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{resourceName}/connections')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['resourceName'],
-          pathParams: ['resourceName'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListConnectionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListConnectionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListConnectionsResponse>):
+      void|AxiosPromise<Schema$ListConnectionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{resourceName}/connections')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['resourceName'],
+      pathParams: ['resourceName'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListConnectionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListConnectionsResponse>(parameters);
+    }
+  }
 }

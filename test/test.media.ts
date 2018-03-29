@@ -16,7 +16,6 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
@@ -30,7 +29,7 @@ async function testMultpart(drive: APIEndpoint) {
   let expectedResp = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
       {encoding: 'utf8'});
-  const res = await pify(drive.files.insert)({resource, media});
+  const res = await drive.files.insert({resource, media});
   assert.equal(res.config.method.toLowerCase(), 'post');
   assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
   assert.equal(
@@ -52,7 +51,7 @@ async function testMediaBody(drive: APIEndpoint) {
   let expectedResp = fs.readFileSync(
       path.join(__dirname, '../../test/fixtures/media-response.txt'),
       {encoding: 'utf8'});
-  const res = await pify(drive.files.insert)({resource, media});
+  const res = await drive.files.insert({resource, media});
   assert.equal(res.config.method.toLowerCase(), 'post');
   assert.equal(res.config.maxContentLength, Math.pow(2, 31));
   assert.equal(res.request.path, '/upload/drive/v2/files?uploadType=multipart');
@@ -102,7 +101,7 @@ describe('Media', () => {
     const google = new GoogleApis();
     const youtube = google.youtube('v3');
     const progressEvents = new Array<number>();
-    const res = await pify(youtube.videos.insert)(
+    const res = await youtube.videos.insert(
         {
           part: 'id,snippet',
           notifySubscribers: false,
@@ -132,11 +131,11 @@ describe('Media', () => {
            .times(2)
            .reply(200, {fileId: 'abc123'});
 
-       const res = await pify(localDrive.files.insert)(
+       const res = await localDrive.files.insert(
            {resource: {}, media: {body: 'hello'}});
        assert.equal(
            JSON.stringify(res.data), JSON.stringify({fileId: 'abc123'}));
-       const res2 = await pify(remoteDrive.files.insert)(
+       const res2 = await remoteDrive.files.insert(
            {resource: {}, media: {body: 'hello'}});
        assert.equal(
            JSON.stringify(res2.data), JSON.stringify({fileId: 'abc123'}));
@@ -148,12 +147,10 @@ describe('Media', () => {
            .post('/upload/drive/v2/files?uploadType=media')
            .times(2)
            .reply(200, {fileId: 'abc123'});
-       const res =
-           await pify(localDrive.files.insert)({media: {body: 'hello'}});
+       const res = await localDrive.files.insert({media: {body: 'hello'}});
        assert.equal(
            JSON.stringify(res.data), JSON.stringify({fileId: 'abc123'}));
-       const res2 =
-           await pify(remoteDrive.files.insert)({media: {body: 'hello'}});
+       const res2 = await remoteDrive.files.insert({media: {body: 'hello'}});
        assert.equal(
            JSON.stringify(res2.data), JSON.stringify({fileId: 'abc123'}));
      });
@@ -168,12 +165,12 @@ describe('Media', () => {
                               // for testing purposes
            });
        const media = {body: 'hey'};
-       const res = await pify(localDrive.files.insert)({media});
+       const res = await localDrive.files.insert({media});
        assert.equal(res.config.method.toLowerCase(), 'post');
        assert.equal(
            res.request.path, '/upload/drive/v2/files?uploadType=media');
        assert.strictEqual(media.body, res.data);
-       const res2 = await pify(remoteDrive.files.insert)({media});
+       const res2 = await remoteDrive.files.insert({media});
        assert.equal(res.config.method.toLowerCase(), 'post');
        assert.equal(
            res.request.path, '/upload/drive/v2/files?uploadType=media');
@@ -198,10 +195,10 @@ describe('Media', () => {
         .post('/upload/drive/v2/files?someAttr=someValue&uploadType=media')
         .twice()
         .reply(200);
-    const res = await pify(localDrive.files.insert)(
+    const res = await localDrive.files.insert(
         {someAttr: 'someValue', media: {body: 'wat'}});
     assert.equal(Utils.getQs(res), 'someAttr=someValue&uploadType=media');
-    const res2 = await pify(remoteDrive.files.insert)(
+    const res2 = await remoteDrive.files.insert(
         {someAttr: 'someValue', media: {body: 'wat'}});
     assert.equal(Utils.getQs(res2), 'someAttr=someValue&uploadType=media');
   });
@@ -211,9 +208,9 @@ describe('Media', () => {
         .post('/drive/v2/files?someAttr=someValue')
         .twice()
         .reply(200);
-    const res = await pify(localDrive.files.insert)({someAttr: 'someValue'});
+    const res = await localDrive.files.insert({someAttr: 'someValue'});
     assert.equal(Utils.getQs(res), 'someAttr=someValue');
-    const res2 = await pify(remoteDrive.files.insert)({someAttr: 'someValue'});
+    const res2 = await remoteDrive.files.insert({someAttr: 'someValue'});
     assert.equal(Utils.getQs(res2), 'someAttr=someValue');
   });
 
@@ -241,12 +238,12 @@ describe('Media', () => {
     const resource = {
       message: {raw: (new Buffer('hello', 'binary')).toString('base64')}
     };
-    const res = await pify(localGmail.users.drafts.create)(
+    const res = await localGmail.users.drafts.create(
         {userId: 'me', resource, media: {mimeType: 'message/rfc822'}});
     assert.equal(
         res.request.headers['content-type'].indexOf('application/json'), 0);
     assert.equal(JSON.stringify(res.data), JSON.stringify(resource));
-    const res2 = await pify(remoteGmail.users.drafts.create)(
+    const res2 = await remoteGmail.users.drafts.create(
         {userId: 'me', resource, media: {mimeType: 'message/rfc822'}});
     assert.equal(
         res2.request.headers['content-type'].indexOf('application/json'), 0);
@@ -266,14 +263,14 @@ describe('Media', () => {
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        let expectedBody = fs.readFileSync(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
-       const res = await pify(localGmail.users.drafts.create)(
+       const res = await localGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}});
        assert.equal(res.data, expectedBody);
        body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        expectedBody = fs.readFileSync(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
-       const res2 = await pify(remoteGmail.users.drafts.create)(
+       const res2 = await remoteGmail.users.drafts.create(
            {userId: 'me', media: {mimeType: 'message/rfc822', body}});
        assert.equal(res2.data, expectedBody);
      });
@@ -299,8 +296,8 @@ describe('Media', () => {
     let expectedBody = fs.readFileSync(
         path.join(__dirname, '../../test/fixtures/media-response.txt'),
         {encoding: 'utf8'});
-    const res = await pify(localGmail.users.drafts.create)(
-        {userId: 'me', resource, media});
+    const res =
+        await localGmail.users.drafts.create({userId: 'me', resource, media});
     const boundary =
         res.request.headers['content-type'].replace(boundaryPrefix, '');
     expectedBody = expectedBody.replace(/\n/g, '\r\n')
@@ -322,8 +319,8 @@ describe('Media', () => {
     expectedBody = fs.readFileSync(
         path.join(__dirname, '../../test/fixtures/media-response.txt'),
         {encoding: 'utf8'});
-    const res2 = await pify(remoteGmail.users.drafts.create)(
-        {userId: 'me', resource, media});
+    const res2 =
+        await remoteGmail.users.drafts.create({userId: 'me', resource, media});
     const boundary2 =
         res2.request.headers['content-type'].replace(boundaryPrefix, '');
     expectedBody = expectedBody.replace(/\n/g, '\r\n')
@@ -350,7 +347,7 @@ describe('Media', () => {
        const body = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        let media = {mimeType: 'message/rfc822', body};
-       const res = await pify(localGmail.users.drafts.create)(
+       const res = await localGmail.users.drafts.create(
            {userId: 'me', resource, media});
        assert.equal(typeof res.data, 'object');
        assert.equal(res.data.hello, 'world');
@@ -361,7 +358,7 @@ describe('Media', () => {
        const body2 = fs.createReadStream(
            path.join(__dirname, '../../test/fixtures/mediabody.txt'));
        media = {mimeType: 'message/rfc822', body: body2};
-       const res2 = await pify(remoteGmail.users.drafts.create)(
+       const res2 = await remoteGmail.users.drafts.create(
            {userId: 'me', resource, media});
        assert.equal(typeof res2.data, 'object');
        assert.equal(res2.data.hello, 'world');

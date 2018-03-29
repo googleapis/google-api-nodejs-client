@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Oauth2 {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.userinfo = new Resource$Userinfo(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 
 
@@ -66,30 +73,43 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getCertForOpenIdConnect =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$X509>,
-       callback?: BodyResponseCallback<Schema$X509>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/oauth2/v1/certs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$X509>(parameters, callback!);
-      };
+  getCertForOpenIdConnect(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$X509>;
+  getCertForOpenIdConnect(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$X509>,
+      callback?: BodyResponseCallback<Schema$X509>): void;
+  getCertForOpenIdConnect(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$X509>,
+      callback?: BodyResponseCallback<Schema$X509>):
+      void|AxiosPromise<Schema$X509> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/oauth2/v1/certs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$X509>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$X509>(parameters);
+    }
+  }
 
 
   /**
@@ -102,30 +122,44 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getCertForOpenIdConnectRaw =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Raw>,
-       callback?: BodyResponseCallback<Schema$Raw>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/oauth2/v1/raw_public_keys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Raw>(parameters, callback!);
-      };
+  getCertForOpenIdConnectRaw(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Raw>;
+  getCertForOpenIdConnectRaw(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Raw>,
+      callback?: BodyResponseCallback<Schema$Raw>): void;
+  getCertForOpenIdConnectRaw(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Raw>,
+      callback?: BodyResponseCallback<Schema$Raw>):
+      void|AxiosPromise<Schema$Raw> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/oauth2/v1/raw_public_keys')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Raw>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Raw>(parameters);
+    }
+  }
 
 
   /**
@@ -139,30 +173,43 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRobotJwk =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
-       callback?: BodyResponseCallback<Schema$Jwk>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/service_accounts/v1/jwk/{robotEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['robotEmail'],
-          pathParams: ['robotEmail'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Jwk>(parameters, callback!);
-      };
+  getRobotJwk(params: any, options?: MethodOptions): AxiosPromise<Schema$Jwk>;
+  getRobotJwk(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
+      callback?: BodyResponseCallback<Schema$Jwk>): void;
+  getRobotJwk(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
+      callback?: BodyResponseCallback<Schema$Jwk>):
+      void|AxiosPromise<Schema$Jwk> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/service_accounts/v1/jwk/{robotEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Jwk>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Jwk>(parameters);
+    }
+  }
 
 
   /**
@@ -176,31 +223,44 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRobotMetadataRaw =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Raw>,
-       callback?: BodyResponseCallback<Schema$Raw>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/service_accounts/v1/metadata/raw/{robotEmail}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['robotEmail'],
-          pathParams: ['robotEmail'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Raw>(parameters, callback!);
-      };
+  getRobotMetadataRaw(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Raw>;
+  getRobotMetadataRaw(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Raw>,
+      callback?: BodyResponseCallback<Schema$Raw>): void;
+  getRobotMetadataRaw(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Raw>,
+      callback?: BodyResponseCallback<Schema$Raw>):
+      void|AxiosPromise<Schema$Raw> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/service_accounts/v1/metadata/raw/{robotEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Raw>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Raw>(parameters);
+    }
+  }
 
 
   /**
@@ -214,31 +274,44 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRobotMetadataX509 =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$X509>,
-       callback?: BodyResponseCallback<Schema$X509>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/service_accounts/v1/metadata/x509/{robotEmail}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['robotEmail'],
-          pathParams: ['robotEmail'],
-          context: this.root
-        };
-        createAPIRequest<Schema$X509>(parameters, callback!);
-      };
+  getRobotMetadataX509(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$X509>;
+  getRobotMetadataX509(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$X509>,
+      callback?: BodyResponseCallback<Schema$X509>): void;
+  getRobotMetadataX509(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$X509>,
+      callback?: BodyResponseCallback<Schema$X509>):
+      void|AxiosPromise<Schema$X509> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/service_accounts/v1/metadata/x509/{robotEmail}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['robotEmail'],
+      pathParams: ['robotEmail'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$X509>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$X509>(parameters);
+    }
+  }
 
 
   /**
@@ -254,31 +327,46 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  tokeninfo =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
-       callback?: BodyResponseCallback<Schema$Tokeninfo>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/oauth2/v1/tokeninfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Tokeninfo>(parameters, callback!);
-      };
+  tokeninfo(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Tokeninfo>;
+  tokeninfo(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
+      callback?: BodyResponseCallback<Schema$Tokeninfo>): void;
+  tokeninfo(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
+      callback?: BodyResponseCallback<Schema$Tokeninfo>):
+      void|AxiosPromise<Schema$Tokeninfo> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/oauth2/v1/tokeninfo')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Tokeninfo>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Tokeninfo>(parameters);
+    }
+  }
 }
 
 export interface Schema$Jwk { keys: any[]; }
@@ -391,8 +479,14 @@ export class Resource$Userinfo {
   v2: Resource$Userinfo$V2;
   constructor(root: Oauth2) {
     this.root = root;
+    this.getRoot.bind(this);
     this.v2 = new Resource$Userinfo$V2(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * oauth2.userinfo.get
@@ -405,45 +499,68 @@ export class Resource$Userinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
-       callback?: BodyResponseCallback<Schema$Userinfoplus>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/oauth2/v1/userinfo')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Userinfoplus>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>):
+      void|AxiosPromise<Schema$Userinfoplus> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/oauth2/v1/userinfo').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Userinfoplus>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Userinfoplus>(parameters);
+    }
+  }
 }
 export class Resource$Userinfo$V2 {
   root: Oauth2;
   me: Resource$Userinfo$V2$Me;
   constructor(root: Oauth2) {
     this.root = root;
+    this.getRoot.bind(this);
     this.me = new Resource$Userinfo$V2$Me(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Userinfo$V2$Me {
   root: Oauth2;
   constructor(root: Oauth2) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * oauth2.userinfo.v2.me.get
@@ -456,29 +573,40 @@ export class Resource$Userinfo$V2$Me {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
-       callback?: BodyResponseCallback<Schema$Userinfoplus>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Userinfoplus>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+      callback?: BodyResponseCallback<Schema$Userinfoplus>):
+      void|AxiosPromise<Schema$Userinfoplus> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/userinfo/v2/me').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Userinfoplus>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Userinfoplus>(parameters);
+    }
+  }
 }

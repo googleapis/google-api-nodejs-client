@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Oslogin {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.users = new Resource$Users(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -159,9 +166,15 @@ export class Resource$Users {
   sshPublicKeys: Resource$Users$Sshpublickeys;
   constructor(root: Oslogin) {
     this.root = root;
+    this.getRoot.bind(this);
     this.projects = new Resource$Users$Projects(root);
     this.sshPublicKeys = new Resource$Users$Sshpublickeys(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * oslogin.users.getLoginProfile
@@ -176,31 +189,46 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getLoginProfile =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
-       callback?: BodyResponseCallback<Schema$LoginProfile>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha/{name}/loginProfile')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$LoginProfile>(parameters, callback!);
-      };
+  getLoginProfile(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$LoginProfile>;
+  getLoginProfile(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+      callback?: BodyResponseCallback<Schema$LoginProfile>): void;
+  getLoginProfile(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+      callback?: BodyResponseCallback<Schema$LoginProfile>):
+      void|AxiosPromise<Schema$LoginProfile> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{name}/loginProfile')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$LoginProfile>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$LoginProfile>(parameters);
+    }
+  }
 
 
   /**
@@ -219,39 +247,60 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  importSshPublicKey =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
-       callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ImportSshPublicKeyResponse>(
-            parameters, callback!);
-      };
+  importSshPublicKey(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ImportSshPublicKeyResponse>;
+  importSshPublicKey(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+      callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>): void;
+  importSshPublicKey(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+      callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
+      void|AxiosPromise<Schema$ImportSshPublicKeyResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ImportSshPublicKeyResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ImportSshPublicKeyResponse>(parameters);
+    }
+  }
 }
 export class Resource$Users$Projects {
   root: Oslogin;
   constructor(root: Oslogin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * oslogin.users.projects.delete
@@ -265,37 +314,55 @@ export class Resource$Users$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 }
 
 export class Resource$Users$Sshpublickeys {
   root: Oslogin;
   constructor(root: Oslogin) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * oslogin.users.sshPublicKeys.delete
@@ -309,30 +376,42 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -347,31 +426,42 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
-       callback?: BodyResponseCallback<Schema$SshPublicKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SshPublicKey>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+      callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+      callback?: BodyResponseCallback<Schema$SshPublicKey>):
+      void|AxiosPromise<Schema$SshPublicKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SshPublicKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SshPublicKey>(parameters);
+    }
+  }
 
 
   /**
@@ -389,29 +479,43 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
-       callback?: BodyResponseCallback<Schema$SshPublicKey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SshPublicKey>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SshPublicKey>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+      callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+      callback?: BodyResponseCallback<Schema$SshPublicKey>):
+      void|AxiosPromise<Schema$SshPublicKey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SshPublicKey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SshPublicKey>(parameters);
+    }
+  }
 }

@@ -21,8 +21,8 @@ const analyticsreporting = google.analyticsreporting({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (callback) {
-  analyticsreporting.reports.batchGet({
+async function runSample () {
+  const res = await analyticsreporting.reports.batchGet({
     resource: {
       reportRequests: [{
         viewId: '65704806',
@@ -42,13 +42,9 @@ function runSample (callback) {
         ]
       }]
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
 // if invoked directly (not tests), authenticate and run the samples
@@ -58,7 +54,7 @@ if (module === require.main) {
     if (err) {
       throw err;
     }
-    runSample(() => { /* sample complete */ });
+    runSample().catch(e => console.error);
   });
 }
 

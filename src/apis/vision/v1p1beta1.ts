@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,8 +55,13 @@ export class Vision {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.images = new Resource$Images(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1132,7 +1139,13 @@ export class Resource$Images {
   root: Vision;
   constructor(root: Vision) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * vision.images.annotate
@@ -1146,33 +1159,53 @@ export class Resource$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotate =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<
-           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1p1beta1/images:annotate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<
-            Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>(
-            parameters, callback!);
-      };
+  annotate(params: any, options?: MethodOptions): AxiosPromise<
+      Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
+  annotate(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>): void;
+  annotate(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>):
+      void|AxiosPromise<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://vision.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/images:annotate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<
+          Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>(
+          parameters);
+    }
+  }
 }

@@ -111,6 +111,27 @@ urlshortener.url.get(params, (err, response) => {
 });
 ```
 
+You can also use promises:
+
+``` js
+urlshortener.url.get(params)
+  .then(response => {
+    console.log('Long url is', response.data.longUrl);
+  })
+  .catch(error => console.error);
+```
+
+Or async/await:
+
+``` js
+async function runSample() {
+  const response = await urlshortener.url.get(params);
+  console.log('Long url is', response.data.longUrl);
+}
+runSample().catch(console.error);
+```
+
+
 **Example** Updates an email message's labels, using the `resource`
 parameter to specify the request body.
 
@@ -256,7 +277,7 @@ const {google} = require('googleapis');
 const plus = google.plus('v1');
 const OAuth2 = google.auth.OAuth2;
 
-// WARNING: Make sure your CLIENT_SECRET is stored in a safe place.  
+// WARNING: Make sure your CLIENT_SECRET is stored in a safe place.
 const oauth2Client = new OAuth2(
   YOUR_CLIENT_ID,
   YOUR_CLIENT_SECRET,
@@ -420,9 +441,9 @@ This client supports multipart media uploads. The resource parameters are specif
 This example uploads a plain text file to Google Drive with the title "Test" and contents "Hello World".
 
 ``` js
-const drive = google.drive({ 
-  version: 'v3', 
-  auth: oauth2Client 
+const drive = google.drive({
+  version: 'v3',
+  auth: oauth2Client
 });
 
 drive.files.create({
@@ -445,8 +466,8 @@ Note: Your readable stream may be [unstable][stability]. Use at your own risk.
 
 ```js
 const fs = require('fs');
-const drive = google.drive({ 
-  version: 'v3', 
+const drive = google.drive({
+  version: 'v3',
   auth: oauth2Client
 });
 
@@ -565,7 +586,7 @@ google.auth.getApplicationDefault((err, authClient, projectId) => {
   bigquery.datasets.delete(request, (err, response) => {
     if (err) {
       throw err;
-    } 
+    }
     console.log(response.data);
   });
 });

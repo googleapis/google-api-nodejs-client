@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -53,10 +55,15 @@ export class Chat {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.dms = new Resource$Dms(this);
     this.rooms = new Resource$Rooms(this);
     this.spaces = new Resource$Spaces(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -538,8 +545,13 @@ export class Resource$Dms {
   messages: Resource$Dms$Messages;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
     this.conversations = new Resource$Dms$Conversations(root);
     this.messages = new Resource$Dms$Messages(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Dms$Conversations {
@@ -547,14 +559,25 @@ export class Resource$Dms$Conversations {
   messages: Resource$Dms$Conversations$Messages;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
     this.messages = new Resource$Dms$Conversations$Messages(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Dms$Conversations$Messages {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.dms.conversations.messages.create
@@ -570,30 +593,43 @@ export class Resource$Dms$Conversations$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }
 
 
@@ -601,7 +637,13 @@ export class Resource$Dms$Messages {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.dms.messages.create
@@ -617,30 +659,43 @@ export class Resource$Dms$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }
 
 
@@ -650,8 +705,13 @@ export class Resource$Rooms {
   messages: Resource$Rooms$Messages;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
     this.conversations = new Resource$Rooms$Conversations(root);
     this.messages = new Resource$Rooms$Messages(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Rooms$Conversations {
@@ -659,14 +719,25 @@ export class Resource$Rooms$Conversations {
   messages: Resource$Rooms$Conversations$Messages;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
     this.messages = new Resource$Rooms$Conversations$Messages(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Rooms$Conversations$Messages {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.rooms.conversations.messages.create
@@ -682,30 +753,43 @@ export class Resource$Rooms$Conversations$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }
 
 
@@ -713,7 +797,13 @@ export class Resource$Rooms$Messages {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.rooms.messages.create
@@ -729,30 +819,43 @@ export class Resource$Rooms$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }
 
 
@@ -762,9 +865,15 @@ export class Resource$Spaces {
   messages: Resource$Spaces$Messages;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
     this.members = new Resource$Spaces$Members(root);
     this.messages = new Resource$Spaces$Messages(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.spaces.get
@@ -778,29 +887,40 @@ export class Resource$Spaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Space>,
-       callback?: BodyResponseCallback<Schema$Space>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Space>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Space>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Space>,
+      callback?: BodyResponseCallback<Schema$Space>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Space>,
+      callback?: BodyResponseCallback<Schema$Space>):
+      void|AxiosPromise<Schema$Space> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Space>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Space>(parameters);
+    }
+  }
 
 
   /**
@@ -816,36 +936,57 @@ export class Resource$Spaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
-       callback?: BodyResponseCallback<Schema$ListSpacesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/spaces').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListSpacesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListSpacesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListSpacesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
+      callback?: BodyResponseCallback<Schema$ListSpacesResponse>):
+      void|AxiosPromise<Schema$ListSpacesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/spaces').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListSpacesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListSpacesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Spaces$Members {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.spaces.members.get
@@ -859,30 +1000,42 @@ export class Resource$Spaces$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Membership>,
-       callback?: BodyResponseCallback<Schema$Membership>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Membership>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Membership>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Membership>,
+      callback?: BodyResponseCallback<Schema$Membership>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Membership>,
+      callback?: BodyResponseCallback<Schema$Membership>):
+      void|AxiosPromise<Schema$Membership> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Membership>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Membership>(parameters);
+    }
+  }
 
 
   /**
@@ -899,39 +1052,61 @@ export class Resource$Spaces$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListMembershipsResponse>,
-       callback?: BodyResponseCallback<Schema$ListMembershipsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/members')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListMembershipsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListMembershipsResponse>,
+      callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
+      void|AxiosPromise<Schema$ListMembershipsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/members')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListMembershipsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Spaces$Messages {
   root: Chat;
   constructor(root: Chat) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * chat.spaces.messages.create
@@ -947,30 +1122,43 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/messages')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/messages')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -985,29 +1173,42 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1022,29 +1223,40 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 
 
   /**
@@ -1061,27 +1273,40 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-       callback?: BodyResponseCallback<Schema$Message>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Message>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      callback?: BodyResponseCallback<Schema$Message>):
+      void|AxiosPromise<Schema$Message> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Message>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Message>(parameters);
+    }
+  }
 }

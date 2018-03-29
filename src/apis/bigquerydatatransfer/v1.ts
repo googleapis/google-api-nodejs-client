@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,8 +54,13 @@ export class Bigquerydatatransfer {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -599,16 +606,27 @@ export class Resource$Projects {
   transferConfigs: Resource$Projects$Transferconfigs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.dataSources = new Resource$Projects$Datasources(root);
     this.locations = new Resource$Projects$Locations(root);
     this.transferConfigs = new Resource$Projects$Transferconfigs(root);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 export class Resource$Projects$Datasources {
   root: Bigquerydatatransfer;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.dataSources.checkValidCreds
@@ -627,33 +645,49 @@ export class Resource$Projects$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  checkValidCreds =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CheckValidCredsResponse>,
-       callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:checkValidCreds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback!);
-      };
+  checkValidCreds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CheckValidCredsResponse>;
+  checkValidCreds(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+  checkValidCreds(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>):
+      void|AxiosPromise<Schema$CheckValidCredsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:checkValidCreds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -669,31 +703,43 @@ export class Resource$Projects$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -711,33 +757,49 @@ export class Resource$Projects$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDataSourcesResponse>,
-       callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/dataSources')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDataSourcesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
+      void|AxiosPromise<Schema$ListDataSourcesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/dataSources')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Locations {
@@ -746,10 +808,16 @@ export class Resource$Projects$Locations {
   transferConfigs: Resource$Projects$Locations$Transferconfigs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.dataSources = new Resource$Projects$Locations$Datasources(root);
     this.transferConfigs =
         new Resource$Projects$Locations$Transferconfigs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.locations.get
@@ -763,31 +831,42 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Location>,
-       callback?: BodyResponseCallback<Schema$Location>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Location>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+      callback?: BodyResponseCallback<Schema$Location>):
+      void|AxiosPromise<Schema$Location> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Location>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Location>(parameters);
+    }
+  }
 
 
   /**
@@ -805,39 +884,60 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListLocationsResponse>,
-       callback?: BodyResponseCallback<Schema$ListLocationsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}/locations')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListLocationsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListLocationsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
+      void|AxiosPromise<Schema$ListLocationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}/locations')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListLocationsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Datasources {
   root: Bigquerydatatransfer;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
@@ -856,33 +956,49 @@ export class Resource$Projects$Locations$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  checkValidCreds =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CheckValidCredsResponse>,
-       callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}:checkValidCreds')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback!);
-      };
+  checkValidCreds(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CheckValidCredsResponse>;
+  checkValidCreds(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>): void;
+  checkValidCreds(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CheckValidCredsResponse>,
+      callback?: BodyResponseCallback<Schema$CheckValidCredsResponse>):
+      void|AxiosPromise<Schema$CheckValidCredsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}:checkValidCreds')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CheckValidCredsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -898,31 +1014,43 @@ export class Resource$Projects$Locations$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-       callback?: BodyResponseCallback<Schema$DataSource>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DataSource>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+      callback?: BodyResponseCallback<Schema$DataSource>):
+      void|AxiosPromise<Schema$DataSource> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DataSource>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DataSource>(parameters);
+    }
+  }
 
 
   /**
@@ -940,33 +1068,49 @@ export class Resource$Projects$Locations$Datasources {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListDataSourcesResponse>,
-       callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/dataSources')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListDataSourcesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDataSourcesResponse>,
+      callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
+      void|AxiosPromise<Schema$ListDataSourcesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/dataSources')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListDataSourcesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Locations$Transferconfigs {
@@ -974,8 +1118,14 @@ export class Resource$Projects$Locations$Transferconfigs {
   runs: Resource$Projects$Locations$Transferconfigs$Runs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.runs = new Resource$Projects$Locations$Transferconfigs$Runs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.locations.transferConfigs.create
@@ -991,32 +1141,47 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TransferConfig>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1032,30 +1197,43 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1070,31 +1248,44 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$TransferConfig>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1112,34 +1303,51 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferConfigsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferConfigsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
+      void|AxiosPromise<Schema$ListTransferConfigsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferConfigsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1158,31 +1366,46 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TransferConfig>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1201,44 +1424,66 @@ export class Resource$Projects$Locations$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  scheduleRuns =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ScheduleTransferRunsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}:scheduleRuns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters, callback!);
-      };
+  scheduleRuns(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ScheduleTransferRunsResponse>;
+  scheduleRuns(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
+      void;
+  scheduleRuns(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
+      void|AxiosPromise<Schema$ScheduleTransferRunsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}:scheduleRuns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ScheduleTransferRunsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ScheduleTransferRunsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Transferconfigs$Runs {
   root: Bigquerydatatransfer;
   transferLogs: Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.transferLogs =
         new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
@@ -1252,30 +1497,43 @@ export class Resource$Projects$Locations$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1290,31 +1548,43 @@ export class Resource$Projects$Locations$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
-       callback?: BodyResponseCallback<Schema$TransferRun>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferRun>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TransferRun>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>):
+      void|AxiosPromise<Schema$TransferRun> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferRun>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferRun>(parameters);
+    }
+  }
 
 
   /**
@@ -1333,40 +1603,60 @@ export class Resource$Projects$Locations$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferRunsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/runs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferRunsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferRunsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>):
+      void|AxiosPromise<Schema$ListTransferRunsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs {
   root: Bigquerydatatransfer;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
@@ -1384,34 +1674,49 @@ export class Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferLogsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferLogs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferLogsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferLogsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>):
+      void|AxiosPromise<Schema$ListTransferLogsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferLogs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
+    }
+  }
 }
 
 
@@ -1421,8 +1726,14 @@ export class Resource$Projects$Transferconfigs {
   runs: Resource$Projects$Transferconfigs$Runs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.runs = new Resource$Projects$Transferconfigs$Runs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.transferConfigs.create
@@ -1438,32 +1749,47 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TransferConfig>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1479,30 +1805,43 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1517,31 +1856,44 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$TransferConfig>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1559,34 +1911,51 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferConfigsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferConfigs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferConfigsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferConfigsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferConfigsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferConfigsResponse>):
+      void|AxiosPromise<Schema$ListTransferConfigsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferConfigs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferConfigsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1605,31 +1974,46 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
-       callback?: BodyResponseCallback<Schema$TransferConfig>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferConfig>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$TransferConfig>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferConfig>,
+      callback?: BodyResponseCallback<Schema$TransferConfig>):
+      void|AxiosPromise<Schema$TransferConfig> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferConfig>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferConfig>(parameters);
+    }
+  }
 
 
   /**
@@ -1648,44 +2032,66 @@ export class Resource$Projects$Transferconfigs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  scheduleRuns =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ScheduleTransferRunsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}:scheduleRuns')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ScheduleTransferRunsResponse>(
-            parameters, callback!);
-      };
+  scheduleRuns(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ScheduleTransferRunsResponse>;
+  scheduleRuns(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
+      void;
+  scheduleRuns(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ScheduleTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ScheduleTransferRunsResponse>):
+      void|AxiosPromise<Schema$ScheduleTransferRunsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}:scheduleRuns')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ScheduleTransferRunsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ScheduleTransferRunsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Transferconfigs$Runs {
   root: Bigquerydatatransfer;
   transferLogs: Resource$Projects$Transferconfigs$Runs$Transferlogs;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
     this.transferLogs =
         new Resource$Projects$Transferconfigs$Runs$Transferlogs(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.transferConfigs.runs.delete
@@ -1699,30 +2105,43 @@ export class Resource$Projects$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
-       callback?: BodyResponseCallback<Schema$Empty>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Empty>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>): void;
+  delete(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      callback?: BodyResponseCallback<Schema$Empty>):
+      void|AxiosPromise<Schema$Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Empty>(parameters);
+    }
+  }
 
 
   /**
@@ -1737,31 +2156,43 @@ export class Resource$Projects$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
-       callback?: BodyResponseCallback<Schema$TransferRun>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['name'],
-          pathParams: ['name'],
-          context: this.root
-        };
-        createAPIRequest<Schema$TransferRun>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TransferRun>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TransferRun>,
+      callback?: BodyResponseCallback<Schema$TransferRun>):
+      void|AxiosPromise<Schema$TransferRun> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$TransferRun>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$TransferRun>(parameters);
+    }
+  }
 
 
   /**
@@ -1780,40 +2211,60 @@ export class Resource$Projects$Transferconfigs$Runs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferRunsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/runs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferRunsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferRunsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferRunsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferRunsResponse>):
+      void|AxiosPromise<Schema$ListTransferRunsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/runs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferRunsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Transferconfigs$Runs$Transferlogs {
   root: Bigquerydatatransfer;
   constructor(root: Bigquerydatatransfer) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
@@ -1830,32 +2281,47 @@ export class Resource$Projects$Transferconfigs$Runs$Transferlogs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListTransferLogsResponse>,
-       callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl =
-            options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{parent}/transferLogs')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['parent'],
-          pathParams: ['parent'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListTransferLogsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListTransferLogsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListTransferLogsResponse>,
+      callback?: BodyResponseCallback<Schema$ListTransferLogsResponse>):
+      void|AxiosPromise<Schema$ListTransferLogsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{parent}/transferLogs')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListTransferLogsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
+    }
+  }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Doubleclicksearch {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.conversion = new Resource$Conversion(this);
     this.reports = new Resource$Reports(this);
     this.savedColumns = new Resource$Savedcolumns(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -558,7 +565,13 @@ export class Resource$Conversion {
   root: Doubleclicksearch;
   constructor(root: Doubleclicksearch) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclicksearch.conversion.get
@@ -583,36 +596,49 @@ export class Resource$Conversion {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-       callback?: BodyResponseCallback<Schema$ConversionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [
-            'agencyId', 'advertiserId', 'engineAccountId', 'endDate',
-            'rowCount', 'startDate', 'startRow'
-          ],
-          pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionList>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ConversionList>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>):
+      void|AxiosPromise<Schema$ConversionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/engine/{engineAccountId}/conversion')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [
+        'agencyId', 'advertiserId', 'engineAccountId', 'endDate', 'rowCount',
+        'startDate', 'startRow'
+      ],
+      pathParams: ['advertiserId', 'agencyId', 'engineAccountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionList>(parameters);
+    }
+  }
 
 
   /**
@@ -627,31 +653,46 @@ export class Resource$Conversion {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-       callback?: BodyResponseCallback<Schema$ConversionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionList>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConversionList>;
+  insert(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>): void;
+  insert(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>):
+      void|AxiosPromise<Schema$ConversionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionList>(parameters);
+    }
+  }
 
 
   /**
@@ -674,34 +715,49 @@ export class Resource$Conversion {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-       callback?: BodyResponseCallback<Schema$ConversionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: [
-            'advertiserId', 'agencyId', 'endDate', 'engineAccountId',
-            'rowCount', 'startDate', 'startRow'
-          ],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionList>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConversionList>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>):
+      void|AxiosPromise<Schema$ConversionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: [
+        'advertiserId', 'agencyId', 'endDate', 'engineAccountId', 'rowCount',
+        'startDate', 'startRow'
+      ],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionList>(parameters);
+    }
+  }
 
 
   /**
@@ -716,31 +772,46 @@ export class Resource$Conversion {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
-       callback?: BodyResponseCallback<Schema$ConversionList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/conversion')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$ConversionList>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ConversionList>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ConversionList>,
+      callback?: BodyResponseCallback<Schema$ConversionList>):
+      void|AxiosPromise<Schema$ConversionList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/conversion')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ConversionList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ConversionList>(parameters);
+    }
+  }
 
 
   /**
@@ -756,41 +827,62 @@ export class Resource$Conversion {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateAvailability =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
-       callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/doubleclicksearch/v2/conversion/updateAvailability')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$UpdateAvailabilityResponse>(
-            parameters, callback!);
-      };
+  updateAvailability(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$UpdateAvailabilityResponse>;
+  updateAvailability(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>): void;
+  updateAvailability(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UpdateAvailabilityResponse>,
+      callback?: BodyResponseCallback<Schema$UpdateAvailabilityResponse>):
+      void|AxiosPromise<Schema$UpdateAvailabilityResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/doubleclicksearch/v2/conversion/updateAvailability')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
+    }
+  }
 }
 
 export class Resource$Reports {
   root: Doubleclicksearch;
   constructor(root: Doubleclicksearch) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclicksearch.reports.generate
@@ -804,30 +896,43 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generate =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/reports/generate')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  generate(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  generate(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  generate(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/generate')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 
 
   /**
@@ -842,30 +947,41 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['reportId'],
-          pathParams: ['reportId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports/{reportId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['reportId'],
+      pathParams: ['reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 
 
   /**
@@ -881,32 +997,44 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getFile =
-      (params: any, options: MethodOptions|BodyResponseCallback<void>,
-       callback?: BodyResponseCallback<void>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['reportId', 'reportFragment'],
-          pathParams: ['reportFragment', 'reportId'],
-          context: this.root
-        };
-        createAPIRequest<void>(parameters, callback!);
-      };
+  getFile(params: any, options?: MethodOptions): AxiosPromise<void>;
+  getFile(
+      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void;
+  getFile(
+      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/doubleclicksearch/v2/reports/{reportId}/files/{reportFragment}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['reportId', 'reportFragment'],
+      pathParams: ['reportFragment', 'reportId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<void>(parameters, callback);
+    } else {
+      return createAPIRequest<void>(parameters);
+    }
+  }
 
 
   /**
@@ -921,37 +1049,56 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  request =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
-       callback?: BodyResponseCallback<Schema$Report>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/doubleclicksearch/v2/reports')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Report>(parameters, callback!);
-      };
+  request(params: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
+  request(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>): void;
+  request(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+      callback?: BodyResponseCallback<Schema$Report>):
+      void|AxiosPromise<Schema$Report> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/doubleclicksearch/v2/reports')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Report>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Report>(parameters);
+    }
+  }
 }
 
 export class Resource$Savedcolumns {
   root: Doubleclicksearch;
   constructor(root: Doubleclicksearch) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * doubleclicksearch.savedColumns.list
@@ -966,31 +1113,46 @@ export class Resource$Savedcolumns {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
-       callback?: BodyResponseCallback<Schema$SavedColumnList>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['agencyId', 'advertiserId'],
-          pathParams: ['advertiserId', 'agencyId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SavedColumnList>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SavedColumnList>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
+      callback?: BodyResponseCallback<Schema$SavedColumnList>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SavedColumnList>,
+      callback?: BodyResponseCallback<Schema$SavedColumnList>):
+      void|AxiosPromise<Schema$SavedColumnList> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/doubleclicksearch/v2/agency/{agencyId}/advertiser/{advertiserId}/savedcolumns')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['agencyId', 'advertiserId'],
+      pathParams: ['advertiserId', 'agencyId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SavedColumnList>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SavedColumnList>(parameters);
+    }
+  }
 }

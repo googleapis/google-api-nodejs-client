@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -54,10 +56,15 @@ export class Surveys {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.mobileapppanels = new Resource$Mobileapppanels(this);
     this.results = new Resource$Results(this);
     this.surveys = new Resource$Surveys(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -451,7 +458,13 @@ export class Resource$Mobileapppanels {
   root: Surveys;
   constructor(root: Surveys) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * surveys.mobileapppanels.get
@@ -466,31 +479,44 @@ export class Resource$Mobileapppanels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-       callback?: BodyResponseCallback<Schema$MobileAppPanel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['panelId'],
-          pathParams: ['panelId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MobileAppPanel>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$MobileAppPanel>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanel>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanel>):
+      void|AxiosPromise<Schema$MobileAppPanel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['panelId'],
+      pathParams: ['panelId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MobileAppPanel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MobileAppPanel>(parameters);
+    }
+  }
 
 
   /**
@@ -507,33 +533,50 @@ export class Resource$Mobileapppanels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
-       callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/mobileAppPanels')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$MobileAppPanelsListResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MobileAppPanelsListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
+      void|AxiosPromise<Schema$MobileAppPanelsListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/mobileAppPanels')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MobileAppPanelsListResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MobileAppPanelsListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -550,38 +593,59 @@ export class Resource$Mobileapppanels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-       callback?: BodyResponseCallback<Schema$MobileAppPanel>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['panelId'],
-          pathParams: ['panelId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$MobileAppPanel>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$MobileAppPanel>;
+  update(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanel>): void;
+  update(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+      callback?: BodyResponseCallback<Schema$MobileAppPanel>):
+      void|AxiosPromise<Schema$MobileAppPanel> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/mobileAppPanels/{panelId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['panelId'],
+      pathParams: ['panelId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$MobileAppPanel>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$MobileAppPanel>(parameters);
+    }
+  }
 }
 
 export class Resource$Results {
   root: Surveys;
   constructor(root: Surveys) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * surveys.results.get
@@ -598,38 +662,56 @@ export class Resource$Results {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
-       callback?: BodyResponseCallback<Schema$SurveyResults>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['surveyUrlId'],
-          pathParams: ['surveyUrlId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SurveyResults>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SurveyResults>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
+      callback?: BodyResponseCallback<Schema$SurveyResults>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
+      callback?: BodyResponseCallback<Schema$SurveyResults>):
+      void|AxiosPromise<Schema$SurveyResults> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}/results')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['surveyUrlId'],
+      pathParams: ['surveyUrlId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SurveyResults>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SurveyResults>(parameters);
+    }
+  }
 }
 
 export class Resource$Surveys {
   root: Surveys;
   constructor(root: Surveys) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * surveys.surveys.delete
@@ -643,32 +725,47 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$SurveysDeleteResponse>,
-       callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'DELETE'
-              },
-              options),
-          params,
-          requiredParams: ['surveyUrlId'],
-          pathParams: ['surveyUrlId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback!);
-      };
+  delete(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SurveysDeleteResponse>;
+  delete(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SurveysDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+  delete(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SurveysDeleteResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>):
+      void|AxiosPromise<Schema$SurveysDeleteResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['surveyUrlId'],
+      pathParams: ['surveyUrlId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SurveysDeleteResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SurveysDeleteResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -683,30 +780,41 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-       callback?: BodyResponseCallback<Schema$Survey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['surveyUrlId'],
-          pathParams: ['surveyUrlId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Survey>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>):
+      void|AxiosPromise<Schema$Survey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['surveyUrlId'],
+      pathParams: ['surveyUrlId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Survey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Survey>(parameters);
+    }
+  }
 
 
   /**
@@ -721,30 +829,43 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-       callback?: BodyResponseCallback<Schema$Survey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Survey>(parameters, callback!);
-      };
+  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
+  insert(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>): void;
+  insert(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>):
+      void|AxiosPromise<Schema$Survey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Survey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Survey>(parameters);
+    }
+  }
 
 
   /**
@@ -761,31 +882,46 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
-       callback?: BodyResponseCallback<Schema$SurveysListResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$SurveysListResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SurveysListResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysListResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysListResponse>):
+      void|AxiosPromise<Schema$SurveysListResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/surveys/v2/surveys').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SurveysListResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SurveysListResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -801,31 +937,46 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  start =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SurveysStartResponse>,
-       callback?: BodyResponseCallback<Schema$SurveysStartResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resourceId'],
-          pathParams: ['resourceId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SurveysStartResponse>(parameters, callback!);
-      };
+  start(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SurveysStartResponse>;
+  start(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SurveysStartResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+  start(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SurveysStartResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStartResponse>):
+      void|AxiosPromise<Schema$SurveysStartResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{resourceId}/start')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resourceId'],
+      pathParams: ['resourceId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SurveysStartResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SurveysStartResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -840,31 +991,46 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
-       callback?: BodyResponseCallback<Schema$SurveysStopResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['resourceId'],
-          pathParams: ['resourceId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$SurveysStopResponse>(parameters, callback!);
-      };
+  stop(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$SurveysStopResponse>;
+  stop(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+  stop(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
+      callback?: BodyResponseCallback<Schema$SurveysStopResponse>):
+      void|AxiosPromise<Schema$SurveysStopResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{resourceId}/stop')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['resourceId'],
+      pathParams: ['resourceId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$SurveysStopResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$SurveysStopResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -881,28 +1047,41 @@ export class Resource$Surveys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
-       callback?: BodyResponseCallback<Schema$Survey>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PUT'
-              },
-              options),
-          params,
-          requiredParams: ['surveyUrlId'],
-          pathParams: ['surveyUrlId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Survey>(parameters, callback!);
-      };
+  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
+  update(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>): void;
+  update(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+      callback?: BodyResponseCallback<Schema$Survey>):
+      void|AxiosPromise<Schema$Survey> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/surveys/v2/surveys/{surveyUrlId}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT'
+          },
+          options),
+      params,
+      requiredParams: ['surveyUrlId'],
+      pathParams: ['surveyUrlId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Survey>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Survey>(parameters);
+    }
+  }
 }

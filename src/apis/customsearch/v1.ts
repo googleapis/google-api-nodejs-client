@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Customsearch {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.cse = new Resource$Cse(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -139,8 +146,14 @@ export class Resource$Cse {
   siterestrict: Resource$Cse$Siterestrict;
   constructor(root: Customsearch) {
     this.root = root;
+    this.getRoot.bind(this);
     this.siterestrict = new Resource$Cse$Siterestrict(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * search.cse.list
@@ -185,36 +198,54 @@ export class Resource$Cse {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
-       callback?: BodyResponseCallback<Schema$Search>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/customsearch/v1')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['q'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Search>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>):
+      void|AxiosPromise<Schema$Search> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/customsearch/v1').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['q'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Search>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Search>(parameters);
+    }
+  }
 }
 export class Resource$Cse$Siterestrict {
   root: Customsearch;
   constructor(root: Customsearch) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * search.cse.siterestrict.list
@@ -260,28 +291,41 @@ export class Resource$Cse$Siterestrict {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
-       callback?: BodyResponseCallback<Schema$Search>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/customsearch/v1/siterestrict')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['q'],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$Search>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
+  list(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>): void;
+  list(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+      callback?: BodyResponseCallback<Schema$Search>):
+      void|AxiosPromise<Schema$Search> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/customsearch/v1/siterestrict')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['q'],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Search>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Search>(parameters);
+    }
+  }
 }

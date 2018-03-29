@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -51,8 +53,13 @@ export class Toolresults {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.projects = new Resource$Projects(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -1352,8 +1359,14 @@ export class Resource$Projects {
   histories: Resource$Projects$Histories;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
     this.histories = new Resource$Projects$Histories(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.getSettings
@@ -1369,32 +1382,47 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getSettings =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-       callback?: BodyResponseCallback<Schema$ProjectSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/toolresults/v1beta3/projects/{projectId}/settings')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProjectSettings>(parameters, callback!);
-      };
+  getSettings(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProjectSettings>;
+  getSettings(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>): void;
+  getSettings(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>):
+      void|AxiosPromise<Schema$ProjectSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl + '/toolresults/v1beta3/projects/{projectId}/settings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProjectSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProjectSettings>(parameters);
+    }
+  }
 
 
   /**
@@ -1427,41 +1455,62 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  initializeSettings =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
-       callback?: BodyResponseCallback<Schema$ProjectSettings>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}:initializeSettings')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ProjectSettings>(parameters, callback!);
-      };
+  initializeSettings(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ProjectSettings>;
+  initializeSettings(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>): void;
+  initializeSettings(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectSettings>,
+      callback?: BodyResponseCallback<Schema$ProjectSettings>):
+      void|AxiosPromise<Schema$ProjectSettings> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}:initializeSettings')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ProjectSettings>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ProjectSettings>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Histories {
   root: Toolresults;
   executions: Resource$Projects$Histories$Executions;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
     this.executions = new Resource$Projects$Histories$Executions(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.create
@@ -1481,31 +1530,44 @@ export class Resource$Projects$Histories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$History>,
-       callback?: BodyResponseCallback<Schema$History>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/toolresults/v1beta3/projects/{projectId}/histories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$History>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$History>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>):
+      void|AxiosPromise<Schema$History> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/toolresults/v1beta3/projects/{projectId}/histories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$History>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$History>(parameters);
+    }
+  }
 
 
   /**
@@ -1524,32 +1586,43 @@ export class Resource$Projects$Histories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$History>,
-       callback?: BodyResponseCallback<Schema$History>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId'],
-          pathParams: ['historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$History>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$History>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$History>,
+      callback?: BodyResponseCallback<Schema$History>):
+      void|AxiosPromise<Schema$History> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId'],
+      pathParams: ['historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$History>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$History>(parameters);
+    }
+  }
 
 
   /**
@@ -1572,33 +1645,48 @@ export class Resource$Projects$Histories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListHistoriesResponse>,
-       callback?: BodyResponseCallback<Schema$ListHistoriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl +
-                      '/toolresults/v1beta3/projects/{projectId}/histories')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId'],
-          pathParams: ['projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListHistoriesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListHistoriesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListHistoriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoriesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListHistoriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListHistoriesResponse>):
+      void|AxiosPromise<Schema$ListHistoriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl +
+                  '/toolresults/v1beta3/projects/{projectId}/histories')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId'],
+      pathParams: ['projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListHistoriesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListHistoriesResponse>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Histories$Executions {
   root: Toolresults;
@@ -1606,9 +1694,15 @@ export class Resource$Projects$Histories$Executions {
   steps: Resource$Projects$Histories$Executions$Steps;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
     this.clusters = new Resource$Projects$Histories$Executions$Clusters(root);
     this.steps = new Resource$Projects$Histories$Executions$Steps(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.create
@@ -1629,33 +1723,47 @@ export class Resource$Projects$Histories$Executions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-       callback?: BodyResponseCallback<Schema$Execution>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId'],
-          pathParams: ['historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Execution>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Execution>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>):
+      void|AxiosPromise<Schema$Execution> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId'],
+      pathParams: ['historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Execution>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Execution>(parameters);
+    }
+  }
 
 
   /**
@@ -1675,33 +1783,45 @@ export class Resource$Projects$Histories$Executions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-       callback?: BodyResponseCallback<Schema$Execution>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId'],
-          pathParams: ['executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Execution>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Execution>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>):
+      void|AxiosPromise<Schema$Execution> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId'],
+      pathParams: ['executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Execution>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Execution>(parameters);
+    }
+  }
 
 
   /**
@@ -1724,34 +1844,50 @@ export class Resource$Projects$Histories$Executions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListExecutionsResponse>,
-       callback?: BodyResponseCallback<Schema$ListExecutionsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId'],
-          pathParams: ['historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListExecutionsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListExecutionsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListExecutionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExecutionsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListExecutionsResponse>,
+      callback?: BodyResponseCallback<Schema$ListExecutionsResponse>):
+      void|AxiosPromise<Schema$ListExecutionsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId'],
+      pathParams: ['historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListExecutionsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -1775,39 +1911,59 @@ export class Resource$Projects$Histories$Executions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$Execution>,
-       callback?: BodyResponseCallback<Schema$Execution>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId'],
-          pathParams: ['executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Execution>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Execution>;
+  patch(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>): void;
+  patch(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Execution>,
+      callback?: BodyResponseCallback<Schema$Execution>):
+      void|AxiosPromise<Schema$Execution> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId'],
+      pathParams: ['executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Execution>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Execution>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Histories$Executions$Clusters {
   root: Toolresults;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.clusters.get
@@ -1824,34 +1980,46 @@ export class Resource$Projects$Histories$Executions$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
-       callback?: BodyResponseCallback<Schema$ScreenshotCluster>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams:
-              ['projectId', 'historyId', 'executionId', 'clusterId'],
-          pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ScreenshotCluster>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$ScreenshotCluster>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
+      callback?: BodyResponseCallback<Schema$ScreenshotCluster>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ScreenshotCluster>,
+      callback?: BodyResponseCallback<Schema$ScreenshotCluster>):
+      void|AxiosPromise<Schema$ScreenshotCluster> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters/{clusterId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'clusterId'],
+      pathParams: ['clusterId', 'executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ScreenshotCluster>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ScreenshotCluster>(parameters);
+    }
+  }
 
 
   /**
@@ -1873,36 +2041,53 @@ export class Resource$Projects$Histories$Executions$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListScreenshotClustersResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId'],
-          pathParams: ['executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListScreenshotClustersResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListScreenshotClustersResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListScreenshotClustersResponse>,
+      callback?: BodyResponseCallback<Schema$ListScreenshotClustersResponse>):
+      void|AxiosPromise<Schema$ListScreenshotClustersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/clusters')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId'],
+      pathParams: ['executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListScreenshotClustersResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListScreenshotClustersResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Histories$Executions$Steps {
@@ -1914,6 +2099,7 @@ export class Resource$Projects$Histories$Executions$Steps {
   thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
     this.perfMetricsSummary =
         new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
             root);
@@ -1922,6 +2108,11 @@ export class Resource$Projects$Histories$Executions$Steps {
     this.thumbnails =
         new Resource$Projects$Histories$Executions$Steps$Thumbnails(root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.steps.create
@@ -1943,32 +2134,45 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
-       callback?: BodyResponseCallback<Schema$Step>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId'],
-          pathParams: ['executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Step>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
+  create(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>): void;
+  create(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>):
+      void|AxiosPromise<Schema$Step> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId'],
+      pathParams: ['executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Step>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Step>(parameters);
+    }
+  }
 
 
   /**
@@ -1989,32 +2193,43 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
-       callback?: BodyResponseCallback<Schema$Step>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Step>(parameters, callback!);
-      };
+  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
+  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>): void;
+  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>):
+      void|AxiosPromise<Schema$Step> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Step>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Step>(parameters);
+    }
+  }
 
 
   /**
@@ -2035,33 +2250,48 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getPerfMetricsSummary =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-       callback?: BodyResponseCallback<Schema$PerfMetricsSummary>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback!);
-      };
+  getPerfMetricsSummary(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PerfMetricsSummary>;
+  getPerfMetricsSummary(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+  getPerfMetricsSummary(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
+      void|AxiosPromise<Schema$PerfMetricsSummary> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
+    }
+  }
 
 
   /**
@@ -2087,33 +2317,48 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
-       callback?: BodyResponseCallback<Schema$ListStepsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId'],
-          pathParams: ['executionId', 'historyId', 'projectId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListStepsResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListStepsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListStepsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepsResponse>):
+      void|AxiosPromise<Schema$ListStepsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId'],
+      pathParams: ['executionId', 'historyId', 'projectId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListStepsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListStepsResponse>(parameters);
+    }
+  }
 
 
   /**
@@ -2139,32 +2384,45 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
-       callback?: BodyResponseCallback<Schema$Step>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'PATCH'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Step>(parameters, callback!);
-      };
+  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Step>;
+  patch(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>): void;
+  patch(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>):
+      void|AxiosPromise<Schema$Step> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Step>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Step>(parameters);
+    }
+  }
 
 
   /**
@@ -2188,38 +2446,58 @@ export class Resource$Projects$Histories$Executions$Steps {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  publishXunitXmlFiles =
-      (params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
-       callback?: BodyResponseCallback<Schema$Step>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$Step>(parameters, callback!);
-      };
+  publishXunitXmlFiles(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$Step>;
+  publishXunitXmlFiles(
+      params: any, options: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>): void;
+  publishXunitXmlFiles(
+      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Step>,
+      callback?: BodyResponseCallback<Schema$Step>):
+      void|AxiosPromise<Schema$Step> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}:publishXunitXmlFiles')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$Step>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$Step>(parameters);
+    }
+  }
 }
 export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
   root: Toolresults;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
@@ -2240,33 +2518,48 @@ export class Resource$Projects$Histories$Executions$Steps$Perfmetricssummary {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
-       callback?: BodyResponseCallback<Schema$PerfMetricsSummary>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PerfMetricsSummary>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PerfMetricsSummary>,
+      callback?: BodyResponseCallback<Schema$PerfMetricsSummary>):
+      void|AxiosPromise<Schema$PerfMetricsSummary> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfMetricsSummary')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PerfMetricsSummary>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PerfMetricsSummary>(parameters);
+    }
+  }
 }
 
 export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
@@ -2275,10 +2568,16 @@ export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
       Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
     this.samples =
         new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
             root);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.steps.perfSampleSeries.create
@@ -2299,33 +2598,48 @@ export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-       callback?: BodyResponseCallback<Schema$PerfSampleSeries>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$PerfSampleSeries>(parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$PerfSampleSeries>;
+  create(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+  create(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
+      void|AxiosPromise<Schema$PerfSampleSeries> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PerfSampleSeries>(parameters);
+    }
+  }
 
 
   /**
@@ -2345,37 +2659,48 @@ export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
-       callback?: BodyResponseCallback<Schema$PerfSampleSeries>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [
-            'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
-          ],
-          pathParams: [
-            'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
-          ],
-          context: this.root
-        };
-        createAPIRequest<Schema$PerfSampleSeries>(parameters, callback!);
-      };
+  get(params: any,
+      options?: MethodOptions): AxiosPromise<Schema$PerfSampleSeries>;
+  get(params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>): void;
+  get(params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PerfSampleSeries>,
+      callback?: BodyResponseCallback<Schema$PerfSampleSeries>):
+      void|AxiosPromise<Schema$PerfSampleSeries> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'],
+      pathParams:
+          ['executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$PerfSampleSeries>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$PerfSampleSeries>(parameters);
+    }
+  }
 
 
   /**
@@ -2399,43 +2724,65 @@ export class Resource$Projects$Histories$Executions$Steps$Perfsampleseries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListPerfSampleSeriesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
+      void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSampleSeriesResponse>):
+      void|AxiosPromise<Schema$ListPerfSampleSeriesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListPerfSampleSeriesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListPerfSampleSeriesResponse>(parameters);
+    }
+  }
 }
 export class
     Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples {
   root: Toolresults;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
@@ -2462,40 +2809,55 @@ export class
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchCreate =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
-       callback?:
-           BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [
-            'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
-          ],
-          pathParams: [
-            'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
-          ],
-          context: this.root
-        };
-        createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
-            parameters, callback!);
-      };
+  batchCreate(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$BatchCreatePerfSamplesResponse>;
+  batchCreate(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
+      void;
+  batchCreate(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$BatchCreatePerfSamplesResponse>):
+      void|AxiosPromise<Schema$BatchCreatePerfSamplesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples:batchCreate')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams:
+          ['projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'],
+      pathParams:
+          ['executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$BatchCreatePerfSamplesResponse>(
+          parameters);
+    }
+  }
 
 
   /**
@@ -2525,38 +2887,52 @@ export class
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListPerfSamplesResponse>,
-       callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: [
-            'projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'
-          ],
-          pathParams: [
-            'executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'
-          ],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListPerfSamplesResponse>(parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListPerfSamplesResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListPerfSamplesResponse>,
+      callback?: BodyResponseCallback<Schema$ListPerfSamplesResponse>):
+      void|AxiosPromise<Schema$ListPerfSamplesResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/perfSampleSeries/{sampleSeriesId}/samples')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams:
+          ['projectId', 'historyId', 'executionId', 'stepId', 'sampleSeriesId'],
+      pathParams:
+          ['executionId', 'historyId', 'projectId', 'sampleSeriesId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListPerfSamplesResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListPerfSamplesResponse>(parameters);
+    }
+  }
 }
 
 
@@ -2564,7 +2940,13 @@ export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
   root: Toolresults;
   constructor(root: Toolresults) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * toolresults.projects.histories.executions.steps.thumbnails.list
@@ -2587,33 +2969,48 @@ export class Resource$Projects$Histories$Executions$Steps$Thumbnails {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
-       callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url:
-                    (rootUrl +
-                     '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails')
-                        .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
-          pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
-          context: this.root
-        };
-        createAPIRequest<Schema$ListStepThumbnailsResponse>(
-            parameters, callback!);
-      };
+  list(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListStepThumbnailsResponse>;
+  list(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>): void;
+  list(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListStepThumbnailsResponse>,
+      callback?: BodyResponseCallback<Schema$ListStepThumbnailsResponse>):
+      void|AxiosPromise<Schema$ListStepThumbnailsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url:
+                (rootUrl +
+                 '/toolresults/v1beta3/projects/{projectId}/histories/{historyId}/executions/{executionId}/steps/{stepId}/thumbnails')
+                    .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['projectId', 'historyId', 'executionId', 'stepId'],
+      pathParams: ['executionId', 'historyId', 'projectId', 'stepId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListStepThumbnailsResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListStepThumbnailsResponse>(parameters);
+    }
+  }
 }

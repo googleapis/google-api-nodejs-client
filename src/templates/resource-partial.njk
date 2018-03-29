@@ -14,6 +14,7 @@
       {% endif %}
       constructor(root: {{ rootName }}) {
         this.root = root;
+        this.getRoot.bind(this);
         {% if r.resources %}
           {% for rname, r2 in r.resources|dictsort %}
             {% set innerClassName = ClassName + "$" + rname|capitalize %}
@@ -21,6 +22,11 @@
           {% endfor %}
         {% endif %}
       }
+
+      getRoot() {
+        return this.root;
+      }
+
       {% if r.methods %}
         {% for mname, m in r.methods|dictsort %}
           {{ method.render(m, mname, r, rootApi) }}

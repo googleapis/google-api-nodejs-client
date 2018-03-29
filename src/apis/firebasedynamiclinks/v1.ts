@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+import {AxiosPromise} from 'axios';
+
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
 import {createAPIRequest} from '../../lib/apirequest';
@@ -52,9 +54,14 @@ export class Firebasedynamiclinks {
   constructor(options: GlobalOptions, google: GoogleApis) {
     this._options = options || {};
     this.google = google;
+    this.getRoot.bind(this);
 
     this.shortLinks = new Resource$Shortlinks(this);
     this.v1 = new Resource$V1(this);
+  }
+
+  getRoot() {
+    return this.root;
   }
 }
 
@@ -520,7 +527,13 @@ export class Resource$Shortlinks {
   root: Firebasedynamiclinks;
   constructor(root: Firebasedynamiclinks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firebasedynamiclinks.shortLinks.create
@@ -539,41 +552,64 @@ export class Resource$Shortlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-       callback?:
-           BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://firebasedynamiclinks-ipv6.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/shortLinks').replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
-            parameters, callback!);
-      };
+  create(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreateShortDynamicLinkResponse>;
+  create(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
+      void;
+  create(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
+      void|AxiosPromise<Schema$CreateShortDynamicLinkResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://firebasedynamiclinks-ipv6.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/shortLinks').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$V1 {
   root: Firebasedynamiclinks;
   constructor(root: Firebasedynamiclinks) {
     this.root = root;
+    this.getRoot.bind(this);
   }
+
+  getRoot() {
+    return this.root;
+  }
+
 
   /**
    * firebasedynamiclinks.getLinkStats
@@ -590,32 +626,47 @@ export class Resource$V1 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getLinkStats =
-      (params: any,
-       options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
-       callback?: BodyResponseCallback<Schema$DynamicLinkStats>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://firebasedynamiclinks-ipv6.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/{dynamicLink}/linkStats')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'GET'
-              },
-              options),
-          params,
-          requiredParams: ['dynamicLink'],
-          pathParams: ['dynamicLink'],
-          context: this.root
-        };
-        createAPIRequest<Schema$DynamicLinkStats>(parameters, callback!);
-      };
+  getLinkStats(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$DynamicLinkStats>;
+  getLinkStats(
+      params: any,
+      options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
+      callback?: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+  getLinkStats(
+      params: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
+      callback?: BodyResponseCallback<Schema$DynamicLinkStats>):
+      void|AxiosPromise<Schema$DynamicLinkStats> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://firebasedynamiclinks-ipv6.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{dynamicLink}/linkStats')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['dynamicLink'],
+      pathParams: ['dynamicLink'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$DynamicLinkStats>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$DynamicLinkStats>(parameters);
+    }
+  }
 
 
   /**
@@ -630,33 +681,52 @@ export class Resource$V1 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  installAttribution =
-      (params: any,
-       options: MethodOptions|
-       BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-       callback?: BodyResponseCallback<
-           Schema$GetIosPostInstallAttributionResponse>) => {
-        if (typeof options === 'function') {
-          callback = options;
-          options = {};
-        }
-        options = options || {};
-        const rootUrl = options.rootUrl ||
-            'https://firebasedynamiclinks-ipv6.googleapis.com/';
-        const parameters = {
-          options: Object.assign(
-              {
-                url: (rootUrl + '/v1/installAttribution')
-                         .replace(/([^:]\/)\/+/g, '$1'),
-                method: 'POST'
-              },
-              options),
-          params,
-          requiredParams: [],
-          pathParams: [],
-          context: this.root
-        };
-        createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
-            parameters, callback!);
-      };
+  installAttribution(params: any, options?: MethodOptions):
+      AxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
+  installAttribution(
+      params: any,
+      options: MethodOptions|
+      BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
+      void;
+  installAttribution(
+      params: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+      callback?:
+          BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
+      void|AxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://firebasedynamiclinks-ipv6.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/installAttribution')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
+          parameters);
+    }
+  }
 }

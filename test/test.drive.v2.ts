@@ -13,11 +13,8 @@
 
 import * as assert from 'assert';
 import * as nock from 'nock';
-import * as pify from 'pify';
-
 import {GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
-
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
@@ -114,31 +111,6 @@ describe('drive:v2', () => {
         req = remoteDrive.files.get({fileId: '123'}, Utils.noop);
         assert.equal(req, undefined);
       });
-
-      it('should use logError callback if no callback specified', (done) => {
-        nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(501, {
-          error: 'not a real error'
-        });
-
-        // logError internally uses console.error - let's monkey-patch the
-        // function to intercept calls to it, then restore the original function
-        // once we are done testing
-        const origFn = console.error;
-        let count = 0;
-        console.error = (err) => {
-          count++;
-          assert.equal(err.response.status, 501);
-          if (count === 2) {
-            console.error = origFn;
-            done();
-          }
-        };
-
-        assert.doesNotThrow(() => {
-          localDrive.files.list({q: 'hello'});
-          remoteDrive.files.list({q: 'hello'});
-        });
-      });
     });
   });
 
@@ -157,8 +129,8 @@ describe('drive:v2', () => {
   describe('.files.list()', () => {
     it('should not return missing param error', async () => {
       nock(Utils.baseUrl).get('/drive/v2/files?q=hello').times(2).reply(200);
-      await pify(localDrive.files.list)({q: 'hello'});
-      await pify(remoteDrive.files.list)({q: 'hello'});
+      await localDrive.files.list({q: 'hello'});
+      await remoteDrive.files.list({q: 'hello'});
     });
   });
 
