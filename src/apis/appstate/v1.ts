@@ -163,13 +163,14 @@ export class Resource$States {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clear(params: any, options?: MethodOptions): AxiosPromise<Schema$WriteResult>;
+  clear(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$WriteResult>;
   clear(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
       callback?: BodyResponseCallback<Schema$WriteResult>): void;
   clear(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
       callback?: BodyResponseCallback<Schema$WriteResult>):
       void|AxiosPromise<Schema$WriteResult> {
@@ -220,12 +221,12 @@ export class Resource$States {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -271,11 +272,11 @@ export class Resource$States {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$GetResponse>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$GetResponse>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
       callback?: BodyResponseCallback<Schema$GetResponse>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
       callback?: BodyResponseCallback<Schema$GetResponse>):
       void|AxiosPromise<Schema$GetResponse> {
@@ -322,13 +323,14 @@ export class Resource$States {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ListResponse>;
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
       callback?: BodyResponseCallback<Schema$ListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
       callback?: BodyResponseCallback<Schema$ListResponse>):
       void|AxiosPromise<Schema$ListResponse> {
@@ -379,14 +381,14 @@ export class Resource$States {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$WriteResult>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
       callback?: BodyResponseCallback<Schema$WriteResult>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
       callback?: BodyResponseCallback<Schema$WriteResult>):
       void|AxiosPromise<Schema$WriteResult> {

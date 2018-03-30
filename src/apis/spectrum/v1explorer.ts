@@ -1141,15 +1141,15 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getSpectrum(params: any, options?: MethodOptions):
+  getSpectrum(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsGetSpectrumResponse>;
   getSpectrum(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PawsGetSpectrumResponse>,
       callback?: BodyResponseCallback<Schema$PawsGetSpectrumResponse>): void;
   getSpectrum(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PawsGetSpectrumResponse>,
       callback?: BodyResponseCallback<Schema$PawsGetSpectrumResponse>):
@@ -1198,16 +1198,16 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getSpectrumBatch(params: any, options?: MethodOptions):
+  getSpectrumBatch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsGetSpectrumBatchResponse>;
   getSpectrumBatch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>,
       callback?: BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>):
       void;
   getSpectrumBatch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>,
       callback?: BodyResponseCallback<Schema$PawsGetSpectrumBatchResponse>):
@@ -1257,14 +1257,14 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  init(params: any, options?: MethodOptions):
+  init(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsInitResponse>;
   init(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
       callback?: BodyResponseCallback<Schema$PawsInitResponse>): void;
   init(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PawsInitResponse>,
       callback?: BodyResponseCallback<Schema$PawsInitResponse>):
       void|AxiosPromise<Schema$PawsInitResponse> {
@@ -1314,16 +1314,16 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  notifySpectrumUse(params: any, options?: MethodOptions):
+  notifySpectrumUse(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsNotifySpectrumUseResponse>;
   notifySpectrumUse(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>,
       callback?: BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>):
       void;
   notifySpectrumUse(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>,
       callback?: BodyResponseCallback<Schema$PawsNotifySpectrumUseResponse>):
@@ -1373,14 +1373,14 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register(params: any, options?: MethodOptions):
+  register(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsRegisterResponse>;
   register(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
       callback?: BodyResponseCallback<Schema$PawsRegisterResponse>): void;
   register(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PawsRegisterResponse>,
       callback?: BodyResponseCallback<Schema$PawsRegisterResponse>):
       void|AxiosPromise<Schema$PawsRegisterResponse> {
@@ -1429,15 +1429,15 @@ export class Resource$Paws {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyDevice(params: any, options?: MethodOptions):
+  verifyDevice(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PawsVerifyDeviceResponse>;
   verifyDevice(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PawsVerifyDeviceResponse>,
       callback?: BodyResponseCallback<Schema$PawsVerifyDeviceResponse>): void;
   verifyDevice(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PawsVerifyDeviceResponse>,
       callback?: BodyResponseCallback<Schema$PawsVerifyDeviceResponse>):

@@ -158,12 +158,12 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -212,12 +212,12 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>):
       void|AxiosPromise<Schema$LicenseAssignment> {
@@ -268,14 +268,14 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions):
+  insert(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LicenseAssignment>;
   insert(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>):
       void|AxiosPromise<Schema$LicenseAssignment> {
@@ -326,14 +326,15 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listForProduct(params: any, options?: MethodOptions):
+  listForProduct(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LicenseAssignmentList>;
   listForProduct(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignmentList>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
   listForProduct(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
@@ -385,14 +386,15 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listForProductAndSku(params: any, options?: MethodOptions):
+  listForProductAndSku(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LicenseAssignmentList>;
   listForProductAndSku(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignmentList>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
   listForProductAndSku(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LicenseAssignmentList>,
       callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
@@ -444,14 +446,14 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LicenseAssignment>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>):
       void|AxiosPromise<Schema$LicenseAssignment> {
@@ -503,14 +505,14 @@ export class Resource$Licenseassignments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LicenseAssignment>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
       callback?: BodyResponseCallback<Schema$LicenseAssignment>):
       void|AxiosPromise<Schema$LicenseAssignment> {

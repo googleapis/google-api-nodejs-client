@@ -1678,13 +1678,14 @@ export class Resource$Enterprises {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+  create(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Enterprise>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>):
       void|AxiosPromise<Schema$Enterprise> {
@@ -1731,11 +1732,11 @@ export class Resource$Enterprises {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>):
       void|AxiosPromise<Schema$Enterprise> {
@@ -1784,13 +1785,13 @@ export class Resource$Enterprises {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Enterprise>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Enterprise>,
       callback?: BodyResponseCallback<Schema$Enterprise>):
       void|AxiosPromise<Schema$Enterprise> {
@@ -1849,11 +1850,11 @@ export class Resource$Enterprises$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Application>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Application>,
       callback?: BodyResponseCallback<Schema$Application>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Application>,
       callback?: BodyResponseCallback<Schema$Application>):
       void|AxiosPromise<Schema$Application> {
@@ -1914,12 +1915,12 @@ export class Resource$Enterprises$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1965,10 +1966,10 @@ export class Resource$Enterprises$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
       callback?: BodyResponseCallback<Schema$Device>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
       callback?: BodyResponseCallback<Schema$Device>):
       void|AxiosPromise<Schema$Device> {
     if (typeof options === 'function') {
@@ -2017,14 +2018,14 @@ export class Resource$Enterprises$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  issueCommand(params: any, options?: MethodOptions):
+  issueCommand(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   issueCommand(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   issueCommand(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2074,14 +2075,14 @@ export class Resource$Enterprises$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListDevicesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
       callback?: BodyResponseCallback<Schema$ListDevicesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
       callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
       void|AxiosPromise<Schema$ListDevicesResponse> {
@@ -2131,12 +2132,12 @@ export class Resource$Enterprises$Devices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
   patch(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Device>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
       callback?: BodyResponseCallback<Schema$Device>): void;
   patch(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Device>,
       callback?: BodyResponseCallback<Schema$Device>):
       void|AxiosPromise<Schema$Device> {
     if (typeof options === 'function') {
@@ -2201,12 +2202,12 @@ export class Resource$Enterprises$Devices$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -2255,12 +2256,12 @@ export class Resource$Enterprises$Devices$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -2308,11 +2309,11 @@ export class Resource$Enterprises$Devices$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2370,15 +2371,15 @@ export class Resource$Enterprises$Devices$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
@@ -2440,14 +2441,14 @@ export class Resource$Enterprises$Enrollmenttokens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$EnrollmentToken>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$EnrollmentToken>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EnrollmentToken>,
       callback?: BodyResponseCallback<Schema$EnrollmentToken>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$EnrollmentToken>,
       callback?: BodyResponseCallback<Schema$EnrollmentToken>):
       void|AxiosPromise<Schema$EnrollmentToken> {
@@ -2496,12 +2497,12 @@ export class Resource$Enterprises$Enrollmenttokens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -2560,12 +2561,12 @@ export class Resource$Enterprises$Policies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -2611,10 +2612,10 @@ export class Resource$Enterprises$Policies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Policy>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Policy>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -2662,14 +2663,14 @@ export class Resource$Enterprises$Policies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListPoliciesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListPoliciesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListPoliciesResponse>,
       callback?: BodyResponseCallback<Schema$ListPoliciesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListPoliciesResponse>,
       callback?: BodyResponseCallback<Schema$ListPoliciesResponse>):
       void|AxiosPromise<Schema$ListPoliciesResponse> {
@@ -2719,12 +2720,12 @@ export class Resource$Enterprises$Policies {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Policy>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Policy>;
   patch(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   patch(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -2784,12 +2785,13 @@ export class Resource$Enterprises$Webtokens {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$WebToken>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$WebToken>;
   create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$WebToken>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WebToken>,
       callback?: BodyResponseCallback<Schema$WebToken>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$WebToken>,
       callback?: BodyResponseCallback<Schema$WebToken>):
       void|AxiosPromise<Schema$WebToken> {
@@ -2851,13 +2853,13 @@ export class Resource$Signupurls {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$SignupUrl>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$SignupUrl>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SignupUrl>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SignupUrl>,
       callback?: BodyResponseCallback<Schema$SignupUrl>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SignupUrl>,
       callback?: BodyResponseCallback<Schema$SignupUrl>):
       void|AxiosPromise<Schema$SignupUrl> {

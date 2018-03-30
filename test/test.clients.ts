@@ -16,14 +16,17 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as url from 'url';
+
 import {GoogleApis} from '../src';
+import {Datastore} from '../src/apis/datastore/v1';
 import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
 function createNock(qs?: string) {
   const query = qs ? `?${qs}` : '';
   nock('https://datastore.googleapis.com')
-      .post(`/v1beta3/projects/test-project-id:lookup${query}`)
+      .post(`/v1/projects/test-project-id:lookup${query}`)
       .reply(200);
 }
 
@@ -91,7 +94,7 @@ describe('Clients', () => {
   it('should support default params', async () => {
     const google = new GoogleApis();
     const datastore =
-        google.datastore({version: 'v1beta3', params: {myParam: '123'}});
+        google.datastore<Datastore>({version: 'v1', params: {myParam: '123'}});
     createNock('myParam=123');
     const res = await datastore.projects.lookup({projectId: 'test-project-id'});
     // If the default param handling is broken, query might be undefined, thus
@@ -101,7 +104,7 @@ describe('Clients', () => {
     assert.notEqual(query.indexOf('myParam=123'), -1, 'Default param in query');
     nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(
-        google, 'datastore', 'v1beta3', {params: {myParam: '123'}});
+        google, 'datastore', 'v1', {params: {myParam: '123'}});
     nock.disableNetConnect();
     createNock('myParam=123');
     const res2 =
@@ -117,7 +120,7 @@ describe('Clients', () => {
   it('should allow default params to be overriden per-request', async () => {
     const google = new GoogleApis();
     const datastore =
-        google.datastore({version: 'v1beta3', params: {myParam: '123'}});
+        google.datastore<Datastore>({version: 'v1', params: {myParam: '123'}});
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
@@ -130,7 +133,7 @@ describe('Clients', () => {
         query.indexOf('myParam=456'), -1, 'Default param not found in query');
     nock.enableNetConnect();
     const datastore2 = await Utils.loadApi(
-        google, 'datastore', 'v1beta3', {params: {myParam: '123'}});
+        google, 'datastore', 'v1', {params: {myParam: '123'}});
     nock.disableNetConnect();
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
@@ -150,11 +153,11 @@ describe('Clients', () => {
   it('should include default params when only callback is provided to API call',
      async () => {
        const google = new GoogleApis();
-       const datastore = google.datastore({
-         version: 'v1beta3',
+       const datastore = google.datastore<Datastore>({
+         version: 'v1',
          params: {
-           projectId: 'test-project-id',  // We must set this here - it is a
-           // required param
+           // We must set this here - it is a required param
+           projectId: 'test-project-id',
            myParam: '123'
          }
        });
@@ -171,7 +174,7 @@ describe('Clients', () => {
            'Default param not found in query');
 
        nock.enableNetConnect();
-       const datastore2 = await Utils.loadApi(google, 'datastore', 'v1beta3', {
+       const datastore2 = await Utils.loadApi(google, 'datastore', 'v1', {
          params: {
            projectId: 'test-project-id',  // We must set this here - it is a
            // required param

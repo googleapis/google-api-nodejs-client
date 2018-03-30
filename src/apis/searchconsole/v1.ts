@@ -195,14 +195,14 @@ export class Resource$Urltestingtools$Mobilefriendlytest {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  run(params: any, options?: MethodOptions):
+  run(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RunMobileFriendlyTestResponse>;
-  run(params: any,
-      options: MethodOptions|
+  run(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
       callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
       void;
-  run(params: any,
+  run(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
       callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):

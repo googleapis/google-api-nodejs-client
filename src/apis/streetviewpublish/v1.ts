@@ -470,12 +470,12 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
   create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>): void;
   create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>):
       void|AxiosPromise<Schema$Photo> {
     if (typeof options === 'function') {
@@ -524,12 +524,12 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -581,10 +581,10 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>):
       void|AxiosPromise<Schema$Photo> {
     if (typeof options === 'function') {
@@ -642,14 +642,14 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startUpload(params: any, options?: MethodOptions):
+  startUpload(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$UploadRef>;
   startUpload(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
       callback?: BodyResponseCallback<Schema$UploadRef>): void;
   startUpload(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$UploadRef>,
       callback?: BodyResponseCallback<Schema$UploadRef>):
       void|AxiosPromise<Schema$UploadRef> {
@@ -709,12 +709,12 @@ export class Resource$Photo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Photo>;
   update(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>): void;
   update(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Photo>,
       callback?: BodyResponseCallback<Schema$Photo>):
       void|AxiosPromise<Schema$Photo> {
     if (typeof options === 'function') {
@@ -778,15 +778,15 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchDelete(params: any, options?: MethodOptions):
+  batchDelete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchDeletePhotosResponse>;
   batchDelete(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>): void;
   batchDelete(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchDeletePhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchDeletePhotosResponse>):
@@ -841,15 +841,15 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet(params: any, options?: MethodOptions):
+  batchGet(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchGetPhotosResponse>;
   batchGet(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetPhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>): void;
   batchGet(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetPhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetPhotosResponse>):
@@ -908,15 +908,15 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate(params: any, options?: MethodOptions):
+  batchUpdate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchUpdatePhotosResponse>;
   batchUpdate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>): void;
   batchUpdate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdatePhotosResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdatePhotosResponse>):
@@ -970,14 +970,14 @@ export class Resource$Photos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListPhotosResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
       callback?: BodyResponseCallback<Schema$ListPhotosResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListPhotosResponse>,
       callback?: BodyResponseCallback<Schema$ListPhotosResponse>):
       void|AxiosPromise<Schema$ListPhotosResponse> {

@@ -2034,16 +2034,16 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deidentify(params: any, options?: MethodOptions):
+  deidentify(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>;
   deidentify(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>): void;
   deidentify(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1DeidentifyContentResponse>,
       callback?: BodyResponseCallback<
@@ -2095,16 +2095,16 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  inspect(params: any, options?: MethodOptions):
+  inspect(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1InspectContentResponse>;
   inspect(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1InspectContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1InspectContentResponse>): void;
   inspect(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1InspectContentResponse>,
       callback?: BodyResponseCallback<
@@ -2156,16 +2156,16 @@ export class Resource$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  redact(params: any, options?: MethodOptions):
+  redact(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>;
   redact(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1RedactContentResponse>): void;
   redact(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1RedactContentResponse>,
       callback?: BodyResponseCallback<
@@ -2229,15 +2229,15 @@ export class Resource$Datasource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyze(params: any, options?: MethodOptions):
+  analyze(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningOperation>;
   analyze(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
   analyze(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -2315,14 +2315,14 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   cancel(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -2370,15 +2370,15 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningOperation>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -2426,14 +2426,14 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -2481,13 +2481,13 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -2537,17 +2537,17 @@ export class Resource$Inspect$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:
@@ -2625,16 +2625,16 @@ export class Resource$Inspect$Results$Findings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListInspectFindingsResponse>,
       callback?: BodyResponseCallback<
@@ -2717,14 +2717,14 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   cancel(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -2771,14 +2771,14 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -2826,13 +2826,13 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -2882,17 +2882,17 @@ export class Resource$Riskanalysis$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:
@@ -2957,16 +2957,16 @@ export class Resource$Rootcategories {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListRootCategoriesResponse>,
       callback?: BodyResponseCallback<
@@ -3030,16 +3030,16 @@ export class Resource$Rootcategories$Infotypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta1ListInfoTypesResponse>,
       callback?: BodyResponseCallback<

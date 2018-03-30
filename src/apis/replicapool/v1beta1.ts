@@ -599,12 +599,12 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -653,10 +653,10 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>):
       void|AxiosPromise<Schema$Pool> {
     if (typeof options === 'function') {
@@ -706,12 +706,12 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
   insert(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>): void;
   insert(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>):
       void|AxiosPromise<Schema$Pool> {
     if (typeof options === 'function') {
@@ -762,14 +762,14 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PoolsListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
       callback?: BodyResponseCallback<Schema$PoolsListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PoolsListResponse>,
       callback?: BodyResponseCallback<Schema$PoolsListResponse>):
       void|AxiosPromise<Schema$PoolsListResponse> {
@@ -823,12 +823,12 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resize(params: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
+  resize(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pool>;
   resize(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>): void;
   resize(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Pool>,
       callback?: BodyResponseCallback<Schema$Pool>):
       void|AxiosPromise<Schema$Pool> {
     if (typeof options === 'function') {
@@ -879,12 +879,12 @@ export class Resource$Pools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatetemplate(params: any, options?: MethodOptions): AxiosPromise<void>;
+  updatetemplate(params?: any, options?: MethodOptions): AxiosPromise<void>;
   updatetemplate(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   updatetemplate(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -947,12 +947,14 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>):
       void|AxiosPromise<Schema$Replica> {
     if (typeof options === 'function') {
@@ -1003,10 +1005,12 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>):
       void|AxiosPromise<Schema$Replica> {
     if (typeof options === 'function') {
@@ -1058,14 +1062,14 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReplicasListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
       callback?: BodyResponseCallback<Schema$ReplicasListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ReplicasListResponse>,
       callback?: BodyResponseCallback<Schema$ReplicasListResponse>):
       void|AxiosPromise<Schema$ReplicasListResponse> {
@@ -1117,12 +1121,14 @@ export class Resource$Replicas {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restart(params: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
+  restart(params?: any, options?: MethodOptions): AxiosPromise<Schema$Replica>;
   restart(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>): void;
   restart(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Replica>,
       callback?: BodyResponseCallback<Schema$Replica>):
       void|AxiosPromise<Schema$Replica> {
     if (typeof options === 'function') {

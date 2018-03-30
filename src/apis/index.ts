@@ -41,7 +41,6 @@ import * as androidenterprise_v1 from './androidenterprise/v1';
 import * as androidmanagement_v1 from './androidmanagement/v1';
 import * as androidpublisher_v1 from './androidpublisher/v1';
 import * as androidpublisher_v1_1 from './androidpublisher/v1.1';
-import * as androidpublisher_v2 from './androidpublisher/v2';
 import * as appengine_v1 from './appengine/v1';
 import * as appengine_v1alpha from './appengine/v1alpha';
 import * as appengine_v1beta from './appengine/v1beta';
@@ -272,7 +271,6 @@ const APIS: APIList = {
   androidpublisher: {
     'v1.1': androidpublisher_v1_1.Androidpublisher,
     'v1': androidpublisher_v1.Androidpublisher,
-    'v2': androidpublisher_v2.Androidpublisher,
   },
   appengine: {
     'v1': appengine_v1.Appengine,
@@ -678,7 +676,8 @@ const APIS: APIList = {
 };
 
 export class GeneratedAPIs {
-  private getAPI(api: string, options: ServiceOptions|string) {
+  // tslint:disable-next-line no-any
+  private getAPI<T = any>(api: string, options: ServiceOptions|string) {
     let version: string;
     if (typeof options === 'string') {
       version = options;
@@ -692,401 +691,535 @@ export class GeneratedAPIs {
     try {
       const endpoint = APIS[api][path.basename(version)];
       const ep = new endpoint(options, this);
-      return Object.freeze(ep);  // create new & freeze
+      return Object.freeze(ep) as T;
     } catch (e) {
       throw new Error(
           `Unable to load endpoint ${api}("${version}"): ${e.message}`);
     }
   }
 
-  abusiveexperiencereport(options: ServiceOptions|string) {
-    return this.getAPI('abusiveexperiencereport', options);
+  abusiveexperiencereport<
+      T = abusiveexperiencereport_v1.Abusiveexperiencereport>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('abusiveexperiencereport', options);
+  }
+  acceleratedmobilepageurl<
+      T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('acceleratedmobilepageurl', options);
+  }
+  adexchangebuyer<
+      T = adexchangebuyer_v1_2.Adexchangebuyer |
+          adexchangebuyer_v1_3.Adexchangebuyer |
+          adexchangebuyer_v1_4.Adexchangebuyer>(options: ServiceOptions|
+                                                string) {
+    return this.getAPI<T>('adexchangebuyer', options);
+  }
+  adexchangebuyer2<T = adexchangebuyer2_v2beta1.Adexchangebuyer2>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('adexchangebuyer2', options);
+  }
+  adexchangeseller<
+      T = adexchangeseller_v1_1.Adexchangeseller |
+          adexchangeseller_v1.Adexchangeseller |
+          adexchangeseller_v2_0.Adexchangeseller>(options: ServiceOptions|
+                                                  string) {
+    return this.getAPI<T>('adexchangeseller', options);
+  }
+  adexperiencereport<T = adexperiencereport_v1.Adexperiencereport>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('adexperiencereport', options);
+  }
+  admin<
+      T = admin_datatransfer_v1.Admin | admin_directory_v1.Admin |
+          admin_reports_v1.Admin>(options: ServiceOptions|string) {
+    return this.getAPI<T>('admin', options);
+  }
+  adsense<T = adsense_v1_4.Adsense>(options: ServiceOptions|string) {
+    return this.getAPI<T>('adsense', options);
+  }
+  adsensehost<T = adsensehost_v4_1.Adsensehost>(options: ServiceOptions|
+                                                string) {
+    return this.getAPI<T>('adsensehost', options);
+  }
+  analytics<T = analytics_v2_4.Analytics | analytics_v3.Analytics>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('analytics', options);
+  }
+  analyticsreporting<T = analyticsreporting_v4.Analyticsreporting>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('analyticsreporting', options);
+  }
+  androiddeviceprovisioning<
+      T = androiddeviceprovisioning_v1.Androiddeviceprovisioning>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('androiddeviceprovisioning', options);
+  }
+  androidenterprise<T = androidenterprise_v1.Androidenterprise>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('androidenterprise', options);
+  }
+  androidmanagement<T = androidmanagement_v1.Androidmanagement>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('androidmanagement', options);
+  }
+  androidpublisher<
+      T = androidpublisher_v1_1.Androidpublisher |
+          androidpublisher_v1.Androidpublisher>(options: ServiceOptions|
+                                                string) {
+    return this.getAPI<T>('androidpublisher', options);
+  }
+  appengine<
+      T = appengine_v1.Appengine | appengine_v1alpha.Appengine |
+          appengine_v1beta.Appengine | appengine_v1beta4.Appengine |
+          appengine_v1beta5.Appengine>(options: ServiceOptions|string) {
+    return this.getAPI<T>('appengine', options);
+  }
+  appsactivity<T = appsactivity_v1.Appsactivity>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('appsactivity', options);
+  }
+  appstate<T = appstate_v1.Appstate>(options: ServiceOptions|string) {
+    return this.getAPI<T>('appstate', options);
+  }
+  bigquery<T = bigquery_v2.Bigquery>(options: ServiceOptions|string) {
+    return this.getAPI<T>('bigquery', options);
+  }
+  bigquerydatatransfer<T = bigquerydatatransfer_v1.Bigquerydatatransfer>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('bigquerydatatransfer', options);
+  }
+  blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(options: ServiceOptions|
+                                                       string) {
+    return this.getAPI<T>('blogger', options);
+  }
+  books<T = books_v1.Books>(options: ServiceOptions|string) {
+    return this.getAPI<T>('books', options);
+  }
+  calendar<T = calendar_v3.Calendar>(options: ServiceOptions|string) {
+    return this.getAPI<T>('calendar', options);
+  }
+  chat<T = chat_v1.Chat>(options: ServiceOptions|string) {
+    return this.getAPI<T>('chat', options);
+  }
+  civicinfo<T = civicinfo_v2.Civicinfo>(options: ServiceOptions|string) {
+    return this.getAPI<T>('civicinfo', options);
+  }
+  classroom<T = classroom_v1.Classroom>(options: ServiceOptions|string) {
+    return this.getAPI<T>('classroom', options);
+  }
+  cloudbilling<T = cloudbilling_v1.Cloudbilling>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('cloudbilling', options);
+  }
+  cloudbuild<T = cloudbuild_v1.Cloudbuild>(options: ServiceOptions|string) {
+    return this.getAPI<T>('cloudbuild', options);
+  }
+  clouddebugger<T = clouddebugger_v2.Clouddebugger>(options: ServiceOptions|
+                                                    string) {
+    return this.getAPI<T>('clouddebugger', options);
+  }
+  clouderrorreporting<T = clouderrorreporting_v1beta1.Clouderrorreporting>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('clouderrorreporting', options);
+  }
+  cloudfunctions<
+      T = cloudfunctions_v1.Cloudfunctions |
+          cloudfunctions_v1beta2.Cloudfunctions>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('cloudfunctions', options);
+  }
+  cloudiot<T = cloudiot_v1.Cloudiot>(options: ServiceOptions|string) {
+    return this.getAPI<T>('cloudiot', options);
+  }
+  cloudkms<T = cloudkms_v1.Cloudkms>(options: ServiceOptions|string) {
+    return this.getAPI<T>('cloudkms', options);
+  }
+  cloudresourcemanager<
+      T = cloudresourcemanager_v1.Cloudresourcemanager |
+          cloudresourcemanager_v1beta1.Cloudresourcemanager |
+          cloudresourcemanager_v2.Cloudresourcemanager |
+          cloudresourcemanager_v2beta1.Cloudresourcemanager>(options:
+                                                                 ServiceOptions|
+                                                             string) {
+    return this.getAPI<T>('cloudresourcemanager', options);
+  }
+  cloudshell<T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('cloudshell', options);
+  }
+  cloudtasks<T = cloudtasks_v2beta2.Cloudtasks>(options: ServiceOptions|
+                                                string) {
+    return this.getAPI<T>('cloudtasks', options);
+  }
+  cloudtrace<T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('cloudtrace', options);
+  }
+  compute<
+      T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('compute', options);
+  }
+  container<T = container_v1.Container | container_v1beta1.Container>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('container', options);
+  }
+  content<T = content_v2.Content | content_v2sandbox.Content>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('content', options);
+  }
+  customsearch<T = customsearch_v1.Customsearch>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('customsearch', options);
+  }
+  dataflow<T = dataflow_v1b3.Dataflow>(options: ServiceOptions|string) {
+    return this.getAPI<T>('dataflow', options);
+  }
+  dataproc<T = dataproc_v1.Dataproc | dataproc_v1beta2.Dataproc>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('dataproc', options);
+  }
+  datastore<
+      T = datastore_v1.Datastore | datastore_v1beta1.Datastore |
+          datastore_v1beta3.Datastore>(options: ServiceOptions|string) {
+    return this.getAPI<T>('datastore', options);
+  }
+  deploymentmanager<
+      T = deploymentmanager_alpha.Deploymentmanager |
+          deploymentmanager_v2.Deploymentmanager |
+          deploymentmanager_v2beta.Deploymentmanager>(options: ServiceOptions|
+                                                      string) {
+    return this.getAPI<T>('deploymentmanager', options);
+  }
+  dfareporting<
+      T = dfareporting_v2_8.Dfareporting | dfareporting_v3_0.Dfareporting>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('dfareporting', options);
+  }
+  dialogflow<T = dialogflow_v2.Dialogflow | dialogflow_v2beta1.Dialogflow>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('dialogflow', options);
+  }
+  digitalassetlinks<T = digitalassetlinks_v1.Digitalassetlinks>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('digitalassetlinks', options);
+  }
+  discovery<T = discovery_v1.Discovery>(options: ServiceOptions|string) {
+    return this.getAPI<T>('discovery', options);
+  }
+  dlp<T = dlp_v2.Dlp | dlp_v2beta1.Dlp | dlp_v2beta2.Dlp>(options:
+                                                              ServiceOptions|
+                                                          string) {
+    return this.getAPI<T>('dlp', options);
   }
-  acceleratedmobilepageurl(options: ServiceOptions|string) {
-    return this.getAPI('acceleratedmobilepageurl', options);
+  dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(options:
+                                                              ServiceOptions|
+                                                          string) {
+    return this.getAPI<T>('dns', options);
   }
-  adexchangebuyer(options: ServiceOptions|string) {
-    return this.getAPI('adexchangebuyer', options);
+  doubleclickbidmanager<T = doubleclickbidmanager_v1.Doubleclickbidmanager>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('doubleclickbidmanager', options);
   }
-  adexchangebuyer2(options: ServiceOptions|string) {
-    return this.getAPI('adexchangebuyer2', options);
+  doubleclicksearch<T = doubleclicksearch_v2.Doubleclicksearch>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('doubleclicksearch', options);
+  }
+  drive<T = drive_v2.Drive | drive_v3.Drive>(options: ServiceOptions|string) {
+    return this.getAPI<T>('drive', options);
+  }
+  firebasedynamiclinks<T = firebasedynamiclinks_v1.Firebasedynamiclinks>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('firebasedynamiclinks', options);
+  }
+  firebaserules<T = firebaserules_v1.Firebaserules>(options: ServiceOptions|
+                                                    string) {
+    return this.getAPI<T>('firebaserules', options);
+  }
+  firestore<T = firestore_v1beta1.Firestore>(options: ServiceOptions|string) {
+    return this.getAPI<T>('firestore', options);
+  }
+  fitness<T = fitness_v1.Fitness>(options: ServiceOptions|string) {
+    return this.getAPI<T>('fitness', options);
   }
-  adexchangeseller(options: ServiceOptions|string) {
-    return this.getAPI('adexchangeseller', options);
+  fusiontables<T = fusiontables_v1.Fusiontables | fusiontables_v2.Fusiontables>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('fusiontables', options);
   }
-  adexperiencereport(options: ServiceOptions|string) {
-    return this.getAPI('adexperiencereport', options);
+  games<T = games_v1.Games>(options: ServiceOptions|string) {
+    return this.getAPI<T>('games', options);
   }
-  admin(options: ServiceOptions|string) {
-    return this.getAPI('admin', options);
+  gamesConfiguration<T = gamesConfiguration_v1configuration.Gamesconfiguration>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('gamesConfiguration', options);
   }
-  adsense(options: ServiceOptions|string) {
-    return this.getAPI('adsense', options);
+  gamesManagement<T = gamesManagement_v1management.Gamesmanagement>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('gamesManagement', options);
   }
-  adsensehost(options: ServiceOptions|string) {
-    return this.getAPI('adsensehost', options);
+  genomics<
+      T = genomics_v1.Genomics | genomics_v1alpha2.Genomics |
+          genomics_v2alpha1.Genomics>(options: ServiceOptions|string) {
+    return this.getAPI<T>('genomics', options);
   }
-  analytics(options: ServiceOptions|string) {
-    return this.getAPI('analytics', options);
+  gmail<T = gmail_v1.Gmail>(options: ServiceOptions|string) {
+    return this.getAPI<T>('gmail', options);
   }
-  analyticsreporting(options: ServiceOptions|string) {
-    return this.getAPI('analyticsreporting', options);
+  groupsmigration<T = groupsmigration_v1.Groupsmigration>(options:
+                                                              ServiceOptions|
+                                                          string) {
+    return this.getAPI<T>('groupsmigration', options);
   }
-  androiddeviceprovisioning(options: ServiceOptions|string) {
-    return this.getAPI('androiddeviceprovisioning', options);
+  groupssettings<T = groupssettings_v1.Groupssettings>(options: ServiceOptions|
+                                                       string) {
+    return this.getAPI<T>('groupssettings', options);
   }
-  androidenterprise(options: ServiceOptions|string) {
-    return this.getAPI('androidenterprise', options);
+  iam<T = iam_v1.Iam>(options: ServiceOptions|string) {
+    return this.getAPI<T>('iam', options);
   }
-  androidmanagement(options: ServiceOptions|string) {
-    return this.getAPI('androidmanagement', options);
+  identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(options:
+                                                              ServiceOptions|
+                                                          string) {
+    return this.getAPI<T>('identitytoolkit', options);
   }
-  androidpublisher(options: ServiceOptions|string) {
-    return this.getAPI('androidpublisher', options);
+  kgsearch<T = kgsearch_v1.Kgsearch>(options: ServiceOptions|string) {
+    return this.getAPI<T>('kgsearch', options);
+  }
+  language<
+      T = language_v1.Language | language_v1beta1.Language |
+          language_v1beta2.Language>(options: ServiceOptions|string) {
+    return this.getAPI<T>('language', options);
   }
-  appengine(options: ServiceOptions|string) {
-    return this.getAPI('appengine', options);
+  licensing<T = licensing_v1.Licensing>(options: ServiceOptions|string) {
+    return this.getAPI<T>('licensing', options);
   }
-  appsactivity(options: ServiceOptions|string) {
-    return this.getAPI('appsactivity', options);
+  logging<T = logging_v2.Logging | logging_v2beta1.Logging>(options:
+                                                                ServiceOptions|
+                                                            string) {
+    return this.getAPI<T>('logging', options);
   }
-  appstate(options: ServiceOptions|string) {
-    return this.getAPI('appstate', options);
+  manufacturers<T = manufacturers_v1.Manufacturers>(options: ServiceOptions|
+                                                    string) {
+    return this.getAPI<T>('manufacturers', options);
   }
-  bigquery(options: ServiceOptions|string) {
-    return this.getAPI('bigquery', options);
+  mirror<T = mirror_v1.Mirror>(options: ServiceOptions|string) {
+    return this.getAPI<T>('mirror', options);
+  }
+  ml<T = ml_v1.Ml>(options: ServiceOptions|string) {
+    return this.getAPI<T>('ml', options);
+  }
+  monitoring<T = monitoring_v3.Monitoring>(options: ServiceOptions|string) {
+    return this.getAPI<T>('monitoring', options);
+  }
+  oauth2<T = oauth2_v1.Oauth2 | oauth2_v2.Oauth2>(options: ServiceOptions|
+                                                  string) {
+    return this.getAPI<T>('oauth2', options);
+  }
+  oslogin<
+      T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin |
+          oslogin_v1beta.Oslogin>(options: ServiceOptions|string) {
+    return this.getAPI<T>('oslogin', options);
+  }
+  pagespeedonline<
+      T = pagespeedonline_v1.Pagespeedonline |
+          pagespeedonline_v2.Pagespeedonline |
+          pagespeedonline_v4.Pagespeedonline>(options: ServiceOptions|string) {
+    return this.getAPI<T>('pagespeedonline', options);
   }
-  bigquerydatatransfer(options: ServiceOptions|string) {
-    return this.getAPI('bigquerydatatransfer', options);
+  partners<T = partners_v2.Partners>(options: ServiceOptions|string) {
+    return this.getAPI<T>('partners', options);
   }
-  blogger(options: ServiceOptions|string) {
-    return this.getAPI('blogger', options);
+  people<T = people_v1.People>(options: ServiceOptions|string) {
+    return this.getAPI<T>('people', options);
   }
-  books(options: ServiceOptions|string) {
-    return this.getAPI('books', options);
+  playcustomapp<T = playcustomapp_v1.Playcustomapp>(options: ServiceOptions|
+                                                    string) {
+    return this.getAPI<T>('playcustomapp', options);
   }
-  calendar(options: ServiceOptions|string) {
-    return this.getAPI('calendar', options);
+  plus<T = plus_v1.Plus>(options: ServiceOptions|string) {
+    return this.getAPI<T>('plus', options);
   }
-  chat(options: ServiceOptions|string) {
-    return this.getAPI('chat', options);
+  plusDomains<T = plusDomains_v1.Plusdomains>(options: ServiceOptions|string) {
+    return this.getAPI<T>('plusDomains', options);
   }
-  civicinfo(options: ServiceOptions|string) {
-    return this.getAPI('civicinfo', options);
+  poly<T = poly_v1.Poly>(options: ServiceOptions|string) {
+    return this.getAPI<T>('poly', options);
   }
-  classroom(options: ServiceOptions|string) {
-    return this.getAPI('classroom', options);
+  prediction<
+      T = prediction_v1_2.Prediction | prediction_v1_3.Prediction |
+          prediction_v1_4.Prediction | prediction_v1_5.Prediction |
+          prediction_v1_6.Prediction>(options: ServiceOptions|string) {
+    return this.getAPI<T>('prediction', options);
   }
-  cloudbilling(options: ServiceOptions|string) {
-    return this.getAPI('cloudbilling', options);
+  proximitybeacon<T = proximitybeacon_v1beta1.Proximitybeacon>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('proximitybeacon', options);
   }
-  cloudbuild(options: ServiceOptions|string) {
-    return this.getAPI('cloudbuild', options);
+  pubsub<T = pubsub_v1.Pubsub | pubsub_v1beta1a.Pubsub | pubsub_v1beta2.Pubsub>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('pubsub', options);
   }
-  clouddebugger(options: ServiceOptions|string) {
-    return this.getAPI('clouddebugger', options);
+  replicapool<
+      T = replicapool_v1beta1.Replicapool | replicapool_v1beta2.Replicapool>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('replicapool', options);
   }
-  clouderrorreporting(options: ServiceOptions|string) {
-    return this.getAPI('clouderrorreporting', options);
+  replicapoolupdater<T = replicapoolupdater_v1beta1.Replicapoolupdater>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('replicapoolupdater', options);
   }
-  cloudfunctions(options: ServiceOptions|string) {
-    return this.getAPI('cloudfunctions', options);
+  reseller<T = reseller_v1.Reseller>(options: ServiceOptions|string) {
+    return this.getAPI<T>('reseller', options);
   }
-  cloudiot(options: ServiceOptions|string) {
-    return this.getAPI('cloudiot', options);
+  resourceviews<
+      T = resourceviews_v1beta1.Resourceviews |
+          resourceviews_v1beta2.Resourceviews>(options: ServiceOptions|string) {
+    return this.getAPI<T>('resourceviews', options);
   }
-  cloudkms(options: ServiceOptions|string) {
-    return this.getAPI('cloudkms', options);
+  runtimeconfig<
+      T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('runtimeconfig', options);
   }
-  cloudresourcemanager(options: ServiceOptions|string) {
-    return this.getAPI('cloudresourcemanager', options);
+  safebrowsing<T = safebrowsing_v4.Safebrowsing>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('safebrowsing', options);
   }
-  cloudshell(options: ServiceOptions|string) {
-    return this.getAPI('cloudshell', options);
+  script<T = script_v1.Script>(options: ServiceOptions|string) {
+    return this.getAPI<T>('script', options);
   }
-  cloudtasks(options: ServiceOptions|string) {
-    return this.getAPI('cloudtasks', options);
+  searchconsole<T = searchconsole_v1.Searchconsole>(options: ServiceOptions|
+                                                    string) {
+    return this.getAPI<T>('searchconsole', options);
   }
-  cloudtrace(options: ServiceOptions|string) {
-    return this.getAPI('cloudtrace', options);
+  serviceconsumermanagement<
+      T = serviceconsumermanagement_v1.Serviceconsumermanagement>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('serviceconsumermanagement', options);
   }
-  compute(options: ServiceOptions|string) {
-    return this.getAPI('compute', options);
+  servicecontrol<T = servicecontrol_v1.Servicecontrol>(options: ServiceOptions|
+                                                       string) {
+    return this.getAPI<T>('servicecontrol', options);
   }
-  container(options: ServiceOptions|string) {
-    return this.getAPI('container', options);
+  servicemanagement<T = servicemanagement_v1.Servicemanagement>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('servicemanagement', options);
   }
-  content(options: ServiceOptions|string) {
-    return this.getAPI('content', options);
+  serviceusage<T = serviceusage_v1beta1.Serviceusage>(options: ServiceOptions|
+                                                      string) {
+    return this.getAPI<T>('serviceusage', options);
   }
-  customsearch(options: ServiceOptions|string) {
-    return this.getAPI('customsearch', options);
+  serviceuser<T = serviceuser_v1.Serviceuser>(options: ServiceOptions|string) {
+    return this.getAPI<T>('serviceuser', options);
   }
-  dataflow(options: ServiceOptions|string) {
-    return this.getAPI('dataflow', options);
+  sheets<T = sheets_v4.Sheets>(options: ServiceOptions|string) {
+    return this.getAPI<T>('sheets', options);
   }
-  dataproc(options: ServiceOptions|string) {
-    return this.getAPI('dataproc', options);
+  siteVerification<T = siteVerification_v1.Siteverification>(options:
+                                                                 ServiceOptions|
+                                                             string) {
+    return this.getAPI<T>('siteVerification', options);
   }
-  datastore(options: ServiceOptions|string) {
-    return this.getAPI('datastore', options);
+  slides<T = slides_v1.Slides>(options: ServiceOptions|string) {
+    return this.getAPI<T>('slides', options);
   }
-  deploymentmanager(options: ServiceOptions|string) {
-    return this.getAPI('deploymentmanager', options);
+  sourcerepo<T = sourcerepo_v1.Sourcerepo>(options: ServiceOptions|string) {
+    return this.getAPI<T>('sourcerepo', options);
   }
-  dfareporting(options: ServiceOptions|string) {
-    return this.getAPI('dfareporting', options);
+  spanner<T = spanner_v1.Spanner>(options: ServiceOptions|string) {
+    return this.getAPI<T>('spanner', options);
   }
-  dialogflow(options: ServiceOptions|string) {
-    return this.getAPI('dialogflow', options);
+  spectrum<T = spectrum_v1explorer.Spectrum>(options: ServiceOptions|string) {
+    return this.getAPI<T>('spectrum', options);
   }
-  digitalassetlinks(options: ServiceOptions|string) {
-    return this.getAPI('digitalassetlinks', options);
+  speech<T = speech_v1.Speech | speech_v1beta1.Speech>(options: ServiceOptions|
+                                                       string) {
+    return this.getAPI<T>('speech', options);
   }
-  discovery(options: ServiceOptions|string) {
-    return this.getAPI('discovery', options);
+  sqladmin<T = sqladmin_v1beta3.Sqladmin | sqladmin_v1beta4.Sqladmin>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('sqladmin', options);
   }
-  dlp(options: ServiceOptions|string) {
-    return this.getAPI('dlp', options);
+  storage<
+      T = storage_v1.Storage | storage_v1beta1.Storage |
+          storage_v1beta2.Storage>(options: ServiceOptions|string) {
+    return this.getAPI<T>('storage', options);
   }
-  dns(options: ServiceOptions|string) {
-    return this.getAPI('dns', options);
+  storagetransfer<T = storagetransfer_v1.Storagetransfer>(options:
+                                                              ServiceOptions|
+                                                          string) {
+    return this.getAPI<T>('storagetransfer', options);
   }
-  doubleclickbidmanager(options: ServiceOptions|string) {
-    return this.getAPI('doubleclickbidmanager', options);
+  streetviewpublish<T = streetviewpublish_v1.Streetviewpublish>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('streetviewpublish', options);
   }
-  doubleclicksearch(options: ServiceOptions|string) {
-    return this.getAPI('doubleclicksearch', options);
+  surveys<T = surveys_v2.Surveys>(options: ServiceOptions|string) {
+    return this.getAPI<T>('surveys', options);
   }
-  drive(options: ServiceOptions|string) {
-    return this.getAPI('drive', options);
+  tagmanager<T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('tagmanager', options);
   }
-  firebasedynamiclinks(options: ServiceOptions|string) {
-    return this.getAPI('firebasedynamiclinks', options);
+  taskqueue<T = taskqueue_v1beta1.Taskqueue | taskqueue_v1beta2.Taskqueue>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('taskqueue', options);
   }
-  firebaserules(options: ServiceOptions|string) {
-    return this.getAPI('firebaserules', options);
+  tasks<T = tasks_v1.Tasks>(options: ServiceOptions|string) {
+    return this.getAPI<T>('tasks', options);
   }
-  firestore(options: ServiceOptions|string) {
-    return this.getAPI('firestore', options);
+  testing<T = testing_v1.Testing>(options: ServiceOptions|string) {
+    return this.getAPI<T>('testing', options);
   }
-  fitness(options: ServiceOptions|string) {
-    return this.getAPI('fitness', options);
+  texttospeech<T = texttospeech_v1beta1.Texttospeech>(options: ServiceOptions|
+                                                      string) {
+    return this.getAPI<T>('texttospeech', options);
   }
-  fusiontables(options: ServiceOptions|string) {
-    return this.getAPI('fusiontables', options);
+  toolresults<T = toolresults_v1beta3.Toolresults>(options: ServiceOptions|
+                                                   string) {
+    return this.getAPI<T>('toolresults', options);
   }
-  games(options: ServiceOptions|string) {
-    return this.getAPI('games', options);
+  tpu<T = tpu_v1alpha1.Tpu>(options: ServiceOptions|string) {
+    return this.getAPI<T>('tpu', options);
   }
-  gamesConfiguration(options: ServiceOptions|string) {
-    return this.getAPI('gamesConfiguration', options);
+  translate<T = translate_v2.Translate>(options: ServiceOptions|string) {
+    return this.getAPI<T>('translate', options);
   }
-  gamesManagement(options: ServiceOptions|string) {
-    return this.getAPI('gamesManagement', options);
+  urlshortener<T = urlshortener_v1.Urlshortener>(options: ServiceOptions|
+                                                 string) {
+    return this.getAPI<T>('urlshortener', options);
   }
-  genomics(options: ServiceOptions|string) {
-    return this.getAPI('genomics', options);
+  vault<T = vault_v1.Vault>(options: ServiceOptions|string) {
+    return this.getAPI<T>('vault', options);
   }
-  gmail(options: ServiceOptions|string) {
-    return this.getAPI('gmail', options);
+  videointelligence<T = videointelligence_v1beta1.Videointelligence>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('videointelligence', options);
   }
-  groupsmigration(options: ServiceOptions|string) {
-    return this.getAPI('groupsmigration', options);
+  vision<
+      T = vision_v1.Vision | vision_v1p1beta1.Vision | vision_v1p2beta1.Vision>(
+      options: ServiceOptions|string) {
+    return this.getAPI<T>('vision', options);
   }
-  groupssettings(options: ServiceOptions|string) {
-    return this.getAPI('groupssettings', options);
+  webfonts<T = webfonts_v1.Webfonts>(options: ServiceOptions|string) {
+    return this.getAPI<T>('webfonts', options);
   }
-  iam(options: ServiceOptions|string) {
-    return this.getAPI('iam', options);
+  webmasters<T = webmasters_v3.Webmasters>(options: ServiceOptions|string) {
+    return this.getAPI<T>('webmasters', options);
   }
-  identitytoolkit(options: ServiceOptions|string) {
-    return this.getAPI('identitytoolkit', options);
+  youtube<T = youtube_v3.Youtube>(options: ServiceOptions|string) {
+    return this.getAPI<T>('youtube', options);
   }
-  kgsearch(options: ServiceOptions|string) {
-    return this.getAPI('kgsearch', options);
+  youtubeAnalytics<
+      T = youtubeAnalytics_v1.Youtubeanalytics |
+          youtubeAnalytics_v1beta1.Youtubeanalytics>(options: ServiceOptions|
+                                                     string) {
+    return this.getAPI<T>('youtubeAnalytics', options);
   }
-  language(options: ServiceOptions|string) {
-    return this.getAPI('language', options);
-  }
-  licensing(options: ServiceOptions|string) {
-    return this.getAPI('licensing', options);
-  }
-  logging(options: ServiceOptions|string) {
-    return this.getAPI('logging', options);
-  }
-  manufacturers(options: ServiceOptions|string) {
-    return this.getAPI('manufacturers', options);
-  }
-  mirror(options: ServiceOptions|string) {
-    return this.getAPI('mirror', options);
-  }
-  ml(options: ServiceOptions|string) {
-    return this.getAPI('ml', options);
-  }
-  monitoring(options: ServiceOptions|string) {
-    return this.getAPI('monitoring', options);
-  }
-  oauth2(options: ServiceOptions|string) {
-    return this.getAPI('oauth2', options);
-  }
-  oslogin(options: ServiceOptions|string) {
-    return this.getAPI('oslogin', options);
-  }
-  pagespeedonline(options: ServiceOptions|string) {
-    return this.getAPI('pagespeedonline', options);
-  }
-  partners(options: ServiceOptions|string) {
-    return this.getAPI('partners', options);
-  }
-  people(options: ServiceOptions|string) {
-    return this.getAPI('people', options);
-  }
-  playcustomapp(options: ServiceOptions|string) {
-    return this.getAPI('playcustomapp', options);
-  }
-  plus(options: ServiceOptions|string) {
-    return this.getAPI('plus', options);
-  }
-  plusDomains(options: ServiceOptions|string) {
-    return this.getAPI('plusDomains', options);
-  }
-  poly(options: ServiceOptions|string) {
-    return this.getAPI('poly', options);
-  }
-  prediction(options: ServiceOptions|string) {
-    return this.getAPI('prediction', options);
-  }
-  proximitybeacon(options: ServiceOptions|string) {
-    return this.getAPI('proximitybeacon', options);
-  }
-  pubsub(options: ServiceOptions|string) {
-    return this.getAPI('pubsub', options);
-  }
-  replicapool(options: ServiceOptions|string) {
-    return this.getAPI('replicapool', options);
-  }
-  replicapoolupdater(options: ServiceOptions|string) {
-    return this.getAPI('replicapoolupdater', options);
-  }
-  reseller(options: ServiceOptions|string) {
-    return this.getAPI('reseller', options);
-  }
-  resourceviews(options: ServiceOptions|string) {
-    return this.getAPI('resourceviews', options);
-  }
-  runtimeconfig(options: ServiceOptions|string) {
-    return this.getAPI('runtimeconfig', options);
-  }
-  safebrowsing(options: ServiceOptions|string) {
-    return this.getAPI('safebrowsing', options);
-  }
-  script(options: ServiceOptions|string) {
-    return this.getAPI('script', options);
-  }
-  searchconsole(options: ServiceOptions|string) {
-    return this.getAPI('searchconsole', options);
-  }
-  serviceconsumermanagement(options: ServiceOptions|string) {
-    return this.getAPI('serviceconsumermanagement', options);
-  }
-  servicecontrol(options: ServiceOptions|string) {
-    return this.getAPI('servicecontrol', options);
-  }
-  servicemanagement(options: ServiceOptions|string) {
-    return this.getAPI('servicemanagement', options);
-  }
-  serviceusage(options: ServiceOptions|string) {
-    return this.getAPI('serviceusage', options);
-  }
-  serviceuser(options: ServiceOptions|string) {
-    return this.getAPI('serviceuser', options);
-  }
-  sheets(options: ServiceOptions|string) {
-    return this.getAPI('sheets', options);
-  }
-  siteVerification(options: ServiceOptions|string) {
-    return this.getAPI('siteVerification', options);
-  }
-  slides(options: ServiceOptions|string) {
-    return this.getAPI('slides', options);
-  }
-  sourcerepo(options: ServiceOptions|string) {
-    return this.getAPI('sourcerepo', options);
-  }
-  spanner(options: ServiceOptions|string) {
-    return this.getAPI('spanner', options);
-  }
-  spectrum(options: ServiceOptions|string) {
-    return this.getAPI('spectrum', options);
-  }
-  speech(options: ServiceOptions|string) {
-    return this.getAPI('speech', options);
-  }
-  sqladmin(options: ServiceOptions|string) {
-    return this.getAPI('sqladmin', options);
-  }
-  storage(options: ServiceOptions|string) {
-    return this.getAPI('storage', options);
-  }
-  storagetransfer(options: ServiceOptions|string) {
-    return this.getAPI('storagetransfer', options);
-  }
-  streetviewpublish(options: ServiceOptions|string) {
-    return this.getAPI('streetviewpublish', options);
-  }
-  surveys(options: ServiceOptions|string) {
-    return this.getAPI('surveys', options);
-  }
-  tagmanager(options: ServiceOptions|string) {
-    return this.getAPI('tagmanager', options);
-  }
-  taskqueue(options: ServiceOptions|string) {
-    return this.getAPI('taskqueue', options);
-  }
-  tasks(options: ServiceOptions|string) {
-    return this.getAPI('tasks', options);
-  }
-  testing(options: ServiceOptions|string) {
-    return this.getAPI('testing', options);
-  }
-  texttospeech(options: ServiceOptions|string) {
-    return this.getAPI('texttospeech', options);
-  }
-  toolresults(options: ServiceOptions|string) {
-    return this.getAPI('toolresults', options);
-  }
-  tpu(options: ServiceOptions|string) {
-    return this.getAPI('tpu', options);
-  }
-  translate(options: ServiceOptions|string) {
-    return this.getAPI('translate', options);
-  }
-  urlshortener(options: ServiceOptions|string) {
-    return this.getAPI('urlshortener', options);
-  }
-  vault(options: ServiceOptions|string) {
-    return this.getAPI('vault', options);
-  }
-  videointelligence(options: ServiceOptions|string) {
-    return this.getAPI('videointelligence', options);
-  }
-  vision(options: ServiceOptions|string) {
-    return this.getAPI('vision', options);
-  }
-  webfonts(options: ServiceOptions|string) {
-    return this.getAPI('webfonts', options);
-  }
-  webmasters(options: ServiceOptions|string) {
-    return this.getAPI('webmasters', options);
-  }
-  youtube(options: ServiceOptions|string) {
-    return this.getAPI('youtube', options);
-  }
-  youtubeAnalytics(options: ServiceOptions|string) {
-    return this.getAPI('youtubeAnalytics', options);
-  }
-  youtubereporting(options: ServiceOptions|string) {
-    return this.getAPI('youtubereporting', options);
+  youtubereporting<T = youtubereporting_v1.Youtubereporting>(options:
+                                                                 ServiceOptions|
+                                                             string) {
+    return this.getAPI<T>('youtubereporting', options);
   }
 }

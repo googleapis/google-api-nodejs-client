@@ -543,15 +543,15 @@ export class Resource$Lineitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  downloadlineitems(params: any, options?: MethodOptions):
+  downloadlineitems(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DownloadLineItemsResponse>;
   downloadlineitems(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DownloadLineItemsResponse>,
       callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>): void;
   downloadlineitems(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DownloadLineItemsResponse>,
       callback?: BodyResponseCallback<Schema$DownloadLineItemsResponse>):
@@ -601,15 +601,15 @@ export class Resource$Lineitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  uploadlineitems(params: any, options?: MethodOptions):
+  uploadlineitems(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$UploadLineItemsResponse>;
   uploadlineitems(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$UploadLineItemsResponse>,
       callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>): void;
   uploadlineitems(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$UploadLineItemsResponse>,
       callback?: BodyResponseCallback<Schema$UploadLineItemsResponse>):
@@ -670,12 +670,13 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createquery(params: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
+  createquery(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Query>;
   createquery(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
       callback?: BodyResponseCallback<Schema$Query>): void;
   createquery(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
       callback?: BodyResponseCallback<Schema$Query>):
       void|AxiosPromise<Schema$Query> {
     if (typeof options === 'function') {
@@ -721,12 +722,12 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deletequery(params: any, options?: MethodOptions): AxiosPromise<void>;
+  deletequery(params?: any, options?: MethodOptions): AxiosPromise<void>;
   deletequery(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   deletequery(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -771,12 +772,12 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getquery(params: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
+  getquery(params?: any, options?: MethodOptions): AxiosPromise<Schema$Query>;
   getquery(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Query>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
       callback?: BodyResponseCallback<Schema$Query>): void;
   getquery(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Query>,
       callback?: BodyResponseCallback<Schema$Query>):
       void|AxiosPromise<Schema$Query> {
     if (typeof options === 'function') {
@@ -821,14 +822,14 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listqueries(params: any, options?: MethodOptions):
+  listqueries(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListQueriesResponse>;
   listqueries(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
       callback?: BodyResponseCallback<Schema$ListQueriesResponse>): void;
   listqueries(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListQueriesResponse>,
       callback?: BodyResponseCallback<Schema$ListQueriesResponse>):
       void|AxiosPromise<Schema$ListQueriesResponse> {
@@ -876,12 +877,12 @@ export class Resource$Queries {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runquery(params: any, options?: MethodOptions): AxiosPromise<void>;
+  runquery(params?: any, options?: MethodOptions): AxiosPromise<void>;
   runquery(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   runquery(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -938,14 +939,14 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listreports(params: any, options?: MethodOptions):
+  listreports(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListReportsResponse>;
   listreports(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
       callback?: BodyResponseCallback<Schema$ListReportsResponse>): void;
   listreports(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
       callback?: BodyResponseCallback<Schema$ListReportsResponse>):
       void|AxiosPromise<Schema$ListReportsResponse> {
@@ -1005,14 +1006,14 @@ export class Resource$Sdf {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  download(params: any, options?: MethodOptions):
+  download(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DownloadResponse>;
   download(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
       callback?: BodyResponseCallback<Schema$DownloadResponse>): void;
   download(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DownloadResponse>,
       callback?: BodyResponseCallback<Schema$DownloadResponse>):
       void|AxiosPromise<Schema$DownloadResponse> {

@@ -1145,14 +1145,15 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  allocateQuota(params: any, options?: MethodOptions):
+  allocateQuota(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AllocateQuotaResponse>;
   allocateQuota(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AllocateQuotaResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AllocateQuotaResponse>,
       callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>): void;
   allocateQuota(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AllocateQuotaResponse>,
       callback?: BodyResponseCallback<Schema$AllocateQuotaResponse>):
@@ -1211,14 +1212,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  check(params: any, options?: MethodOptions):
+  check(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CheckResponse>;
   check(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
       callback?: BodyResponseCallback<Schema$CheckResponse>): void;
   check(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
       callback?: BodyResponseCallback<Schema$CheckResponse>):
       void|AxiosPromise<Schema$CheckResponse> {
@@ -1269,15 +1270,15 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  endReconciliation(params: any, options?: MethodOptions):
+  endReconciliation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$EndReconciliationResponse>;
   endReconciliation(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$EndReconciliationResponse>,
       callback?: BodyResponseCallback<Schema$EndReconciliationResponse>): void;
   endReconciliation(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$EndReconciliationResponse>,
       callback?: BodyResponseCallback<Schema$EndReconciliationResponse>):
@@ -1332,14 +1333,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  releaseQuota(params: any, options?: MethodOptions):
+  releaseQuota(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReleaseQuotaResponse>;
   releaseQuota(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
       callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>): void;
   releaseQuota(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ReleaseQuotaResponse>,
       callback?: BodyResponseCallback<Schema$ReleaseQuotaResponse>):
       void|AxiosPromise<Schema$ReleaseQuotaResponse> {
@@ -1396,14 +1397,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  report(params: any, options?: MethodOptions):
+  report(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReportResponse>;
   report(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
       callback?: BodyResponseCallback<Schema$ReportResponse>): void;
   report(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ReportResponse>,
       callback?: BodyResponseCallback<Schema$ReportResponse>):
       void|AxiosPromise<Schema$ReportResponse> {
@@ -1470,16 +1471,16 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startReconciliation(params: any, options?: MethodOptions):
+  startReconciliation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$StartReconciliationResponse>;
   startReconciliation(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$StartReconciliationResponse>,
       callback?: BodyResponseCallback<Schema$StartReconciliationResponse>):
       void;
   startReconciliation(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$StartReconciliationResponse>,
       callback?: BodyResponseCallback<Schema$StartReconciliationResponse>):

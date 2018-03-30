@@ -1530,14 +1530,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createAuthUri(params: any, options?: MethodOptions):
+  createAuthUri(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CreateAuthUriResponse>;
   createAuthUri(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CreateAuthUriResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateAuthUriResponse>,
       callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>): void;
   createAuthUri(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$CreateAuthUriResponse>,
       callback?: BodyResponseCallback<Schema$CreateAuthUriResponse>):
@@ -1585,14 +1586,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteAccount(params: any, options?: MethodOptions):
+  deleteAccount(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DeleteAccountResponse>;
   deleteAccount(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DeleteAccountResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$DeleteAccountResponse>,
       callback?: BodyResponseCallback<Schema$DeleteAccountResponse>): void;
   deleteAccount(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DeleteAccountResponse>,
       callback?: BodyResponseCallback<Schema$DeleteAccountResponse>):
@@ -1640,15 +1642,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  downloadAccount(params: any, options?: MethodOptions):
+  downloadAccount(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DownloadAccountResponse>;
   downloadAccount(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DownloadAccountResponse>,
       callback?: BodyResponseCallback<Schema$DownloadAccountResponse>): void;
   downloadAccount(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DownloadAccountResponse>,
       callback?: BodyResponseCallback<Schema$DownloadAccountResponse>):
@@ -1696,15 +1698,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  emailLinkSignin(params: any, options?: MethodOptions):
+  emailLinkSignin(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$EmailLinkSigninResponse>;
   emailLinkSignin(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$EmailLinkSigninResponse>,
       callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>): void;
   emailLinkSignin(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$EmailLinkSigninResponse>,
       callback?: BodyResponseCallback<Schema$EmailLinkSigninResponse>):
@@ -1752,15 +1754,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getAccountInfo(params: any, options?: MethodOptions):
+  getAccountInfo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetAccountInfoResponse>;
   getAccountInfo(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GetAccountInfoResponse>,
       callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>): void;
   getAccountInfo(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetAccountInfoResponse>,
       callback?: BodyResponseCallback<Schema$GetAccountInfoResponse>):
@@ -1808,16 +1810,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getOobConfirmationCode(params: any, options?: MethodOptions):
+  getOobConfirmationCode(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetOobConfirmationCodeResponse>;
   getOobConfirmationCode(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
       callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
       void;
   getOobConfirmationCode(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>,
       callback?: BodyResponseCallback<Schema$GetOobConfirmationCodeResponse>):
@@ -1869,16 +1871,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getProjectConfig(params: any, options?: MethodOptions):
+  getProjectConfig(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
   getProjectConfig(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>): void;
   getProjectConfig(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
       callback?: BodyResponseCallback<
@@ -1930,16 +1932,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getPublicKeys(params: any, options?: MethodOptions):
+  getPublicKeys(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>;
   getPublicKeys(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>): void;
   getPublicKeys(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
       callback?: BodyResponseCallback<
@@ -1989,15 +1991,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRecaptchaParam(params: any, options?: MethodOptions):
+  getRecaptchaParam(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetRecaptchaParamResponse>;
   getRecaptchaParam(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
       callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>): void;
   getRecaptchaParam(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetRecaptchaParamResponse>,
       callback?: BodyResponseCallback<Schema$GetRecaptchaParamResponse>):
@@ -2046,14 +2048,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetPassword(params: any, options?: MethodOptions):
+  resetPassword(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ResetPasswordResponse>;
   resetPassword(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ResetPasswordResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ResetPasswordResponse>,
       callback?: BodyResponseCallback<Schema$ResetPasswordResponse>): void;
   resetPassword(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ResetPasswordResponse>,
       callback?: BodyResponseCallback<Schema$ResetPasswordResponse>):
@@ -2101,17 +2104,17 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  sendVerificationCode(params: any, options?: MethodOptions): AxiosPromise<
+  sendVerificationCode(params?: any, options?: MethodOptions): AxiosPromise<
       Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
   sendVerificationCode(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>):
       void;
   sendVerificationCode(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
       callback?: BodyResponseCallback<
@@ -2166,15 +2169,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setAccountInfo(params: any, options?: MethodOptions):
+  setAccountInfo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SetAccountInfoResponse>;
   setAccountInfo(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SetAccountInfoResponse>,
       callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>): void;
   setAccountInfo(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SetAccountInfoResponse>,
       callback?: BodyResponseCallback<Schema$SetAccountInfoResponse>):
@@ -2222,16 +2225,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setProjectConfig(params: any, options?: MethodOptions):
+  setProjectConfig(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
   setProjectConfig(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>): void;
   setProjectConfig(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
       callback?: BodyResponseCallback<
@@ -2284,16 +2287,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signOutUser(params: any, options?: MethodOptions):
+  signOutUser(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>;
   signOutUser(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySignOutUserResponse>): void;
   signOutUser(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
       callback?: BodyResponseCallback<
@@ -2344,14 +2347,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  signupNewUser(params: any, options?: MethodOptions):
+  signupNewUser(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SignupNewUserResponse>;
   signupNewUser(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SignupNewUserResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SignupNewUserResponse>,
       callback?: BodyResponseCallback<Schema$SignupNewUserResponse>): void;
   signupNewUser(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SignupNewUserResponse>,
       callback?: BodyResponseCallback<Schema$SignupNewUserResponse>):
@@ -2399,14 +2403,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  uploadAccount(params: any, options?: MethodOptions):
+  uploadAccount(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$UploadAccountResponse>;
   uploadAccount(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$UploadAccountResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$UploadAccountResponse>,
       callback?: BodyResponseCallback<Schema$UploadAccountResponse>): void;
   uploadAccount(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$UploadAccountResponse>,
       callback?: BodyResponseCallback<Schema$UploadAccountResponse>):
@@ -2454,15 +2459,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyAssertion(params: any, options?: MethodOptions):
+  verifyAssertion(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$VerifyAssertionResponse>;
   verifyAssertion(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyAssertionResponse>,
       callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>): void;
   verifyAssertion(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyAssertionResponse>,
       callback?: BodyResponseCallback<Schema$VerifyAssertionResponse>):
@@ -2510,15 +2515,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyCustomToken(params: any, options?: MethodOptions):
+  verifyCustomToken(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$VerifyCustomTokenResponse>;
   verifyCustomToken(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
       callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>): void;
   verifyCustomToken(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyCustomTokenResponse>,
       callback?: BodyResponseCallback<Schema$VerifyCustomTokenResponse>):
@@ -2567,15 +2572,15 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyPassword(params: any, options?: MethodOptions):
+  verifyPassword(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$VerifyPasswordResponse>;
   verifyPassword(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyPasswordResponse>,
       callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>): void;
   verifyPassword(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$VerifyPasswordResponse>,
       callback?: BodyResponseCallback<Schema$VerifyPasswordResponse>):
@@ -2624,16 +2629,16 @@ export class Resource$Relyingparty {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  verifyPhoneNumber(params: any, options?: MethodOptions):
+  verifyPhoneNumber(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
   verifyPhoneNumber(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
       callback?: BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>): void;
   verifyPhoneNumber(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
       callback?: BodyResponseCallback<

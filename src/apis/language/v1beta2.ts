@@ -250,7 +250,8 @@ export interface Schema$ClassificationCategory {
    */
   confidence: number;
   /**
-   * The name of the category representing the document.
+   * The name of the category representing the document, from the [predefined
+   * taxonomy](/natural-language/docs/categories).
    */
   name: string;
 }
@@ -606,15 +607,15 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeEntities(params: any, options?: MethodOptions):
+  analyzeEntities(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AnalyzeEntitiesResponse>;
   analyzeEntities(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>): void;
   analyzeEntities(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>):
@@ -663,16 +664,16 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeEntitySentiment(params: any, options?: MethodOptions):
+  analyzeEntitySentiment(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AnalyzeEntitySentimentResponse>;
   analyzeEntitySentiment(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>):
       void;
   analyzeEntitySentiment(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeEntitySentimentResponse>):
@@ -722,15 +723,15 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeSentiment(params: any, options?: MethodOptions):
+  analyzeSentiment(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AnalyzeSentimentResponse>;
   analyzeSentiment(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>): void;
   analyzeSentiment(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeSentimentResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeSentimentResponse>):
@@ -780,14 +781,15 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyzeSyntax(params: any, options?: MethodOptions):
+  analyzeSyntax(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AnalyzeSyntaxResponse>;
   analyzeSyntax(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>): void;
   analyzeSyntax(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AnalyzeSyntaxResponse>,
       callback?: BodyResponseCallback<Schema$AnalyzeSyntaxResponse>):
@@ -836,14 +838,14 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotateText(params: any, options?: MethodOptions):
+  annotateText(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AnnotateTextResponse>;
   annotateText(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
       callback?: BodyResponseCallback<Schema$AnnotateTextResponse>): void;
   annotateText(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$AnnotateTextResponse>,
       callback?: BodyResponseCallback<Schema$AnnotateTextResponse>):
       void|AxiosPromise<Schema$AnnotateTextResponse> {
@@ -890,14 +892,14 @@ export class Resource$Documents {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  classifyText(params: any, options?: MethodOptions):
+  classifyText(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ClassifyTextResponse>;
   classifyText(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
       callback?: BodyResponseCallback<Schema$ClassifyTextResponse>): void;
   classifyText(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ClassifyTextResponse>,
       callback?: BodyResponseCallback<Schema$ClassifyTextResponse>):
       void|AxiosPromise<Schema$ClassifyTextResponse> {

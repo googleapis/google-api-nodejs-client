@@ -163,11 +163,11 @@ export class Resource$Taskqueues {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TaskQueue>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$TaskQueue>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$TaskQueue>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TaskQueue>,
       callback?: BodyResponseCallback<Schema$TaskQueue>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$TaskQueue>,
       callback?: BodyResponseCallback<Schema$TaskQueue>):
       void|AxiosPromise<Schema$TaskQueue> {
@@ -230,12 +230,12 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -284,10 +284,10 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Task>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
       callback?: BodyResponseCallback<Schema$Task>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
       callback?: BodyResponseCallback<Schema$Task>):
       void|AxiosPromise<Schema$Task> {
     if (typeof options === 'function') {
@@ -338,12 +338,12 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  lease(params: any, options?: MethodOptions): AxiosPromise<Schema$Tasks>;
+  lease(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tasks>;
   lease(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
       callback?: BodyResponseCallback<Schema$Tasks>): void;
   lease(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
       callback?: BodyResponseCallback<Schema$Tasks>):
       void|AxiosPromise<Schema$Tasks> {
     if (typeof options === 'function') {
@@ -392,12 +392,12 @@ export class Resource$Tasks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Tasks2>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tasks2>;
   list(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Tasks2>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks2>,
       callback?: BodyResponseCallback<Schema$Tasks2>): void;
   list(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks2>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Tasks2>,
       callback?: BodyResponseCallback<Schema$Tasks2>):
       void|AxiosPromise<Schema$Tasks2> {
     if (typeof options === 'function') {

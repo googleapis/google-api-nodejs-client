@@ -2076,13 +2076,14 @@ export class Resource$Projects$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  disable(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  disable(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   disable(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   disable(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2095,8 +2096,7 @@ export class Resource$Projects$Services {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-serviceuser.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://serviceuser.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2132,13 +2132,13 @@ export class Resource$Projects$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  enable(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  enable(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   enable(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   enable(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2151,8 +2151,7 @@ export class Resource$Projects$Services {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-serviceuser.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://serviceuser.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2187,16 +2186,16 @@ export class Resource$Projects$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListEnabledServicesResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListEnabledServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListEnabledServicesResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListEnabledServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListEnabledServicesResponse>):
@@ -2210,8 +2209,7 @@ export class Resource$Projects$Services {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-serviceuser.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://serviceuser.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2262,15 +2260,15 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SearchServicesResponse>;
   search(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SearchServicesResponse>,
       callback?: BodyResponseCallback<Schema$SearchServicesResponse>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SearchServicesResponse>,
       callback?: BodyResponseCallback<Schema$SearchServicesResponse>):
@@ -2284,8 +2282,7 @@ export class Resource$Services {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-serviceuser.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://serviceuser.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {

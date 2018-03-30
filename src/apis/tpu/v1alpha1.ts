@@ -472,7 +472,7 @@ export class Resource$Projects$Locations {
 
   /**
    * tpu.projects.locations.get
-   * @desc Get information about a location.
+   * @desc Gets information about a location.
    * @alias tpu.projects.locations.get
    * @memberOf! ()
    *
@@ -482,10 +482,11 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
       callback?: BodyResponseCallback<Schema$Location>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Location>,
       callback?: BodyResponseCallback<Schema$Location>):
       void|AxiosPromise<Schema$Location> {
@@ -498,7 +499,7 @@ export class Resource$Projects$Locations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -534,14 +535,15 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListLocationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListLocationsResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLocationsResponse>,
       callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListLocationsResponse>,
       callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
@@ -555,7 +557,7 @@ export class Resource$Projects$Locations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -600,12 +602,12 @@ export class Resource$Projects$Locations$Acceleratortypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$AcceleratorType>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
       callback?: BodyResponseCallback<Schema$AcceleratorType>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$AcceleratorType>,
       callback?: BodyResponseCallback<Schema$AcceleratorType>):
       void|AxiosPromise<Schema$AcceleratorType> {
@@ -618,7 +620,7 @@ export class Resource$Projects$Locations$Acceleratortypes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -655,16 +657,16 @@ export class Resource$Projects$Locations$Acceleratortypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListAcceleratorTypesResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
       callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListAcceleratorTypesResponse>,
       callback?: BodyResponseCallback<Schema$ListAcceleratorTypesResponse>):
@@ -678,7 +680,7 @@ export class Resource$Projects$Locations$Acceleratortypes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -727,13 +729,13 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -746,7 +748,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -780,13 +782,13 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -799,7 +801,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -832,10 +834,10 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Node>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Node>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Node>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Node>,
       callback?: BodyResponseCallback<Schema$Node>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Node>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Node>,
       callback?: BodyResponseCallback<Schema$Node>):
       void|AxiosPromise<Schema$Node> {
     if (typeof options === 'function') {
@@ -847,7 +849,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -882,14 +884,14 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListNodesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
       callback?: BodyResponseCallback<Schema$ListNodesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListNodesResponse>,
       callback?: BodyResponseCallback<Schema$ListNodesResponse>):
       void|AxiosPromise<Schema$ListNodesResponse> {
@@ -902,7 +904,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -937,13 +939,14 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reimage(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  reimage(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   reimage(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   reimage(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -956,7 +959,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -991,13 +994,13 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  reset(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   reset(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   reset(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1010,7 +1013,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1045,13 +1048,13 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  start(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  start(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   start(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   start(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1064,7 +1067,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1099,13 +1102,13 @@ export class Resource$Projects$Locations$Nodes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  stop(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  stop(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   stop(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   stop(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1118,7 +1121,7 @@ export class Resource$Projects$Locations$Nodes {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1172,12 +1175,12 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1189,7 +1192,7 @@ export class Resource$Projects$Locations$Operations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1226,12 +1229,12 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1243,7 +1246,7 @@ export class Resource$Projects$Locations$Operations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1278,11 +1281,11 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1295,7 +1298,7 @@ export class Resource$Projects$Locations$Operations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1339,15 +1342,15 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
@@ -1361,7 +1364,7 @@ export class Resource$Projects$Locations$Operations {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1407,12 +1410,12 @@ export class Resource$Projects$Locations$Tensorflowversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$TensorFlowVersion>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
       callback?: BodyResponseCallback<Schema$TensorFlowVersion>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$TensorFlowVersion>,
       callback?: BodyResponseCallback<Schema$TensorFlowVersion>):
       void|AxiosPromise<Schema$TensorFlowVersion> {
@@ -1425,7 +1428,7 @@ export class Resource$Projects$Locations$Tensorflowversions {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -1462,16 +1465,16 @@ export class Resource$Projects$Locations$Tensorflowversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListTensorFlowVersionsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
       callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>,
       callback?: BodyResponseCallback<Schema$ListTensorFlowVersionsResponse>):
@@ -1485,7 +1488,7 @@ export class Resource$Projects$Locations$Tensorflowversions {
       params = {};
     }
     options = options || {};
-    const rootUrl = options.rootUrl || 'https://content-tpu.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {

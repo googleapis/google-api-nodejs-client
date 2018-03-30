@@ -386,14 +386,14 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  abandonInstances(params: any, options?: MethodOptions):
+  abandonInstances(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   abandonInstances(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   abandonInstances(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -446,13 +446,13 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -507,14 +507,14 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteInstances(params: any, options?: MethodOptions):
+  deleteInstances(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   deleteInstances(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   deleteInstances(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -565,12 +565,12 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$InstanceGroupManager>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$InstanceGroupManager>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InstanceGroupManager>,
       callback?: BodyResponseCallback<Schema$InstanceGroupManager>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$InstanceGroupManager>,
       callback?: BodyResponseCallback<Schema$InstanceGroupManager>):
       void|AxiosPromise<Schema$InstanceGroupManager> {
@@ -623,13 +623,13 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   insert(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -683,15 +683,15 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$InstanceGroupManagerList>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$InstanceGroupManagerList>,
       callback?: BodyResponseCallback<Schema$InstanceGroupManagerList>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$InstanceGroupManagerList>,
       callback?: BodyResponseCallback<Schema$InstanceGroupManagerList>):
@@ -745,14 +745,14 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  recreateInstances(params: any, options?: MethodOptions):
+  recreateInstances(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   recreateInstances(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   recreateInstances(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -807,13 +807,13 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resize(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  resize(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   resize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   resize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -866,14 +866,14 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setInstanceTemplate(params: any, options?: MethodOptions):
+  setInstanceTemplate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setInstanceTemplate(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setInstanceTemplate(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -926,14 +926,14 @@ export class Resource$Instancegroupmanagers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setTargetPools(params: any, options?: MethodOptions):
+  setTargetPools(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setTargetPools(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setTargetPools(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -996,11 +996,11 @@ export class Resource$Zoneoperations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1054,14 +1054,14 @@ export class Resource$Zoneoperations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$OperationList>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
       callback?: BodyResponseCallback<Schema$OperationList>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
       callback?: BodyResponseCallback<Schema$OperationList>):
       void|AxiosPromise<Schema$OperationList> {

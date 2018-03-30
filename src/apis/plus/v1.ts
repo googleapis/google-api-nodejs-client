@@ -555,10 +555,11 @@ export class Resource$Activities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Activity>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Activity>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Activity>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Activity>,
       callback?: BodyResponseCallback<Schema$Activity>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Activity>,
       callback?: BodyResponseCallback<Schema$Activity>):
       void|AxiosPromise<Schema$Activity> {
@@ -609,13 +610,14 @@ export class Resource$Activities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ActivityFeed>;
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ActivityFeed>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
       callback?: BodyResponseCallback<Schema$ActivityFeed>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
       callback?: BodyResponseCallback<Schema$ActivityFeed>):
       void|AxiosPromise<Schema$ActivityFeed> {
@@ -666,14 +668,14 @@ export class Resource$Activities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ActivityFeed>;
   search(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
       callback?: BodyResponseCallback<Schema$ActivityFeed>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ActivityFeed>,
       callback?: BodyResponseCallback<Schema$ActivityFeed>):
       void|AxiosPromise<Schema$ActivityFeed> {
@@ -732,10 +734,12 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
       callback?: BodyResponseCallback<Schema$Comment>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
       callback?: BodyResponseCallback<Schema$Comment>):
       void|AxiosPromise<Schema$Comment> {
     if (typeof options === 'function') {
@@ -784,13 +788,13 @@ export class Resource$Comments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$CommentFeed>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$CommentFeed>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
       callback?: BodyResponseCallback<Schema$CommentFeed>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CommentFeed>,
       callback?: BodyResponseCallback<Schema$CommentFeed>):
       void|AxiosPromise<Schema$CommentFeed> {
@@ -851,10 +855,10 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Person>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Person>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Person>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
       callback?: BodyResponseCallback<Schema$Person>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Person>,
       callback?: BodyResponseCallback<Schema$Person>):
       void|AxiosPromise<Schema$Person> {
     if (typeof options === 'function') {
@@ -904,13 +908,13 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>):
       void|AxiosPromise<Schema$PeopleFeed> {
@@ -961,14 +965,14 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listByActivity(params: any, options?: MethodOptions):
+  listByActivity(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PeopleFeed>;
   listByActivity(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>): void;
   listByActivity(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>):
       void|AxiosPromise<Schema$PeopleFeed> {
@@ -1019,13 +1023,14 @@ export class Resource$People {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions): AxiosPromise<Schema$PeopleFeed>;
+  search(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$PeopleFeed>;
   search(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PeopleFeed>,
       callback?: BodyResponseCallback<Schema$PeopleFeed>):
       void|AxiosPromise<Schema$PeopleFeed> {

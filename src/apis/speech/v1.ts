@@ -374,11 +374,11 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -440,14 +440,14 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  longrunningrecognize(params: any, options?: MethodOptions):
+  longrunningrecognize(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   longrunningrecognize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   longrunningrecognize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -495,14 +495,14 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  recognize(params: any, options?: MethodOptions):
+  recognize(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RecognizeResponse>;
   recognize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
       callback?: BodyResponseCallback<Schema$RecognizeResponse>): void;
   recognize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RecognizeResponse>,
       callback?: BodyResponseCallback<Schema$RecognizeResponse>):
       void|AxiosPromise<Schema$RecognizeResponse> {

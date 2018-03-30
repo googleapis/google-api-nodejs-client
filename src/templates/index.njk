@@ -35,7 +35,8 @@ const APIS: APIList = {
 };
 
 export class GeneratedAPIs {
-  private getAPI(api: string, options: ServiceOptions|string) {
+  // tslint:disable-next-line no-any
+  private getAPI<T = any>(api: string, options: ServiceOptions|string) {
     let version: string;
     if (typeof options === 'string') {
       version = options;
@@ -49,7 +50,7 @@ export class GeneratedAPIs {
     try {
       const endpoint = APIS[api][path.basename(version)];
       const ep = new endpoint(options, this);
-      return Object.freeze(ep);  // create new & freeze
+      return Object.freeze(ep) as T;
     } catch (e) {
       throw new Error(
           `Unable to load endpoint ${api}("${version}"): ${e.message}`);
@@ -57,8 +58,8 @@ export class GeneratedAPIs {
   }
 
 {% for apiName, api in apis %}
-{{ apiName }}(options: ServiceOptions|string) {
-  return this.getAPI('{{ apiName }}', options);
+{{ apiName }}<T = {% for versionName, version in api %}{{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(options: ServiceOptions|string) {
+  return this.getAPI<T>('{{ apiName }}', options);
 }
 {% endfor %}
 }

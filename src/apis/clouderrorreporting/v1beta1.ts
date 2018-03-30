@@ -453,14 +453,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deleteEvents(params: any, options?: MethodOptions):
+  deleteEvents(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DeleteEventsResponse>;
   deleteEvents(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
       callback?: BodyResponseCallback<Schema$DeleteEventsResponse>): void;
   deleteEvents(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DeleteEventsResponse>,
       callback?: BodyResponseCallback<Schema$DeleteEventsResponse>):
       void|AxiosPromise<Schema$DeleteEventsResponse> {
@@ -526,14 +526,14 @@ export class Resource$Projects$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListEventsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
       callback?: BodyResponseCallback<Schema$ListEventsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListEventsResponse>,
       callback?: BodyResponseCallback<Schema$ListEventsResponse>):
       void|AxiosPromise<Schema$ListEventsResponse> {
@@ -587,15 +587,15 @@ export class Resource$Projects$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  report(params: any, options?: MethodOptions):
+  report(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReportErrorEventResponse>;
   report(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ReportErrorEventResponse>,
       callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>): void;
   report(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ReportErrorEventResponse>,
       callback?: BodyResponseCallback<Schema$ReportErrorEventResponse>):
@@ -656,11 +656,11 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
       callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
       callback?: BodyResponseCallback<Schema$ErrorGroup>):
       void|AxiosPromise<Schema$ErrorGroup> {
@@ -710,13 +710,14 @@ export class Resource$Projects$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$ErrorGroup>;
+  update(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ErrorGroup>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
       callback?: BodyResponseCallback<Schema$ErrorGroup>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ErrorGroup>,
       callback?: BodyResponseCallback<Schema$ErrorGroup>):
       void|AxiosPromise<Schema$ErrorGroup> {
@@ -786,15 +787,15 @@ export class Resource$Projects$Groupstats {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListGroupStatsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListGroupStatsResponse>,
       callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListGroupStatsResponse>,
       callback?: BodyResponseCallback<Schema$ListGroupStatsResponse>):

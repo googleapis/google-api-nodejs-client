@@ -3140,16 +3140,16 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate(params: any, options?: MethodOptions):
+  batchUpdate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchUpdatePresentationResponse>;
   batchUpdate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
       void;
   batchUpdate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdatePresentationResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdatePresentationResponse>):
@@ -3202,14 +3202,14 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Presentation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
       callback?: BodyResponseCallback<Schema$Presentation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
       callback?: BodyResponseCallback<Schema$Presentation>):
       void|AxiosPromise<Schema$Presentation> {
@@ -3255,11 +3255,11 @@ export class Resource$Presentations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Presentation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Presentation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Presentation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
       callback?: BodyResponseCallback<Schema$Presentation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Presentation>,
       callback?: BodyResponseCallback<Schema$Presentation>):
       void|AxiosPromise<Schema$Presentation> {
@@ -3318,10 +3318,10 @@ export class Resource$Presentations$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Page>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
       callback?: BodyResponseCallback<Schema$Page>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
       callback?: BodyResponseCallback<Schema$Page>):
       void|AxiosPromise<Schema$Page> {
     if (typeof options === 'function') {
@@ -3373,14 +3373,14 @@ export class Resource$Presentations$Pages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getThumbnail(params: any, options?: MethodOptions):
+  getThumbnail(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Thumbnail>;
   getThumbnail(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
       callback?: BodyResponseCallback<Schema$Thumbnail>): void;
   getThumbnail(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Thumbnail>,
       callback?: BodyResponseCallback<Schema$Thumbnail>):
       void|AxiosPromise<Schema$Thumbnail> {

@@ -137,12 +137,12 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -187,15 +187,15 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceResource>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
           BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
       void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
@@ -246,16 +246,16 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getToken(params: any, options?: MethodOptions):
+  getToken(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceGettokenResponse>;
   getToken(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
       callback?: BodyResponseCallback<
           Schema$SiteVerificationWebResourceGettokenResponse>): void;
   getToken(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
       callback?: BodyResponseCallback<
@@ -307,17 +307,17 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions):
+  insert(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceResource>;
   insert(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
           BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
       void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
@@ -367,17 +367,17 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
       callback?:
           BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
       callback?:
@@ -430,17 +430,17 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceResource>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
           BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
       void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
@@ -492,17 +492,17 @@ export class Resource$Webresource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SiteVerificationWebResourceResource>;
   update(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:
           BodyResponseCallback<Schema$SiteVerificationWebResourceResource>):
       void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SiteVerificationWebResourceResource>,
       callback?:

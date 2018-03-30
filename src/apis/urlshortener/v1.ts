@@ -210,10 +210,10 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
       callback?: BodyResponseCallback<Schema$Url>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
       callback?: BodyResponseCallback<Schema$Url>):
       void|AxiosPromise<Schema$Url> {
     if (typeof options === 'function') {
@@ -259,12 +259,12 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
   insert(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Url>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
       callback?: BodyResponseCallback<Schema$Url>): void;
   insert(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
       callback?: BodyResponseCallback<Schema$Url>):
       void|AxiosPromise<Schema$Url> {
     if (typeof options === 'function') {
@@ -311,13 +311,13 @@ export class Resource$Url {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$UrlHistory>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$UrlHistory>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
       callback?: BodyResponseCallback<Schema$UrlHistory>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
       callback?: BodyResponseCallback<Schema$UrlHistory>):
       void|AxiosPromise<Schema$UrlHistory> {

@@ -161,12 +161,12 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -212,13 +212,13 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$GroupItem>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$GroupItem>;
   insert(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
       callback?: BodyResponseCallback<Schema$GroupItem>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GroupItem>,
       callback?: BodyResponseCallback<Schema$GroupItem>):
       void|AxiosPromise<Schema$GroupItem> {
@@ -267,14 +267,15 @@ export class Resource$Groupitems {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GroupItemListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GroupItemListResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GroupItemListResponse>,
       callback?: BodyResponseCallback<Schema$GroupItemListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GroupItemListResponse>,
       callback?: BodyResponseCallback<Schema$GroupItemListResponse>):
@@ -335,12 +336,12 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -386,12 +387,12 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
   insert(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
       callback?: BodyResponseCallback<Schema$Group>): void;
   insert(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
       callback?: BodyResponseCallback<Schema$Group>):
       void|AxiosPromise<Schema$Group> {
     if (typeof options === 'function') {
@@ -442,14 +443,14 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GroupListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
       callback?: BodyResponseCallback<Schema$GroupListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GroupListResponse>,
       callback?: BodyResponseCallback<Schema$GroupListResponse>):
       void|AxiosPromise<Schema$GroupListResponse> {
@@ -497,12 +498,12 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
   update(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Group>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
       callback?: BodyResponseCallback<Schema$Group>): void;
   update(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Group>,
       callback?: BodyResponseCallback<Schema$Group>):
       void|AxiosPromise<Schema$Group> {
     if (typeof options === 'function') {
@@ -570,13 +571,14 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  query(params: any, options?: MethodOptions): AxiosPromise<Schema$ResultTable>;
+  query(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ResultTable>;
   query(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
       callback?: BodyResponseCallback<Schema$ResultTable>): void;
   query(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ResultTable>,
       callback?: BodyResponseCallback<Schema$ResultTable>):
       void|AxiosPromise<Schema$ResultTable> {

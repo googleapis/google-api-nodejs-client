@@ -858,15 +858,15 @@ export class Resource$Divisions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DivisionSearchResponse>;
   search(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DivisionSearchResponse>,
       callback?: BodyResponseCallback<Schema$DivisionSearchResponse>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DivisionSearchResponse>,
       callback?: BodyResponseCallback<Schema$DivisionSearchResponse>):
@@ -926,15 +926,15 @@ export class Resource$Elections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  electionQuery(params: any, options?: MethodOptions):
+  electionQuery(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ElectionsQueryResponse>;
   electionQuery(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ElectionsQueryResponse>,
       callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>): void;
   electionQuery(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ElectionsQueryResponse>,
       callback?: BodyResponseCallback<Schema$ElectionsQueryResponse>):
@@ -987,14 +987,14 @@ export class Resource$Elections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  voterInfoQuery(params: any, options?: MethodOptions):
+  voterInfoQuery(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$VoterInfoResponse>;
   voterInfoQuery(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
       callback?: BodyResponseCallback<Schema$VoterInfoResponse>): void;
   voterInfoQuery(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$VoterInfoResponse>,
       callback?: BodyResponseCallback<Schema$VoterInfoResponse>):
       void|AxiosPromise<Schema$VoterInfoResponse> {
@@ -1058,15 +1058,15 @@ export class Resource$Representatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  representativeInfoByAddress(params: any, options?: MethodOptions):
+  representativeInfoByAddress(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RepresentativeInfoResponse>;
   representativeInfoByAddress(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$RepresentativeInfoResponse>,
       callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>): void;
   representativeInfoByAddress(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$RepresentativeInfoResponse>,
       callback?: BodyResponseCallback<Schema$RepresentativeInfoResponse>):
@@ -1118,15 +1118,15 @@ export class Resource$Representatives {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  representativeInfoByDivision(params: any, options?: MethodOptions):
+  representativeInfoByDivision(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RepresentativeInfoData>;
   representativeInfoByDivision(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$RepresentativeInfoData>,
       callback?: BodyResponseCallback<Schema$RepresentativeInfoData>): void;
   representativeInfoByDivision(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$RepresentativeInfoData>,
       callback?: BodyResponseCallback<Schema$RepresentativeInfoData>):

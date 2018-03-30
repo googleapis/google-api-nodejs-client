@@ -435,10 +435,10 @@ export class Resource$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Asset>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Asset>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Asset>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asset>,
       callback?: BodyResponseCallback<Schema$Asset>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Asset>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asset>,
       callback?: BodyResponseCallback<Schema$Asset>):
       void|AxiosPromise<Schema$Asset> {
     if (typeof options === 'function') {
@@ -491,14 +491,14 @@ export class Resource$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListAssetsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListAssetsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListAssetsResponse>):
       void|AxiosPromise<Schema$ListAssetsResponse> {
@@ -579,15 +579,15 @@ export class Resource$Users$Assets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListUserAssetsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListUserAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListUserAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListUserAssetsResponse>):
@@ -652,15 +652,15 @@ export class Resource$Users$Likedassets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListLikedAssetsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListLikedAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListLikedAssetsResponse>,
       callback?: BodyResponseCallback<Schema$ListLikedAssetsResponse>):

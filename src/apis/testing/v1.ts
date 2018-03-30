@@ -1118,14 +1118,15 @@ export class Resource$Applicationdetailservice {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getApkDetails(params: any, options?: MethodOptions):
+  getApkDetails(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetApkDetailsResponse>;
   getApkDetails(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GetApkDetailsResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetApkDetailsResponse>,
       callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
   getApkDetails(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetApkDetailsResponse>,
       callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>):
@@ -1204,15 +1205,15 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CancelTestMatrixResponse>;
   cancel(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$CancelTestMatrixResponse>,
       callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$CancelTestMatrixResponse>,
       callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
@@ -1269,13 +1270,14 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+  create(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$TestMatrix>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
       callback?: BodyResponseCallback<Schema$TestMatrix>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
       callback?: BodyResponseCallback<Schema$TestMatrix>):
       void|AxiosPromise<Schema$TestMatrix> {
@@ -1326,11 +1328,11 @@ export class Resource$Projects$Testmatrices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
       callback?: BodyResponseCallback<Schema$TestMatrix>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
       callback?: BodyResponseCallback<Schema$TestMatrix>):
       void|AxiosPromise<Schema$TestMatrix> {
@@ -1395,13 +1397,13 @@ export class Resource$Testenvironmentcatalog {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$TestEnvironmentCatalog>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestEnvironmentCatalog>,
       callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestEnvironmentCatalog>,
       callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>):

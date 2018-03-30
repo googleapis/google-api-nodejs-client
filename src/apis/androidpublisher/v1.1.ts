@@ -160,11 +160,12 @@ export class Resource$Inapppurchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$InappPurchase>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$InappPurchase>,
+  get(params?: any,
+      options?: MethodOptions): AxiosPromise<Schema$InappPurchase>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$InappPurchase>,
       callback?: BodyResponseCallback<Schema$InappPurchase>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$InappPurchase>,
       callback?: BodyResponseCallback<Schema$InappPurchase>):
       void|AxiosPromise<Schema$InappPurchase> {
@@ -228,12 +229,12 @@ export class Resource$Purchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<void>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<void>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -283,12 +284,12 @@ export class Resource$Purchases {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
       callback?: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SubscriptionPurchase>,
       callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
       void|AxiosPromise<Schema$SubscriptionPurchase> {

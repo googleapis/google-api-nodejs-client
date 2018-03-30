@@ -115,14 +115,14 @@ export class Resource$Entities {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SearchResponse>;
   search(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
       callback?: BodyResponseCallback<Schema$SearchResponse>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SearchResponse>,
       callback?: BodyResponseCallback<Schema$SearchResponse>):
       void|AxiosPromise<Schema$SearchResponse> {

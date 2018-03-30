@@ -122,14 +122,13 @@ describe('Options', () => {
     nock(host).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get(
         {fileId: 'woot'},
-        {url: 'https://myproxy.com/drive/v3/files/{fileId}', encoding: null});
+        {url: 'https://myproxy.com/drive/v3/files/{fileId}', timeout: 12345});
 
     assert.equal(
         res.request.path, '/drive/v3/files/woot',
         'Request used overridden url.');
     assert.equal(res.request.headers.host, 'myproxy.com');
-    assert.equal(
-        res.config.encoding, null, 'Request used overridden encoding.');
+    assert.equal(res.config.timeout, 12345, 'Axios used overridden timeout.');
   });
 
   it('should apply endpoint options like timeout to oauth transporter',

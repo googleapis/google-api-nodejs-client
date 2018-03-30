@@ -232,10 +232,10 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>):
       void|AxiosPromise<Schema$Groups> {
     if (typeof options === 'function') {
@@ -282,12 +282,12 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
   patch(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>): void;
   patch(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>):
       void|AxiosPromise<Schema$Groups> {
     if (typeof options === 'function') {
@@ -334,12 +334,12 @@ export class Resource$Groups {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
   update(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>): void;
   update(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>):
       void|AxiosPromise<Schema$Groups> {
     if (typeof options === 'function') {

@@ -2549,11 +2549,11 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2567,7 +2567,7 @@ export class Resource$Operations {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2604,15 +2604,15 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
@@ -2627,7 +2627,7 @@ export class Resource$Operations {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2679,13 +2679,13 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2699,7 +2699,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2735,13 +2735,13 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2755,7 +2755,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2792,13 +2792,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  disable(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  disable(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   disable(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   disable(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2812,7 +2813,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2849,13 +2850,13 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  enable(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  enable(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   enable(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   enable(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2869,7 +2870,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2912,16 +2913,16 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  generateConfigReport(params: any, options?: MethodOptions):
+  generateConfigReport(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GenerateConfigReportResponse>;
   generateConfigReport(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GenerateConfigReportResponse>,
       callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
       void;
   generateConfigReport(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GenerateConfigReportResponse>,
       callback?: BodyResponseCallback<Schema$GenerateConfigReportResponse>):
@@ -2936,7 +2937,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -2972,12 +2973,12 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$ManagedService>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
       callback?: BodyResponseCallback<Schema$ManagedService>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ManagedService>,
       callback?: BodyResponseCallback<Schema$ManagedService>):
       void|AxiosPromise<Schema$ManagedService> {
@@ -2991,7 +2992,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3027,12 +3028,15 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getConfig(params: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
+  getConfig(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Service>;
   getConfig(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Service>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>): void;
   getConfig(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>):
       void|AxiosPromise<Schema$Service> {
     if (typeof options === 'function') {
@@ -3045,7 +3049,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3081,13 +3085,13 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -3100,7 +3104,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3141,14 +3145,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListServicesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListServicesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListServicesResponse>):
       void|AxiosPromise<Schema$ListServicesResponse> {
@@ -3162,7 +3166,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3197,13 +3201,13 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -3216,7 +3220,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3255,15 +3259,15 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -3278,7 +3282,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3315,14 +3319,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete(params: any, options?: MethodOptions):
+  undelete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   undelete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   undelete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3336,7 +3340,7 @@ export class Resource$Services {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3386,12 +3390,14 @@ export class Resource$Services$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
   create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Service>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>): void;
   create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>):
       void|AxiosPromise<Schema$Service> {
     if (typeof options === 'function') {
@@ -3404,7 +3410,7 @@ export class Resource$Services$Configs {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3440,10 +3446,12 @@ export class Resource$Services$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Service>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Service>,
       callback?: BodyResponseCallback<Schema$Service>):
       void|AxiosPromise<Schema$Service> {
     if (typeof options === 'function') {
@@ -3456,7 +3464,7 @@ export class Resource$Services$Configs {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3493,15 +3501,15 @@ export class Resource$Services$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListServiceConfigsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListServiceConfigsResponse>,
       callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListServiceConfigsResponse>,
       callback?: BodyResponseCallback<Schema$ListServiceConfigsResponse>):
@@ -3516,7 +3524,7 @@ export class Resource$Services$Configs {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3558,13 +3566,13 @@ export class Resource$Services$Configs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  submit(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  submit(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   submit(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   submit(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3578,7 +3586,7 @@ export class Resource$Services$Configs {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3626,13 +3634,13 @@ export class Resource$Services$Consumers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -3645,7 +3653,7 @@ export class Resource$Services$Consumers {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3681,13 +3689,13 @@ export class Resource$Services$Consumers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -3700,7 +3708,7 @@ export class Resource$Services$Consumers {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3739,15 +3747,15 @@ export class Resource$Services$Consumers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -3762,7 +3770,7 @@ export class Resource$Services$Consumers {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3817,13 +3825,13 @@ export class Resource$Services$Rollouts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3837,7 +3845,7 @@ export class Resource$Services$Rollouts {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3872,10 +3880,12 @@ export class Resource$Services$Rollouts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Rollout>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Rollout>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Rollout>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
       callback?: BodyResponseCallback<Schema$Rollout>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Rollout>,
       callback?: BodyResponseCallback<Schema$Rollout>):
       void|AxiosPromise<Schema$Rollout> {
     if (typeof options === 'function') {
@@ -3888,7 +3898,7 @@ export class Resource$Services$Rollouts {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
@@ -3926,16 +3936,16 @@ export class Resource$Services$Rollouts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListServiceRolloutsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
       callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListServiceRolloutsResponse>,
       callback?: BodyResponseCallback<Schema$ListServiceRolloutsResponse>):
@@ -3950,7 +3960,7 @@ export class Resource$Services$Rollouts {
     }
     options = options || {};
     const rootUrl =
-        options.rootUrl || 'https://content-servicemanagement.googleapis.com/';
+        options.rootUrl || 'https://servicemanagement.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {

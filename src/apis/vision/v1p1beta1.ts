@@ -550,7 +550,7 @@ export interface Schema$GoogleCloudVisionV1p1beta1ImageContext {
    */
   languageHints: string[];
   /**
-   * lat/long rectangle that specifies the location of the image.
+   * Not used.
    */
   latLongRect: Schema$GoogleCloudVisionV1p1beta1LatLongRect;
   /**
@@ -997,10 +997,6 @@ export interface Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse {
    * The output location and metadata from AsyncAnnotateFileRequest.
    */
   outputConfig: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
-  /**
-   * The full list of output files in GCS.
-   */
-  outputs: Schema$GoogleCloudVisionV1p2beta1GcsDestination[];
 }
 /**
  * Response to an async batch file annotation request.
@@ -1159,16 +1155,16 @@ export class Resource$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotate(params: any, options?: MethodOptions): AxiosPromise<
+  annotate(params?: any, options?: MethodOptions): AxiosPromise<
       Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>;
   annotate(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
       callback?: BodyResponseCallback<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>): void;
   annotate(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse>,
       callback?: BodyResponseCallback<

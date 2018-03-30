@@ -92,7 +92,7 @@ export class Cloudkms {
  */
 export interface Schema$AuditConfig {
   /**
-   * The configuration for logging of each type of permission. Next ID: 4
+   * The configuration for logging of each type of permission.
    */
   auditLogConfigs: Schema$AuditLogConfig[];
   /**
@@ -533,10 +533,11 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Location>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Location>,
       callback?: BodyResponseCallback<Schema$Location>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Location>,
       callback?: BodyResponseCallback<Schema$Location>):
       void|AxiosPromise<Schema$Location> {
@@ -585,14 +586,15 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListLocationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListLocationsResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListLocationsResponse>,
       callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListLocationsResponse>,
       callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
@@ -655,12 +657,14 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
   create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
       callback?: BodyResponseCallback<Schema$KeyRing>): void;
   create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
       callback?: BodyResponseCallback<Schema$KeyRing>):
       void|AxiosPromise<Schema$KeyRing> {
     if (typeof options === 'function') {
@@ -706,10 +710,12 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
       callback?: BodyResponseCallback<Schema$KeyRing>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
       callback?: BodyResponseCallback<Schema$KeyRing>):
       void|AxiosPromise<Schema$KeyRing> {
     if (typeof options === 'function') {
@@ -755,13 +761,13 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -809,14 +815,14 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListKeyRingsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
       callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListKeyRingsResponse>,
       callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>):
       void|AxiosPromise<Schema$ListKeyRingsResponse> {
@@ -865,13 +871,13 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -922,15 +928,15 @@ export class Resource$Projects$Locations$Keyrings {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -997,13 +1003,13 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>):
       void|AxiosPromise<Schema$CryptoKey> {
@@ -1051,14 +1057,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  decrypt(params: any, options?: MethodOptions):
+  decrypt(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DecryptResponse>;
   decrypt(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
       callback?: BodyResponseCallback<Schema$DecryptResponse>): void;
   decrypt(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
       callback?: BodyResponseCallback<Schema$DecryptResponse>):
       void|AxiosPromise<Schema$DecryptResponse> {
@@ -1105,14 +1111,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  encrypt(params: any, options?: MethodOptions):
+  encrypt(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$EncryptResponse>;
   encrypt(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
       callback?: BodyResponseCallback<Schema$EncryptResponse>): void;
   encrypt(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
       callback?: BodyResponseCallback<Schema$EncryptResponse>):
       void|AxiosPromise<Schema$EncryptResponse> {
@@ -1159,11 +1165,11 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>):
       void|AxiosPromise<Schema$CryptoKey> {
@@ -1210,13 +1216,13 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -1264,15 +1270,15 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListCryptoKeysResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListCryptoKeysResponse>,
       callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListCryptoKeysResponse>,
       callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>):
@@ -1322,13 +1328,13 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>):
       void|AxiosPromise<Schema$CryptoKey> {
@@ -1376,13 +1382,13 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -1433,15 +1439,15 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -1490,14 +1496,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updatePrimaryVersion(params: any, options?: MethodOptions):
+  updatePrimaryVersion(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CryptoKey>;
   updatePrimaryVersion(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>): void;
   updatePrimaryVersion(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
       callback?: BodyResponseCallback<Schema$CryptoKey>):
       void|AxiosPromise<Schema$CryptoKey> {
@@ -1558,14 +1564,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CryptoKeyVersion>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
       void|AxiosPromise<Schema$CryptoKeyVersion> {
@@ -1619,14 +1625,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  destroy(params: any, options?: MethodOptions):
+  destroy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CryptoKeyVersion>;
   destroy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
   destroy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
       void|AxiosPromise<Schema$CryptoKeyVersion> {
@@ -1673,12 +1679,12 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
       void|AxiosPromise<Schema$CryptoKeyVersion> {
@@ -1727,16 +1733,16 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
       callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
       callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
@@ -1790,14 +1796,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CryptoKeyVersion>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
       void|AxiosPromise<Schema$CryptoKeyVersion> {
@@ -1847,14 +1853,14 @@ export class Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  restore(params: any, options?: MethodOptions):
+  restore(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CryptoKeyVersion>;
   restore(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
   restore(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
       callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
       void|AxiosPromise<Schema$CryptoKeyVersion> {

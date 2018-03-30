@@ -1242,14 +1242,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  allocateIds(params: any, options?: MethodOptions):
+  allocateIds(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AllocateIdsResponse>;
   allocateIds(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
       callback?: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
   allocateIds(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
       callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
       void|AxiosPromise<Schema$AllocateIdsResponse> {
@@ -1297,15 +1297,15 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  beginTransaction(params: any, options?: MethodOptions):
+  beginTransaction(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BeginTransactionResponse>;
   beginTransaction(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
   beginTransaction(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
@@ -1355,14 +1355,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit(params: any, options?: MethodOptions):
+  commit(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CommitResponse>;
   commit(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
       callback?: BodyResponseCallback<Schema$CommitResponse>): void;
   commit(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
       callback?: BodyResponseCallback<Schema$CommitResponse>):
       void|AxiosPromise<Schema$CommitResponse> {
@@ -1417,15 +1417,15 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export(params: any, options?: MethodOptions):
+  export(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningOperation>;
   export(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
   export(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -1478,9 +1478,9 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import(params: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-import(params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {if(typeof options === 'function') {
+import(params?: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {if(typeof options === 'function') {
     callback = options;
     options = {};
   } if(typeof params === 'function') {
@@ -1506,13 +1506,13 @@ import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLo
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-  lookup(params: any, options?: MethodOptions): AxiosPromise<Schema$LookupResponse>;
+  lookup(params?: any, options?: MethodOptions): AxiosPromise<Schema$LookupResponse>;
   lookup(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
       callback?: BodyResponseCallback<Schema$LookupResponse>): void;
   lookup(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
       callback?: BodyResponseCallback<Schema$LookupResponse>):
       void|AxiosPromise<Schema$LookupResponse> {
@@ -1561,14 +1561,14 @@ import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLo
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reserveIds(params: any, options?: MethodOptions):
+  reserveIds(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReserveIdsResponse>;
   reserveIds(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
       callback?: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
   reserveIds(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
       callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
       void|AxiosPromise<Schema$ReserveIdsResponse> {
@@ -1616,14 +1616,14 @@ import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLo
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback(params: any, options?: MethodOptions):
+  rollback(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RollbackResponse>;
   rollback(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
       callback?: BodyResponseCallback<Schema$RollbackResponse>): void;
   rollback(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
       callback?: BodyResponseCallback<Schema$RollbackResponse>):
       void|AxiosPromise<Schema$RollbackResponse> {
@@ -1671,14 +1671,14 @@ import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLo
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runQuery(params: any, options?: MethodOptions):
+  runQuery(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RunQueryResponse>;
   runQuery(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
       callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
   runQuery(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
       callback?: BodyResponseCallback<Schema$RunQueryResponse>):
       void|AxiosPromise<Schema$RunQueryResponse> {
@@ -1744,12 +1744,12 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1797,12 +1797,12 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1849,13 +1849,13 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -1913,17 +1913,17 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback?:

@@ -261,12 +261,13 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patchTraces(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  patchTraces(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Empty>;
   patchTraces(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   patchTraces(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -379,10 +380,10 @@ export class Resource$Projects$Traces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Trace>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Trace>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Trace>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Trace>,
       callback?: BodyResponseCallback<Schema$Trace>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Trace>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Trace>,
       callback?: BodyResponseCallback<Schema$Trace>):
       void|AxiosPromise<Schema$Trace> {
     if (typeof options === 'function') {
@@ -501,14 +502,14 @@ export class Resource$Projects$Traces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListTracesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
       callback?: BodyResponseCallback<Schema$ListTracesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
       callback?: BodyResponseCallback<Schema$ListTracesResponse>):
       void|AxiosPromise<Schema$ListTracesResponse> {

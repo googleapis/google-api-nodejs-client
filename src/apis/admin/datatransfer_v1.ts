@@ -233,11 +233,11 @@ export class Resource$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Application>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Application>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Application>,
       callback?: BodyResponseCallback<Schema$Application>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Application>,
       callback?: BodyResponseCallback<Schema$Application>):
       void|AxiosPromise<Schema$Application> {
@@ -287,15 +287,15 @@ export class Resource$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ApplicationsListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ApplicationsListResponse>,
       callback?: BodyResponseCallback<Schema$ApplicationsListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ApplicationsListResponse>,
       callback?: BodyResponseCallback<Schema$ApplicationsListResponse>):
@@ -355,11 +355,11 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$DataTransfer>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$DataTransfer>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
       callback?: BodyResponseCallback<Schema$DataTransfer>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
       callback?: BodyResponseCallback<Schema$DataTransfer>):
       void|AxiosPromise<Schema$DataTransfer> {
@@ -406,14 +406,14 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions):
+  insert(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DataTransfer>;
   insert(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
       callback?: BodyResponseCallback<Schema$DataTransfer>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DataTransfer>,
       callback?: BodyResponseCallback<Schema$DataTransfer>):
       void|AxiosPromise<Schema$DataTransfer> {
@@ -466,15 +466,15 @@ export class Resource$Transfers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DataTransfersListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DataTransfersListResponse>,
       callback?: BodyResponseCallback<Schema$DataTransfersListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DataTransfersListResponse>,
       callback?: BodyResponseCallback<Schema$DataTransfersListResponse>):
