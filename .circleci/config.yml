@@ -117,6 +117,9 @@ jobs:
           name: Install modules and dependencies.
           command: npm install --unsafe-perm
       - run:
+          name: Build
+          command: make build
+      - run:
           name: Set NPM authentication.
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run:
