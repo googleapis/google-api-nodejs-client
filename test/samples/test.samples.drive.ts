@@ -42,49 +42,41 @@ describe('Drive samples', () => {
     nock.cleanAll();
   });
 
-  it('should download the file', done => {
+  it('should download the file', async () => {
     const fileId = '0B7l5uajXUzaFa0x6cjJfZEkzZVE';
     const scope = nock(Utils.baseUrl)
                       .get(`/drive/v3/files/${fileId}?alt=media`)
                       .replyWithFile(200, someFile);
-    samples.download.runSample(fileId, (filePath: string) => {
-      assert(fs.existsSync(filePath));
-      scope.done();
-      done();
-    });
+    const filePath = await samples.download.runSample(fileId);
+    assert(fs.existsSync(filePath));
+    scope.done();
   });
 
-  it('should download the doc', done => {
+  it('should download the doc', async () => {
     const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
     const scope =
         nock(Utils.baseUrl)
             .get(`/drive/v3/files/${fileId}/export?mimeType=application%2Fpdf`)
             .replyWithFile(200, someFile);
-    samples.export.exportDoc(() => {
-      assert(fs.existsSync(`${os.tmpdir()}/resume.pdf`));
-      scope.done();
-      done();
-    });
+    await samples.export.runSample();
+    assert(fs.existsSync(`${os.tmpdir()}/resume.pdf`));
+    scope.done();
   });
 
-  it('should list all the docs', done => {
+  it('should list all the docs', async () => {
     const scope =
         nock(Utils.baseUrl).get(`/drive/v3/files?pageSize=3`).reply(200, {});
-    samples.list.runSample(undefined, (data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.list.runSample();
+    assert(data);
+    scope.done();
   });
 
-  it('should upload a file', done => {
+  it('should upload a file', async () => {
     const scope = nock(Utils.baseUrl)
                       .post(`/upload/drive/v3/files?uploadType=multipart`)
                       .reply(200, {});
-    samples.upload.runSample(someFile, (data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.upload.runSample(someFile);
+    assert(data);
+    scope.done();
   });
 });

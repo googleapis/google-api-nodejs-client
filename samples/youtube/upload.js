@@ -28,9 +28,9 @@ const youtube = google.youtube({
 });
 
 // very basic example of uploading a video to youtube
-function runSample (fileName, callback) {
+async function runSample (fileName, callback) {
   const fileSize = fs.statSync(fileName).size;
-  youtube.videos.insert({
+  const res = await youtube.videos.insert({
     part: 'id,snippet,status',
     notifySubscribers: false,
     resource: {
@@ -54,14 +54,10 @@ function runSample (fileName, callback) {
       process.stdout.cursorTo(0);
       process.stdout.write(`${Math.round(progress)}% complete`);
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log('\n\n');
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log('\n\n');
+  console.log(res.data);
+  return res.data;
 }
 
 const scopes = [
@@ -71,12 +67,9 @@ const scopes = [
 
 if (module === require.main) {
   const fileName = process.argv[2];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(fileName, () => { /* sample complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample(fileName))
+    .catch(console.error);
 }
 
 module.exports = {

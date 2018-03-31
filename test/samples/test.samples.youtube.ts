@@ -12,9 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import * as fs from 'fs';
 import * as nock from 'nock';
-import * as os from 'os';
 import * as path from 'path';
 
 import {Utils} from './../utils';
@@ -39,17 +37,15 @@ describe('YouTube samples', () => {
     nock.cleanAll();
   });
 
-  it('should upload a video', done => {
+  it('should upload a video', async () => {
     const scope =
         nock(Utils.baseUrl)
             .post(
                 `/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart`)
             .reply(200, {kind: 'youtube#video'});
-    samples.upload.runSample(someFile, (data: {kind: string}) => {
-      assert(data);
-      assert.equal(data.kind, 'youtube#video');
-      scope.done();
-      done();
-    });
+    const data = await samples.upload.runSample(someFile);
+    assert(data);
+    assert.equal(data.kind, 'youtube#video');
+    scope.done();
   });
 });

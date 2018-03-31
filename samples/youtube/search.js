@@ -23,25 +23,18 @@ const youtube = google.youtube({
 });
 
 // a very simple example of searching for youtube videos
-function runSamples () {
-  youtube.search.list({
+async function runSample () {
+  const res = youtube.search.list({
     part: 'id,snippet',
     q: 'Node.js on Google Cloud'
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
   });
+  console.log(res.data);
 }
 
 const scopes = [
   'https://www.googleapis.com/auth/youtube'
 ];
 
-sampleClient.authenticate(scopes, err => {
-  if (err) {
-    throw err;
-  }
-  runSamples();
-});
+sampleClient.authenticate(scopes)
+  .then(c => runSample())
+  .catch(console.error);

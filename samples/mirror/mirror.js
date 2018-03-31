@@ -20,13 +20,9 @@ const sampleClient = require('../sampleclient');
 const mirror = google.mirror({ version: 'v1', auth: sampleClient.oAuth2Client });
 
 // a very simple example of listing locations from the mirror API
-function runSample () {
-  mirror.locations.list({}, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-  });
+async function runSample () {
+  const res = await mirror.locations.list({});
+  console.log(res.data);
 }
 
 const scopes = [
@@ -34,9 +30,6 @@ const scopes = [
   'https://www.googleapis.com/auth/glass.location'
 ];
 
-sampleClient.authenticate(scopes, err => {
-  if (err) {
-    throw err;
-  }
-  runSample();
-});
+sampleClient.authenticate(scopes)
+  .then(c => runSample())
+  .catch(console.error);

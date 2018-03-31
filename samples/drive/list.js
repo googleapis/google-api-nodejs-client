@@ -21,27 +21,19 @@ const drive = google.drive({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (query, callback) {
+async function runSample (query) {
   const params = { pageSize: 3 };
   params.q = query;
-  drive.files.list(params, (err, res) => {
-    if (err) {
-      console.error(err);
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
-  });
+  const res = await drive.files.list(params);
+  console.log(res.data);
+  return res.data;
 }
 
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(undefined, () => { /* complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 module.exports = {

@@ -33,15 +33,13 @@ describe('webmaster samples', () => {
     nock.cleanAll();
   });
 
-  it('should query analytics', done => {
+  it('should query analytics', async () => {
     const siteUrl = 'http://jbeckwith.com';
     const path = `/webmasters/v3/sites/${
         encodeURIComponent(siteUrl)}/searchAnalytics/query`;
     const scope = nock(Utils.baseUrl).post(path).reply(200, {});
-    samples.query.runSample((data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.query.runSample();
+    assert(data);
+    scope.done();
   });
 });

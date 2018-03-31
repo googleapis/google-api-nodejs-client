@@ -45,27 +45,21 @@ const resourceBody = {
   'variations': variations
 };
 
-const scopes = [
-  'https://www.googleapis.com/auth/analytics'
-];
-
-function runSample () {
-  analytics.management.experiments.insert({
+async function runSample () {
+  const res = await analytics.management.experiments.insert({
     accountId: 'your-accountId',
     webPropertyId: 'your-webPropertyId',
     profileId: 'your-profileId',
     resource: resourceBody
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
-sampleClient.authenticate(scopes, err => {
-  if (err) {
-    throw err;
-  }
-  runSample();
-});
+const scopes = [
+  'https://www.googleapis.com/auth/analytics'
+];
+
+sampleClient.authenticate(scopes)
+  .then(() => runSample())
+  .catch(console.error);

@@ -21,27 +21,17 @@ const gmail = google.gmail({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (callback) {
-  gmail.users.messages.list({
-    userId: 'me'
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
-  });
+async function runSample (callback) {
+  const res = await gmail.users.messages.list({ userId: 'me' });
+  console.log(res.data);
+  return res.data;
 }
 
-const scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
-
 if (module === require.main) {
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(() => { /* sample complete */ });
-  });
+  const scopes = ['https://www.googleapis.com/auth/gmail.readonly'];
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 module.exports = {

@@ -21,8 +21,8 @@ const sheets = google.sheets({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (spreadsheetId, range, callback) {
-  sheets.spreadsheets.values.append({
+async function runSample (spreadsheetId, range) {
+  const res = await sheets.spreadsheets.values.append({
     spreadsheetId,
     range,
     valueInputOption: 'USER_ENTERED',
@@ -32,28 +32,22 @@ function runSample (spreadsheetId, range, callback) {
         ['Node.js', '2018-03-14', 'Fun']
       ]
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
+const scopes = [
+  'https://www.googleapis.com/auth/drive',
+  'https://www.googleapis.com/auth/drive.file',
+  'https://www.googleapis.com/auth/spreadsheets'
+];
+
 if (module === require.main) {
-  const scopes = [
-    'https://www.googleapis.com/auth/drive',
-    'https://www.googleapis.com/auth/drive.file',
-    'https://www.googleapis.com/auth/spreadsheets'
-  ];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    const [spreadsheetId, range] = process.argv.slice(2);
-    runSample(spreadsheetId, range, () => { /* complete */ });
-  });
+  const [spreadsheetId, range] = process.argv.slice(2);
+  sampleClient.authenticate(scopes)
+    .then(c => runSample(spreadsheetId, range))
+    .catch(console.error);
 }
 
 module.exports = {

@@ -47,25 +47,14 @@ const drive = google.drive({
 });
 
 // Make an authorized request to list Drive files.
-function runSample (callback) {
-  drive.files.list((err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
-  });
+async function runSample () {
+  const res = await drive.files.list();
+  console.log(res.data);
+  return res.data;
 }
 
 if (module === require.main) {
-  // Run `authorize` to obtain the right tokens for auth
-  jwtClient.authorize(err => {
-    if (err) {
-      throw err;
-    }
-    // Now that we have credentials, run the sample
-    runSample(() => { /* complete */ });
-  });
+  runSample().catch(console.error);
 }
 
 // Exports for unit testing purposes

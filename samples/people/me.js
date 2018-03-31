@@ -21,15 +21,9 @@ const plus = google.plus({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample () {
-  plus.people.get({
-    userId: 'me'
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-  });
+async function runSample () {
+  const res = await plus.people.get({ userId: 'me' });
+  console.log(res.data);
 }
 
 const scopes = [
@@ -40,10 +34,7 @@ const scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample();
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }

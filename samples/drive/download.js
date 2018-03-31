@@ -25,40 +25,42 @@ const drive = google.drive({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (fileId, callback) {
-  const filePath = path.join(os.tmpdir(), uuid.v4());
-  console.log(`writing to ${filePath}`);
-  const dest = fs.createWriteStream(filePath);
-  let progress = 0;
-  drive.files.get(
-    {fileId, alt: 'media'},
-    {responseType: 'stream'},
-    (err, res) => {
-      if (err) {
-        console.error(err);
-        throw err;
-      }
-      res.data
-        .on('end', () => {
-          console.log('Done downloading file.');
-          callback(filePath);
-        })
-        .on('error', err => {
-          console.error('Error downloading file.');
-          throw err;
-        })
-        .on('data', d => {
-          progress += d.length;
-          process.stdout.clearLine();
-          process.stdout.cursorTo(0);
-          process.stdout.write(`Downloaded ${progress} bytes`);
-        })
-        .pipe(dest);
-    });
+async function runSample (fileId) {
+  return new Promise(async (resolve, reject) => {
+    const filePath = path.join(os.tmpdir(), uuid.v4());
+    console.log(`writing to ${filePath}`);
+    const dest = fs.createWriteStream(filePath);
+    let progress = 0;
+    const res = await drive.files.get(
+      {fileId, alt: 'media'},
+      {responseType: 'stream'}
+    );
+    res.data
+      .on('end', () => {
+        console.log('Done downloading file.');
+        resolve(filePath);
+      })
+      .on('error', err => {
+        console.error('Error downloading file.');
+        reject(err);
+      })
+      .on('data', d => {
+        progress += d.length;
+        process.stdout.clearLine();
+        process.stdout.cursorTo(0);
+        process.stdout.write(`Downloaded ${progress} bytes`);
+      })
+      .pipe(dest);
+  });
 }
 
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
+  if (process.argv.length !== 3) {
+    console.error('Usage: node samples/drive/download.js $FILE_ID');
+    process.exit();
+  }
+  const fileId = process.argv[2];
   const scopes = [
     'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/drive.appdata',
@@ -68,16 +70,9 @@ if (module === require.main) {
     'https://www.googleapis.com/auth/drive.photos.readonly',
     'https://www.googleapis.com/auth/drive.readonly'
   ];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    if (process.argv.length !== 3) {
-      console.error('Usage: node samples/drive/download.js $FILE_ID');
-      process.exit();
-    }
-    runSample(process.argv[2], () => { /* download complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample(fileId))
+    .catch(console.error);
 }
 
 // export functions for testing purposes
