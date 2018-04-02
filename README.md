@@ -356,28 +356,20 @@ The Google Developers Console provides `.json` file that you can use to configur
 
 ``` js
 const {google} = require('googleapis');
-const drive = google.drive('v2');
+const drive = google.drive('v3');
 
 const key = require('/path/to/key.json');
-const jwtClient = new google.auth.JWT(
-  key.client_email,
-  null,
-  key.private_key,
-  ['https://www.googleapis.com/auth/drive'], // an array of auth scopes
-  null
-);
+const jwtClient = new google.auth.JWT({
+  email: key.client_email,
+  key: key.private_key,
+  scopes: ['https://www.googleapis.com/auth/drive']
+});
 
-jwtClient.authorize((err, tokens) => {
-  if (err) {
-    console.error(err);
-    throw err;
-  }
-  // Make an authorized request to list Drive files.
-  drive.files.list({
-    auth: jwtClient
-  }, (err, response) => {
-    // handle err and response
-  });
+// Make an authorized request to list Drive files.
+drive.files.list({
+  auth: jwtClient
+}, (err, response) => {
+  // handle err and response
 });
 ```
 
@@ -392,40 +384,20 @@ For example, a JWT auth client will be created when your code is running on your
 The code below shows how to retrieve a default credential type, depending upon the runtime environment. The createScopedRequired must be called to determine when you need to pass in the scopes manually, and when they have been set for you automatically based on the configured runtime environment.
 
 ```js
-// This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
-// environment variables.
-google.auth.getApplicationDefault((err, authClient, projectId) => {
-  if (err) {
-    throw err;
-  }
+async function main () {
+  // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS environment variables.
+  const client = await google.auth.getClient();
 
-  // The createScopedRequired method returns true when running on GAE or a local developer
-  // machine. In that case, the desired scopes must be passed in manually. When the code is
-  // running in GCE or a Managed VM, the scopes are pulled from the GCE metadata server.
-  // See https://cloud.google.com/compute/docs/authentication for more information.
-  if (authClient.createScopedRequired && authClient.createScopedRequired()) {
-    // Scopes can be specified either as an array or as a single, space-delimited string.
-    authClient = authClient.createScoped([
-      'https://www.googleapis.com/auth/compute'
-    ]);
-  }
+  // Scopes can be specified either as an array or as a single, space-delimited string.
+  client.scopes = ['https://www.googleapis.com/auth/compute'];
 
   // Fetch the list of GCE zones within a project.
-  // NOTE: You must fill in your valid project ID before running this sample!
-  const compute = google.compute({
-    version: 'v1',
-    auth: authClient
-  });
+  const project = await google.auth.getDefaultProjectId();
+  const res = await compute.zones.list({ project, auth: client });
+  console.log(res.data);
+}
 
-  compute.zones.list({
-    project: projectId
-  }, function (err, response) {
-    if (err) {
-      throw err;
-    }
-    console.log(response.data);
-  });
-});
+main().catch(console.error);
 ```
 
 ### Specifying request body
@@ -549,7 +521,7 @@ const urlshortener = google.urlshortener({
 // quotaUser query parameter unless overridden in individual API calls.
 
 // Calls with this drive client will NOT contain the quotaUser query parameter.
-const drive = google.drive('v2');
+const drive = google.drive('v3');
 ```
 
 #### Request-level options

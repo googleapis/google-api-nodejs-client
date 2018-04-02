@@ -22,46 +22,41 @@ const drive = google.drive({
   version: 'v3',
   auth: sampleClient.oAuth2Client
 });
-const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
 
-function exportDoc (callback) {
+async function runSample () {
   // [START main_body]
-  const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
-  const dest = fs.createWriteStream(`${os.tmpdir()}/resume.pdf`);
+  return new Promise(async (resolve, reject) => {
+    const fileId = '1ZdR3L3qP4Bkq8noWLJHSr_iBau0DNT4Kli4SxNc2YEo';
+    const dest = fs.createWriteStream(`${os.tmpdir()}/resume.pdf`);
 
-  drive.files.export(
-    { fileId, mimeType: 'application/pdf' },
-    { responseType: 'stream' },
-    (err, res) => {
-      if (err) {
-        console.error(err);
-        throw err;
-      }
-      res.data.on('end', () => {
+    const res = await drive.files.export(
+      { fileId, mimeType: 'application/pdf' },
+      { responseType: 'stream' }
+    );
+    res.data
+      .on('end', () => {
         console.log('Done downloading document.');
-        callback();
+        resolve();
       })
-        .on('error', err => {
-          console.error('Error downloading document.');
-          throw err;
-        })
-        .pipe(dest);
-    });
+      .on('error', err => {
+        console.error('Error downloading document.');
+        reject(err);
+      })
+      .pipe(dest);
+  });
   // [END main_body]
 }
 
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    exportDoc(() => { /* export complete */ });
-  });
+  const scopes = ['https://www.googleapis.com/auth/drive.metadata.readonly'];
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 // export functions for testing purposes
 module.exports = {
-  exportDoc,
+  runSample,
   client: sampleClient.oAuth2Client
 };

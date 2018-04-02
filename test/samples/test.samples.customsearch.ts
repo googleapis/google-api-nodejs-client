@@ -27,14 +27,12 @@ describe('customsearch samples', () => {
     nock.cleanAll();
   });
 
-  it('should search', done => {
+  it('should search', async () => {
     const scope =
         nock(Utils.baseUrl).get(`/customsearch/v1?cx=cx&q=q`).reply(200, {});
     const options = {cx: 'cx', q: 'q', auth: 'key'};
-    samples.list.runSample(options, (data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.list.runSample(options);
+    assert(data);
+    scope.done();
   });
 });

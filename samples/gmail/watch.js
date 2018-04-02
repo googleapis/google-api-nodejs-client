@@ -30,35 +30,29 @@ const gmail = google.gmail({
  *    Pub/Sub Publisher rights to your newly created topic.
  *    https://console.cloud.google.com/cloudpubsub/topicList?project=${PROJECT_NAME}
  */
-function runSample (callback) {
-  gmail.users.watch({
+async function runSample () {
+  const res = await gmail.users.watch({
     userId: 'me',
     resource: {
       // Replace with `projects/${PROJECT_ID}/topics/${TOPIC_NAME}`
       topicName: `projects/el-gato/topics/gmail`
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
+const scopes = [
+  'https://mail.google.com/',
+  'https://www.googleapis.com/auth/gmail.metadata',
+  'https://www.googleapis.com/auth/gmail.modify',
+  'https://www.googleapis.com/auth/gmail.readonly'
+];
+
 if (module === require.main) {
-  const scopes = [
-    'https://mail.google.com/',
-    'https://www.googleapis.com/auth/gmail.metadata',
-    'https://www.googleapis.com/auth/gmail.modify',
-    'https://www.googleapis.com/auth/gmail.readonly'
-  ];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(() => { /* add complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 module.exports = {

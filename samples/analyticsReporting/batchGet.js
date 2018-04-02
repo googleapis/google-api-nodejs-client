@@ -50,12 +50,9 @@ async function runSample () {
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
   const scopes = ['https://www.googleapis.com/auth/analytics'];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample().catch(e => console.error);
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(e => console.error);
 }
 
 // export functions for testing purposes

@@ -21,7 +21,7 @@ const gmail = google.gmail({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (callback) {
+async function runSample () {
   // You can use UTF-8 encoding for the subject using the method below.
   // You can also just use a plain string if you don't need anything fancy.
   const subject = '🤘 Hello 🤘';
@@ -45,18 +45,14 @@ function runSample (callback) {
     .replace(/\//g, '_')
     .replace(/=+$/, '');
 
-  gmail.users.messages.send({
+  const res = await gmail.users.messages.send({
     userId: 'me',
     resource: {
       raw: encodedMessage
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
 const scopes = [
@@ -67,12 +63,9 @@ const scopes = [
 ];
 
 if (module === require.main) {
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(() => { /* sample complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 module.exports = {

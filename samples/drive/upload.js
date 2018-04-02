@@ -22,9 +22,9 @@ const drive = google.drive({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (fileName, callback) {
+async function runSample (fileName) {
   const fileSize = fs.statSync(fileName).size;
-  drive.files.create({
+  const res = await drive.files.create({
     resource: {
       // a resource element is required if you want to use multipart
     },
@@ -40,25 +40,18 @@ function runSample (fileName, callback) {
       process.stdout.cursorTo(0);
       process.stdout.write(`${Math.round(progress)}% complete`);
     }
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
 // if invoked directly (not tests), authenticate and run the samples
 if (module === require.main) {
+  const fileName = process.argv[2];
   const scopes = ['https://www.googleapis.com/auth/drive.file'];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    const fileName = process.argv[2];
-    runSample(fileName, () => { /* complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample(fileName))
+    .catch(console.error);
 }
 
 // export functions for testing purposes
