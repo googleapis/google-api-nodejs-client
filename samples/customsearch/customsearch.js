@@ -23,19 +23,15 @@ const customsearch = google.customsearch('v1');
 //      "API KEY"
 //      "CUSTOM ENGINE ID"
 
-function runSample (options, callback) {
+async function runSample (options) {
   console.log(options);
-  customsearch.cse.list({
+  const res = await customsearch.cse.list({
     cx: options.cx,
     q: options.q,
     auth: options.apiKey
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
 if (module === require.main) {
@@ -46,7 +42,7 @@ if (module === require.main) {
     apiKey: process.argv[3],
     cx: process.argv[4]
   };
-  runSample(options, () => { /* complete */ });
+  runSample(options).catch(console.error);
 }
 
 module.exports = {

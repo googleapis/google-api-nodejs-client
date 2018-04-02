@@ -14,12 +14,12 @@
 'use strict';
 
 const {google} = require('googleapis');
-const drive = google.drive('v2');
+const drive = google.drive('v3');
 const sampleClient = require('./sampleclient');
 
-function runSamples () {
+async function runSamples () {
   // insertion example
-  drive.files.insert({
+  let res = await drive.files.insert({
     resource: {
       title: 'Test',
       mimeType: 'text/plain'
@@ -29,30 +29,22 @@ function runSamples () {
       body: 'Hello World updated with metadata'
     },
     auth: sampleClient.oAuth2Client
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
   });
+  console.log(res.data);
 
   // update with no metadata
-  drive.files.update({
+  res = await drive.files.update({
     fileId: '0B-skmV2m1Arna1lZSGFHNWx6YXc',
     media: {
       mimeType: 'text/plain',
       body: 'Hello World updated with metadata'
     },
     auth: sampleClient.oAuth2Client
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
   });
+  console.log(res.data);
 
   // update example with metadata update
-  drive.files.update({
+  res = await drive.files.update({
     fileId: '0B-skmV2...',
     resource: {
       title: 'Updated title'
@@ -62,12 +54,8 @@ function runSamples () {
       body: 'Hello World updated with metadata'
     },
     auth: sampleClient.oAuth2Client
-  }, (err, res) => {
-    if (err) {
-      throw err;
-    }
-    console.log(res.data);
   });
+  console.log(res.data);
 }
 
 const scopes = [
@@ -76,9 +64,6 @@ const scopes = [
   'https://www.googleapis.com/auth/drive'
 ];
 
-sampleClient.authenticate(scopes, err => {
-  if (err) {
-    throw err;
-  }
-  runSamples();
-});
+sampleClient.authenticate(scopes)
+  .then(client => runSamples(client))
+  .catch(console.error);

@@ -12,11 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import * as fs from 'fs';
 import * as nock from 'nock';
-import * as os from 'os';
-import * as path from 'path';
-
 import {Utils} from './../utils';
 
 nock.disableNetConnect();
@@ -40,49 +36,42 @@ describe('gmail samples', () => {
     nock.cleanAll();
   });
 
-  it('should list emails', done => {
+  it('should list emails', async () => {
     const scope =
-        nock(Utils.baseUrl).get(`/gmail/v1/users/me/messages`).reply(200, {
-          yes: true
-        });
-    samples.list.runSample((data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+        nock(Utils.baseUrl).get(`/gmail/v1/users/me/messages`).reply(200, {});
+    const data = await samples.list.runSample();
+    assert(data);
+    scope.done();
   });
 
-  it('should add a label', done => {
+  it('should add a label', async () => {
     const messageId = '12345';
     const labelId = 'abcde';
     const scope = nock(Utils.baseUrl)
                       .post(`/gmail/v1/users/me/messages/${messageId}/modify`)
-                      .reply(200, {yes: true});
-    samples.labels.runSample('add', messageId, labelId, (data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+                      .reply(200, {});
+    const data = await samples.labels.runSample('add', messageId, labelId);
+    assert(data);
+    scope.done();
   });
 
-  it('should add a user watch', done => {
+  it('should add a user watch', async () => {
     const scope =
-        nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {});
-    samples.watch.runSample((data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+        nock(Utils.baseUrl).post(`/gmail/v1/users/me/watch`).reply(200, {
+          data: true
+        });
+    const data = await samples.watch.runSample();
+    console.log(data);
+    assert(data);
+    scope.done();
   });
 
-  it('should send an email', done => {
+  it('should send an email', async () => {
     const scope = nock(Utils.baseUrl)
                       .post('/gmail/v1/users/me/messages/send')
                       .reply(200, {});
-    samples.send.runSample((data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.send.runSample();
+    assert(data);
+    scope.done();
   });
 });

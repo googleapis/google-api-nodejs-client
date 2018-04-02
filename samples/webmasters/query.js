@@ -21,34 +21,27 @@ const webmasters = google.webmasters({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (callback) {
-  webmasters.searchanalytics.query({
+async function runSample () {
+  const res = await webmasters.searchanalytics.query({
     siteUrl: 'http://jbeckwith.com',
     resource: {
       startDate: '2018-01-01',
       endDate: '2018-04-01'
     }
-  }, (err, res) => {
-    if (err) {
-      console.error(err);
-      throw err;
-    }
-    console.log(res.data);
-    callback(res.data);
   });
+  console.log(res.data);
+  return res.data;
 }
 
+const scopes = [
+  'https://www.googleapis.com/auth/webmasters',
+  'https://www.googleapis.com/auth/webmasters.readonly'
+];
+
 if (module === require.main) {
-  const scopes = [
-    'https://www.googleapis.com/auth/webmasters',
-    'https://www.googleapis.com/auth/webmasters.readonly'
-  ];
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    runSample(() => { /* complete */ });
-  });
+  sampleClient.authenticate(scopes)
+    .then(c => runSample())
+    .catch(console.error);
 }
 
 module.exports = {

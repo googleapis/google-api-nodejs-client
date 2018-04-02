@@ -33,12 +33,10 @@ describe('Auth samples', () => {
     nock.cleanAll();
   });
 
-  it.only('should support JWT', done => {
+  it('should support JWT', async () => {
     const scope = nock(Utils.baseUrl).get(`/drive/v2/files`).reply(200, {});
-    samples.jwt.runSample((data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.jwt.runSample();
+    assert(data);
+    scope.done();
   });
 });

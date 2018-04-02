@@ -46,8 +46,6 @@ export class GoogleApis extends apis.GeneratedAPIs {
   constructor(options?: GlobalOptions) {
     super();
     this.options(options);
-    // tslint:disable-next-line: no-any
-    // this.addAPIs(apis as any);
   }
 
   /**

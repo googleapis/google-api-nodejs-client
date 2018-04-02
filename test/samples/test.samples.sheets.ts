@@ -12,10 +12,7 @@
 // limitations under the License.
 
 import * as assert from 'assert';
-import * as fs from 'fs';
 import * as nock from 'nock';
-import * as os from 'os';
-import * as path from 'path';
 
 const baseUrl = 'https://sheets.googleapis.com';
 
@@ -37,17 +34,15 @@ describe('sheets samples', () => {
     nock.cleanAll();
   });
 
-  it('should append values', done => {
+  it('should append values', async () => {
     const range = 'A1:A10';
     const scope = nock(baseUrl)
                       .post(`/v4/spreadsheets/aSheetId/values/${
                           encodeURIComponent(
                               range)}:append?valueInputOption=USER_ENTERED`)
                       .reply(200, {});
-    samples.append.runSample('aSheetId', 'A1:A10', (data: {}) => {
-      assert(data);
-      scope.done();
-      done();
-    });
+    const data = await samples.append.runSample('aSheetId', 'A1:A10');
+    assert(data);
+    scope.done();
   });
 });

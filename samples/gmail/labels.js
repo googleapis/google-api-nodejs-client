@@ -21,54 +21,43 @@ const gmail = google.gmail({
   auth: sampleClient.oAuth2Client
 });
 
-function runSample (action, messageId, labelId, callback) {
+async function runSample (action, messageId, labelId) {
   if (action === 'add') {
-    gmail.users.messages.modify({
+    const res = await gmail.users.messages.modify({
       userId: 'me',
       id: messageId,
       resource: {
         'addLabelIds': [labelId]
       }
-    }, (err, res) => {
-      if (err) {
-        throw err;
-      }
-      console.log(res.data);
-      callback(res.data);
     });
+    console.log(res.data);
+    return res.data;
   } else if (action === 'remove') {
-    gmail.users.messages.modify({
+    const res = await gmail.users.messages.modify({
       userId: 'me',
       id: messageId,
       resource: {
         'removeLabelIds': [labelId]
       }
-    }, (err, res) => {
-      if (err) {
-        throw err;
-      }
-      console.log(res.data);
-      callback(res.data);
     });
+    console.log(res.data);
+    return res.data;
   }
 }
 
-const scopes = ['https://www.googleapis.com/auth/gmail.modify'];
-
 if (module === require.main) {
-  sampleClient.authenticate(scopes, err => {
-    if (err) {
-      throw err;
-    }
-    if (process.argv.length !== 5) {
-      showUsage();
-    }
-    const [action, messageId, labelId] = process.argv.slice(2);
-    console.log(`action: ${action}`);
-    console.log(`messageId: ${messageId}`);
-    console.log(`labelId: ${labelId}`);
-    runSample(action, messageId, labelId, () => { /* add complete */ });
-  });
+  if (process.argv.length !== 5) {
+    showUsage();
+  }
+  const [action, messageId, labelId] = process.argv.slice(2);
+  console.log(`action: ${action}`);
+  console.log(`messageId: ${messageId}`);
+  console.log(`labelId: ${labelId}`);
+
+  const scopes = ['https://www.googleapis.com/auth/gmail.modify'];
+  sampleClient.authenticate(scopes)
+    .then(c => runSample(action, messageId, labelId))
+    .catch(console.error);
 }
 
 function showUsage () {
