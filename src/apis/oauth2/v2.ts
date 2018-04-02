@@ -73,13 +73,13 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getCertForOpenIdConnect(params: any, options?: MethodOptions):
+  getCertForOpenIdConnect(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Jwk>;
   getCertForOpenIdConnect(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Jwk>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
       callback?: BodyResponseCallback<Schema$Jwk>): void;
   getCertForOpenIdConnect(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Jwk>,
       callback?: BodyResponseCallback<Schema$Jwk>):
       void|AxiosPromise<Schema$Jwk> {
     if (typeof options === 'function') {
@@ -125,14 +125,14 @@ export class Oauth2 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  tokeninfo(params: any, options?: MethodOptions):
+  tokeninfo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Tokeninfo>;
   tokeninfo(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
       callback?: BodyResponseCallback<Schema$Tokeninfo>): void;
   tokeninfo(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Tokeninfo>,
       callback?: BodyResponseCallback<Schema$Tokeninfo>):
       void|AxiosPromise<Schema$Tokeninfo> {
@@ -281,11 +281,11 @@ export class Resource$Userinfo {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
       callback?: BodyResponseCallback<Schema$Userinfoplus>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
       callback?: BodyResponseCallback<Schema$Userinfoplus>):
       void|AxiosPromise<Schema$Userinfoplus> {
@@ -354,11 +354,11 @@ export class Resource$Userinfo$V2$Me {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Userinfoplus>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
       callback?: BodyResponseCallback<Schema$Userinfoplus>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Userinfoplus>,
       callback?: BodyResponseCallback<Schema$Userinfoplus>):
       void|AxiosPromise<Schema$Userinfoplus> {

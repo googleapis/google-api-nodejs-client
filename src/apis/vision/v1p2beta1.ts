@@ -250,10 +250,6 @@ export interface Schema$GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse {
    * The output location and metadata from AsyncAnnotateFileRequest.
    */
   outputConfig: Schema$GoogleCloudVisionV1p2beta1OutputConfig;
-  /**
-   * The full list of output files in GCS.
-   */
-  outputs: Schema$GoogleCloudVisionV1p2beta1GcsDestination[];
 }
 /**
  * Multiple async file annotation requests are batched into a single service
@@ -653,7 +649,7 @@ export interface Schema$GoogleCloudVisionV1p2beta1ImageContext {
    */
   languageHints: string[];
   /**
-   * lat/long rectangle that specifies the location of the image.
+   * Not used.
    */
   latLongRect: Schema$GoogleCloudVisionV1p2beta1LatLongRect;
   /**
@@ -1280,14 +1276,14 @@ export class Resource$Files {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  asyncBatchAnnotate(params: any, options?: MethodOptions):
+  asyncBatchAnnotate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   asyncBatchAnnotate(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   asyncBatchAnnotate(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1346,16 +1342,16 @@ export class Resource$Images {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotate(params: any, options?: MethodOptions): AxiosPromise<
+  annotate(params?: any, options?: MethodOptions): AxiosPromise<
       Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
   annotate(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
       callback?: BodyResponseCallback<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>): void;
   annotate(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
       callback?: BodyResponseCallback<

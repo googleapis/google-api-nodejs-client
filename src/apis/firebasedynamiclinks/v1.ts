@@ -552,16 +552,16 @@ export class Resource$Shortlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CreateShortDynamicLinkResponse>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
       callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
       void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
       callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
@@ -626,14 +626,14 @@ export class Resource$V1 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getLinkStats(params: any, options?: MethodOptions):
+  getLinkStats(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DynamicLinkStats>;
   getLinkStats(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
       callback?: BodyResponseCallback<Schema$DynamicLinkStats>): void;
   getLinkStats(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
       callback?: BodyResponseCallback<Schema$DynamicLinkStats>):
       void|AxiosPromise<Schema$DynamicLinkStats> {
@@ -681,17 +681,17 @@ export class Resource$V1 {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  installAttribution(params: any, options?: MethodOptions):
+  installAttribution(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
   installAttribution(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
       callback?:
           BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
       void;
   installAttribution(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
       callback?:

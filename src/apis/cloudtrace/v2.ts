@@ -515,12 +515,12 @@ export class Resource$Projects$Traces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchWrite(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  batchWrite(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   batchWrite(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   batchWrite(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -578,12 +578,12 @@ export class Resource$Projects$Traces$Spans {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  createSpan(params: any, options?: MethodOptions): AxiosPromise<Schema$Span>;
+  createSpan(params?: any, options?: MethodOptions): AxiosPromise<Schema$Span>;
   createSpan(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Span>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
       callback?: BodyResponseCallback<Schema$Span>): void;
   createSpan(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Span>,
       callback?: BodyResponseCallback<Schema$Span>):
       void|AxiosPromise<Schema$Span> {
     if (typeof options === 'function') {

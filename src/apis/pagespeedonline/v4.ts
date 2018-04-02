@@ -195,16 +195,16 @@ export class Resource$Pagespeedapi {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runpagespeed(params: any, options?: MethodOptions):
+  runpagespeed(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PagespeedApiPagespeedResponseV4>;
   runpagespeed(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>,
       callback?: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>):
       void;
   runpagespeed(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>,
       callback?: BodyResponseCallback<Schema$PagespeedApiPagespeedResponseV4>):

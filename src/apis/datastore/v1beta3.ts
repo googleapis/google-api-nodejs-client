@@ -1068,14 +1068,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  allocateIds(params: any, options?: MethodOptions):
+  allocateIds(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AllocateIdsResponse>;
   allocateIds(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
       callback?: BodyResponseCallback<Schema$AllocateIdsResponse>): void;
   allocateIds(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$AllocateIdsResponse>,
       callback?: BodyResponseCallback<Schema$AllocateIdsResponse>):
       void|AxiosPromise<Schema$AllocateIdsResponse> {
@@ -1123,15 +1123,15 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  beginTransaction(params: any, options?: MethodOptions):
+  beginTransaction(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BeginTransactionResponse>;
   beginTransaction(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
   beginTransaction(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BeginTransactionResponse>,
       callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
@@ -1181,14 +1181,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  commit(params: any, options?: MethodOptions):
+  commit(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CommitResponse>;
   commit(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
       callback?: BodyResponseCallback<Schema$CommitResponse>): void;
   commit(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
       callback?: BodyResponseCallback<Schema$CommitResponse>):
       void|AxiosPromise<Schema$CommitResponse> {
@@ -1236,14 +1236,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  lookup(params: any, options?: MethodOptions):
+  lookup(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LookupResponse>;
   lookup(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
       callback?: BodyResponseCallback<Schema$LookupResponse>): void;
   lookup(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LookupResponse>,
       callback?: BodyResponseCallback<Schema$LookupResponse>):
       void|AxiosPromise<Schema$LookupResponse> {
@@ -1292,14 +1292,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reserveIds(params: any, options?: MethodOptions):
+  reserveIds(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ReserveIdsResponse>;
   reserveIds(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
       callback?: BodyResponseCallback<Schema$ReserveIdsResponse>): void;
   reserveIds(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ReserveIdsResponse>,
       callback?: BodyResponseCallback<Schema$ReserveIdsResponse>):
       void|AxiosPromise<Schema$ReserveIdsResponse> {
@@ -1347,14 +1347,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback(params: any, options?: MethodOptions):
+  rollback(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RollbackResponse>;
   rollback(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
       callback?: BodyResponseCallback<Schema$RollbackResponse>): void;
   rollback(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RollbackResponse>,
       callback?: BodyResponseCallback<Schema$RollbackResponse>):
       void|AxiosPromise<Schema$RollbackResponse> {
@@ -1402,14 +1402,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  runQuery(params: any, options?: MethodOptions):
+  runQuery(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RunQueryResponse>;
   runQuery(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
       callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
   runQuery(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
       callback?: BodyResponseCallback<Schema$RunQueryResponse>):
       void|AxiosPromise<Schema$RunQueryResponse> {

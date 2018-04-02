@@ -617,14 +617,14 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BillingAccount>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>):
       void|AxiosPromise<Schema$BillingAccount> {
@@ -727,12 +727,12 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$BillingAccount>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>):
       void|AxiosPromise<Schema$BillingAccount> {
@@ -783,13 +783,13 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -902,16 +902,16 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListBillingAccountsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListBillingAccountsResponse>,
       callback?: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListBillingAccountsResponse>,
       callback?: BodyResponseCallback<Schema$ListBillingAccountsResponse>):
@@ -967,14 +967,14 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BillingAccount>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$BillingAccount>,
       callback?: BodyResponseCallback<Schema$BillingAccount>):
       void|AxiosPromise<Schema$BillingAccount> {
@@ -1026,13 +1026,13 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -1083,15 +1083,15 @@ export class Resource$Billingaccounts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -1224,16 +1224,16 @@ export class Resource$Billingaccounts$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListProjectBillingInfoResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
       callback?: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListProjectBillingInfoResponse>,
       callback?: BodyResponseCallback<Schema$ListProjectBillingInfoResponse>):
@@ -1352,14 +1352,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getBillingInfo(params: any, options?: MethodOptions):
+  getBillingInfo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ProjectBillingInfo>;
   getBillingInfo(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
       callback?: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
   getBillingInfo(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
       callback?: BodyResponseCallback<Schema$ProjectBillingInfo>):
       void|AxiosPromise<Schema$ProjectBillingInfo> {
@@ -1489,14 +1489,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateBillingInfo(params: any, options?: MethodOptions):
+  updateBillingInfo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ProjectBillingInfo>;
   updateBillingInfo(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
       callback?: BodyResponseCallback<Schema$ProjectBillingInfo>): void;
   updateBillingInfo(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ProjectBillingInfo>,
       callback?: BodyResponseCallback<Schema$ProjectBillingInfo>):
       void|AxiosPromise<Schema$ProjectBillingInfo> {
@@ -1620,14 +1620,14 @@ export class Resource$Services {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListServicesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListServicesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListServicesResponse>,
       callback?: BodyResponseCallback<Schema$ListServicesResponse>):
       void|AxiosPromise<Schema$ListServicesResponse> {
@@ -1755,14 +1755,14 @@ export class Resource$Services$Skus {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListSkusResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListSkusResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSkusResponse>,
       callback?: BodyResponseCallback<Schema$ListSkusResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListSkusResponse>,
       callback?: BodyResponseCallback<Schema$ListSkusResponse>):
       void|AxiosPromise<Schema$ListSkusResponse> {

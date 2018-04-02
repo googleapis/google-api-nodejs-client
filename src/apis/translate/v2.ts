@@ -207,15 +207,15 @@ export class Resource$Detections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  detect(params: any, options?: MethodOptions):
+  detect(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DetectionsListResponse>;
   detect(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DetectionsListResponse>,
       callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
   detect(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DetectionsListResponse>,
       callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
@@ -263,15 +263,15 @@ export class Resource$Detections {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DetectionsListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$DetectionsListResponse>,
       callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$DetectionsListResponse>,
       callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
@@ -332,14 +332,15 @@ export class Resource$Languages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LanguagesListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LanguagesListResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$LanguagesListResponse>,
       callback?: BodyResponseCallback<Schema$LanguagesListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LanguagesListResponse>,
       callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
@@ -404,15 +405,15 @@ export class Resource$Translations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TranslationsListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TranslationsListResponse>,
       callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TranslationsListResponse>,
       callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
@@ -460,15 +461,15 @@ export class Resource$Translations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  translate(params: any, options?: MethodOptions):
+  translate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TranslationsListResponse>;
   translate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TranslationsListResponse>,
       callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
   translate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TranslationsListResponse>,
       callback?: BodyResponseCallback<Schema$TranslationsListResponse>):

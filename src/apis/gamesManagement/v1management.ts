@@ -401,15 +401,15 @@ export class Resource$Achievements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions):
+  reset(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementResetResponse>;
   reset(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementResetResponse>,
       callback?: BodyResponseCallback<Schema$AchievementResetResponse>): void;
   reset(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementResetResponse>,
       callback?: BodyResponseCallback<Schema$AchievementResetResponse>):
@@ -459,16 +459,16 @@ export class Resource$Achievements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAll(params: any, options?: MethodOptions):
+  resetAll(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementResetAllResponse>;
   resetAll(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementResetAllResponse>,
       callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
       void;
   resetAll(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementResetAllResponse>,
       callback?: BodyResponseCallback<Schema$AchievementResetAllResponse>):
@@ -517,13 +517,13 @@ export class Resource$Achievements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAllForAllPlayers(params: any, options?: MethodOptions):
+  resetAllForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetAllForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAllForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -571,12 +571,12 @@ export class Resource$Achievements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -625,13 +625,13 @@ export class Resource$Achievements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetMultipleForAllPlayers(params: any, options?: MethodOptions):
+  resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetMultipleForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetMultipleForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -692,14 +692,14 @@ export class Resource$Applications {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  listHidden(params: any, options?: MethodOptions):
+  listHidden(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$HiddenPlayerList>;
   listHidden(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
       callback?: BodyResponseCallback<Schema$HiddenPlayerList>): void;
   listHidden(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$HiddenPlayerList>,
       callback?: BodyResponseCallback<Schema$HiddenPlayerList>):
       void|AxiosPromise<Schema$HiddenPlayerList> {
@@ -763,12 +763,12 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions): AxiosPromise<void>;
+  reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
   reset(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   reset(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -815,12 +815,12 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAll(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetAll(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetAll(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAll(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -866,13 +866,13 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAllForAllPlayers(params: any, options?: MethodOptions):
+  resetAllForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetAllForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAllForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -919,12 +919,12 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -972,13 +972,13 @@ export class Resource$Events {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetMultipleForAllPlayers(params: any, options?: MethodOptions):
+  resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetMultipleForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetMultipleForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1039,12 +1039,12 @@ export class Resource$Players {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  hide(params: any, options?: MethodOptions): AxiosPromise<void>;
+  hide(params?: any, options?: MethodOptions): AxiosPromise<void>;
   hide(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   hide(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1094,12 +1094,12 @@ export class Resource$Players {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  unhide(params: any, options?: MethodOptions): AxiosPromise<void>;
+  unhide(params?: any, options?: MethodOptions): AxiosPromise<void>;
   unhide(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   unhide(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1160,12 +1160,12 @@ export class Resource$Quests {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions): AxiosPromise<void>;
+  reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
   reset(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   reset(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1211,12 +1211,12 @@ export class Resource$Quests {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAll(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetAll(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetAll(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAll(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1261,13 +1261,13 @@ export class Resource$Quests {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAllForAllPlayers(params: any, options?: MethodOptions):
+  resetAllForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetAllForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAllForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1314,12 +1314,12 @@ export class Resource$Quests {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1367,13 +1367,13 @@ export class Resource$Quests {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetMultipleForAllPlayers(params: any, options?: MethodOptions):
+  resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetMultipleForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetMultipleForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1432,12 +1432,12 @@ export class Resource$Rooms {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions): AxiosPromise<void>;
+  reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
   reset(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   reset(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1483,12 +1483,12 @@ export class Resource$Rooms {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1547,15 +1547,15 @@ export class Resource$Scores {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions):
+  reset(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PlayerScoreResetResponse>;
   reset(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PlayerScoreResetResponse>,
       callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>): void;
   reset(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PlayerScoreResetResponse>,
       callback?: BodyResponseCallback<Schema$PlayerScoreResetResponse>):
@@ -1606,16 +1606,16 @@ export class Resource$Scores {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAll(params: any, options?: MethodOptions):
+  resetAll(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$PlayerScoreResetAllResponse>;
   resetAll(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
       callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
       void;
   resetAll(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$PlayerScoreResetAllResponse>,
       callback?: BodyResponseCallback<Schema$PlayerScoreResetAllResponse>):
@@ -1664,13 +1664,13 @@ export class Resource$Scores {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetAllForAllPlayers(params: any, options?: MethodOptions):
+  resetAllForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetAllForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetAllForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1717,12 +1717,12 @@ export class Resource$Scores {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1771,13 +1771,13 @@ export class Resource$Scores {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetMultipleForAllPlayers(params: any, options?: MethodOptions):
+  resetMultipleForAllPlayers(params?: any, options?: MethodOptions):
       AxiosPromise<void>;
   resetMultipleForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetMultipleForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1835,12 +1835,12 @@ export class Resource$Turnbasedmatches {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reset(params: any, options?: MethodOptions): AxiosPromise<void>;
+  reset(params?: any, options?: MethodOptions): AxiosPromise<void>;
   reset(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   reset(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -1886,12 +1886,12 @@ export class Resource$Turnbasedmatches {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resetForAllPlayers(params: any, options?: MethodOptions): AxiosPromise<void>;
+  resetForAllPlayers(params?: any, options?: MethodOptions): AxiosPromise<void>;
   resetForAllPlayers(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   resetForAllPlayers(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;

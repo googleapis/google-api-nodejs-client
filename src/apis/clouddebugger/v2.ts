@@ -783,15 +783,15 @@ export class Resource$Controller$Debuggees {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  register(params: any, options?: MethodOptions):
+  register(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RegisterDebuggeeResponse>;
   register(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
       callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
   register(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
       callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
@@ -911,16 +911,16 @@ export class Resource$Controller$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListActiveBreakpointsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
       callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
       callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
@@ -1036,16 +1036,16 @@ export class Resource$Controller$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$UpdateActiveBreakpointResponse>;
   update(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
       void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
@@ -1176,14 +1176,15 @@ export class Resource$Debugger$Debuggees {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListDebuggeesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListDebuggeesResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListDebuggeesResponse>,
       callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListDebuggeesResponse>,
       callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
@@ -1294,12 +1295,12 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1402,12 +1403,13 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GetBreakpointResponse>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GetBreakpointResponse>,
+  get(params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GetBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GetBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
@@ -1513,15 +1515,15 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListBreakpointsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListBreakpointsResponse>,
       callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListBreakpointsResponse>,
       callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
@@ -1625,12 +1627,13 @@ export class Resource$Debugger$Debuggees$Breakpoints {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  set(params: any,
+  set(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$SetBreakpointResponse>;
-  set(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SetBreakpointResponse>,
+  set(params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SetBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-  set(params: any,
+  set(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SetBreakpointResponse>,
       callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):

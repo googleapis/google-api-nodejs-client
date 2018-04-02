@@ -39,9 +39,9 @@
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-{{ mname }}(params: any, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
-{{ mname }}(params: any, options: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
-{{ mname }}(params: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
+{{ mname }}(params?: any, options?: MethodOptions): AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>;
+{{ mname }}(params?: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void;
+{{ mname }}(params?: any, options?: MethodOptions|BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>, callback?: BodyResponseCallback<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}>): void|AxiosPromise<{{ ("Schema$"+m.response.$ref) if m.response.$ref else "void" }}> {
   if (typeof options === 'function') {
     callback = options;
     options = {};

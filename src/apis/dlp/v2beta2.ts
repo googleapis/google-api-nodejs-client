@@ -3388,16 +3388,16 @@ export class Resource$Infotypes {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2ListInfoTypesResponse>,
       callback?: BodyResponseCallback<
@@ -3477,16 +3477,16 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -3537,14 +3537,14 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -3590,14 +3590,14 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -3649,16 +3649,16 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<
+  list(params?: any, options?: MethodOptions): AxiosPromise<
       Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
       callback?: BodyResponseCallback<
@@ -3713,16 +3713,16 @@ export class Resource$Organizations$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -3786,17 +3786,17 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -3847,14 +3847,14 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -3900,15 +3900,15 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -3960,16 +3960,16 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
       callback?: BodyResponseCallback<
@@ -4023,17 +4023,17 @@ export class Resource$Organizations$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -4124,16 +4124,16 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  deidentify(params: any, options?: MethodOptions):
+  deidentify(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>;
   deidentify(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>): void;
   deidentify(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyContentResponse>,
       callback?: BodyResponseCallback<
@@ -4188,16 +4188,16 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  inspect(params: any, options?: MethodOptions):
+  inspect(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectContentResponse>;
   inspect(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2InspectContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2InspectContentResponse>): void;
   inspect(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2InspectContentResponse>,
       callback?: BodyResponseCallback<
@@ -4249,16 +4249,16 @@ export class Resource$Projects$Content {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  reidentify(params: any, options?: MethodOptions):
+  reidentify(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>;
   reidentify(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>): void;
   reidentify(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ReidentifyContentResponse>,
       callback?: BodyResponseCallback<
@@ -4324,16 +4324,16 @@ export class Resource$Projects$Datasource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyze(params: any, options?: MethodOptions):
+  analyze(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DlpJob>;
   analyze(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
       void;
   analyze(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
@@ -4384,16 +4384,16 @@ export class Resource$Projects$Datasource {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  inspect(params: any, options?: MethodOptions):
+  inspect(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DlpJob>;
   inspect(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
       void;
   inspect(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
@@ -4456,16 +4456,16 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -4516,14 +4516,14 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -4569,14 +4569,14 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -4628,16 +4628,16 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<
+  list(params?: any, options?: MethodOptions): AxiosPromise<
       Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDeidentifyTemplatesResponse>,
       callback?: BodyResponseCallback<
@@ -4692,16 +4692,16 @@ export class Resource$Projects$Deidentifytemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DeidentifyTemplate>,
       callback?: BodyResponseCallback<
@@ -4766,14 +4766,14 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   cancel(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -4822,14 +4822,14 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -4875,14 +4875,14 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2DlpJob>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
       void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>,
       callback?: BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2DlpJob>):
@@ -4934,16 +4934,16 @@ export class Resource$Projects$Dlpjobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2ListDlpJobsResponse>,
       callback?: BodyResponseCallback<
@@ -5009,16 +5009,16 @@ export class Resource$Projects$Image {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  redact(params: any, options?: MethodOptions):
+  redact(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2RedactImageResponse>;
   redact(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2RedactImageResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2RedactImageResponse>): void;
   redact(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2RedactImageResponse>,
       callback?: BodyResponseCallback<
@@ -5083,17 +5083,17 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -5144,14 +5144,14 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -5197,15 +5197,15 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -5257,16 +5257,16 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListInspectTemplatesResponse>,
       callback?: BodyResponseCallback<
@@ -5320,17 +5320,17 @@ export class Resource$Projects$Inspecttemplates {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2InspectTemplate>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>):
       void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2InspectTemplate>,
       callback?:
@@ -5394,16 +5394,16 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2JobTrigger>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:
@@ -5454,14 +5454,14 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobufEmpty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobufEmpty>):
       void|AxiosPromise<Schema$GoogleProtobufEmpty> {
@@ -5507,14 +5507,14 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2JobTrigger>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:
@@ -5567,16 +5567,16 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>,
       callback?: BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<
           Schema$GooglePrivacyDlpV2beta2ListJobTriggersResponse>,
       callback?: BodyResponseCallback<
@@ -5628,16 +5628,16 @@ export class Resource$Projects$Jobtriggers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GooglePrivacyDlpV2beta2JobTrigger>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:
           BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GooglePrivacyDlpV2beta2JobTrigger>,
       callback?:

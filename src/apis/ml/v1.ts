@@ -1145,17 +1145,17 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getConfig(params: any, options?: MethodOptions):
+  getConfig(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__GetConfigResponse>;
   getConfig(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>):
       void;
   getConfig(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__GetConfigResponse>,
       callback?:
@@ -1210,14 +1210,14 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict(params: any, options?: MethodOptions):
+  predict(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleApi__HttpBody>;
   predict(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
       callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>): void;
   predict(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleApi__HttpBody>,
       callback?: BodyResponseCallback<Schema$GoogleApi__HttpBody>):
       void|AxiosPromise<Schema$GoogleApi__HttpBody> {
@@ -1275,14 +1275,15 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobuf__Empty>;
   cancel(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
@@ -1330,14 +1331,14 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__Job>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
       void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
@@ -1383,12 +1384,12 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Job>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleCloudMlV1__Job>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Job>):
       void|AxiosPromise<Schema$GoogleCloudMlV1__Job> {
@@ -1435,14 +1436,14 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__Policy>;
   getIamPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
   getIamPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
       void|AxiosPromise<Schema$GoogleIamV1__Policy> {
@@ -1493,16 +1494,16 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__ListJobsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListJobsResponse>,
       callback?:
@@ -1554,14 +1555,14 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__Policy>;
   setIamPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
   setIamPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
       void|AxiosPromise<Schema$GoogleIamV1__Policy> {
@@ -1613,17 +1614,17 @@ export class Resource$Projects$Jobs {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
       void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
       callback?:
@@ -1687,13 +1688,13 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Location>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Location>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Location>):
@@ -1743,17 +1744,17 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__ListLocationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
       callback?:
@@ -1822,15 +1823,15 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__Model>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
@@ -1880,16 +1881,16 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
   delete(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -1939,13 +1940,13 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Model>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Model>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Model>):
@@ -1993,14 +1994,14 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__Policy>;
   getIamPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
   getIamPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
       void|AxiosPromise<Schema$GoogleIamV1__Policy> {
@@ -2053,17 +2054,17 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__ListModelsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListModelsResponse>,
       callback?:
@@ -2117,16 +2118,16 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -2176,14 +2177,14 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__Policy>;
   setIamPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>): void;
   setIamPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GoogleIamV1__Policy>,
       callback?: BodyResponseCallback<Schema$GoogleIamV1__Policy>):
       void|AxiosPromise<Schema$GoogleIamV1__Policy> {
@@ -2235,17 +2236,17 @@ export class Resource$Projects$Models {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleIamV1__TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>):
       void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
       callback?:
@@ -2314,16 +2315,16 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
   create(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -2375,16 +2376,16 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
   delete(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -2436,13 +2437,13 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$GoogleCloudMlV1__Version>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
@@ -2497,17 +2498,17 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__ListVersionsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
       callback?:
           BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
       callback?:
@@ -2561,16 +2562,16 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -2623,15 +2624,15 @@ export class Resource$Projects$Models$Versions {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setDefault(params: any, options?: MethodOptions):
+  setDefault(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleCloudMlV1__Version>;
   setDefault(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>): void;
   setDefault(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleCloudMlV1__Version>,
       callback?: BodyResponseCallback<Schema$GoogleCloudMlV1__Version>):
@@ -2700,14 +2701,15 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions):
+  cancel(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobuf__Empty>;
   cancel(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
   cancel(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
@@ -2757,14 +2759,15 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions):
+  delete(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleProtobuf__Empty>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleProtobuf__Empty>,
       callback?: BodyResponseCallback<Schema$GoogleProtobuf__Empty>):
@@ -2813,14 +2816,14 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions):
+  get(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__Operation>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
       void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning__Operation>):
@@ -2879,16 +2882,16 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning__ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
       callback?: BodyResponseCallback<
           Schema$GoogleLongrunning__ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
       callback?: BodyResponseCallback<

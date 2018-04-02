@@ -4295,16 +4295,16 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate(params: any, options?: MethodOptions):
+  batchUpdate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchUpdateSpreadsheetResponse>;
   batchUpdate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>):
       void;
   batchUpdate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdateSpreadsheetResponse>):
@@ -4404,14 +4404,14 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions):
+  create(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Spreadsheet>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>):
       void|AxiosPromise<Schema$Spreadsheet> {
@@ -4527,11 +4527,11 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Spreadsheet>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>):
       void|AxiosPromise<Schema$Spreadsheet> {
@@ -4651,14 +4651,14 @@ export class Resource$Spreadsheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getByDataFilter(params: any, options?: MethodOptions):
+  getByDataFilter(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Spreadsheet>;
   getByDataFilter(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>): void;
   getByDataFilter(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Spreadsheet>,
       callback?: BodyResponseCallback<Schema$Spreadsheet>):
       void|AxiosPromise<Schema$Spreadsheet> {
@@ -4768,12 +4768,12 @@ export class Resource$Spreadsheets$Developermetadata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$DeveloperMetadata>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
       callback?: BodyResponseCallback<Schema$DeveloperMetadata>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DeveloperMetadata>,
       callback?: BodyResponseCallback<Schema$DeveloperMetadata>):
       void|AxiosPromise<Schema$DeveloperMetadata> {
@@ -4878,16 +4878,16 @@ export class Resource$Spreadsheets$Developermetadata {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SearchDeveloperMetadataResponse>;
   search(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
       callback?: BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>):
       void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>,
       callback?: BodyResponseCallback<Schema$SearchDeveloperMetadataResponse>):
@@ -5012,14 +5012,14 @@ export class Resource$Spreadsheets$Sheets {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  copyTo(params: any, options?: MethodOptions):
+  copyTo(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SheetProperties>;
   copyTo(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
       callback?: BodyResponseCallback<Schema$SheetProperties>): void;
   copyTo(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SheetProperties>,
       callback?: BodyResponseCallback<Schema$SheetProperties>):
       void|AxiosPromise<Schema$SheetProperties> {
@@ -5158,14 +5158,14 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  append(params: any, options?: MethodOptions):
+  append(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AppendValuesResponse>;
   append(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
       callback?: BodyResponseCallback<Schema$AppendValuesResponse>): void;
   append(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$AppendValuesResponse>,
       callback?: BodyResponseCallback<Schema$AppendValuesResponse>):
       void|AxiosPromise<Schema$AppendValuesResponse> {
@@ -5273,15 +5273,15 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchClear(params: any, options?: MethodOptions):
+  batchClear(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchClearValuesResponse>;
   batchClear(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchClearValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>): void;
   batchClear(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchClearValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchClearValuesResponse>):
@@ -5389,17 +5389,17 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchClearByDataFilter(params: any, options?: MethodOptions):
+  batchClearByDataFilter(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchClearValuesByDataFilterResponse>;
   batchClearByDataFilter(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
       callback?:
           BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>):
       void;
   batchClearByDataFilter(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
       callback?:
@@ -5522,15 +5522,15 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet(params: any, options?: MethodOptions):
+  batchGet(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchGetValuesResponse>;
   batchGet(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>): void;
   batchGet(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetValuesResponse>):
@@ -5652,17 +5652,17 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGetByDataFilter(params: any, options?: MethodOptions):
+  batchGetByDataFilter(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchGetValuesByDataFilterResponse>;
   batchGetByDataFilter(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
       callback?:
           BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>):
       void;
   batchGetByDataFilter(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetValuesByDataFilterResponse>,
       callback?:
@@ -5777,15 +5777,15 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdate(params: any, options?: MethodOptions):
+  batchUpdate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchUpdateValuesResponse>;
   batchUpdate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>): void;
   batchUpdate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateValuesResponse>,
       callback?: BodyResponseCallback<Schema$BatchUpdateValuesResponse>):
@@ -5897,17 +5897,17 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchUpdateByDataFilter(params: any, options?: MethodOptions):
+  batchUpdateByDataFilter(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchUpdateValuesByDataFilterResponse>;
   batchUpdateByDataFilter(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
       callback?:
           BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>):
       void;
   batchUpdateByDataFilter(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
       callback?:
@@ -6020,14 +6020,14 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  clear(params: any, options?: MethodOptions):
+  clear(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ClearValuesResponse>;
   clear(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
       callback?: BodyResponseCallback<Schema$ClearValuesResponse>): void;
   clear(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ClearValuesResponse>,
       callback?: BodyResponseCallback<Schema$ClearValuesResponse>):
       void|AxiosPromise<Schema$ClearValuesResponse> {
@@ -6145,11 +6145,11 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$ValueRange>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$ValueRange>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
       callback?: BodyResponseCallback<Schema$ValueRange>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ValueRange>,
       callback?: BodyResponseCallback<Schema$ValueRange>):
       void|AxiosPromise<Schema$ValueRange> {
@@ -6264,14 +6264,14 @@ export class Resource$Spreadsheets$Values {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$UpdateValuesResponse>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
       callback?: BodyResponseCallback<Schema$UpdateValuesResponse>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$UpdateValuesResponse>,
       callback?: BodyResponseCallback<Schema$UpdateValuesResponse>):
       void|AxiosPromise<Schema$UpdateValuesResponse> {

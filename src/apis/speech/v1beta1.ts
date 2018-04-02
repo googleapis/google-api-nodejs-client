@@ -335,11 +335,11 @@ export class Resource$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -402,14 +402,14 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  asyncrecognize(params: any, options?: MethodOptions):
+  asyncrecognize(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   asyncrecognize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   asyncrecognize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -457,14 +457,15 @@ export class Resource$Speech {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  syncrecognize(params: any, options?: MethodOptions):
+  syncrecognize(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SyncRecognizeResponse>;
   syncrecognize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SyncRecognizeResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SyncRecognizeResponse>,
       callback?: BodyResponseCallback<Schema$SyncRecognizeResponse>): void;
   syncrecognize(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SyncRecognizeResponse>,
       callback?: BodyResponseCallback<Schema$SyncRecognizeResponse>):

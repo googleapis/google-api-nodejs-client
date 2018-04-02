@@ -401,14 +401,14 @@ export class Resource$Apis {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getRest(params: any, options?: MethodOptions):
+  getRest(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$RestDescription>;
   getRest(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
       callback?: BodyResponseCallback<Schema$RestDescription>): void;
   getRest(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$RestDescription>,
       callback?: BodyResponseCallback<Schema$RestDescription>):
       void|AxiosPromise<Schema$RestDescription> {
@@ -456,14 +456,14 @@ export class Resource$Apis {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$DirectoryList>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
       callback?: BodyResponseCallback<Schema$DirectoryList>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$DirectoryList>,
       callback?: BodyResponseCallback<Schema$DirectoryList>):
       void|AxiosPromise<Schema$DirectoryList> {

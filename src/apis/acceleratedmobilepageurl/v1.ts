@@ -155,15 +155,15 @@ export class Resource$Ampurls {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet(params: any, options?: MethodOptions):
+  batchGet(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$BatchGetAmpUrlsResponse>;
   batchGet(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
   batchGet(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
       callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):

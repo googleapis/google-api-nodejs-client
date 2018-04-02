@@ -137,13 +137,13 @@ export class Resource$Webfonts {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$WebfontList>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$WebfontList>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
       callback?: BodyResponseCallback<Schema$WebfontList>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
       callback?: BodyResponseCallback<Schema$WebfontList>):
       void|AxiosPromise<Schema$WebfontList> {

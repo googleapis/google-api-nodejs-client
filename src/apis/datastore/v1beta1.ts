@@ -519,15 +519,15 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  export(params: any, options?: MethodOptions):
+  export(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunningOperation>;
   export(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
   export(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
@@ -580,9 +580,9 @@ export class Resource$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-import(params: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-import(params: any, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(params: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+import(params?: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {
   if (typeof options === 'function') {
     callback = options;
     options = {};

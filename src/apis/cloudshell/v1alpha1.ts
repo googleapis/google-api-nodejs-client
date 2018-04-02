@@ -312,11 +312,11 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
       callback?: BodyResponseCallback<Schema$Environment>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
       callback?: BodyResponseCallback<Schema$Environment>):
       void|AxiosPromise<Schema$Environment> {
@@ -364,13 +364,14 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Environment>;
+  patch(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Environment>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Environment>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
       callback?: BodyResponseCallback<Schema$Environment>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Environment>,
       callback?: BodyResponseCallback<Schema$Environment>):
       void|AxiosPromise<Schema$Environment> {
@@ -422,13 +423,13 @@ export class Resource$Users$Environments {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  start(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  start(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   start(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   start(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -490,13 +491,13 @@ export class Resource$Users$Environments$Publickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$PublicKey>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
       callback?: BodyResponseCallback<Schema$PublicKey>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$PublicKey>,
       callback?: BodyResponseCallback<Schema$PublicKey>):
       void|AxiosPromise<Schema$PublicKey> {
@@ -544,12 +545,12 @@ export class Resource$Users$Environments$Publickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {

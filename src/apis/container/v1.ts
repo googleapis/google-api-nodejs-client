@@ -1773,14 +1773,14 @@ export class Resource$Projects$Locations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getServerConfig(params: any, options?: MethodOptions):
+  getServerConfig(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ServerConfig>;
   getServerConfig(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
       callback?: BodyResponseCallback<Schema$ServerConfig>): void;
   getServerConfig(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
       callback?: BodyResponseCallback<Schema$ServerConfig>):
       void|AxiosPromise<Schema$ServerConfig> {
@@ -1841,14 +1841,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  completeIpRotation(params: any, options?: MethodOptions):
+  completeIpRotation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   completeIpRotation(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   completeIpRotation(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1903,13 +1903,13 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1963,13 +1963,13 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2018,10 +2018,12 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
       callback?: BodyResponseCallback<Schema$Cluster>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
       callback?: BodyResponseCallback<Schema$Cluster>):
       void|AxiosPromise<Schema$Cluster> {
     if (typeof options === 'function') {
@@ -2069,14 +2071,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListClustersResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
       callback?: BodyResponseCallback<Schema$ListClustersResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
       callback?: BodyResponseCallback<Schema$ListClustersResponse>):
       void|AxiosPromise<Schema$ListClustersResponse> {
@@ -2124,14 +2126,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setAddons(params: any, options?: MethodOptions):
+  setAddons(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setAddons(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setAddons(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2179,14 +2181,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setLegacyAbac(params: any, options?: MethodOptions):
+  setLegacyAbac(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setLegacyAbac(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setLegacyAbac(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2234,14 +2236,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setLocations(params: any, options?: MethodOptions):
+  setLocations(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setLocations(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setLocations(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2289,14 +2291,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setLogging(params: any, options?: MethodOptions):
+  setLogging(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setLogging(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setLogging(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2344,14 +2346,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setMaintenancePolicy(params: any, options?: MethodOptions):
+  setMaintenancePolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setMaintenancePolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setMaintenancePolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2401,14 +2403,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setMasterAuth(params: any, options?: MethodOptions):
+  setMasterAuth(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setMasterAuth(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setMasterAuth(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2456,14 +2458,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setMonitoring(params: any, options?: MethodOptions):
+  setMonitoring(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setMonitoring(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setMonitoring(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2511,14 +2513,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setNetworkPolicy(params: any, options?: MethodOptions):
+  setNetworkPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setNetworkPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setNetworkPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2566,14 +2568,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setResourceLabels(params: any, options?: MethodOptions):
+  setResourceLabels(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setResourceLabels(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setResourceLabels(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2621,14 +2623,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startIpRotation(params: any, options?: MethodOptions):
+  startIpRotation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   startIpRotation(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   startIpRotation(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2676,13 +2678,13 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2729,14 +2731,14 @@ export class Resource$Projects$Locations$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  updateMaster(params: any, options?: MethodOptions):
+  updateMaster(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   updateMaster(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   updateMaster(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2795,13 +2797,13 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2852,13 +2854,13 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -2908,10 +2910,11 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$NodePool>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$NodePool>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$NodePool>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
       callback?: BodyResponseCallback<Schema$NodePool>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
       callback?: BodyResponseCallback<Schema$NodePool>):
       void|AxiosPromise<Schema$NodePool> {
@@ -2960,14 +2963,15 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListNodePoolsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListNodePoolsResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>):
@@ -3017,14 +3021,14 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback(params: any, options?: MethodOptions):
+  rollback(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   rollback(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   rollback(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3072,14 +3076,14 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setAutoscaling(params: any, options?: MethodOptions):
+  setAutoscaling(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setAutoscaling(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setAutoscaling(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3127,14 +3131,14 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setManagement(params: any, options?: MethodOptions):
+  setManagement(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setManagement(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setManagement(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3182,13 +3186,14 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setSize(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  setSize(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   setSize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setSize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3235,13 +3240,13 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3301,12 +3306,12 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -3354,11 +3359,11 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3406,15 +3411,15 @@ export class Resource$Projects$Locations$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
@@ -3537,14 +3542,14 @@ export class Resource$Projects$Zones {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getServerconfig(params: any, options?: MethodOptions):
+  getServerconfig(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ServerConfig>;
   getServerconfig(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
       callback?: BodyResponseCallback<Schema$ServerConfig>): void;
   getServerconfig(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ServerConfig>,
       callback?: BodyResponseCallback<Schema$ServerConfig>):
       void|AxiosPromise<Schema$ServerConfig> {
@@ -3671,13 +3676,13 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  addons(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  addons(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   addons(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   addons(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3793,14 +3798,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  completeIpRotation(params: any, options?: MethodOptions):
+  completeIpRotation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   completeIpRotation(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   completeIpRotation(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -3918,13 +3923,13 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4037,13 +4042,13 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4155,10 +4160,12 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
       callback?: BodyResponseCallback<Schema$Cluster>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
       callback?: BodyResponseCallback<Schema$Cluster>):
       void|AxiosPromise<Schema$Cluster> {
     if (typeof options === 'function') {
@@ -4271,14 +4278,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  legacyAbac(params: any, options?: MethodOptions):
+  legacyAbac(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   legacyAbac(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   legacyAbac(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4388,14 +4395,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListClustersResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
       callback?: BodyResponseCallback<Schema$ListClustersResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListClustersResponse>,
       callback?: BodyResponseCallback<Schema$ListClustersResponse>):
       void|AxiosPromise<Schema$ListClustersResponse> {
@@ -4508,14 +4515,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  locations(params: any, options?: MethodOptions):
+  locations(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   locations(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   locations(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4630,13 +4637,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  logging(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  logging(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   logging(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   logging(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4751,13 +4759,13 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  master(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  master(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   master(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   master(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4872,14 +4880,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  monitoring(params: any, options?: MethodOptions):
+  monitoring(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   monitoring(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   monitoring(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -4995,14 +5003,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  resourceLabels(params: any, options?: MethodOptions):
+  resourceLabels(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   resourceLabels(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   resourceLabels(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5117,14 +5125,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setMaintenancePolicy(params: any, options?: MethodOptions):
+  setMaintenancePolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setMaintenancePolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setMaintenancePolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5241,14 +5249,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setMasterAuth(params: any, options?: MethodOptions):
+  setMasterAuth(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setMasterAuth(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setMasterAuth(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5364,14 +5372,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setNetworkPolicy(params: any, options?: MethodOptions):
+  setNetworkPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setNetworkPolicy(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setNetworkPolicy(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5487,14 +5495,14 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  startIpRotation(params: any, options?: MethodOptions):
+  startIpRotation(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   startIpRotation(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   startIpRotation(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5611,13 +5619,13 @@ export class Resource$Projects$Zones$Clusters {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5746,14 +5754,14 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  autoscaling(params: any, options?: MethodOptions):
+  autoscaling(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   autoscaling(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   autoscaling(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5869,13 +5877,13 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -5991,13 +5999,13 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   delete(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   delete(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -6113,10 +6121,11 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$NodePool>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$NodePool>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$NodePool>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
       callback?: BodyResponseCallback<Schema$NodePool>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$NodePool>,
       callback?: BodyResponseCallback<Schema$NodePool>):
       void|AxiosPromise<Schema$NodePool> {
@@ -6228,14 +6237,15 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListNodePoolsResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListNodePoolsResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListNodePoolsResponse>,
       callback?: BodyResponseCallback<Schema$ListNodePoolsResponse>):
@@ -6356,14 +6366,14 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  rollback(params: any, options?: MethodOptions):
+  rollback(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   rollback(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   rollback(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -6482,14 +6492,14 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setManagement(params: any, options?: MethodOptions):
+  setManagement(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Operation>;
   setManagement(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setManagement(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -6608,13 +6618,14 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setSize(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  setSize(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$Operation>;
   setSize(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   setSize(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -6733,13 +6744,13 @@ export class Resource$Projects$Zones$Clusters$Nodepools {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   update(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -6865,12 +6876,12 @@ export class Resource$Projects$Zones$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -6980,11 +6991,11 @@ export class Resource$Projects$Zones$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -7091,15 +7102,15 @@ export class Resource$Projects$Zones$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):

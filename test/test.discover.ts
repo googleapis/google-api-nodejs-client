@@ -64,7 +64,8 @@ describe('GoogleApis#discover', () => {
 
       for (const key in localDrive) {
         if (localDrive.hasOwnProperty(key)) {
-          assert(remoteDrive[key], 'generated drive has same keys');
+          // tslint:disable-next-line no-any
+          assert((remoteDrive as any)[key], 'generated drive has same keys');
         }
       }
       done();

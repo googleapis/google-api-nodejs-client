@@ -198,12 +198,12 @@ export class Resource$Cse {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
   list(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
       callback?: BodyResponseCallback<Schema$Search>): void;
   list(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
       callback?: BodyResponseCallback<Schema$Search>):
       void|AxiosPromise<Schema$Search> {
     if (typeof options === 'function') {
@@ -291,12 +291,12 @@ export class Resource$Cse$Siterestrict {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
   list(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Search>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
       callback?: BodyResponseCallback<Schema$Search>): void;
   list(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Search>,
       callback?: BodyResponseCallback<Schema$Search>):
       void|AxiosPromise<Schema$Search> {
     if (typeof options === 'function') {

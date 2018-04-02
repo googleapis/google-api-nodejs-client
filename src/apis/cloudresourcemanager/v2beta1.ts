@@ -532,13 +532,13 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   create(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   create(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -590,12 +590,12 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>):
       void|AxiosPromise<Schema$Folder> {
     if (typeof options === 'function') {
@@ -644,10 +644,10 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>):
       void|AxiosPromise<Schema$Folder> {
     if (typeof options === 'function') {
@@ -697,13 +697,13 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getIamPolicy(params: any, options?: MethodOptions):
+  getIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   getIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   getIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -758,14 +758,14 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListFoldersResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
       callback?: BodyResponseCallback<Schema$ListFoldersResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListFoldersResponse>,
       callback?: BodyResponseCallback<Schema$ListFoldersResponse>):
       void|AxiosPromise<Schema$ListFoldersResponse> {
@@ -825,13 +825,13 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  move(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  move(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
   move(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
   move(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -891,12 +891,12 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
   patch(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>): void;
   patch(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>):
       void|AxiosPromise<Schema$Folder> {
     if (typeof options === 'function') {
@@ -945,14 +945,15 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  search(params: any, options?: MethodOptions):
+  search(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SearchFoldersResponse>;
   search(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SearchFoldersResponse>,
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$SearchFoldersResponse>,
       callback?: BodyResponseCallback<Schema$SearchFoldersResponse>): void;
   search(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SearchFoldersResponse>,
       callback?: BodyResponseCallback<Schema$SearchFoldersResponse>):
@@ -1005,13 +1006,13 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  setIamPolicy(params: any, options?: MethodOptions):
+  setIamPolicy(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$Policy>;
   setIamPolicy(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>): void;
   setIamPolicy(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
       callback?: BodyResponseCallback<Schema$Policy>):
       void|AxiosPromise<Schema$Policy> {
     if (typeof options === 'function') {
@@ -1061,15 +1062,15 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  testIamPermissions(params: any, options?: MethodOptions):
+  testIamPermissions(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$TestIamPermissionsResponse>;
   testIamPermissions(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>): void;
   testIamPermissions(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
@@ -1125,12 +1126,12 @@ export class Resource$Folders {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  undelete(params: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
+  undelete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Folder>;
   undelete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>): void;
   undelete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Folder>,
       callback?: BodyResponseCallback<Schema$Folder>):
       void|AxiosPromise<Schema$Folder> {
     if (typeof options === 'function') {

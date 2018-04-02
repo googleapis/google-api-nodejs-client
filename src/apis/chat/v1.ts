@@ -31,7 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 /**
  * Hangouts Chat API
  *
- * Create bots and extend the new Hangouts Chat.
+ * Enables bots to fetch information and perform actions in the new Hangouts
+ * Chat.
  *
  * @example
  * const google = require('googleapis');
@@ -48,8 +49,6 @@ export class Chat {
   google: GoogleApis;
   root = this;
 
-  dms: Resource$Dms;
-  rooms: Resource$Rooms;
   spaces: Resource$Spaces;
 
   constructor(options: GlobalOptions, google: GoogleApis) {
@@ -57,8 +56,6 @@ export class Chat {
     this.google = google;
     this.getRoot.bind(this);
 
-    this.dms = new Resource$Dms(this);
-    this.rooms = new Resource$Rooms(this);
     this.spaces = new Resource$Spaces(this);
   }
 
@@ -539,326 +536,6 @@ export interface Schema$WidgetMarkup {
   textParagraph: Schema$TextParagraph;
 }
 
-export class Resource$Dms {
-  root: Chat;
-  conversations: Resource$Dms$Conversations;
-  messages: Resource$Dms$Messages;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-    this.conversations = new Resource$Dms$Conversations(root);
-    this.messages = new Resource$Dms$Messages(root);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-export class Resource$Dms$Conversations {
-  root: Chat;
-  messages: Resource$Dms$Conversations$Messages;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-    this.messages = new Resource$Dms$Conversations$Messages(root);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-export class Resource$Dms$Conversations$Messages {
-  root: Chat;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * chat.dms.conversations.messages.create
-   * @desc Creates a message.
-   * @alias chat.dms.conversations.messages.create
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-   * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-   * @param {().Message} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
-  create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>): void;
-  create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>):
-      void|AxiosPromise<Schema$Message> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{parent}/messages')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: ['parent'],
-      pathParams: ['parent'],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Message>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Message>(parameters);
-    }
-  }
-}
-
-
-export class Resource$Dms$Messages {
-  root: Chat;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * chat.dms.messages.create
-   * @desc Creates a message.
-   * @alias chat.dms.messages.create
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-   * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-   * @param {().Message} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
-  create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>): void;
-  create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>):
-      void|AxiosPromise<Schema$Message> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{parent}/messages')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: ['parent'],
-      pathParams: ['parent'],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Message>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Message>(parameters);
-    }
-  }
-}
-
-
-export class Resource$Rooms {
-  root: Chat;
-  conversations: Resource$Rooms$Conversations;
-  messages: Resource$Rooms$Messages;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-    this.conversations = new Resource$Rooms$Conversations(root);
-    this.messages = new Resource$Rooms$Messages(root);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-export class Resource$Rooms$Conversations {
-  root: Chat;
-  messages: Resource$Rooms$Conversations$Messages;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-    this.messages = new Resource$Rooms$Conversations$Messages(root);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-export class Resource$Rooms$Conversations$Messages {
-  root: Chat;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * chat.rooms.conversations.messages.create
-   * @desc Creates a message.
-   * @alias chat.rooms.conversations.messages.create
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-   * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-   * @param {().Message} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
-  create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>): void;
-  create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>):
-      void|AxiosPromise<Schema$Message> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{parent}/messages')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: ['parent'],
-      pathParams: ['parent'],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Message>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Message>(parameters);
-    }
-  }
-}
-
-
-export class Resource$Rooms$Messages {
-  root: Chat;
-  constructor(root: Chat) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * chat.rooms.messages.create
-   * @desc Creates a message.
-   * @alias chat.rooms.messages.create
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-   * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it.  Has no effect if thread field, corresponding to an existing thread, is set in message.
-   * @param {().Message} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
-  create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>): void;
-  create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
-      callback?: BodyResponseCallback<Schema$Message>):
-      void|AxiosPromise<Schema$Message> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{parent}/messages')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: ['parent'],
-      pathParams: ['parent'],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Message>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Message>(parameters);
-    }
-  }
-}
-
-
 export class Resource$Spaces {
   root: Chat;
   members: Resource$Spaces$Members;
@@ -887,10 +564,10 @@ export class Resource$Spaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Space>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Space>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Space>;
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Space>,
       callback?: BodyResponseCallback<Schema$Space>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Space>,
+  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Space>,
       callback?: BodyResponseCallback<Schema$Space>):
       void|AxiosPromise<Schema$Space> {
     if (typeof options === 'function') {
@@ -936,14 +613,14 @@ export class Resource$Spaces {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListSpacesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
       callback?: BodyResponseCallback<Schema$ListSpacesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListSpacesResponse>,
       callback?: BodyResponseCallback<Schema$ListSpacesResponse>):
       void|AxiosPromise<Schema$ListSpacesResponse> {
@@ -1000,11 +677,11 @@ export class Resource$Spaces$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Membership>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Membership>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Membership>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Membership>,
       callback?: BodyResponseCallback<Schema$Membership>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Membership>,
       callback?: BodyResponseCallback<Schema$Membership>):
       void|AxiosPromise<Schema$Membership> {
@@ -1052,15 +729,15 @@ export class Resource$Spaces$Members {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListMembershipsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListMembershipsResponse>,
       callback?: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListMembershipsResponse>,
       callback?: BodyResponseCallback<Schema$ListMembershipsResponse>):
@@ -1122,12 +799,14 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  create(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
   create(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>): void;
   create(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>):
       void|AxiosPromise<Schema$Message> {
     if (typeof options === 'function') {
@@ -1173,12 +852,12 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -1223,10 +902,12 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>):
       void|AxiosPromise<Schema$Message> {
     if (typeof options === 'function') {
@@ -1273,12 +954,14 @@ export class Resource$Spaces$Messages {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Message>;
   update(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Message>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>): void;
   update(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Message>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Message>,
       callback?: BodyResponseCallback<Schema$Message>):
       void|AxiosPromise<Schema$Message> {
     if (typeof options === 'function') {

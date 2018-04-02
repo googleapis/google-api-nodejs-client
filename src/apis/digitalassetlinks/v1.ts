@@ -290,14 +290,14 @@ export class Resource$Assetlinks {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  check(params: any, options?: MethodOptions):
+  check(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CheckResponse>;
   check(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
       callback?: BodyResponseCallback<Schema$CheckResponse>): void;
   check(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
       callback?: BodyResponseCallback<Schema$CheckResponse>):
       void|AxiosPromise<Schema$CheckResponse> {
@@ -373,13 +373,14 @@ export class Resource$Statements {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$ListResponse>;
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
       callback?: BodyResponseCallback<Schema$ListResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
       callback?: BodyResponseCallback<Schema$ListResponse>):
       void|AxiosPromise<Schema$ListResponse> {

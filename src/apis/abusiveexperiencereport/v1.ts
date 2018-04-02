@@ -133,12 +133,12 @@ export class Resource$Sites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$SiteSummaryResponse>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
       callback?: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
       callback?: BodyResponseCallback<Schema$SiteSummaryResponse>):
       void|AxiosPromise<Schema$SiteSummaryResponse> {
@@ -196,15 +196,15 @@ export class Resource$Violatingsites {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ViolatingSitesResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ViolatingSitesResponse>,
       callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ViolatingSitesResponse>,
       callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>):

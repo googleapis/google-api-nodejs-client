@@ -817,11 +817,11 @@ export class Resource$Pipelines {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  run(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  run(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  run(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  run(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  run(params: any,
+  run(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -898,12 +898,12 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  cancel(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   cancel(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   cancel(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -951,11 +951,11 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
       callback?: BodyResponseCallback<Schema$Operation>):
       void|AxiosPromise<Schema$Operation> {
@@ -1004,15 +1004,15 @@ export class Resource$Projects$Operations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListOperationsResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ListOperationsResponse>,
       callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
@@ -1074,14 +1074,14 @@ export class Resource$Workers {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  checkIn(params: any, options?: MethodOptions):
+  checkIn(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$CheckInResponse>;
   checkIn(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
       callback?: BodyResponseCallback<Schema$CheckInResponse>): void;
   checkIn(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$CheckInResponse>,
       callback?: BodyResponseCallback<Schema$CheckInResponse>):
       void|AxiosPromise<Schema$CheckInResponse> {

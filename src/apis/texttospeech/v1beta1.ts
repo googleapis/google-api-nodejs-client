@@ -244,15 +244,15 @@ export class Resource$Text {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  synthesize(params: any, options?: MethodOptions):
+  synthesize(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SynthesizeSpeechResponse>;
   synthesize(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
       callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>): void;
   synthesize(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$SynthesizeSpeechResponse>,
       callback?: BodyResponseCallback<Schema$SynthesizeSpeechResponse>):
@@ -312,14 +312,14 @@ export class Resource$Voices {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ListVoicesResponse>;
   list(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
       callback?: BodyResponseCallback<Schema$ListVoicesResponse>): void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ListVoicesResponse>,
       callback?: BodyResponseCallback<Schema$ListVoicesResponse>):
       void|AxiosPromise<Schema$ListVoicesResponse> {

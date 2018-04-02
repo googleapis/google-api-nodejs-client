@@ -189,14 +189,14 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  getLoginProfile(params: any, options?: MethodOptions):
+  getLoginProfile(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LoginProfile>;
   getLoginProfile(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
       callback?: BodyResponseCallback<Schema$LoginProfile>): void;
   getLoginProfile(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
       callback?: BodyResponseCallback<Schema$LoginProfile>):
       void|AxiosPromise<Schema$LoginProfile> {
@@ -247,15 +247,15 @@ export class Resource$Users {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  importSshPublicKey(params: any, options?: MethodOptions):
+  importSshPublicKey(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ImportSshPublicKeyResponse>;
   importSshPublicKey(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
       callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>): void;
   importSshPublicKey(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
       callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
@@ -314,12 +314,12 @@ export class Resource$Users$Projects {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -376,12 +376,12 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
       callback?: BodyResponseCallback<Schema$Empty>):
       void|AxiosPromise<Schema$Empty> {
     if (typeof options === 'function') {
@@ -426,11 +426,11 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
-  get(params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
       callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
       callback?: BodyResponseCallback<Schema$SshPublicKey>):
       void|AxiosPromise<Schema$SshPublicKey> {
@@ -479,14 +479,14 @@ export class Resource$Users$Sshpublickeys {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$SshPublicKey>;
   patch(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
       callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
       callback?: BodyResponseCallback<Schema$SshPublicKey>):
       void|AxiosPromise<Schema$SshPublicKey> {

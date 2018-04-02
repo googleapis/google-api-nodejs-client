@@ -104,12 +104,12 @@ export class Resource$Archive {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
   insert(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>): void;
   insert(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
       callback?: BodyResponseCallback<Schema$Groups>):
       void|AxiosPromise<Schema$Groups> {
     if (typeof options === 'function') {

@@ -970,14 +970,14 @@ export class Resource$Reports {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  batchGet(params: any, options?: MethodOptions):
+  batchGet(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GetReportsResponse>;
   batchGet(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
       callback?: BodyResponseCallback<Schema$GetReportsResponse>): void;
   batchGet(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
       callback?: BodyResponseCallback<Schema$GetReportsResponse>):
       void|AxiosPromise<Schema$GetReportsResponse> {

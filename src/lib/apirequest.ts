@@ -71,12 +71,6 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   let params = parameters.params;
   const options = Object.assign({}, parameters.options);
 
-  // If the params are not present, and callback was passed instead,
-  // use params as the callback and create empty params.
-  if (typeof params === 'function') {
-    params = {};
-  }
-
   // Create a new params object so it can no longer be modified from outside
   // code Also support global and per-client params, but allow them to be
   // overriden per-request

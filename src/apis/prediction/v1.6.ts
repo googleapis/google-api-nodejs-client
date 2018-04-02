@@ -322,12 +322,12 @@ export class Resource$Hostedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict(params: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
+  predict(params?: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
   predict(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
       callback?: BodyResponseCallback<Schema$Output>): void;
   predict(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
       callback?: BodyResponseCallback<Schema$Output>):
       void|AxiosPromise<Schema$Output> {
     if (typeof options === 'function') {
@@ -443,12 +443,14 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  analyze(params: any, options?: MethodOptions): AxiosPromise<Schema$Analyze>;
+  analyze(params?: any, options?: MethodOptions): AxiosPromise<Schema$Analyze>;
   analyze(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Analyze>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Analyze>,
       callback?: BodyResponseCallback<Schema$Analyze>): void;
   analyze(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Analyze>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Analyze>,
       callback?: BodyResponseCallback<Schema$Analyze>):
       void|AxiosPromise<Schema$Analyze> {
     if (typeof options === 'function') {
@@ -549,12 +551,12 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -656,10 +658,12 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
-  get(params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>): void;
-  get(params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+  get(params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>):
       void|AxiosPromise<Schema$Insert2> {
     if (typeof options === 'function') {
@@ -763,12 +767,14 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
   insert(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>): void;
   insert(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>):
       void|AxiosPromise<Schema$Insert2> {
     if (typeof options === 'function') {
@@ -881,12 +887,12 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions): AxiosPromise<Schema$List>;
+  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$List>;
   list(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$List>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$List>,
       callback?: BodyResponseCallback<Schema$List>): void;
   list(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$List>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$List>,
       callback?: BodyResponseCallback<Schema$List>):
       void|AxiosPromise<Schema$List> {
     if (typeof options === 'function') {
@@ -994,12 +1000,12 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  predict(params: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
+  predict(params?: any, options?: MethodOptions): AxiosPromise<Schema$Output>;
   predict(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Output>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
       callback?: BodyResponseCallback<Schema$Output>): void;
   predict(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Output>,
       callback?: BodyResponseCallback<Schema$Output>):
       void|AxiosPromise<Schema$Output> {
     if (typeof options === 'function') {
@@ -1110,12 +1116,14 @@ export class Resource$Trainedmodels {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
+  update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Insert2>;
   update(
-      params: any, options: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>): void;
   update(
-      params: any, options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$Insert2>,
       callback?: BodyResponseCallback<Schema$Insert2>):
       void|AxiosPromise<Schema$Insert2> {
     if (typeof options === 'function') {

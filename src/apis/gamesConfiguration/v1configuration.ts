@@ -386,12 +386,12 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -438,13 +438,13 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$AchievementConfiguration>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
@@ -494,15 +494,15 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions):
+  insert(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementConfiguration>;
   insert(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
@@ -554,17 +554,17 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementConfigurationListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
       callback?:
           BodyResponseCallback<Schema$AchievementConfigurationListResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
       callback?:
@@ -619,15 +619,15 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementConfiguration>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
@@ -678,15 +678,15 @@ export class Resource$Achievementconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$AchievementConfiguration>;
   update(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$AchievementConfiguration>,
       callback?: BodyResponseCallback<Schema$AchievementConfiguration>):
@@ -751,14 +751,14 @@ export class Resource$Imageconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  upload(params: any, options?: MethodOptions):
+  upload(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$ImageConfiguration>;
   upload(
-      params: any,
-      options: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
       callback?: BodyResponseCallback<Schema$ImageConfiguration>): void;
   upload(
-      params: any,
+      params?: any,
       options?: MethodOptions|BodyResponseCallback<Schema$ImageConfiguration>,
       callback?: BodyResponseCallback<Schema$ImageConfiguration>):
       void|AxiosPromise<Schema$ImageConfiguration> {
@@ -823,12 +823,12 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  delete(params: any, options?: MethodOptions): AxiosPromise<void>;
+  delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
   delete(
-      params: any, options: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void;
   delete(
-      params: any, options?: MethodOptions|BodyResponseCallback<void>,
+      params?: any, options?: MethodOptions|BodyResponseCallback<void>,
       callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
     if (typeof options === 'function') {
       callback = options;
@@ -875,13 +875,13 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions): AxiosPromise<Schema$LeaderboardConfiguration>;
-  get(params: any,
-      options: MethodOptions|
+  get(params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
-  get(params: any,
+  get(params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
@@ -931,15 +931,15 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  insert(params: any, options?: MethodOptions):
+  insert(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LeaderboardConfiguration>;
   insert(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
   insert(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
@@ -991,17 +991,17 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  list(params: any, options?: MethodOptions):
+  list(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LeaderboardConfigurationListResponse>;
   list(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
       callback?:
           BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>):
       void;
   list(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
       callback?:
@@ -1056,15 +1056,15 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  patch(params: any, options?: MethodOptions):
+  patch(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LeaderboardConfiguration>;
   patch(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
   patch(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
@@ -1115,15 +1115,15 @@ export class Resource$Leaderboardconfigurations {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  update(params: any, options?: MethodOptions):
+  update(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$LeaderboardConfiguration>;
   update(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>): void;
   update(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$LeaderboardConfiguration>,
       callback?: BodyResponseCallback<Schema$LeaderboardConfiguration>):
