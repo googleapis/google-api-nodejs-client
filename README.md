@@ -389,7 +389,9 @@ async function main () {
   const client = await google.auth.getClient();
 
   // Scopes can be specified either as an array or as a single, space-delimited string.
-  client.scopes = ['https://www.googleapis.com/auth/compute'];
+  if (client instanceof google.auth.JWT) {
+    client.scopes = ['https://www.googleapis.com/auth/compute'];
+  }
 
   // Fetch the list of GCE zones within a project.
   const project = await google.auth.getDefaultProjectId();
