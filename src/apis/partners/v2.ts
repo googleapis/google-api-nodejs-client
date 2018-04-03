@@ -521,7 +521,8 @@ export interface Schema$Date {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**
@@ -1238,6 +1239,11 @@ export interface Schema$TrafficSource {
  * A resource representing a user of the Partners platform.
  */
 export interface Schema$User {
+  /**
+   * Whether or not the user has opted to share their Academy for Ads info with
+   * Google Partners.
+   */
+  afaInfoShared: boolean;
   /**
    * This is the list of AdWords Manager Accounts the user has edit access to.
    * If the user has edit access to multiple accounts, the user can choose the

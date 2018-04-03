@@ -428,7 +428,8 @@ export interface Schema$ReportRequest {
    * columns and saved columns. For DoubleClick Search columns, only the
    * columnName parameter is required. For saved columns only the
    * savedColumnName parameter is required. Both columnName and savedColumnName
-   * cannot be set in the same stanza.
+   * cannot be set in the same stanza. The maximum number of columns per request
+   * is 300.
    */
   columns: Schema$ReportApiColumnSpec[];
   /**
@@ -437,7 +438,8 @@ export interface Schema$ReportRequest {
    */
   downloadFormat: string;
   /**
-   * A list of filters to be applied to the report.
+   * A list of filters to be applied to the report. The maximum number of
+   * filters per request is 300.
    */
   filters: any[];
   /**
@@ -458,7 +460,8 @@ export interface Schema$ReportRequest {
   maxRowsPerFile: number;
   /**
    * Synchronous report only. A list of columns and directions defining sorting
-   * to be performed on the report rows.
+   * to be performed on the report rows. The maximum number of orderings per
+   * request is 300.
    */
   orderBy: any[];
   /**

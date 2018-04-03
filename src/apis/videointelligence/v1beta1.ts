@@ -737,9 +737,8 @@ export interface Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscriptio
    * terms of accuracy, with the top (first) alternative being the most
    * probable, as ranked by the recognizer.
    */
-  // clang-format off
-  alternatives: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
-  // clang-format on
+  alternatives:
+      Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
 }
 /**
  * Annotation progress for a single video.
@@ -1171,16 +1170,16 @@ export class Resource$Videos {
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
    */
-  annotate(params: any, options?: MethodOptions):
+  annotate(params?: any, options?: MethodOptions):
       AxiosPromise<Schema$GoogleLongrunning_Operation>;
   annotate(
-      params: any,
-      options: MethodOptions|
+      params?: any,
+      options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
       void;
   annotate(
-      params: any,
+      params?: any,
       options?: MethodOptions|
       BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
       callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):

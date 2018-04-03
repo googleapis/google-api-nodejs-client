@@ -1364,7 +1364,7 @@ export interface Schema$Policy {
   usbFileTransferDisabled: boolean;
   /**
    * Allows admins to toggle whether USB storge is enabled or disabled on
-   * user&#39;s devices. Next ID: 113
+   * user&#39;s devices. Next ID: 114
    */
   usbMassStorageEnabled: boolean;
   /**
