@@ -69,7 +69,7 @@
       "name": "Alexander Fenster"
     }
   ],
-  "version": "28.0.1",
+  "version": "28.1.0",
   "scripts": {
     "test": "make test -j 4"
   },
