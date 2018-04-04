@@ -31,7 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 /**
  * Cloud Text-to-Speech API
  *
- * Cloud Text-to-Speech API.
+ * Synthesizes natural-sounding speech by applying powerful neural network
+ * models.
  *
  * @example
  * const google = require('googleapis');

@@ -165,12 +165,7 @@ export interface Schema$Authentication {
  */
 export interface Schema$AuthenticationRule {
   /**
-   * Whether to allow requests without a credential. The credential can be an
-   * OAuth token, Google cookies (first-party auth) or EndUserCreds.  For
-   * requests without credentials, if the service control environment is
-   * specified, each incoming request **must** be associated with a service
-   * consumer. This can be done by passing an API key that belongs to a consumer
-   * project.
+   * If true, the service accepts API keys without any other credential.
    */
   allowWithoutCredential: boolean;
   /**
@@ -1908,7 +1903,8 @@ export interface Schema$ServiceAccountConfig {
    * format of the service account will be
    * &quot;&lt;account-id&gt;@&lt;tenant-project-id&gt;.iam.gserviceaccount.com&quot;.
    * This account id has to be unique within tenant project and producers have
-   * to guarantee it.
+   * to guarantee it. And it must be 6-30 characters long, and matches the
+   * regular expression `[a-z]([-a-z0-9]*[a-z0-9])`.
    */
   accountId: string;
   /**

@@ -111,7 +111,7 @@ export interface Schema$AuditableService {
  */
 export interface Schema$AuditConfig {
   /**
-   * The configuration for logging of each type of permission. Next ID: 4
+   * The configuration for logging of each type of permission.
    */
   auditLogConfigs: Schema$AuditLogConfig[];
   /**

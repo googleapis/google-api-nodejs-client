@@ -228,7 +228,8 @@ export interface Schema$CreateImageRequest {
    * The image URL.  The image is fetched once at insertion time and a copy is
    * stored for display inside the presentation. Images must be less than 50MB
    * in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or
-   * GIF format.  The provided URL can be at most 2 kB in length.
+   * GIF format.  The provided URL can be at most 2 kB in length. The URL itself
+   * is saved with the image, and exposed via the Image.source_url field.
    */
   url: string;
 }
@@ -337,8 +338,8 @@ export interface Schema$CreateShapeResponse {
 }
 /**
  * Creates an embedded Google Sheets chart.  NOTE: Chart creation requires at
- * least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or
- * drive OAuth scopes.
+ * least one of the spreadsheets.readonly, spreadsheets, drive.readonly,
+ * drive.file, or drive OAuth scopes.
  */
 export interface Schema$CreateSheetsChartRequest {
   /**
@@ -953,7 +954,8 @@ export interface Schema$LayoutReference {
   predefinedLayout: string;
 }
 /**
- * A PageElement kind representing a line, curved connector, or bent connector.
+ * A PageElement kind representing a non-connector line, straight connector,
+ * curved connector or bent connector.
  */
 export interface Schema$Line {
   /**
@@ -1564,7 +1566,8 @@ export interface Schema$ReplaceAllShapesWithImageRequest {
    * The image URL.  The image is fetched once at insertion time and a copy is
    * stored for display inside the presentation. Images must be less than 50MB
    * in size, cannot exceed 25 megapixels, and must be in one of PNG, JPEG, or
-   * GIF format.  The provided URL can be at most 2 kB in length.
+   * GIF format.  The provided URL can be at most 2 kB in length. The URL itself
+   * is saved with the image, and exposed via the Image.source_url field.
    */
   imageUrl: string;
   /**
@@ -1679,7 +1682,9 @@ export interface Schema$ReplaceImageRequest {
    * The URL of the new image.  The image is fetched once at insertion time and
    * a copy is stored for display inside the presentation. Images must be less
    * than 50MB in size, cannot exceed 25 megapixels, and must be in one of PNG,
-   * JPEG, or GIF format.  The provided URL can be at most 2 kB in length.
+   * JPEG, or GIF format.  The provided URL can be at most 2 kB in length. The
+   * URL itself is saved with the image, and exposed via the Image.source_url
+   * field.
    */
   url: string;
 }

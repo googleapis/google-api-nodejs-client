@@ -41,6 +41,7 @@ import * as androidenterprise_v1 from './androidenterprise/v1';
 import * as androidmanagement_v1 from './androidmanagement/v1';
 import * as androidpublisher_v1 from './androidpublisher/v1';
 import * as androidpublisher_v1_1 from './androidpublisher/v1.1';
+import * as androidpublisher_v2 from './androidpublisher/v2';
 import * as appengine_v1 from './appengine/v1';
 import * as appengine_v1alpha from './appengine/v1alpha';
 import * as appengine_v1beta from './appengine/v1beta';
@@ -271,6 +272,7 @@ const APIS: APIList = {
   androidpublisher: {
     'v1.1': androidpublisher_v1_1.Androidpublisher,
     'v1': androidpublisher_v1.Androidpublisher,
+    'v2': androidpublisher_v2.Androidpublisher,
   },
   appengine: {
     'v1': appengine_v1.Appengine,
@@ -765,7 +767,8 @@ export class GeneratedAPIs {
   }
   androidpublisher<
       T = androidpublisher_v1_1.Androidpublisher |
-          androidpublisher_v1.Androidpublisher>(options: ServiceOptions|
+          androidpublisher_v1.Androidpublisher |
+          androidpublisher_v2.Androidpublisher>(options: ServiceOptions|
                                                 string) {
     return this.getAPI<T>('androidpublisher', options);
   }

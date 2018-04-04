@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Safe Browsing API
+ * Safe Browsing API
  *
  * Enables client applications to check web resources (most commonly URLs)
  * against Google-generated lists of unsafe web resources.

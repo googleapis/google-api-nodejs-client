@@ -48,6 +48,7 @@ export class Firebasedynamiclinks {
   google: GoogleApis;
   root = this;
 
+  managedShortLinks: Resource$Managedshortlinks;
   shortLinks: Resource$Shortlinks;
   v1: Resource$V1;
 
@@ -56,6 +57,7 @@ export class Firebasedynamiclinks {
     this.google = google;
     this.getRoot.bind(this);
 
+    this.managedShortLinks = new Resource$Managedshortlinks(this);
     this.shortLinks = new Resource$Shortlinks(this);
     this.v1 = new Resource$V1(this);
   }
@@ -101,6 +103,51 @@ export interface Schema$AndroidInfo {
   androidPackageName: string;
 }
 /**
+ * Request to create a managed Short Dynamic Link.
+ */
+export interface Schema$CreateManagedShortLinkRequest {
+  /**
+   * Information about the Dynamic Link to be shortened. [Learn
+   * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
+   */
+  dynamicLinkInfo: Schema$DynamicLinkInfo;
+  /**
+   * Full long Dynamic Link URL with desired query parameters specified. For
+   * example,
+   * &quot;https://sample.app.goo.gl/?link=http://www.google.com&amp;apn=com.sample&quot;,
+   * [Learn
+   * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
+   */
+  longDynamicLink: string;
+  /**
+   * Link name to associate with the link. It&#39;s used for marketer to
+   * identify manually-created links in the Firebase console
+   * (https://console.firebase.google.com/). Links must be named to be tracked.
+   */
+  name: string;
+  /**
+   * Short Dynamic Link suffix. Optional.
+   */
+  suffix: Schema$Suffix;
+}
+/**
+ * Response to create a short Dynamic Link.
+ */
+export interface Schema$CreateManagedShortLinkResponse {
+  /**
+   * Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz
+   */
+  managedShortLink: Schema$ManagedShortLink;
+  /**
+   * Preview link to show the link flow chart. (debug info.)
+   */
+  previewLink: string;
+  /**
+   * Information about potential warnings on link creation.
+   */
+  warning: Schema$DynamicLinkWarning[];
+}
+/**
  * Request to create a short Dynamic Link.
  */
 export interface Schema$CreateShortDynamicLinkRequest {
@@ -127,7 +174,7 @@ export interface Schema$CreateShortDynamicLinkRequest {
  */
 export interface Schema$CreateShortDynamicLinkResponse {
   /**
-   * Preivew link to show the link flow chart.
+   * Preview link to show the link flow chart. (debug info.)
    */
   previewLink: string;
   /**
@@ -220,6 +267,12 @@ export interface Schema$DynamicLinkInfo {
    * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
    */
   desktopInfo: Schema$DesktopInfo;
+  /**
+   * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps
+   * More examples can be found in description of getNormalizedUriPrefix in
+   * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java
+   */
+  domainUriPrefix: string;
   /**
    * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn
    * more](https://firebase.google.com/docs/dynamic-links/android/receive) on
@@ -486,6 +539,36 @@ export interface Schema$ITunesConnectAnalytics {
   pt: string;
 }
 /**
+ * Managed Short Link.
+ */
+export interface Schema$ManagedShortLink {
+  /**
+   * Creation timestamp of the short link.
+   */
+  creationTime: string;
+  /**
+   * Attributes that have been flagged about this short url.
+   */
+  flaggedAttribute: string[];
+  /**
+   * Full Dyamic Link info
+   */
+  info: Schema$DynamicLinkInfo;
+  /**
+   * Short durable link url, for example,
+   * &quot;https://sample.app.goo.gl/xyz123&quot;.  Required.
+   */
+  link: string;
+  /**
+   * Link name defined by the creator.  Required.
+   */
+  linkName: string;
+  /**
+   * Visibility status of link.
+   */
+  visibility: string;
+}
+/**
  * Information of navigation behavior.
  */
 export interface Schema$NavigationInfo {
@@ -518,9 +601,93 @@ export interface Schema$SocialMetaTagInfo {
  */
 export interface Schema$Suffix {
   /**
+   * Only applies to Option.CUSTOM.
+   */
+  customSuffix: string;
+  /**
    * Suffix option.
    */
   option: string;
+}
+
+export class Resource$Managedshortlinks {
+  root: Firebasedynamiclinks;
+  constructor(root: Firebasedynamiclinks) {
+    this.root = root;
+    this.getRoot.bind(this);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+
+  /**
+   * firebasedynamiclinks.managedShortLinks.create
+   * @desc Creates a managed short Dynamic Link given either a valid long
+   * Dynamic Link or details such as Dynamic Link domain, Android and iOS app
+   * information. The created short Dynamic Link will not expire.  This differs
+   * from CreateShortDynamicLink in the following ways:   - The request will
+   * also contain a name for the link (non unique name     for the front end).
+   * - The response must be authenticated with an auth token (generated with
+   * the admin service account).   - The link will appear in the FDL list of
+   * links in the console front end.  The Dynamic Link domain in the request
+   * must be owned by requester's Firebase project.
+   * @alias firebasedynamiclinks.managedShortLinks.create
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {().CreateManagedShortLinkRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  create(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$CreateManagedShortLinkResponse>;
+  create(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
+      void;
+  create(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+      callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
+      void|AxiosPromise<Schema$CreateManagedShortLinkResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://firebasedynamiclinks-ipv6.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/managedShortLinks:create')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$CreateManagedShortLinkResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$CreateManagedShortLinkResponse>(
+          parameters);
+    }
+  }
 }
 
 export class Resource$Shortlinks {

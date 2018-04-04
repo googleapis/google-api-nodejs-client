@@ -1122,11 +1122,11 @@ export interface Schema$ChartSourceRange {
    * a length of 1, and all sources in the list must have the same dimension
    * with length 1. The domain (if it exists) &amp; all series must have the
    * same number of source ranges. If using more than one source range, then the
-   * source range at a given offset must be contiguous across the domain and
-   * series.  For example, these are valid configurations:      domain sources:
-   * A1:A5     series1 sources: B1:B5     series2 sources: D6:D10      domain
-   * sources: A1:A5, C10:C12     series1 sources: B1:B5, D10:D12     series2
-   * sources: C1:C5, E10:E12
+   * source range at a given offset must be in order and contiguous across the
+   * domain and series.  For example, these are valid configurations:
+   * domain sources: A1:A5     series1 sources: B1:B5     series2 sources:
+   * D6:D10      domain sources: A1:A5, C10:C12     series1 sources: B1:B5,
+   * D10:D12     series2 sources: C1:C5, E10:E12
    */
   sources: Schema$GridRange[];
 }
@@ -1356,7 +1356,8 @@ export interface Schema$ConditionValue {
   relativeDate: string;
   /**
    * A value the condition is based on. The value will be parsed as if the user
-   * typed into a cell. Formulas are supported (and must begin with an `=`).
+   * typed into a cell. Formulas are supported (and must begin with an `=` or a
+   * &#39;+&#39;).
    */
   userEnteredValue: string;
 }
@@ -2258,17 +2259,19 @@ export interface Schema$HistogramChartSpec {
  */
 export interface Schema$HistogramRule {
   /**
-   * Optional. The maximum value at which items will be placed into buckets of
-   * constant size. Values above end will be lumped into a single bucket.
+   * The maximum value at which items will be placed into buckets of constant
+   * size. Values above end will be lumped into a single bucket. This field is
+   * optional.
    */
   end: number;
   /**
-   * Required. The size of the buckets that will be created. Must be positive.
+   * The size of the buckets that will be created. Must be positive.
    */
   interval: number;
   /**
-   * Optional. The minimum value at which items will be placed into buckets of
-   * constant size. Values below start will be lumped into a single bucket.
+   * The minimum value at which items will be placed into buckets of constant
+   * size. Values below start will be lumped into a single bucket. This field is
+   * optional.
    */
   start: number;
 }
@@ -4113,9 +4116,9 @@ export interface Schema$WaterfallChartCustomSubtotal {
    * true, the data point at this index is the subtotal. Otherwise, the subtotal
    * appears after the data point with this index. A series can have multiple
    * subtotals at arbitrary indices, but subtotals do not affect the indices of
-   * the data points. For example, if a series has 3 data points, their indices
-   * will always be 0, 1, and 2, regardless of how many subtotals exist on the
-   * series or what data points they are associated with.
+   * the data points. For example, if a series has three data points, their
+   * indices will always be 0, 1, and 2, regardless of how many subtotals exist
+   * on the series or what data points they are associated with.
    */
   subtotalIndex: number;
 }
