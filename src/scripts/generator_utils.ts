@@ -21,13 +21,7 @@
 export function buildurl(input?: string) {
   return input ?
       ('\'' + input + '\'')
-          // No * symbols
-          .replace(/\*/g, '')
-          // No + symbols
-          .replace(/\+/g, '')
           // replace double slashes with single slash (except in https://)
-          .replace(/([^:]\/)\/+/g, '$1')
-          // No {/ symbols
-          .replace(/\{\//g, '/{') :
+          .replace(/([^:]\/)\/+/g, '$1') :
       '';
 }
