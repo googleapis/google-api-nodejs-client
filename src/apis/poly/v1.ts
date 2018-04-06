@@ -454,7 +454,7 @@ export class Resource$Assets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -605,7 +605,7 @@ export class Resource$Users$Assets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/assets').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/assets').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -678,7 +678,7 @@ export class Resource$Users$Likedassets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/likedassets')
+            url: (rootUrl + '/v1/{+name}/likedassets')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

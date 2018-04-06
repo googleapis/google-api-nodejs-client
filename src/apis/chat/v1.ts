@@ -102,8 +102,8 @@ export interface Schema$ActionResponse {
  * &quot;name&quot;:&quot;users/107946847022116401880&quot;,
  * &quot;displayName&quot;:&quot;FooBot&quot;,
  * &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;,
- * &quot;type&quot;:&quot;BOT&quot;     },
- * &quot;type&quot;:&quot;MENTION&quot;    } }] ```
+ * &quot;type&quot;:&quot;BOT&quot;     }, &quot;type&quot;:&quot;MENTION&quot;
+ * } }] ```
  */
 export interface Schema$Annotation {
   /**
@@ -197,9 +197,9 @@ export interface Schema$CardHeader {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -583,7 +583,7 @@ export class Resource$Spaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -698,7 +698,7 @@ export class Resource$Spaces$Members {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -755,7 +755,7 @@ export class Resource$Spaces$Members {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/members')
+            url: (rootUrl + '/v1/{+parent}/members')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -822,7 +822,7 @@ export class Resource$Spaces$Messages {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/messages')
+            url: (rootUrl + '/v1/{+parent}/messages')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -873,7 +873,7 @@ export class Resource$Spaces$Messages {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -923,7 +923,7 @@ export class Resource$Spaces$Messages {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -977,7 +977,7 @@ export class Resource$Spaces$Messages {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),

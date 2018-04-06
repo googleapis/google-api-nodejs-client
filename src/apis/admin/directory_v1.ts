@@ -5021,7 +5021,7 @@ export class Resource$Orgunits {
           {
             url:
                 (rootUrl +
-                 '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                 '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -5075,7 +5075,7 @@ export class Resource$Orgunits {
           {
             url:
                 (rootUrl +
-                 '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                 '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5243,7 +5243,7 @@ export class Resource$Orgunits {
           {
             url:
                 (rootUrl +
-                 '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                 '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
@@ -5300,7 +5300,7 @@ export class Resource$Orgunits {
           {
             url:
                 (rootUrl +
-                 '/admin/directory/v1/customer/{customerId}/orgunits/{orgUnitPath}')
+                 '/admin/directory/v1/customer/{customerId}/orgunits{/orgUnitPath*}')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },

@@ -907,8 +907,8 @@ export interface Schema$AutoscalingPolicyCustomMetricUtilization {
   /**
    * The target value of the metric that autoscaler should maintain. This must
    * be a positive value. A utilization metric scales number of virtual machines
-   * handling requests to increase or decrease proportionally to the metric.
-   * For example, a good metric to use as a utilization_target is
+   * handling requests to increase or decrease proportionally to the metric. For
+   * example, a good metric to use as a utilization_target is
    * compute.googleapis.com/instance/network/received_bytes_count. The
    * autoscaler will work to keep this value constant for each of the instances.
    */
@@ -2171,12 +2171,12 @@ export interface Schema$ForwardingRule {
    */
   id: string;
   /**
-   * The IP address that this forwarding rule is serving on behalf of.
-   * Addresses are restricted based on the forwarding rule&#39;s load balancing
-   * scheme (EXTERNAL or INTERNAL) and scope (global or regional).  When the
-   * load balancing scheme is EXTERNAL, for global forwarding rules, the address
-   * must be a global IP, and for regional forwarding rules, the address must
-   * live in the same region as the forwarding rule. If this field is empty, an
+   * The IP address that this forwarding rule is serving on behalf of. Addresses
+   * are restricted based on the forwarding rule&#39;s load balancing scheme
+   * (EXTERNAL or INTERNAL) and scope (global or regional).  When the load
+   * balancing scheme is EXTERNAL, for global forwarding rules, the address must
+   * be a global IP, and for regional forwarding rules, the address must live in
+   * the same region as the forwarding rule. If this field is empty, an
    * ephemeral IPv4 address from the same scope (global or regional) will be
    * assigned. A regional forwarding rule supports IPv4 only. A global
    * forwarding rule supports either IPv4 or IPv6.  When the load balancing

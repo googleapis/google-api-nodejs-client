@@ -1754,7 +1754,7 @@ export class Resource$Enterprises {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1809,7 +1809,7 @@ export class Resource$Enterprises {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1872,7 +1872,7 @@ export class Resource$Enterprises$Applications {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1937,7 +1937,7 @@ export class Resource$Enterprises$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1986,7 +1986,7 @@ export class Resource$Enterprises$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2043,7 +2043,7 @@ export class Resource$Enterprises$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:issueCommand')
+            url: (rootUrl + '/v1/{+name}:issueCommand')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2100,7 +2100,7 @@ export class Resource$Enterprises$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices')
+            url: (rootUrl + '/v1/{+parent}/devices')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2154,7 +2154,7 @@ export class Resource$Enterprises$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2224,7 +2224,7 @@ export class Resource$Enterprises$Devices$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2278,7 +2278,7 @@ export class Resource$Enterprises$Devices$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2331,7 +2331,7 @@ export class Resource$Enterprises$Devices$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2398,7 +2398,7 @@ export class Resource$Enterprises$Devices$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2466,7 +2466,7 @@ export class Resource$Enterprises$Enrollmenttokens {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/enrollmentTokens')
+            url: (rootUrl + '/v1/{+parent}/enrollmentTokens')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2519,7 +2519,7 @@ export class Resource$Enterprises$Enrollmenttokens {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2583,7 +2583,7 @@ export class Resource$Enterprises$Policies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2632,7 +2632,7 @@ export class Resource$Enterprises$Policies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2688,7 +2688,7 @@ export class Resource$Enterprises$Policies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/policies')
+            url: (rootUrl + '/v1/{+parent}/policies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2742,7 +2742,7 @@ export class Resource$Enterprises$Policies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2809,7 +2809,7 @@ export class Resource$Enterprises$Webtokens {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/webTokens')
+            url: (rootUrl + '/v1/{+parent}/webTokens')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },

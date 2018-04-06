@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Cloud Testing API
+ * Cloud Testing API
  *
  * Allows developers to run automated tests for their mobile applications on
  * Google infrastructure.
@@ -505,7 +505,8 @@ export interface Schema$Date {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**

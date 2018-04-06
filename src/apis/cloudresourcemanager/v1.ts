@@ -90,26 +90,23 @@ export interface Schema$Ancestor {
  * each AuditConfig are enabled, and the exempted_members in each AuditLogConfig
  * are exempted.  Example Policy with multiple AuditConfigs:      {
  * &quot;audit_configs&quot;: [         {           &quot;service&quot;:
- * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [
- * {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
- * &quot;exempted_members&quot;: [
+ * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [ {
+ * &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
  * &quot;user:foo@gmail.com&quot;               ]             },             {
  * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
- * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]
- * },         {           &quot;service&quot;:
- * &quot;fooservice.googleapis.com&quot;
- * &quot;audit_log_configs&quot;: [             {
- * &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {
- * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,
- * &quot;exempted_members&quot;: [
- * &quot;user:bar@gmail.com&quot;               ]             }           ]
- * }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE
- * and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
- * and bar@gmail.com from DATA_WRITE logging.
+ * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] }, {
+ * &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
+ * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
+ * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
+ * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
+ * &quot;user:bar@gmail.com&quot;               ]             }           ] } ]
+ * }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ
+ * logging. It also exempts foo@gmail.com from DATA_READ logging, and
+ * bar@gmail.com from DATA_WRITE logging.
  */
 export interface Schema$AuditConfig {
   /**
-   * The configuration for logging of each type of permission. Next ID: 4
+   * The configuration for logging of each type of permission.
    */
   auditLogConfigs: Schema$AuditLogConfig[];
   /**
@@ -187,23 +184,22 @@ export interface Schema$BooleanPolicy {
    * this resource has enforced set to `true`, serial     port connection
    * attempts will be refused.   - If the `Policy` at this resource is
    * `RestoreDefault`, serial port     connection attempts will be allowed.   -
-   * If no `Policy` is set at this resource or anywhere higher in the
-   * resource hierarchy, serial port connection attempts will be allowed.   - If
-   * no `Policy` is set at this resource, but one exists higher in the
-   * resource hierarchy, the behavior is as if the`Policy` were set at     this
-   * resource.  The following examples demonstrate the different possible
-   * layerings:  Example 1 (nearest `Constraint` wins):   `organizations/foo`
-   * has a `Policy` with:     {enforced: false}   `projects/bar` has no `Policy`
-   * set. The constraint at `projects/bar` and `organizations/foo` will not be
-   * enforced.  Example 2 (enforcement gets replaced):   `organizations/foo` has
-   * a `Policy` with:     {enforced: false}   `projects/bar` has a `Policy`
-   * with:     {enforced: true} The constraint at `organizations/foo` is not
-   * enforced. The constraint at `projects/bar` is enforced.  Example 3
-   * (RestoreDefault):   `organizations/foo` has a `Policy` with:     {enforced:
-   * true}   `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The
-   * constraint at `organizations/foo` is enforced. The constraint at
-   * `projects/bar` is not enforced, because `constraint_default` for the
-   * `Constraint` is `ALLOW`.
+   * If no `Policy` is set at this resource or anywhere higher in the resource
+   * hierarchy, serial port connection attempts will be allowed.   - If no
+   * `Policy` is set at this resource, but one exists higher in the     resource
+   * hierarchy, the behavior is as if the`Policy` were set at     this resource.
+   * The following examples demonstrate the different possible layerings:
+   * Example 1 (nearest `Constraint` wins):   `organizations/foo` has a `Policy`
+   * with:     {enforced: false}   `projects/bar` has no `Policy` set. The
+   * constraint at `projects/bar` and `organizations/foo` will not be enforced.
+   * Example 2 (enforcement gets replaced):   `organizations/foo` has a `Policy`
+   * with:     {enforced: false}   `projects/bar` has a `Policy` with:
+   * {enforced: true} The constraint at `organizations/foo` is not enforced. The
+   * constraint at `projects/bar` is enforced.  Example 3 (RestoreDefault):
+   * `organizations/foo` has a `Policy` with:     {enforced: true}
+   * `projects/bar` has a `Policy` with:     {RestoreDefault: {}} The constraint
+   * at `organizations/foo` is enforced. The constraint at `projects/bar` is not
+   * enforced, because `constraint_default` for the `Constraint` is `ALLOW`.
    */
   enforced: boolean;
 }
@@ -230,10 +226,10 @@ export interface Schema$ClearOrgPolicyRequest {
  * setting Policies for `Constraints` at different locations in the
  * organization&#39;s resource hierarchy. Policies are inherited down the
  * resource hierarchy from higher levels, but can also be overridden. For
- * details about the inheritance rules please read about Policies.
- * `Constraints` have a default behavior determined by the `constraint_default`
- * field, which is the enforcement behavior that is used in the absence of a
- * `Policy` being defined or inherited for the resource in question.
+ * details about the inheritance rules please read about Policies. `Constraints`
+ * have a default behavior determined by the `constraint_default` field, which
+ * is the enforcement behavior that is used in the absence of a `Policy` being
+ * defined or inherited for the resource in question.
  */
 export interface Schema$Constraint {
   /**
@@ -271,9 +267,9 @@ export interface Schema$Constraint {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -514,8 +510,8 @@ export interface Schema$ListPolicy {
    * circumstances to keep the configuration simple and understandable. However,
    * it is possible to set a `Policy` with `allowed_values` set that inherits a
    * `Policy` with `denied_values` set. In this case, the values that are
-   * allowed must be in `allowed_values` and not present in `denied_values`.
-   * For example, suppose you have a `Constraint`
+   * allowed must be in `allowed_values` and not present in `denied_values`. For
+   * example, suppose you have a `Constraint`
    * `constraints/serviceuser.services`, which has a `constraint_type` of
    * `list_constraint`, and with `constraint_default` set to `ALLOW`. Suppose
    * that at the Organization level, a `Policy` is applied that restricts the
@@ -530,32 +526,32 @@ export interface Schema$ListPolicy {
    * accepted values at `organizations/foo` are `E1`, `E2`. The accepted values
    * at `projects/bar` are `E3`, and `E4`.  Example 2 (inherited values):
    * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
-   * allowed_values:”E2”}   `projects/bar` has a `Policy` with values:
-   * {value: “E3” value: ”E4” inherit_from_parent: true} The accepted values at
+   * allowed_values:”E2”}   `projects/bar` has a `Policy` with values: {value:
+   * “E3” value: ”E4” inherit_from_parent: true} The accepted values at
    * `organizations/foo` are `E1`, `E2`. The accepted values at `projects/bar`
    * are `E1`, `E2`, `E3`, and `E4`.  Example 3 (inheriting both allowed and
    * denied values):   `organizations/foo` has a `Policy` with values:
    * {allowed_values: &quot;E1&quot; allowed_values: &quot;E2&quot;}
    * `projects/bar` has a `Policy` with:     {denied_values: &quot;E1&quot;} The
    * accepted values at `organizations/foo` are `E1`, `E2`. The value accepted
-   * at `projects/bar` is `E2`.  Example 4 (RestoreDefault):
+   * at `projects/bar` is `E2`.  Example 4 (RestoreDefault): `organizations/foo`
+   * has a `Policy` with values:     {allowed_values: “E1” allowed_values:”E2”}
+   * `projects/bar` has a `Policy` with values:     {RestoreDefault: {}} The
+   * accepted values at `organizations/foo` are `E1`, `E2`. The accepted values
+   * at `projects/bar` are either all or none depending on the value of
+   * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 5 (no
+   * policy inherits parent policy):   `organizations/foo` has no `Policy` set.
+   * `projects/bar` has no `Policy` set. The accepted values at both levels are
+   * either all or none depending on the value of `constraint_default` (if
+   * `ALLOW`, all; if `DENY`, none).  Example 6 (ListConstraint allowing all):
    * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
-   * allowed_values:”E2”}   `projects/bar` has a `Policy` with values:
-   * {RestoreDefault: {}} The accepted values at `organizations/foo` are `E1`,
-   * `E2`. The accepted values at `projects/bar` are either all or none
-   * depending on the value of `constraint_default` (if `ALLOW`, all; if `DENY`,
-   * none).  Example 5 (no policy inherits parent policy):   `organizations/foo`
-   * has no `Policy` set.   `projects/bar` has no `Policy` set. The accepted
-   * values at both levels are either all or none depending on the value of
-   * `constraint_default` (if `ALLOW`, all; if `DENY`, none).  Example 6
-   * (ListConstraint allowing all):   `organizations/foo` has a `Policy` with
-   * values:     {allowed_values: “E1” allowed_values: ”E2”}   `projects/bar`
-   * has a `Policy` with:     {all: ALLOW} The accepted values at
-   * `organizations/foo` are `E1`, E2`. Any value is accepted at `projects/bar`.
-   * Example 7 (ListConstraint allowing none):   `organizations/foo` has a
-   * `Policy` with values:     {allowed_values: “E1” allowed_values: ”E2”}
-   * `projects/bar` has a `Policy` with:     {all: DENY} The accepted values at
-   * `organizations/foo` are `E1`, E2`. No value is accepted at `projects/bar`.
+   * allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all:
+   * ALLOW} The accepted values at `organizations/foo` are `E1`, E2`. Any value
+   * is accepted at `projects/bar`.  Example 7 (ListConstraint allowing none):
+   * `organizations/foo` has a `Policy` with values:     {allowed_values: “E1”
+   * allowed_values: ”E2”}   `projects/bar` has a `Policy` with:     {all: DENY}
+   * The accepted values at `organizations/foo` are `E1`, E2`. No value is
+   * accepted at `projects/bar`.
    */
   inheritFromParent: boolean;
   /**
@@ -728,15 +724,14 @@ export interface Schema$OrgPolicy {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -968,15 +963,15 @@ export interface Schema$SetOrgPolicyRequest {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -1123,7 +1118,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1236,7 +1231,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1350,7 +1345,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1482,7 +1477,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+            url: (rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1611,7 +1606,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1724,7 +1719,7 @@ export class Resource$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1947,7 +1942,7 @@ export class Resource$Liens {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2185,7 +2180,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2302,7 +2297,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2408,7 +2403,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2521,7 +2516,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2635,7 +2630,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2750,7 +2745,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2883,7 +2878,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+            url: (rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3014,7 +3009,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3258,7 +3253,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3372,7 +3367,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3490,7 +3485,7 @@ export class Resource$Organizations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3609,7 +3604,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:clearOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:clearOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3631,8 +3626,8 @@ export class Resource$Projects {
    * cloudresourcemanager.projects.create
    * @desc Request that a new Project be created. The result is an Operation
    * which can be used to track the creation process. It is automatically
-   * deleted after a few hours, so there is no need to call DeleteOperation.
-   * Our SLO permits Project creation to take up to 30 seconds at the 90th
+   * deleted after a few hours, so there is no need to call DeleteOperation. Our
+   * SLO permits Project creation to take up to 30 seconds at the 90th
    * percentile. As of 2016-08-29, we are observing 6 seconds 50th percentile
    * latency. 95th percentile latency is around 11 seconds. We recommend polling
    * at the 5th second with an exponential backoff.  Authorization requires the
@@ -4169,7 +4164,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getEffectiveOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getEffectiveOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4397,7 +4392,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:getOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4652,7 +4647,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listAvailableOrgPolicyConstraints')
+            url: (rootUrl + '/v1/{+resource}:listAvailableOrgPolicyConstraints')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4781,7 +4776,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:listOrgPolicies')
+            url: (rootUrl + '/v1/{+resource}:listOrgPolicies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5028,7 +5023,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setOrgPolicy')
+            url: (rootUrl + '/v1/{+resource}:setOrgPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5048,8 +5043,8 @@ export class Resource$Projects {
 
   /**
    * cloudresourcemanager.projects.testIamPermissions
-   * @desc Returns permissions that a caller has on the specified Project.
-   * There are no permissions required for making this API call.
+   * @desc Returns permissions that a caller has on the specified Project. There
+   * are no permissions required for making this API call.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------

@@ -337,8 +337,8 @@ export interface Schema$AccessConfig {
   natIP: string;
   /**
    * This signifies the networking tier used for configuring this access
-   * configuration and can only take the following values: PREMIUM, STANDARD.
-   * If an AccessConfig is specified without a valid external IP address, an
+   * configuration and can only take the following values: PREMIUM, STANDARD. If
+   * an AccessConfig is specified without a valid external IP address, an
    * ephemeral IP will be created with this networkTier.  If an AccessConfig
    * with a valid external IP address is specified, it must match that of the
    * networkTier associated with the Address resource owning that IP.
@@ -1050,8 +1050,8 @@ export interface Schema$AutoscalingPolicyCustomMetricUtilization {
   /**
    * The target value of the metric that autoscaler should maintain. This must
    * be a positive value. A utilization metric scales number of virtual machines
-   * handling requests to increase or decrease proportionally to the metric.
-   * For example, a good metric to use as a utilization_target is
+   * handling requests to increase or decrease proportionally to the metric. For
+   * example, a good metric to use as a utilization_target is
    * compute.googleapis.com/instance/network/received_bytes_count. The
    * autoscaler will work to keep this value constant for each of the instances.
    */
@@ -2555,12 +2555,12 @@ export interface Schema$ForwardingRule {
    */
   id: string;
   /**
-   * The IP address that this forwarding rule is serving on behalf of.
-   * Addresses are restricted based on the forwarding rule&#39;s load balancing
-   * scheme (EXTERNAL or INTERNAL) and scope (global or regional).  When the
-   * load balancing scheme is EXTERNAL, for global forwarding rules, the address
-   * must be a global IP, and for regional forwarding rules, the address must
-   * live in the same region as the forwarding rule. If this field is empty, an
+   * The IP address that this forwarding rule is serving on behalf of. Addresses
+   * are restricted based on the forwarding rule&#39;s load balancing scheme
+   * (EXTERNAL or INTERNAL) and scope (global or regional).  When the load
+   * balancing scheme is EXTERNAL, for global forwarding rules, the address must
+   * be a global IP, and for regional forwarding rules, the address must live in
+   * the same region as the forwarding rule. If this field is empty, an
    * ephemeral IPv4 address from the same scope (global or regional) will be
    * assigned. A regional forwarding rule supports IPv4 only. A global
    * forwarding rule supports either IPv4 or IPv6.  When the load balancing
@@ -2676,13 +2676,13 @@ export interface Schema$ForwardingRule {
   selfLink: string;
   /**
    * An optional prefix to the service name for this Forwarding Rule. If
-   * specified, will be the first label of the fully qualified service name.
-   * The label must be 1-63 characters long, and comply with RFC1035.
-   * Specifically, the label must be 1-63 characters long and match the regular
-   * expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character
-   * must be a lowercase letter, and all following characters must be a dash,
-   * lowercase letter, or digit, except the last character, which cannot be a
-   * dash.  This field is only used for internal load balancing.
+   * specified, will be the first label of the fully qualified service name. The
+   * label must be 1-63 characters long, and comply with RFC1035. Specifically,
+   * the label must be 1-63 characters long and match the regular expression
+   * `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a
+   * lowercase letter, and all following characters must be a dash, lowercase
+   * letter, or digit, except the last character, which cannot be a dash.  This
+   * field is only used for internal load balancing.
    */
   serviceLabel: string;
   /**
@@ -5435,12 +5435,12 @@ export interface Schema$LogConfigCloudAuditOptions {
   logName: string;
 }
 /**
- * Increment a streamz counter with the specified metric and field names.
- * Metric names should start with a &#39;/&#39;, generally be lowercase-only,
- * and end in &quot;_count&quot;. Field names should not contain an initial
- * slash. The actual exported metric names will have &quot;/iam/policy&quot;
- * prepended.  Field names correspond to IAM request parameters and field values
- * are their respective values.  At present the only supported field names are -
+ * Increment a streamz counter with the specified metric and field names. Metric
+ * names should start with a &#39;/&#39;, generally be lowercase-only, and end
+ * in &quot;_count&quot;. Field names should not contain an initial slash. The
+ * actual exported metric names will have &quot;/iam/policy&quot; prepended.
+ * Field names correspond to IAM request parameters and field values are their
+ * respective values.  At present the only supported field names are -
  * &quot;iam_principal&quot;, corresponding to IAMContext.principal; -
  * &quot;&quot; (empty string), resulting in one aggretated counter with no
  * field.  Examples: counter { metric: &quot;/debug_access_count&quot; field:
@@ -7463,6 +7463,12 @@ export interface Schema$SecurityPolicyRuleMatcher {
    * specified if versioned_expr is not specified.
    */
   config: Schema$SecurityPolicyRuleMatcherConfig;
+  /**
+   * User defined CEVAL expression. A CEVAL expression is used to specify match
+   * criteria such as origin.ip, source.region_code and contents in the request
+   * header.
+   */
+  expr: Schema$Expr;
   /**
    * CIDR IP address range.
    */

@@ -1308,7 +1308,8 @@ export interface Schema$Property {
    */
   value: string;
   /**
-   * The visibility of this property.
+   * The visibility of this property. Allowed values are PRIVATE and PUBLIC.
+   * (Default: PRIVATE)
    */
   visibility: string;
 }
@@ -4290,15 +4291,14 @@ export class Resource$Properties {
 
   /**
    * drive.properties.patch
-   * @desc Updates a property, or adds it if it doesn't exist. This method
-   * supports patch semantics.
+   * @desc Updates a property. This method supports patch semantics.
    * @alias drive.properties.patch
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.fileId The ID of the file.
    * @param {string} params.propertyKey The key of the property.
-   * @param {string=} params.visibility The visibility of the property.
+   * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
    * @param {().Property} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
@@ -4347,14 +4347,14 @@ export class Resource$Properties {
 
   /**
    * drive.properties.update
-   * @desc Updates a property, or adds it if it doesn't exist.
+   * @desc Updates a property.
    * @alias drive.properties.update
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
    * @param {string} params.fileId The ID of the file.
    * @param {string} params.propertyKey The key of the property.
-   * @param {string=} params.visibility The visibility of the property.
+   * @param {string=} params.visibility The visibility of the property. Allowed values are PRIVATE and PUBLIC. (Default: PRIVATE)
    * @param {().Property} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.

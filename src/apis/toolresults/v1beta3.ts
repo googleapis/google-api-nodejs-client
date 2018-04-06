@@ -1224,12 +1224,12 @@ export interface Schema$Thumbnail {
  * we can convert to and from RFC 3339 date strings. See
  * [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
  * # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp
- * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);
- * Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
+ * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0); Example
+ * 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
  * gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
  * timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);
- * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
- * FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
+ * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`. FILETIME
+ * ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
  * (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows
  * tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600
  * seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp;

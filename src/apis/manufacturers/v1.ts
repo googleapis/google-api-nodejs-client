@@ -109,6 +109,10 @@ export interface Schema$Attributes {
    */
   disclosureDate: string;
   /**
+   * A list of excluded destinations.
+   */
+  excludedDestination: string[];
+  /**
    * The rich format description of the product. For more information, see
    * https://support.google.com/manufacturers/answer/6124116#featuredesc.
    */
@@ -138,6 +142,10 @@ export interface Schema$Attributes {
    * https://support.google.com/manufacturers/answer/6124116#image.
    */
   imageLink: Schema$Image;
+  /**
+   * A list of included destinations.
+   */
+  includedDestination: string[];
   /**
    * The item group id of the product. For more information, see
    * https://support.google.com/manufacturers/answer/6124116#itemgroupid.
@@ -264,11 +272,24 @@ export interface Schema$Count {
   value: string;
 }
 /**
+ * The destination status.
+ */
+export interface Schema$DestinationStatus {
+  /**
+   * The name of the destination.
+   */
+  destination: string;
+  /**
+   * The status of the destination.
+   */
+  status: string;
+}
+/**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -323,6 +344,14 @@ export interface Schema$Issue {
    */
   description: string;
   /**
+   * The destination this issue applies to.
+   */
+  destination: string;
+  /**
+   * What needs to happen to resolve the issue.
+   */
+  resolution: string;
+  /**
    * The severity of the issue.
    */
   severity: string;
@@ -330,6 +359,10 @@ export interface Schema$Issue {
    * The timestamp when this issue appeared.
    */
   timestamp: string;
+  /**
+   * Short title describing the nature of the issue.
+   */
+  title: string;
   /**
    * The server-generated type of the issue, for example,
    * “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”, etc.
@@ -364,29 +397,40 @@ export interface Schema$Price {
  */
 export interface Schema$Product {
   /**
+   * Attributes of the product uploaded to the Manufacturer Center.
+   */
+  attributes: Schema$Attributes;
+  /**
    * The content language of the product as a two-letter ISO 639-1 language code
-   * (for example, en). @OutputOnly
+   * (for example, en).
    */
   contentLanguage: string;
+  /**
+   * The status of the destinations.
+   */
+  destinationStatuses: Schema$DestinationStatus[];
   /**
    * Final attributes of the product. The final attributes are obtained by
    * overriding the uploaded attributes with the manually provided and deleted
    * attributes. Google systems only process, evaluate, review, and/or use final
-   * attributes. @OutputOnly
+   * attributes.  This field is deprecated and will be removed end of July 2018.
+   * Please use attributes.
    */
   finalAttributes: Schema$Attributes;
   /**
-   * A server-generated list of issues associated with the product. @OutputOnly
+   * A server-generated list of issues associated with the product.
    */
   issues: Schema$Issue[];
   /**
    * Names of the attributes of the product deleted manually via the
-   * Manufacturer Center UI. @OutputOnly
+   * Manufacturer Center UI.  This field is deprecated and will be removed end
+   * of July 2018. Please use attributes.
    */
   manuallyDeletedAttributes: string[];
   /**
    * Attributes of the product provided manually via the Manufacturer Center UI.
-   * @OutputOnly
+   * This field is deprecated and will be removed end of July 2018. Please use
+   * attributes.
    */
   manuallyProvidedAttributes: Schema$Attributes;
   /**
@@ -396,27 +440,28 @@ export interface Schema$Product {
    * product as a two-letter                      ISO 639-1 language code (for
    * example, en).  `product_id`     -   The ID of the product. For more
    * information, see
-   * https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
+   * https://support.google.com/manufacturers/answer/6124116#id.
    */
   name: string;
   /**
    * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of
-   * the Manufacturer Center account. @OutputOnly
+   * the Manufacturer Center account.
    */
   parent: string;
   /**
    * The ID of the product. For more information, see
-   * https://support.google.com/manufacturers/answer/6124116#id. @OutputOnly
+   * https://support.google.com/manufacturers/answer/6124116#id.
    */
   productId: string;
   /**
    * The target country of the product as a CLDR territory code (for example,
-   * US). @OutputOnly
+   * US).
    */
   targetCountry: string;
   /**
    * Attributes of the product uploaded via the Manufacturer Center API or via
-   * feeds.
+   * feeds.  This field is deprecated and will be removed end of July 2018.
+   * Please use attributes.
    */
   uploadedAttributes: Schema$Attributes;
 }
@@ -494,12 +539,11 @@ export class Resource$Accounts$Products {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://manufacturers.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/products/{name}')
+            url: (rootUrl + '/v1/{+parent}/products/{+name}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -528,6 +572,7 @@ export class Resource$Accounts$Products {
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
+   * @param {string=} params.include The information to be included in the response. Only sections listed here will be returned.  If this parameter is not specified, ATTRIBUTES and ISSUES are returned. This behavior is temporary and will be removed once all clients are ready or at the latest end of July 2018. After that no sections will be returned.
    * @param {string} params.name Name in the format `{target_country}:{content_language}:{product_id}`.  `target_country`   - The target country of the product as a CLDR territory                      code (for example, US).  `content_language` - The content language of the product as a two-letter                      ISO 639-1 language code (for example, en).  `product_id`     -   The ID of the product. For more information, see                      https://support.google.com/manufacturers/answer/6124116#id.
    * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -551,12 +596,11 @@ export class Resource$Accounts$Products {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://manufacturers.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/products/{name}')
+            url: (rootUrl + '/v1/{+parent}/products/{+name}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -581,6 +625,7 @@ export class Resource$Accounts$Products {
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
+   * @param {string=} params.include The information to be included in the response. Only sections listed here will be returned.  If this parameter is not specified, ATTRIBUTES and ISSUES are returned. This behavior is temporary and will be removed once all clients are ready or at the latest end of July 2018. After that no sections will be returned.
    * @param {integer=} params.pageSize Maximum number of product statuses to return in the response, used for paging.
    * @param {string=} params.pageToken The token returned by the previous request.
    * @param {string} params.parent Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID of the Manufacturer Center account.
@@ -608,12 +653,11 @@ export class Resource$Accounts$Products {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://manufacturers.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/products')
+            url: (rootUrl + '/v1/{+parent}/products')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -673,12 +717,11 @@ export class Resource$Accounts$Products {
       params = {};
     }
     options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://content-manufacturers.googleapis.com/';
+    const rootUrl = options.rootUrl || 'https://manufacturers.googleapis.com/';
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/products/{name}')
+            url: (rootUrl + '/v1/{+parent}/products/{+name}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },

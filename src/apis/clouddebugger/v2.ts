@@ -305,9 +305,9 @@ export interface Schema$Debuggee {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -601,48 +601,47 @@ export interface Schema$UpdateActiveBreakpointResponse {}
  * }  // Captured variable  2) A compound object:      struct T {         int
  * m1;         int m2;     };     T x = { 3, 7 };      {  // Captured variable
  * name: &quot;x&quot;,         type: &quot;T&quot;,         members { name:
- * &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },
- * members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }
- * }  3) A pointer where the pointee was captured:      T x = { 3, 7 };     T* p
- * = &amp;x;      {   // Captured variable         name: &quot;p&quot;,
- * type: &quot;T*&quot;,         value: &quot;0x00500500&quot;,         members
- * { name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; },
- * members { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }
- * }  4) A pointer where the pointee was not captured:      T* p = new T;      {
- * // Captured variable         name: &quot;p&quot;,         type:
- * &quot;T*&quot;,         value: &quot;0x00400400&quot;         status {
- * is_error: true, description { format: &quot;unavailable&quot; } }     }  The
- * status should describe the reason for the missing value, such as
- * `&lt;optimized out&gt;`, `&lt;inaccessible&gt;`, `&lt;pointers limit
- * reached&gt;`.  Note that a null pointer should not have members.  5) An
- * unnamed value:      int* p = new int(7);      {   // Captured variable
- * name: &quot;p&quot;,         value: &quot;0x00500500&quot;,         type:
- * &quot;int*&quot;,         members { value: &quot;7&quot;, type:
- * &quot;int&quot; } }  6) An unnamed pointer where the pointee was not
- * captured:      int* p = new int(7);     int** pp = &amp;p;      {  //
- * Captured variable         name: &quot;pp&quot;,         value:
+ * &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members {
+ * name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  3)
+ * A pointer where the pointee was captured:      T x = { 3, 7 };     T* p =
+ * &amp;x;      {   // Captured variable         name: &quot;p&quot;, type:
+ * &quot;T*&quot;,         value: &quot;0x00500500&quot;,         members {
+ * name: &quot;m1&quot;, value: &quot;3&quot;, type: &quot;int&quot; }, members
+ * { name: &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }
+ * 4) A pointer where the pointee was not captured:      T* p = new T;      { //
+ * Captured variable         name: &quot;p&quot;,         type: &quot;T*&quot;,
+ * value: &quot;0x00400400&quot;         status { is_error: true, description {
+ * format: &quot;unavailable&quot; } }     }  The status should describe the
+ * reason for the missing value, such as `&lt;optimized out&gt;`,
+ * `&lt;inaccessible&gt;`, `&lt;pointers limit reached&gt;`.  Note that a null
+ * pointer should not have members.  5) An unnamed value:      int* p = new
+ * int(7);      {   // Captured variable         name: &quot;p&quot;, value:
+ * &quot;0x00500500&quot;,         type: &quot;int*&quot;,         members {
+ * value: &quot;7&quot;, type: &quot;int&quot; } }  6) An unnamed pointer where
+ * the pointee was not captured:      int* p = new int(7);     int** pp =
+ * &amp;p;      {  // Captured variable         name: &quot;pp&quot;, value:
  * &quot;0x00500500&quot;,         type: &quot;int**&quot;,         members {
- * value: &quot;0x00400400&quot;,             type: &quot;int*&quot;
- * status {                 is_error: true,                 description: {
- * format: &quot;unavailable&quot; } }             }         }     }  To
- * optimize computation, memory and network traffic, variables that repeat in
- * the output multiple times can be stored once in a shared variable table and
- * be referenced using the `var_table_index` field.  The variables stored in the
+ * value: &quot;0x00400400&quot;,             type: &quot;int*&quot; status {
+ * is_error: true,                 description: { format:
+ * &quot;unavailable&quot; } }             }         }     }  To optimize
+ * computation, memory and network traffic, variables that repeat in the output
+ * multiple times can be stored once in a shared variable table and be
+ * referenced using the `var_table_index` field.  The variables stored in the
  * shared table are nameless and are essentially a partition of the complete
  * variable. To reconstruct the complete variable, merge the referencing
  * variable with the referenced variable.  When using the shared variable table,
  * the following variables:      T x = { 3, 7 };     T* p = &amp;x;     T&amp; r
- * = x;      { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; }
- * // Captured variables     { name: &quot;p&quot;, value
- * &quot;0x00500500&quot;, type=&quot;T*&quot;, var_table_index: 3 }     { name:
- * &quot;r&quot;, type=&quot;T&amp;&quot;, var_table_index: 3 }      {  //
- * Shared variable table entry #3:         members { name: &quot;m1&quot;,
- * value: &quot;3&quot;, type: &quot;int&quot; },         members { name:
- * &quot;m2&quot;, value: &quot;7&quot;, type: &quot;int&quot; }     }  Note
- * that the pointer address is stored with the referencing variable and not with
- * the referenced variable. This allows the referenced variable to be shared
- * between pointers and references.  The type field is optional. The debugger
- * agent may or may not support it.
+ * = x;      { name: &quot;x&quot;, var_table_index: 3, type: &quot;T&quot; } //
+ * Captured variables     { name: &quot;p&quot;, value &quot;0x00500500&quot;,
+ * type=&quot;T*&quot;, var_table_index: 3 }     { name: &quot;r&quot;,
+ * type=&quot;T&amp;&quot;, var_table_index: 3 }      {  // Shared variable
+ * table entry #3:         members { name: &quot;m1&quot;, value: &quot;3&quot;,
+ * type: &quot;int&quot; },         members { name: &quot;m2&quot;, value:
+ * &quot;7&quot;, type: &quot;int&quot; }     }  Note that the pointer address
+ * is stored with the referencing variable and not with the referenced variable.
+ * This allows the referenced variable to be shared between pointers and
+ * references.  The type field is optional. The debugger agent may or may not
+ * support it.
  */
 export interface Schema$Variable {
   /**
@@ -663,8 +662,8 @@ export interface Schema$Variable {
    * variable value and members will be unset.  Example of error message applied
    * to name: `Invalid expression syntax`.  Example of information message
    * applied to value: `Not captured`.  Examples of error message applied to
-   * value:  *   `Malformed string`, *   `Field f not found in class C` *
-   * `Null pointer dereference`
+   * value:  *   `Malformed string`, *   `Field f not found in class C` * `Null
+   * pointer dereference`
    */
   status: Schema$StatusMessage;
   /**

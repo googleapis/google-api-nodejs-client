@@ -449,8 +449,8 @@ export interface Schema$ClusterUpdate {
    */
   desiredNodePoolId: string;
   /**
-   * The Kubernetes version to change the nodes to (typically an upgrade).
-   * Users may specify either explicit versions offered by Kubernetes Engine or
+   * The Kubernetes version to change the nodes to (typically an upgrade). Users
+   * may specify either explicit versions offered by Kubernetes Engine or
    * version aliases, which have the following behavior:  - &quot;latest&quot;:
    * picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the
    * highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;:
@@ -568,9 +568,9 @@ export interface Schema$DailyMaintenanceWindow {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -1704,8 +1704,8 @@ export interface Schema$UpdateNodePoolRequest {
    */
   nodePoolId: string;
   /**
-   * The Kubernetes version to change the nodes to (typically an upgrade).
-   * Users may specify either explicit versions offered by Kubernetes Engine or
+   * The Kubernetes version to change the nodes to (typically an upgrade). Users
+   * may specify either explicit versions offered by Kubernetes Engine or
    * version aliases, which have the following behavior:  - &quot;latest&quot;:
    * picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the
    * highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;:
@@ -1797,7 +1797,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/serverConfig')
+            url: (rootUrl + '/v1/{+name}/serverConfig')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1865,7 +1865,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:completeIpRotation')
+            url: (rootUrl + '/v1/{+name}:completeIpRotation')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1926,7 +1926,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/clusters')
+            url: (rootUrl + '/v1/{+parent}/clusters')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1986,7 +1986,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2039,7 +2039,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2095,7 +2095,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/clusters')
+            url: (rootUrl + '/v1/{+parent}/clusters')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2150,7 +2150,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setAddons')
+            url: (rootUrl + '/v1/{+name}:setAddons')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2205,7 +2205,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setLegacyAbac')
+            url: (rootUrl + '/v1/{+name}:setLegacyAbac')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2260,7 +2260,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setLocations')
+            url: (rootUrl + '/v1/{+name}:setLocations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2315,7 +2315,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setLogging')
+            url: (rootUrl + '/v1/{+name}:setLogging')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2370,7 +2370,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setMaintenancePolicy')
+            url: (rootUrl + '/v1/{+name}:setMaintenancePolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2427,7 +2427,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setMasterAuth')
+            url: (rootUrl + '/v1/{+name}:setMasterAuth')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2482,7 +2482,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setMonitoring')
+            url: (rootUrl + '/v1/{+name}:setMonitoring')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2537,7 +2537,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setNetworkPolicy')
+            url: (rootUrl + '/v1/{+name}:setNetworkPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2592,7 +2592,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setResourceLabels')
+            url: (rootUrl + '/v1/{+name}:setResourceLabels')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2647,7 +2647,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:startIpRotation')
+            url: (rootUrl + '/v1/{+name}:startIpRotation')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2701,7 +2701,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -2755,7 +2755,7 @@ export class Resource$Projects$Locations$Clusters {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:updateMaster')
+            url: (rootUrl + '/v1/{+name}:updateMaster')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2820,7 +2820,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/nodePools')
+            url: (rootUrl + '/v1/{+parent}/nodePools')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2877,7 +2877,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2931,7 +2931,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2989,7 +2989,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/nodePools')
+            url: (rootUrl + '/v1/{+parent}/nodePools')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3045,8 +3045,8 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}:rollback').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:rollback')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3100,7 +3100,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setAutoscaling')
+            url: (rootUrl + '/v1/{+name}:setAutoscaling')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3155,7 +3155,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setManagement')
+            url: (rootUrl + '/v1/{+name}:setManagement')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3210,7 +3210,8 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setSize').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+name}:setSize').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3263,7 +3264,7 @@ export class Resource$Projects$Locations$Clusters$Nodepools {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -3327,7 +3328,7 @@ export class Resource$Projects$Locations$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3380,7 +3381,7 @@ export class Resource$Projects$Locations$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3437,7 +3438,7 @@ export class Resource$Projects$Locations$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/operations')
+            url: (rootUrl + '/v1/{+parent}/operations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

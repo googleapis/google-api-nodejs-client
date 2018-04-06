@@ -2331,8 +2331,8 @@ export class Resource$Apps$Services$Versions {
    * fields depending on the App Engine environment and type of scaling that the
    * version resource uses: serving_status
    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.serving_status):
-   * For Version resources that use basic scaling, manual scaling, or run in
-   * the App Engine flexible environment. instance_class
+   * For Version resources that use basic scaling, manual scaling, or run in the
+   * App Engine flexible environment. instance_class
    * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta5/apps.services.versions#Version.FIELDS.instance_class):
    * For Version resources that run in the App Engine standard environment.
    * automatic_scaling.min_idle_instances

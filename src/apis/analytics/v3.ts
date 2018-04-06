@@ -1175,9 +1175,9 @@ export interface Schema$FilterExpression {
    * MOBILE_HAS_QWERTY_KEYBOARD (Boolean Field),  - MOBILE_HAS_NFC_SUPPORT
    * (Boolean Field),  - MOBILE_HAS_CELLULAR_RADIO (Boolean Field),  -
    * MOBILE_HAS_WIFI_SUPPORT (Boolean Field),  - MOBILE_BRAND_NAME,  -
-   * MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD,
-   * - Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,
-   * - Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
+   * MOBILE_MODEL_NAME,  - MOBILE_MARKETING_NAME,  - MOBILE_POINTING_METHOD, -
+   * Social   - SOCIAL_NETWORK,  - SOCIAL_ACTION,  - SOCIAL_ACTION_TARGET,    -
+   * Custom dimension   - CUSTOM_DIMENSION (See accompanying field index),
    */
   field: string;
   /**

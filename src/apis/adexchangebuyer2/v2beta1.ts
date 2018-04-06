@@ -510,7 +510,8 @@ export interface Schema$Date {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**
@@ -535,9 +536,9 @@ export interface Schema$Disapproval {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -1017,8 +1018,8 @@ export interface Schema$MetricValue {
    * If value is exact, variance is 0. Can be used to calculate margin of error
    * as a percentage of value, using the following formula, where Z is the
    * standard constant that depends on the desired size of the confidence
-   * interval (e.g. for 90% confidence interval, use Z = 1.645):
-   * marginOfError = 100 * Z * sqrt(variance) / value
+   * interval (e.g. for 90% confidence interval, use Z = 1.645): marginOfError =
+   * 100 * Z * sqrt(variance) / value
    */
   variance: string;
 }
@@ -2562,7 +2563,7 @@ export class Resource$Bidders$Accounts$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{ownerName}/filterSets')
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2615,7 +2616,7 @@ export class Resource$Bidders$Accounts$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2667,7 +2668,7 @@ export class Resource$Bidders$Accounts$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2725,7 +2726,7 @@ export class Resource$Bidders$Accounts$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{ownerName}/filterSets')
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2795,7 +2796,7 @@ export class Resource$Bidders$Accounts$Filtersets$Bidmetrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidMetrics')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2868,7 +2869,7 @@ export class Resource$Bidders$Accounts$Filtersets$Bidresponseerrors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidResponseErrors')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2945,7 +2946,7 @@ export class Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidResponsesWithoutBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3021,7 +3022,7 @@ export class Resource$Bidders$Accounts$Filtersets$Filteredbidrequests {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/filteredBidRequests')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3101,7 +3102,7 @@ export class Resource$Bidders$Accounts$Filtersets$Filteredbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3178,7 +3179,7 @@ export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives {
           {
             url:
                 (rootUrl +
-                 '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/creatives')
+                 '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3258,7 +3259,7 @@ export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Details {
           {
             url:
                 (rootUrl +
-                 '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/details')
+                 '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3334,7 +3335,7 @@ export class Resource$Bidders$Accounts$Filtersets$Impressionmetrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/impressionMetrics')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3407,7 +3408,7 @@ export class Resource$Bidders$Accounts$Filtersets$Losingbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/losingBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3483,7 +3484,7 @@ export class Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/nonBillableWinningBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3577,7 +3578,7 @@ export class Resource$Bidders$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{ownerName}/filterSets')
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3630,7 +3631,7 @@ export class Resource$Bidders$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3682,7 +3683,7 @@ export class Resource$Bidders$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3740,7 +3741,7 @@ export class Resource$Bidders$Filtersets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{ownerName}/filterSets')
+            url: (rootUrl + '/v2beta1/{+ownerName}/filterSets')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3810,7 +3811,7 @@ export class Resource$Bidders$Filtersets$Bidmetrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidMetrics')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidMetrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3883,7 +3884,7 @@ export class Resource$Bidders$Filtersets$Bidresponseerrors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidResponseErrors')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponseErrors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3959,7 +3960,7 @@ export class Resource$Bidders$Filtersets$Bidresponseswithoutbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/bidResponsesWithoutBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/bidResponsesWithoutBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4034,7 +4035,7 @@ export class Resource$Bidders$Filtersets$Filteredbidrequests {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/filteredBidRequests')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBidRequests')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4113,7 +4114,7 @@ export class Resource$Bidders$Filtersets$Filteredbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/filteredBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/filteredBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4189,7 +4190,7 @@ export class Resource$Bidders$Filtersets$Filteredbids$Creatives {
           {
             url:
                 (rootUrl +
-                 '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/creatives')
+                 '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/creatives')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4268,7 +4269,7 @@ export class Resource$Bidders$Filtersets$Filteredbids$Details {
           {
             url:
                 (rootUrl +
-                 '/v2beta1/{filterSetName}/filteredBids/{creativeStatusId}/details')
+                 '/v2beta1/{+filterSetName}/filteredBids/{creativeStatusId}/details')
                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4344,7 +4345,7 @@ export class Resource$Bidders$Filtersets$Impressionmetrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/impressionMetrics')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/impressionMetrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4417,7 +4418,7 @@ export class Resource$Bidders$Filtersets$Losingbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/losingBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/losingBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4492,7 +4493,7 @@ export class Resource$Bidders$Filtersets$Nonbillablewinningbids {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta1/{filterSetName}/nonBillableWinningBids')
+            url: (rootUrl + '/v2beta1/{+filterSetName}/nonBillableWinningBids')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

@@ -1031,10 +1031,10 @@ export interface Schema$GoogleCloudDialogflowV2beta1QueryResult {
   /**
    * The original conversational query text: - If natural language text was
    * provided as input, `query_text` contains   a copy of the input. - If
-   * natural language speech audio was provided as input, `query_text`
-   * contains the speech recognition result. If speech recognizer produced
-   * multiple alternatives, a particular one is picked. - If an event was
-   * provided as input, `query_text` is not set.
+   * natural language speech audio was provided as input, `query_text` contains
+   * the speech recognition result. If speech recognizer produced   multiple
+   * alternatives, a particular one is picked. - If an event was provided as
+   * input, `query_text` is not set.
    */
   queryText: string;
   /**
@@ -1304,9 +1304,9 @@ export interface Schema$GoogleCloudDialogflowV2ImportAgentRequest {
    * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:import\
    * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
    * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-   * &#39;Content-Type: application/json&#39; \    --compressed \
-   * --data-binary &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent
-   * zip file&gt; | base64 -w 0)&#39;    }&quot;
+   * &#39;Content-Type: application/json&#39; \    --compressed \ --data-binary
+   * &quot;{       &#39;agentContent&#39;: &#39;$(cat &lt;agent zip file&gt; |
+   * base64 -w 0)&#39;    }&quot;
    */
   agentContent: string;
   /**
@@ -2074,10 +2074,10 @@ export interface Schema$GoogleCloudDialogflowV2QueryResult {
   /**
    * The original conversational query text: - If natural language text was
    * provided as input, `query_text` contains   a copy of the input. - If
-   * natural language speech audio was provided as input, `query_text`
-   * contains the speech recognition result. If speech recognizer produced
-   * multiple alternatives, a particular one is picked. - If an event was
-   * provided as input, `query_text` is not set.
+   * natural language speech audio was provided as input, `query_text` contains
+   * the speech recognition result. If speech recognizer produced   multiple
+   * alternatives, a particular one is picked. - If an event was provided as
+   * input, `query_text` is not set.
    */
   queryText: string;
   /**
@@ -2112,9 +2112,9 @@ export interface Schema$GoogleCloudDialogflowV2RestoreAgentRequest {
    * &#39;https://dialogflow.googleapis.com/v2/projects/&lt;project_name&gt;/agent:restore\
    * -X POST \    -H &#39;Authorization: Bearer &#39;$(gcloud auth
    * print-access-token) \    -H &#39;Accept: application/json&#39; \    -H
-   * &#39;Content-Type: application/json&#39; \    --compressed \
-   * --data-binary &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent
-   * zip file&gt; | base64 -w 0)&#39;    }&quot; \
+   * &#39;Content-Type: application/json&#39; \    --compressed \ --data-binary
+   * &quot;{        &#39;agentContent&#39;: &#39;$(cat &lt;agent zip file&gt; |
+   * base64 -w 0)&#39;    }&quot; \
    */
   agentContent: string;
   /**
@@ -2285,9 +2285,9 @@ export interface Schema$GoogleLongrunningOperation {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$GoogleProtobufEmpty {}
 /**
@@ -2315,15 +2315,15 @@ export interface Schema$GoogleProtobufEmpty {}
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$GoogleRpcStatus {
   /**
@@ -2415,7 +2415,8 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/agent').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/agent').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2490,7 +2491,7 @@ export class Resource$Projects$Agent {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/agent:export')
+            url: (rootUrl + '/v2/{+parent}/agent:export')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2513,8 +2514,8 @@ export class Resource$Projects$Agent {
    * @desc Imports the specified agent from a ZIP file.  Uploads new intents and
    * entity types without deleting the existing ones. Intents and entity types
    * with the same name are replaced with the new versions from
-   * ImportAgentRequest.  Operation <response: google.protobuf.Empty,
-   * metadata: google.protobuf.Struct>
+   * ImportAgentRequest.  Operation <response: google.protobuf.Empty, metadata:
+   * google.protobuf.Struct>
    * @alias dialogflow.projects.agent.import
    * @memberOf! ()
    *
@@ -2533,7 +2534,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
   } if(typeof params === 'function') {
     callback = params;
     params = {};
-  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
+  } options = options || {}; const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v2/{+parent}/agent:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: ['parent'], pathParams: ['parent'], context: this.getRoot()}; if(callback) {
     createAPIRequest<Schema$GoogleLongrunningOperation>(parameters, callback);
   } else {
     return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2578,7 +2579,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/agent:restore')
+            url: (rootUrl + '/v2/{+parent}/agent:restore')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2642,7 +2643,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/agent:search')
+            url: (rootUrl + '/v2/{+parent}/agent:search')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2702,7 +2703,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/agent:train')
+            url: (rootUrl + '/v2/{+parent}/agent:train')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2773,7 +2774,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes:batchDelete')
+            url: (rootUrl + '/v2/{+parent}/entityTypes:batchDelete')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2832,7 +2833,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes:batchUpdate')
+            url: (rootUrl + '/v2/{+parent}/entityTypes:batchUpdate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2892,7 +2893,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes')
+            url: (rootUrl + '/v2/{+parent}/entityTypes')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2948,7 +2949,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3004,7 +3005,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3066,7 +3067,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes')
+            url: (rootUrl + '/v2/{+parent}/entityTypes')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3129,7 +3130,7 @@ export class Resource$Projects$Agent$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -3200,7 +3201,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entities:batchCreate')
+            url: (rootUrl + '/v2/{+parent}/entities:batchCreate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3258,7 +3259,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entities:batchDelete')
+            url: (rootUrl + '/v2/{+parent}/entities:batchDelete')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3317,7 +3318,7 @@ export class Resource$Projects$Agent$Entitytypes$Entities {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entities:batchUpdate')
+            url: (rootUrl + '/v2/{+parent}/entities:batchUpdate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3388,7 +3389,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/intents:batchDelete')
+            url: (rootUrl + '/v2/{+parent}/intents:batchDelete')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3446,7 +3447,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/intents:batchUpdate')
+            url: (rootUrl + '/v2/{+parent}/intents:batchUpdate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3506,7 +3507,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/intents')
+            url: (rootUrl + '/v2/{+parent}/intents')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3561,7 +3562,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3617,7 +3618,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3679,7 +3680,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/intents')
+            url: (rootUrl + '/v2/{+parent}/intents')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3742,7 +3743,7 @@ export class Resource$Projects$Agent$Intents {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -3812,7 +3813,7 @@ export class Resource$Projects$Agent$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/contexts')
+            url: (rootUrl + '/v2/{+parent}/contexts')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -3874,7 +3875,7 @@ export class Resource$Projects$Agent$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{session}:detectIntent')
+            url: (rootUrl + '/v2/{+session}:detectIntent')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3945,7 +3946,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/contexts')
+            url: (rootUrl + '/v2/{+parent}/contexts')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4001,7 +4002,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4055,7 +4056,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4116,7 +4117,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/contexts')
+            url: (rootUrl + '/v2/{+parent}/contexts')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4177,7 +4178,7 @@ export class Resource$Projects$Agent$Sessions$Contexts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4249,7 +4250,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes')
+            url: (rootUrl + '/v2/{+parent}/entityTypes')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4305,7 +4306,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4360,7 +4361,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4423,7 +4424,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/entityTypes')
+            url: (rootUrl + '/v2/{+parent}/entityTypes')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4487,7 +4488,7 @@ export class Resource$Projects$Agent$Sessions$Entitytypes {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4558,7 +4559,7 @@ export class Resource$Projects$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

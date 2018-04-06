@@ -327,9 +327,9 @@ export interface Schema$DeviceState {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -445,15 +445,14 @@ export interface Schema$MqttConfig {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -564,15 +563,15 @@ export interface Schema$StateNotificationConfig {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -720,7 +719,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/registries')
+            url: (rootUrl + '/v1/{+parent}/registries')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -771,7 +770,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -822,7 +821,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -875,7 +874,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -934,7 +933,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/registries')
+            url: (rootUrl + '/v1/{+parent}/registries')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -991,7 +990,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1044,7 +1043,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1103,7 +1102,7 @@ export class Resource$Projects$Locations$Registries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1172,7 +1171,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices')
+            url: (rootUrl + '/v1/{+parent}/devices')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1223,7 +1222,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1272,7 +1271,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1330,7 +1329,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices')
+            url: (rootUrl + '/v1/{+parent}/devices')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1388,7 +1387,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:modifyCloudToDeviceConfig')
+            url: (rootUrl + '/v1/{+name}:modifyCloudToDeviceConfig')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1441,7 +1440,7 @@ export class Resource$Projects$Locations$Registries$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1510,7 +1509,7 @@ export class Resource$Projects$Locations$Registries$Devices$Configversions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/configVersions')
+            url: (rootUrl + '/v1/{+name}/configVersions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1582,7 +1581,7 @@ export class Resource$Projects$Locations$Registries$Devices$States {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/states').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/states').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

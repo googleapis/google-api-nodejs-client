@@ -1284,7 +1284,7 @@ export class Resource$Billingaccounts$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1335,7 +1335,7 @@ export class Resource$Billingaccounts$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1385,7 +1385,7 @@ export class Resource$Billingaccounts$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1442,7 +1442,7 @@ export class Resource$Billingaccounts$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1498,7 +1498,7 @@ export class Resource$Billingaccounts$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1562,7 +1562,7 @@ export class Resource$Billingaccounts$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1618,7 +1618,7 @@ export class Resource$Billingaccounts$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1687,7 +1687,8 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1738,7 +1739,7 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1788,7 +1789,7 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1843,7 +1844,8 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1901,7 +1903,7 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1959,7 +1961,7 @@ export class Resource$Billingaccounts$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -2154,7 +2156,7 @@ export class Resource$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2205,7 +2207,7 @@ export class Resource$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2255,7 +2257,7 @@ export class Resource$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2312,7 +2314,7 @@ export class Resource$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2368,7 +2370,7 @@ export class Resource$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2453,7 +2455,7 @@ export class Resource$Folders$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2504,7 +2506,7 @@ export class Resource$Folders$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2554,7 +2556,7 @@ export class Resource$Folders$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2611,7 +2613,7 @@ export class Resource$Folders$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2667,7 +2669,7 @@ export class Resource$Folders$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2731,7 +2733,7 @@ export class Resource$Folders$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2787,7 +2789,7 @@ export class Resource$Folders$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2856,7 +2858,8 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2907,7 +2910,7 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2957,7 +2960,7 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3012,7 +3015,8 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3070,7 +3074,7 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -3128,7 +3132,7 @@ export class Resource$Folders$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -3193,7 +3197,7 @@ export class Resource$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3249,7 +3253,7 @@ export class Resource$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3408,7 +3412,7 @@ export class Resource$Organizations$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3459,7 +3463,7 @@ export class Resource$Organizations$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3509,7 +3513,7 @@ export class Resource$Organizations$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3566,7 +3570,7 @@ export class Resource$Organizations$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3622,7 +3626,7 @@ export class Resource$Organizations$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -3686,7 +3690,7 @@ export class Resource$Organizations$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3742,7 +3746,7 @@ export class Resource$Organizations$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3811,7 +3815,8 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3862,7 +3867,7 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3912,7 +3917,7 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3967,7 +3972,8 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4025,7 +4031,7 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4083,7 +4089,7 @@ export class Resource$Organizations$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -4171,7 +4177,7 @@ export class Resource$Projects$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4222,7 +4228,7 @@ export class Resource$Projects$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4272,7 +4278,7 @@ export class Resource$Projects$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4329,7 +4335,7 @@ export class Resource$Projects$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/exclusions')
+            url: (rootUrl + '/v2/{+parent}/exclusions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4385,7 +4391,7 @@ export class Resource$Projects$Exclusions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4449,7 +4455,7 @@ export class Resource$Projects$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{logName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+logName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4505,7 +4511,7 @@ export class Resource$Projects$Logs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+parent}/logs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4570,7 +4576,7 @@ export class Resource$Projects$Metrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/metrics')
+            url: (rootUrl + '/v2/{+parent}/metrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4621,7 +4627,7 @@ export class Resource$Projects$Metrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4671,7 +4677,7 @@ export class Resource$Projects$Metrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4728,7 +4734,7 @@ export class Resource$Projects$Metrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/metrics')
+            url: (rootUrl + '/v2/{+parent}/metrics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4782,7 +4788,7 @@ export class Resource$Projects$Metrics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{metricName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+metricName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -4851,7 +4857,8 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -4902,7 +4909,7 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4952,7 +4959,7 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5007,7 +5014,8 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5065,7 +5073,7 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -5123,7 +5131,7 @@ export class Resource$Projects$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -5193,7 +5201,8 @@ export class Resource$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -5244,7 +5253,7 @@ export class Resource$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -5294,7 +5303,7 @@ export class Resource$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5349,7 +5358,8 @@ export class Resource$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v2/{+parent}/sinks').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5407,7 +5417,7 @@ export class Resource$Sinks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2/{sinkName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2/{+sinkName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),

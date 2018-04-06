@@ -212,48 +212,48 @@ export interface Schema$CancelOperationRequest {}
  * little work, it can be easily formatted into a CSS &quot;rgba()&quot; string
  * in JavaScript, as well. Here are some examples:  Example (Java):       import
  * com.google.type.Color;       // ...      public static java.awt.Color
- * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha()
- * ? protocolor.getAlpha().getValue()            : 1.0;         return new
- * java.awt.Color(            protocolor.getRed(),
- * protocolor.getGreen(),            protocolor.getBlue(),            alpha);
- * }       public static Color toProto(java.awt.Color color) {        float red
- * = (float) color.getRed();        float green = (float) color.getGreen();
- * float blue = (float) color.getBlue();        float denominator = 255.0;
- * Color.Builder resultBuilder =            Color                .newBuilder()
- * .setRed(red / denominator)                .setGreen(green / denominator)
- * .setBlue(blue / denominator);        int alpha = color.getAlpha();        if
- * (alpha != 255) {          result.setAlpha(              FloatValue
- * .newBuilder()                  .setValue(((float) alpha) / denominator)
- * .build());        }        return resultBuilder.build();      }      // ...
- * Example (iOS / Obj-C):       // ...      static UIColor* fromProto(Color*
- * protocolor) {         float red = [protocolor red];         float green =
- * [protocolor green];         float blue = [protocolor blue];
- * FloatValue* alpha_wrapper = [protocolor alpha];         float alpha = 1.0;
- * if (alpha_wrapper != nil) {           alpha = [alpha_wrapper value];
- * }         return [UIColor colorWithRed:red green:green blue:blue
- * alpha:alpha];      }       static Color* toProto(UIColor* color) {
- * CGFloat red, green, blue, alpha;          if (![color getRed:&amp;red
- * green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {            return nil;
- * }          Color* result = [Color alloc] init];          [result setRed:red];
- * [result setGreen:green];          [result setBlue:blue];          if (alpha
- * &lt;= 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)];
- * }          [result autorelease];          return result;     }     // ...
- * Example (JavaScript):      // ...      var protoToCssColor =
- * function(rgb_color) {        var redFrac = rgb_color.red || 0.0;        var
- * greenFrac = rgb_color.green || 0.0;        var blueFrac = rgb_color.blue ||
- * 0.0;        var red = Math.floor(redFrac * 255);        var green =
- * Math.floor(greenFrac * 255);        var blue = Math.floor(blueFrac * 255);
- * if (!(&#39;alpha&#39; in rgb_color)) {           return rgbToCssColor_(red,
- * green, blue);        }         var alphaFrac = rgb_color.alpha.value || 0.0;
- * var rgbParams = [red, green, blue].join(&#39;,&#39;);        return
- * [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac,
- * &#39;)&#39;].join(&#39;&#39;);     };      var rgbToCssColor_ = function(red,
- * green, blue) {       var rgbNumber = new Number((red &lt;&lt; 16) | (green
- * &lt;&lt; 8) | blue);       var hexString = rgbNumber.toString(16);       var
- * missingZeros = 6 - hexString.length;       var resultBuilder = [&#39;#&#39;];
- * for (var i = 0; i &lt; missingZeros; i++) {
- * resultBuilder.push(&#39;0&#39;);       }       resultBuilder.push(hexString);
- * return resultBuilder.join(&#39;&#39;);     };      // ...
+ * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha() ?
+ * protocolor.getAlpha().getValue()            : 1.0;         return new
+ * java.awt.Color(            protocolor.getRed(), protocolor.getGreen(),
+ * protocolor.getBlue(),            alpha);      }       public static Color
+ * toProto(java.awt.Color color) {        float red = (float) color.getRed();
+ * float green = (float) color.getGreen();        float blue = (float)
+ * color.getBlue();        float denominator = 255.0;        Color.Builder
+ * resultBuilder =            Color                .newBuilder() .setRed(red /
+ * denominator)                .setGreen(green / denominator) .setBlue(blue /
+ * denominator);        int alpha = color.getAlpha();        if (alpha != 255) {
+ * result.setAlpha(              FloatValue                  .newBuilder()
+ * .setValue(((float) alpha) / denominator)                  .build());        }
+ * return resultBuilder.build();      }      // ...  Example (iOS / Obj-C): //
+ * ...      static UIColor* fromProto(Color* protocolor) {         float red =
+ * [protocolor red];         float green = [protocolor green];         float
+ * blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor
+ * alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) { alpha
+ * = [alpha_wrapper value];         }         return [UIColor colorWithRed:red
+ * green:green blue:blue alpha:alpha];      }       static Color*
+ * toProto(UIColor* color) {          CGFloat red, green, blue, alpha; if
+ * (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {
+ * return nil;          }          Color* result = [Color alloc] init]; [result
+ * setRed:red];          [result setGreen:green];          [result
+ * setBlue:blue];          if (alpha &lt;= 0.9999) {            [result
+ * setAlpha:floatWrapperWithValue(alpha)];          }          [result
+ * autorelease];          return result;     }     // ...   Example
+ * (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {
+ * var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green ||
+ * 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red =
+ * Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);
+ * var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in
+ * rgb_color)) {           return rgbToCssColor_(red, green, blue);        } var
+ * alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red, green,
+ * blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams,
+ * &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var
+ * rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new
+ * Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString =
+ * rgbNumber.toString(16);       var missingZeros = 6 - hexString.length; var
+ * resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt; missingZeros;
+ * i++) {          resultBuilder.push(&#39;0&#39;);       }
+ * resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);
+ * };      // ...
  */
 export interface Schema$Color {
   /**
@@ -381,9 +381,9 @@ export interface Schema$DominantColorsAnnotation {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -603,8 +603,8 @@ export interface Schema$GoogleCloudVisionV1p2beta1OperationMetadata {
 export interface Schema$GoogleCloudVisionV1p2beta1OutputConfig {
   /**
    * The max number of response protos to put into each output JSON file on GCS.
-   * The valid range is [1, 100]. If not specified, the default value is 20.
-   * For example, for one pdf file with 100 pages, 100 response protos will be
+   * The valid range is [1, 100]. If not specified, the default value is 20. For
+   * example, for one pdf file with 100 pages, 100 response protos will be
    * generated. If `batch_size` = 20, then 5 json files each containing 20
    * response protos will be written under the prefix `gcs_destination`.`uri`.
    * Currently, batch_size only applies to GcsDestination, with potential future
@@ -685,13 +685,13 @@ export interface Schema$ImageSource {
    * The URI of the source image. Can be either:  1. A Google Cloud Storage URI
    * of the form    `gs://bucket_name/object_name`. Object versioning is not
    * supported. See    [Google Cloud Storage Request
-   * URIs](https://cloud.google.com/storage/docs/reference-uris) for more
-   * info.  2. A publicly-accessible image HTTP/HTTPS URL. When fetching images
-   * from    HTTP/HTTPS URLs, Google cannot guarantee that the request will be
-   * completed. Your request may fail if the specified host denies the
-   * request (e.g. due to request throttling or DOS prevention), or if Google
-   * throttles requests to the site for abuse prevention. You should not
-   * depend on externally-hosted images for production applications.  When both
+   * URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+   * 2. A publicly-accessible image HTTP/HTTPS URL. When fetching images from
+   * HTTP/HTTPS URLs, Google cannot guarantee that the request will be
+   * completed. Your request may fail if the specified host denies the request
+   * (e.g. due to request throttling or DOS prevention), or if Google throttles
+   * requests to the site for abuse prevention. You should not    depend on
+   * externally-hosted images for production applications.  When both
    * `gcs_image_uri` and `image_uri` are specified, `image_uri` takes
    * precedence.
    */
@@ -949,15 +949,15 @@ export interface Schema$SafeSearchAnnotation {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -985,10 +985,10 @@ export interface Schema$Symbol {
    * top-right, bottom-right, bottom-left. When a rotation of the bounding box
    * is detected the rotation is represented as around the top-left corner as
    * defined when the text is read in the &#39;natural&#39; orientation. For
-   * example:   * when the text is horizontal it might look like:      0----1
-   * |    |      3----2   * when it&#39;s rotated 180 degrees around the
-   * top-left corner it becomes:      2----3      |    |      1----0   and the
-   * vertice order will still be (0, 1, 2, 3).
+   * example:   * when the text is horizontal it might look like:      0----1 |
+   * |      3----2   * when it&#39;s rotated 180 degrees around the top-left
+   * corner it becomes:      2----3      |    |      1----0   and the vertice
+   * order will still be (0, 1, 2, 3).
    */
   boundingBox: Schema$BoundingPoly;
   /**
@@ -1006,9 +1006,9 @@ export interface Schema$Symbol {
 }
 /**
  * TextAnnotation contains a structured representation of OCR extracted text.
- * The hierarchy of an OCR extracted text structure is like this:
- * TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol
- * Each structural component, starting from Page, may further have their own
+ * The hierarchy of an OCR extracted text structure is like this: TextAnnotation
+ * -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each
+ * structural component, starting from Page, may further have their own
  * properties. Properties describe detected languages, breaks etc.. Please refer
  * to the TextAnnotation.TextProperty message definition below for more detail.
  */
@@ -1173,10 +1173,10 @@ export interface Schema$Word {
    * top-right, bottom-right, bottom-left. When a rotation of the bounding box
    * is detected the rotation is represented as around the top-left corner as
    * defined when the text is read in the &#39;natural&#39; orientation. For
-   * example:   * when the text is horizontal it might look like:      0----1
-   * |    |      3----2   * when it&#39;s rotated 180 degrees around the
-   * top-left corner it becomes:      2----3      |    |      1----0   and the
-   * vertice order will still be (0, 1, 2, 3).
+   * example:   * when the text is horizontal it might look like:      0----1 |
+   * |      3----2   * when it&#39;s rotated 180 degrees around the top-left
+   * corner it becomes:      2----3      |    |      1----0   and the vertice
+   * order will still be (0, 1, 2, 3).
    */
   boundingBox: Schema$BoundingPoly;
   /**
@@ -1377,7 +1377,7 @@ export class Resource$Locations$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1449,7 +1449,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1502,7 +1502,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1554,7 +1554,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1620,7 +1620,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

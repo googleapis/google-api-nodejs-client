@@ -269,9 +269,9 @@ export interface Schema$Delete {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -443,41 +443,41 @@ export interface Schema$InstanceConfig {
  * primary key. Individual values are encoded as described here.  For example,
  * consider the following table definition:      CREATE TABLE UserEvents (
  * UserName STRING(MAX),       EventDate STRING(10)     ) PRIMARY KEY(UserName,
- * EventDate);  The following keys name rows in this table:
- * &quot;Bob&quot;, &quot;2014-09-23&quot;  Since the `UserEvents` table&#39;s
- * `PRIMARY KEY` clause names two columns, each `UserEvents` key has two
- * elements; the first is the `UserName`, and the second is the `EventDate`.
- * Key ranges with multiple components are interpreted lexicographically by
- * component using the table or index key&#39;s declared sort order. For
- * example, the following range returns all events for user `&quot;Bob&quot;`
- * that occurred in the year 2015:      &quot;start_closed&quot;:
- * [&quot;Bob&quot;, &quot;2015-01-01&quot;]     &quot;end_closed&quot;:
- * [&quot;Bob&quot;, &quot;2015-12-31&quot;]  Start and end keys can omit
- * trailing key components. This affects the inclusion and exclusion of rows
- * that exactly match the provided key components: if the key is closed, then
- * rows that exactly match the provided components are included; if the key is
- * open, then rows that exactly match are not included.  For example, the
- * following range includes all events for `&quot;Bob&quot;` that occurred
- * during and after the year 2000:      &quot;start_closed&quot;:
- * [&quot;Bob&quot;, &quot;2000-01-01&quot;]     &quot;end_closed&quot;:
- * [&quot;Bob&quot;]  The next example retrieves all events for
- * `&quot;Bob&quot;`:      &quot;start_closed&quot;: [&quot;Bob&quot;]
- * &quot;end_closed&quot;: [&quot;Bob&quot;]  To retrieve events before the year
- * 2000:      &quot;start_closed&quot;: [&quot;Bob&quot;]
- * &quot;end_open&quot;: [&quot;Bob&quot;, &quot;2000-01-01&quot;]  The
- * following range includes all rows in the table:
- * &quot;start_closed&quot;: []     &quot;end_closed&quot;: []  This range
- * returns all users whose `UserName` begins with any character from A to C:
- * &quot;start_closed&quot;: [&quot;A&quot;]     &quot;end_open&quot;:
- * [&quot;D&quot;]  This range returns all users whose `UserName` begins with B:
- * &quot;start_closed&quot;: [&quot;B&quot;]     &quot;end_open&quot;:
- * [&quot;C&quot;]  Key ranges honor column sort order. For example, suppose a
- * table is defined as follows:      CREATE TABLE DescendingSortedTable {
- * Key INT64,       ...     ) PRIMARY KEY(Key DESC);  The following range
- * retrieves all rows with key values between 1 and 100 inclusive:
- * &quot;start_closed&quot;: [&quot;100&quot;]     &quot;end_closed&quot;:
- * [&quot;1&quot;]  Note that 100 is passed as the start, and 1 is passed as the
- * end, because `Key` is a descending column in the schema.
+ * EventDate);  The following keys name rows in this table: &quot;Bob&quot;,
+ * &quot;2014-09-23&quot;  Since the `UserEvents` table&#39;s `PRIMARY KEY`
+ * clause names two columns, each `UserEvents` key has two elements; the first
+ * is the `UserName`, and the second is the `EventDate`.  Key ranges with
+ * multiple components are interpreted lexicographically by component using the
+ * table or index key&#39;s declared sort order. For example, the following
+ * range returns all events for user `&quot;Bob&quot;` that occurred in the year
+ * 2015:      &quot;start_closed&quot;: [&quot;Bob&quot;,
+ * &quot;2015-01-01&quot;]     &quot;end_closed&quot;: [&quot;Bob&quot;,
+ * &quot;2015-12-31&quot;]  Start and end keys can omit trailing key components.
+ * This affects the inclusion and exclusion of rows that exactly match the
+ * provided key components: if the key is closed, then rows that exactly match
+ * the provided components are included; if the key is open, then rows that
+ * exactly match are not included.  For example, the following range includes
+ * all events for `&quot;Bob&quot;` that occurred during and after the year
+ * 2000:      &quot;start_closed&quot;: [&quot;Bob&quot;,
+ * &quot;2000-01-01&quot;]     &quot;end_closed&quot;: [&quot;Bob&quot;]  The
+ * next example retrieves all events for `&quot;Bob&quot;`:
+ * &quot;start_closed&quot;: [&quot;Bob&quot;]     &quot;end_closed&quot;:
+ * [&quot;Bob&quot;]  To retrieve events before the year 2000:
+ * &quot;start_closed&quot;: [&quot;Bob&quot;]     &quot;end_open&quot;:
+ * [&quot;Bob&quot;, &quot;2000-01-01&quot;]  The following range includes all
+ * rows in the table:      &quot;start_closed&quot;: [] &quot;end_closed&quot;:
+ * []  This range returns all users whose `UserName` begins with any character
+ * from A to C:      &quot;start_closed&quot;: [&quot;A&quot;]
+ * &quot;end_open&quot;: [&quot;D&quot;]  This range returns all users whose
+ * `UserName` begins with B:      &quot;start_closed&quot;: [&quot;B&quot;]
+ * &quot;end_open&quot;: [&quot;C&quot;]  Key ranges honor column sort order.
+ * For example, suppose a table is defined as follows:      CREATE TABLE
+ * DescendingSortedTable {       Key INT64,       ...     ) PRIMARY KEY(Key
+ * DESC);  The following range retrieves all rows with key values between 1 and
+ * 100 inclusive:      &quot;start_closed&quot;: [&quot;100&quot;]
+ * &quot;end_closed&quot;: [&quot;1&quot;]  Note that 100 is passed as the
+ * start, and 1 is passed as the end, because `Key` is a descending column in
+ * the schema.
  */
 export interface Schema$KeyRange {
   /**
@@ -921,15 +921,14 @@ export interface Schema$PlanNode {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -1135,8 +1134,8 @@ export interface Schema$ResultSetStats {
    * Aggregated statistics from the execution of the query. Only present when
    * the query is profiled. For example, a query could return the statistics as
    * follows:      {       &quot;rows_returned&quot;: &quot;3&quot;,
-   * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;,
-   * &quot;cpu_time&quot;: &quot;1.19 secs&quot;     }
+   * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
+   * &quot;1.19 secs&quot;     }
    */
   queryStats: any;
 }
@@ -1231,15 +1230,15 @@ export interface Schema$ShortRepresentation {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -1321,10 +1320,10 @@ export interface Schema$Transaction {
  * the only way      to write data into Cloud Spanner. These transactions rely
  * on      pessimistic locking and, if necessary, two-phase commit.      Locking
  * read-write transactions may abort, requiring the      application to retry.
- * 2. Snapshot read-only. This transaction type provides guaranteed
- * consistency across several reads, but does not allow      writes. Snapshot
- * read-only transactions can be configured to      read at timestamps in the
- * past. Snapshot read-only      transactions do not need to be committed.  For
+ * 2. Snapshot read-only. This transaction type provides guaranteed consistency
+ * across several reads, but does not allow      writes. Snapshot read-only
+ * transactions can be configured to      read at timestamps in the past.
+ * Snapshot read-only      transactions do not need to be committed.  For
  * transactions that only read, snapshot read-only transactions provide simpler
  * semantics and are almost always faster. In particular, read-only transactions
  * do not take locks, so they do not conflict with read-write transactions. As a
@@ -1387,8 +1386,8 @@ export interface Schema$Transaction {
  * If the Cloud Spanner database to be read is geographically distributed, stale
  * read-only transactions can execute more quickly than strong or read-write
  * transaction, because they are able to execute far from the leader replica.
- * Each type of timestamp bound is discussed in detail below.  ### Strong
- * Strong reads are guaranteed to see the effects of all transactions that have
+ * Each type of timestamp bound is discussed in detail below.  ### Strong Strong
+ * reads are guaranteed to see the effects of all transactions that have
  * committed before the start of the read. Furthermore, all rows yielded by a
  * single read are consistent with each other -- if any part of the read
  * observes a transaction, all parts of the read see the transaction.  Strong
@@ -1676,7 +1675,7 @@ export class Resource$Projects$Instanceconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1734,7 +1733,7 @@ export class Resource$Projects$Instanceconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/instanceConfigs')
+            url: (rootUrl + '/v1/{+parent}/instanceConfigs')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1779,9 +1778,9 @@ export class Resource$Projects$Instances {
    * instance is readable via the API, with all requested attributes     but no
    * allocated resources. Its state is `CREATING`.  Until completion of the
    * returned operation:    * Cancelling the operation renders the instance
-   * immediately unreadable     via the API.   * The instance can be deleted.
-   * * All other attempts to modify the instance are rejected.  Upon completion
-   * of the returned operation:    * Billing for all successfully-allocated
+   * immediately unreadable     via the API.   * The instance can be deleted. *
+   * All other attempts to modify the instance are rejected.  Upon completion of
+   * the returned operation:    * Billing for all successfully-allocated
    * resources begins (some types     may have lower than the requested levels).
    * * Databases can be created in the instance.   * The instance's allocated
    * resource levels are readable via the API.   * The instance's state becomes
@@ -1822,7 +1821,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/instances')
+            url: (rootUrl + '/v1/{+parent}/instances')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1842,8 +1841,8 @@ export class Resource$Projects$Instances {
 
   /**
    * spanner.projects.instances.delete
-   * @desc Deletes an instance.  Immediately upon completion of the request:
-   * * Billing ceases for all of the instance's reserved resources.  Soon
+   * @desc Deletes an instance.  Immediately upon completion of the request: *
+   * Billing ceases for all of the instance's reserved resources.  Soon
    * afterward:    * The instance and *all of its databases* immediately and
    * irrevocably disappear from the API. All data in the databases     is
    * permanently deleted.
@@ -1877,7 +1876,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1927,7 +1926,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1981,7 +1980,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2040,7 +2039,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/instances')
+            url: (rootUrl + '/v1/{+parent}/instances')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2075,9 +2074,9 @@ export class Resource$Projects$Instances {
    * pre-request     resource levels.  Upon completion of the returned
    * operation:    * Billing begins for all successfully-allocated resources
    * (some types     may have lower than the requested levels).   * All
-   * newly-reserved resources are available for serving the instance's
-   * tables.   * The instance's new resource levels are readable via the API.
-   * The returned long-running operation will have a name of the format
+   * newly-reserved resources are available for serving the instance's tables.
+   * * The instance's new resource levels are readable via the API.  The
+   * returned long-running operation will have a name of the format
    * `<instance_name>/operations/<operation_id>` and can be used to track the
    * instance modification.  The metadata field type is UpdateInstanceMetadata.
    * The response field type is Instance, if successful.  Authorization requires
@@ -2115,7 +2114,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2169,7 +2168,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2230,7 +2229,7 @@ export class Resource$Projects$Instances {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2304,7 +2303,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/databases')
+            url: (rootUrl + '/v1/{+parent}/databases')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2356,7 +2355,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{database}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+database}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2406,7 +2405,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2463,7 +2462,8 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2518,7 +2518,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2576,7 +2576,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/databases')
+            url: (rootUrl + '/v1/{+parent}/databases')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2631,7 +2631,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2692,7 +2692,7 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2752,7 +2752,8 @@ export class Resource$Projects$Instances$Databases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+database}/ddl').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2821,7 +2822,7 @@ export class Resource$Projects$Instances$Databases$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2874,7 +2875,7 @@ export class Resource$Projects$Instances$Databases$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2926,7 +2927,7 @@ export class Resource$Projects$Instances$Databases$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2992,7 +2993,7 @@ export class Resource$Projects$Instances$Databases$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3059,7 +3060,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:beginTransaction')
+            url: (rootUrl + '/v1/{+session}:beginTransaction')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3119,7 +3120,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:commit')
+            url: (rootUrl + '/v1/{+session}:commit')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3185,7 +3186,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{database}/sessions')
+            url: (rootUrl + '/v1/{+database}/sessions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3236,7 +3237,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3297,7 +3298,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:executeSql')
+            url: (rootUrl + '/v1/{+session}:executeSql')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3355,7 +3356,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:executeStreamingSql')
+            url: (rootUrl + '/v1/{+session}:executeStreamingSql')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3407,7 +3408,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3463,7 +3464,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{database}/sessions')
+            url: (rootUrl + '/v1/{+database}/sessions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3485,8 +3486,8 @@ export class Resource$Projects$Instances$Databases$Sessions {
    * spanner.projects.instances.databases.sessions.partitionQuery
    * @desc Creates a set of partition tokens that can be used to execute a query
    * operation in parallel.  Each of the returned partition tokens can be used
-   * by ExecuteStreamingSql to specify a subset of the query result to read.
-   * The same session and read-only transaction must be used by the
+   * by ExecuteStreamingSql to specify a subset of the query result to read. The
+   * same session and read-only transaction must be used by the
    * PartitionQueryRequest used to create the partition tokens and the
    * ExecuteSqlRequests that use the partition tokens. Partition tokens become
    * invalid when the session used to create them is deleted or begins a new
@@ -3525,7 +3526,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:partitionQuery')
+            url: (rootUrl + '/v1/{+session}:partitionQuery')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3586,7 +3587,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:partitionRead')
+            url: (rootUrl + '/v1/{+session}:partitionRead')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3647,7 +3648,8 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:read').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+session}:read').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3703,7 +3705,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:rollback')
+            url: (rootUrl + '/v1/{+session}:rollback')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3761,7 +3763,7 @@ export class Resource$Projects$Instances$Databases$Sessions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{session}:streamingRead')
+            url: (rootUrl + '/v1/{+session}:streamingRead')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3833,7 +3835,7 @@ export class Resource$Projects$Instances$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3886,7 +3888,7 @@ export class Resource$Projects$Instances$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3938,7 +3940,7 @@ export class Resource$Projects$Instances$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4004,7 +4006,7 @@ export class Resource$Projects$Instances$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

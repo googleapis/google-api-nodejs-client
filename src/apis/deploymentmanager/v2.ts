@@ -413,12 +413,12 @@ export interface Schema$LogConfigCloudAuditOptions {
   logName: string;
 }
 /**
- * Increment a streamz counter with the specified metric and field names.
- * Metric names should start with a &#39;/&#39;, generally be lowercase-only,
- * and end in &quot;_count&quot;. Field names should not contain an initial
- * slash. The actual exported metric names will have &quot;/iam/policy&quot;
- * prepended.  Field names correspond to IAM request parameters and field values
- * are their respective values.  At present the only supported field names are -
+ * Increment a streamz counter with the specified metric and field names. Metric
+ * names should start with a &#39;/&#39;, generally be lowercase-only, and end
+ * in &quot;_count&quot;. Field names should not contain an initial slash. The
+ * actual exported metric names will have &quot;/iam/policy&quot; prepended.
+ * Field names correspond to IAM request parameters and field values are their
+ * respective values.  At present the only supported field names are -
  * &quot;iam_principal&quot;, corresponding to IAMContext.principal; -
  * &quot;&quot; (empty string), resulting in one aggretated counter with no
  * field.  Examples: counter { metric: &quot;/debug_access_count&quot; field:

@@ -490,7 +490,8 @@ export interface Schema$Date {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**
@@ -540,9 +541,9 @@ export interface Schema$DriveFolder {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -1506,9 +1507,9 @@ export class Resource$Courses {
    * classroom.courses.list
    * @desc Returns a list of courses that the requesting user is permitted to
    * view, restricted to those that match the request. Returned courses are
-   * ordered by creation time, with the most recently created coming first.
-   * This method returns the following error codes:  * `PERMISSION_DENIED` for
-   * access errors. * `INVALID_ARGUMENT` if the query argument is malformed. *
+   * ordered by creation time, with the most recently created coming first. This
+   * method returns the following error codes:  * `PERMISSION_DENIED` for access
+   * errors. * `INVALID_ARGUMENT` if the query argument is malformed. *
    * `NOT_FOUND` if any users specified in the query arguments do not exist.
    * @alias classroom.courses.list
    * @memberOf! ()
@@ -1695,8 +1696,8 @@ export class Resource$Courses$Aliases {
    * to create the alias or for access errors. * `NOT_FOUND` if the course does
    * not exist. * `ALREADY_EXISTS` if the alias already exists. *
    * `FAILED_PRECONDITION` if the alias requested does not make sense for the
-   * requesting user or course (for example, if a user not in a domain
-   * attempts to access a domain-scoped alias).
+   * requesting user or course (for example, if a user not in a domain attempts
+   * to access a domain-scoped alias).
    * @alias classroom.courses.aliases.create
    * @memberOf! ()
    *
@@ -3000,9 +3001,9 @@ export class Resource$Courses$Coursework$Studentsubmissions {
    * @desc Returns a student submission.  Returning a student submission
    * transfers ownership of attached Drive files to the student and may also
    * update the submission state. Unlike the Classroom application, returning a
-   * student submission does not set assignedGrade to the draftGrade value.
-   * Only a teacher of the course that contains the requested student submission
-   * may call this method.  This request must be made by the Developer Console
+   * student submission does not set assignedGrade to the draftGrade value. Only
+   * a teacher of the course that contains the requested student submission may
+   * call this method.  This request must be made by the Developer Console
    * project of the [OAuth client
    * ID](https://support.google.com/cloud/answer/6158849) used to create the
    * corresponding course work item.  This method returns the following error
@@ -3392,14 +3393,13 @@ export class Resource$Courses$Teachers {
   /**
    * classroom.courses.teachers.create
    * @desc Creates a teacher of a course.  This method returns the following
-   * error codes:  * `PERMISSION_DENIED` if the requesting user is not
-   * permitted to create teachers in this course or for access errors. *
-   * `NOT_FOUND` if the requested course ID does not exist. *
-   * `FAILED_PRECONDITION` if the requested user's account is disabled, for the
-   * following request errors:     * CourseMemberLimitReached     *
-   * CourseNotModifiable     * CourseTeacherLimitReached     *
-   * UserGroupsMembershipLimitReached * `ALREADY_EXISTS` if the user is already
-   * a teacher or student in the course.
+   * error codes:  * `PERMISSION_DENIED` if the requesting user is not permitted
+   * to create teachers in this course or for access errors. * `NOT_FOUND` if
+   * the requested course ID does not exist. * `FAILED_PRECONDITION` if the
+   * requested user's account is disabled, for the following request errors: *
+   * CourseMemberLimitReached     * CourseNotModifiable     *
+   * CourseTeacherLimitReached     * UserGroupsMembershipLimitReached *
+   * `ALREADY_EXISTS` if the user is already a teacher or student in the course.
    * @alias classroom.courses.teachers.create
    * @memberOf! ()
    *
@@ -4079,11 +4079,11 @@ export class Resource$Registrations {
    * notifications from the requested field; or     * the credential provided
    * does not include the appropriate scope for the       requested feed.     *
    * another access error is encountered. * `INVALID_ARGUMENT` if:     * no
-   * `destination` is specified, or the specified `destination` is not
-   * valid; or     * no `feed` is specified, or the specified `feed` is not
-   * valid. * `NOT_FOUND` if:     * the specified `feed` cannot be located, or
-   * the requesting user does not       have permission to determine whether or
-   * not it exists; or     * the specified `destination` cannot be located, or
+   * `destination` is specified, or the specified `destination` is not valid; or
+   * * no `feed` is specified, or the specified `feed` is not valid. *
+   * `NOT_FOUND` if:     * the specified `feed` cannot be located, or the
+   * requesting user does not       have permission to determine whether or not
+   * it exists; or     * the specified `destination` cannot be located, or
    * Classroom has not       been granted permission to publish to it.
    * @alias classroom.registrations.create
    * @memberOf! ()
@@ -4279,22 +4279,21 @@ export class Resource$Userprofiles$Guardianinvitations {
    * must have the `student_id` and `invited_email_address` fields set. Failing
    * to set these fields, or setting any other fields in the request, will
    * result in an error.  This method returns the following error codes:  *
-   * `PERMISSION_DENIED` if the current user does not have permission to
-   * manage guardians, if the guardian in question has already rejected   too
-   * many requests for that student, if guardians are not enabled for the
-   * domain in question, or for other access errors. * `RESOURCE_EXHAUSTED` if
-   * the student or guardian has exceeded the guardian   link limit. *
-   * `INVALID_ARGUMENT` if the guardian email address is not valid (for
-   * example, if it is too long), or if the format of the student ID provided
-   * cannot be recognized (it is not an email address, nor a `user_id` from
-   * this API). This error will also be returned if read-only fields are set,
-   * or if the `state` field is set to to a value other than `PENDING`. *
-   * `NOT_FOUND` if the student ID provided is a valid student ID, but
-   * Classroom has no record of that student. * `ALREADY_EXISTS` if there is
-   * already a pending guardian invitation for   the student and
-   * `invited_email_address` provided, or if the provided
-   * `invited_email_address` matches the Google account of an existing
-   * `Guardian` for this user.
+   * `PERMISSION_DENIED` if the current user does not have permission to manage
+   * guardians, if the guardian in question has already rejected   too many
+   * requests for that student, if guardians are not enabled for the   domain in
+   * question, or for other access errors. * `RESOURCE_EXHAUSTED` if the student
+   * or guardian has exceeded the guardian   link limit. * `INVALID_ARGUMENT` if
+   * the guardian email address is not valid (for   example, if it is too long),
+   * or if the format of the student ID provided   cannot be recognized (it is
+   * not an email address, nor a `user_id` from   this API). This error will
+   * also be returned if read-only fields are set,   or if the `state` field is
+   * set to to a value other than `PENDING`. * `NOT_FOUND` if the student ID
+   * provided is a valid student ID, but   Classroom has no record of that
+   * student. * `ALREADY_EXISTS` if there is already a pending guardian
+   * invitation for   the student and `invited_email_address` provided, or if
+   * the provided   `invited_email_address` matches the Google account of an
+   * existing   `Guardian` for this user.
    * @alias classroom.userProfiles.guardianInvitations.create
    * @memberOf! ()
    *
@@ -4420,9 +4419,9 @@ export class Resource$Userprofiles$Guardianinvitations {
    * invitations for that student, if   `"-"` is specified as the `student_id`
    * and the user is not a domain   administrator, if guardians are not enabled
    * for the domain in question,   or for other access errors. *
-   * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot
-   * be recognized (it is not an email address, nor a `student_id` from the
-   * API, nor the literal string `me`). May also be returned if an invalid
+   * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot be
+   * recognized (it is not an email address, nor a `student_id` from the   API,
+   * nor the literal string `me`). May also be returned if an invalid
    * `page_token` or `state` is provided. * `NOT_FOUND` if a `student_id` is
    * specified, and its format can be   recognized, but Classroom has no record
    * of that student.
@@ -4710,8 +4709,8 @@ export class Resource$Userprofiles$Guardians {
    * for the domain in question,   if the `invited_email_address` filter is set
    * by a user who is not a   domain administrator, or for other access errors.
    * * `INVALID_ARGUMENT` if a `student_id` is specified, but its format cannot
-   * be recognized (it is not an email address, nor a `student_id` from the
-   * API, nor the literal string `me`). May also be returned if an invalid
+   * be recognized (it is not an email address, nor a `student_id` from the API,
+   * nor the literal string `me`). May also be returned if an invalid
    * `page_token` is provided. * `NOT_FOUND` if a `student_id` is specified, and
    * its format can be   recognized, but Classroom has no record of that
    * student.
