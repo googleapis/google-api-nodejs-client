@@ -17,16 +17,9 @@ import {Utils} from './../utils';
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
+const samples = {
   jwt: require('../../../samples/jwt')
 };
-
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
 
 describe('Auth samples', () => {
   afterEach(() => {
@@ -34,7 +27,11 @@ describe('Auth samples', () => {
   });
 
   it('should support JWT', async () => {
-    const scope = nock(Utils.baseUrl).get(`/drive/v2/files`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v2/files').reply(200, {})
+      .post('/oauth2/v4/token').reply(200, {
+        access_token: 'not-a-token'
+      });
     const data = await samples.jwt.runSample();
     assert(data);
     scope.done();
