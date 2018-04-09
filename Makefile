@@ -1,4 +1,4 @@
-.PHONY: build build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install test test-samples watch
+.PHONY: build build-tools check check-samples check-licenses check-typescript clean coverage docs fix fix-samples fix-typescript generate install publish-docs test test-samples watch
 
 PATH := $(shell npm bin):$(PATH)
 
@@ -27,7 +27,7 @@ coverage: build
 	nyc report --reporter=html
 
 docs:
-	jsdoc -c jsdoc-conf.json
+	typedoc --out docs src
 
 fix: fix-typescript fix-samples
 
@@ -46,6 +46,9 @@ install:
 
 node_modules/.link:
 	npm link && npm link googleapis && touch $@
+
+publish-docs:
+	gh-pages --dotfiles --dist docs --remote upstream
 
 test: coverage check
 
