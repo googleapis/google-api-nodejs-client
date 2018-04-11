@@ -7,7 +7,7 @@ Install all dependencies including development requirements by running:
 $ npm install
 ```
 
-Builds or tests require the installation of [`make`](https://www.gnu.org/software/make/).  To perform the first build, go ahead and run it!
+Builds or tests require the installation of [`make`](https://www.gnu.org/software/make/), which is likely already installed if you develop on Linux or OSX.  To perform the first build, go ahead and run it!
 
 ``` sh
 $ make
@@ -19,13 +19,13 @@ Next, go ahead and run the tests:
 $ npm test
 ```
 
-This looks for tests in the `test/` directory.  In addition to running the tests, this will also check code formatting.  Code formatting (and other issues) can be fixed automatically by running:
+This looks for tests in the `test/` directory.  In addition to running the tests, this also checks code formatting.  Code formatting (and other issues) can be fixed automatically by running:
 
 ```sh
 $ make fix
 ```
 
-Submit a pull request. The repo owner will review your request. If it is approved, the change will be merged. If it needs additional work, the repo owner will respond with useful comments.
+The repo owner reviews your request. They can approve and merge your change. If your change needs additional work, they follow up with comments.
 
 ## Generating APIs
 If you're a developer interested in contributing to this library, the following section will be useful for you. Each of the files in `src/apis/` is generated from the discovery docs available online. You can generate these files by running the following command:
@@ -50,7 +50,7 @@ make docs
 Documentation will be generated in `docs/`.
 
 ## Preparing for release
-Before releasing a new version, you should draft release notes, bump the version in `package.json`, and submit a Pull Request with **only** the version bump. After the PR is merged, create the release.  This will automatically create a new tag, resulting in an automated release. 
+Before releasing a new version, package maintainers should draft release notes, bump the version in `package.json`, and submit a Pull Request with **only** the version bump. After the PR is merged, create the release.  This will automatically create a new tag, resulting in an automated release.
 
 ## Contributor License Agreements
 Before creating a pull request, please fill out either the individual or corporate Contributor License Agreement.

@@ -27,11 +27,6 @@ const samples = {
 };
 
 describe('Auth samples', () => {
-  beforeEach(
-      () => {
-
-      });
-
   afterEach(() => {
     nock.cleanAll();
   });
@@ -45,7 +40,7 @@ describe('Auth samples', () => {
     const fakePath =
         path.join(__dirname, '../../../test/fixtures/service.json');
     const realPath = path.join(__dirname, '../../../samples/jwt.keys.json');
-    const exists = await fs.existsSync(realPath);
+    const exists = fs.existsSync(realPath);
     if (!exists) {
       await fsp.symlink(fakePath, realPath);
     }

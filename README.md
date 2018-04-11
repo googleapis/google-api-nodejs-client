@@ -39,9 +39,7 @@ The full list of supported APIs can be found [here][supported-list]. The API end
 Supported APIs are listed on the [Google APIs Explorer][apiexplorer].
 
 ### Working with Google Cloud Platform APIs?
-If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`google-cloud`][googlecloud] package, an idiomatic Node.js client for Google Cloud Platform services.
-
-You can find the list of Google Cloud Platform APIs supported by google-cloud in the [google-cloud docs][googlecloudapis].
+If you're working with [Google Cloud Platform][cloudplatform] APIs such as Datastore, Cloud Storage or Pub/Sub, consider using the [`@google-cloud`][googlecloud] client libraries: single purpose idiomatic Node.js clients for Google Cloud Platform services.
 
 ## Getting started
 
@@ -49,7 +47,7 @@ You can find the list of Google Cloud Platform APIs supported by google-cloud in
 This library is distributed on `npm`. In order to add it as a dependency, run the following command:
 
 ``` sh
-$ npm install googleapis --save
+$ npm install googleapis
 ```
 
 ### First example
@@ -59,7 +57,7 @@ This is a very simple example. This creates a URL Shortener client and retrieves
 const {google} = require('googleapis');
 
 // Each API may support multiple version. With this sample, we're getting
-// v1 of the urlshortener API, and using an API key to authenticate. 
+// v1 of the urlshortener API, and using an API key to authenticate.
 const urlshortener = google.urlshortener({
   version: 'v1',
   auth: 'YOUR API KEY'
@@ -102,19 +100,19 @@ runSample().catch(console.error);
 ```
 
 ### Samples
-There are a lot of [samples](samples/) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bug]. 
+There are a lot of [samples](samples/) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bug].
 
 ### Reference API
-This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/). 
+This library provides generated [Reference API documentation](http://google.github.io/google-api-nodejs-client/).
 
 ## Authentication and authorization
 The are three primary ways to authenticate to Google APIs. Some service support all authentication methods, other may only support one or two.
 
-- **OAuth2** - This allows you to make API calls on behalf of a given user.  In this model, the user visits your application, signs in with their Google account, and provides your application with authorization against a set of scopes.  [Learn more](#oauth2-client). 
+- **OAuth2** - This allows you to make API calls on behalf of a given user.  In this model, the user visits your application, signs in with their Google account, and provides your application with authorization against a set of scopes.  [Learn more](#oauth2-client).
 
-- **Service <--> Service** - In this model, your application talks directly to Google APIs using a Service Account.  It's useful when you have a backend application that will talk directly to Google APIs from the backend. [Learn more](#service-to-service-authentication). 
+- **Service <--> Service** - In this model, your application talks directly to Google APIs using a Service Account.  It's useful when you have a backend application that will talk directly to Google APIs from the backend. [Learn more](#service-to-service-authentication).
 
-- **API Key** - With an API key, you can access your service from a client or the server.  Typically less secure, this is only available on a small subset of services with limited scopes.  [Learn more](#using-api-keys). 
+- **API Key** - With an API key, you can access your service from a client or the server.  Typically less secure, this is only available on a small subset of services with limited scopes.  [Learn more](#using-api-keys).
 
 To learn more about the authentication client, see the [Google Auth Library](https://github.com/google/google-auth-library-nodejs).
 
@@ -168,8 +166,8 @@ Once a user has given permissions on the consent page, Google will redirect the 
 With the code returned, you can ask for an access token as shown below:
 
 ``` js
-// This will provide an object with the access_token and refresh_token.  
-// Save these somewhere safe so they can be used at a later time. 
+// This will provide an object with the access_token and refresh_token.
+// Save these somewhere safe so they can be used at a later time.
 const {tokens} = await oauth2Client.getToken(code)
 oauth2Client.setCredentials(tokens);
 ```
@@ -206,7 +204,7 @@ The code below shows how to retrieve a default credential type, depending upon t
 
 ```js
 async function main () {
-  
+
   // This method looks for the GCLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS
   // environment variables.
   const auth = await google.auth.getClient({
@@ -227,7 +225,7 @@ main().catch(console.error);
 
 ### Setting global or service-level auth
 
-You can set the `auth` as a global or service-level option so you don't need to specify it every request. For example, you can set `auth` as a global option: 
+You can set the `auth` as a global or service-level option so you don't need to specify it every request. For example, you can set `auth` as a global option:
 
 ``` js
 const {google} = require('googleapis');
@@ -343,10 +341,10 @@ You can choose default options that will be sent with each request. These option
 
 ```js
 const {google} = require('googleapis');
-google.options({ 
+google.options({
   // All requests made with this object will use these settings unless overridden.
-  timeout: 1000, 
-  auth: auth 
+  timeout: 1000,
+  auth: auth
 });
 ```
 
@@ -354,12 +352,12 @@ You can also modify the parameters sent with each request:
 
 ```js
 const {google} = require('googleapis');
-google.options({ 
+google.options({
   // All requests from all services will contain the above query parameter
   // unless overridden either in a service client or in individual API calls.
-  params: { 
-    quotaUser: 'user123@example.com' 
-  } 
+  params: {
+    quotaUser: 'user123@example.com'
+  }
 });
 ```
 
@@ -368,8 +366,8 @@ google.options({
 You can also specify options when creating a service client.
 
 ```js
-const urlshortener = google.urlshortener({ 
-  version: 'v1', 
+const urlshortener = google.urlshortener({
+  version: 'v1',
   // All requests made with this object will use the specified auth.
   auth: 'API KEY';
 });
@@ -386,8 +384,8 @@ const urlshortener = google.urlshortener({
   version: 'v1',
   // All requests made with this service client will contain the
   // quotaUser query parameter unless overridden in individual API calls.
-  params: { 
-    quotaUser: 'user123@example.com' 
+  params: {
+    quotaUser: 'user123@example.com'
   }
 });
 
@@ -442,7 +440,7 @@ const res = await drive.files.export({
   mimeType: 'application/pdf'
 }, {
   // Make sure we get the binary data
-  encoding: null 
+  encoding: null
 });
 ```
 
@@ -495,7 +493,7 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
 [oauthexample]: https://github.com/google/google-api-nodejs-client/tree/master/samples/oauth2.js
 [options]: https://github.com/google/google-api-nodejs-client/tree/master#options
-[googlecloud]: https://github.com/GoogleCloudPlatform/google-cloud-node
+[googlecloud]: https://cloud.google.com/nodejs/docs/reference/libraries
 [googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
 [codecovimg]: https://codecov.io/github/google/google-api-nodejs-client/coverage.svg?branch=master
