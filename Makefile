@@ -27,7 +27,7 @@ coverage: build
 	nyc report --reporter=html
 
 docs:
-	typedoc --out docs src
+	typedoc --out docs src && touch docs/.nojekyll
 
 fix: fix-typescript fix-samples
 
