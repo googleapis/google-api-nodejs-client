@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "project-id",
+  "private_key_id": "private-key-id",
+  "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIICXQIBAAKBgQDzU+jLTzW6154Joezxrd2+5pCNYP0HcaMoYqEyXfNRpkNE7wrQ\nUEG830o4Qcaae2BhqZoujwSW7RkR6h0Fkd0WTR8h5J8rSGNHv/1jJoUUjP9iZ/5S\nFAyIIyEYfDPqtnA4iF1QWO2lXWlEFSuZjwM/8jBmeGzoiw17akNThIw8NwIDAQAB\nAoGATpboVloEAY/IdFX/QGOmfhTb1T3hG3lheBa695iOkO2BRo9qT7PMN6NqxlbA\nPX7ht0lfCfCZS+HSOg4CR50/6WXHMSmwlvcjGuDIDKWjviQTTYE77MlVBQHw9WzY\nPfiRBbtouyPGQtO4rk42zkIILC6exBZ1vKpRPOmTAnxrjCECQQD+56r6hYcS6GNp\nNOWyv0eVFMBX4iNWAsRf9JVVvGDz2rVuhnkNiN73vfffDWvSXkCydL1jFmalgdQD\ngm77UZQHAkEA9F+CauU0aZsJ1SthQ6H0sDQ+eNRUgnz4itnkSC2C20fZ3DaSpCMC\n0go81CcZOhftNO730ILqiS67C3d3rqLqUQJBAP10ROHMmz4Fq7MUUcClyPtHIuk/\nhXskTTZL76DMKmrN8NDxDLSUf38+eJRkt+z4osPOp/E6eN3gdXr32nox50kCQCl8\nhXGMU+eR0IuF/88xkY7Qb8KnmWlFuhQohZ7TSyHbAttl0GNZJkNuRYFm2duI8FZK\nM3wMnbCIZGy/7WuScOECQQCV+0yrf5dL1M2GHjJfwuTb00wRKalKQEH1v/kvE5vS\nFmdN7BPK5Ra50MaecMNoYqu9rmtyWRBn93dcvKrL57nY\n-----END RSA PRIVATE KEY-----\n",
+  "client_email": "client email",
+  "client_id": "client id",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/el-gato%40el-gato.iam.gserviceaccount.com"
+}

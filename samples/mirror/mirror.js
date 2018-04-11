@@ -17,7 +17,10 @@ const {google} = require('googleapis');
 const sampleClient = require('../sampleclient');
 
 // initialize the Google Mirror API library
-const mirror = google.mirror({ version: 'v1', auth: sampleClient.oAuth2Client });
+const mirror = google.mirror({
+  version: 'v1',
+  auth: sampleClient.oAuth2Client
+});
 
 // a very simple example of listing locations from the mirror API
 async function runSample () {

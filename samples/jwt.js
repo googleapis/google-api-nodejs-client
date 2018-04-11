@@ -14,7 +14,6 @@
 'use strict';
 
 const {google} = require('googleapis');
-const fs = require('fs');
 const path = require('path');
 
 /**
@@ -26,30 +25,23 @@ const path = require('path');
  *
  * See the defaultauth.js sample for an alternate way of fetching compute credentials.
  */
-
-let keys = {};
-const keyPath = path.join(__dirname, 'jwt.keys.json');
-if (fs.existsSync(keyPath)) {
-  keys = require(keyPath);
-}
-
-// Create a new JWT client using the key file downloaded from the Google Developer Console
-const jwtClient = new google.auth.JWT({
-  email: keys.client_email,
-  key: keys.private_key,
-  scopes: 'https://www.googleapis.com/auth/drive.readonly'
-});
-
-// Obtain a new drive client, making sure you pass along the auth client
-const drive = google.drive({
-  version: 'v2',
-  auth: jwtClient
-});
-
-// Make an authorized request to list Drive files.
 async function runSample () {
+  // Create a new JWT client using the key file downloaded from the Google Developer Console
+  const client = await google.auth.getClient({
+    keyFile: path.join(__dirname, 'jwt.keys.json'),
+    scopes: 'https://www.googleapis.com/auth/drive.readonly'
+  });
+
+  // Obtain a new drive client, making sure you pass along the auth client
+  const drive = google.drive({
+    version: 'v2',
+    auth: client
+  });
+
+  // Make an authorized request to list Drive files.
   const res = await drive.files.list();
   console.log(res.data);
+
   return res.data;
 }
 
@@ -58,7 +50,4 @@ if (module === require.main) {
 }
 
 // Exports for unit testing purposes
-module.exports = {
-  runSample,
-  client: jwtClient
-};
+module.exports = { runSample };

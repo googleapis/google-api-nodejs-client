@@ -35,12 +35,17 @@ const compute = google.compute('v1');
 
 // Get the appropriate type of credential client, depending upon the runtime environment.
 async function main () {
-  const client = await google.auth.getClient();
-  // Scopes can be specified either as an array or as a single, space-delimited string.
-  client.scopes = ['https://www.googleapis.com/auth/compute'];
-  // Fetch the list of GCE zones within a project.
+  // The `getClient` method will choose a service based authentication model
+  const auth = await google.auth.getClient({
+    // Scopes can be specified either as an array or as a single, space-delimited string.
+    scopes: ['https://www.googleapis.com/auth/compute']
+  });
+
+  // Obtain the current project Id
   const project = await google.auth.getDefaultProjectId();
-  const res = await compute.zones.list({ project, auth: client });
+
+  // Get the list of available compute zones for your project
+  const res = await compute.zones.list({ project, auth });
   console.log(res.data);
 }
 
