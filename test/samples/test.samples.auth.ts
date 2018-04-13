@@ -12,21 +12,19 @@
 // limitations under the License.
 
 import * as assert from 'assert';
+import * as fs from 'fs';
 import * as nock from 'nock';
+import * as path from 'path';
+import * as pify from 'pify';
+
 import {Utils} from './../utils';
+const fsp = pify(fs);
 
 nock.disableNetConnect();
 
-// tslint:disable: no-any
-const samples: any = {
+const samples = {
   jwt: require('../../../samples/jwt')
 };
-
-for (const p in samples) {
-  if (samples[p]) {
-    samples[p].client.credentials = {access_token: 'not-a-token'};
-  }
-}
 
 describe('Auth samples', () => {
   afterEach(() => {
@@ -34,7 +32,18 @@ describe('Auth samples', () => {
   });
 
   it('should support JWT', async () => {
-    const scope = nock(Utils.baseUrl).get(`/drive/v2/files`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+                      .get('/drive/v2/files')
+                      .reply(200, {})
+                      .post('/oauth2/v4/token')
+                      .reply(200, {access_token: 'not-a-token'});
+    const fakePath =
+        path.join(__dirname, '../../../test/fixtures/service.json');
+    const realPath = path.join(__dirname, '../../../samples/jwt.keys.json');
+    const exists = fs.existsSync(realPath);
+    if (!exists) {
+      await fsp.symlink(fakePath, realPath);
+    }
     const data = await samples.jwt.runSample();
     assert(data);
     scope.done();

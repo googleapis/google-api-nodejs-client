@@ -1,15 +1,12 @@
-node_modules
-.idea
-doc/
+node_modules/
+build/
+docs/
+coverage/
 npm-debug.log
-coverage
-# Empty API
-apis/iam/v1alpha1.js
 .nyc_output
-**/*.js
-**/*.js.map
-!samples/**/*.js
 .vscode
-**/*.d.ts
-**/credentials.json
+.idea
+.DS_Store
 samples/*.keys.json
+samples/**/credentials.json
+
