@@ -16,7 +16,7 @@
 import * as path from 'path';
 import * as util from 'util';
 
-import {APIList, ServiceOptions} from '../lib/api';
+import {ServiceOptions} from '../lib/api';
 
 import * as abusiveexperiencereport_v1 from './abusiveexperiencereport/v1';
 import * as acceleratedmobilepageurl_v1 from './acceleratedmobilepageurl/v1';
@@ -219,7 +219,7 @@ export interface APIList {
   [index: string]: {[index: string]: any};
 }
 
-const APIS: APIList = {
+export const APIS: APIList = {
   abusiveexperiencereport: {
     'v1': abusiveexperiencereport_v1.Abusiveexperiencereport,
   },

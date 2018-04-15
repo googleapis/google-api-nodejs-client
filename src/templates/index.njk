@@ -15,7 +15,7 @@
 
 import * as path from 'path';
 import * as util from 'util';
-import { APIList, ServiceOptions } from '../lib/api';
+import { ServiceOptions } from '../lib/api';
 {% for apiName, api in apis %}
   {% for versionName, version in api %}import * as {{ apiName }}_{{ version|replace('.','_') }} from './{{ apiName }}/{{ version }}';
 {% endfor %}
@@ -26,7 +26,7 @@ export interface APIList {
   [index: string]: { [index: string]: any };
 }
 
-const APIS: APIList = {
+export const APIS: APIList = {
   {% for apiName, api in apis %}{{ apiName }}: {
     {% for versionName, version in api %}'{{ version }}': {{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}},
     {% endfor %}
