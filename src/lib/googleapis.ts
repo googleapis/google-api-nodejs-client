@@ -49,6 +49,17 @@ export class GoogleApis extends apis.GeneratedAPIs {
   }
 
   /**
+   * Obtain a Map of supported APIs, along with included API versions.
+   */
+  getSupportedAPIs() {
+    const apiList = {} as {[index: string]: string[]};
+    Object.keys(apis.APIS).forEach(a => {
+      apiList[a] = Object.keys(apis.APIS[a]);
+    });
+    return apiList;
+  }
+
+  /**
    * Set options.
    *
    * @param  {Object} [options] Configuration options.
