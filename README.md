@@ -458,8 +458,10 @@ You can programatically obtain the list of supported APIs, and all available ver
 
 ```js
 const {google} = require('googleapis');
-const apiList = google.getSupportedAPIs();
+const apis = google.getSupportedAPIs();
 ```
+
+This will return an object with the API name as object property names, and an array of version strings as the object values; 
 
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
