@@ -473,7 +473,7 @@ This library is licensed under Apache 2.0. Full license text is available in [CO
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING][contributing].
 
 ## Questions/problems?
-* Ask your development related questions on [Ask a question on Stackoverflow][stackoverflow]
+* Ask your development related questions on [Stackoverflow][stackoverflow].
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 [snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg
