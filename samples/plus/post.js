@@ -26,11 +26,11 @@ async function runSample () {
     userId: 'me',
     resource: {
       object: {
-        originalContent: "Hello from the Node.js Google API Client!",
+        originalContent: 'Hello from the Node.js Google API Client!'
       },
       access: {
         items: [{
-            type: "domain"
+          type: 'domain'
         }],
         domainRestricted: true
       }

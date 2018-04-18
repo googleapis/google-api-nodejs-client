@@ -34,7 +34,9 @@ describe('plus samples', () => {
   });
 
   it('should insert a new activity', async () => {
-    const scope = nock(Utils.baseUrl).post(`/plusDomains/v1/people/me/activities`).reply(200, {});
+    const scope = nock(Utils.baseUrl)
+                      .post(`/plusDomains/v1/people/me/activities`)
+                      .reply(200, {});
     const data = await samples.post.runSample();
     assert(data);
     scope.done();
