@@ -46,7 +46,7 @@ class SampleClient {
 
   // Open an http server to accept the oauth callback. In this
   // simple example, the only request to our webserver is to
-  // /callback?code=<code>
+  // /oauth2callback?code=<code>
   async authenticate (scopes) {
     return new Promise((resolve, reject) => {
       // grab the url that will be used for authorization
