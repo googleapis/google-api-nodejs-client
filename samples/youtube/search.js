@@ -24,7 +24,7 @@ const youtube = google.youtube({
 
 // a very simple example of searching for youtube videos
 async function runSample () {
-  const res = youtube.search.list({
+  const res = await youtube.search.list({
     part: 'id,snippet',
     q: 'Node.js on Google Cloud'
   });
