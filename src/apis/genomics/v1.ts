@@ -244,9 +244,7 @@ export interface Schema$Binding {
 }
 /**
  * A call set is a collection of variant calls, typically for one sample. It
- * belongs to a variant set.  For more genomics resource definitions, see
- * [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * belongs to a variant set.
  */
 export interface Schema$CallSet {
   /**
@@ -405,9 +403,7 @@ export interface Schema$CoverageBucket {
   range: Schema$Range;
 }
 /**
- * A Dataset is a collection of genomic data.  For more genomics resource
- * definitions, see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * A Dataset is a collection of genomic data.
  */
 export interface Schema$Dataset {
   /**
@@ -449,9 +445,9 @@ export interface Schema$DelayedEvent {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 export interface Schema$Entry {
@@ -912,15 +908,14 @@ export interface Schema$OperationMetadata {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -1031,33 +1026,31 @@ export interface Schema$Range {
  * reference sequence, in addition to metadata about the fragment (the molecule
  * of DNA sequenced) and the read (the bases which were read by the sequencer).
  * A read is equivalent to a line in a SAM file. A read belongs to exactly one
- * read group and exactly one read group set.  For more genomics resource
- * definitions, see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
- * ### Reverse-stranded reads  Mapped reads (reads having a non-null
- * `alignment`) can be aligned to either the forward or the reverse strand of
- * their associated reference. Strandedness of a mapped read is encoded by
- * `alignment.position.reverseStrand`.  If we consider the reference to be a
- * forward-stranded coordinate space of `[0, reference.length)` with `0` as the
- * left-most position and `reference.length` as the right-most position, reads
- * are always aligned left to right. That is, `alignment.position.position`
- * always refers to the left-most reference coordinate and `alignment.cigar`
- * describes the alignment of this read to the reference from left to right. All
- * per-base fields such as `alignedSequence` and `alignedQuality` share this
- * same left-to-right orientation; this is true of reads which are aligned to
- * either strand. For reverse-stranded reads, this means that `alignedSequence`
- * is the reverse complement of the bases that were originally reported by the
- * sequencing machine.  ### Generating a reference-aligned sequence string  When
- * interacting with mapped reads, it&#39;s often useful to produce a string
- * representing the local alignment of the read to reference. The following
- * pseudocode demonstrates one way of doing this:      out = &quot;&quot;
- * offset = 0     for c in read.alignment.cigar {       switch c.operation {
- * case &quot;ALIGNMENT_MATCH&quot;, &quot;SEQUENCE_MATCH&quot;,
+ * read group and exactly one read group set.  ### Reverse-stranded reads Mapped
+ * reads (reads having a non-null `alignment`) can be aligned to either the
+ * forward or the reverse strand of their associated reference. Strandedness of
+ * a mapped read is encoded by `alignment.position.reverseStrand`.  If we
+ * consider the reference to be a forward-stranded coordinate space of `[0,
+ * reference.length)` with `0` as the left-most position and `reference.length`
+ * as the right-most position, reads are always aligned left to right. That is,
+ * `alignment.position.position` always refers to the left-most reference
+ * coordinate and `alignment.cigar` describes the alignment of this read to the
+ * reference from left to right. All per-base fields such as `alignedSequence`
+ * and `alignedQuality` share this same left-to-right orientation; this is true
+ * of reads which are aligned to either strand. For reverse-stranded reads, this
+ * means that `alignedSequence` is the reverse complement of the bases that were
+ * originally reported by the sequencing machine.  ### Generating a
+ * reference-aligned sequence string  When interacting with mapped reads,
+ * it&#39;s often useful to produce a string representing the local alignment of
+ * the read to reference. The following pseudocode demonstrates one way of doing
+ * this:      out = &quot;&quot;     offset = 0     for c in
+ * read.alignment.cigar {       switch c.operation {       case
+ * &quot;ALIGNMENT_MATCH&quot;, &quot;SEQUENCE_MATCH&quot;,
  * &quot;SEQUENCE_MISMATCH&quot;:         out +=
  * read.alignedSequence[offset:offset+c.operationLength]         offset +=
  * c.operationLength         break       case &quot;CLIP_SOFT&quot;,
- * &quot;INSERT&quot;:         offset += c.operationLength         break
- * case &quot;PAD&quot;:         out += repeat(&quot;*&quot;, c.operationLength)
+ * &quot;INSERT&quot;:         offset += c.operationLength         break case
+ * &quot;PAD&quot;:         out += repeat(&quot;*&quot;, c.operationLength)
  * break       case &quot;DELETE&quot;:         out += repeat(&quot;-&quot;,
  * c.operationLength)         break       case &quot;SKIP&quot;:         out +=
  * repeat(&quot; &quot;, c.operationLength)         break       case
@@ -1066,13 +1059,13 @@ export interface Schema$Range {
  * SAM CIGAR string from the `cigar` field. Note that this is a lossy conversion
  * (`cigar.referenceSequence` is lost).      cigarMap = {
  * &quot;ALIGNMENT_MATCH&quot;: &quot;M&quot;,       &quot;INSERT&quot;:
- * &quot;I&quot;,       &quot;DELETE&quot;: &quot;D&quot;,
- * &quot;SKIP&quot;: &quot;N&quot;,       &quot;CLIP_SOFT&quot;: &quot;S&quot;,
+ * &quot;I&quot;,       &quot;DELETE&quot;: &quot;D&quot;, &quot;SKIP&quot;:
+ * &quot;N&quot;,       &quot;CLIP_SOFT&quot;: &quot;S&quot;,
  * &quot;CLIP_HARD&quot;: &quot;H&quot;,       &quot;PAD&quot;: &quot;P&quot;,
- * &quot;SEQUENCE_MATCH&quot;: &quot;=&quot;,
- * &quot;SEQUENCE_MISMATCH&quot;: &quot;X&quot;,     }     cigarStr =
- * &quot;&quot;     for c in read.alignment.cigar {       cigarStr +=
- * c.operationLength + cigarMap[c.operation]     }     return cigarStr
+ * &quot;SEQUENCE_MATCH&quot;: &quot;=&quot;, &quot;SEQUENCE_MISMATCH&quot;:
+ * &quot;X&quot;,     }     cigarStr = &quot;&quot;     for c in
+ * read.alignment.cigar {       cigarStr += c.operationLength +
+ * cigarMap[c.operation]     }     return cigarStr
  */
 export interface Schema$Read {
   /**
@@ -1238,9 +1231,7 @@ export interface Schema$ReadGroup {
  * collections of reads produced by a sequencer. A read group set typically
  * models reads corresponding to one sample, sequenced one way, and aligned one
  * way.  * A read group set belongs to one dataset. * A read group belongs to
- * one read group set. * A read belongs to one read group.  For more genomics
- * resource definitions, see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * one read group set. * A read belongs to one read group.
  */
 export interface Schema$ReadGroupSet {
   /**
@@ -1278,9 +1269,7 @@ export interface Schema$ReadGroupSet {
  * A reference is a canonical assembled DNA sequence, intended to act as a
  * reference coordinate space for other genomic annotations. A single reference
  * might represent the human chromosome 1 or mitochandrial DNA, for instance. A
- * reference belongs to one or more reference sets.  For more genomics resource
- * definitions, see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * reference belongs to one or more reference sets.
  */
 export interface Schema$Reference {
   /**
@@ -1336,9 +1325,7 @@ export interface Schema$ReferenceBound {
  * assembly for a species, such as `GRCh38` which is representative of the human
  * genome. A reference set defines a common coordinate space for comparing
  * reference-aligned experimental data. A reference set contains 1 or more
- * references.  For more genomics resource definitions, see [Fundamentals of
- * Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * references.
  */
 export interface Schema$ReferenceSet {
   /**
@@ -1864,15 +1851,15 @@ export interface Schema$SetIamPolicyRequest {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -1971,14 +1958,11 @@ export interface Schema$UnexpectedExitStatusEvent {
 /**
  * A variant represents a change in DNA sequence relative to a reference
  * sequence. For example, a variant could represent a SNP or an insertion.
- * Variants belong to a variant set.  For more genomics resource definitions,
- * see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
- * Each of the calls on a variant represent a determination of genotype with
- * respect to that variant. For example, a call might assign probability of 0.32
- * to the occurrence of a SNP named rs1234 in a sample named NA12345. A call
- * belongs to a call set, which contains related calls typically from one
- * sample.
+ * Variants belong to a variant set.  Each of the calls on a variant represent a
+ * determination of genotype with respect to that variant. For example, a call
+ * might assign probability of 0.32 to the occurrence of a SNP named rs1234 in a
+ * sample named NA12345. A call belongs to a call set, which contains related
+ * calls typically from one sample.
  */
 export interface Schema$Variant {
   /**
@@ -2133,9 +2117,7 @@ export interface Schema$VariantCall {
 }
 /**
  * A variant set is a collection of call sets and variants. It contains summary
- * statistics of those contents. A variant set belongs to a dataset.  For more
- * genomics resource definitions, see [Fundamentals of Google
- * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+ * statistics of those contents. A variant set belongs to a dataset.
  */
 export interface Schema$VariantSet {
   /**
@@ -3531,9 +3513,7 @@ export class Resource$Callsets {
 
   /**
    * genomics.callsets.create
-   * @desc Creates a new call set.  For the definitions of call sets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Creates a new call set.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -3638,9 +3618,7 @@ export class Resource$Callsets {
 
   /**
    * genomics.callsets.delete
-   * @desc Deletes a call set.  For the definitions of call sets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Deletes a call set.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -3740,9 +3718,7 @@ export class Resource$Callsets {
 
   /**
    * genomics.callsets.get
-   * @desc Gets a call set by ID.  For the definitions of call sets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Gets a call set by ID.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -3845,10 +3821,7 @@ export class Resource$Callsets {
 
   /**
    * genomics.callsets.patch
-   * @desc Updates a call set.  For the definitions of call sets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * This method supports patch semantics.
+   * @desc Updates a call set.  This method supports patch semantics.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -3961,10 +3934,7 @@ export class Resource$Callsets {
 
   /**
    * genomics.callsets.search
-   * @desc Gets a list of call sets matching the criteria.  For the definitions
-   * of call sets and other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Gets a list of call sets matching the criteria.  Implements
    * [GlobalAllianceApi.searchCallSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L178).
    * @example
    * * // BEFORE RUNNING:
@@ -4099,9 +4069,7 @@ export class Resource$Datasets {
 
   /**
    * genomics.datasets.create
-   * @desc Creates a new dataset.  For the definitions of datasets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Creates a new dataset.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4209,9 +4177,7 @@ export class Resource$Datasets {
    * @desc Deletes a dataset and all of its contents (all read group sets,
    * reference sets, variant sets, call sets, annotation sets, etc.) This is
    * reversible (up to one week after the deletion) via the datasets.undelete
-   * operation.  For the definitions of datasets and other genomics resources,
-   * see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * operation.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4311,9 +4277,7 @@ export class Resource$Datasets {
 
   /**
    * genomics.datasets.get
-   * @desc Gets a dataset by ID.  For the definitions of datasets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Gets a dataset by ID.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4419,9 +4383,7 @@ export class Resource$Datasets {
    * @desc Gets the access control policy for the dataset. This is empty if the
    * policy or resource does not exist.  See <a
    * href="/iam/docs/managing-policies#getting_a_policy">Getting a Policy</a>
-   * for more information.  For the definitions of datasets and other genomics
-   * resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * for more information.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4512,7 +4474,7 @@ export class Resource$Datasets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4532,9 +4494,7 @@ export class Resource$Datasets {
 
   /**
    * genomics.datasets.list
-   * @desc Lists datasets within a project.  For the definitions of datasets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Lists datasets within a project.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4651,10 +4611,7 @@ export class Resource$Datasets {
 
   /**
    * genomics.datasets.patch
-   * @desc Updates a dataset.  For the definitions of datasets and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * This method supports patch semantics.
+   * @desc Updates a dataset.  This method supports patch semantics.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4768,11 +4725,9 @@ export class Resource$Datasets {
   /**
    * genomics.datasets.setIamPolicy
    * @desc Sets the access control policy on the specified dataset. Replaces any
-   * existing policy.  For the definitions of datasets and other genomics
-   * resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * See <a href="/iam/docs/managing-policies#setting_a_policy">Setting a
-   * Policy</a> for more information.
+   * existing policy.  See <a
+   * href="/iam/docs/managing-policies#setting_a_policy">Setting a Policy</a>
+   * for more information.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4863,7 +4818,7 @@ export class Resource$Datasets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4885,9 +4840,7 @@ export class Resource$Datasets {
    * genomics.datasets.testIamPermissions
    * @desc Returns permissions that a caller has on the specified resource. See
    * <a href="/iam/docs/managing-policies#testing_permissions">Testing
-   * Permissions</a> for more information.  For the definitions of datasets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * Permissions</a> for more information.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -4982,7 +4935,7 @@ export class Resource$Datasets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5003,10 +4956,8 @@ export class Resource$Datasets {
   /**
    * genomics.datasets.undelete
    * @desc Undeletes a dataset by restoring a dataset which was deleted via this
-   * API.  For the definitions of datasets and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * This operation is only possible for a week after the deletion occurred.
+   * API.  This operation is only possible for a week after the deletion
+   * occurred.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -5217,7 +5168,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -5321,7 +5272,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5444,7 +5395,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5477,9 +5428,7 @@ export class Resource$Readgroupsets {
 
   /**
    * genomics.readgroupsets.delete
-   * @desc Deletes a read group set.  For the definitions of read group sets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Deletes a read group set.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -5582,13 +5531,10 @@ export class Resource$Readgroupsets {
 
   /**
    * genomics.readgroupsets.export
-   * @desc Exports a read group set to a BAM file in Google Cloud Storage.  For
-   * the definitions of read group sets and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Note that currently there may be some differences between exported BAM
-   * files and the original BAM file at the time of import. See
-   * ImportReadGroupSets for caveats.
+   * @desc Exports a read group set to a BAM file in Google Cloud Storage.  Note
+   * that currently there may be some differences between exported BAM files and
+   * the original BAM file at the time of import. See ImportReadGroupSets for
+   * caveats.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -5701,9 +5647,7 @@ export class Resource$Readgroupsets {
 
   /**
    * genomics.readgroupsets.get
-   * @desc Gets a read group set by ID.  For the definitions of read group sets
-   * and other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Gets a read group set by ID.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -5808,17 +5752,14 @@ export class Resource$Readgroupsets {
   /**
    * genomics.readgroupsets.import
    * @desc Creates read group sets by asynchronously importing the provided
-   * information.  For the definitions of read group sets and other genomics
-   * resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * The caller must have WRITE permissions to the dataset.  ## Notes on
-   * [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import  - Tags will
-   * be converted to strings - tag types are not preserved - Comments (`@CO`) in
-   * the input file header will not be preserved - Original header order of
-   * references (`@SQ`) will not be preserved - Any reverse stranded unmapped
-   * reads will be reverse complemented, and their qualities (also the "BQ" and
-   * "OQ" tags, if any) will be reversed - Unmapped reads will be stripped of
-   * positional information (reference name and position)
+   * information.  The caller must have WRITE permissions to the dataset.  ##
+   * Notes on [BAM](https://samtools.github.io/hts-specs/SAMv1.pdf) import  -
+   * Tags will be converted to strings - tag types are not preserved - Comments
+   * (`@CO`) in the input file header will not be preserved - Original header
+   * order of references (`@SQ`) will not be preserved - Any reverse stranded
+   * unmapped reads will be reverse complemented, and their qualities (also the
+   * "BQ" and "OQ" tags, if any) will be reversed - Unmapped reads will be
+   * stripped of positional information (reference name and position)
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -5897,7 +5838,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
 
   /**
  * genomics.readgroupsets.patch
- * @desc Updates a read group set.  For the definitions of read group sets and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)  This method supports patch semantics.
+ * @desc Updates a read group set.  This method supports patch semantics.
  * @example
  * * // BEFORE RUNNING:
 * // ---------------
@@ -6008,11 +5949,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
 
   /**
    * genomics.readgroupsets.search
-   * @desc Searches for read group sets matching the criteria.  For the
-   * definitions of read group sets and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Searches for read group sets matching the criteria.  Implements
    * [GlobalAllianceApi.searchReadGroupSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L135).
    * @example
    * * // BEFORE RUNNING:
@@ -6151,15 +6088,11 @@ export class Resource$Readgroupsets$Coveragebuckets {
    * genomics.readgroupsets.coveragebuckets.list
    * @desc Lists fixed width coverage buckets for a read group set, each of
    * which correspond to a range of a reference sequence. Each bucket summarizes
-   * coverage information across its corresponding genomic range.  For the
-   * definitions of read group sets and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Coverage is defined as the number of reads which are aligned to a given
-   * base in the reference sequence. Coverage buckets are available at several
-   * precomputed bucket widths, enabling retrieval of various coverage 'zoom
-   * levels'. The caller must have READ permissions for the target read group
-   * set.
+   * coverage information across its corresponding genomic range.  Coverage is
+   * defined as the number of reads which are aligned to a given base in the
+   * reference sequence. Coverage buckets are available at several precomputed
+   * bucket widths, enabling retrieval of various coverage 'zoom levels'. The
+   * caller must have READ permissions for the target read group set.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -6304,22 +6237,19 @@ export class Resource$Reads {
 
   /**
    * genomics.reads.search
-   * @desc Gets a list of reads for one or more read group sets.  For the
-   * definitions of read group sets and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Reads search operates over a genomic coordinate space of reference sequence
-   * & position defined over the reference sequences to which the requested read
-   * group sets are aligned.  If a target positional range is specified, search
-   * returns all reads whose alignment to the reference genome overlap the
-   * range. A query which specifies only read group set IDs yields all reads in
-   * those read group sets, including unmapped reads.  All reads returned
-   * (including reads on subsequent pages) are ordered by genomic coordinate (by
-   * reference sequence, then position). Reads with equivalent genomic
-   * coordinates are returned in an unspecified order. This order is consistent,
-   * such that two queries for the same content (regardless of page size) yield
-   * reads in the same order across their respective streams of paginated
-   * responses.  Implements
+   * @desc Gets a list of reads for one or more read group sets.  Reads search
+   * operates over a genomic coordinate space of reference sequence & position
+   * defined over the reference sequences to which the requested read group sets
+   * are aligned.  If a target positional range is specified, search returns all
+   * reads whose alignment to the reference genome overlap the range. A query
+   * which specifies only read group set IDs yields all reads in those read
+   * group sets, including unmapped reads.  All reads returned (including reads
+   * on subsequent pages) are ordered by genomic coordinate (by reference
+   * sequence, then position). Reads with equivalent genomic coordinates are
+   * returned in an unspecified order. This order is consistent, such that two
+   * queries for the same content (regardless of page size) yield reads in the
+   * same order across their respective streams of paginated responses.
+   * Implements
    * [GlobalAllianceApi.searchReads](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/readmethods.avdl#L85).
    * @example
    * * // BEFORE RUNNING:
@@ -6453,10 +6383,7 @@ export class Resource$References {
 
   /**
    * genomics.references.get
-   * @desc Gets a reference.  For the definitions of references and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Gets a reference.  Implements
    * [GlobalAllianceApi.getReference](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L158).
    * @example
    * * // BEFORE RUNNING:
@@ -6560,11 +6487,7 @@ export class Resource$References {
 
   /**
    * genomics.references.search
-   * @desc Searches for references which match the given criteria.  For the
-   * definitions of references and other genomics resources, see [Fundamentals
-   * of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Searches for references which match the given criteria.  Implements
    * [GlobalAllianceApi.searchReferences](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L146).
    * @example
    * * // BEFORE RUNNING:
@@ -6699,9 +6622,6 @@ export class Resource$References$Bases {
   /**
    * genomics.references.bases.list
    * @desc Lists the bases in a reference, optionally restricted to a range.
-   * For the definitions of references and other genomics resources, see
-   * [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
    * Implements
    * [GlobalAllianceApi.getReferenceBases](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L221).
    * @example
@@ -6837,10 +6757,7 @@ export class Resource$Referencesets {
 
   /**
    * genomics.referencesets.get
-   * @desc Gets a reference set.  For the definitions of references and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Gets a reference set.  Implements
    * [GlobalAllianceApi.getReferenceSet](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L83).
    * @example
    * * // BEFORE RUNNING:
@@ -6945,10 +6862,7 @@ export class Resource$Referencesets {
 
   /**
    * genomics.referencesets.search
-   * @desc Searches for reference sets which match the given criteria.  For the
-   * definitions of references and other genomics resources, see [Fundamentals
-   * of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Searches for reference sets which match the given criteria.
    * Implements
    * [GlobalAllianceApi.searchReferenceSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/referencemethods.avdl#L71)
    * @example
@@ -7087,9 +7001,7 @@ export class Resource$Variants {
 
   /**
    * genomics.variants.create
-   * @desc Creates a new variant.  For the definitions of variants and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Creates a new variant.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7194,9 +7106,7 @@ export class Resource$Variants {
 
   /**
    * genomics.variants.delete
-   * @desc Deletes a variant.  For the definitions of variants and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Deletes a variant.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7296,9 +7206,7 @@ export class Resource$Variants {
 
   /**
    * genomics.variants.get
-   * @desc Gets a variant by ID.  For the definitions of variants and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Gets a variant by ID.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7402,18 +7310,15 @@ export class Resource$Variants {
   /**
    * genomics.variants.import
    * @desc Creates variant data by asynchronously importing the provided
-   * information.  For the definitions of variant sets and other genomics
-   * resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * The variants for import will be merged with any existing variant that
-   * matches its reference sequence, start, end, reference bases, and
-   * alternative bases. If no such variant exists, a new one will be created.
-   * When variants are merged, the call information from the new variant is
-   * added to the existing variant, and Variant info fields are merged as
-   * specified in infoMergeConfig. As a special case, for single-sample VCF
-   * files, QUAL and FILTER fields will be moved to the call level; these are
-   * sometimes interpreted in a call-specific context. Imported VCF headers are
-   * appended to the metadata already in a variant set.
+   * information.  The variants for import will be merged with any existing
+   * variant that matches its reference sequence, start, end, reference bases,
+   * and alternative bases. If no such variant exists, a new one will be
+   * created. When variants are merged, the call information from the new
+   * variant is added to the existing variant, and Variant info fields are
+   * merged as specified in infoMergeConfig. As a special case, for
+   * single-sample VCF files, QUAL and FILTER fields will be moved to the call
+   * level; these are sometimes interpreted in a call-specific context. Imported
+   * VCF headers are appended to the metadata already in a variant set.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7492,7 +7397,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
 
   /**
  * genomics.variants.merge
- * @desc Merges the given variants with existing variants.  For the definitions of variants and other genomics resources, see [Fundamentals of Google Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)  Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the infoMergeConfig field of the MergeVariantsRequest.  Please exercise caution when using this method!  It is easy to introduce mistakes in existing variants and difficult to back out of them.  For example, suppose you were trying to merge a new variant with an existing one and both variants contain calls that belong to callsets with the same callset ID.      // Existing variant - irrelevant fields trimmed for clarity     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     0,                     1                 ],             }         ]     }      // New variant with conflicting call information     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  The resulting merged variant would overwrite the existing calls with those from the new variant:      {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  This may be the desired outcome, but it is up to the user to determine if if that is indeed the case.
+ * @desc Merges the given variants with existing variants.  Each variant will be merged with an existing variant that matches its reference sequence, start, end, reference bases, and alternative bases. If no such variant exists, a new one will be created.  When variants are merged, the call information from the new variant is added to the existing variant. Variant info fields are merged as specified in the infoMergeConfig field of the MergeVariantsRequest.  Please exercise caution when using this method!  It is easy to introduce mistakes in existing variants and difficult to back out of them.  For example, suppose you were trying to merge a new variant with an existing one and both variants contain calls that belong to callsets with the same callset ID.      // Existing variant - irrelevant fields trimmed for clarity     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     0,                     1                 ],             }         ]     }      // New variant with conflicting call information     {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  The resulting merged variant would overwrite the existing calls with those from the new variant:      {         "variantSetId": "10473108253681171589",         "referenceName": "1",         "start": "10582",         "referenceBases": "G",         "alternateBases": [             "A"         ],         "calls": [             {                 "callSetId": "10473108253681171589-0",                 "callSetName": "CALLSET0",                 "genotype": [                     1,                     1                 ],             }         ]     }  This may be the desired outcome, but it is up to the user to determine if if that is indeed the case.
  * @example
  * * // BEFORE RUNNING:
 * // ---------------
@@ -7590,11 +7495,8 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
 
   /**
    * genomics.variants.patch
-   * @desc Updates a variant.  For the definitions of variants and other
-   * genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * This method supports patch semantics. Returns the modified variant without
-   * its calls.
+   * @desc Updates a variant.  This method supports patch semantics. Returns the
+   * modified variant without its calls.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7707,10 +7609,7 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
 
   /**
    * genomics.variants.search
-   * @desc Gets a list of variants matching the criteria.  For the definitions
-   * of variants and other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * Implements
+   * @desc Gets a list of variants matching the criteria.  Implements
    * [GlobalAllianceApi.searchVariants](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L126).
    * @example
    * * // BEFORE RUNNING:
@@ -7845,12 +7744,9 @@ export class Resource$Variantsets {
 
   /**
    * genomics.variantsets.create
-   * @desc Creates a new variant set.  For the definitions of variant sets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
-   * The provided variant set must have a valid `datasetId` set - all other
-   * fields are optional. Note that the `id` field will be ignored, as this is
-   * assigned by the server.
+   * @desc Creates a new variant set.  The provided variant set must have a
+   * valid `datasetId` set - all other fields are optional. Note that the `id`
+   * field will be ignored, as this is assigned by the server.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -7957,9 +7853,7 @@ export class Resource$Variantsets {
   /**
    * genomics.variantsets.delete
    * @desc Deletes a variant set including all variants, call sets, and calls
-   * within. This is not reversible.  For the definitions of variant sets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * within. This is not reversible.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -8059,10 +7953,7 @@ export class Resource$Variantsets {
 
   /**
    * genomics.variantsets.export
-   * @desc Exports variant set data to an external destination.  For the
-   * definitions of variant sets and other genomics resources, see [Fundamentals
-   * of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Exports variant set data to an external destination.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -8173,9 +8064,7 @@ export class Resource$Variantsets {
 
   /**
    * genomics.variantsets.get
-   * @desc Gets a variant set by ID.  For the definitions of variant sets and
-   * other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Gets a variant set by ID.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -8278,9 +8167,7 @@ export class Resource$Variantsets {
 
   /**
    * genomics.variantsets.patch
-   * @desc Updates a variant set using patch semantics.  For the definitions of
-   * variant sets and other genomics resources, see [Fundamentals of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Updates a variant set using patch semantics.
    * @example
    * * // BEFORE RUNNING:
    * // ---------------
@@ -8393,10 +8280,7 @@ export class Resource$Variantsets {
 
   /**
    * genomics.variantsets.search
-   * @desc Returns a list of all variant sets matching search criteria.  For the
-   * definitions of variant sets and other genomics resources, see [Fundamentals
-   * of Google
-   * Genomics](https://cloud.google.com/genomics/fundamentals-of-google-genomics)
+   * @desc Returns a list of all variant sets matching search criteria.
    * Implements
    * [GlobalAllianceApi.searchVariantSets](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variantmethods.avdl#L49).
    * @example

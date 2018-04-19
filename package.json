@@ -11,7 +11,7 @@
     "google-auth-library": "^1.3.1",
     "pify": "^3.0.0",
     "qs": "^6.5.1",
-    "string-template": "^1.0.0",
+    "url-template": "^2.0.8",
     "uuid": "^3.2.1"
   },
   "files": [
@@ -102,7 +102,7 @@
     "@types/qs": "^6.5.1",
     "@types/rimraf": "^2.0.2",
     "@types/source-map-support": "^0.4.0",
-    "@types/string-template": "^1.0.2",
+    "@types/url-template": "^2.0.28",
     "@types/tmp": "^0.0.33",
     "@types/uuid": "^3.4.3",
     "axios": "^0.18.0",

@@ -1029,12 +1029,12 @@ export interface Schema$TeardownTag {
  * we can convert to and from RFC 3339 date strings. See
  * [https://www.ietf.org/rfc/rfc3339.txt](https://www.ietf.org/rfc/rfc3339.txt).
  * # Examples  Example 1: Compute Timestamp from POSIX `time()`.  Timestamp
- * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0);
- * Example 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
+ * timestamp; timestamp.set_seconds(time(NULL)); timestamp.set_nanos(0); Example
+ * 2: Compute Timestamp from POSIX `gettimeofday()`.  struct timeval tv;
  * gettimeofday(&amp;tv, NULL);  Timestamp timestamp;
  * timestamp.set_seconds(tv.tv_sec); timestamp.set_nanos(tv.tv_usec * 1000);
- * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
- * FILETIME ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
+ * Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`. FILETIME
+ * ft; GetSystemTimeAsFileTime(&amp;ft); UINT64 ticks =
  * (((UINT64)ft.dwHighDateTime) &lt;&lt; 32) | ft.dwLowDateTime;  // A Windows
  * tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z // is 11644473600
  * seconds before Unix epoch 1970-01-01T00:00:00Z. Timestamp timestamp;
@@ -1634,7 +1634,7 @@ export class Resource$Accounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1743,7 +1743,7 @@ export class Resource$Accounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -1817,7 +1817,7 @@ export class Resource$Accounts$Containers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/containers')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/containers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1867,7 +1867,7 @@ export class Resource$Accounts$Containers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -1918,7 +1918,7 @@ export class Resource$Accounts$Containers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1975,7 +1975,7 @@ export class Resource$Accounts$Containers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/containers')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/containers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2030,7 +2030,7 @@ export class Resource$Accounts$Containers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -2096,7 +2096,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/environments')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/environments')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2146,7 +2146,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -2197,7 +2197,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2254,7 +2254,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/environments')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/environments')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2310,7 +2310,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
@@ -2365,7 +2365,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:reauthorize')
+            url: (rootUrl + '/tagmanager/v2/{+path}:reauthorize')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2421,7 +2421,7 @@ export class Resource$Accounts$Containers$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -2483,7 +2483,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -2536,7 +2536,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2590,7 +2590,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/versions:live')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/versions:live')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2648,7 +2648,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:publish')
+            url: (rootUrl + '/tagmanager/v2/{+path}:publish')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2705,7 +2705,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:set_latest')
+            url: (rootUrl + '/tagmanager/v2/{+path}:set_latest')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2759,7 +2759,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:undelete')
+            url: (rootUrl + '/tagmanager/v2/{+path}:undelete')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2815,7 +2815,7 @@ export class Resource$Accounts$Containers$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -2883,7 +2883,7 @@ export class Resource$Accounts$Containers$Version_headers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/version_headers:latest')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/version_headers:latest')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2942,7 +2942,7 @@ export class Resource$Accounts$Containers$Version_headers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/version_headers')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/version_headers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3024,7 +3024,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/workspaces')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3084,7 +3084,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:create_version')
+            url: (rootUrl + '/tagmanager/v2/{+path}:create_version')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3136,7 +3136,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -3187,7 +3187,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3241,7 +3241,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3297,7 +3297,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}/status')
+            url: (rootUrl + '/tagmanager/v2/{+path}/status')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3354,7 +3354,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/workspaces')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/workspaces')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3409,7 +3409,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:quick_preview')
+            url: (rootUrl + '/tagmanager/v2/{+path}:quick_preview')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3462,7 +3462,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:resolve_conflict')
+            url: (rootUrl + '/tagmanager/v2/{+path}:resolve_conflict')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3520,7 +3520,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:sync')
+            url: (rootUrl + '/tagmanager/v2/{+path}:sync')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3575,7 +3575,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -3630,7 +3630,7 @@ export class Resource$Accounts$Containers$Workspaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -3699,7 +3699,7 @@ export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/built_in_variables')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/built_in_variables')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3751,7 +3751,7 @@ export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -3811,7 +3811,7 @@ export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/built_in_variables')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/built_in_variables')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3871,7 +3871,7 @@ export class Resource$Accounts$Containers$Workspaces$Built_in_variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}/built_in_variables:revert')
+            url: (rootUrl + '/tagmanager/v2/{+path}/built_in_variables:revert')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3936,7 +3936,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/folders')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/folders')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3986,7 +3986,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -4041,7 +4041,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:entities')
+            url: (rootUrl + '/tagmanager/v2/{+path}:entities')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4090,7 +4090,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4145,7 +4145,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/folders')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/folders')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4201,7 +4201,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:move_entities_to_folder')
+            url: (rootUrl + '/tagmanager/v2/{+path}:move_entities_to_folder')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4256,7 +4256,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:revert')
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4309,7 +4309,7 @@ export class Resource$Accounts$Containers$Workspaces$Folders {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -4376,7 +4376,7 @@ export class Resource$Accounts$Containers$Workspaces$Proposal {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/proposal')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/proposal')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4426,7 +4426,7 @@ export class Resource$Accounts$Containers$Workspaces$Proposal {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -4490,7 +4490,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/tags')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/tags')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4540,7 +4540,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -4589,7 +4589,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4644,7 +4644,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/tags')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/tags')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4699,7 +4699,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:revert')
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4752,7 +4752,7 @@ export class Resource$Accounts$Containers$Workspaces$Tags {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -4818,7 +4818,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/triggers')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/triggers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4868,7 +4868,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -4919,7 +4919,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4974,7 +4974,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/triggers')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/triggers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5031,7 +5031,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:revert')
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5086,7 +5086,7 @@ export class Resource$Accounts$Containers$Workspaces$Triggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -5152,7 +5152,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/variables')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/variables')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5202,7 +5202,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -5253,7 +5253,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5310,7 +5310,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/variables')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/variables')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5367,7 +5367,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}:revert')
+            url: (rootUrl + '/tagmanager/v2/{+path}:revert')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5422,7 +5422,7 @@ export class Resource$Accounts$Containers$Workspaces$Variables {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -5491,7 +5491,7 @@ export class Resource$Accounts$User_permissions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/user_permissions')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/user_permissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5542,7 +5542,7 @@ export class Resource$Accounts$User_permissions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -5594,7 +5594,7 @@ export class Resource$Accounts$User_permissions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5653,7 +5653,7 @@ export class Resource$Accounts$User_permissions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{parent}/user_permissions')
+            url: (rootUrl + '/tagmanager/v2/{+parent}/user_permissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5709,7 +5709,7 @@ export class Resource$Accounts$User_permissions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/tagmanager/v2/{path}')
+            url: (rootUrl + '/tagmanager/v2/{+path}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },

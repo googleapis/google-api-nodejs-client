@@ -136,10 +136,9 @@ export interface Schema$Api {
   version: string;
 }
 /**
- * `Authentication` defines the authentication configuration for an API.
- * Example for an API targeted for external use:      name:
- * calendar.googleapis.com     authentication:       providers:       - id:
- * google_calendar_auth         jwks_uri:
+ * `Authentication` defines the authentication configuration for an API. Example
+ * for an API targeted for external use:      name: calendar.googleapis.com
+ * authentication:       providers:       - id: google_calendar_auth jwks_uri:
  * https://www.googleapis.com/oauth2/v1/certs         issuer:
  * https://securetoken.google.com       rules:       - selector: &quot;*&quot;
  * requirements:           provider_id: google_calendar_auth
@@ -301,9 +300,8 @@ export interface Schema$AuthRequirement {
  */
 export interface Schema$Backend {
   /**
-   * A list of API backend rules that apply to individual API methods.
-   * **NOTE:** All service configuration rules follow &quot;last one wins&quot;
-   * order.
+   * A list of API backend rules that apply to individual API methods. **NOTE:**
+   * All service configuration rules follow &quot;last one wins&quot; order.
    */
   rules: Schema$BackendRule[];
 }
@@ -337,10 +335,9 @@ export interface Schema$BackendRule {
  * monitored_resources:     - type: library.googleapis.com/branch       labels:
  * - key: /city         description: The city where the library branch is
  * located in.       - key: /name         description: The name of the branch.
- * metrics:     - name: library.googleapis.com/book/borrowed_count
- * metric_kind: DELTA       value_type: INT64     billing:
- * consumer_destinations:       - monitored_resource:
- * library.googleapis.com/branch         metrics:         -
+ * metrics:     - name: library.googleapis.com/book/borrowed_count metric_kind:
+ * DELTA       value_type: INT64     billing:       consumer_destinations: -
+ * monitored_resource: library.googleapis.com/branch         metrics:         -
  * library.googleapis.com/book/borrowed_count
  */
 export interface Schema$Billing {
@@ -401,9 +398,8 @@ export interface Schema$CancelOperationRequest {}
  */
 export interface Schema$Context {
   /**
-   * A list of RPC context rules that apply to individual API methods.
-   * **NOTE:** All service configuration rules follow &quot;last one wins&quot;
-   * order.
+   * A list of RPC context rules that apply to individual API methods. **NOTE:**
+   * All service configuration rules follow &quot;last one wins&quot; order.
    */
   rules: Schema$ContextRule[];
 }
@@ -477,8 +473,8 @@ export interface Schema$CustomAuthRequirements {
 /**
  * Customize service error responses.  For example, list any service specific
  * protobuf types that can appear in error detail lists of error responses.
- * Example:      custom_error:       types:       - google.foo.v1.CustomError
- * - google.foo.v1.AnotherError
+ * Example:      custom_error:       types:       - google.foo.v1.CustomError -
+ * google.foo.v1.AnotherError
  */
 export interface Schema$CustomError {
   /**
@@ -616,9 +612,9 @@ export interface Schema$DocumentationRule {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -791,18 +787,18 @@ export interface Schema$Http {
  * message are mapped to URL path, URL query parameters, and HTTP request body.
  * The mapping is typically specified as an `google.api.http` annotation on the
  * RPC method, see &quot;google/api/annotations.proto&quot; for details.  The
- * mapping consists of a field specifying the path template and method kind.
- * The path template can refer to fields in the request message, as in the
- * example below which describes a REST GET operation on a resource collection
- * of messages:       service Messaging {       rpc
- * GetMessage(GetMessageRequest) returns (Message) {         option
- * (google.api.http).get = &quot;/v1/messages/{message_id}/{sub.subfield}&quot;;
- * }     }     message GetMessageRequest {       message SubMessage {
- * string subfield = 1;       }       string message_id = 1; // mapped to the
- * URL       SubMessage sub = 2;    // `sub.subfield` is url-mapped     }
- * message Message {       string text = 1; // content of the resource     }
- * The same http annotation can alternatively be expressed inside the `GRPC API
- * Configuration` YAML file.      http:       rules:         - selector:
+ * mapping consists of a field specifying the path template and method kind. The
+ * path template can refer to fields in the request message, as in the example
+ * below which describes a REST GET operation on a resource collection of
+ * messages:       service Messaging {       rpc GetMessage(GetMessageRequest)
+ * returns (Message) {         option (google.api.http).get =
+ * &quot;/v1/messages/{message_id}/{sub.subfield}&quot;;       }     } message
+ * GetMessageRequest {       message SubMessage {         string subfield = 1;
+ * }       string message_id = 1; // mapped to the URL       SubMessage sub = 2;
+ * // `sub.subfield` is url-mapped     }     message Message {       string text
+ * = 1; // content of the resource     }  The same http annotation can
+ * alternatively be expressed inside the `GRPC API Configuration` YAML file.
+ * http:       rules:         - selector:
  * &lt;proto_package_name&gt;.Messaging.GetMessage           get:
  * /v1/messages/{message_id}/{sub.subfield}  This definition enables an
  * automatic, bidrectional mapping of HTTP JSON to RPC. Example:  HTTP | RPC
@@ -812,40 +808,40 @@ export interface Schema$Http {
  * Fields mapped to the path pattern cannot be repeated and must have a
  * primitive (non-message) type.  Any fields in the request message which are
  * not bound by the path pattern automatically become (optional) HTTP query
- * parameters. Assume the following definition of the request message:
- * service Messaging {       rpc GetMessage(GetMessageRequest) returns (Message)
- * {         option (google.api.http).get =
- * &quot;/v1/messages/{message_id}&quot;;       }     }     message
- * GetMessageRequest {       message SubMessage {         string subfield = 1;
- * }       string message_id = 1; // mapped to the URL       int64 revision = 2;
- * // becomes a parameter       SubMessage sub = 3;    // `sub.subfield` becomes
- * a parameter     }   This enables a HTTP JSON to RPC mapping as below:  HTTP |
- * RPC -----|----- `GET /v1/messages/123456?revision=2&amp;sub.subfield=foo` |
+ * parameters. Assume the following definition of the request message: service
+ * Messaging {       rpc GetMessage(GetMessageRequest) returns (Message) {
+ * option (google.api.http).get = &quot;/v1/messages/{message_id}&quot;;       }
+ * }     message GetMessageRequest {       message SubMessage {         string
+ * subfield = 1;       }       string message_id = 1; // mapped to the URL int64
+ * revision = 2;    // becomes a parameter       SubMessage sub = 3;    //
+ * `sub.subfield` becomes a parameter     }   This enables a HTTP JSON to RPC
+ * mapping as below:  HTTP | RPC -----|----- `GET
+ * /v1/messages/123456?revision=2&amp;sub.subfield=foo` |
  * `GetMessage(message_id: &quot;123456&quot; revision: 2 sub:
  * SubMessage(subfield: &quot;foo&quot;))`  Note that fields which are mapped to
  * HTTP parameters must have a primitive type or a repeated primitive type.
  * Message types are not allowed. In the case of a repeated type, the parameter
  * can be repeated in the URL, as in `...?param=A&amp;param=B`.  For HTTP method
  * kinds which allow a request body, the `body` field specifies the mapping.
- * Consider a REST update method on the message resource collection:
- * service Messaging {       rpc UpdateMessage(UpdateMessageRequest) returns
- * (Message) {         option (google.api.http) = {           put:
- * &quot;/v1/messages/{message_id}&quot;           body: &quot;message&quot;
- * };       }     }     message UpdateMessageRequest {       string message_id =
- * 1; // mapped to the URL       Message message = 2;   // mapped to the body
- * }   The following HTTP JSON to RPC mapping is enabled, where the
- * representation of the JSON in the request body is determined by protos JSON
- * encoding:  HTTP | RPC -----|----- `PUT /v1/messages/123456 {
- * &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id:
- * &quot;123456&quot; message { text: &quot;Hi!&quot; })`  The special name `*`
- * can be used in the body mapping to define that every field not bound by the
- * path template should be mapped to the request body.  This enables the
- * following alternative definition of the update method:      service Messaging
- * {       rpc UpdateMessage(Message) returns (Message) {         option
- * (google.api.http) = {           put: &quot;/v1/messages/{message_id}&quot;
- * body: &quot;*&quot;         };       }     }     message Message {
- * string message_id = 1;       string text = 2;     }   The following HTTP JSON
- * to RPC mapping is enabled:  HTTP | RPC -----|----- `PUT /v1/messages/123456 {
+ * Consider a REST update method on the message resource collection: service
+ * Messaging {       rpc UpdateMessage(UpdateMessageRequest) returns (Message) {
+ * option (google.api.http) = {           put:
+ * &quot;/v1/messages/{message_id}&quot;           body: &quot;message&quot; };
+ * }     }     message UpdateMessageRequest {       string message_id = 1; //
+ * mapped to the URL       Message message = 2;   // mapped to the body     }
+ * The following HTTP JSON to RPC mapping is enabled, where the representation
+ * of the JSON in the request body is determined by protos JSON encoding:  HTTP
+ * | RPC -----|----- `PUT /v1/messages/123456 { &quot;text&quot;:
+ * &quot;Hi!&quot; }` | `UpdateMessage(message_id: &quot;123456&quot; message {
+ * text: &quot;Hi!&quot; })`  The special name `*` can be used in the body
+ * mapping to define that every field not bound by the path template should be
+ * mapped to the request body.  This enables the following alternative
+ * definition of the update method:      service Messaging {       rpc
+ * UpdateMessage(Message) returns (Message) {         option (google.api.http) =
+ * {           put: &quot;/v1/messages/{message_id}&quot;           body:
+ * &quot;*&quot;         };       }     }     message Message {       string
+ * message_id = 1;       string text = 2;     }   The following HTTP JSON to RPC
+ * mapping is enabled:  HTTP | RPC -----|----- `PUT /v1/messages/123456 {
  * &quot;text&quot;: &quot;Hi!&quot; }` | `UpdateMessage(message_id:
  * &quot;123456&quot; text: &quot;Hi!&quot;)`  Note that when using `*` in the
  * body mapping, it is not possible to have HTTP parameters, as all fields not
@@ -858,9 +854,9 @@ export interface Schema$Http {
  * (google.api.http) = {           get: &quot;/v1/messages/{message_id}&quot;
  * additional_bindings {             get:
  * &quot;/v1/users/{user_id}/messages/{message_id}&quot;           }         };
- * }     }     message GetMessageRequest {       string message_id = 1;
- * string user_id = 2;     }   This enables the following two alternative HTTP
- * JSON to RPC mappings:  HTTP | RPC -----|----- `GET /v1/messages/123456` |
+ * }     }     message GetMessageRequest {       string message_id = 1; string
+ * user_id = 2;     }   This enables the following two alternative HTTP JSON to
+ * RPC mappings:  HTTP | RPC -----|----- `GET /v1/messages/123456` |
  * `GetMessage(message_id: &quot;123456&quot;)` `GET
  * /v1/users/me/messages/123456` | `GetMessage(user_id: &quot;me&quot;
  * message_id: &quot;123456&quot;)`  # Rules for HTTP mapping  The rules for
@@ -876,16 +872,16 @@ export interface Schema$Http {
  * path template is as follows:      Template = &quot;/&quot; Segments [ Verb ]
  * ;     Segments = Segment { &quot;/&quot; Segment } ;     Segment  =
  * &quot;*&quot; | &quot;**&quot; | LITERAL | Variable ;     Variable =
- * &quot;{&quot; FieldPath [ &quot;=&quot; Segments ] &quot;}&quot; ;
- * FieldPath = IDENT { &quot;.&quot; IDENT } ;     Verb     = &quot;:&quot;
- * LITERAL ;  The syntax `*` matches a single path segment. The syntax `**`
- * matches zero or more path segments, which must be the last part of the path
- * except the `Verb`. The syntax `LITERAL` matches literal text in the path.
- * The syntax `Variable` matches part of the URL path as specified by its
- * template. A variable template must not contain other variables. If a variable
- * matches a single path segment, its template may be omitted, e.g. `{var}` is
- * equivalent to `{var=*}`.  If a variable contains exactly one path segment,
- * such as `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when such a variable is
+ * &quot;{&quot; FieldPath [ &quot;=&quot; Segments ] &quot;}&quot; ; FieldPath
+ * = IDENT { &quot;.&quot; IDENT } ;     Verb     = &quot;:&quot; LITERAL ;  The
+ * syntax `*` matches a single path segment. The syntax `**` matches zero or
+ * more path segments, which must be the last part of the path except the
+ * `Verb`. The syntax `LITERAL` matches literal text in the path.  The syntax
+ * `Variable` matches part of the URL path as specified by its template. A
+ * variable template must not contain other variables. If a variable matches a
+ * single path segment, its template may be omitted, e.g. `{var}` is equivalent
+ * to `{var=*}`.  If a variable contains exactly one path segment, such as
+ * `&quot;{var}&quot;` or `&quot;{var=*}&quot;`, when such a variable is
  * expanded into a URL path, all characters except `[-_.~0-9a-zA-Z]` are
  * percent-encoded. Such variables show up in the Discovery Document as `{var}`.
  * If a variable contains one or more path segments, such as
@@ -965,14 +961,13 @@ export interface Schema$HttpRule {
    * name is by default derived from the URL pattern. If specified, this field
    * overrides the default collection name. Example:      rpc
    * AddressesAggregatedList(AddressesAggregatedListRequest)         returns
-   * (AddressesAggregatedListResponse) {       option (google.api.http) = {
-   * get: &quot;/v1/projects/{project_id}/aggregated/addresses&quot;
-   * rest_collection: &quot;projects.addresses&quot;       };     }  This method
-   * has the automatically derived collection name
-   * &quot;projects.aggregated&quot;. Because, semantically, this rpc is
-   * actually an operation on the &quot;projects.addresses&quot; collection, the
-   * `rest_collection` field is configured to override the derived collection
-   * name.
+   * (AddressesAggregatedListResponse) {       option (google.api.http) = { get:
+   * &quot;/v1/projects/{project_id}/aggregated/addresses&quot; rest_collection:
+   * &quot;projects.addresses&quot;       };     }  This method has the
+   * automatically derived collection name &quot;projects.aggregated&quot;.
+   * Because, semantically, this rpc is actually an operation on the
+   * &quot;projects.addresses&quot; collection, the `rest_collection` field is
+   * configured to override the derived collection name.
    */
   restCollection: string;
   /**
@@ -1039,9 +1034,8 @@ export interface Schema$ListTenancyUnitsResponse {
 /**
  * A description of a log type. Example in YAML format:      - name:
  * library.googleapis.com/activity_history       description: The history of
- * borrowing and returning library items.       display_name: Activity
- * labels:       - key: /customer_id         description: Identifier of a
- * library customer
+ * borrowing and returning library items.       display_name: Activity labels:
+ * - key: /customer_id         description: Identifier of a library customer
  */
 export interface Schema$LogDescriptor {
   /**
@@ -1077,11 +1071,11 @@ export interface Schema$LogDescriptor {
  * labels:       - key: /city         description: The city where the library
  * branch is located in.       - key: /name         description: The name of the
  * branch.     logs:     - name: activity_history       labels:       - key:
- * /customer_id     - name: purchase_history     logging:
- * producer_destinations:       - monitored_resource:
- * library.googleapis.com/branch         logs:         - activity_history
- * - purchase_history       consumer_destinations:       - monitored_resource:
- * library.googleapis.com/branch         logs:         - activity_history
+ * /customer_id     - name: purchase_history     logging: producer_destinations:
+ * - monitored_resource: library.googleapis.com/branch         logs:         -
+ * activity_history         - purchase_history       consumer_destinations: -
+ * monitored_resource: library.googleapis.com/branch         logs:         -
+ * activity_history
  */
 export interface Schema$Logging {
   /**
@@ -1278,27 +1272,27 @@ export interface Schema$MetricDescriptor {
    * units are a subset of [The Unified Code for Units of
    * Measure](http://unitsofmeasure.org/ucum.html) standard:  **Basic units
    * (UNIT)**  * `bit`   bit * `By`    byte * `s`     second * `min`   minute *
-   * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo
-   * (10**3) * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera
-   * (10**12) * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`
-   * zetta   (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) *
-   * `u`     micro   (10**-6) * `n`     nano    (10**-9) * `p`     pico
-   * (10**-12) * `f`     femto   (10**-15) * `a`     atto    (10**-18) * `z`
-   * zepto   (10**-21) * `y`     yocto   (10**-24) * `Ki`    kibi    (2**10) *
-   * `Mi`    mebi    (2**20) * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)
-   * **Grammar**  The grammar also includes these connectors:  * `/`    division
-   * (as an infix operator, e.g. `1/s`). * `.`    multiplication (as an infix
-   * operator, e.g. `GBy.d`)  The grammar for a unit is as follows:
-   * Expression = Component { &quot;.&quot; Component } { &quot;/&quot;
-   * Component } ;      Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [
-   * Annotation ]               | Annotation               | &quot;1&quot;
-   * ;      Annotation = &quot;{&quot; NAME &quot;}&quot; ;  Notes:  *
-   * `Annotation` is just a comment if it follows a `UNIT` and is    equivalent
-   * to `1` if it is used alone. For examples,    `{requests}/s == 1/s`,
-   * `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable
-   * ASCII characters not    containing &#39;{&#39; or &#39;}&#39;. * `1`
-   * represents dimensionless value 1, such as in `1/s`. * `%` represents
-   * dimensionless value 1/100, and annotates values giving    a percentage.
+   * `h`     hour * `d`     day  **Prefixes (PREFIX)**  * `k`     kilo (10**3) *
+   * `M`     mega    (10**6) * `G`     giga    (10**9) * `T`     tera (10**12) *
+   * `P`     peta    (10**15) * `E`     exa     (10**18) * `Z`     zetta
+   * (10**21) * `Y`     yotta   (10**24) * `m`     milli   (10**-3) * `u` micro
+   * (10**-6) * `n`     nano    (10**-9) * `p`     pico    (10**-12) * `f` femto
+   * (10**-15) * `a`     atto    (10**-18) * `z`     zepto   (10**-21) * `y`
+   * yocto   (10**-24) * `Ki`    kibi    (2**10) * `Mi`    mebi    (2**20) *
+   * `Gi`    gibi    (2**30) * `Ti`    tebi    (2**40)  **Grammar**  The grammar
+   * also includes these connectors:  * `/`    division (as an infix operator,
+   * e.g. `1/s`). * `.`    multiplication (as an infix operator, e.g. `GBy.d`)
+   * The grammar for a unit is as follows:      Expression = Component {
+   * &quot;.&quot; Component } { &quot;/&quot; Component } ;      Component = (
+   * [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ]               | Annotation
+   * | &quot;1&quot;               ;      Annotation = &quot;{&quot; NAME
+   * &quot;}&quot; ;  Notes:  * `Annotation` is just a comment if it follows a
+   * `UNIT` and is    equivalent to `1` if it is used alone. For examples,
+   * `{requests}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence
+   * of non-blank printable ASCII characters not    containing &#39;{&#39; or
+   * &#39;}&#39;. * `1` represents dimensionless value 1, such as in `1/s`. *
+   * `%` represents dimensionless value 1/100, and annotates values giving    a
+   * percentage.
    */
   unit: string;
   /**
@@ -1335,8 +1329,8 @@ export interface Schema$MetricRule {
  * redeclared method will be   inherited.  - If an http annotation is inherited,
  * the path pattern will be   modified as follows. Any version prefix will be
  * replaced by the   version of the including interface plus the root path if
- * specified.  Example of a simple mixin:      package google.acl.v1;
- * service AccessControl {       // Get the underlying ACL object.       rpc
+ * specified.  Example of a simple mixin:      package google.acl.v1; service
+ * AccessControl {       // Get the underlying ACL object.       rpc
  * GetAcl(GetAclRequest) returns (Acl) {         option (google.api.http).get =
  * &quot;/v1/{resource=**}:getAcl&quot;;       }     }      package
  * google.storage.v2;     service Storage {       //       rpc
@@ -1425,18 +1419,18 @@ export interface Schema$MonitoredResourceDescriptor {
  * and consumer projects, whereas the
  * `library.googleapis.com/book/overdue_count` metric is only sent to the
  * consumer project.      monitored_resources:     - type:
- * library.googleapis.com/branch       labels:       - key: /city
- * description: The city where the library branch is located in.       - key:
- * /name         description: The name of the branch.     metrics:     - name:
+ * library.googleapis.com/branch       labels:       - key: /city description:
+ * The city where the library branch is located in.       - key: /name
+ * description: The name of the branch.     metrics:     - name:
  * library.googleapis.com/book/returned_count       metric_kind: DELTA
  * value_type: INT64       labels:       - key: /customer_id     - name:
  * library.googleapis.com/book/overdue_count       metric_kind: GAUGE
  * value_type: INT64       labels:       - key: /customer_id     monitoring:
  * producer_destinations:       - monitored_resource:
  * library.googleapis.com/branch         metrics:         -
- * library.googleapis.com/book/returned_count       consumer_destinations:
- * - monitored_resource: library.googleapis.com/branch         metrics:
- * - library.googleapis.com/book/returned_count         -
+ * library.googleapis.com/book/returned_count       consumer_destinations: -
+ * monitored_resource: library.googleapis.com/branch         metrics:         -
+ * library.googleapis.com/book/returned_count         -
  * library.googleapis.com/book/overdue_count
  */
 export interface Schema$Monitoring {
@@ -1608,13 +1602,13 @@ export interface Schema$PolicyBinding {
  * metrics, which will be used for   quota checks at runtime.  An example quota
  * configuration in yaml format:     quota:       - name: apiWriteQpsPerProject
  * metric: library.googleapis.com/write_calls        unit:
- * &quot;1/min/{project}&quot;  # rate limit for consumer projects
- * values:          STANDARD: 10000        # The metric rules bind all methods
- * to the read_calls metric,      # except for the UpdateBook and DeleteBook
- * methods. These two methods      # are mapped to the write_calls metric, with
- * the UpdateBook method      # consuming at twice rate as the DeleteBook
- * method.      metric_rules:      - selector: &quot;*&quot;
- * metric_costs:          library.googleapis.com/read_calls: 1      - selector:
+ * &quot;1/min/{project}&quot;  # rate limit for consumer projects values:
+ * STANDARD: 10000        # The metric rules bind all methods to the read_calls
+ * metric,      # except for the UpdateBook and DeleteBook methods. These two
+ * methods      # are mapped to the write_calls metric, with the UpdateBook
+ * method      # consuming at twice rate as the DeleteBook method. metric_rules:
+ * - selector: &quot;*&quot;        metric_costs:
+ * library.googleapis.com/read_calls: 1      - selector:
  * google.example.library.v1.LibraryService.UpdateBook        metric_costs:
  * library.googleapis.com/write_calls: 2      - selector:
  * google.example.library.v1.LibraryService.DeleteBook        metric_costs:
@@ -1747,11 +1741,10 @@ export interface Schema$SearchTenancyUnitsResponse {
  * describes basic information about a service, such as the name and the title,
  * and delegates other aspects to sub-sections. Each sub-section is either a
  * proto message or a repeated proto message that configures a specific aspect,
- * such as auth. See each proto message definition for details.  Example:
- * type: google.api.Service     config_version: 3     name:
- * calendar.googleapis.com     title: Google Calendar API     apis:     - name:
- * google.calendar.v3.Calendar     authentication:       providers:       - id:
- * google_calendar_auth         jwks_uri:
+ * such as auth. See each proto message definition for details.  Example: type:
+ * google.api.Service     config_version: 3     name: calendar.googleapis.com
+ * title: Google Calendar API     apis:     - name: google.calendar.v3.Calendar
+ * authentication:       providers:       - id: google_calendar_auth jwks_uri:
  * https://www.googleapis.com/oauth2/v1/certs         issuer:
  * https://securetoken.google.com       rules:       - selector: &quot;*&quot;
  * requirements:           provider_id: google_calendar_auth
@@ -1958,15 +1951,15 @@ export interface Schema$SourceInfo {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -2043,9 +2036,9 @@ export interface Schema$SystemParameters {
    * url_query_parameter: api_key   Example: define 2 api key names for a
    * specific method.      system_parameters       rules:         - selector:
    * &quot;/ListShelves&quot;           parameters:             - name: api_key
-   * http_header: Api-Key1             - name: api_key
-   * http_header: Api-Key2  **NOTE:** All service configuration rules follow
-   * &quot;last one wins&quot; order.
+   * http_header: Api-Key1             - name: api_key http_header: Api-Key2
+   * **NOTE:** All service configuration rules follow &quot;last one wins&quot;
+   * order.
    */
   rules: Schema$SystemParameterRule[];
 }
@@ -2296,7 +2289,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2350,7 +2343,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2403,7 +2396,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2470,7 +2463,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2543,8 +2536,8 @@ export class Resource$Services {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{parent}:search').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}:search')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2614,7 +2607,7 @@ export class Resource$Services$Tenancyunits {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}:addProject')
+            url: (rootUrl + '/v1/{+parent}:addProject')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2670,7 +2663,7 @@ export class Resource$Services$Tenancyunits {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/tenancyUnits')
+            url: (rootUrl + '/v1/{+parent}/tenancyUnits')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2725,7 +2718,7 @@ export class Resource$Services$Tenancyunits {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2787,7 +2780,7 @@ export class Resource$Services$Tenancyunits {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/tenancyUnits')
+            url: (rootUrl + '/v1/{+parent}/tenancyUnits')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2846,7 +2839,7 @@ export class Resource$Services$Tenancyunits {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:removeProject')
+            url: (rootUrl + '/v1/{+name}:removeProject')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },

@@ -556,7 +556,7 @@ export class Resource$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1a/subscriptions/{subscription}')
+            url: (rootUrl + '/v1beta1a/subscriptions/{+subscription}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -607,7 +607,7 @@ export class Resource$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1a/subscriptions/{subscription}')
+            url: (rootUrl + '/v1beta1a/subscriptions/{+subscription}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1002,7 +1002,7 @@ export class Resource$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1a/topics/{topic}')
+            url: (rootUrl + '/v1beta1a/topics/{+topic}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -1053,7 +1053,7 @@ export class Resource$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1a/topics/{topic}')
+            url: (rootUrl + '/v1beta1a/topics/{+topic}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

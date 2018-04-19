@@ -478,7 +478,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{projectName}/events')
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -551,7 +551,7 @@ export class Resource$Projects$Events {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{projectName}/events')
+            url: (rootUrl + '/v1beta1/{+projectName}/events')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -614,7 +614,7 @@ export class Resource$Projects$Events {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{projectName}/events:report')
+            url: (rootUrl + '/v1beta1/{+projectName}/events:report')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -678,7 +678,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{groupName}')
+            url: (rootUrl + '/v1beta1/{+groupName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -735,7 +735,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -814,7 +814,7 @@ export class Resource$Projects$Groupstats {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{projectName}/groupStats')
+            url: (rootUrl + '/v1beta1/{+projectName}/groupStats')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

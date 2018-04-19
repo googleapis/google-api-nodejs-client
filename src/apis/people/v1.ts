@@ -330,7 +330,8 @@ export interface Schema$Date {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**
@@ -379,9 +380,9 @@ export interface Schema$EmailAddress {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -1181,15 +1182,15 @@ export interface Schema$Source {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -1436,7 +1437,8 @@ export class Resource$Contactgroups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+resourceName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1488,7 +1490,8 @@ export class Resource$Contactgroups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+resourceName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1601,7 +1604,8 @@ export class Resource$Contactgroups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+resourceName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -1671,7 +1675,7 @@ export class Resource$Contactgroups$Members {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}/members:modify')
+            url: (rootUrl + '/v1/{+resourceName}/members:modify')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1793,7 +1797,7 @@ export class Resource$People {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}:deleteContact')
+            url: (rootUrl + '/v1/{+resourceName}:deleteContact')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -1846,7 +1850,8 @@ export class Resource$People {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+resourceName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1965,7 +1970,7 @@ export class Resource$People {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}:updateContact')
+            url: (rootUrl + '/v1/{+resourceName}:updateContact')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
@@ -2041,7 +2046,7 @@ export class Resource$People$Connections {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resourceName}/connections')
+            url: (rootUrl + '/v1/{+resourceName}/connections')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

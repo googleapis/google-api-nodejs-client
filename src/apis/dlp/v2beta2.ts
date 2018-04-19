@@ -3254,9 +3254,9 @@ export interface Schema$GooglePrivacyDlpV2beta2WordList {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$GoogleProtobufEmpty {}
 /**
@@ -3284,15 +3284,15 @@ export interface Schema$GoogleProtobufEmpty {}
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$GoogleRpcStatus {
   /**
@@ -3327,7 +3327,8 @@ export interface Schema$GoogleTypeDate {
    */
   day: number;
   /**
-   * Month of year. Must be from 1 to 12.
+   * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
+   * month.
    */
   month: number;
   /**
@@ -3505,7 +3506,7 @@ export class Resource$Organizations$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/deidentifyTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3561,7 +3562,7 @@ export class Resource$Organizations$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3616,7 +3617,7 @@ export class Resource$Organizations$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3678,7 +3679,7 @@ export class Resource$Organizations$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/deidentifyTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3741,7 +3742,7 @@ export class Resource$Organizations$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -3815,7 +3816,7 @@ export class Resource$Organizations$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/inspectTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3871,7 +3872,7 @@ export class Resource$Organizations$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3927,7 +3928,7 @@ export class Resource$Organizations$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3988,7 +3989,7 @@ export class Resource$Organizations$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/inspectTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4052,7 +4053,7 @@ export class Resource$Organizations$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4152,7 +4153,7 @@ export class Resource$Projects$Content {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/content:deidentify')
+            url: (rootUrl + '/v2beta2/{+parent}/content:deidentify')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4216,7 +4217,7 @@ export class Resource$Projects$Content {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/content:inspect')
+            url: (rootUrl + '/v2beta2/{+parent}/content:inspect')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4277,7 +4278,7 @@ export class Resource$Projects$Content {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/content:reidentify')
+            url: (rootUrl + '/v2beta2/{+parent}/content:reidentify')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4351,7 +4352,7 @@ export class Resource$Projects$Datasource {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/dataSource:analyze')
+            url: (rootUrl + '/v2beta2/{+parent}/dataSource:analyze')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4411,7 +4412,7 @@ export class Resource$Projects$Datasource {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/dataSource:inspect')
+            url: (rootUrl + '/v2beta2/{+parent}/dataSource:inspect')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4484,7 +4485,7 @@ export class Resource$Projects$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/deidentifyTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4540,7 +4541,7 @@ export class Resource$Projects$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4595,7 +4596,7 @@ export class Resource$Projects$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4657,7 +4658,7 @@ export class Resource$Projects$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/deidentifyTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/deidentifyTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4720,7 +4721,7 @@ export class Resource$Projects$Deidentifytemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4790,7 +4791,7 @@ export class Resource$Projects$Dlpjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:cancel')
+            url: (rootUrl + '/v2beta2/{+name}:cancel')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4846,7 +4847,7 @@ export class Resource$Projects$Dlpjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4900,7 +4901,7 @@ export class Resource$Projects$Dlpjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4962,7 +4963,7 @@ export class Resource$Projects$Dlpjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/dlpJobs')
+            url: (rootUrl + '/v2beta2/{+parent}/dlpJobs')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5037,7 +5038,7 @@ export class Resource$Projects$Image {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/image:redact')
+            url: (rootUrl + '/v2beta2/{+parent}/image:redact')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5112,7 +5113,7 @@ export class Resource$Projects$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/inspectTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5168,7 +5169,7 @@ export class Resource$Projects$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -5224,7 +5225,7 @@ export class Resource$Projects$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5285,7 +5286,7 @@ export class Resource$Projects$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/inspectTemplates')
+            url: (rootUrl + '/v2beta2/{+parent}/inspectTemplates')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5349,7 +5350,7 @@ export class Resource$Projects$Inspecttemplates {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -5422,7 +5423,7 @@ export class Resource$Projects$Jobtriggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+            url: (rootUrl + '/v2beta2/{+parent}/jobTriggers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -5478,7 +5479,7 @@ export class Resource$Projects$Jobtriggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -5533,7 +5534,7 @@ export class Resource$Projects$Jobtriggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -5595,7 +5596,7 @@ export class Resource$Projects$Jobtriggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/jobTriggers')
+            url: (rootUrl + '/v2beta2/{+parent}/jobTriggers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -5656,7 +5657,7 @@ export class Resource$Projects$Jobtriggers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),

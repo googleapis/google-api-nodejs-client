@@ -477,9 +477,9 @@ export interface Schema$Dpc {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -702,15 +702,15 @@ export interface Schema$PerDeviceStatusInBatch {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -918,7 +918,7 @@ export class Resource$Customers$Configurations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/configurations')
+            url: (rootUrl + '/v1/{+parent}/configurations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -971,7 +971,7 @@ export class Resource$Customers$Configurations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1023,7 +1023,7 @@ export class Resource$Customers$Configurations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1082,7 +1082,7 @@ export class Resource$Customers$Configurations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/configurations')
+            url: (rootUrl + '/v1/{+parent}/configurations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1141,7 +1141,7 @@ export class Resource$Customers$Configurations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1209,7 +1209,7 @@ export class Resource$Customers$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices:applyConfiguration')
+            url: (rootUrl + '/v1/{+parent}/devices:applyConfiguration')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1259,7 +1259,7 @@ export class Resource$Customers$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1318,7 +1318,7 @@ export class Resource$Customers$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices')
+            url: (rootUrl + '/v1/{+parent}/devices')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1373,7 +1373,7 @@ export class Resource$Customers$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices:removeConfiguration')
+            url: (rootUrl + '/v1/{+parent}/devices:removeConfiguration')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1428,7 +1428,7 @@ export class Resource$Customers$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/devices:unclaim')
+            url: (rootUrl + '/v1/{+parent}/devices:unclaim')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1498,7 +1498,7 @@ export class Resource$Customers$Dpcs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/dpcs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/dpcs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1564,7 +1564,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1648,7 +1648,7 @@ export class Resource$Partners$Customers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/customers')
+            url: (rootUrl + '/v1/{+parent}/customers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1707,7 +1707,7 @@ export class Resource$Partners$Customers {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/customers')
+            url: (rootUrl + '/v1/partners/{+partnerId}/customers')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1777,7 +1777,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:claim')
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:claim')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1835,7 +1835,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:claimAsync')
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:claimAsync')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1896,8 +1896,9 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:findByIdentifier')
-                     .replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/partners/{+partnerId}/devices:findByIdentifier')
+                    .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1959,7 +1960,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:findByOwner')
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:findByOwner')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2009,7 +2010,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2065,9 +2066,10 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl +
-                  '/v1/partners/{metadataOwnerId}/devices/{deviceId}/metadata')
-                     .replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl +
+                 '/v1/partners/{+metadataOwnerId}/devices/{+deviceId}/metadata')
+                    .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2120,7 +2122,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaim')
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:unclaim')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2178,7 +2180,7 @@ export class Resource$Partners$Devices {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/partners/{partnerId}/devices:unclaimAsync')
+            url: (rootUrl + '/v1/partners/{+partnerId}/devices:unclaimAsync')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2238,7 +2240,7 @@ export class Resource$Partners$Devices {
       options: Object.assign(
           {
             url: (rootUrl +
-                  '/v1/partners/{partnerId}/devices:updateMetadataAsync')
+                  '/v1/partners/{+partnerId}/devices:updateMetadataAsync')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },

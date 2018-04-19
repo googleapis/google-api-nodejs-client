@@ -120,8 +120,8 @@ export interface Schema$ApproximateReportedProgress {
    * dynamic splitting and the current   task remains processing block 3). * If
    * we are reading through the last block in a block-compressed file,   or
    * reading or processing the last record in a perfectly splittable   input,
-   * this value should be 1, because apart from the current task, no
-   * additional remainder can be split off.
+   * this value should be 1, because apart from the current task, no additional
+   * remainder can be split off.
    */
   remainingParallelism: Schema$ReportedParallelism;
 }
@@ -1052,8 +1052,7 @@ export interface Schema$Job {
    * A set of files the system should be aware of that are used for temporary
    * storage. These temporary files will be removed on job completion. No
    * duplicates are allowed. No file patterns are supported.  The supported
-   * files are:  Google Cloud Storage:
-   * storage.googleapis.com/{bucket}/{object}
+   * files are:  Google Cloud Storage: storage.googleapis.com/{bucket}/{object}
    * bucket.storage.googleapis.com/{object}
    */
   tempFiles: string[];
@@ -2250,15 +2249,15 @@ export interface Schema$StateFamilyConfig {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -2776,10 +2775,10 @@ export interface Schema$WorkerMessageCode {
   /**
    * Parameters contains specific information about the code.  This is a struct
    * to allow parameters of different types.  Examples:  1. For a
-   * &quot;HARNESS_STARTED&quot; message parameters might provide the name
-   * of the worker and additional data like timing information.  2. For a
-   * &quot;GCS_DOWNLOAD_ERROR&quot; parameters might contain fields listing
-   * the GCS objects being downloaded and fields containing errors.  In general
+   * &quot;HARNESS_STARTED&quot; message parameters might provide the name of
+   * the worker and additional data like timing information.  2. For a
+   * &quot;GCS_DOWNLOAD_ERROR&quot; parameters might contain fields listing the
+   * GCS objects being downloaded and fields containing errors.  In general
    * complex data structures should be avoided. If a worker needs to send a
    * specific and complicated data structure then please consider defining a new
    * proto and adding it to the data oneof in WorkerMessageResponse.

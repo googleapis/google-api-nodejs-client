@@ -76,9 +76,9 @@ export interface Schema$CreatePublicKeyRequest {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -244,15 +244,15 @@ export interface Schema$StartEnvironmentResponse {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -333,7 +333,7 @@ export class Resource$Users$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -388,7 +388,7 @@ export class Resource$Users$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -446,7 +446,7 @@ export class Resource$Users$Environments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{name}:start')
+            url: (rootUrl + '/v1alpha1/{+name}:start')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -514,7 +514,7 @@ export class Resource$Users$Environments$Publickeys {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{parent}/publicKeys')
+            url: (rootUrl + '/v1alpha1/{+parent}/publicKeys')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -566,7 +566,7 @@ export class Resource$Users$Environments$Publickeys {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),

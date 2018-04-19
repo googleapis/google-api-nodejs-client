@@ -84,8 +84,8 @@ export interface Schema$AwsAccessKey {
   secretAccessKey: string;
 }
 /**
- * An AwsS3Data can be a data source, but not a data sink. In an AwsS3Data, an
- * object&#39;s name is the S3 object&#39;s key name.
+ * An AwsS3Data resource can be a data source, but not a data sink. In an
+ * AwsS3Data resource, an object&#39;s name is the S3 object&#39;s key name.
  */
 export interface Schema$AwsS3Data {
   /**
@@ -129,9 +129,9 @@ export interface Schema$Date {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -166,9 +166,10 @@ export interface Schema$ErrorSummary {
   errorLogEntries: Schema$ErrorLogEntry[];
 }
 /**
- * In a GcsData, an object&#39;s name is the Google Cloud Storage object&#39;s
- * name and its `lastModificationTime` refers to the object&#39;s updated time,
- * which changes when the content or the metadata of the object is updated.
+ * In a GcsData resource, an object&#39;s name is the Google Cloud Storage
+ * object&#39;s name and its `lastModificationTime` refers to the object&#39;s
+ * updated time, which changes when the content or the metadata of the object is
+ * updated.
  */
 export interface Schema$GcsData {
   /**
@@ -188,9 +189,9 @@ export interface Schema$GoogleServiceAccount {
   accountEmail: string;
 }
 /**
- * An HttpData specifies a list of objects on the web to be transferred over
- * HTTP.  The information of the objects to be transferred is contained in a
- * file referenced by a URL. The first line in the file must be
+ * An HttpData resource specifies a list of objects on the web to be transferred
+ * over HTTP.  The information of the objects to be transferred is contained in
+ * a file referenced by a URL. The first line in the file must be
  * &quot;TsvHttpData-1.0&quot;, which specifies the format of the file.
  * Subsequent lines specify the information of the list of objects, one object
  * per list entry. Each entry has the following tab-delimited fields:  * HTTP
@@ -393,15 +394,15 @@ export interface Schema$Schedule {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -1030,7 +1031,7 @@ export class Resource$Transferjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1268,7 +1269,7 @@ export class Resource$Transferjobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{jobName}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+jobName}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1383,7 +1384,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1484,7 +1485,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1590,7 +1591,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1722,7 +1723,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1829,7 +1830,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:pause').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:pause').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1936,7 +1937,7 @@ export class Resource$Transferoperations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:resume').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),

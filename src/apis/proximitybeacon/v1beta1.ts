@@ -314,9 +314,9 @@ export interface Schema$Diagnostics {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -691,7 +691,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}:activate')
+            url: (rootUrl + '/v1beta1/{+beaconName}:activate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -751,7 +751,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}:deactivate')
+            url: (rootUrl + '/v1beta1/{+beaconName}:deactivate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -811,7 +811,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}:decommission')
+            url: (rootUrl + '/v1beta1/{+beaconName}:decommission')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -870,7 +870,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}')
+            url: (rootUrl + '/v1beta1/{+beaconName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -890,8 +890,8 @@ export class Resource$Beacons {
 
   /**
    * proximitybeacon.beacons.get
-   * @desc Returns detailed information about the specified beacon.
-   * Authenticate using an [OAuth access
+   * @desc Returns detailed information about the specified beacon. Authenticate
+   * using an [OAuth access
    * token](https://developers.google.com/identity/protocols/OAuth2) from a
    * signed-in user with **viewer**, **Is owner** or **Can edit** permissions in
    * the Google Developers Console project.  Requests may supply an
@@ -930,7 +930,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}')
+            url: (rootUrl + '/v1beta1/{+beaconName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1113,7 +1113,7 @@ export class Resource$Beacons {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}')
+            url: (rootUrl + '/v1beta1/{+beaconName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -1191,7 +1191,7 @@ export class Resource$Beacons$Attachments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}/attachments:batchDelete')
+            url: (rootUrl + '/v1beta1/{+beaconName}/attachments:batchDelete')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1258,7 +1258,7 @@ export class Resource$Beacons$Attachments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+            url: (rootUrl + '/v1beta1/{+beaconName}/attachments')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1318,7 +1318,7 @@ export class Resource$Beacons$Attachments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{attachmentName}')
+            url: (rootUrl + '/v1beta1/{+attachmentName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
@@ -1386,7 +1386,7 @@ export class Resource$Beacons$Attachments {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}/attachments')
+            url: (rootUrl + '/v1beta1/{+beaconName}/attachments')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1465,7 +1465,7 @@ export class Resource$Beacons$Diagnostics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{beaconName}/diagnostics')
+            url: (rootUrl + '/v1beta1/{+beaconName}/diagnostics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1598,7 +1598,7 @@ export class Resource$Namespaces {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{namespaceName}')
+            url: (rootUrl + '/v1beta1/{+namespaceName}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },

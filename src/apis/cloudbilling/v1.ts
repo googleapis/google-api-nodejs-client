@@ -90,22 +90,19 @@ export interface Schema$AggregationInfo {
  * each AuditConfig are enabled, and the exempted_members in each AuditLogConfig
  * are exempted.  Example Policy with multiple AuditConfigs:      {
  * &quot;audit_configs&quot;: [         {           &quot;service&quot;:
- * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [
- * {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
- * &quot;exempted_members&quot;: [
+ * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [ {
+ * &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
  * &quot;user:foo@gmail.com&quot;               ]             },             {
  * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
- * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]
- * },         {           &quot;service&quot;:
- * &quot;fooservice.googleapis.com&quot;
- * &quot;audit_log_configs&quot;: [             {
- * &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {
- * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,
- * &quot;exempted_members&quot;: [
- * &quot;user:bar@gmail.com&quot;               ]             }           ]
- * }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE
- * and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
- * and bar@gmail.com from DATA_WRITE logging.
+ * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] }, {
+ * &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
+ * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
+ * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
+ * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
+ * &quot;user:bar@gmail.com&quot;               ]             }           ] } ]
+ * }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ
+ * logging. It also exempts foo@gmail.com from DATA_READ logging, and
+ * bar@gmail.com from DATA_WRITE logging.
  */
 export interface Schema$AuditConfig {
   /**
@@ -314,15 +311,14 @@ export interface Schema$Money {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -749,7 +745,7 @@ export class Resource$Billingaccounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -805,7 +801,7 @@ export class Resource$Billingaccounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -991,7 +987,7 @@ export class Resource$Billingaccounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1048,7 +1044,7 @@ export class Resource$Billingaccounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1109,7 +1105,7 @@ export class Resource$Billingaccounts {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1251,8 +1247,8 @@ export class Resource$Billingaccounts$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}/projects').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/projects')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1376,7 +1372,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/billingInfo')
+            url: (rootUrl + '/v1/{+name}/billingInfo')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1513,7 +1509,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/billingInfo')
+            url: (rootUrl + '/v1/{+name}/billingInfo')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
@@ -1779,7 +1775,7 @@ export class Resource$Services$Skus {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/skus').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/skus').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

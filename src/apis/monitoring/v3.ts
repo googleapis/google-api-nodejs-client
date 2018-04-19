@@ -1871,7 +1871,7 @@ export class Resource$Projects$Alertpolicies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/alertPolicies')
+            url: (rootUrl + '/v3/{+name}/alertPolicies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1922,7 +1922,7 @@ export class Resource$Projects$Alertpolicies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1972,7 +1972,7 @@ export class Resource$Projects$Alertpolicies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2031,7 +2031,7 @@ export class Resource$Projects$Alertpolicies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/alertPolicies')
+            url: (rootUrl + '/v3/{+name}/alertPolicies')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2090,7 +2090,7 @@ export class Resource$Projects$Alertpolicies {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2204,7 +2204,7 @@ export class Resource$Projects$Collectdtimeseries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/collectdTimeSeries')
+            url: (rootUrl + '/v3/{+name}/collectdTimeSeries')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2319,7 +2319,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2415,7 +2415,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2509,7 +2509,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2619,7 +2619,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/groups').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}/groups').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2724,7 +2724,7 @@ export class Resource$Projects$Groups {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -2848,7 +2848,8 @@ export class Resource$Projects$Groups$Members {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/members').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v3/{+name}/members').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2959,7 +2960,7 @@ export class Resource$Projects$Metricdescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/metricDescriptors')
+            url: (rootUrl + '/v3/{+name}/metricDescriptors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3056,7 +3057,7 @@ export class Resource$Projects$Metricdescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3153,7 +3154,7 @@ export class Resource$Projects$Metricdescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3265,7 +3266,7 @@ export class Resource$Projects$Metricdescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/metricDescriptors')
+            url: (rootUrl + '/v3/{+name}/metricDescriptors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3382,7 +3383,7 @@ export class Resource$Projects$Monitoredresourcedescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3497,7 +3498,7 @@ export class Resource$Projects$Monitoredresourcedescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/monitoredResourceDescriptors')
+            url: (rootUrl + '/v3/{+name}/monitoredResourceDescriptors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3568,7 +3569,7 @@ export class Resource$Projects$Notificationchanneldescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3630,7 +3631,7 @@ export class Resource$Projects$Notificationchanneldescriptors {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/notificationChannelDescriptors')
+            url: (rootUrl + '/v3/{+name}/notificationChannelDescriptors')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3701,7 +3702,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/notificationChannels')
+            url: (rootUrl + '/v3/{+name}/notificationChannels')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3753,7 +3754,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3808,7 +3809,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3883,7 +3884,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}:getVerificationCode')
+            url: (rootUrl + '/v3/{+name}:getVerificationCode')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3947,7 +3948,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/notificationChannels')
+            url: (rootUrl + '/v3/{+name}/notificationChannels')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4006,7 +4007,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -4059,7 +4060,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}:sendVerificationCode')
+            url: (rootUrl + '/v3/{+name}:sendVerificationCode')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4116,7 +4117,7 @@ export class Resource$Projects$Notificationchannels {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}:verify').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -4228,7 +4229,7 @@ export class Resource$Projects$Timeseries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/timeSeries')
+            url: (rootUrl + '/v3/{+name}/timeSeries')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4348,7 +4349,7 @@ export class Resource$Projects$Timeseries {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}/timeSeries')
+            url: (rootUrl + '/v3/{+name}/timeSeries')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4415,7 +4416,7 @@ export class Resource$Projects$Uptimecheckconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
+            url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -4468,7 +4469,7 @@ export class Resource$Projects$Uptimecheckconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -4519,7 +4520,7 @@ export class Resource$Projects$Uptimecheckconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -4578,7 +4579,7 @@ export class Resource$Projects$Uptimecheckconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{parent}/uptimeCheckConfigs')
+            url: (rootUrl + '/v3/{+parent}/uptimeCheckConfigs')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -4639,7 +4640,7 @@ export class Resource$Projects$Uptimecheckconfigs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v3/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),

@@ -110,8 +110,8 @@ export interface Schema$CreateSnapshotRequest {
    * subscription. More precisely, this is      defined as the messages in the
    * subscription&#39;s backlog that are      unacknowledged upon the successful
    * completion of the      `CreateSnapshot` request; as well as:  (b) Any
-   * messages published to the subscription&#39;s topic following the
-   * successful completion of the CreateSnapshot request. Format is
+   * messages published to the subscription&#39;s topic following the successful
+   * completion of the CreateSnapshot request. Format is
    * `projects/{project}/subscriptions/{sub}`.
    */
   subscription: string;
@@ -119,9 +119,9 @@ export interface Schema$CreateSnapshotRequest {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -235,15 +235,14 @@ export interface Schema$ModifyPushConfigRequest {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -650,7 +649,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -704,7 +703,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{snapshot}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+snapshot}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -755,7 +754,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{snapshot}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+snapshot}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -861,7 +860,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -920,7 +919,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{project}/snapshots')
+            url: (rootUrl + '/v1/{+project}/snapshots')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -976,7 +975,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -1087,7 +1086,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1205,7 +1204,7 @@ export class Resource$Projects$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1329,7 +1328,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}:acknowledge')
+            url: (rootUrl + '/v1/{+subscription}:acknowledge')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1458,7 +1457,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -1563,7 +1562,8 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+subscription}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1667,7 +1667,8 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+subscription}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1771,7 +1772,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1896,7 +1897,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{project}/subscriptions')
+            url: (rootUrl + '/v1/{+project}/subscriptions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2008,7 +2009,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}:modifyAckDeadline')
+            url: (rootUrl + '/v1/{+subscription}:modifyAckDeadline')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2120,7 +2121,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}:modifyPushConfig')
+            url: (rootUrl + '/v1/{+subscription}:modifyPushConfig')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2176,7 +2177,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2291,7 +2292,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}:pull')
+            url: (rootUrl + '/v1/{+subscription}:pull')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2348,7 +2349,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{subscription}:seek')
+            url: (rootUrl + '/v1/{+subscription}:seek')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2458,7 +2459,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2576,7 +2577,7 @@ export class Resource$Projects$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2712,7 +2713,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT'
           },
           options),
@@ -2817,7 +2818,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{topic}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2919,7 +2920,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{topic}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+topic}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3025,7 +3026,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3147,7 +3148,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{project}/topics')
+            url: (rootUrl + '/v1/{+project}/topics')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3262,8 +3263,8 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{topic}:publish').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+topic}:publish')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -3374,7 +3375,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3492,7 +3493,7 @@ export class Resource$Projects$Topics {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3562,7 +3563,7 @@ export class Resource$Projects$Topics$Snapshots {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{topic}/snapshots')
+            url: (rootUrl + '/v1/{+topic}/snapshots')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3701,7 +3702,7 @@ export class Resource$Projects$Topics$Subscriptions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{topic}/subscriptions')
+            url: (rootUrl + '/v1/{+topic}/subscriptions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

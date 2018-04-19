@@ -97,13 +97,12 @@ export interface Schema$Cohort {
 /**
  * Defines a cohort group. For example:      &quot;cohortGroup&quot;: {
  * &quot;cohorts&quot;: [{         &quot;name&quot;: &quot;cohort 1&quot;,
- * &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;,
- * &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-08-01&quot;,
- * &quot;endDate&quot;: &quot;2015-08-01&quot; }       },{
- * &quot;name&quot;: &quot;cohort 2&quot;          &quot;type&quot;:
- * &quot;FIRST_VISIT_DATE&quot;          &quot;dateRange&quot;: {
- * &quot;startDate&quot;: &quot;2015-07-01&quot;, &quot;endDate&quot;:
- * &quot;2015-07-01&quot; }       }]     }
+ * &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;, &quot;dateRange&quot;: {
+ * &quot;startDate&quot;: &quot;2015-08-01&quot;, &quot;endDate&quot;:
+ * &quot;2015-08-01&quot; }       },{         &quot;name&quot;: &quot;cohort
+ * 2&quot;          &quot;type&quot;: &quot;FIRST_VISIT_DATE&quot;
+ * &quot;dateRange&quot;: { &quot;startDate&quot;: &quot;2015-07-01&quot;,
+ * &quot;endDate&quot;: &quot;2015-07-01&quot; }       }]     }
  */
 export interface Schema$CohortGroup {
   /**
@@ -834,8 +833,7 @@ export interface Schema$SegmentFilter {
    * to match all visits not from &quot;New York&quot;, we can define the
    * segment as follows:        &quot;sessionSegment&quot;: {
    * &quot;segmentFilters&quot;: [{           &quot;simpleSegment&quot; :{
-   * &quot;orFiltersForSegment&quot;: [{
-   * &quot;segmentFilterClauses&quot;:[{
+   * &quot;orFiltersForSegment&quot;: [{ &quot;segmentFilterClauses&quot;:[{
    * &quot;dimensionFilter&quot;: {                   &quot;dimensionName&quot;:
    * &quot;ga:city&quot;,                   &quot;expressions&quot;: [&quot;New
    * York&quot;]                 }               }]             }]           },

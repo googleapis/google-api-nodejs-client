@@ -446,8 +446,8 @@ export interface Schema$BasicChartSpec {
   /**
    * The number of rows or columns in the data that are &quot;headers&quot;. If
    * not set, Google Sheets will guess how many rows are headers based on the
-   * data.  (Note that BasicChartAxis.title may override the axis title
-   * inferred from the header values.)
+   * data.  (Note that BasicChartAxis.title may override the axis title inferred
+   * from the header values.)
    */
   headerCount: number;
   /**
@@ -1123,10 +1123,10 @@ export interface Schema$ChartSourceRange {
    * with length 1. The domain (if it exists) &amp; all series must have the
    * same number of source ranges. If using more than one source range, then the
    * source range at a given offset must be in order and contiguous across the
-   * domain and series.  For example, these are valid configurations:
-   * domain sources: A1:A5     series1 sources: B1:B5     series2 sources:
-   * D6:D10      domain sources: A1:A5, C10:C12     series1 sources: B1:B5,
-   * D10:D12     series2 sources: C1:C5, E10:E12
+   * domain and series.  For example, these are valid configurations: domain
+   * sources: A1:A5     series1 sources: B1:B5     series2 sources: D6:D10
+   * domain sources: A1:A5, C10:C12     series1 sources: B1:B5, D10:D12 series2
+   * sources: C1:C5, E10:E12
    */
   sources: Schema$GridRange[];
 }
@@ -1255,48 +1255,48 @@ export interface Schema$ClearValuesResponse {
  * little work, it can be easily formatted into a CSS &quot;rgba()&quot; string
  * in JavaScript, as well. Here are some examples:  Example (Java):       import
  * com.google.type.Color;       // ...      public static java.awt.Color
- * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha()
- * ? protocolor.getAlpha().getValue()            : 1.0;         return new
- * java.awt.Color(            protocolor.getRed(),
- * protocolor.getGreen(),            protocolor.getBlue(),            alpha);
- * }       public static Color toProto(java.awt.Color color) {        float red
- * = (float) color.getRed();        float green = (float) color.getGreen();
- * float blue = (float) color.getBlue();        float denominator = 255.0;
- * Color.Builder resultBuilder =            Color                .newBuilder()
- * .setRed(red / denominator)                .setGreen(green / denominator)
- * .setBlue(blue / denominator);        int alpha = color.getAlpha();        if
- * (alpha != 255) {          result.setAlpha(              FloatValue
- * .newBuilder()                  .setValue(((float) alpha) / denominator)
- * .build());        }        return resultBuilder.build();      }      // ...
- * Example (iOS / Obj-C):       // ...      static UIColor* fromProto(Color*
- * protocolor) {         float red = [protocolor red];         float green =
- * [protocolor green];         float blue = [protocolor blue];
- * FloatValue* alpha_wrapper = [protocolor alpha];         float alpha = 1.0;
- * if (alpha_wrapper != nil) {           alpha = [alpha_wrapper value];
- * }         return [UIColor colorWithRed:red green:green blue:blue
- * alpha:alpha];      }       static Color* toProto(UIColor* color) {
- * CGFloat red, green, blue, alpha;          if (![color getRed:&amp;red
- * green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {            return nil;
- * }          Color* result = [Color alloc] init];          [result setRed:red];
- * [result setGreen:green];          [result setBlue:blue];          if (alpha
- * &lt;= 0.9999) {            [result setAlpha:floatWrapperWithValue(alpha)];
- * }          [result autorelease];          return result;     }     // ...
- * Example (JavaScript):      // ...      var protoToCssColor =
- * function(rgb_color) {        var redFrac = rgb_color.red || 0.0;        var
- * greenFrac = rgb_color.green || 0.0;        var blueFrac = rgb_color.blue ||
- * 0.0;        var red = Math.floor(redFrac * 255);        var green =
- * Math.floor(greenFrac * 255);        var blue = Math.floor(blueFrac * 255);
- * if (!(&#39;alpha&#39; in rgb_color)) {           return rgbToCssColor_(red,
- * green, blue);        }         var alphaFrac = rgb_color.alpha.value || 0.0;
- * var rgbParams = [red, green, blue].join(&#39;,&#39;);        return
- * [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac,
- * &#39;)&#39;].join(&#39;&#39;);     };      var rgbToCssColor_ = function(red,
- * green, blue) {       var rgbNumber = new Number((red &lt;&lt; 16) | (green
- * &lt;&lt; 8) | blue);       var hexString = rgbNumber.toString(16);       var
- * missingZeros = 6 - hexString.length;       var resultBuilder = [&#39;#&#39;];
- * for (var i = 0; i &lt; missingZeros; i++) {
- * resultBuilder.push(&#39;0&#39;);       }       resultBuilder.push(hexString);
- * return resultBuilder.join(&#39;&#39;);     };      // ...
+ * fromProto(Color protocolor) {        float alpha = protocolor.hasAlpha() ?
+ * protocolor.getAlpha().getValue()            : 1.0;         return new
+ * java.awt.Color(            protocolor.getRed(), protocolor.getGreen(),
+ * protocolor.getBlue(),            alpha);      }       public static Color
+ * toProto(java.awt.Color color) {        float red = (float) color.getRed();
+ * float green = (float) color.getGreen();        float blue = (float)
+ * color.getBlue();        float denominator = 255.0;        Color.Builder
+ * resultBuilder =            Color                .newBuilder() .setRed(red /
+ * denominator)                .setGreen(green / denominator) .setBlue(blue /
+ * denominator);        int alpha = color.getAlpha();        if (alpha != 255) {
+ * result.setAlpha(              FloatValue                  .newBuilder()
+ * .setValue(((float) alpha) / denominator)                  .build());        }
+ * return resultBuilder.build();      }      // ...  Example (iOS / Obj-C): //
+ * ...      static UIColor* fromProto(Color* protocolor) {         float red =
+ * [protocolor red];         float green = [protocolor green];         float
+ * blue = [protocolor blue];         FloatValue* alpha_wrapper = [protocolor
+ * alpha];         float alpha = 1.0;         if (alpha_wrapper != nil) { alpha
+ * = [alpha_wrapper value];         }         return [UIColor colorWithRed:red
+ * green:green blue:blue alpha:alpha];      }       static Color*
+ * toProto(UIColor* color) {          CGFloat red, green, blue, alpha; if
+ * (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) {
+ * return nil;          }          Color* result = [Color alloc] init]; [result
+ * setRed:red];          [result setGreen:green];          [result
+ * setBlue:blue];          if (alpha &lt;= 0.9999) {            [result
+ * setAlpha:floatWrapperWithValue(alpha)];          }          [result
+ * autorelease];          return result;     }     // ...   Example
+ * (JavaScript):      // ...      var protoToCssColor = function(rgb_color) {
+ * var redFrac = rgb_color.red || 0.0;        var greenFrac = rgb_color.green ||
+ * 0.0;        var blueFrac = rgb_color.blue || 0.0;        var red =
+ * Math.floor(redFrac * 255);        var green = Math.floor(greenFrac * 255);
+ * var blue = Math.floor(blueFrac * 255);         if (!(&#39;alpha&#39; in
+ * rgb_color)) {           return rgbToCssColor_(red, green, blue);        } var
+ * alphaFrac = rgb_color.alpha.value || 0.0;        var rgbParams = [red, green,
+ * blue].join(&#39;,&#39;);        return [&#39;rgba(&#39;, rgbParams,
+ * &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;);     };      var
+ * rgbToCssColor_ = function(red, green, blue) {       var rgbNumber = new
+ * Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue);       var hexString =
+ * rgbNumber.toString(16);       var missingZeros = 6 - hexString.length; var
+ * resultBuilder = [&#39;#&#39;];       for (var i = 0; i &lt; missingZeros;
+ * i++) {          resultBuilder.push(&#39;0&#39;);       }
+ * resultBuilder.push(hexString);       return resultBuilder.join(&#39;&#39;);
+ * };      // ...
  */
 export interface Schema$Color {
   /**
@@ -1687,8 +1687,8 @@ export interface Schema$DeveloperMetadataLookup {
    * Determines how this lookup matches the location.  If this field is
    * specified as EXACT, only developer metadata associated on the exact
    * location specified is matched.  If this field is specified to INTERSECTING,
-   * developer metadata associated on intersecting locations is also matched.
-   * If left unspecified, this field assumes a default value of INTERSECTING. If
+   * developer metadata associated on intersecting locations is also matched. If
+   * left unspecified, this field assumes a default value of INTERSECTING. If
    * this field is specified, a metadataLocation must also be specified.
    */
   locationMatchingStrategy: string;
@@ -2158,18 +2158,17 @@ export interface Schema$GridProperties {
 /**
  * A range on a sheet. All indexes are zero-based. Indexes are half open, e.g
  * the start index is inclusive and the end index is exclusive -- [start_index,
- * end_index). Missing indexes indicate the range is unbounded on that side.
- * For example, if `&quot;Sheet1&quot;` is sheet ID 0, then:    `Sheet1!A1:A1 ==
+ * end_index). Missing indexes indicate the range is unbounded on that side. For
+ * example, if `&quot;Sheet1&quot;` is sheet ID 0, then:    `Sheet1!A1:A1 ==
  * sheet_id: 0,                   start_row_index: 0, end_row_index: 1,
  * start_column_index: 0, end_column_index: 1`    `Sheet1!A3:B4 == sheet_id: 0,
  * start_row_index: 2, end_row_index: 4,                   start_column_index:
- * 0, end_column_index: 2`    `Sheet1!A:B == sheet_id: 0,
- * start_column_index: 0, end_column_index: 2`    `Sheet1!A5:B == sheet_id: 0,
- * start_row_index: 4,                  start_column_index: 0, end_column_index:
- * 2`    `Sheet1 == sheet_id:0`  The start index must always be less than or
- * equal to the end index. If the start index equals the end index, then the
- * range is empty. Empty ranges are typically not meaningful and are usually
- * rendered in the UI as `#REF!`.
+ * 0, end_column_index: 2`    `Sheet1!A:B == sheet_id: 0, start_column_index: 0,
+ * end_column_index: 2`    `Sheet1!A5:B == sheet_id: 0, start_row_index: 4,
+ * start_column_index: 0, end_column_index: 2`    `Sheet1 == sheet_id:0`  The
+ * start index must always be less than or equal to the end index. If the start
+ * index equals the end index, then the range is empty. Empty ranges are
+ * typically not meaningful and are usually rendered in the UI as `#REF!`.
  */
 export interface Schema$GridRange {
   /**
@@ -2245,17 +2244,17 @@ export interface Schema$HistogramChartSpec {
  * HistogramRule.end are both provided, HistogramRule.start must be less than
  * HistogramRule.end. For example, a pivot table showing average purchase amount
  * by age that has 50+ rows:      +-----+-------------------+     | Age |
- * AVERAGE of Amount |     +-----+-------------------+     | 16  |
- * $27.13 |     | 17  |             $5.24 |     | 18  |            $20.15 |
- * ...     +-----+-------------------+ could be turned into a pivot table that
- * looks like the one below by applying a histogram group rule with a
+ * AVERAGE of Amount |     +-----+-------------------+     | 16  | $27.13 | | 17
+ * |             $5.24 |     | 18  |            $20.15 |     ...
+ * +-----+-------------------+ could be turned into a pivot table that looks
+ * like the one below by applying a histogram group rule with a
  * HistogramRule.start of 25, an HistogramRule.interval of 20, and an
  * HistogramRule.end of 65.      +-------------+-------------------+     |
- * Grouped Age | AVERAGE of Amount |     +-------------+-------------------+
- * | &lt; 25        |            $19.34 |     | 25-45       |            $31.43
- * |     | 45-65       |            $35.87 |     | &gt; 65        |
- * $27.55 |     +-------------+-------------------+     | Grand Total |
- * $29.12 |     +-------------+-------------------+
+ * Grouped Age | AVERAGE of Amount |     +-------------+-------------------+ |
+ * &lt; 25        |            $19.34 |     | 25-45       |            $31.43 |
+ * | 45-65       |            $35.87 |     | &gt; 65        |            $27.55
+ * |     +-------------+-------------------+     | Grand Total | $29.12 |
+ * +-------------+-------------------+
  */
 export interface Schema$HistogramRule {
   /**
@@ -2379,16 +2378,16 @@ export interface Schema$LineStyle {
  * buckets with names of your choosing. For example, a pivot table that
  * aggregates population by state:      +-------+-------------------+     |
  * State | SUM of Population |     +-------+-------------------+     | AK    |
- * 0.7 |     | AL    |               4.8 |     | AR    |               2.9 |
- * ...     +-------+-------------------+ could be turned into a pivot table that
+ * 0.7 |     | AL    |               4.8 |     | AR    |               2.9 | ...
+ * +-------+-------------------+ could be turned into a pivot table that
  * aggregates population by time zone by providing a list of groups (e.g.
  * groupName = &#39;Central&#39;, items = [&#39;AL&#39;, &#39;AR&#39;,
  * &#39;IA&#39;, ...]) to a manual group rule. Note that a similar effect could
  * be achieved by adding a time zone column to the source data and adjusting the
  * pivot table.      +-----------+-------------------+     | Time Zone | SUM of
- * Population |     +-----------+-------------------+     | Central   |
- * 106.3 |     | Eastern   |             151.9 |     | Mountain  |
- * 17.4 |     ...     +-----------+-------------------+
+ * Population |     +-----------+-------------------+     | Central   | 106.3 |
+ * | Eastern   |             151.9 |     | Mountain  |              17.4 | ...
+ * +-----------+-------------------+
  */
 export interface Schema$ManualRule {
   /**
@@ -2461,11 +2460,11 @@ export interface Schema$MergeCellsRequest {
 export interface Schema$MoveDimensionRequest {
   /**
    * The zero-based start index of where to move the source data to, based on
-   * the coordinates *before* the source data is removed from the grid.
-   * Existing data will be shifted down or right (depending on the dimension) to
-   * make room for the moved dimensions. The source dimensions are removed from
-   * the grid, so the the data may end up in a different index than specified.
-   * For example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to move
+   * the coordinates *before* the source data is removed from the grid. Existing
+   * data will be shifted down or right (depending on the dimension) to make
+   * room for the moved dimensions. The source dimensions are removed from the
+   * grid, so the the data may end up in a different index than specified.  For
+   * example, given `A1..A5` of `0, 1, 2, 3, 4` and wanting to move
    * `&quot;1&quot;` and `&quot;2&quot;` to between `&quot;3&quot;` and
    * `&quot;4&quot;`, the source would be `ROWS [1..3)`,and the destination
    * index would be `&quot;4&quot;` (the zero-based index of row 5). The end

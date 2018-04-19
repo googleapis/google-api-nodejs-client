@@ -197,12 +197,12 @@ export interface Schema$EventTrigger {
    * support it. Google Cloud Functions    only allows EventTriggers to be
    * deployed that observe resources in the    same project as the
    * `CloudFunction`. 2. The resource type must match the pattern expected for
-   * an    `event_type`. For example, an `EventTrigger` that has an
-   * `event_type` of &quot;google.pubsub.topic.publish&quot; should have a
-   * resource    that matches Google Cloud Pub/Sub topics.  Additionally, some
-   * services may support short names when creating an `EventTrigger`. These
-   * will always be returned in the normalized &quot;long&quot; format.  See
-   * each *service&#39;s* documentation for supported formats.
+   * an    `event_type`. For example, an `EventTrigger` that has an `event_type`
+   * of &quot;google.pubsub.topic.publish&quot; should have a resource    that
+   * matches Google Cloud Pub/Sub topics.  Additionally, some services may
+   * support short names when creating an `EventTrigger`. These will always be
+   * returned in the normalized &quot;long&quot; format.  See each
+   * *service&#39;s* documentation for supported formats.
    */
   resource: string;
   /**
@@ -482,15 +482,15 @@ export interface Schema$SourceRepository {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -557,7 +557,7 @@ export class Resource$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -708,7 +708,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/locations')
+            url: (rootUrl + '/v1/{+name}/locations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -775,7 +775,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:call').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:call').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -830,7 +830,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{location}/functions')
+            url: (rootUrl + '/v1/{+location}/functions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -885,7 +885,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -945,7 +945,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:generateDownloadUrl')
+            url: (rootUrl + '/v1/{+name}:generateDownloadUrl')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1012,7 +1012,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/functions:generateUploadUrl')
+            url: (rootUrl + '/v1/{+parent}/functions:generateUploadUrl')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1064,7 +1064,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1121,7 +1121,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/functions')
+            url: (rootUrl + '/v1/{+parent}/functions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1176,7 +1176,7 @@ export class Resource$Projects$Locations$Functions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),

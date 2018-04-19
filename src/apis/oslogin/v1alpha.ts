@@ -66,9 +66,9 @@ export class Oslogin {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -213,7 +213,7 @@ export class Resource$Users {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{name}/loginProfile')
+            url: (rootUrl + '/v1alpha/{+name}/loginProfile')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -273,7 +273,7 @@ export class Resource$Users {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{parent}:importSshPublicKey')
+            url: (rootUrl + '/v1alpha/{+parent}:importSshPublicKey')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -335,7 +335,7 @@ export class Resource$Users$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -397,7 +397,7 @@ export class Resource$Users$Sshpublickeys {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -447,7 +447,7 @@ export class Resource$Users$Sshpublickeys {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -503,7 +503,7 @@ export class Resource$Users$Sshpublickeys {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),

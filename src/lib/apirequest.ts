@@ -16,7 +16,7 @@ import {DefaultTransporter} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
-import * as parseString from 'string-template';
+import * as urlTemplate from 'url-template';
 import * as uuid from 'uuid';
 
 import {APIRequestParams, GlobalOptions} from './api';
@@ -116,14 +116,10 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
 
   // Parse urls
   if (options.url) {
-    const encodedParams = Object.assign(
-        {},
-        ...Object.keys(params).map(
-            x => ({[x]: encodeURIComponent(params[x])})));
-    options.url = parseString(options.url, encodedParams);
+    options.url = urlTemplate.parse(options.url).expand(params);
   }
   if (parameters.mediaUrl) {
-    parameters.mediaUrl = parseString(parameters.mediaUrl, params);
+    parameters.mediaUrl = urlTemplate.parse(parameters.mediaUrl).expand(params);
   }
 
   // When forming the querystring, override the serializer so that array

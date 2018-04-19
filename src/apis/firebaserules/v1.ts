@@ -80,9 +80,9 @@ export interface Schema$Arg {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -333,8 +333,8 @@ export interface Schema$TestCase {
    * service-dependent. See the appropriate service documentation for
    * information about the supported fields and types on the request. Minimally,
    * all services support the following fields and types:  Request field  | Type
-   * ---------------|----------------- auth.uid       | `string` auth.token
-   * | `map&lt;string, string&gt;` headers        | `map&lt;string, string&gt;`
+   * ---------------|----------------- auth.uid       | `string` auth.token |
+   * `map&lt;string, string&gt;` headers        | `map&lt;string, string&gt;`
    * method         | `string` params         | `map&lt;string, string&gt;` path
    * | `string` time           | `google.protobuf.Timestamp`  If the request
    * value is not well-formed for the service, the request will be rejected as
@@ -465,8 +465,8 @@ export class Resource$Projects {
    * _*Example*_      // Users are allowed to subscribe and unsubscribe to the
    * blog.     service firebase.storage {       match
    * /users/{userId}/images/{imageName} {           allow write: if userId ==
-   * request.auth.uid               && (imageName.matches('*.png$')
-   * || imageName.matches('*.jpg$'))               &&
+   * request.auth.uid               && (imageName.matches('*.png$') ||
+   * imageName.matches('*.jpg$'))               &&
    * resource.mimeType.matches('^image/')       }     }
    * @alias firebaserules.projects.test
    * @memberOf! ()
@@ -502,7 +502,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:test').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:test').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -580,8 +580,8 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}/releases').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/releases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -631,7 +631,7 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -681,7 +681,7 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -738,7 +738,7 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:getExecutable')
+            url: (rootUrl + '/v1/{+name}:getExecutable')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -798,8 +798,8 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}/releases').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/releases')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -854,7 +854,7 @@ export class Resource$Projects$Releases {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -923,8 +923,8 @@ export class Resource$Projects$Rulesets {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}/rulesets').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/rulesets')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -975,7 +975,7 @@ export class Resource$Projects$Rulesets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1025,7 +1025,7 @@ export class Resource$Projects$Rulesets {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1083,8 +1083,8 @@ export class Resource$Projects$Rulesets {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{name}/rulesets').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/rulesets')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),

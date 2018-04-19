@@ -66,8 +66,8 @@ export class Slides {
 /**
  * AffineTransform uses a 3x3 matrix with an implied last row of [ 0 0 1 ] to
  * transform source coordinates (x,y) into destination coordinates (x&#39;,
- * y&#39;) according to:        x&#39;  x  =   shear_y  scale_y  translate_y
- * 1  [ 1 ]  After transformation,       x&#39; = scale_x * x + shear_x * y +
+ * y&#39;) according to:        x&#39;  x  =   shear_y  scale_y  translate_y 1
+ * [ 1 ]  After transformation,       x&#39; = scale_x * x + shear_x * y +
  * translate_x;      y&#39; = scale_y * y + shear_y * x + translate_y;  This
  * message is therefore composed of these six matrix elements.
  */
@@ -279,10 +279,10 @@ export interface Schema$CreateLineResponse {
  * index range.  The nesting level of each paragraph will be determined by
  * counting leading tabs in front of each paragraph. To avoid excess space
  * between the bullet and the corresponding paragraph, these leading tabs are
- * removed by this request. This may change the indices of parts of the text.
- * If the paragraph immediately before paragraphs being updated is in a list
- * with a matching preset, the paragraphs being updated are added to that
- * preceding list.
+ * removed by this request. This may change the indices of parts of the text. If
+ * the paragraph immediately before paragraphs being updated is in a list with a
+ * matching preset, the paragraphs being updated are added to that preceding
+ * list.
  */
 export interface Schema$CreateParagraphBulletsRequest {
   /**
@@ -1456,10 +1456,10 @@ export interface Schema$Presentation {
   /**
    * The notes master in the presentation. It serves three purposes:  -
    * Placeholder shapes on a notes master contain the default text styles and
-   * shape properties of all placeholder shapes on notes pages. Specifically,
-   * a `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a
-   * `BODY` placeholder shape contains the speaker notes. - The notes master
-   * page properties define the common page properties   inherited by all notes
+   * shape properties of all placeholder shapes on notes pages. Specifically, a
+   * `SLIDE_IMAGE` placeholder shape contains the slide thumbnail, and a `BODY`
+   * placeholder shape contains the speaker notes. - The notes master page
+   * properties define the common page properties   inherited by all notes
    * pages. - Any other shapes on the notes master will appear on all notes
    * pages.  The notes master is read-only.
    */
@@ -1535,8 +1535,8 @@ export interface Schema$Recolor {
 }
 /**
  * Refreshes an embedded Google Sheets chart by replacing it with the latest
- * version of the chart from Google Sheets.  NOTE: Refreshing charts requires
- * at least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or
+ * version of the chart from Google Sheets.  NOTE: Refreshing charts requires at
+ * least one of the spreadsheets.readonly, spreadsheets, drive.readonly, or
  * drive OAuth scopes.
  */
 export interface Schema$RefreshSheetsChartRequest {
@@ -1558,8 +1558,8 @@ export interface Schema$ReplaceAllShapesWithImageRequest {
    * The image replace method.  If you specify both a `replace_method` and an
    * `image_replace_method`, the `image_replace_method` takes precedence.  If
    * you do not specify a value for `image_replace_method`, but specify a value
-   * for `replace_method`, then the specified `replace_method` value is used.
-   * If you do not specify either, then CENTER_INSIDE is used.
+   * for `replace_method`, then the specified `replace_method` value is used. If
+   * you do not specify either, then CENTER_INSIDE is used.
    */
   imageReplaceMethod: string;
   /**
@@ -2353,8 +2353,8 @@ export interface Schema$TableColumnProperties {
  * necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3
  * table where all the cells of the last row are merged together. The table
  * looks like this:                [             ]  A table range with location
- * = (0, 0), row span = 3 and column span = 2 specifies the following cells:
- * x     x    [      x      ]
+ * = (0, 0), row span = 3 and column span = 2 specifies the following cells: x
+ * x    [      x      ]
  */
 export interface Schema$TableRange {
   /**
@@ -3281,7 +3281,7 @@ export class Resource$Presentations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/presentations/{presentationId}')
+            url: (rootUrl + '/v1/presentations/{+presentationId}')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },

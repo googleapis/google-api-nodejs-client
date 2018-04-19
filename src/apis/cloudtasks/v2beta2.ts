@@ -373,9 +373,9 @@ export interface Schema$CreateTaskRequest {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$Empty {}
 /**
@@ -518,15 +518,14 @@ export interface Schema$PauseQueueRequest {}
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -672,8 +671,8 @@ export interface Schema$RateLimits {
    * dispatched until the queue&#39;s bucket runs out of tokens. The bucket will
    * be continuously refilled with new tokens based on
    * max_tasks_dispatched_per_second.  Cloud Tasks will pick the value of
-   * `max_burst_size` based on the value of max_tasks_dispatched_per_second.
-   * For App Engine queues that were created or updated using `queue.yaml/xml`,
+   * `max_burst_size` based on the value of max_tasks_dispatched_per_second. For
+   * App Engine queues that were created or updated using `queue.yaml/xml`,
    * `max_burst_size` is equal to
    * [bucket_size](/appengine/docs/standard/python/config/queueref#bucket_size).
    * Since `max_burst_size` is output only, if UpdateQueue is called on a queue
@@ -853,15 +852,15 @@ export interface Schema$SetIamPolicyRequest {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**
@@ -899,8 +898,7 @@ export interface Schema$Task {
    * The task name.  The task name must have the following format:
    * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
    * * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
-   * (-), colons (:), or periods (.).    For more information, see
-   * [Identifying
+   * (-), colons (:), or periods (.).    For more information, see [Identifying
    * projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
    * * `LOCATION_ID` is the canonical ID for the task&#39;s location.    The
    * list of available locations can be obtained by calling    ListLocations.
@@ -1099,7 +1097,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1222,7 +1220,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}/locations')
+            url: (rootUrl + '/v2beta2/{+name}/locations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1353,7 +1351,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/queues')
+            url: (rootUrl + '/v2beta2/{+parent}/queues')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1461,7 +1459,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1562,7 +1560,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1674,7 +1672,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{resource}:getIamPolicy')
+            url: (rootUrl + '/v2beta2/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1799,7 +1797,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/queues')
+            url: (rootUrl + '/v2beta2/{+parent}/queues')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1927,7 +1925,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2038,7 +2036,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:pause')
+            url: (rootUrl + '/v2beta2/{+name}:pause')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2150,7 +2148,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:purge')
+            url: (rootUrl + '/v2beta2/{+name}:purge')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2265,7 +2263,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:resume')
+            url: (rootUrl + '/v2beta2/{+name}:resume')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2379,7 +2377,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{resource}:setIamPolicy')
+            url: (rootUrl + '/v2beta2/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2498,7 +2496,7 @@ export class Resource$Projects$Locations$Queues {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{resource}:testIamPermissions')
+            url: (rootUrl + '/v2beta2/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2627,7 +2625,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:acknowledge')
+            url: (rootUrl + '/v2beta2/{+name}:acknowledge')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2740,7 +2738,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:cancelLease')
+            url: (rootUrl + '/v2beta2/{+name}:cancelLease')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2794,8 +2792,8 @@ export class Resource$Projects$Locations$Queues$Tasks {
    *     // The queue name. For example:
    *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
    *     // The queue must already exist.
-   *     parent: 'projects/my-project/locations/my-location/queues/my-queue',
-   * // TODO: Update placeholder value.
+   *     parent: 'projects/my-project/locations/my-location/queues/my-queue', //
+   * TODO: Update placeholder value.
    *
    *     resource: {
    *       // TODO: Add desired properties to the request body.
@@ -2858,7 +2856,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/tasks')
+            url: (rootUrl + '/v2beta2/{+parent}/tasks')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2963,7 +2961,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -3067,7 +3065,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -3129,7 +3127,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/tasks:lease')
+            url: (rootUrl + '/v2beta2/{+parent}/tasks:lease')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3176,8 +3174,8 @@ export class Resource$Projects$Locations$Queues$Tasks {
    *     // Required.
    *     // The queue name. For example:
    *     // `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
-   *     parent: 'projects/my-project/locations/my-location/queues/my-queue',
-   * // TODO: Update placeholder value.
+   *     parent: 'projects/my-project/locations/my-location/queues/my-queue', //
+   * TODO: Update placeholder value.
    *
    *     auth: authClient,
    *   };
@@ -3257,7 +3255,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{parent}/tasks')
+            url: (rootUrl + '/v2beta2/{+parent}/tasks')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -3370,7 +3368,7 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v2beta2/{name}:renewLease')
+            url: (rootUrl + '/v2beta2/{+name}:renewLease')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -3492,8 +3490,8 @@ export class Resource$Projects$Locations$Queues$Tasks {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v2beta2/{name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v2beta2/{+name}:run')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),

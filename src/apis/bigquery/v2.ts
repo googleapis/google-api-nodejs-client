@@ -295,8 +295,8 @@ export interface Schema$Dataset {
    */
   lastModifiedTime: string;
   /**
-   * The geographic location where the dataset should reside. Possible values
-   * include EU and US. The default value is US.
+   * The geographic location where the dataset should reside. The default value
+   * is US.
    */
   location: string;
   /**

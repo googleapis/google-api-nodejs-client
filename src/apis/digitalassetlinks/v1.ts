@@ -135,9 +135,9 @@ export interface Schema$CheckResponse {
   /**
    * Human-readable message containing information intended to help end users
    * understand, reproduce and debug the result.   The message will be in
-   * English and we are currently not planning to offer any translations.
-   * Please note that no guarantees are made about the contents or format of
-   * this string.  Any aspect of it may be subject to change without notice. You
+   * English and we are currently not planning to offer any translations. Please
+   * note that no guarantees are made about the contents or format of this
+   * string.  Any aspect of it may be subject to change without notice. You
    * should not attempt to programmatically parse this data.  For programmatic
    * access, use the error_code field below.
    */
@@ -164,9 +164,9 @@ export interface Schema$ListResponse {
   /**
    * Human-readable message containing information intended to help end users
    * understand, reproduce and debug the result.   The message will be in
-   * English and we are currently not planning to offer any translations.
-   * Please note that no guarantees are made about the contents or format of
-   * this string.  Any aspect of it may be subject to change without notice. You
+   * English and we are currently not planning to offer any translations. Please
+   * note that no guarantees are made about the contents or format of this
+   * string.  Any aspect of it may be subject to change without notice. You
    * should not attempt to programmatically parse this data.  For programmatic
    * access, use the error_code field below.
    */
@@ -222,16 +222,15 @@ export interface Schema$Statement {
 export interface Schema$WebAsset {
   /**
    * Web assets are identified by a URL that contains only the scheme, hostname
-   * and port parts.  The format is
-   * http[s]://&lt;hostname&gt;[:&lt;port&gt;]  Hostnames must be fully
-   * qualified: they must end in a single period (&quot;`.`&quot;).  Only the
-   * schemes &quot;http&quot; and &quot;https&quot; are currently allowed.  Port
-   * numbers are given as a decimal number, and they must be omitted if the
-   * standard port numbers are used: 80 for http and 443 for https.  We call
-   * this limited URL the &quot;site&quot;.  All URLs that share the same
-   * scheme, hostname and port are considered to be a part of the site and thus
-   * belong to the web asset.  Example: the asset with the site
-   * `https://www.google.com` contains all these URLs:    *
+   * and port parts.  The format is http[s]://&lt;hostname&gt;[:&lt;port&gt;]
+   * Hostnames must be fully qualified: they must end in a single period
+   * (&quot;`.`&quot;).  Only the schemes &quot;http&quot; and &quot;https&quot;
+   * are currently allowed.  Port numbers are given as a decimal number, and
+   * they must be omitted if the standard port numbers are used: 80 for http and
+   * 443 for https.  We call this limited URL the &quot;site&quot;.  All URLs
+   * that share the same scheme, hostname and port are considered to be a part
+   * of the site and thus belong to the web asset.  Example: the asset with the
+   * site `https://www.google.com` contains all these URLs:    *
    * `https://www.google.com/`   *   `https://www.google.com:443/`   *
    * `https://www.google.com/foo`   *   `https://www.google.com/foo?bar`   *
    * `https://www.google.com/foo#bar`   *

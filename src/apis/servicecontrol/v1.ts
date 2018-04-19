@@ -659,14 +659,14 @@ export interface Schema$Operation {
    * configuration. - Default labels of metric values. When specified, labels
    * defined in the   metric value override these default. - The following
    * labels defined by Google Cloud Platform:     -
-   * `cloud.googleapis.com/location` describing the location where the
-   * operation happened,     - `servicecontrol.googleapis.com/user_agent`
-   * describing the user agent        of the API request,     -
-   * `servicecontrol.googleapis.com/service_agent` describing the service
-   * used to handle the API request (e.g. ESP),     -
-   * `servicecontrol.googleapis.com/platform` describing the platform
-   * where the API is served, such as App Engine, Compute Engine, or
-   * Kubernetes Engine.
+   * `cloud.googleapis.com/location` describing the location where the operation
+   * happened,     - `servicecontrol.googleapis.com/user_agent` describing the
+   * user agent        of the API request,     -
+   * `servicecontrol.googleapis.com/service_agent` describing the service used
+   * to handle the API request (e.g. ESP),     -
+   * `servicecontrol.googleapis.com/platform` describing the platform where the
+   * API is served, such as App Engine, Compute Engine, or        Kubernetes
+   * Engine.
    */
   labels: any;
   /**
@@ -1085,15 +1085,15 @@ export interface Schema$StartReconciliationResponse {
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$Status {
   /**

@@ -72,9 +72,9 @@ export class Ml {
  * parameters from either the URL or HTTP template into the request fields and
  * also want access to the raw HTTP body.  Example:      message
  * GetResourceRequest {       // A unique request id.       string request_id =
- * 1;        // The raw HTTP body is bound to this field.
- * google.api.HttpBody http_body = 2;     }      service ResourceService {
- * rpc GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc
+ * 1;        // The raw HTTP body is bound to this field. google.api.HttpBody
+ * http_body = 2;     }      service ResourceService {       rpc
+ * GetResource(GetResourceRequest) returns (google.api.HttpBody);       rpc
  * UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty);     }
  * Example with streaming methods:      service CaldavService {       rpc
  * GetCalendar(stream google.api.HttpBody)         returns (stream
@@ -619,9 +619,9 @@ export interface Schema$GoogleCloudMlV1__TrainingInput {
    * numbers of nodes).   &lt;/dd&gt;   &lt;dt&gt;complex_model_s&lt;/dt&gt;
    * &lt;dd&gt;   A machine suitable for the master and workers of the cluster
    * when your   model requires more computation than the standard machine can
-   * handle   satisfactorily.   &lt;/dd&gt;
-   * &lt;dt&gt;complex_model_m&lt;/dt&gt;   &lt;dd&gt;   A machine with roughly
-   * twice the number of cores and roughly double the   memory of &lt;code
+   * handle   satisfactorily.   &lt;/dd&gt; &lt;dt&gt;complex_model_m&lt;/dt&gt;
+   * &lt;dd&gt;   A machine with roughly twice the number of cores and roughly
+   * double the   memory of &lt;code
    * suppresswarning=&quot;true&quot;&gt;complex_model_s&lt;/code&gt;.
    * &lt;/dd&gt;   &lt;dt&gt;complex_model_l&lt;/dt&gt;   &lt;dd&gt;   A machine
    * with roughly twice the number of cores and roughly double the   memory of
@@ -703,9 +703,9 @@ export interface Schema$GoogleCloudMlV1__TrainingInput {
   scaleTier: string;
   /**
    * Optional. The number of worker replicas to use for the training job. Each
-   * replica in the cluster will be of the type specified in `worker_type`.
-   * This value can only be used when `scale_tier` is set to `CUSTOM`. If you
-   * set this value, you must also set `worker_type`.
+   * replica in the cluster will be of the type specified in `worker_type`. This
+   * value can only be used when `scale_tier` is set to `CUSTOM`. If you set
+   * this value, you must also set `worker_type`.
    */
   workerCount: string;
   /**
@@ -837,22 +837,19 @@ export interface Schema$GoogleCloudMlV1__Version {
  * each AuditConfig are enabled, and the exempted_members in each AuditLogConfig
  * are exempted.  Example Policy with multiple AuditConfigs:      {
  * &quot;audit_configs&quot;: [         {           &quot;service&quot;:
- * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [
- * {               &quot;log_type&quot;: &quot;DATA_READ&quot;,
- * &quot;exempted_members&quot;: [
+ * &quot;allServices&quot;           &quot;audit_log_configs&quot;: [ {
+ * &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [
  * &quot;user:foo@gmail.com&quot;               ]             },             {
  * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,             },             {
- * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ]
- * },         {           &quot;service&quot;:
- * &quot;fooservice.googleapis.com&quot;
- * &quot;audit_log_configs&quot;: [             {
- * &quot;log_type&quot;: &quot;DATA_READ&quot;,             },             {
- * &quot;log_type&quot;: &quot;DATA_WRITE&quot;,
- * &quot;exempted_members&quot;: [
- * &quot;user:bar@gmail.com&quot;               ]             }           ]
- * }       ]     }  For fooservice, this policy enables DATA_READ, DATA_WRITE
- * and ADMIN_READ logging. It also exempts foo@gmail.com from DATA_READ logging,
- * and bar@gmail.com from DATA_WRITE logging.
+ * &quot;log_type&quot;: &quot;ADMIN_READ&quot;,             }           ] }, {
+ * &quot;service&quot;: &quot;fooservice.googleapis.com&quot;
+ * &quot;audit_log_configs&quot;: [             { &quot;log_type&quot;:
+ * &quot;DATA_READ&quot;,             },             { &quot;log_type&quot;:
+ * &quot;DATA_WRITE&quot;,               &quot;exempted_members&quot;: [
+ * &quot;user:bar@gmail.com&quot;               ]             }           ] } ]
+ * }  For fooservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ
+ * logging. It also exempts foo@gmail.com from DATA_READ logging, and
+ * bar@gmail.com from DATA_WRITE logging.
  */
 export interface Schema$GoogleIamV1__AuditConfig {
   /**
@@ -919,15 +916,14 @@ export interface Schema$GoogleIamV1__Binding {
  * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         {
- * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
- * &quot;user:mike@example.com&quot;,
- * &quot;group:admins@example.com&quot;,
+ * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
+ * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,
- * ]         },         {           &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
- * }  For a description of IAM and its features, see the [IAM developer&#39;s
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
+ * description of IAM and its features, see the [IAM developer&#39;s
  * guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$GoogleIamV1__Policy {
@@ -1052,9 +1048,9 @@ export interface Schema$GoogleLongrunning__Operation {
 /**
  * A generic empty message that you can re-use to avoid defining duplicated
  * empty messages in your APIs. A typical example is to use it as the request or
- * the response type of an API method. For instance:      service Foo {
- * rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The
- * JSON representation for `Empty` is empty JSON object `{}`.
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
  */
 export interface Schema$GoogleProtobuf__Empty {}
 /**
@@ -1082,15 +1078,15 @@ export interface Schema$GoogleProtobuf__Empty {}
  * environments.  Example uses of this error model include:  - Partial errors.
  * If a service needs to return partial errors to the client,     it may embed
  * the `Status` in the normal response to indicate the partial     errors.  -
- * Workflow errors. A typical workflow has multiple steps. Each step may
- * have a `Status` message for error reporting.  - Batch operations. If a client
- * uses batch request and batch response, the     `Status` message should be
- * used directly inside batch response, one for     each error sub-response.  -
- * Asynchronous operations. If an API call embeds asynchronous operation
- * results in its response, the status of those operations should be
- * represented directly using the `Status` message.  - Logging. If some API
- * errors are stored in logs, the message `Status` could     be used directly
- * after any stripping needed for security/privacy reasons.
+ * Workflow errors. A typical workflow has multiple steps. Each step may have a
+ * `Status` message for error reporting.  - Batch operations. If a client uses
+ * batch request and batch response, the     `Status` message should be used
+ * directly inside batch response, one for     each error sub-response.  -
+ * Asynchronous operations. If an API call embeds asynchronous operation results
+ * in its response, the status of those operations should be     represented
+ * directly using the `Status` message.  - Logging. If some API errors are
+ * stored in logs, the message `Status` could     be used directly after any
+ * stripping needed for security/privacy reasons.
  */
 export interface Schema$GoogleRpc__Status {
   /**
@@ -1174,7 +1170,7 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:getConfig')
+            url: (rootUrl + '/v1/{+name}:getConfig')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1234,7 +1230,8 @@ export class Resource$Projects {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:predict').replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/{+name}:predict').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1301,7 +1298,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1355,7 +1352,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1406,7 +1403,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1460,7 +1457,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1522,7 +1519,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1579,7 +1576,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1643,7 +1640,7 @@ export class Resource$Projects$Jobs {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -1712,7 +1709,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -1773,7 +1770,7 @@ export class Resource$Projects$Locations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/locations')
+            url: (rootUrl + '/v1/{+parent}/locations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -1849,8 +1846,8 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{parent}/models').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/models')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -1908,7 +1905,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -1964,7 +1961,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2018,7 +2015,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:getIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2083,8 +2080,8 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url:
-                (rootUrl + '/v1/{parent}/models').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/models')
+                     .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2145,7 +2142,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2201,7 +2198,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:setIamPolicy')
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2265,7 +2262,7 @@ export class Resource$Projects$Models {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{resource}:testIamPermissions')
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2342,7 +2339,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/versions')
+            url: (rootUrl + '/v1/{+parent}/versions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2403,7 +2400,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2461,7 +2458,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2527,7 +2524,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{parent}/versions')
+            url: (rootUrl + '/v1/{+parent}/versions')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
@@ -2589,7 +2586,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH'
           },
           options),
@@ -2650,7 +2647,7 @@ export class Resource$Projects$Models$Versions {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:setDefault')
+            url: (rootUrl + '/v1/{+name}:setDefault')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
@@ -2727,7 +2724,7 @@ export class Resource$Projects$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),
@@ -2785,7 +2782,7 @@ export class Resource$Projects$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE'
           },
           options),
@@ -2841,7 +2838,7 @@ export class Resource$Projects$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
           options),
@@ -2910,7 +2907,7 @@ export class Resource$Projects$Operations {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1/{name}/operations')
+            url: (rootUrl + '/v1/{+name}/operations')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET'
           },
