@@ -16,9 +16,17 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import {GoogleApis} from '../src';
+import {APIS} from '../src/apis';
 import {APIEndpoint} from '../src/lib/api';
 
 describe('GoogleApis#discover', () => {
+  it('should get a list of supported apis', () => {
+    const google = new GoogleApis();
+    const apis = google.getSupportedAPIs();
+    assert.equal(Object.keys(apis).length, Object.keys(APIS).length);
+    assert(apis.drive.indexOf('v2') > -1);
+  });
+
   it('should generate all apis', (done) => {
     const localApis = fs.readdirSync(path.join(__dirname, '../src/apis'));
     const google = new GoogleApis();

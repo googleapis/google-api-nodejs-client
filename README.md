@@ -29,6 +29,7 @@
   * [Media uploads](#media-uploads)
   * [Request Options](#request-options)
   * [Using a Proxy](#using-a-proxy)
+  * [Supported APIs](#getting-supported-apis)
 * [License](#license)
 * [Contributing](#contributing)
 * [Questions/problems?](#questionsproblems)
@@ -452,6 +453,16 @@ You can use the following environment variables to proxy HTTP and HTTPS requests
 
 When HTTP_PROXY / http_proxy are set, they will be used to proxy non-SSL requests that do not have an explicit proxy configuration option present. Similarly, HTTPS_PROXY / https_proxy will be respected for SSL requests that do not have an explicit proxy configuration option. It is valid to define a proxy in one of the environment variables, but then override it for a specific request, using the proxy configuration option.
 
+### Getting Supported APIs
+You can programatically obtain the list of supported APIs, and all available versions:
+
+```js
+const {google} = require('googleapis');
+const apis = google.getSupportedAPIs();
+```
+
+This will return an object with the API name as object property names, and an array of version strings as the object values; 
+
 ## Release Notes & Breaking Changes
 You can find a detailed list of breaking changes and new features in our [Release Notes][releasenotes]. If you've used this library before `25.x`, see our [Release Notes][releasenotes] to learn about migrating your code from `24.x.x` to `25.x.x`. It's pretty easy :)
 
@@ -462,7 +473,7 @@ This library is licensed under Apache 2.0. Full license text is available in [CO
 We love contributions! Before submitting a Pull Request, it's always good to start with a new issue first. To learn more, see [CONTRIBUTING][contributing].
 
 ## Questions/problems?
-* Ask your development related questions on [Ask a question on Stackoverflow][stackoverflow]
+* Ask your development related questions on [Stackoverflow][stackoverflow].
 * If you've found an bug/issue, please [file it on GitHub][bugs].
 
 [snyk-image]: https://snyk.io/test/github/google/google-api-nodejs-client/badge.svg

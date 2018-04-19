@@ -80,11 +80,6 @@ export interface GlobalOptions {
 export interface MethodOptions extends AxiosRequestConfig { rootUrl?: string; }
 export interface ServiceOptions extends GlobalOptions { version?: string; }
 
-export interface APIList {
-  // tslint:disable-next-line no-any
-  [index: string]: {[index: string]: any};
-}
-
 export type BodyResponseCallback<T> =
     (err: Error|null, res?: AxiosResponse<T>|null) => void;
 
