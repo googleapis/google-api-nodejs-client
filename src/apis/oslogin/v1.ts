@@ -119,6 +119,10 @@ export interface Schema$PosixAccount {
    */
   homeDirectory: string;
   /**
+   * The operating system type where this account applies.
+   */
+  operatingSystemType: string;
+  /**
    * Only one POSIX account can be marked as primary.
    */
   primary: boolean;

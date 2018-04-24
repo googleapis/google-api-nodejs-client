@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Kubernetes Engine API
+ * Kubernetes Engine API
  *
  * The Google Kubernetes Engine API is used for building and managing container
  * based applications, powered by the open source Kubernetes technology.
@@ -331,6 +331,10 @@ export interface Schema$Cluster {
    */
   network: string;
   /**
+   * Configuration for cluster networking.
+   */
+  networkConfig: Schema$NetworkConfig;
+  /**
    * Configuration options for the NetworkPolicy feature.
    */
   networkPolicy: Schema$NetworkPolicy;
@@ -367,8 +371,8 @@ export interface Schema$Cluster {
    */
   privateCluster: boolean;
   /**
-   * The resource labels for the cluster to use to annotate any related GCE
-   * resources.
+   * The resource labels for the cluster to use to annotate any related Google
+   * Compute Engine resources.
    */
   resourceLabels: any;
   /**
@@ -771,6 +775,23 @@ export interface Schema$ListOperationsResponse {
   operations: Schema$Operation[];
 }
 /**
+ * ListUsableSubnetworksResponse is the response of
+ * ListUsableSubnetworksRequest.
+ */
+export interface Schema$ListUsableSubnetworksResponse {
+  /**
+   * This token allows you to get the next page of results for list requests. If
+   * the number of results is larger than `page_size`, use the `next_page_token`
+   * as a value for the query parameter `page_token` in the next request. The
+   * value will become empty when there are no more pages.
+   */
+  nextPageToken: string;
+  /**
+   * A list of usable subnetworks in the specified network project.
+   */
+  subnetworks: Schema$UsableSubnetwork[];
+}
+/**
  * MaintenancePolicy defines the maintenance policy to be used for the cluster.
  */
 export interface Schema$MaintenancePolicy {
@@ -844,6 +865,23 @@ export interface Schema$MasterAuthorizedNetworksConfig {
    * Whether or not master authorized networks is enabled.
    */
   enabled: boolean;
+}
+/**
+ * NetworkConfig reports the relative names of network &amp; subnetwork.
+ */
+export interface Schema$NetworkConfig {
+  /**
+   * Output only. The name of the Google Compute Engine
+   * network(/compute/docs/networks-and-firewalls#networks). Example:
+   * projects/my-project/global/networks/my-network
+   */
+  network: string;
+  /**
+   * Output only. The name of the Google Compute Engine
+   * [subnetwork](/compute/docs/vpc). Example:
+   * projects/my-project/regions/us-central1/subnetworks/my-subnet
+   */
+  subnetwork: string;
 }
 /**
  * Configuration options for the NetworkPolicy feature.
@@ -1669,6 +1707,10 @@ export interface Schema$StartIPRotationRequest {
    */
   projectId: string;
   /**
+   * Whether to rotate credentials during IP rotation.
+   */
+  rotateCredentials: boolean;
+  /**
    * Deprecated. The name of the Google Compute Engine
    * [zone](/compute/docs/zones#available) in which the cluster resides. This
    * field has been deprecated and replaced by the name field.
@@ -1792,6 +1834,25 @@ export interface Schema$UpdateNodePoolRequest {
   zone: string;
 }
 /**
+ * UsableSubnetwork resource returns the subnetwork name, its associated network
+ * and the primary CIDR range.
+ */
+export interface Schema$UsableSubnetwork {
+  /**
+   * The range of internal addresses that are owned by this subnetwork.
+   */
+  ipCidrRange: string;
+  /**
+   * Network Name. Example: projects/my-project/global/networks/my-network
+   */
+  network: string;
+  /**
+   * Subnetwork Name. Example:
+   * projects/my-project/regions/us-central1/subnetworks/my-subnet
+   */
+  subnetwork: string;
+}
+/**
  * WorkloadMetadataConfig defines the metadata configuration to expose to
  * workloads on the node pool.
  */
@@ -1805,11 +1866,13 @@ export interface Schema$WorkloadMetadataConfig {
 
 export class Resource$Projects {
   root: Container;
+  aggregated: Resource$Projects$Aggregated;
   locations: Resource$Projects$Locations;
   zones: Resource$Projects$Zones;
   constructor(root: Container) {
     this.root = root;
     this.getRoot.bind(this);
+    this.aggregated = new Resource$Projects$Aggregated(root);
     this.locations = new Resource$Projects$Locations(root);
     this.zones = new Resource$Projects$Zones(root);
   }
@@ -1818,6 +1881,94 @@ export class Resource$Projects {
     return this.root;
   }
 }
+export class Resource$Projects$Aggregated {
+  root: Container;
+  usableSubnetworks: Resource$Projects$Aggregated$Usablesubnetworks;
+  constructor(root: Container) {
+    this.root = root;
+    this.getRoot.bind(this);
+    this.usableSubnetworks =
+        new Resource$Projects$Aggregated$Usablesubnetworks(root);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+}
+export class Resource$Projects$Aggregated$Usablesubnetworks {
+  root: Container;
+  constructor(root: Container) {
+    this.root = root;
+    this.getRoot.bind(this);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+
+  /**
+   * container.projects.aggregated.usableSubnetworks.list
+   * @desc Lists subnetworks that are usable for creating clusters in a project.
+   * @alias container.projects.aggregated.usableSubnetworks.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string=} params.filter Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
+   * @param {integer=} params.pageSize The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+   * @param {string=} params.pageToken Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
+   * @param {string} params.parent The parent project where subnetworks are usable. Specified in the format 'projects/x'.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListUsableSubnetworksResponse>;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListUsableSubnetworksResponse>,
+      callback?: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+      void;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListUsableSubnetworksResponse>,
+      callback?: BodyResponseCallback<Schema$ListUsableSubnetworksResponse>):
+      void|AxiosPromise<Schema$ListUsableSubnetworksResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl = options.rootUrl || 'https://container.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/aggregated/usableSubnetworks')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['parent'],
+      pathParams: ['parent'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListUsableSubnetworksResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListUsableSubnetworksResponse>(parameters);
+    }
+  }
+}
+
+
 export class Resource$Projects$Locations {
   root: Container;
   clusters: Resource$Projects$Locations$Clusters;

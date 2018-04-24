@@ -31,8 +31,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 /**
  * Google Cloud Functions API
  *
- * API for managing lightweight user-provided functions executed in response to
- * events.
+ * Manages lightweight user-provided functions executed in response to events.
  *
  * @example
  * const google = require('googleapis');
@@ -312,6 +311,11 @@ export interface Schema$ListOperationsResponse {
  * A resource that represents Google Cloud Platform location.
  */
 export interface Schema$Location {
+  /**
+   * The friendly name for this location, typically a nearby city name. For
+   * example, &quot;Tokyo&quot;.
+   */
+  displayName: string;
   /**
    * Cross-service attributes for the location. For example
    * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
@@ -975,7 +979,7 @@ export class Resource$Projects$Locations$Functions {
    * URL, please follow these restrictions:  * Source file type should be a zip
    * file. * Source file size should not exceed 100MB limit.  When making a HTTP
    * PUT request, these two headers need to be specified:  * `content-type:
-   * application/zip` * `x-google-content-length-range: 0,104857600`
+   * application/zip` * `x-goog-content-length-range: 0,104857600`
    * @alias cloudfunctions.projects.locations.functions.generateUploadUrl
    * @memberOf! ()
    *

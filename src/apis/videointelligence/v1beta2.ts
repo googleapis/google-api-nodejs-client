@@ -35,12 +35,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const videointelligence = google.videointelligence('v1beta1');
+ * const videointelligence = google.videointelligence('v1beta2');
  *
  * @namespace videointelligence
  * @type {Function}
- * @version v1beta1
- * @variation v1beta1
+ * @version v1beta2
+ * @variation v1beta2
  * @param {object=} options Options for Videointelligence
  */
 export class Videointelligence {
@@ -74,51 +74,6 @@ export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgres
    */
   annotationProgress:
       Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[];
-}
-/**
- * Video annotation request.
- */
-export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest {
-  /**
-   * Requested video annotation features.
-   */
-  features: string[];
-  /**
-   * The video data bytes. Encoding: base64. If unset, the input video(s) should
-   * be specified via `input_uri`. If set, `input_uri` should be unset.
-   */
-  inputContent: string;
-  /**
-   * Input video location. Currently, only [Google Cloud
-   * Storage](https://cloud.google.com/storage/) URIs are supported, which must
-   * be specified in the following format: `gs://bucket-id/object-id` (other URI
-   * formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see
-   * [Request URIs](/storage/docs/reference-uris). A video URI may include
-   * wildcards in `object-id`, and thus identify multiple videos. Supported
-   * wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match
-   * 1 character. If unset, the input video should be embedded in the request as
-   * `input_content`. If set, `input_content` should be unset.
-   */
-  inputUri: string;
-  /**
-   * Optional cloud region where annotation should take place. Supported cloud
-   * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
-   * is specified, a region will be determined based on video file location.
-   */
-  locationId: string;
-  /**
-   * Optional location where the output (in JSON format) should be stored.
-   * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
-   * URIs are supported, which must be specified in the following format:
-   * `gs://bucket-id/object-id` (other URI formats return
-   * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
-   * URIs](/storage/docs/reference-uris).
-   */
-  outputUri: string;
-  /**
-   * Additional video context and/or feature-specific parameters.
-   */
-  videoContext: Schema$GoogleCloudVideointelligenceV1beta1_VideoContext;
 }
 /**
  * Video annotation response. Included in the `response` field of the
@@ -255,43 +210,6 @@ export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResul
   shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
 }
 /**
- * Video context and/or feature-specific parameters.
- */
-export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoContext {
-  /**
-   * If label detection has been requested, what labels should be detected in
-   * addition to video-level labels or segment-level labels. If unspecified,
-   * defaults to `SHOT_MODE`.
-   */
-  labelDetectionMode: string;
-  /**
-   * Model to use for label detection. Supported values: &quot;latest&quot; and
-   * &quot;stable&quot; (the default).
-   */
-  labelDetectionModel: string;
-  /**
-   * Model to use for safe search detection. Supported values:
-   * &quot;latest&quot; and &quot;stable&quot; (the default).
-   */
-  safeSearchDetectionModel: string;
-  /**
-   * Video segments to annotate. The segments may overlap and are not required
-   * to be contiguous or span the whole video. If unspecified, each video is
-   * treated as a single segment.
-   */
-  segments: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
-  /**
-   * Model to use for shot change detection. Supported values:
-   * &quot;latest&quot; and &quot;stable&quot; (the default).
-   */
-  shotChangeDetectionModel: string;
-  /**
-   * Whether the video has been shot from a stationary (i.e. non-moving) camera.
-   * When set to true, might improve detection accuracy for moving objects.
-   */
-  stationaryCamera: boolean;
-}
-/**
  * Video segment.
  */
 export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment {
@@ -315,6 +233,51 @@ export interface Schema$GoogleCloudVideointelligenceV1beta2_AnnotateVideoProgres
    */
   annotationProgress:
       Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress[];
+}
+/**
+ * Video annotation request.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_AnnotateVideoRequest {
+  /**
+   * Requested video annotation features.
+   */
+  features: string[];
+  /**
+   * The video data bytes. If unset, the input video(s) should be specified via
+   * `input_uri`. If set, `input_uri` should be unset.
+   */
+  inputContent: string;
+  /**
+   * Input video location. Currently, only [Google Cloud
+   * Storage](https://cloud.google.com/storage/) URIs are supported, which must
+   * be specified in the following format: `gs://bucket-id/object-id` (other URI
+   * formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see
+   * [Request URIs](/storage/docs/reference-uris). A video URI may include
+   * wildcards in `object-id`, and thus identify multiple videos. Supported
+   * wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match
+   * 1 character. If unset, the input video should be embedded in the request as
+   * `input_content`. If set, `input_content` should be unset.
+   */
+  inputUri: string;
+  /**
+   * Optional cloud region where annotation should take place. Supported cloud
+   * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
+   * is specified, a region will be determined based on video file location.
+   */
+  locationId: string;
+  /**
+   * Optional location where the output (in JSON format) should be stored.
+   * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+   * URIs are supported, which must be specified in the following format:
+   * `gs://bucket-id/object-id` (other URI formats return
+   * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
+   * URIs](/storage/docs/reference-uris).
+   */
+  outputUri: string;
+  /**
+   * Additional video context and/or feature-specific parameters.
+   */
+  videoContext: Schema$GoogleCloudVideointelligenceV1beta2_VideoContext;
 }
 /**
  * Video annotation response. Included in the `response` field of the
@@ -358,6 +321,17 @@ export interface Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnot
   frames: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
 }
 /**
+ * Config for EXPLICIT_CONTENT_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentDetectionConfig {
+  /**
+   * Model to use for explicit content detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
+}
+/**
  * Video frame level annotation results for explicit content.
  */
 export interface Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame {
@@ -395,6 +369,29 @@ export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation {
   segments: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
 }
 /**
+ * Config for LABEL_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelDetectionConfig {
+  /**
+   * What labels should be detected with LABEL_DETECTION, in addition to
+   * video-level labels or segment-level labels. If unspecified, defaults to
+   * `SHOT_MODE`.
+   */
+  labelDetectionMode: string;
+  /**
+   * Model to use for label detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
+  /**
+   * Whether the video has been shot from a stationary (i.e. non-moving) camera.
+   * When set to true, might improve detection accuracy for moving objects.
+   * Should be used with `SHOT_AND_FRAME_MODE` enabled.
+   */
+  stationaryCamera: boolean;
+}
+/**
  * Video frame level annotation results for label detection.
  */
 export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelFrame {
@@ -420,6 +417,17 @@ export interface Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment {
    * Video segment where a label was detected.
    */
   segment: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+}
+/**
+ * Config for SHOT_CHANGE_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_ShotChangeDetectionConfig {
+  /**
+   * Model to use for shot change detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
 }
 /**
  * Annotation progress for a single video.
@@ -485,6 +493,32 @@ export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResul
    */
   shotLabelAnnotations:
       Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
+}
+/**
+ * Video context and/or feature-specific parameters.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoContext {
+  /**
+   * Config for EXPLICIT_CONTENT_DETECTION.
+   */
+  explicitContentDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentDetectionConfig;
+  /**
+   * Config for LABEL_DETECTION.
+   */
+  labelDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1beta2_LabelDetectionConfig;
+  /**
+   * Video segments to annotate. The segments may overlap and are not required
+   * to be contiguous or span the whole video. If unspecified, each video is
+   * treated as a single segment.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
+  /**
+   * Config for SHOT_CHANGE_DETECTION.
+   */
+  shotChangeDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1beta2_ShotChangeDetectionConfig;
 }
 /**
  * Video segment.
@@ -1166,7 +1200,7 @@ export class Resource$Videos {
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
-   * @param {().GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest} params.resource Request body data
+   * @param {().GoogleCloudVideointelligenceV1beta2_AnnotateVideoRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -1199,7 +1233,7 @@ export class Resource$Videos {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/videos:annotate')
+            url: (rootUrl + '/v1beta2/videos:annotate')
                      .replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },

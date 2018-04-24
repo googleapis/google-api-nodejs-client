@@ -120,17 +120,16 @@ export interface Schema$GoogleCloudMlV1__AutoScaling {
    * nodes are always up, starting from the time the model is deployed, so the
    * cost of operating this model will be at least `rate` * `min_nodes` * number
    * of hours since last billing cycle, where `rate` is the cost per node-hour
-   * as documented in
-   * [pricing](https://cloud.google.com/ml-engine/pricing#prediction_pricing),
-   * even if no predictions are performed. There is additional cost for each
-   * prediction performed.  Unlike manual scaling, if the load gets too heavy
-   * for the nodes that are up, the service will automatically add nodes to
-   * handle the increased load as well as scale back as traffic drops, always
-   * maintaining at least `min_nodes`. You will be charged for the time in which
-   * additional nodes are used.  If not specified, `min_nodes` defaults to 0, in
-   * which case, when traffic to a model stops (and after a cool-down period),
-   * nodes will be shut down and no charges will be incurred until traffic to
-   * the model resumes.
+   * as documented in the [pricing guide](/ml-engine/docs/pricing), even if no
+   * predictions are performed. There is additional cost for each prediction
+   * performed.  Unlike manual scaling, if the load gets too heavy for the nodes
+   * that are up, the service will automatically add nodes to handle the
+   * increased load as well as scale back as traffic drops, always maintaining
+   * at least `min_nodes`. You will be charged for the time in which additional
+   * nodes are used.  If not specified, `min_nodes` defaults to 0, in which
+   * case, when traffic to a model stops (and after a cool-down period), nodes
+   * will be shut down and no charges will be incurred until traffic to the
+   * model resumes.
    */
   minNodes: number;
 }
@@ -199,6 +198,12 @@ export interface Schema$GoogleCloudMlV1__HyperparameterOutput {
  * Represents a set of hyperparameters to optimize.
  */
 export interface Schema$GoogleCloudMlV1__HyperparameterSpec {
+  /**
+   * Optional. The search algorithm specified for the hyperparameter tuning job.
+   * Uses the default CloudML Engine hyperparameter tuning algorithm if
+   * unspecified.
+   */
+  algorithm: string;
   /**
    * Optional. Indicates if the hyperparameter tuning job enables auto trial
    * early stopping.
@@ -391,12 +396,12 @@ export interface Schema$GoogleCloudMlV1__Model {
    * Optional. The list of regions where the model is going to be deployed.
    * Currently only one region per model is supported. Defaults to
    * &#39;us-central1&#39; if nothing is set. See the &lt;a
-   * href=&quot;/ml-engine/docs/regions&quot;&gt;available regions&lt;/a&gt; for
-   * ML Engine services. Note: *   No matter where a model is deployed, it can
-   * always be accessed by     users from anywhere, both for online and batch
-   * prediction. *   The region for a batch prediction job is set by the region
-   * field when     submitting the batch prediction job and does not take its
-   * value from     this field.
+   * href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available
+   * regions&lt;/a&gt; for ML Engine services. Note: *   No matter where a model
+   * is deployed, it can always be accessed by     users from anywhere, both for
+   * online and batch prediction. *   The region for a batch prediction job is
+   * set by the region field when     submitting the batch prediction job and
+   * does not take its value from     this field.
    */
   regions: string[];
 }
@@ -506,7 +511,7 @@ export interface Schema$GoogleCloudMlV1__PredictionInput {
   /**
    * Use this field if you want to use the default version for the specified
    * model. The string must use the following format:
-   * `&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;[YOUR_MODEL]&lt;/var&gt;&quot;`
+   * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL&quot;`
    */
   modelName: string;
   /**
@@ -515,7 +520,8 @@ export interface Schema$GoogleCloudMlV1__PredictionInput {
   outputPath: string;
   /**
    * Required. The Google Compute Engine region to run the prediction job in.
-   * See the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available
+   * See the &lt;a
+   * href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available
    * regions&lt;/a&gt; for ML Engine services.
    */
   region: string;
@@ -545,7 +551,7 @@ export interface Schema$GoogleCloudMlV1__PredictionInput {
    * Use this field if you want to specify a version of the model to use. The
    * string is formatted the same way as `model_version`, with the addition of
    * the version information:
-   * `&quot;projects/&lt;var&gt;[YOUR_PROJECT]&lt;/var&gt;/models/&lt;var&gt;YOUR_MODEL/versions/&lt;var&gt;[YOUR_VERSION]&lt;/var&gt;&quot;`
+   * `&quot;projects/YOUR_PROJECT/models/YOUR_MODEL/versions/YOUR_VERSION&quot;`
    */
   versionName: string;
 }
@@ -588,8 +594,8 @@ export interface Schema$GoogleCloudMlV1__SetDefaultVersionRequest {}
  * to submit your training job, you can specify the input parameters as
  * command-line arguments and/or in a YAML configuration file referenced from
  * the --config command-line argument. For details, see the guide to &lt;a
- * href=&quot;/ml-engine/docs/training-jobs&quot;&gt;submitting a training
- * job&lt;/a&gt;. Next ID: 22
+ * href=&quot;/ml-engine/docs/tensorflow/training-jobs&quot;&gt;submitting a
+ * training job&lt;/a&gt;.
  */
 export interface Schema$GoogleCloudMlV1__TrainingInput {
   /**
@@ -630,8 +636,8 @@ export interface Schema$GoogleCloudMlV1__TrainingInput {
    * equivalent to &lt;code
    * suppresswarning=&quot;true&quot;&gt;standard&lt;/code&gt; that   also
    * includes a single NVIDIA Tesla K80 GPU. See more about   &lt;a
-   * href=&quot;/ml-engine/docs/how-tos/using-gpus&quot;&gt;   using GPUs for
-   * training your model&lt;/a&gt;.   &lt;/dd&gt;
+   * href=&quot;/ml-engine/docs/tensorflow/using-gpus&quot;&gt;using GPUs to
+   * train your model&lt;/a&gt;.   &lt;/dd&gt;
    * &lt;dt&gt;complex_model_m_gpu&lt;/dt&gt;   &lt;dd&gt;   A machine
    * equivalent to   &lt;code
    * suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also
@@ -648,7 +654,11 @@ export interface Schema$GoogleCloudMlV1__TrainingInput {
    * equivalent to   &lt;code
    * suppresswarning=&quot;true&quot;&gt;complex_model_m&lt;/code&gt; that also
    * includes   four NVIDIA Tesla P100 GPUs. The availability of these GPUs is
-   * in   the Beta launch stage.   &lt;/dd&gt; &lt;/dl&gt;  You must set this
+   * in   the Beta launch stage.   &lt;/dd&gt; &lt;dt&gt;standard_tpu&lt;/dt&gt;
+   * &lt;dd&gt;   A TPU VM including one Cloud TPU. The availability of Cloud
+   * TPU is in   &lt;i&gt;Beta&lt;/i&gt; launch stage. See more about   &lt;a
+   * href=&quot;/ml-engine/docs/tensorflow/using-tpus&quot;&gt;using TPUs to
+   * train   your model&lt;/a&gt;.   &lt;/dd&gt; &lt;/dl&gt;  You must set this
    * value when `scaleTier` is set to `CUSTOM`.
    */
   masterType: string;
@@ -687,7 +697,7 @@ export interface Schema$GoogleCloudMlV1__TrainingInput {
   pythonVersion: string;
   /**
    * Required. The Google Compute Engine region to run the training job in. See
-   * the &lt;a href=&quot;/ml-engine/docs/regions&quot;&gt;available
+   * the &lt;a href=&quot;/ml-engine/docs/tensorflow/regions&quot;&gt;available
    * regions&lt;/a&gt; for ML Engine services.
    */
   region: string;
@@ -760,8 +770,8 @@ export interface Schema$GoogleCloudMlV1__Version {
   createTime: string;
   /**
    * Required. The Google Cloud Storage location of the trained model used to
-   * create the version. See the [overview of model
-   * deployment](/ml-engine/docs/concepts/deployment-overview) for more
+   * create the version. See the [guide to model
+   * deployment](/ml-engine/docs/tensorflow/deploying-models) for more
    * information.  When passing Version to
    * [projects.models.versions.create](/ml-engine/reference/rest/v1/projects.models.versions/create)
    * the model service uses the specified location as the source of the model.
@@ -853,7 +863,7 @@ export interface Schema$GoogleCloudMlV1__Version {
  */
 export interface Schema$GoogleIamV1__AuditConfig {
   /**
-   * The configuration for logging of each type of permission. Next ID: 4
+   * The configuration for logging of each type of permission.
    */
   auditLogConfigs: Schema$GoogleIamV1__AuditLogConfig[];
   /**
@@ -913,18 +923,22 @@ export interface Schema$GoogleIamV1__Binding {
 /**
  * Defines an Identity and Access Management (IAM) policy. It is used to specify
  * access control policies for Cloud Platform resources.   A `Policy` consists
- * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
+ * of a list of `bindings`. A `binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
- * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * **JSON Example**      {       &quot;bindings&quot;: [         {
+ * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
  * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
  * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
- * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
- * description of IAM and its features, see the [IAM developer&#39;s
- * guide](https://cloud.google.com/iam/docs).
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**
+ * bindings:     - members:       - user:mike@example.com       -
+ * group:admins@example.com       - domain:google.com       -
+ * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+ * roles/owner     - members:       - user:sean@example.com       role:
+ * roles/viewer   For a description of IAM and its features, see the [IAM
+ * developer&#39;s guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$GoogleIamV1__Policy {
   /**
@@ -1129,9 +1143,9 @@ export class Resource$Projects {
   /**
    * ml.projects.getConfig
    * @desc Get the service account information associated with your project. You
-   * need this information in order to grant the service account persmissions
-   * for the Google Cloud Storage location where you put your model training
-   * code for training the model with Google Cloud Machine Learning.
+   * need this information in order to grant the service account permissions for
+   * the Google Cloud Storage location where you put your model training code
+   * for training the model with Google Cloud Machine Learning.
    * @alias ml.projects.getConfig
    * @memberOf! ()
    *
@@ -1483,7 +1497,7 @@ export class Resource$Projects$Jobs {
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
-   * @param {string=} params.filter Optional. Specifies the subset of jobs to retrieve. You can filter on the value of one or more attributes of the job object. For example, retrieve jobs with a job identifier that starts with 'census': <p><code>gcloud ml-engine jobs list --filter='jobId:census*'</code> <p>List all failed jobs with names that start with 'rnn': <p><code>gcloud ml-engine jobs list --filter='jobId:rnn* AND state:FAILED'</code> <p>For more examples, see the guide to <a href="/ml-engine/docs/monitor-training">monitoring jobs</a>.
+   * @param {string=} params.filter Optional. Specifies the subset of jobs to retrieve. You can filter on the value of one or more attributes of the job object. For example, retrieve jobs with a job identifier that starts with 'census': <p><code>gcloud ml-engine jobs list --filter='jobId:census*'</code> <p>List all failed jobs with names that start with 'rnn': <p><code>gcloud ml-engine jobs list --filter='jobId:rnn* AND state:FAILED'</code> <p>For more examples, see the guide to <a href="/ml-engine/docs/tensorflow/monitor-training">monitoring jobs</a>.
    * @param {integer=} params.pageSize Optional. The number of jobs to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field.  The default value is 20, and the maximum page size is 100.
    * @param {string=} params.pageToken Optional. A page token to request the next page of results.  You get the token from the `next_page_token` field of the response from the previous call.
    * @param {string} params.parent Required. The name of the project for which to list jobs.

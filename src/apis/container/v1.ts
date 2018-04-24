@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Kubernetes Engine API
+ * Kubernetes Engine API
  *
  * The Google Kubernetes Engine API is used for building and managing container
  * based applications, powered by the open source Kubernetes technology.
@@ -1604,6 +1604,10 @@ export interface Schema$StartIPRotationRequest {
    * This field has been deprecated and replaced by the name field.
    */
   projectId: string;
+  /**
+   * Whether to rotate credentials during IP rotation.
+   */
+  rotateCredentials: boolean;
   /**
    * Deprecated. The name of the Google Compute Engine
    * [zone](/compute/docs/zones#available) in which the cluster resides. This

@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Abusive Experience Report API
+ * Abusive Experience Report API
  *
  * View Abusive Experience Report data, and get a list of sites that have a
  * significant number of abusive experiences.
@@ -67,7 +67,8 @@ export class Abusiveexperiencereport {
 }
 
 /**
- * Response message for GetSiteSummary.
+ * Response message for GetSiteSummary. Do not confuse with same message in
+ * google.ads.experiencereport.v1
  */
 export interface Schema$SiteSummaryResponse {
   /**

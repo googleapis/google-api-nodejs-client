@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Ad Experience Report API
+ * Ad Experience Report API
  *
  * View Ad Experience Report data, and get a list of sites that have a
  * significant number of annoying ads.
@@ -100,7 +100,8 @@ export interface Schema$PlatformSummary {
   underReview: boolean;
 }
 /**
- * Response message for GetSiteSummary.
+ * Response message for GetSiteSummary. Do not confuse with same message in
+ * google.chrome.abusiveexperiencereport.v1
  */
 export interface Schema$SiteSummaryResponse {
   /**

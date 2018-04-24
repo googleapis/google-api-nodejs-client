@@ -486,6 +486,10 @@ export interface Schema$Project {
  */
 export interface Schema$Quota {
   /**
+   * Whether a black hole zone should suppress system zones for this project.
+   */
+  blackHoleHidesSystemZones: boolean;
+  /**
    * Maximum allowed number of DnsKeys per ManagedZone.
    */
   dnsKeysPerManagedZone: number;

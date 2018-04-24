@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Cloud Firestore API
+ * Cloud Firestore API
  *
  *
  *
@@ -981,7 +981,8 @@ export interface Schema$UnaryFilter {
  */
 export interface Schema$Value {
   /**
-   * An array value.  Cannot contain another array value.
+   * An array value.  Cannot directly contain another array value, though can
+   * contain an map which contains another array.
    */
   arrayValue: Schema$ArrayValue;
   /**

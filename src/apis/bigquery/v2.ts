@@ -180,6 +180,14 @@ export interface Schema$BigtableOptions {
    */
   readRowkeyAsString: boolean;
 }
+export interface Schema$Clustering {
+  /**
+   * [Repeated] One or more fields on which data should be clustered. Only
+   * top-level, non-repeated, simple-type fields are supported. The order of the
+   * fields will determine how clusters will be generated, so it is important.
+   */
+  fields: string[];
+}
 export interface Schema$CsvOptions {
   /**
    * [Optional] Indicates if BigQuery should accept rows that are missing
@@ -662,6 +670,11 @@ export interface Schema$GetServiceAccountResponse {
 }
 export interface Schema$GoogleSheetsOptions {
   /**
+   * [Experimental] [Optional] Range of a sheet to query from. Only used when
+   * non-empty. Typical format: !:
+   */
+  range: string;
+  /**
    * [Optional] The number of rows at the top of a sheet that BigQuery will skip
    * when reading the data. The default value is 0. This property is useful if
    * you have header rows that should be skipped. When autodetect is on,
@@ -819,10 +832,16 @@ export interface Schema$JobConfigurationLoad {
    */
   allowQuotedNewlines: boolean;
   /**
-   * Indicates if we should automatically infer the options and schema for CSV
-   * and JSON sources.
+   * [Optional] Indicates if we should automatically infer the options and
+   * schema for CSV and JSON sources.
    */
   autodetect: boolean;
+  /**
+   * [Experimental] Clustering specification for the destination table. Must be
+   * specified with time-based partitioning, data in the table will be first
+   * partitioned and subsequently clustered.
+   */
+  clustering: Schema$Clustering;
   /**
    * [Optional] Specifies whether the job is allowed to create new tables. The
    * following values are supported: CREATE_IF_NEEDED: If the table does not
@@ -964,7 +983,7 @@ export interface Schema$JobConfigurationLoad {
    */
   sourceUris: string[];
   /**
-   * If specified, configures time-based partitioning for the destination table.
+   * Time-based partitioning specification for the destination table.
    */
   timePartitioning: Schema$TimePartitioning;
   /**
@@ -990,6 +1009,12 @@ export interface Schema$JobConfigurationQuery {
    * size.
    */
   allowLargeResults: boolean;
+  /**
+   * [Experimental] Clustering specification for the destination table. Must be
+   * specified with time-based partitioning, data in the table will be first
+   * partitioned and subsequently clustered.
+   */
+  clustering: Schema$Clustering;
   /**
    * [Optional] Specifies whether the job is allowed to create new tables. The
    * following values are supported: CREATE_IF_NEEDED: If the table does not
@@ -1077,7 +1102,7 @@ export interface Schema$JobConfigurationQuery {
    */
   tableDefinitions: any;
   /**
-   * If specified, configures time-based partitioning for the destination table.
+   * Time-based partitioning specification for the destination table.
    */
   timePartitioning: Schema$TimePartitioning;
   /**
@@ -1635,6 +1660,12 @@ export interface Schema$Streamingbuffer {
 }
 export interface Schema$Table {
   /**
+   * [Experimental] Clustering specification for the table. Must be specified
+   * with time-based partitioning, data in the table will be first partitioned
+   * and subsequently clustered.
+   */
+  clustering: Schema$Clustering;
+  /**
    * [Output-only] The time when this table was created, in milliseconds since
    * the epoch.
    */
@@ -1730,7 +1761,7 @@ export interface Schema$Table {
    */
   tableReference: Schema$TableReference;
   /**
-   * If specified, configures time-based partitioning for this table.
+   * Time-based partitioning specification for this table.
    */
   timePartitioning: Schema$TimePartitioning;
   /**

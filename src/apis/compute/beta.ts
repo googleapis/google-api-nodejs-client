@@ -302,7 +302,7 @@ export interface Schema$AcceleratorTypeList {
 }
 export interface Schema$AcceleratorTypesScopedList {
   /**
-   * [Output Only] List of accelerator types contained in this scope.
+   * [Output Only] A list of accelerator types contained in this scope.
    */
   acceleratorTypes: Schema$AcceleratorType[];
   /**
@@ -492,7 +492,7 @@ export interface Schema$AddressAggregatedList {
 }
 export interface Schema$AddressesScopedList {
   /**
-   * [Output Only] List of addresses contained in this scope.
+   * [Output Only] A list of addresses contained in this scope.
    */
   addresses: Schema$Address[];
   /**
@@ -921,7 +921,7 @@ export interface Schema$AutoscalerList {
 }
 export interface Schema$AutoscalersScopedList {
   /**
-   * [Output Only] List of autoscalers contained in this scope.
+   * [Output Only] A list of autoscalers contained in this scope.
    */
   autoscalers: Schema$Autoscaler[];
   /**
@@ -1493,7 +1493,7 @@ export interface Schema$BackendServiceList {
 }
 export interface Schema$BackendServicesScopedList {
   /**
-   * List of BackendServices contained in this scope.
+   * A list of BackendServices contained in this scope.
    */
   backendServices: Schema$BackendService[];
   /**
@@ -1634,7 +1634,7 @@ export interface Schema$Commitment {
    */
   region: string;
   /**
-   * List of commitment amounts for particular resources. Note that VCPU and
+   * A list of commitment amounts for particular resources. Note that VCPU and
    * MEMORY resource commitments must occur together.
    */
   resources: Schema$ResourceCommitment[];
@@ -1724,7 +1724,7 @@ export interface Schema$CommitmentList {
 }
 export interface Schema$CommitmentsScopedList {
   /**
-   * [Output Only] List of commitments contained in this scope.
+   * [Output Only] A list of commitments contained in this scope.
    */
   commitments: Schema$Commitment[];
   /**
@@ -1779,6 +1779,10 @@ export interface Schema$ConnectionDraining {
  */
 export interface Schema$CustomerEncryptionKey {
   /**
+   * The name of the encryption key that is stored in Google Cloud KMS.
+   */
+  kmsKeyName: string;
+  /**
    * Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648
    * base64 to either encrypt or decrypt this resource.
    */
@@ -1789,7 +1793,7 @@ export interface Schema$CustomerEncryptionKey {
    * resource.  The key must meet the following requirements before you can
    * provide it to Compute Engine:   - The key is wrapped using a RSA public key
    * certificate provided by Google.  - After being wrapped, the key must be
-   * encoded in RFC 4648 base64 encoding.  Get the RSA public key certificate
+   * encoded in RFC 4648 base64 encoding.  Gets the RSA public key certificate
    * provided by Google at:
    * https://cloud-certs.storage.googleapis.com/google-cloud-csek-ingress.pem
    */
@@ -2154,7 +2158,7 @@ export interface Schema$DisksResizeRequest {
 }
 export interface Schema$DisksScopedList {
   /**
-   * [Output Only] List of disks contained in this scope.
+   * [Output Only] A list of disks contained in this scope.
    */
   disks: Schema$Disk[];
   /**
@@ -2278,7 +2282,7 @@ export interface Schema$DiskTypeList {
 }
 export interface Schema$DiskTypesScopedList {
   /**
-   * [Output Only] List of disk types contained in this scope.
+   * [Output Only] A list of disk types contained in this scope.
    */
   diskTypes: Schema$DiskType[];
   /**
@@ -2773,7 +2777,7 @@ export interface Schema$ForwardingRuleList {
 }
 export interface Schema$ForwardingRulesScopedList {
   /**
-   * List of forwarding rules contained in this scope.
+   * A list of forwarding rules contained in this scope.
    */
   forwardingRules: Schema$ForwardingRule[];
   /**
@@ -3482,7 +3486,7 @@ export interface Schema$Instance {
    */
   disks: Schema$AttachedDisk[];
   /**
-   * List of the type and count of accelerator cards attached to the instance.
+   * A list of the type and count of accelerator cards attached to the instance.
    */
   guestAccelerators: Schema$AcceleratorConfig[];
   /**
@@ -3676,8 +3680,8 @@ export interface Schema$InstanceGroup {
    */
   network: string;
   /**
-   * The URL of the region where the instance group is located (for regional
-   * resources).
+   * [Output Only] The URL of the region where the instance group is located
+   * (for regional resources).
    */
   region: string;
   /**
@@ -3690,8 +3694,8 @@ export interface Schema$InstanceGroup {
    */
   size: number;
   /**
-   * The URL of the subnetwork to which all instances in the instance group
-   * belong.
+   * [Output Only] The URL of the subnetwork to which all instances in the
+   * instance group belong.
    */
   subnetwork: string;
   /**
@@ -4465,7 +4469,7 @@ export interface Schema$InstanceReference {
 }
 export interface Schema$InstancesScopedList {
   /**
-   * [Output Only] List of instances contained in this scope.
+   * [Output Only] A list of instances contained in this scope.
    */
   instances: Schema$Instance[];
   /**
@@ -4485,7 +4489,7 @@ export interface Schema$InstancesSetLabelsRequest {
 }
 export interface Schema$InstancesSetMachineResourcesRequest {
   /**
-   * List of the type and count of accelerator cards attached to the instance.
+   * A list of the type and count of accelerator cards attached to the instance.
    */
   guestAccelerators: Schema$AcceleratorConfig[];
 }
@@ -4643,7 +4647,7 @@ export interface Schema$Interconnect {
    */
   adminEnabled: boolean;
   /**
-   * [Output Only] List of CircuitInfo objects, that describe the individual
+   * [Output Only] A list of CircuitInfo objects, that describe the individual
    * circuits in this LAG.
    */
   circuitInfos: Schema$InterconnectCircuitInfo[];
@@ -4662,7 +4666,7 @@ export interface Schema$Interconnect {
    */
   description: string;
   /**
-   * [Output Only] List of outages expected for this Interconnect.
+   * [Output Only] A list of outages expected for this Interconnect.
    */
   expectedOutages: Schema$InterconnectOutageNotification[];
   /**
@@ -5034,7 +5038,7 @@ export interface Schema$InterconnectAttachmentPrivateInfo {
 }
 export interface Schema$InterconnectAttachmentsScopedList {
   /**
-   * List of interconnect attachments contained in this scope.
+   * A list of interconnect attachments contained in this scope.
    */
   interconnectAttachments: Schema$InterconnectAttachment[];
   /**
@@ -5601,7 +5605,7 @@ export interface Schema$MachineTypeList {
 }
 export interface Schema$MachineTypesScopedList {
   /**
-   * [Output Only] List of machine types contained in this scope.
+   * [Output Only] A list of machine types contained in this scope.
    */
   machineTypes: Schema$MachineType[];
   /**
@@ -5770,7 +5774,7 @@ export interface Schema$Network {
    */
   name: string;
   /**
-   * [Output Only] List of network peerings for the resource.
+   * [Output Only] A list of network peerings for the resource.
    */
   peerings: Schema$NetworkPeering[];
   /**
@@ -6159,7 +6163,7 @@ export interface Schema$OperationList {
 }
 export interface Schema$OperationsScopedList {
   /**
-   * [Output Only] List of operations contained in this scope.
+   * [Output Only] A list of operations contained in this scope.
    */
   operations: Schema$Operation[];
   /**
@@ -6624,7 +6628,7 @@ export interface Schema$RegionInstanceGroupManagersDeleteInstancesRequest {
 }
 export interface Schema$RegionInstanceGroupManagersListInstancesResponse {
   /**
-   * List of managed instances.
+   * A list of managed instances.
    */
   managedInstances: Schema$ManagedInstance[];
   /**
@@ -7110,6 +7114,14 @@ export interface Schema$RouterBgpPeer {
    */
   ipAddress: string;
   /**
+   * [Output Only] Type of how the resource/configuration of the BGP peer is
+   * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
+   * represents an BGP peer that is automatically created for PARTNER
+   * interconnectAttachment, Google will automatically create/delete this type
+   * of BGP peer when the PARTNER interconnectAttachment is created/deleted.
+   */
+  managementType: string;
+  /**
    * Name of this BGP peer. The name must be 1-63 characters long and comply
    * with RFC1035.
    */
@@ -7145,6 +7157,15 @@ export interface Schema$RouterInterface {
    * a VPN Tunnel or an interconnect attachment.
    */
   linkedVpnTunnel: string;
+  /**
+   * [Output Only] Type of how the resource/configuration of the interface is
+   * managed. MANAGED_BY_USER is the default value; MANAGED_BY_ATTACHMENT
+   * represents an interface that is automatically created for PARTNER type
+   * interconnectAttachment, Google will automatically create/update/delete this
+   * type of interface when the PARTNER interconnectAttachment is
+   * created/provisioned/deleted.
+   */
+  managementType: string;
   /**
    * Name of this interface entry. The name must be 1-63 characters long and
    * comply with RFC1035.
@@ -7192,7 +7213,7 @@ export interface Schema$RoutersPreviewResponse {
 }
 export interface Schema$RoutersScopedList {
   /**
-   * List of routers contained in this scope.
+   * A list of routers contained in this scope.
    */
   routers: Schema$Router[];
   /**
@@ -7376,7 +7397,7 @@ export interface Schema$SecurityPolicy {
    */
   name: string;
   /**
-   * List of rules that belong to this policy. There must always be a default
+   * A list of rules that belong to this policy. There must always be a default
    * rule (rule with priority 2147483647 and match &quot;*&quot;). If no rules
    * are provided when creating a security policy, a default rule with action
    * &quot;allow&quot; will be added.
@@ -7868,9 +7889,9 @@ export interface Schema$SslPolicy {
    */
   creationTimestamp: string;
   /**
-   * List of features enabled when the selected profile is CUSTOM. The - method
-   * returns the set of features that can be specified in this list. This field
-   * must be empty if the profile is not CUSTOM.
+   * A list of features enabled when the selected profile is CUSTOM. The -
+   * method returns the set of features that can be specified in this list. This
+   * field must be empty if the profile is not CUSTOM.
    */
   customFeatures: string[];
   /**
@@ -7902,7 +7923,7 @@ export interface Schema$SslPolicy {
   /**
    * The minimum version of SSL protocol that can be used by the clients to
    * establish a connection with the load balancer. This can be one of TLS_1_0,
-   * TLS_1_1, TLS_1_2, TLS_1_3.
+   * TLS_1_1, TLS_1_2.
    */
   minTlsVersion: string;
   /**
@@ -8133,7 +8154,7 @@ export interface Schema$SubnetworksExpandIpCidrRangeRequest {
 }
 export interface Schema$SubnetworksScopedList {
   /**
-   * List of subnetworks contained in this scope.
+   * A list of subnetworks contained in this scope.
    */
   subnetworks: Schema$Subnetwork[];
   /**
@@ -8485,7 +8506,7 @@ export interface Schema$TargetInstanceList {
 }
 export interface Schema$TargetInstancesScopedList {
   /**
-   * List of target instances contained in this scope.
+   * A list of target instances contained in this scope.
    */
   targetInstances: Schema$TargetInstance[];
   /**
@@ -8695,7 +8716,7 @@ export interface Schema$TargetPoolsRemoveInstanceRequest {
 }
 export interface Schema$TargetPoolsScopedList {
   /**
-   * List of target pools contained in this scope.
+   * A list of target pools contained in this scope.
    */
   targetPools: Schema$TargetPool[];
   /**
@@ -9061,7 +9082,7 @@ export interface Schema$TargetVpnGatewayList {
 }
 export interface Schema$TargetVpnGatewaysScopedList {
   /**
-   * [Output Only] List of target vpn gateways contained in this scope.
+   * [Output Only] A list of target vpn gateways contained in this scope.
    */
   targetVpnGateways: Schema$TargetVpnGateway[];
   /**
@@ -9532,7 +9553,7 @@ export interface Schema$VpnTunnelList {
 }
 export interface Schema$VpnTunnelsScopedList {
   /**
-   * List of vpn tunnels contained in this scope.
+   * A list of vpn tunnels contained in this scope.
    */
   vpnTunnels: Schema$VpnTunnel[];
   /**
@@ -23334,7 +23355,7 @@ export class Resource$Instancegroupmanagers {
   /**
    * compute.instanceGroupManagers.get
    * @desc Returns all of the details about the specified managed instance
-   * group. Get a list of available managed instance groups by making a list()
+   * group. Gets a list of available managed instance groups by making a list()
    * request.
    * @example
    * * // BEFORE RUNNING:
@@ -29890,7 +29911,7 @@ export class Resource$Instancetemplates {
 
   /**
    * compute.instanceTemplates.get
-   * @desc Returns the specified instance template. Get a list of available
+   * @desc Returns the specified instance template. Gets a list of available
    * instance templates by making a list() request.
    * @example
    * * // BEFORE RUNNING:
@@ -32751,7 +32772,7 @@ export class Resource$Machinetypes {
 
   /**
    * compute.machineTypes.get
-   * @desc Returns the specified machine type. Get a list of available machine
+   * @desc Returns the specified machine type. Gets a list of available machine
    * types by making a list() request.
    * @example
    * * // BEFORE RUNNING:
@@ -34605,7 +34626,7 @@ export class Resource$Projects {
 
   /**
    * compute.projects.getXpnHost
-   * @desc Get the shared VPC host project that this project links to. May be
+   * @desc Gets the shared VPC host project that this project links to. May be
    * empty if no link exists.
    * @example
    * * // BEFORE RUNNING:
@@ -34712,7 +34733,7 @@ export class Resource$Projects {
 
   /**
    * compute.projects.getXpnResources
-   * @desc Get service resources (a.k.a service project) associated with this
+   * @desc Gets service resources (a.k.a service project) associated with this
    * host project.
    * @example
    * * // BEFORE RUNNING:
@@ -34838,7 +34859,7 @@ export class Resource$Projects {
 
   /**
    * compute.projects.listXpnHosts
-   * @desc List all shared VPC host projects visible to the user in an
+   * @desc Lists all shared VPC host projects visible to the user in an
    * organization.
    * @example
    * * // BEFORE RUNNING:
@@ -45605,7 +45626,7 @@ export class Resource$Sslpolicies {
 
   /**
    * compute.sslPolicies.get
-   * @desc List all of the ordered rules present in a single specified policy.
+   * @desc Lists all of the ordered rules present in a single specified policy.
    * @alias compute.sslPolicies.get
    * @memberOf! ()
    *
@@ -45716,8 +45737,8 @@ export class Resource$Sslpolicies {
 
   /**
    * compute.sslPolicies.list
-   * @desc List all the SSL policies that have been configured for the specified
-   * project.
+   * @desc Lists all the SSL policies that have been configured for the
+   * specified project.
    * @alias compute.sslPolicies.list
    * @memberOf! ()
    *

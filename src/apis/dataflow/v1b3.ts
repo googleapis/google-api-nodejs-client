@@ -167,6 +167,11 @@ export interface Schema$AutoscalingEvent {
    * num_workers value.
    */
   time: string;
+  /**
+   * A short and friendly name for the worker pool this event refers to,
+   * populated from the value of PoolStageRelation::user_pool_name.
+   */
+  workerPool: string;
 }
 /**
  * Settings for WorkerPool autoscaling.
@@ -1355,6 +1360,12 @@ export interface Schema$MetricUpdate {
    * A struct value describing properties of a distribution of numeric values.
    */
   distribution: any;
+  /**
+   * A struct value describing properties of a Gauge. Metrics of gauge type show
+   * the value of a metric across time, and is aggregated based on the newest
+   * value.
+   */
+  gauge: any;
   /**
    * Worker-computed aggregate value for internal use by the Dataflow service.
    */

@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Cloud Pub/Sub API
+ * Cloud Pub/Sub API
  *
  * Provides reliable, many-to-many, asynchronous messaging between applications.
  *

@@ -72,7 +72,7 @@ export class Oslogin {
  */
 export interface Schema$Empty {}
 /**
- * A response message for importing an SSH public key.
+ * A response message from importing an SSH public key.
  */
 export interface Schema$ImportSshPublicKeyResponse {
   /**
@@ -118,6 +118,10 @@ export interface Schema$PosixAccount {
    * The path to the home directory for this account.
    */
   homeDirectory: string;
+  /**
+   * The operating system type where this account applies.
+   */
+  operatingSystemType: string;
   /**
    * Only one POSIX account can be marked as primary.
    */

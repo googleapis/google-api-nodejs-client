@@ -139,7 +139,8 @@ export interface Schema$ApplicationPolicy {
   /**
    * The default policy for all permissions requested by the app. If specified,
    * this overrides the policy-level default_permission_policy which applies to
-   * all apps.
+   * all apps. It does not override the permission_grants which applies to all
+   * apps.
    */
   defaultPermissionPolicy: string;
   /**
@@ -190,7 +191,8 @@ export interface Schema$ApplicationPolicy {
   packageName: string;
   /**
    * Explicit permission grants or denials for the app. These values override
-   * the default_permission_policy.
+   * the default_permission_policy and permission_grants which apply to all
+   * apps.
    */
   permissionGrants: Schema$PermissionGrant[];
 }
@@ -571,6 +573,11 @@ export interface Schema$Enterprise {
    * notifications are enabled.
    */
   pubsubTopic: string;
+  /**
+   * Terms and conditions that must be accepted when provisioning a device for
+   * this enterprise. A page of terms is generated for each value in this list.
+   */
+  termsAndConditions: Schema$TermsAndConditions[];
 }
 /**
  * Data hosted at an external location. The data is to be downloaded by Android
@@ -1364,7 +1371,7 @@ export interface Schema$Policy {
   usbFileTransferDisabled: boolean;
   /**
    * Allows admins to toggle whether USB storge is enabled or disabled on
-   * user&#39;s devices. Next ID: 114
+   * user&#39;s devices.
    */
   usbMassStorageEnabled: boolean;
   /**
@@ -1593,6 +1600,20 @@ export interface Schema$SystemUpdate {
    * The type of system update to configure.
    */
   type: string;
+}
+/**
+ * A terms and conditions page to be accepted during provisioning.
+ */
+export interface Schema$TermsAndConditions {
+  /**
+   * A well-formatted HTML string. It will be parsed on the client with
+   * android.text.Html#fromHtml.
+   */
+  content: Schema$UserFacingMessage;
+  /**
+   * A short header which appears above the HTML content.
+   */
+  header: Schema$UserFacingMessage;
 }
 /**
  * Provides a user-facing message with locale info. The maximum message length

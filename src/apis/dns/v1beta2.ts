@@ -486,6 +486,10 @@ export interface Schema$Project {
  */
 export interface Schema$Quota {
   /**
+   * Whether a black hole zone should suppress system zones for this project.
+   */
+  blackHoleHidesSystemZones: boolean;
+  /**
    * Maximum allowed number of DnsKeys per ManagedZone.
    */
   dnsKeysPerManagedZone: number;
@@ -1271,7 +1275,7 @@ export class Resource$Managedzones {
 
   /**
    * dns.managedZones.patch
-   * @desc Update an existing ManagedZone. This method supports patch semantics.
+   * @desc Apply a partial update to an existing ManagedZone.
    * @alias dns.managedZones.patch
    * @memberOf! ()
    *
