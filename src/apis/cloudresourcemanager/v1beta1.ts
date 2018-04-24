@@ -141,14 +141,13 @@ export interface Schema$Binding {
    * without a Google account.  * `allAuthenticatedUsers`: A special identifier
    * that represents anyone    who is authenticated with a Google account or a
    * service account.  * `user:{emailid}`: An email address that represents a
-   * specific Google    account. For example, `alice@gmail.com` or
-   * `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that
-   * represents a service    account. For example,
-   * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email
-   * address that represents a Google group.    For example,
-   * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that
-   * represents all the    users of that domain. For example, `google.com` or
-   * `example.com`.
+   * specific Google    account. For example, `alice@gmail.com` .   *
+   * `serviceAccount:{emailid}`: An email address that represents a service
+   * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+   * `group:{emailid}`: An email address that represents a Google group.    For
+   * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain
+   * name that represents all the    users of that domain. For example,
+   * `google.com` or `example.com`.
    */
   members: string[];
   /**
@@ -311,18 +310,22 @@ export interface Schema$OrganizationOwner {
 /**
  * Defines an Identity and Access Management (IAM) policy. It is used to specify
  * access control policies for Cloud Platform resources.   A `Policy` consists
- * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
+ * of a list of `bindings`. A `binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
- * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * **JSON Example**      {       &quot;bindings&quot;: [         {
+ * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
  * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
  * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
- * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
- * description of IAM and its features, see the [IAM developer&#39;s
- * guide](https://cloud.google.com/iam/docs).
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**
+ * bindings:     - members:       - user:mike@example.com       -
+ * group:admins@example.com       - domain:google.com       -
+ * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+ * roles/owner     - members:       - user:sean@example.com       role:
+ * roles/viewer   For a description of IAM and its features, see the [IAM
+ * developer&#39;s guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
   /**

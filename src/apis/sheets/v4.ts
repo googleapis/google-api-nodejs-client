@@ -396,6 +396,11 @@ export interface Schema$BasicChartDomain {
  */
 export interface Schema$BasicChartSeries {
   /**
+   * The color for elements (i.e. bars, lines, points) associated with this
+   * series.  If empty, a default color will be used.
+   */
+  color: Schema$Color;
+  /**
    * The line style of this series. Valid only if the chartType is AREA, LINE,
    * or SCATTER. COMBO charts are also supported if the series chart type is
    * AREA or LINE.

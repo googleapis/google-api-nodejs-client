@@ -203,7 +203,9 @@ import * as tpu_v1alpha1 from './tpu/v1alpha1';
 import * as translate_v2 from './translate/v2';
 import * as urlshortener_v1 from './urlshortener/v1';
 import * as vault_v1 from './vault/v1';
+import * as videointelligence_v1 from './videointelligence/v1';
 import * as videointelligence_v1beta1 from './videointelligence/v1beta1';
+import * as videointelligence_v1beta2 from './videointelligence/v1beta2';
 import * as vision_v1 from './vision/v1';
 import * as vision_v1p1beta1 from './vision/v1p1beta1';
 import * as vision_v1p2beta1 from './vision/v1p2beta1';
@@ -212,6 +214,7 @@ import * as webmasters_v3 from './webmasters/v3';
 import * as youtube_v3 from './youtube/v3';
 import * as youtubeAnalytics_v1 from './youtubeAnalytics/v1';
 import * as youtubeAnalytics_v1beta1 from './youtubeAnalytics/v1beta1';
+import * as youtubeAnalytics_v2 from './youtubeAnalytics/v2';
 import * as youtubereporting_v1 from './youtubereporting/v1';
 
 export interface APIList {
@@ -652,7 +655,9 @@ export const APIS: APIList = {
     'v1': vault_v1.Vault,
   },
   videointelligence: {
+    'v1': videointelligence_v1.Videointelligence,
     'v1beta1': videointelligence_v1beta1.Videointelligence,
+    'v1beta2': videointelligence_v1beta2.Videointelligence,
   },
   vision: {
     'v1': vision_v1.Vision,
@@ -671,6 +676,7 @@ export const APIS: APIList = {
   youtubeAnalytics: {
     'v1': youtubeAnalytics_v1.Youtubeanalytics,
     'v1beta1': youtubeAnalytics_v1beta1.Youtubeanalytics,
+    'v2': youtubeAnalytics_v2.Youtubeanalytics,
   },
   youtubereporting: {
     'v1': youtubereporting_v1.Youtubereporting,
@@ -1196,8 +1202,11 @@ export class GeneratedAPIs {
   vault<T = vault_v1.Vault>(options: ServiceOptions|string) {
     return this.getAPI<T>('vault', options);
   }
-  videointelligence<T = videointelligence_v1beta1.Videointelligence>(
-      options: ServiceOptions|string) {
+  videointelligence<
+      T = videointelligence_v1.Videointelligence |
+          videointelligence_v1beta1.Videointelligence |
+          videointelligence_v1beta2.Videointelligence>(options: ServiceOptions|
+                                                       string) {
     return this.getAPI<T>('videointelligence', options);
   }
   vision<
@@ -1216,8 +1225,9 @@ export class GeneratedAPIs {
   }
   youtubeAnalytics<
       T = youtubeAnalytics_v1.Youtubeanalytics |
-          youtubeAnalytics_v1beta1.Youtubeanalytics>(options: ServiceOptions|
-                                                     string) {
+          youtubeAnalytics_v1beta1.Youtubeanalytics |
+          youtubeAnalytics_v2.Youtubeanalytics>(options: ServiceOptions|
+                                                string) {
     return this.getAPI<T>('youtubeAnalytics', options);
   }
   youtubereporting<T = youtubereporting_v1.Youtubereporting>(options:

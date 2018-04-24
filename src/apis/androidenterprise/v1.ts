@@ -1067,7 +1067,7 @@ export interface Schema$Policy {
   autoUpdatePolicy: string;
   /**
    * The maintenance window defining when apps running in the foreground should
-   * be updated. This feature is only supported on fully managed devices.
+   * be updated.
    */
   maintenanceWindow: Schema$MaintenanceWindow;
   /**

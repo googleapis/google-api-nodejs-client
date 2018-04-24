@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Service Control API
+ * Service Control API
  *
  * Google Service Control provides control plane functionality to managed
  * services, such as logging, monitoring, and status checks.
@@ -713,7 +713,8 @@ export interface Schema$Operation {
    */
   resourceContainer: string;
   /**
-   * The resources that are involved in the operation.
+   * The resources that are involved in the operation. The maximum supported
+   * number of entries in this field is 100.
    */
   resources: Schema$ResourceInfo[];
   /**

@@ -147,6 +147,20 @@ export interface Schema$Color {
   red: number;
 }
 /**
+ * Response to a single file annotation request. A file may contain one or more
+ * images, which individually have their own responses.
+ */
+export interface Schema$GoogleCloudVisionV1p2beta1AnnotateFileResponse {
+  /**
+   * Information about the file for which this response is generated.
+   */
+  inputConfig: Schema$GoogleCloudVisionV1p2beta1InputConfig;
+  /**
+   * Individual responses to images found within the file.
+   */
+  responses: Schema$GoogleCloudVisionV1p2beta1AnnotateImageResponse[];
+}
+/**
  * Request for performing Google Cloud Vision API tasks over a user-provided
  * image, with user-requested features.
  */
@@ -325,6 +339,10 @@ export interface Schema$GoogleCloudVisionV1p2beta1Block {
  * A bounding polygon for the detected image annotation.
  */
 export interface Schema$GoogleCloudVisionV1p2beta1BoundingPoly {
+  /**
+   * The bounding polygon normalized vertices.
+   */
+  normalizedVertices: Schema$GoogleCloudVisionV1p2beta1NormalizedVertex[];
   /**
    * The bounding polygon vertices.
    */
@@ -592,8 +610,8 @@ export interface Schema$GoogleCloudVisionV1p2beta1GcsDestination {
  */
 export interface Schema$GoogleCloudVisionV1p2beta1GcsSource {
   /**
-   * Google Cloud Storage URI for the input file. This must only be a GCS
-   * object. Wildcards are not currently supported.
+   * Google Cloud Storage URI for the input file. This must only be a Google
+   * Cloud Storage object. Wildcards are not currently supported.
    */
   uri: string;
 }
@@ -730,6 +748,20 @@ export interface Schema$GoogleCloudVisionV1p2beta1LocationInfo {
   latLng: Schema$LatLng;
 }
 /**
+ * A vertex represents a 2D point in the image. NOTE: the normalized vertex
+ * coordinates are relative to the original image and range from 0 to 1.
+ */
+export interface Schema$GoogleCloudVisionV1p2beta1NormalizedVertex {
+  /**
+   * X coordinate.
+   */
+  x: number;
+  /**
+   * Y coordinate.
+   */
+  y: number;
+}
+/**
  * Contains metadata for the BatchAnnotateImages operation.
  */
 export interface Schema$GoogleCloudVisionV1p2beta1OperationMetadata {
@@ -751,13 +783,14 @@ export interface Schema$GoogleCloudVisionV1p2beta1OperationMetadata {
  */
 export interface Schema$GoogleCloudVisionV1p2beta1OutputConfig {
   /**
-   * The max number of response protos to put into each output JSON file on GCS.
-   * The valid range is [1, 100]. If not specified, the default value is 20. For
-   * example, for one pdf file with 100 pages, 100 response protos will be
-   * generated. If `batch_size` = 20, then 5 json files each containing 20
-   * response protos will be written under the prefix `gcs_destination`.`uri`.
-   * Currently, batch_size only applies to GcsDestination, with potential future
-   * support for other output configurations.
+   * The max number of response protos to put into each output JSON file on
+   * Google Cloud Storage. The valid range is [1, 100]. If not specified, the
+   * default value is 20.  For example, for one pdf file with 100 pages, 100
+   * response protos will be generated. If `batch_size` = 20, then 5 json files
+   * each containing 20 response protos will be written under the prefix
+   * `gcs_destination`.`uri`.  Currently, batch_size only applies to
+   * GcsDestination, with potential future support for other output
+   * configurations.
    */
   batchSize: number;
   /**

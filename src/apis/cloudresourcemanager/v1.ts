@@ -147,14 +147,13 @@ export interface Schema$Binding {
    * without a Google account.  * `allAuthenticatedUsers`: A special identifier
    * that represents anyone    who is authenticated with a Google account or a
    * service account.  * `user:{emailid}`: An email address that represents a
-   * specific Google    account. For example, `alice@gmail.com` or
-   * `joe@example.com`.   * `serviceAccount:{emailid}`: An email address that
-   * represents a service    account. For example,
-   * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email
-   * address that represents a Google group.    For example,
-   * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name that
-   * represents all the    users of that domain. For example, `google.com` or
-   * `example.com`.
+   * specific Google    account. For example, `alice@gmail.com` .   *
+   * `serviceAccount:{emailid}`: An email address that represents a service
+   * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+   * `group:{emailid}`: An email address that represents a Google group.    For
+   * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps domain
+   * name that represents all the    users of that domain. For example,
+   * `google.com` or `example.com`.
    */
   members: string[];
   /**
@@ -315,7 +314,7 @@ export interface Schema$GetAncestryResponse {
   /**
    * Ancestors are ordered from bottom to top of the resource hierarchy. The
    * first ancestor is the project itself, followed by the project&#39;s parent,
-   * etc.
+   * etc..
    */
   ancestor: Schema$Ancestor[];
 }
@@ -721,18 +720,22 @@ export interface Schema$OrgPolicy {
 /**
  * Defines an Identity and Access Management (IAM) policy. It is used to specify
  * access control policies for Cloud Platform resources.   A `Policy` consists
- * of a list of `bindings`. A `Binding` binds a list of `members` to a `role`,
+ * of a list of `bindings`. A `binding` binds a list of `members` to a `role`,
  * where the members can be user accounts, Google groups, Google domains, and
  * service accounts. A `role` is a named list of permissions defined by IAM.
- * **Example**      {       &quot;bindings&quot;: [         { &quot;role&quot;:
- * &quot;roles/owner&quot;,           &quot;members&quot;: [
+ * **JSON Example**      {       &quot;bindings&quot;: [         {
+ * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
  * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] }, {
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
  * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
- * [&quot;user:sean@example.com&quot;]         }       ]     }  For a
- * description of IAM and its features, see the [IAM developer&#39;s
- * guide](https://cloud.google.com/iam/docs).
+ * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML Example**
+ * bindings:     - members:       - user:mike@example.com       -
+ * group:admins@example.com       - domain:google.com       -
+ * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+ * roles/owner     - members:       - user:sean@example.com       role:
+ * roles/viewer   For a description of IAM and its features, see the [IAM
+ * developer&#39;s guide](https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
   /**
@@ -4806,22 +4809,24 @@ export class Resource$Projects {
    * console and must accept the invitation.  + A user cannot be granted the
    * owner role using `setIamPolicy()`. The user must be granted the owner role
    * using the Cloud Platform Console and must explicitly accept the invitation.
-   * + Invitations to grant the owner role cannot be sent using
-   * `setIamPolicy()`; they must be sent only using the Cloud Platform Console.
-   * + Membership changes that leave the project without any owners that have
-   * accepted the Terms of Service (ToS) will be rejected.  + If the project is
-   * not part of an organization, there must be at least one owner who has
-   * accepted the Terms of Service (ToS) agreement in the policy. Calling
-   * `setIamPolicy()` to remove the last ToS-accepted owner from the policy will
-   * fail. This restriction also applies to legacy projects that no longer have
-   * owners who have accepted the ToS. Edits to IAM policies will be rejected
-   * until the lack of a ToS-accepting owner is rectified.  + This method will
-   * replace the existing policy, and cannot be used to append additional IAM
-   * settings.  Note: Removing service accounts from policies or changing their
-   * roles can render services completely inoperable. It is important to
-   * understand how the service account is being used before removing or
-   * updating its roles.  Authorization requires the Google IAM permission
-   * `resourcemanager.projects.setIamPolicy` on the project
+   * + You can only grant ownership of a project to a member by using the GCP
+   * Console. Inviting a member will deliver an invitation email that they must
+   * accept. An invitation email is not generated if you are granting a role
+   * other than owner, or if both the member you are inviting and the project
+   * are part of your organization.  + Membership changes that leave the project
+   * without any owners that have accepted the Terms of Service (ToS) will be
+   * rejected.  + If the project is not part of an organization, there must be
+   * at least one owner who has accepted the Terms of Service (ToS) agreement in
+   * the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner
+   * from the policy will fail. This restriction also applies to legacy projects
+   * that no longer have owners who have accepted the ToS. Edits to IAM policies
+   * will be rejected until the lack of a ToS-accepting owner is rectified.  +
+   * This method will replace the existing policy, and cannot be used to append
+   * additional IAM settings.  Note: Removing service accounts from policies or
+   * changing their roles can render services completely inoperable. It is
+   * important to understand how the service account is being used before
+   * removing or updating its roles.  Authorization requires the Google IAM
+   * permission `resourcemanager.projects.setIamPolicy` on the project
    * @example
    * * // BEFORE RUNNING:
    * // ---------------

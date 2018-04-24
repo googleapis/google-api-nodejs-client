@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Cloud Dataproc API
+ * Cloud Dataproc API
  *
  * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
  *
@@ -1064,17 +1064,21 @@ export interface Schema$PigJob {
 /**
  * Defines an Identity and Access Management (IAM) policy. It is used to specify
  * access control policies for Cloud Platform resources.A Policy consists of a
- * list of bindings. A Binding binds a list of members to a role, where the
+ * list of bindings. A binding binds a list of members to a role, where the
  * members can be user accounts, Google groups, Google domains, and service
- * accounts. A role is a named list of permissions defined by IAM.Example {
+ * accounts. A role is a named list of permissions defined by IAM.JSON Example {
  * &quot;bindings&quot;: [     {       &quot;role&quot;:
  * &quot;roles/owner&quot;,       &quot;members&quot;: [
  * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
  * &quot;domain:google.com&quot;,
- * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;,       ]
+ * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;       ]
  * },     {       &quot;role&quot;: &quot;roles/viewer&quot;,
- * &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } For a
- * description of IAM and its features, see the IAM developer&#39;s guide
+ * &quot;members&quot;: [&quot;user:sean@example.com&quot;]     }   ] } YAML
+ * Example bindings: - members:   - user:mike@example.com   -
+ * group:admins@example.com   - domain:google.com   -
+ * serviceAccount:my-other-app@appspot.gserviceaccount.com   role: roles/owner -
+ * members:   - user:sean@example.com   role: roles/viewer For a description of
+ * IAM and its features, see the IAM developer&#39;s guide
  * (https://cloud.google.com/iam/docs).
  */
 export interface Schema$Policy {
@@ -1179,9 +1183,10 @@ export interface Schema$SetIamPolicyRequest {
  */
 export interface Schema$SoftwareConfig {
   /**
-   * Optional. The version of software inside the cluster. It must match the
-   * regular expression [0-9]+\.[0-9]+. If unspecified, it defaults to the
-   * latest version (see Cloud Dataproc Versioning).
+   * Optional. The version of software inside the cluster. It must be one of the
+   * supported Cloud Dataproc Versions, such as &quot;1.2&quot; (including a
+   * subminor version, such as &quot;1.2.29&quot;), or the &quot;preview&quot;
+   * version. If unspecified, it defaults to the latest version.
    */
   imageVersion: string;
   /**

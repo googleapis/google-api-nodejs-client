@@ -250,16 +250,34 @@ export interface Schema$OrderCustomer {
    */
   email: string;
   /**
-   * If set, this indicates the user explicitly chose to opt in or out of
-   * providing marketing rights to the merchant. If unset, this indicates the
-   * user has already made this choice in a previous purchase, and was thus not
-   * shown the marketing right opt in/out checkbox during the checkout flow.
+   * Deprecated. Please use marketingRightsInfo instead.
    */
   explicitMarketingPreference: boolean;
   /**
    * Full name of the customer.
    */
   fullName: string;
+  /**
+   * Customer&#39;s marketing preferences.
+   */
+  marketingRightsInfo: Schema$OrderCustomerMarketingRightsInfo;
+}
+export interface Schema$OrderCustomerMarketingRightsInfo {
+  /**
+   * Last known user selection regarding marketing preferences. In certain cases
+   * this selection might not be known, so this field would be empty.
+   */
+  explicitMarketingPreference: string;
+  /**
+   * Timestamp when last time marketing preference was updated. Could be empty,
+   * if user wasn&#39;t offered a selection yet.
+   */
+  lastUpdatedTimestamp: string;
+  /**
+   * Email address that can be used for marketing purposes. This field is only
+   * filled when explicitMarketingPreference is equal to &#39;granted&#39;.
+   */
+  marketingEmailAddress: string;
 }
 export interface Schema$OrderDeliveryDetails {
   /**
@@ -1650,17 +1668,29 @@ export interface Schema$TestOrderCustomer {
    */
   email: string;
   /**
-   * If set, this indicates the user explicitly chose to opt in or out of
-   * providing marketing rights to the merchant. If unset, this indicates the
-   * user has already made this choice in a previous purchase, and was thus not
-   * shown the marketing right opt in/out checkbox during the checkout flow.
-   * Optional.
+   * Deprecated. Please use marketingRightsInfo instead.
    */
   explicitMarketingPreference: boolean;
   /**
    * Full name of the customer.
    */
   fullName: string;
+  /**
+   * Customer&#39;s marketing preferences.
+   */
+  marketingRightsInfo: Schema$TestOrderCustomerMarketingRightsInfo;
+}
+export interface Schema$TestOrderCustomerMarketingRightsInfo {
+  /**
+   * Last know user use selection regards marketing preferences. In certain
+   * cases selection might not be known, so this field would be empty.
+   */
+  explicitMarketingPreference: string;
+  /**
+   * Timestamp when last time marketing preference was updated. Could be empty,
+   * if user wasn&#39;t offered a selection yet.
+   */
+  lastUpdatedTimestamp: string;
 }
 export interface Schema$TestOrderLineItem {
   /**

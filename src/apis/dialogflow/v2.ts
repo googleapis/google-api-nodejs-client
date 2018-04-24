@@ -571,7 +571,9 @@ export interface Schema$GoogleCloudDialogflowV2beta1IntentMessage {
    */
   listSelect: Schema$GoogleCloudDialogflowV2beta1IntentMessageListSelect;
   /**
-   * Returns a response containing a custom payload.
+   * Returns a response containing a custom, platform-specific payload. See the
+   * Intent.Message.Platform type for a description of the structure that may be
+   * required for your platform.
    */
   payload: any;
   /**
@@ -956,6 +958,15 @@ export interface Schema$GoogleCloudDialogflowV2beta1IntentTrainingPhrasePart {
   userDefined: boolean;
 }
 /**
+ * Metadata in google::longrunning::Operation for Knowledge operations.
+ */
+export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
+  /**
+   * Required. The current state of this operation.
+   */
+  state: string;
+}
+/**
  * Represents the contents of the original request that was passed to the
  * `[Streaming]DetectIntent` call.
  */
@@ -967,8 +978,7 @@ export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest 
   payload: any;
   /**
    * The source of this request, e.g., `google`, `facebook`, `slack`. It is set
-   * by Dialogflow-owned servers. Possible values of this field correspond to
-   * Intent.Message.Platform.
+   * by Dialogflow-owned servers.
    */
   source: string;
 }
@@ -1112,6 +1122,16 @@ export interface Schema$GoogleCloudDialogflowV2beta1WebhookResponse {
   outputContexts: Schema$GoogleCloudDialogflowV2beta1Context[];
   /**
    * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+   * See the related `fulfillment_messages[i].payload field`, which may be used
+   * as an alternative to this field.  This field can be used for Actions on
+   * Google responses. It should have a structure similar to the JSON message
+   * shown here. For more information, see [Actions on Google Webhook
+   * Format](https://developers.google.com/actions/dialogflow/webhook)
+   * &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;:
+   * true,     &quot;richResponse&quot;: {       &quot;items&quot;: [         {
+   * &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;:
+   * &quot;this is a simple response&quot;           }         }       ]     }
+   * } }&lt;/pre&gt;
    */
   payload: any;
   /**
@@ -1499,7 +1519,9 @@ export interface Schema$GoogleCloudDialogflowV2IntentMessage {
    */
   listSelect: Schema$GoogleCloudDialogflowV2IntentMessageListSelect;
   /**
-   * The response containing a custom payload.
+   * Returns a response containing a custom, platform-specific payload. See the
+   * Intent.Message.Platform type for a description of the structure that may be
+   * required for your platform.
    */
   payload: any;
   /**
@@ -1953,8 +1975,7 @@ export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
   payload: any;
   /**
    * The source of this request, e.g., `google`, `facebook`, `slack`. It is set
-   * by Dialogflow-owned servers. Possible values of this field correspond to
-   * Intent.Message.Platform.
+   * by Dialogflow-owned servers.
    */
   source: string;
 }
@@ -2236,6 +2257,16 @@ export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
   outputContexts: Schema$GoogleCloudDialogflowV2Context[];
   /**
    * Optional. This value is passed directly to `QueryResult.webhook_payload`.
+   * See the related `fulfillment_messages[i].payload field`, which may be used
+   * as an alternative to this field.  This field can be used for Actions on
+   * Google responses. It should have a structure similar to the JSON message
+   * shown here. For more information, see [Actions on Google Webhook
+   * Format](https://developers.google.com/actions/dialogflow/webhook)
+   * &lt;pre&gt;{   &quot;google&quot;: {     &quot;expectUserResponse&quot;:
+   * true,     &quot;richResponse&quot;: {       &quot;items&quot;: [         {
+   * &quot;simpleResponse&quot;: {             &quot;textToSpeech&quot;:
+   * &quot;this is a simple response&quot;           }         }       ]     }
+   * } }&lt;/pre&gt;
    */
   payload: any;
   /**

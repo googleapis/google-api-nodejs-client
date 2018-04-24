@@ -449,7 +449,8 @@ export interface Schema$DevicesLongRunningOperationResponse {
   successCount: number;
 }
 /**
- * An EMM&#39;s DPC ([device policy controller](/android/work/dpc/build-dpc)).
+ * An EMM&#39;s DPC ([device policy
+ * controller](http://developer.android.com/work/dpc/build-dpc.html)).
  * Zero-touch enrollment installs a DPC (listed in the `Configuration`) on a
  * device to maintain the customer&#39;s mobile policies. All the DPCs listed by
  * the API support zero-touch enrollment and are available in Google Play.

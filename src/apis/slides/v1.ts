@@ -955,7 +955,7 @@ export interface Schema$LayoutReference {
 }
 /**
  * A PageElement kind representing a non-connector line, straight connector,
- * curved connector or bent connector.
+ * curved connector, or bent connector.
  */
 export interface Schema$Line {
   /**
@@ -1547,6 +1547,8 @@ export interface Schema$RefreshSheetsChartRequest {
 }
 /**
  * Replaces all shapes that match the given criteria with the provided image.
+ * The images replacing the shapes are rectangular after being inserted into the
+ * presentation and do not take on the forms of the shapes.
  */
 export interface Schema$ReplaceAllShapesWithImageRequest {
   /**

@@ -35,12 +35,12 @@ import {createAPIRequest} from '../../lib/apirequest';
  *
  * @example
  * const google = require('googleapis');
- * const videointelligence = google.videointelligence('v1beta1');
+ * const videointelligence = google.videointelligence('v1');
  *
  * @namespace videointelligence
  * @type {Function}
- * @version v1beta1
- * @variation v1beta1
+ * @version v1
+ * @variation v1
  * @param {object=} options Options for Videointelligence
  */
 export class Videointelligence {
@@ -48,6 +48,7 @@ export class Videointelligence {
   google: GoogleApis;
   root = this;
 
+  operations: Resource$Operations;
   videos: Resource$Videos;
 
   constructor(options: GlobalOptions, google: GoogleApis) {
@@ -55,6 +56,7 @@ export class Videointelligence {
     this.google = google;
     this.getRoot.bind(this);
 
+    this.operations = new Resource$Operations(this);
     this.videos = new Resource$Videos(this);
   }
 
@@ -74,51 +76,6 @@ export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoProgres
    */
   annotationProgress:
       Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[];
-}
-/**
- * Video annotation request.
- */
-export interface Schema$GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest {
-  /**
-   * Requested video annotation features.
-   */
-  features: string[];
-  /**
-   * The video data bytes. Encoding: base64. If unset, the input video(s) should
-   * be specified via `input_uri`. If set, `input_uri` should be unset.
-   */
-  inputContent: string;
-  /**
-   * Input video location. Currently, only [Google Cloud
-   * Storage](https://cloud.google.com/storage/) URIs are supported, which must
-   * be specified in the following format: `gs://bucket-id/object-id` (other URI
-   * formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see
-   * [Request URIs](/storage/docs/reference-uris). A video URI may include
-   * wildcards in `object-id`, and thus identify multiple videos. Supported
-   * wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match
-   * 1 character. If unset, the input video should be embedded in the request as
-   * `input_content`. If set, `input_content` should be unset.
-   */
-  inputUri: string;
-  /**
-   * Optional cloud region where annotation should take place. Supported cloud
-   * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
-   * is specified, a region will be determined based on video file location.
-   */
-  locationId: string;
-  /**
-   * Optional location where the output (in JSON format) should be stored.
-   * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
-   * URIs are supported, which must be specified in the following format:
-   * `gs://bucket-id/object-id` (other URI formats return
-   * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
-   * URIs](/storage/docs/reference-uris).
-   */
-  outputUri: string;
-  /**
-   * Additional video context and/or feature-specific parameters.
-   */
-  videoContext: Schema$GoogleCloudVideointelligenceV1beta1_VideoContext;
 }
 /**
  * Video annotation response. Included in the `response` field of the
@@ -253,43 +210,6 @@ export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResul
    * Shot annotations. Each shot is represented as a video segment.
    */
   shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
-}
-/**
- * Video context and/or feature-specific parameters.
- */
-export interface Schema$GoogleCloudVideointelligenceV1beta1_VideoContext {
-  /**
-   * If label detection has been requested, what labels should be detected in
-   * addition to video-level labels or segment-level labels. If unspecified,
-   * defaults to `SHOT_MODE`.
-   */
-  labelDetectionMode: string;
-  /**
-   * Model to use for label detection. Supported values: &quot;latest&quot; and
-   * &quot;stable&quot; (the default).
-   */
-  labelDetectionModel: string;
-  /**
-   * Model to use for safe search detection. Supported values:
-   * &quot;latest&quot; and &quot;stable&quot; (the default).
-   */
-  safeSearchDetectionModel: string;
-  /**
-   * Video segments to annotate. The segments may overlap and are not required
-   * to be contiguous or span the whole video. If unspecified, each video is
-   * treated as a single segment.
-   */
-  segments: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
-  /**
-   * Model to use for shot change detection. Supported values:
-   * &quot;latest&quot; and &quot;stable&quot; (the default).
-   */
-  shotChangeDetectionModel: string;
-  /**
-   * Whether the video has been shot from a stationary (i.e. non-moving) camera.
-   * When set to true, might improve detection accuracy for moving objects.
-   */
-  stationaryCamera: boolean;
 }
 /**
  * Video segment.
@@ -869,6 +789,51 @@ export interface Schema$GoogleCloudVideointelligenceV1_AnnotateVideoProgress {
       Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress[];
 }
 /**
+ * Video annotation request.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1_AnnotateVideoRequest {
+  /**
+   * Requested video annotation features.
+   */
+  features: string[];
+  /**
+   * The video data bytes. If unset, the input video(s) should be specified via
+   * `input_uri`. If set, `input_uri` should be unset.
+   */
+  inputContent: string;
+  /**
+   * Input video location. Currently, only [Google Cloud
+   * Storage](https://cloud.google.com/storage/) URIs are supported, which must
+   * be specified in the following format: `gs://bucket-id/object-id` (other URI
+   * formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see
+   * [Request URIs](/storage/docs/reference-uris). A video URI may include
+   * wildcards in `object-id`, and thus identify multiple videos. Supported
+   * wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match
+   * 1 character. If unset, the input video should be embedded in the request as
+   * `input_content`. If set, `input_content` should be unset.
+   */
+  inputUri: string;
+  /**
+   * Optional cloud region where annotation should take place. Supported cloud
+   * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no region
+   * is specified, a region will be determined based on video file location.
+   */
+  locationId: string;
+  /**
+   * Optional location where the output (in JSON format) should be stored.
+   * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
+   * URIs are supported, which must be specified in the following format:
+   * `gs://bucket-id/object-id` (other URI formats return
+   * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
+   * URIs](/storage/docs/reference-uris).
+   */
+  outputUri: string;
+  /**
+   * Additional video context and/or feature-specific parameters.
+   */
+  videoContext: Schema$GoogleCloudVideointelligenceV1_VideoContext;
+}
+/**
  * Video annotation response. Included in the `response` field of the
  * `Operation` returned by the `GetOperation` call of the
  * `google::longrunning::Operations` service.
@@ -910,6 +875,17 @@ export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation
   frames: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
 }
 /**
+ * Config for EXPLICIT_CONTENT_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentDetectionConfig {
+  /**
+   * Model to use for explicit content detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
+}
+/**
  * Video frame level annotation results for explicit content.
  */
 export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame {
@@ -947,6 +923,29 @@ export interface Schema$GoogleCloudVideointelligenceV1_LabelAnnotation {
   segments: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
 }
 /**
+ * Config for LABEL_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig {
+  /**
+   * What labels should be detected with LABEL_DETECTION, in addition to
+   * video-level labels or segment-level labels. If unspecified, defaults to
+   * `SHOT_MODE`.
+   */
+  labelDetectionMode: string;
+  /**
+   * Model to use for label detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
+  /**
+   * Whether the video has been shot from a stationary (i.e. non-moving) camera.
+   * When set to true, might improve detection accuracy for moving objects.
+   * Should be used with `SHOT_AND_FRAME_MODE` enabled.
+   */
+  stationaryCamera: boolean;
+}
+/**
  * Video frame level annotation results for label detection.
  */
 export interface Schema$GoogleCloudVideointelligenceV1_LabelFrame {
@@ -972,6 +971,17 @@ export interface Schema$GoogleCloudVideointelligenceV1_LabelSegment {
    * Video segment where a label was detected.
    */
   segment: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+}
+/**
+ * Config for SHOT_CHANGE_DETECTION.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig {
+  /**
+   * Model to use for shot change detection. Supported values:
+   * &quot;builtin/stable&quot; (the default if unset) and
+   * &quot;builtin/latest&quot;.
+   */
+  model: string;
 }
 /**
  * Annotation progress for a single video.
@@ -1038,6 +1048,32 @@ export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults {
   shotLabelAnnotations: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
 }
 /**
+ * Video context and/or feature-specific parameters.
+ */
+export interface Schema$GoogleCloudVideointelligenceV1_VideoContext {
+  /**
+   * Config for EXPLICIT_CONTENT_DETECTION.
+   */
+  explicitContentDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1_ExplicitContentDetectionConfig;
+  /**
+   * Config for LABEL_DETECTION.
+   */
+  labelDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig;
+  /**
+   * Video segments to annotate. The segments may overlap and are not required
+   * to be contiguous or span the whole video. If unspecified, each video is
+   * treated as a single segment.
+   */
+  segments: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+  /**
+   * Config for SHOT_CHANGE_DETECTION.
+   */
+  shotChangeDetectionConfig:
+      Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig;
+}
+/**
  * Video segment.
  */
 export interface Schema$GoogleCloudVideointelligenceV1_VideoSegment {
@@ -1051,6 +1087,23 @@ export interface Schema$GoogleCloudVideointelligenceV1_VideoSegment {
    * start of the segment (inclusive).
    */
   startTimeOffset: string;
+}
+/**
+ * The request message for Operations.CancelOperation.
+ */
+export interface Schema$GoogleLongrunning_CancelOperationRequest {}
+/**
+ * The response message for Operations.ListOperations.
+ */
+export interface Schema$GoogleLongrunning_ListOperationsResponse {
+  /**
+   * The standard List next-page token.
+   */
+  nextPageToken: string;
+  /**
+   * A list of operations that matches the specified filter in the request.
+   */
+  operations: Schema$GoogleLongrunning_Operation[];
 }
 /**
  * This resource represents a long-running operation that is the result of a
@@ -1091,6 +1144,14 @@ export interface Schema$GoogleLongrunning_Operation {
    */
   response: any;
 }
+/**
+ * A generic empty message that you can re-use to avoid defining duplicated
+ * empty messages in your APIs. A typical example is to use it as the request or
+ * the response type of an API method. For instance:      service Foo { rpc
+ * Bar(google.protobuf.Empty) returns (google.protobuf.Empty);     }  The JSON
+ * representation for `Empty` is empty JSON object `{}`.
+ */
+export interface Schema$GoogleProtobuf_Empty {}
 /**
  * The `Status` type defines a logical error model that is suitable for
  * different programming environments, including REST APIs and RPC APIs. It is
@@ -1144,6 +1205,270 @@ export interface Schema$GoogleRpc_Status {
   message: string;
 }
 
+export class Resource$Operations {
+  root: Videointelligence;
+  constructor(root: Videointelligence) {
+    this.root = root;
+    this.getRoot.bind(this);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+
+  /**
+   * videointelligence.operations.cancel
+   * @desc Starts asynchronous cancellation on a long-running operation.  The
+   * server makes a best effort to cancel the operation, but success is not
+   * guaranteed.  If the server doesn't support this method, it returns
+   * `google.rpc.Code.UNIMPLEMENTED`.  Clients can use Operations.GetOperation
+   * or other methods to check whether the cancellation succeeded or whether the
+   * operation completed despite cancellation. On successful cancellation, the
+   * operation is not deleted; instead, it becomes an operation with an
+   * Operation.error value with a google.rpc.Status.code of 1, corresponding to
+   * `Code.CANCELLED`.
+   * @alias videointelligence.operations.cancel
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The name of the operation resource to be cancelled.
+   * @param {().GoogleLongrunning_CancelOperationRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  cancel(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobuf_Empty>;
+  cancel(
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+  cancel(
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
+      void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}:cancel')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+    }
+  }
+
+
+  /**
+   * videointelligence.operations.delete
+   * @desc Deletes a long-running operation. This method indicates that the
+   * client is no longer interested in the operation result. It does not cancel
+   * the operation. If the server doesn't support this method, it returns
+   * `google.rpc.Code.UNIMPLEMENTED`.
+   * @alias videointelligence.operations.delete
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The name of the operation resource to be deleted.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  delete(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleProtobuf_Empty>;
+  delete(
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+  delete(
+      params?: any,
+      options?: MethodOptions|BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+      callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
+      void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleProtobuf_Empty>(parameters);
+    }
+  }
+
+
+  /**
+   * videointelligence.operations.get
+   * @desc Gets the latest state of a long-running operation.  Clients can use
+   * this method to poll the operation result at intervals as recommended by the
+   * API service.
+   * @alias videointelligence.operations.get
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.name The name of the operation resource.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  get(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning_Operation>;
+  get(params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+      void;
+  get(params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+      callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+      void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations/{+name}')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['name'],
+      pathParams: ['name'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning_Operation>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
+    }
+  }
+
+
+  /**
+   * videointelligence.operations.list
+   * @desc Lists operations that match the specified filter in the request. If
+   * the server doesn't support this method, it returns `UNIMPLEMENTED`.  NOTE:
+   * the `name` binding allows API services to override the binding to use
+   * different resource name schemes, such as `users/x/operations`. To override
+   * the binding, API services can add a binding such as
+   * `"/v1/{name=users/x}/operations"` to their service configuration. For
+   * backwards compatibility, the default name includes the operations
+   * collection id, however overriding users must ensure the name binding is the
+   * parent resource, without the operations collection id.
+   * @alias videointelligence.operations.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string=} params.filter The standard list filter.
+   * @param {string=} params.name The name of the operation's parent resource.
+   * @param {integer=} params.pageSize The standard list page size.
+   * @param {string=} params.pageToken The standard list page token.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleLongrunning_ListOperationsResponse>): void;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+      callback?: BodyResponseCallback<
+          Schema$GoogleLongrunning_ListOperationsResponse>):
+      void|AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://videointelligence.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: [],
+      pathParams: [],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
+          parameters, callback);
+    } else {
+      return createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
+          parameters);
+    }
+  }
+}
+
 export class Resource$Videos {
   root: Videointelligence;
   constructor(root: Videointelligence) {
@@ -1166,7 +1491,7 @@ export class Resource$Videos {
    * @memberOf! ()
    *
    * @param {object} params Parameters for request
-   * @param {().GoogleCloudVideointelligenceV1beta1_AnnotateVideoRequest} params.resource Request body data
+   * @param {().GoogleCloudVideointelligenceV1_AnnotateVideoRequest} params.resource Request body data
    * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
    * @param {callback} callback The callback that handles the response.
    * @return {object} Request object
@@ -1199,8 +1524,8 @@ export class Resource$Videos {
     const parameters = {
       options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/videos:annotate')
-                     .replace(/([^:]\/)\/+/g, '$1'),
+            url:
+                (rootUrl + '/v1/videos:annotate').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST'
           },
           options),

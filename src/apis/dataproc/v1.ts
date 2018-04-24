@@ -29,7 +29,7 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: jsdoc-format
 
 /**
- * Google Cloud Dataproc API
+ * Cloud Dataproc API
  *
  * Manages Hadoop-based clusters and jobs on Google Cloud Platform.
  *
@@ -919,9 +919,10 @@ export interface Schema$QueryList {
  */
 export interface Schema$SoftwareConfig {
   /**
-   * Optional. The version of software inside the cluster. It must match the
-   * regular expression [0-9]+\.[0-9]+. If unspecified, it defaults to the
-   * latest version (see Cloud Dataproc Versioning).
+   * Optional. The version of software inside the cluster. It must be one of the
+   * supported Cloud Dataproc Versions, such as &quot;1.2&quot; (including a
+   * subminor version, such as &quot;1.2.29&quot;), or the &quot;preview&quot;
+   * version. If unspecified, it defaults to the latest version.
    */
   imageVersion: string;
   /**

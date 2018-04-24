@@ -943,6 +943,12 @@ export interface Schema$GooglePrivacyDlpV2BigQueryOptions {
    */
   identifyingFields: Schema$GooglePrivacyDlpV2FieldId[];
   /**
+   * Max number of rows to scan. If the table has more rows than this value, the
+   * rest of the rows are omitted. If not set, or if set to 0, all rows will be
+   * scanned. Cannot be used in conjunction with TimespanConfig.
+   */
+  rowsLimit: string;
+  /**
    * Complete BigQuery table reference.
    */
   tableReference: Schema$GooglePrivacyDlpV2BigQueryTable;
@@ -2689,7 +2695,7 @@ export interface Schema$GooglePrivacyDlpV2Proximity {
 }
 /**
  * Publish the results of a DlpJob to a pub sub channel. Compatible with:
- * Inpect, Risk
+ * Inspect, Risk
  */
 export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
   /**
@@ -2904,8 +2910,8 @@ export interface Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig {}
 export interface Schema$GooglePrivacyDlpV2RequestedOptions {
   jobConfig: Schema$GooglePrivacyDlpV2InspectJobConfig;
   /**
-   * If run with an inspect template, a snapshot of it&#39;s state at the time
-   * of this run.
+   * If run with an InspectTemplate, a snapshot of its state at the time of this
+   * run.
    */
   snapshotInspectTemplate: Schema$GooglePrivacyDlpV2InspectTemplate;
 }
@@ -2947,7 +2953,8 @@ export interface Schema$GooglePrivacyDlpV2Row {
 }
 /**
  * If set, the detailed findings will be persisted to the specified
- * OutputStorageConfig. Compatible with: Inspect
+ * OutputStorageConfig. Only a single instance of this action can be specified.
+ * Compatible with: Inspect
  */
 export interface Schema$GooglePrivacyDlpV2SaveFindings {
   outputConfig: Schema$GooglePrivacyDlpV2OutputStorageConfig;
@@ -3471,8 +3478,8 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.create
-   * @desc Creates a de-identify template for re-using frequently used
-   * configuration for Deidentifying content, images, and storage.
+   * @desc Creates a DeidentifyTemplate for re-using frequently used
+   * configuration for de-identifying content, images, and storage.
    * @alias dlp.organizations.deidentifyTemplates.create
    * @memberOf! ()
    *
@@ -3534,7 +3541,7 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.delete
-   * @desc Deletes a de-identify template.
+   * @desc Deletes a DeidentifyTemplate.
    * @alias dlp.organizations.deidentifyTemplates.delete
    * @memberOf! ()
    *
@@ -3587,7 +3594,7 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.get
-   * @desc Gets a de-identify template.
+   * @desc Gets a DeidentifyTemplate.
    * @alias dlp.organizations.deidentifyTemplates.get
    * @memberOf! ()
    *
@@ -3645,7 +3652,7 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.list
-   * @desc Lists de-identify templates.
+   * @desc Lists DeidentifyTemplates.
    * @alias dlp.organizations.deidentifyTemplates.list
    * @memberOf! ()
    *
@@ -3708,7 +3715,7 @@ export class Resource$Organizations$Deidentifytemplates {
 
   /**
    * dlp.organizations.deidentifyTemplates.patch
-   * @desc Updates the de-identify template.
+   * @desc Updates the DeidentifyTemplate.
    * @alias dlp.organizations.deidentifyTemplates.patch
    * @memberOf! ()
    *
@@ -3781,8 +3788,8 @@ export class Resource$Organizations$Inspecttemplates {
 
   /**
    * dlp.organizations.inspectTemplates.create
-   * @desc Creates an inspect template for re-using frequently used
-   * configuration for inspecting content, images, and storage.
+   * @desc Creates an InspectTemplate for re-using frequently used configuration
+   * for inspecting content, images, and storage.
    * @alias dlp.organizations.inspectTemplates.create
    * @memberOf! ()
    *
@@ -3843,7 +3850,7 @@ export class Resource$Organizations$Inspecttemplates {
 
   /**
    * dlp.organizations.inspectTemplates.delete
-   * @desc Deletes an inspect template.
+   * @desc Deletes an InspectTemplate.
    * @alias dlp.organizations.inspectTemplates.delete
    * @memberOf! ()
    *
@@ -3896,7 +3903,7 @@ export class Resource$Organizations$Inspecttemplates {
 
   /**
    * dlp.organizations.inspectTemplates.get
-   * @desc Gets an inspect template.
+   * @desc Gets an InspectTemplate.
    * @alias dlp.organizations.inspectTemplates.get
    * @memberOf! ()
    *
@@ -3953,7 +3960,7 @@ export class Resource$Organizations$Inspecttemplates {
 
   /**
    * dlp.organizations.inspectTemplates.list
-   * @desc Lists inspect templates.
+   * @desc Lists InspectTemplates.
    * @alias dlp.organizations.inspectTemplates.list
    * @memberOf! ()
    *
@@ -4015,7 +4022,7 @@ export class Resource$Organizations$Inspecttemplates {
 
   /**
    * dlp.organizations.inspectTemplates.patch
-   * @desc Updates the inspect template.
+   * @desc Updates the InspectTemplate.
    * @alias dlp.organizations.inspectTemplates.patch
    * @memberOf! ()
    *
@@ -4311,8 +4318,8 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.create
-   * @desc Creates a de-identify template for re-using frequently used
-   * configuration for Deidentifying content, images, and storage.
+   * @desc Creates a DeidentifyTemplate for re-using frequently used
+   * configuration for de-identifying content, images, and storage.
    * @alias dlp.projects.deidentifyTemplates.create
    * @memberOf! ()
    *
@@ -4374,7 +4381,7 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.delete
-   * @desc Deletes a de-identify template.
+   * @desc Deletes a DeidentifyTemplate.
    * @alias dlp.projects.deidentifyTemplates.delete
    * @memberOf! ()
    *
@@ -4427,7 +4434,7 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.get
-   * @desc Gets a de-identify template.
+   * @desc Gets a DeidentifyTemplate.
    * @alias dlp.projects.deidentifyTemplates.get
    * @memberOf! ()
    *
@@ -4485,7 +4492,7 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.list
-   * @desc Lists de-identify templates.
+   * @desc Lists DeidentifyTemplates.
    * @alias dlp.projects.deidentifyTemplates.list
    * @memberOf! ()
    *
@@ -4548,7 +4555,7 @@ export class Resource$Projects$Deidentifytemplates {
 
   /**
    * dlp.projects.deidentifyTemplates.patch
-   * @desc Updates the de-identify template.
+   * @desc Updates the DeidentifyTemplate.
    * @alias dlp.projects.deidentifyTemplates.patch
    * @memberOf! ()
    *
@@ -4676,7 +4683,7 @@ export class Resource$Projects$Dlpjobs {
 
   /**
    * dlp.projects.dlpJobs.create
-   * @desc Creates a new job to inspect storage or calculate risk metrics
+   * @desc Creates a new job to inspect storage or calculate risk metrics.
    * [How-to guide](/dlp/docs/compute-risk-analysis).
    * @alias dlp.projects.dlpJobs.create
    * @memberOf! ()
@@ -4995,8 +5002,8 @@ export class Resource$Projects$Inspecttemplates {
 
   /**
    * dlp.projects.inspectTemplates.create
-   * @desc Creates an inspect template for re-using frequently used
-   * configuration for inspecting content, images, and storage.
+   * @desc Creates an InspectTemplate for re-using frequently used configuration
+   * for inspecting content, images, and storage.
    * @alias dlp.projects.inspectTemplates.create
    * @memberOf! ()
    *
@@ -5057,7 +5064,7 @@ export class Resource$Projects$Inspecttemplates {
 
   /**
    * dlp.projects.inspectTemplates.delete
-   * @desc Deletes an inspect template.
+   * @desc Deletes an InspectTemplate.
    * @alias dlp.projects.inspectTemplates.delete
    * @memberOf! ()
    *
@@ -5110,7 +5117,7 @@ export class Resource$Projects$Inspecttemplates {
 
   /**
    * dlp.projects.inspectTemplates.get
-   * @desc Gets an inspect template.
+   * @desc Gets an InspectTemplate.
    * @alias dlp.projects.inspectTemplates.get
    * @memberOf! ()
    *
@@ -5167,7 +5174,7 @@ export class Resource$Projects$Inspecttemplates {
 
   /**
    * dlp.projects.inspectTemplates.list
-   * @desc Lists inspect templates.
+   * @desc Lists InspectTemplates.
    * @alias dlp.projects.inspectTemplates.list
    * @memberOf! ()
    *
@@ -5229,7 +5236,7 @@ export class Resource$Projects$Inspecttemplates {
 
   /**
    * dlp.projects.inspectTemplates.patch
-   * @desc Updates the inspect template.
+   * @desc Updates the InspectTemplate.
    * @alias dlp.projects.inspectTemplates.patch
    * @memberOf! ()
    *

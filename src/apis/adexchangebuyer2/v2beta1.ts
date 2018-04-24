@@ -329,7 +329,7 @@ export interface Schema$Correction {
   type: string;
 }
 /**
- * A creative and its classification data.  Next ID: 31
+ * A creative and its classification data.  Next ID: 35
  */
 export interface Schema$Creative {
   /**
@@ -645,6 +645,12 @@ export interface Schema$FilterSet {
    */
   platforms: string[];
   /**
+   * For Exchange Bidding buyers only. The list of publisher identifiers on
+   * which to filter; may be empty. The filters represented by multiple
+   * publisher identifiers are ORed together.
+   */
+  publisherIdentifiers: string[];
+  /**
    * An open-ended realtime time range, defined by the aggregation start
    * timestamp.
    */
@@ -655,10 +661,10 @@ export interface Schema$FilterSet {
    */
   relativeDateRange: Schema$RelativeDateRange;
   /**
-   * The list of IDs of the seller (publisher) networks on which to filter; may
-   * be empty. The filters represented by multiple seller network IDs are ORed
-   * together (i.e. if non-empty, results must match any one of the publisher
-   * networks). See
+   * For Ad Exchange buyers only. The list of IDs of the seller (publisher)
+   * networks on which to filter; may be empty. The filters represented by
+   * multiple seller network IDs are ORed together (i.e. if non-empty, results
+   * must match any one of the publisher networks). See
    * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
    * file for the set of existing seller network IDs.
    */
@@ -994,6 +1000,16 @@ export interface Schema$ListNonBillableWinningBidsResponse {
   nonBillableWinningBidStatusRows: Schema$NonBillableWinningBidStatusRow[];
 }
 /**
+ * Response message for listing publishers that had recent inventory matches
+ * with the requesting buyer.
+ */
+export interface Schema$ListPublishersResponse {
+  /**
+   * List of publishers.
+   */
+  publisher: Schema$Publisher[];
+}
+/**
  * @OutputOnly The Geo criteria the restriction applies to.
  */
 export interface Schema$LocationContext {
@@ -1106,6 +1122,26 @@ export interface Schema$PlatformContext {
    * The platforms this restriction applies to.
    */
   platforms: string[];
+}
+/**
+ * The publisher ID and name contain values relevant to the requesting buyer
+ * depending on whether it is an Ad Exchange buyer or Exchange Bidding buyer.
+ */
+export interface Schema$Publisher {
+  /**
+   * Publisher name contains: - Seller network name when the requesting buyer is
+   * an Ad Exchange buyer. - DFP network name or AdMob publisher code when the
+   * requesting buyer is an   Exchange Bidding buyer.
+   */
+  publisherDisplayName: string;
+  /**
+   * Publisher ID contains: - Seller network ID when the requesting buyer is an
+   * Ad Exchange buyer.   See
+   * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
+   * - DFP network code or AdMob publisher code when the requesting buyer is an
+   * Exchange Bidding buyer.
+   */
+  publisherId: string;
 }
 /**
  * An open-ended realtime time range specified by the start timestamp. For
@@ -1283,11 +1319,13 @@ export class Resource$Accounts {
   root: Adexchangebuyer2;
   clients: Resource$Accounts$Clients;
   creatives: Resource$Accounts$Creatives;
+  publishers: Resource$Accounts$Publishers;
   constructor(root: Adexchangebuyer2) {
     this.root = root;
     this.getRoot.bind(this);
     this.clients = new Resource$Accounts$Clients(root);
     this.creatives = new Resource$Accounts$Creatives(root);
+    this.publishers = new Resource$Accounts$Publishers(root);
   }
 
   getRoot() {
@@ -2458,6 +2496,77 @@ export class Resource$Accounts$Creatives$Dealassociations {
   }
 }
 
+
+export class Resource$Accounts$Publishers {
+  root: Adexchangebuyer2;
+  constructor(root: Adexchangebuyer2) {
+    this.root = root;
+    this.getRoot.bind(this);
+  }
+
+  getRoot() {
+    return this.root;
+  }
+
+
+  /**
+   * adexchangebuyer2.accounts.publishers.list
+   * @desc Lists publishers that had recent inventory matches with the
+   * requesting buyer.
+   * @alias adexchangebuyer2.accounts.publishers.list
+   * @memberOf! ()
+   *
+   * @param {object} params Parameters for request
+   * @param {string} params.accountId Account ID of the requesting buyer.
+   * @param {string=} params.environment Optional environment (WEB, APP) for which to return publishers. If specified, response will only include publishers that had recent inventory matches with the requesting buyer on the specified platform.
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+   * @param {callback} callback The callback that handles the response.
+   * @return {object} Request object
+   */
+  list(params?: any, options?: MethodOptions):
+      AxiosPromise<Schema$ListPublishersResponse>;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListPublishersResponse>,
+      callback?: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+  list(
+      params?: any,
+      options?: MethodOptions|
+      BodyResponseCallback<Schema$ListPublishersResponse>,
+      callback?: BodyResponseCallback<Schema$ListPublishersResponse>):
+      void|AxiosPromise<Schema$ListPublishersResponse> {
+    if (typeof options === 'function') {
+      callback = options;
+      options = {};
+    }
+    if (typeof params === 'function') {
+      callback = params;
+      params = {};
+    }
+    options = options || {};
+    const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+    const parameters = {
+      options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/accounts/{accountId}/publishers')
+                     .replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET'
+          },
+          options),
+      params,
+      requiredParams: ['accountId'],
+      pathParams: ['accountId'],
+      context: this.getRoot()
+    };
+    if (callback) {
+      createAPIRequest<Schema$ListPublishersResponse>(parameters, callback);
+    } else {
+      return createAPIRequest<Schema$ListPublishersResponse>(parameters);
+    }
+  }
+}
 
 
 export class Resource$Bidders {

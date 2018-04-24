@@ -658,9 +658,10 @@ export interface Schema$ScriptStackTraceElement {
  */
 export interface Schema$Status {
   /**
-   * The status code. For this API, this value either: &lt;ul&gt; &lt;li&gt; 3,
-   * indicating an `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1,
-   * indicating a `CANCELLED` execution.&lt;/li&gt; &lt;/ul&gt;
+   * The status code. For this API, this value either: &lt;ul&gt; &lt;li&gt; 10,
+   * indicating a `SCRIPT_TIMEOUT` error,&lt;/li&gt; &lt;li&gt; 3, indicating an
+   * `INVALID_ARGUMENT` error, or&lt;/li&gt; &lt;li&gt; 1, indicating a
+   * `CANCELLED` execution.&lt;/li&gt; &lt;/ul&gt;
    */
   code: number;
   /**

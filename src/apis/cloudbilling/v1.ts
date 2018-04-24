@@ -106,7 +106,7 @@ export interface Schema$AggregationInfo {
  */
 export interface Schema$AuditConfig {
   /**
-   * The configuration for logging of each type of permission. Next ID: 4
+   * The configuration for logging of each type of permission.
    */
   auditLogConfigs: Schema$AuditLogConfig[];
   /**
@@ -597,10 +597,10 @@ export class Resource$Billingaccounts {
   /**
    * cloudbilling.billingAccounts.create
    * @desc Creates a billing account. This method can only be used to create
-   * [billing subaccounts](https://cloud.google.com/billing/docs/concepts). When
-   * creating a subaccount, the current authenticated user must have the
-   * `billing.accounts.update` IAM permission on the master account, which is
-   * typically given to billing account
+   * [billing subaccounts](https://cloud.google.com/billing/docs/concepts) for
+   * GCP resellers. When creating a subaccount, the current authenticated user
+   * must have the `billing.accounts.update` IAM permission on the master
+   * account, which is typically given to billing account
    * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
    * > This method is currently in >
    * [Beta](https://cloud.google.com/terms/launch-stages).

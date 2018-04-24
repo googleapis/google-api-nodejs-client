@@ -279,15 +279,15 @@ export interface Schema$Empty {}
  */
 export interface Schema$ExecuteSqlRequest {
   /**
-   * The SQL query string can contain parameter placeholders. A parameter
-   * placeholder consists of `&#39;@&#39;` followed by the parameter name.
-   * Parameter names consist of any combination of letters, numbers, and
-   * underscores.  Parameters can appear anywhere that a literal value is
-   * expected.  The same parameter name can be used more than once, for example:
-   * `&quot;WHERE id &gt; @msg_id AND id &lt; @msg_id + 100&quot;`  It is an
-   * error to execute an SQL query with unbound parameters.  Parameter values
-   * are specified using `params`, which is a JSON object whose keys are
-   * parameter names, and whose values are the corresponding parameter values.
+   * The SQL string can contain parameter placeholders. A parameter placeholder
+   * consists of `&#39;@&#39;` followed by the parameter name. Parameter names
+   * consist of any combination of letters, numbers, and underscores. Parameters
+   * can appear anywhere that a literal value is expected.  The same parameter
+   * name can be used more than once, for example:   `&quot;WHERE id &gt;
+   * @msg_id AND id &lt; @msg_id + 100&quot;`  It is an error to execute an SQL
+   * statement with unbound parameters.  Parameter values are specified using
+   * `params`, which is a JSON object whose keys are parameter names, and whose
+   * values are the corresponding parameter values.
    */
   params: any;
   /**
@@ -295,8 +295,8 @@ export interface Schema$ExecuteSqlRequest {
    * from a JSON value.  For example, values of type `BYTES` and values of type
    * `STRING` both appear in params as JSON strings.  In these cases,
    * `param_types` can be used to specify the exact SQL type for some or all of
-   * the SQL query parameters. See the definition of Type for more information
-   * about SQL types.
+   * the SQL statement parameters. See the definition of Type for more
+   * information about SQL types.
    */
   paramTypes: any;
   /**
@@ -313,15 +313,15 @@ export interface Schema$ExecuteSqlRequest {
    */
   queryMode: string;
   /**
-   * If this request is resuming a previously interrupted SQL query execution,
-   * `resume_token` should be copied from the last PartialResultSet yielded
-   * before the interruption. Doing this enables the new SQL query execution to
-   * resume where the last one left off. The rest of the request parameters must
-   * exactly match the request that yielded this token.
+   * If this request is resuming a previously interrupted SQL statement
+   * execution, `resume_token` should be copied from the last PartialResultSet
+   * yielded before the interruption. Doing this enables the new SQL statement
+   * execution to resume where the last one left off. The rest of the request
+   * parameters must exactly match the request that yielded this token.
    */
   resumeToken: string;
   /**
-   * Required. The SQL query string.
+   * Required. The SQL string.
    */
   sql: string;
   /**
@@ -693,7 +693,7 @@ export interface Schema$PartialResultSet {
    */
   resumeToken: string;
   /**
-   * Query plan and execution statistics for the query that produced this
+   * Query plan and execution statistics for the statement that produced this
    * streaming result set. These can be requested by setting
    * ExecuteSqlRequest.query_mode and are sent only once with the last response
    * in the stream.
@@ -1098,8 +1098,9 @@ export interface Schema$ResultSet {
    */
   rows: any[][];
   /**
-   * Query plan and execution statistics for the query that produced this result
-   * set. These can be requested by setting ExecuteSqlRequest.query_mode.
+   * Query plan and execution statistics for the SQL statement that produced
+   * this result set. These can be requested by setting
+   * ExecuteSqlRequest.query_mode.
    */
   stats: Schema$ResultSetStats;
 }
@@ -1323,7 +1324,7 @@ export interface Schema$Transaction {
  * 2. Snapshot read-only. This transaction type provides guaranteed consistency
  * across several reads, but does not allow      writes. Snapshot read-only
  * transactions can be configured to      read at timestamps in the past.
- * Snapshot read-only      transactions do not need to be committed.  For
+ * Snapshot read-only      transactions do not need to be committed.   For
  * transactions that only read, snapshot read-only transactions provide simpler
  * semantics and are almost always faster. In particular, read-only transactions
  * do not take locks, so they do not conflict with read-write transactions. As a
@@ -1434,7 +1435,7 @@ export interface Schema$Transaction {
  * reads at read timestamps more than one hour in the past. This restriction
  * also applies to in-progress reads and/or SQL queries whose timestamp become
  * too old while executing. Reads and SQL queries with too-old read timestamps
- * fail with the error `FAILED_PRECONDITION`.
+ * fail with the error `FAILED_PRECONDITION`.  ##
  */
 export interface Schema$TransactionOptions {
   /**
@@ -3256,11 +3257,11 @@ export class Resource$Projects$Instances$Databases$Sessions {
 
   /**
    * spanner.projects.instances.databases.sessions.executeSql
-   * @desc Executes an SQL query, returning all rows in a single reply. This
-   * method cannot be used to return a result set larger than 10 MiB; if the
-   * query yields more data than that, the query fails with a
-   * `FAILED_PRECONDITION` error.  Queries inside read-write transactions might
-   * return `ABORTED`. If this occurs, the application should restart the
+   * @desc Executes an SQL statement, returning all results in a single reply.
+   * This method cannot be used to return a result set larger than 10 MiB; if
+   * the query yields more data than that, the query fails with a
+   * `FAILED_PRECONDITION` error.  Operations inside read-write transactions
+   * might return `ABORTED`. If this occurs, the application should restart the
    * transaction from the beginning. See Transaction for more details.  Larger
    * result sets can be fetched in streaming fashion by calling
    * ExecuteStreamingSql instead.
