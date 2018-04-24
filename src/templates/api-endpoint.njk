@@ -30,6 +30,9 @@ import {AxiosPromise} from 'axios';
 // tslint:disable: class-name
 // tslint:disable: variable-name
 // tslint:disable: jsdoc-format
+// tslint:disable: no-namespace
+
+export namespace {{api.name}}_{{api.version|replace('\.', '_')}} {
 
 {% set Name = api.name|capitalize %}
 {% if api.version %}
@@ -116,3 +119,5 @@ export interface Schema${{ schema.id }} {
 {% endif %}
 
 {{ resource.render(api, api, 'Resource$') }}
+
+}
