@@ -253,7 +253,7 @@ describe('OAuth2 client', () => {
     it('should revoke credentials if access token present', async () => {
       const scope =
           nock('https://accounts.google.com')
-              .get('/o/oauth2/revoke?token=abc&callback=revokeCallback')
+              .get('/o/oauth2/revoke?token=abc')
               .reply(200, {success: true});
       const oauth2client =
           new googleapis.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
