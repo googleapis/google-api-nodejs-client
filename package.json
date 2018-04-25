@@ -8,7 +8,7 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "google-auth-library": "^1.3.1",
+    "google-auth-library": "google/google-auth-library-nodejs#webbbpackkk",
     "pify": "^3.0.0",
     "qs": "^6.5.1",
     "string-template": "^1.0.0",
