@@ -27,327 +27,333 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: class-name
 // tslint:disable: variable-name
 // tslint:disable: jsdoc-format
+// tslint:disable: no-namespace
 
-/**
- * URL Shortener API
- *
- * Lets you create, inspect, and manage goo.gl short URLs
- *
- * @example
- * const google = require('googleapis');
- * const urlshortener = google.urlshortener('v1');
- *
- * @namespace urlshortener
- * @type {Function}
- * @version v1
- * @variation v1
- * @param {object=} options Options for Urlshortener
- */
-export class Urlshortener {
-  _options: GlobalOptions;
-  google: GoogleApis;
-  root = this;
-
-  url: Resource$Url;
-
-  constructor(options: GlobalOptions, google: GoogleApis) {
-    this._options = options || {};
-    this.google = google;
-    this.getRoot.bind(this);
-
-    this.url = new Resource$Url(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-
-export interface Schema$AnalyticsSnapshot {
+export namespace urlshortener_v1 {
   /**
-   * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click counts.
-   * Only present if this data is available.
-   */
-  browsers: Schema$StringCount[];
-  /**
-   * Top countries (expressed as country codes), e.g. &quot;US&quot; or
-   * &quot;DE&quot;; sorted by (descending) click counts. Only present if this
-   * data is available.
-   */
-  countries: Schema$StringCount[];
-  /**
-   * Number of clicks on all goo.gl short URLs pointing to this long URL.
-   */
-  longUrlClicks: string;
-  /**
-   * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending)
-   * click counts. Only present if this data is available.
-   */
-  platforms: Schema$StringCount[];
-  /**
-   * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by
-   * (descending) click counts. Only present if this data is available.
-   */
-  referrers: Schema$StringCount[];
-  /**
-   * Number of clicks on this short URL.
-   */
-  shortUrlClicks: string;
-}
-export interface Schema$AnalyticsSummary {
-  /**
-   * Click analytics over all time.
-   */
-  allTime: Schema$AnalyticsSnapshot;
-  /**
-   * Click analytics over the last day.
-   */
-  day: Schema$AnalyticsSnapshot;
-  /**
-   * Click analytics over the last month.
-   */
-  month: Schema$AnalyticsSnapshot;
-  /**
-   * Click analytics over the last two hours.
-   */
-  twoHours: Schema$AnalyticsSnapshot;
-  /**
-   * Click analytics over the last week.
-   */
-  week: Schema$AnalyticsSnapshot;
-}
-export interface Schema$StringCount {
-  /**
-   * Number of clicks for this top entry, e.g. for this particular country or
-   * browser.
-   */
-  count: string;
-  /**
-   * Label assigned to this top entry, e.g. &quot;US&quot; or
-   * &quot;Chrome&quot;.
-   */
-  id: string;
-}
-export interface Schema$Url {
-  /**
-   * A summary of the click analytics for the short and long URL. Might not be
-   * present if not requested or currently unavailable.
-   */
-  analytics: Schema$AnalyticsSummary;
-  /**
-   * Time the short URL was created; ISO 8601 representation using the
-   * yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g.
-   * &quot;2010-10-14T19:01:24.944+00:00&quot;.
-   */
-  created: string;
-  /**
-   * Short URL, e.g. &quot;http://goo.gl/l6MS&quot;.
-   */
-  id: string;
-  /**
-   * The fixed string &quot;urlshortener#url&quot;.
-   */
-  kind: string;
-  /**
-   * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present if
-   * the status is &quot;REMOVED&quot;.
-   */
-  longUrl: string;
-  /**
-   * Status of the target URL. Possible values: &quot;OK&quot;,
-   * &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL
-   * might be marked &quot;REMOVED&quot; if it was flagged as spam, for example.
-   */
-  status: string;
-}
-export interface Schema$UrlHistory {
-  /**
-   * A list of URL resources.
-   */
-  items: Schema$Url[];
-  /**
-   * Number of items returned with each full &quot;page&quot; of results. Note
-   * that the last page could have fewer items than the &quot;itemsPerPage&quot;
-   * value.
-   */
-  itemsPerPage: number;
-  /**
-   * The fixed string &quot;urlshortener#urlHistory&quot;.
-   */
-  kind: string;
-  /**
-   * A token to provide to get the next page of results.
-   */
-  nextPageToken: string;
-  /**
-   * Total number of short URLs associated with this user (may be approximate).
-   */
-  totalItems: number;
-}
-
-export class Resource$Url {
-  root: Urlshortener;
-  constructor(root: Urlshortener) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * urlshortener.url.get
-   * @desc Expands a short URL or gets creation time and analytics.
-   * @alias urlshortener.url.get
-   * @memberOf! ()
+   * URL Shortener API
    *
-   * @param {object} params Parameters for request
-   * @param {string=} params.projection Additional information to return.
-   * @param {string} params.shortUrl The short URL, including the protocol.
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
+   * Lets you create, inspect, and manage goo.gl short URLs
+   *
+   * @example
+   * const google = require('googleapis');
+   * const urlshortener = google.urlshortener('v1');
+   *
+   * @namespace urlshortener
+   * @type {Function}
+   * @version v1
+   * @variation v1
+   * @param {object=} options Options for Urlshortener
    */
-  get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
-  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
-      callback?: BodyResponseCallback<Schema$Url>): void;
-  get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
-      callback?: BodyResponseCallback<Schema$Url>):
-      void|AxiosPromise<Schema$Url> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
+  export class Urlshortener {
+    _options: GlobalOptions;
+    google: GoogleApis;
+    root = this;
+
+    url: Resource$Url;
+
+    constructor(options: GlobalOptions, google: GoogleApis) {
+      this._options = options || {};
+      this.google = google;
+      this.getRoot.bind(this);
+
+      this.url = new Resource$Url(this);
     }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/urlshortener/v1/url')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          },
-          options),
-      params,
-      requiredParams: ['shortUrl'],
-      pathParams: [],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Url>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Url>(parameters);
+
+    getRoot() {
+      return this.root;
     }
   }
 
-
-  /**
-   * urlshortener.url.insert
-   * @desc Creates a new short URL.
-   * @alias urlshortener.url.insert
-   * @memberOf! ()
-   *
-   * @param {object} params Parameters for request
-   * @param {().Url} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
-  insert(
-      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
-      callback?: BodyResponseCallback<Schema$Url>): void;
-  insert(
-      params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
-      callback?: BodyResponseCallback<Schema$Url>):
-      void|AxiosPromise<Schema$Url> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
-    }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
-    }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/urlshortener/v1/url')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: [],
-      pathParams: [],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$Url>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$Url>(parameters);
-    }
+  export interface Schema$AnalyticsSnapshot {
+    /**
+     * Top browsers, e.g. &quot;Chrome&quot;; sorted by (descending) click
+     * counts. Only present if this data is available.
+     */
+    browsers: Schema$StringCount[];
+    /**
+     * Top countries (expressed as country codes), e.g. &quot;US&quot; or
+     * &quot;DE&quot;; sorted by (descending) click counts. Only present if this
+     * data is available.
+     */
+    countries: Schema$StringCount[];
+    /**
+     * Number of clicks on all goo.gl short URLs pointing to this long URL.
+     */
+    longUrlClicks: string;
+    /**
+     * Top platforms or OSes, e.g. &quot;Windows&quot;; sorted by (descending)
+     * click counts. Only present if this data is available.
+     */
+    platforms: Schema$StringCount[];
+    /**
+     * Top referring hosts, e.g. &quot;www.google.com&quot;; sorted by
+     * (descending) click counts. Only present if this data is available.
+     */
+    referrers: Schema$StringCount[];
+    /**
+     * Number of clicks on this short URL.
+     */
+    shortUrlClicks: string;
+  }
+  export interface Schema$AnalyticsSummary {
+    /**
+     * Click analytics over all time.
+     */
+    allTime: Schema$AnalyticsSnapshot;
+    /**
+     * Click analytics over the last day.
+     */
+    day: Schema$AnalyticsSnapshot;
+    /**
+     * Click analytics over the last month.
+     */
+    month: Schema$AnalyticsSnapshot;
+    /**
+     * Click analytics over the last two hours.
+     */
+    twoHours: Schema$AnalyticsSnapshot;
+    /**
+     * Click analytics over the last week.
+     */
+    week: Schema$AnalyticsSnapshot;
+  }
+  export interface Schema$StringCount {
+    /**
+     * Number of clicks for this top entry, e.g. for this particular country or
+     * browser.
+     */
+    count: string;
+    /**
+     * Label assigned to this top entry, e.g. &quot;US&quot; or
+     * &quot;Chrome&quot;.
+     */
+    id: string;
+  }
+  export interface Schema$Url {
+    /**
+     * A summary of the click analytics for the short and long URL. Might not be
+     * present if not requested or currently unavailable.
+     */
+    analytics: Schema$AnalyticsSummary;
+    /**
+     * Time the short URL was created; ISO 8601 representation using the
+     * yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSSZZ format, e.g.
+     * &quot;2010-10-14T19:01:24.944+00:00&quot;.
+     */
+    created: string;
+    /**
+     * Short URL, e.g. &quot;http://goo.gl/l6MS&quot;.
+     */
+    id: string;
+    /**
+     * The fixed string &quot;urlshortener#url&quot;.
+     */
+    kind: string;
+    /**
+     * Long URL, e.g. &quot;http://www.google.com/&quot;. Might not be present
+     * if the status is &quot;REMOVED&quot;.
+     */
+    longUrl: string;
+    /**
+     * Status of the target URL. Possible values: &quot;OK&quot;,
+     * &quot;MALWARE&quot;, &quot;PHISHING&quot;, or &quot;REMOVED&quot;. A URL
+     * might be marked &quot;REMOVED&quot; if it was flagged as spam, for
+     * example.
+     */
+    status: string;
+  }
+  export interface Schema$UrlHistory {
+    /**
+     * A list of URL resources.
+     */
+    items: Schema$Url[];
+    /**
+     * Number of items returned with each full &quot;page&quot; of results. Note
+     * that the last page could have fewer items than the
+     * &quot;itemsPerPage&quot; value.
+     */
+    itemsPerPage: number;
+    /**
+     * The fixed string &quot;urlshortener#urlHistory&quot;.
+     */
+    kind: string;
+    /**
+     * A token to provide to get the next page of results.
+     */
+    nextPageToken: string;
+    /**
+     * Total number of short URLs associated with this user (may be
+     * approximate).
+     */
+    totalItems: number;
   }
 
+  export class Resource$Url {
+    root: Urlshortener;
+    constructor(root: Urlshortener) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
 
-  /**
-   * urlshortener.url.list
-   * @desc Retrieves a list of URLs shortened by a user.
-   * @alias urlshortener.url.list
-   * @memberOf! ()
-   *
-   * @param {object=} params Parameters for request
-   * @param {string=} params.projection Additional information to return.
-   * @param {string=} params.start-token Token for requesting successive pages of results.
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
-   */
-  list(params?: any, options?: MethodOptions): AxiosPromise<Schema$UrlHistory>;
-  list(
-      params?: any,
-      options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
-      callback?: BodyResponseCallback<Schema$UrlHistory>): void;
-  list(
-      params?: any,
-      options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
-      callback?: BodyResponseCallback<Schema$UrlHistory>):
-      void|AxiosPromise<Schema$UrlHistory> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
+    getRoot() {
+      return this.root;
     }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
+
+
+    /**
+     * urlshortener.url.get
+     * @desc Expands a short URL or gets creation time and analytics.
+     * @alias urlshortener.url.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.projection Additional information to return.
+     * @param {string} params.shortUrl The short URL, including the protocol.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+        callback?: BodyResponseCallback<Schema$Url>): void;
+    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+        callback?: BodyResponseCallback<Schema$Url>):
+        void|AxiosPromise<Schema$Url> {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      if (typeof params === 'function') {
+        callback = params;
+        params = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/urlshortener/v1/url')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['shortUrl'],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Url>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Url>(parameters);
+      }
     }
-    options = options || {};
-    const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/urlshortener/v1/url/history')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET'
-          },
-          options),
-      params,
-      requiredParams: [],
-      pathParams: [],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$UrlHistory>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$UrlHistory>(parameters);
+
+
+    /**
+     * urlshortener.url.insert
+     * @desc Creates a new short URL.
+     * @alias urlshortener.url.insert
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().Url} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Url>;
+    insert(
+        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+        callback?: BodyResponseCallback<Schema$Url>): void;
+    insert(
+        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Url>,
+        callback?: BodyResponseCallback<Schema$Url>):
+        void|AxiosPromise<Schema$Url> {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      if (typeof params === 'function') {
+        callback = params;
+        params = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/urlshortener/v1/url')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Url>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Url>(parameters);
+      }
+    }
+
+
+    /**
+     * urlshortener.url.list
+     * @desc Retrieves a list of URLs shortened by a user.
+     * @alias urlshortener.url.list
+     * @memberOf! ()
+     *
+     * @param {object=} params Parameters for request
+     * @param {string=} params.projection Additional information to return.
+     * @param {string=} params.start-token Token for requesting successive pages of results.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(params?: any, options?: MethodOptions):
+        AxiosPromise<Schema$UrlHistory>;
+    list(
+        params?: any,
+        options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
+        callback?: BodyResponseCallback<Schema$UrlHistory>): void;
+    list(
+        params?: any,
+        options?: MethodOptions|BodyResponseCallback<Schema$UrlHistory>,
+        callback?: BodyResponseCallback<Schema$UrlHistory>):
+        void|AxiosPromise<Schema$UrlHistory> {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      if (typeof params === 'function') {
+        callback = params;
+        params = {};
+      }
+      options = options || {};
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/urlshortener/v1/url/history')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$UrlHistory>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$UrlHistory>(parameters);
+      }
     }
   }
 }

@@ -17,8 +17,7 @@ import * as nock from 'nock';
 import * as path from 'path';
 import * as url from 'url';
 
-import {GoogleApis} from '../src';
-import {Datastore} from '../src/apis/datastore/v1';
+import {datastore_v1, GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';
@@ -93,8 +92,8 @@ describe('Clients', () => {
 
   it('should support default params', async () => {
     const google = new GoogleApis();
-    const datastore =
-        google.datastore<Datastore>({version: 'v1', params: {myParam: '123'}});
+    const datastore = google.datastore<datastore_v1.Datastore>(
+        {version: 'v1', params: {myParam: '123'}});
     createNock('myParam=123');
     const res = await datastore.projects.lookup({projectId: 'test-project-id'});
     // If the default param handling is broken, query might be undefined, thus
@@ -119,8 +118,8 @@ describe('Clients', () => {
 
   it('should allow default params to be overriden per-request', async () => {
     const google = new GoogleApis();
-    const datastore =
-        google.datastore<Datastore>({version: 'v1', params: {myParam: '123'}});
+    const datastore = google.datastore<datastore_v1.Datastore>(
+        {version: 'v1', params: {myParam: '123'}});
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
@@ -153,7 +152,7 @@ describe('Clients', () => {
   it('should include default params when only callback is provided to API call',
      async () => {
        const google = new GoogleApis();
-       const datastore = google.datastore<Datastore>({
+       const datastore = google.datastore<datastore_v1.Datastore>({
          version: 'v1',
          params: {
            // We must set this here - it is a required param

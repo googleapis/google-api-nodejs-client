@@ -214,6 +214,7 @@ export class Generator {
     const apis: {[index: string]: {[index: string]: string}} = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
+    const rootIndexPath = path.join(apisPath, '../', 'index.ts');
 
     // Dynamically discover available APIs
     const files: string[] = await fsp.readdir(apisPath);
@@ -231,8 +232,12 @@ export class Generator {
         }
       }
     }
+
     const result = this.env.render('index.njk', {apis});
     await fsp.writeFile(indexPath, result, {encoding: 'utf8'});
+
+    const res2 = this.env.render('root-index.njk', {apis});
+    await fsp.writeFile(rootIndexPath, res2, {encoding: 'utf8'});
   }
 
   /**

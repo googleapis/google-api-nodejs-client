@@ -27,175 +27,179 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: class-name
 // tslint:disable: variable-name
 // tslint:disable: jsdoc-format
+// tslint:disable: no-namespace
 
-/**
- * Accelerated Mobile Pages (AMP) URL API
- *
- * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given
- * list of public URL(s).
- *
- * @example
- * const google = require('googleapis');
- * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
- *
- * @namespace acceleratedmobilepageurl
- * @type {Function}
- * @version v1
- * @variation v1
- * @param {object=} options Options for Acceleratedmobilepageurl
- */
-export class Acceleratedmobilepageurl {
-  _options: GlobalOptions;
-  google: GoogleApis;
-  root = this;
-
-  ampUrls: Resource$Ampurls;
-
-  constructor(options: GlobalOptions, google: GoogleApis) {
-    this._options = options || {};
-    this.google = google;
-    this.getRoot.bind(this);
-
-    this.ampUrls = new Resource$Ampurls(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-}
-
-/**
- * AMP URL response for a requested URL.
- */
-export interface Schema$AmpUrl {
+export namespace acceleratedmobilepageurl_v1 {
   /**
-   * The AMP URL pointing to the publisher&#39;s web server.
-   */
-  ampUrl: string;
-  /**
-   * The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
-   * the cached document in the Google AMP Cache.
-   */
-  cdnAmpUrl: string;
-  /**
-   * The original non-AMP URL.
-   */
-  originalUrl: string;
-}
-/**
- * AMP URL Error resource for a requested URL that couldn&#39;t be found.
- */
-export interface Schema$AmpUrlError {
-  /**
-   * The error code of an API call.
-   */
-  errorCode: string;
-  /**
-   * An optional descriptive error message.
-   */
-  errorMessage: string;
-  /**
-   * The original non-AMP URL.
-   */
-  originalUrl: string;
-}
-/**
- * AMP URL request for a batch of URLs.
- */
-export interface Schema$BatchGetAmpUrlsRequest {
-  /**
-   * The lookup_strategy being requested.
-   */
-  lookupStrategy: string;
-  /**
-   * List of URLs to look up for the paired AMP URLs. The URLs are
-   * case-sensitive. Up to 50 URLs per lookup (see [Usage
-   * Limits](/amp/cache/reference/limits)).
-   */
-  urls: string[];
-}
-/**
- * Batch AMP URL response.
- */
-export interface Schema$BatchGetAmpUrlsResponse {
-  /**
-   * For each URL in BatchAmpUrlsRequest, the URL response. The response might
-   * not be in the same order as URLs in the batch request. If
-   * BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only once.
-   */
-  ampUrls: Schema$AmpUrl[];
-  /**
-   * The errors for requested URLs that have no AMP URL.
-   */
-  urlErrors: Schema$AmpUrlError[];
-}
-
-export class Resource$Ampurls {
-  root: Acceleratedmobilepageurl;
-  constructor(root: Acceleratedmobilepageurl) {
-    this.root = root;
-    this.getRoot.bind(this);
-  }
-
-  getRoot() {
-    return this.root;
-  }
-
-
-  /**
-   * acceleratedmobilepageurl.ampUrls.batchGet
-   * @desc Returns AMP URL(s) and equivalent [AMP Cache
-   * URL(s)](/amp/cache/overview#amp-cache-url-format).
-   * @alias acceleratedmobilepageurl.ampUrls.batchGet
-   * @memberOf! ()
+   * Accelerated Mobile Pages (AMP) URL API
    *
-   * @param {object} params Parameters for request
-   * @param {().BatchGetAmpUrlsRequest} params.resource Request body data
-   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-   * @param {callback} callback The callback that handles the response.
-   * @return {object} Request object
+   * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given
+   * list of public URL(s).
+   *
+   * @example
+   * const google = require('googleapis');
+   * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
+   *
+   * @namespace acceleratedmobilepageurl
+   * @type {Function}
+   * @version v1
+   * @variation v1
+   * @param {object=} options Options for Acceleratedmobilepageurl
    */
-  batchGet(params?: any, options?: MethodOptions):
-      AxiosPromise<Schema$BatchGetAmpUrlsResponse>;
-  batchGet(
-      params?: any,
-      options?: MethodOptions|
-      BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
-  batchGet(
-      params?: any,
-      options?: MethodOptions|
-      BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
-      callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
-      void|AxiosPromise<Schema$BatchGetAmpUrlsResponse> {
-    if (typeof options === 'function') {
-      callback = options;
-      options = {};
+  export class Acceleratedmobilepageurl {
+    _options: GlobalOptions;
+    google: GoogleApis;
+    root = this;
+
+    ampUrls: Resource$Ampurls;
+
+    constructor(options: GlobalOptions, google: GoogleApis) {
+      this._options = options || {};
+      this.google = google;
+      this.getRoot.bind(this);
+
+      this.ampUrls = new Resource$Ampurls(this);
     }
-    if (typeof params === 'function') {
-      callback = params;
-      params = {};
+
+    getRoot() {
+      return this.root;
     }
-    options = options || {};
-    const rootUrl =
-        options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
-    const parameters = {
-      options: Object.assign(
-          {
-            url: (rootUrl + '/v1/ampUrls:batchGet')
-                     .replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST'
-          },
-          options),
-      params,
-      requiredParams: [],
-      pathParams: [],
-      context: this.getRoot()
-    };
-    if (callback) {
-      createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
-    } else {
-      return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);
+  }
+
+  /**
+   * AMP URL response for a requested URL.
+   */
+  export interface Schema$AmpUrl {
+    /**
+     * The AMP URL pointing to the publisher&#39;s web server.
+     */
+    ampUrl: string;
+    /**
+     * The [AMP Cache URL](/amp/cache/overview#amp-cache-url-format) pointing to
+     * the cached document in the Google AMP Cache.
+     */
+    cdnAmpUrl: string;
+    /**
+     * The original non-AMP URL.
+     */
+    originalUrl: string;
+  }
+  /**
+   * AMP URL Error resource for a requested URL that couldn&#39;t be found.
+   */
+  export interface Schema$AmpUrlError {
+    /**
+     * The error code of an API call.
+     */
+    errorCode: string;
+    /**
+     * An optional descriptive error message.
+     */
+    errorMessage: string;
+    /**
+     * The original non-AMP URL.
+     */
+    originalUrl: string;
+  }
+  /**
+   * AMP URL request for a batch of URLs.
+   */
+  export interface Schema$BatchGetAmpUrlsRequest {
+    /**
+     * The lookup_strategy being requested.
+     */
+    lookupStrategy: string;
+    /**
+     * List of URLs to look up for the paired AMP URLs. The URLs are
+     * case-sensitive. Up to 50 URLs per lookup (see [Usage
+     * Limits](/amp/cache/reference/limits)).
+     */
+    urls: string[];
+  }
+  /**
+   * Batch AMP URL response.
+   */
+  export interface Schema$BatchGetAmpUrlsResponse {
+    /**
+     * For each URL in BatchAmpUrlsRequest, the URL response. The response might
+     * not be in the same order as URLs in the batch request. If
+     * BatchAmpUrlsRequest contains duplicate URLs, AmpUrl is generated only
+     * once.
+     */
+    ampUrls: Schema$AmpUrl[];
+    /**
+     * The errors for requested URLs that have no AMP URL.
+     */
+    urlErrors: Schema$AmpUrlError[];
+  }
+
+  export class Resource$Ampurls {
+    root: Acceleratedmobilepageurl;
+    constructor(root: Acceleratedmobilepageurl) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * acceleratedmobilepageurl.ampUrls.batchGet
+     * @desc Returns AMP URL(s) and equivalent [AMP Cache
+     * URL(s)](/amp/cache/overview#amp-cache-url-format).
+     * @alias acceleratedmobilepageurl.ampUrls.batchGet
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {().BatchGetAmpUrlsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    batchGet(params?: any, options?: MethodOptions):
+        AxiosPromise<Schema$BatchGetAmpUrlsResponse>;
+    batchGet(
+        params?: any,
+        options?: MethodOptions|
+        BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+        callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>): void;
+    batchGet(
+        params?: any,
+        options?: MethodOptions|
+        BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>,
+        callback?: BodyResponseCallback<Schema$BatchGetAmpUrlsResponse>):
+        void|AxiosPromise<Schema$BatchGetAmpUrlsResponse> {
+      if (typeof options === 'function') {
+        callback = options;
+        options = {};
+      }
+      if (typeof params === 'function') {
+        callback = params;
+        params = {};
+      }
+      options = options || {};
+      const rootUrl =
+          options.rootUrl || 'https://acceleratedmobilepageurl.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/ampUrls:batchGet')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$BatchGetAmpUrlsResponse>(parameters);
+      }
     }
   }
 }
