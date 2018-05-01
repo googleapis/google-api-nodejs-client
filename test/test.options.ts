@@ -15,7 +15,9 @@ import * as assert from 'assert';
 import {AxiosResponse} from 'axios';
 import * as nock from 'nock';
 import * as url from 'url';
-import {GoogleApis} from '../src';
+
+import {drive_v2, drive_v3, GoogleApis} from '../src';
+
 import {Utils} from './utils';
 
 function createNock(path?: string) {
@@ -51,16 +53,17 @@ describe('Options', () => {
   it('should promote endpoint options over global options', async () => {
     const google = new GoogleApis();
     google.options({params: {hello: 'world'}});
-    const drive = google.drive({version: 'v2', params: {hello: 'changed'}});
+    const drive = google.drive<drive_v2.Drive>(
+        {version: 'v2', params: {hello: 'changed'}});
     createNock('/drive/v2/files/123?hello=changed');
-    const res: AxiosResponse = await drive.files.get({fileId: '123'});
+    const res = await drive.files.get({fileId: '123'});
     assert.equal(res.config.params.hello, 'changed');
   });
 
   it('should support global request params', async () => {
     const google = new GoogleApis();
     google.options({params: {myParam: '123'}});
-    const drive = google.drive('v2');
+    const drive = google.drive<drive_v2.Drive>('v2');
     nock(Utils.baseUrl).get('/drive/v2/files/123?myParam=123').reply(200);
     const res = await drive.files.get({fileId: '123'});
     // If the default param handling is broken, query might be undefined, thus
@@ -89,7 +92,8 @@ describe('Options', () => {
   it('should promote auth apikey options on request basis', async () => {
     const google = new GoogleApis();
     google.options({auth: 'apikey1'});
-    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    const drive =
+        google.drive<drive_v2.Drive>({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.equal(Utils.getQs(res), 'key=apikey3');
@@ -98,7 +102,8 @@ describe('Options', () => {
   it('should apply google options to request object like timeout', async () => {
     const google = new GoogleApis();
     google.options({timeout: 12345});
-    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    const drive =
+        google.drive<drive_v2.Drive>({version: 'v2', auth: 'apikey2'});
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.equal(res.config.timeout, '12345');
@@ -107,8 +112,8 @@ describe('Options', () => {
   it('should apply endpoint options to request object like timeout',
      async () => {
        const google = new GoogleApis();
-       const drive =
-           google.drive({version: 'v2', auth: 'apikey2', timeout: 23456});
+       const drive = google.drive<drive_v2.Drive>(
+           {version: 'v2', auth: 'apikey2', timeout: 23456});
        createNock('/drive/v2/files/woot?key=apikey3');
        const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
        assert.equal(res.config.timeout, 23456);
@@ -117,7 +122,7 @@ describe('Options', () => {
 
   it('should allow overriding endpoint options', async () => {
     const google = new GoogleApis();
-    const drive = google.drive('v3');
+    const drive = google.drive<drive_v3.Drive>('v3');
     const host = 'https://myproxy.com';
     nock(host).get('/drive/v3/files/woot').reply(200);
     const res = await drive.files.get(
@@ -137,8 +142,8 @@ describe('Options', () => {
        const OAuth2 = google.auth.OAuth2;
        authClient = new OAuth2('CLIENTID', 'CLIENTSECRET', 'REDIRECTURI');
        authClient.credentials = {access_token: 'abc'};
-       const drive =
-           google.drive({version: 'v2', auth: 'apikey2', timeout: 12345});
+       const drive = google.drive<drive_v2.Drive>(
+           {version: 'v2', auth: 'apikey2', timeout: 12345});
        createNock('/drive/v2/files/woot');
        const res = await drive.files.get({auth: authClient, fileId: 'woot'});
        assert.equal(res.config.timeout, 12345);
@@ -147,7 +152,7 @@ describe('Options', () => {
 
   it('should allow overriding rootUrl via options', async () => {
     const google = new GoogleApis();
-    const drive = google.drive('v3');
+    const drive = google.drive<drive_v3.Drive>('v3');
     const fileId = 'woot';
     const rootUrl = 'https://myrooturl.com';
     nock(rootUrl).get('/drive/v3/files/woot').reply(200);
@@ -166,9 +171,9 @@ describe('Options', () => {
   it('should allow overriding validateStatus', async () => {
     const scope = nock(Utils.baseUrl).get('/drive/v2/files').reply(500);
     const google = new GoogleApis();
-    const drive = google.drive('v2');
+    const drive = google.drive<drive_v2.Drive>('v2');
     const res = await drive.files.list({}, {
-      validateStatus: (status: {}) => {
+      validateStatus: (status: number) => {
         return true;
       }
     });

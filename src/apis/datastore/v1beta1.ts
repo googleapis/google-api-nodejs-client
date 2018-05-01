@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -73,25 +74,25 @@ export namespace datastore_v1beta1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The time that work began on the operation.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The current state of the Operation.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as
@@ -109,7 +110,7 @@ export namespace datastore_v1beta1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds: string[];
+    kinds?: string[];
     /**
      * An empty list represents all namespaces. This is the preferred usage for
      * projects that don&#39;t use namespaces.  An empty string element
@@ -117,7 +118,7 @@ export namespace datastore_v1beta1 {
      * data in non-default namespaces, but doesn&#39;t want to include them.
      * Each namespace in this list must be unique.
      */
-    namespaceIds: string[];
+    namespaceIds?: string[];
   }
   /**
    * Metadata for ExportEntities operations.
@@ -126,11 +127,11 @@ export namespace datastore_v1beta1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
     /**
      * Description of which entities are being exported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * Location for the export metadata and data files. This will be the same
      * value as the
@@ -138,15 +139,15 @@ export namespace datastore_v1beta1 {
      * field. The final output location is provided in
      * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1beta1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1beta1Progress;
   }
   /**
    * The request for
@@ -156,11 +157,11 @@ export namespace datastore_v1beta1 {
     /**
      * Description of what data from the project is included in the export.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * Client-assigned labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * Location for the export metadata and data files.  The full resource URL
      * of the external storage location. Currently, only Google Cloud Storage is
@@ -177,7 +178,7 @@ export namespace datastore_v1beta1 {
      * nesting the data files deeper, the same Cloud Storage bucket can be used
      * in multiple ExportEntities operations without conflict.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
   }
   /**
    * The response for
@@ -190,7 +191,7 @@ export namespace datastore_v1beta1 {
      * google.datastore.admin.v1beta1.ImportEntitiesRequest.input_url. Only
      * present if the operation completed successfully.
      */
-    outputUrl: string;
+    outputUrl?: string;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -199,25 +200,25 @@ export namespace datastore_v1beta1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1beta1CommonMetadata;
     /**
      * Description of which entities are being imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * The location of the import metadata file. This will be the same value as
      * the google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url
      * field.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1beta1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1beta1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1beta1Progress;
   }
   /**
    * The request for
@@ -230,7 +231,7 @@ export namespace datastore_v1beta1 {
      * the export, otherwise a FAILED_PRECONDITION error will be returned. If no
      * filter is specified then all entities from the export are imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1beta1EntityFilter;
     /**
      * The full resource URL of the external storage location. Currently, only
      * Google Cloud Storage is supported. So input_url should be of the form:
@@ -244,11 +245,11 @@ export namespace datastore_v1beta1 {
      * For more information, see
      * google.datastore.admin.v1beta1.ExportEntitiesResponse.output_url.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * Client-assigned labels.
      */
-    labels: any;
+    labels?: any;
   }
   /**
    * Measures the progress of a particular metric.
@@ -258,12 +259,12 @@ export namespace datastore_v1beta1 {
      * The amount of work that has been completed. Note that this may be greater
      * than work_estimated.
      */
-    workCompleted: string;
+    workCompleted?: string;
     /**
      * An estimate of how much work needs to be performed. May be zero if the
      * work estimate is unavailable.
      */
-    workEstimated: string;
+    workEstimated?: string;
   }
   /**
    * Metadata common to all Datastore Admin operations.
@@ -272,25 +273,25 @@ export namespace datastore_v1beta1 {
     /**
      * The time the operation ended, either successfully or otherwise.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The client-assigned labels which were provided when the operation was
      * created. May also include additional labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * The type of the operation. Can be used as a filter in
      * ListOperationsRequest.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * The time that work began on the operation.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The current state of the Operation.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Identifies a subset of entities in a project. This is specified as
@@ -308,7 +309,7 @@ export namespace datastore_v1beta1 {
     /**
      * If empty, then this represents all kinds.
      */
-    kinds: string[];
+    kinds?: string[];
     /**
      * An empty list represents all namespaces. This is the preferred usage for
      * projects that don&#39;t use namespaces.  An empty string element
@@ -316,7 +317,7 @@ export namespace datastore_v1beta1 {
      * data in non-default namespaces, but doesn&#39;t want to include them.
      * Each namespace in this list must be unique.
      */
-    namespaceIds: string[];
+    namespaceIds?: string[];
   }
   /**
    * Metadata for ExportEntities operations.
@@ -325,11 +326,11 @@ export namespace datastore_v1beta1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
     /**
      * Description of which entities are being exported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * Location for the export metadata and data files. This will be the same
      * value as the
@@ -337,15 +338,15 @@ export namespace datastore_v1beta1 {
      * The final output location is provided in
      * google.datastore.admin.v1.ExportEntitiesResponse.output_url.
      */
-    outputUrlPrefix: string;
+    outputUrlPrefix?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
    * The response for google.datastore.admin.v1.DatastoreAdmin.ExportEntities.
@@ -357,7 +358,7 @@ export namespace datastore_v1beta1 {
      * google.datastore.admin.v1.ImportEntitiesRequest.input_url. Only present
      * if the operation completed successfully.
      */
-    outputUrl: string;
+    outputUrl?: string;
   }
   /**
    * Metadata for ImportEntities operations.
@@ -366,24 +367,24 @@ export namespace datastore_v1beta1 {
     /**
      * Metadata common to all Datastore Admin operations.
      */
-    common: Schema$GoogleDatastoreAdminV1CommonMetadata;
+    common?: Schema$GoogleDatastoreAdminV1CommonMetadata;
     /**
      * Description of which entities are being imported.
      */
-    entityFilter: Schema$GoogleDatastoreAdminV1EntityFilter;
+    entityFilter?: Schema$GoogleDatastoreAdminV1EntityFilter;
     /**
      * The location of the import metadata file. This will be the same value as
      * the google.datastore.admin.v1.ExportEntitiesResponse.output_url field.
      */
-    inputUrl: string;
+    inputUrl?: string;
     /**
      * An estimate of the number of bytes processed.
      */
-    progressBytes: Schema$GoogleDatastoreAdminV1Progress;
+    progressBytes?: Schema$GoogleDatastoreAdminV1Progress;
     /**
      * An estimate of the number of entities processed.
      */
-    progressEntities: Schema$GoogleDatastoreAdminV1Progress;
+    progressEntities?: Schema$GoogleDatastoreAdminV1Progress;
   }
   /**
    * Measures the progress of a particular metric.
@@ -393,12 +394,12 @@ export namespace datastore_v1beta1 {
      * The amount of work that has been completed. Note that this may be greater
      * than work_estimated.
      */
-    workCompleted: string;
+    workCompleted?: string;
     /**
      * An estimate of how much work needs to be performed. May be zero if the
      * work estimate is unavailable.
      */
-    workEstimated: string;
+    workEstimated?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -410,24 +411,24 @@ export namespace datastore_v1beta1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -437,7 +438,7 @@ export namespace datastore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -479,19 +480,20 @@ export namespace datastore_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
+
 
   export class Resource$Projects {
     root: Datastore;
@@ -525,29 +527,41 @@ export namespace datastore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: any, options?: MethodOptions):
+    export(params?: Params$Resource$Projects$Export, options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunningOperation>;
     export(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Export,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void;
     export(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Export,
+        callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    export(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
+        void;
+    export(
+        paramsOrCallback?: Params$Resource$Projects$Export|
+        BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunningOperation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>):
         void|AxiosPromise<Schema$GoogleLongrunningOperation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Export;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -589,18 +603,25 @@ export namespace datastore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-import(params?: any, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {
-  if (typeof options === 'function') {
-      callback = options;
+import(params?: Params$Resource$Projects$Import, options?: MethodOptions): AxiosPromise<Schema$GoogleLongrunningOperation>;
+import(params: Params$Resource$Projects$Import, options: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(params: Params$Resource$Projects$Import, callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void;
+import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<Schema$GoogleLongrunningOperation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$GoogleLongrunningOperation>, callback?: BodyResponseCallback<Schema$GoogleLongrunningOperation>): void|AxiosPromise<Schema$GoogleLongrunningOperation> {
+  let params = (paramsOrCallback || {}) as Params$Resource$Projects$Import;
+  let options = (optionsOrCallback || {}) as MethodOptions;
+
+  if (typeof paramsOrCallback === 'function') {
+      callback = paramsOrCallback;
+      params = {} as Params$Resource$Projects$Import;
       options = {};
   }
-  if (typeof params === 'function') {
-      callback = params;
-      params = {};
+
+  if (typeof optionsOrCallback === 'function') {
+      callback = optionsOrCallback;
+      options = {};
   }
-  options = options || {};
+
   const rootUrl = options.rootUrl || 'https://datastore.googleapis.com/';
   const parameters = {
     options: Object.assign({
@@ -620,6 +641,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$GoogleL
 }
 
                   }
+
+                  export interface Params$Resource$Projects$Export {
+          /**
+           * Auth client or API Key for the request
+           */
+          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+                                    /**
+               * Project ID against which to make the request.
+               */
+              projectId: string;
+                                      /**
+               * Request body metadata
+               */
+              resource?: Schema$GoogleDatastoreAdminV1beta1ExportEntitiesRequest;
+                                          }
+              export interface Params$Resource$Projects$Import {
+          /**
+           * Auth client or API Key for the request
+           */
+          auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+                                    /**
+               * Project ID against which to make the request.
+               */
+              projectId: string;
+                                      /**
+               * Request body metadata
+               */
+              resource?: Schema$GoogleDatastoreAdminV1beta1ImportEntitiesRequest;
+                                          }
+          
     
   
 

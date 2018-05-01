@@ -75,6 +75,7 @@ import {cloudshell_v1alpha1} from './cloudshell/v1alpha1';
 import {cloudtasks_v2beta2} from './cloudtasks/v2beta2';
 import {cloudtrace_v1} from './cloudtrace/v1';
 import {cloudtrace_v2} from './cloudtrace/v2';
+import {composer_v1beta1} from './composer/v1beta1';
 import {compute_alpha} from './compute/alpha';
 import {compute_beta} from './compute/beta';
 import {compute_v1} from './compute/v1';
@@ -150,11 +151,6 @@ import {playcustomapp_v1} from './playcustomapp/v1';
 import {plus_v1} from './plus/v1';
 import {plusDomains_v1} from './plusDomains/v1';
 import {poly_v1} from './poly/v1';
-import {prediction_v1_2} from './prediction/v1.2';
-import {prediction_v1_3} from './prediction/v1.3';
-import {prediction_v1_4} from './prediction/v1.4';
-import {prediction_v1_5} from './prediction/v1.5';
-import {prediction_v1_6} from './prediction/v1.6';
 import {proximitybeacon_v1beta1} from './proximitybeacon/v1beta1';
 import {pubsub_v1} from './pubsub/v1';
 import {pubsub_v1beta1a} from './pubsub/v1beta1a';
@@ -170,6 +166,9 @@ import {runtimeconfig_v1beta1} from './runtimeconfig/v1beta1';
 import {safebrowsing_v4} from './safebrowsing/v4';
 import {script_v1} from './script/v1';
 import {searchconsole_v1} from './searchconsole/v1';
+import {servicebroker_v1} from './servicebroker/v1';
+import {servicebroker_v1alpha1} from './servicebroker/v1alpha1';
+import {servicebroker_v1beta1} from './servicebroker/v1beta1';
 import {serviceconsumermanagement_v1} from './serviceconsumermanagement/v1';
 import {servicecontrol_v1} from './servicecontrol/v1';
 import {servicemanagement_v1} from './servicemanagement/v1';
@@ -193,8 +192,6 @@ import {streetviewpublish_v1} from './streetviewpublish/v1';
 import {surveys_v2} from './surveys/v2';
 import {tagmanager_v1} from './tagmanager/v1';
 import {tagmanager_v2} from './tagmanager/v2';
-import {taskqueue_v1beta1} from './taskqueue/v1beta1';
-import {taskqueue_v1beta2} from './taskqueue/v1beta2';
 import {tasks_v1} from './tasks/v1';
 import {testing_v1} from './testing/v1';
 import {texttospeech_v1beta1} from './texttospeech/v1beta1';
@@ -354,6 +351,9 @@ export const APIS: APIList = {
   cloudtrace: {
     'v1': cloudtrace_v1.Cloudtrace,
     'v2': cloudtrace_v2.Cloudtrace,
+  },
+  composer: {
+    'v1beta1': composer_v1beta1.Composer,
   },
   compute: {
     'alpha': compute_alpha.Compute,
@@ -526,13 +526,6 @@ export const APIS: APIList = {
   poly: {
     'v1': poly_v1.Poly,
   },
-  prediction: {
-    'v1.2': prediction_v1_2.Prediction,
-    'v1.3': prediction_v1_3.Prediction,
-    'v1.4': prediction_v1_4.Prediction,
-    'v1.5': prediction_v1_5.Prediction,
-    'v1.6': prediction_v1_6.Prediction,
-  },
   proximitybeacon: {
     'v1beta1': proximitybeacon_v1beta1.Proximitybeacon,
   },
@@ -567,6 +560,11 @@ export const APIS: APIList = {
   },
   searchconsole: {
     'v1': searchconsole_v1.Searchconsole,
+  },
+  servicebroker: {
+    'v1': servicebroker_v1.Servicebroker,
+    'v1alpha1': servicebroker_v1alpha1.Servicebroker,
+    'v1beta1': servicebroker_v1beta1.Servicebroker,
   },
   serviceconsumermanagement: {
     'v1': serviceconsumermanagement_v1.Serviceconsumermanagement,
@@ -626,10 +624,6 @@ export const APIS: APIList = {
   tagmanager: {
     'v1': tagmanager_v1.Tagmanager,
     'v2': tagmanager_v2.Tagmanager,
-  },
-  taskqueue: {
-    'v1beta1': taskqueue_v1beta1.Taskqueue,
-    'v1beta2': taskqueue_v1beta2.Taskqueue,
   },
   tasks: {
     'v1': tasks_v1.Tasks,
@@ -869,6 +863,9 @@ export class GeneratedAPIs {
       options: ServiceOptions|string) {
     return this.getAPI<T>('cloudtrace', options);
   }
+  composer<T = composer_v1beta1.Composer>(options: ServiceOptions|string) {
+    return this.getAPI<T>('composer', options);
+  }
   compute<
       T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute>(
       options: ServiceOptions|string) {
@@ -1059,12 +1056,6 @@ export class GeneratedAPIs {
   poly<T = poly_v1.Poly>(options: ServiceOptions|string) {
     return this.getAPI<T>('poly', options);
   }
-  prediction<
-      T = prediction_v1_2.Prediction | prediction_v1_3.Prediction |
-          prediction_v1_4.Prediction | prediction_v1_5.Prediction |
-          prediction_v1_6.Prediction>(options: ServiceOptions|string) {
-    return this.getAPI<T>('prediction', options);
-  }
   proximitybeacon<T = proximitybeacon_v1beta1.Proximitybeacon>(
       options: ServiceOptions|string) {
     return this.getAPI<T>('proximitybeacon', options);
@@ -1105,6 +1096,12 @@ export class GeneratedAPIs {
   searchconsole<T = searchconsole_v1.Searchconsole>(options: ServiceOptions|
                                                     string) {
     return this.getAPI<T>('searchconsole', options);
+  }
+  servicebroker<
+      T = servicebroker_v1.Servicebroker |
+          servicebroker_v1alpha1.Servicebroker |
+          servicebroker_v1beta1.Servicebroker>(options: ServiceOptions|string) {
+    return this.getAPI<T>('servicebroker', options);
   }
   serviceconsumermanagement<
       T = serviceconsumermanagement_v1.Serviceconsumermanagement>(
@@ -1174,10 +1171,6 @@ export class GeneratedAPIs {
   tagmanager<T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager>(
       options: ServiceOptions|string) {
     return this.getAPI<T>('tagmanager', options);
-  }
-  taskqueue<T = taskqueue_v1beta1.Taskqueue | taskqueue_v1beta2.Taskqueue>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('taskqueue', options);
   }
   tasks<T = tasks_v1.Tasks>(options: ServiceOptions|string) {
     return this.getAPI<T>('tasks', options);

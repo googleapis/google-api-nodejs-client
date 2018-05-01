@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -76,7 +77,7 @@ export namespace videointelligence_v1 {
     /**
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationProgress:
+    annotationProgress?:
         Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationProgress[];
   }
   /**
@@ -88,7 +89,7 @@ export namespace videointelligence_v1 {
     /**
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationResults:
+    annotationResults?:
         Schema$GoogleCloudVideointelligenceV1beta1_VideoAnnotationResults[];
   }
   /**
@@ -98,15 +99,15 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description: string;
+    description?: string;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * Where the label was detected and with what confidence.
      */
-    locations: Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation[];
+    locations?: Schema$GoogleCloudVideointelligenceV1beta1_LabelLocation[];
   }
   /**
    * Label location.
@@ -115,18 +116,18 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Label level.
      */
-    level: string;
+    level?: string;
     /**
      * Video segment. Set to [-1, -1] for video-level labels. Set to [timestamp,
      * timestamp] for frame-level labels. Otherwise, corresponds to one of
      * `AnnotateSpec.segments` (if specified) or to shot boundaries (if
      * requested).
      */
-    segment: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment;
+    segment?: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment;
   }
   /**
    * Safe search annotation (based on per-frame visual signals only). If no
@@ -139,28 +140,28 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of adult content.
      */
-    adult: string;
+    adult?: string;
     /**
      * Likelihood of medical content.
      */
-    medical: string;
+    medical?: string;
     /**
      * Likelihood of racy content.
      */
-    racy: string;
+    racy?: string;
     /**
      * Likelihood that an obvious modification was made to the original version
      * to make it appear funny or offensive.
      */
-    spoof: string;
+    spoof?: string;
     /**
      * Video time offset in microseconds.
      */
-    timeOffset: string;
+    timeOffset?: string;
     /**
      * Likelihood of violent content.
      */
-    violent: string;
+    violent?: string;
   }
   /**
    * Annotation progress for a single video.
@@ -170,20 +171,20 @@ export namespace videointelligence_v1 {
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when
      * fully processed.
      */
-    progressPercent: number;
+    progressPercent?: number;
     /**
      * Time when the request was received.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Time of the most recent update.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Annotation results for a single video.
@@ -193,26 +194,26 @@ export namespace videointelligence_v1 {
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      */
-    error: Schema$GoogleRpc_Status;
+    error?: Schema$GoogleRpc_Status;
     /**
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Label annotations. There is exactly one element for each unique label.
      */
-    labelAnnotations:
+    labelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta1_LabelAnnotation[];
     /**
      * Safe search annotations.
      */
-    safeSearchAnnotations:
+    safeSearchAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta1_SafeSearchAnnotation[];
     /**
      * Shot annotations. Each shot is represented as a video segment.
      */
-    shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
+    shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta1_VideoSegment[];
   }
   /**
    * Video segment.
@@ -221,11 +222,11 @@ export namespace videointelligence_v1 {
     /**
      * End offset in microseconds (inclusive). Unset means 0.
      */
-    endTimeOffset: string;
+    endTimeOffset?: string;
     /**
      * Start offset in microseconds (inclusive). Unset means 0.
      */
-    startTimeOffset: string;
+    startTimeOffset?: string;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the
@@ -236,7 +237,7 @@ export namespace videointelligence_v1 {
     /**
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationProgress:
+    annotationProgress?:
         Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress[];
   }
   /**
@@ -248,7 +249,7 @@ export namespace videointelligence_v1 {
     /**
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationResults:
+    annotationResults?:
         Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationResults[];
   }
   /**
@@ -258,16 +259,16 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description: string;
+    description?: string;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
      * Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId: string;
+    entityId?: string;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no
@@ -278,7 +279,7 @@ export namespace videointelligence_v1 {
     /**
      * All video frames where explicit content was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentFrame[];
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -287,12 +288,12 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood: string;
+    pornographyLikelihood?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Label annotation.
@@ -303,19 +304,19 @@ export namespace videointelligence_v1 {
      * `Terrier` the category is likely `dog`. And in some cases there might be
      * more than one categories e.g. `Terrier` could also be a `pet`.
      */
-    categoryEntities: Schema$GoogleCloudVideointelligenceV1beta2_Entity[];
+    categoryEntities?: Schema$GoogleCloudVideointelligenceV1beta2_Entity[];
     /**
      * Detected entity.
      */
-    entity: Schema$GoogleCloudVideointelligenceV1beta2_Entity;
+    entity?: Schema$GoogleCloudVideointelligenceV1beta2_Entity;
     /**
      * All video frames where a label was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1beta2_LabelFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1beta2_LabelFrame[];
     /**
      * All video segments where a label was detected.
      */
-    segments: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
+    segments?: Schema$GoogleCloudVideointelligenceV1beta2_LabelSegment[];
   }
   /**
    * Video frame level annotation results for label detection.
@@ -324,12 +325,12 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -338,11 +339,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Video segment where a label was detected.
      */
-    segment: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
+    segment?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment;
   }
   /**
    * Annotation progress for a single video.
@@ -352,20 +353,20 @@ export namespace videointelligence_v1 {
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when
      * fully processed.
      */
-    progressPercent: number;
+    progressPercent?: number;
     /**
      * Time when the request was received.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Time of the most recent update.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Annotation results for a single video.
@@ -375,38 +376,38 @@ export namespace videointelligence_v1 {
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      */
-    error: Schema$GoogleRpc_Status;
+    error?: Schema$GoogleRpc_Status;
     /**
      * Explicit content annotation.
      */
-    explicitAnnotation:
+    explicitAnnotation?:
         Schema$GoogleCloudVideointelligenceV1beta2_ExplicitContentAnnotation;
     /**
      * Label annotations on frame level. There is exactly one element for each
      * unique label.
      */
-    frameLabelAnnotations:
+    frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Label annotations on video level or user specified segment level. There
      * is exactly one element for each unique label.
      */
-    segmentLabelAnnotations:
+    segmentLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
      * Shot annotations. Each shot is represented as a video segment.
      */
-    shotAnnotations: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
+    shotAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_VideoSegment[];
     /**
      * Label annotations on shot level. There is exactly one element for each
      * unique label.
      */
-    shotLabelAnnotations:
+    shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
   }
   /**
@@ -417,12 +418,12 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the
      * end of the segment (inclusive).
      */
-    endTimeOffset: string;
+    endTimeOffset?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * start of the segment (inclusive).
      */
-    startTimeOffset: string;
+    startTimeOffset?: string;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the
@@ -433,7 +434,7 @@ export namespace videointelligence_v1 {
     /**
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationProgress:
+    annotationProgress?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress[];
   }
   /**
@@ -445,7 +446,7 @@ export namespace videointelligence_v1 {
     /**
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationResults:
+    annotationResults?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationResults[];
   }
   /**
@@ -455,11 +456,11 @@ export namespace videointelligence_v1 {
     /**
      * Emotion entry.
      */
-    emotion: string;
+    emotion?: string;
     /**
      * Confidence score.
      */
-    score: number;
+    score?: number;
   }
   /**
    * Detected entity from video analysis.
@@ -468,16 +469,16 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description: string;
+    description?: string;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
      * Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId: string;
+    entityId?: string;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no
@@ -488,7 +489,8 @@ export namespace videointelligence_v1 {
     /**
      * All video frames where explicit content was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
+    frames?:
+        Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentFrame[];
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -497,12 +499,12 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood: string;
+    pornographyLikelihood?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Face detection annotation.
@@ -511,11 +513,11 @@ export namespace videointelligence_v1 {
     /**
      * All video frames where a face was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionFrame[];
     /**
      * All video segments where a face was detected.
      */
-    segments: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment[];
+    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_FaceSegment[];
   }
   /**
    * Face detection attribute.
@@ -524,11 +526,11 @@ export namespace videointelligence_v1 {
     /**
      * Emotion attributes.
      */
-    emotions: Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[];
+    emotions?: Schema$GoogleCloudVideointelligenceV1p1beta1_EmotionAttribute[];
     /**
      * Normalized Bounding box.
      */
-    normalizedBoundingBox:
+    normalizedBoundingBox?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingBox;
   }
   /**
@@ -539,13 +541,13 @@ export namespace videointelligence_v1 {
      * Face attributes in a frame. There can be more than one attributes if the
      * same face is detected in multiple locations within the current frame.
      */
-    attributes:
+    attributes?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAttribute[];
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Video segment level annotation results for face detection.
@@ -554,7 +556,7 @@ export namespace videointelligence_v1 {
     /**
      * Video segment where a face was detected.
      */
-    segment: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
    * Label annotation.
@@ -565,19 +567,19 @@ export namespace videointelligence_v1 {
      * `Terrier` the category is likely `dog`. And in some cases there might be
      * more than one categories e.g. `Terrier` could also be a `pet`.
      */
-    categoryEntities: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity[];
+    categoryEntities?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity[];
     /**
      * Detected entity.
      */
-    entity: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity;
+    entity?: Schema$GoogleCloudVideointelligenceV1p1beta1_Entity;
     /**
      * All video frames where a label was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelFrame[];
     /**
      * All video segments where a label was detected.
      */
-    segments: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
+    segments?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelSegment[];
   }
   /**
    * Video frame level annotation results for label detection.
@@ -586,12 +588,12 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -600,11 +602,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Video segment where a label was detected.
      */
-    segment: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
+    segment?: Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment;
   }
   /**
    * Normalized bounding box. The normalized vertex coordinates are relative to
@@ -614,19 +616,19 @@ export namespace videointelligence_v1 {
     /**
      * Bottom Y coordinate.
      */
-    bottom: number;
+    bottom?: number;
     /**
      * Left X coordinate.
      */
-    left: number;
+    left?: number;
     /**
      * Right X coordinate.
      */
-    right: number;
+    right?: number;
     /**
      * Top Y coordinate.
      */
-    top: number;
+    top?: number;
   }
   /**
    * Alternative hypotheses (a.k.a. n-best list).
@@ -641,16 +643,16 @@ export namespace videointelligence_v1 {
      * The default of 0.0 is a sentinel value indicating `confidence` was not
      * set.
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Output only. Transcript text representing the words that the user spoke.
      */
-    transcript: string;
+    transcript?: string;
     /**
      * Output only. A list of word-specific information for each recognized
      * word.
      */
-    words: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
+    words?: Schema$GoogleCloudVideointelligenceV1p1beta1_WordInfo[];
   }
   /**
    * A speech recognition result corresponding to a portion of the audio.
@@ -662,9 +664,9 @@ export namespace videointelligence_v1 {
      * in terms of accuracy, with the top (first) alternative being the most
      * probable, as ranked by the recognizer.
      */
-    // clang-format off
-    alternatives: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
-    // clang-format on
+    alternatives?:
+        Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative
+            [];
   }
   /**
    * Annotation progress for a single video.
@@ -674,20 +676,20 @@ export namespace videointelligence_v1 {
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when
      * fully processed.
      */
-    progressPercent: number;
+    progressPercent?: number;
     /**
      * Time when the request was received.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Time of the most recent update.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Annotation results for a single video.
@@ -697,49 +699,49 @@ export namespace videointelligence_v1 {
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      */
-    error: Schema$GoogleRpc_Status;
+    error?: Schema$GoogleRpc_Status;
     /**
      * Explicit content annotation.
      */
-    explicitAnnotation:
+    explicitAnnotation?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_ExplicitContentAnnotation;
     /**
      * Face detection annotations.
      */
-    faceDetectionAnnotations:
+    faceDetectionAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation[];
     /**
      * Label annotations on frame level. There is exactly one element for each
      * unique label.
      */
-    frameLabelAnnotations:
+    frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Label annotations on video level or user specified segment level. There
      * is exactly one element for each unique label.
      */
-    segmentLabelAnnotations:
+    segmentLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
      * Shot annotations. Each shot is represented as a video segment.
      */
-    shotAnnotations:
+    shotAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_VideoSegment[];
     /**
      * Label annotations on shot level. There is exactly one element for each
      * unique label.
      */
-    shotLabelAnnotations:
+    shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
      * Speech transcription.
      */
-    speechTranscriptions:
+    speechTranscriptions?:
         Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechTranscription[];
   }
   /**
@@ -750,12 +752,12 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the
      * end of the segment (inclusive).
      */
-    endTimeOffset: string;
+    endTimeOffset?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * start of the segment (inclusive).
      */
-    startTimeOffset: string;
+    startTimeOffset?: string;
   }
   /**
    * Word-specific information for recognized words. Word information is only
@@ -769,18 +771,18 @@ export namespace videointelligence_v1 {
      * `enable_word_time_offsets=true` and only in the top hypothesis. This is
      * an experimental feature and the accuracy of the time offset can vary.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Output only. Time offset relative to the beginning of the audio, and
      * corresponding to the start of the spoken word. This field is only set if
      * `enable_word_time_offsets=true` and only in the top hypothesis. This is
      * an experimental feature and the accuracy of the time offset can vary.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Output only. The word corresponding to this set of information.
      */
-    word: string;
+    word?: string;
   }
   /**
    * Video annotation progress. Included in the `metadata` field of the
@@ -791,7 +793,7 @@ export namespace videointelligence_v1 {
     /**
      * Progress metadata for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationProgress:
+    annotationProgress?:
         Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress[];
   }
   /**
@@ -801,12 +803,12 @@ export namespace videointelligence_v1 {
     /**
      * Requested video annotation features.
      */
-    features: string[];
+    features?: string[];
     /**
      * The video data bytes. If unset, the input video(s) should be specified
      * via `input_uri`. If set, `input_uri` should be unset.
      */
-    inputContent: string;
+    inputContent?: string;
     /**
      * Input video location. Currently, only [Google Cloud
      * Storage](https://cloud.google.com/storage/) URIs are supported, which
@@ -819,14 +821,14 @@ export namespace videointelligence_v1 {
      * embedded in the request as `input_content`. If set, `input_content`
      * should be unset.
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Optional cloud region where annotation should take place. Supported cloud
      * regions: `us-east1`, `us-west1`, `europe-west1`, `asia-east1`. If no
      * region is specified, a region will be determined based on video file
      * location.
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Optional location where the output (in JSON format) should be stored.
      * Currently, only [Google Cloud Storage](https://cloud.google.com/storage/)
@@ -835,11 +837,11 @@ export namespace videointelligence_v1 {
      * google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request
      * URIs](/storage/docs/reference-uris).
      */
-    outputUri: string;
+    outputUri?: string;
     /**
      * Additional video context and/or feature-specific parameters.
      */
-    videoContext: Schema$GoogleCloudVideointelligenceV1_VideoContext;
+    videoContext?: Schema$GoogleCloudVideointelligenceV1_VideoContext;
   }
   /**
    * Video annotation response. Included in the `response` field of the
@@ -850,7 +852,7 @@ export namespace videointelligence_v1 {
     /**
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      */
-    annotationResults:
+    annotationResults?:
         Schema$GoogleCloudVideointelligenceV1_VideoAnnotationResults[];
   }
   /**
@@ -860,16 +862,16 @@ export namespace videointelligence_v1 {
     /**
      * Textual description, e.g. `Fixed-gear bicycle`.
      */
-    description: string;
+    description?: string;
     /**
      * Opaque entity ID. Some IDs may be available in [Google Knowledge Graph
      * Search API](https://developers.google.com/knowledge-graph/).
      */
-    entityId: string;
+    entityId?: string;
     /**
      * Language code for `description` in BCP-47 format.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * Explicit content annotation (based on per-frame visual signals only). If no
@@ -880,7 +882,7 @@ export namespace videointelligence_v1 {
     /**
      * All video frames where explicit content was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1_ExplicitContentFrame[];
   }
   /**
    * Config for EXPLICIT_CONTENT_DETECTION.
@@ -891,7 +893,7 @@ export namespace videointelligence_v1 {
      * &quot;builtin/stable&quot; (the default if unset) and
      * &quot;builtin/latest&quot;.
      */
-    model: string;
+    model?: string;
   }
   /**
    * Video frame level annotation results for explicit content.
@@ -900,12 +902,12 @@ export namespace videointelligence_v1 {
     /**
      * Likelihood of the pornography content..
      */
-    pornographyLikelihood: string;
+    pornographyLikelihood?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Label annotation.
@@ -916,19 +918,19 @@ export namespace videointelligence_v1 {
      * `Terrier` the category is likely `dog`. And in some cases there might be
      * more than one categories e.g. `Terrier` could also be a `pet`.
      */
-    categoryEntities: Schema$GoogleCloudVideointelligenceV1_Entity[];
+    categoryEntities?: Schema$GoogleCloudVideointelligenceV1_Entity[];
     /**
      * Detected entity.
      */
-    entity: Schema$GoogleCloudVideointelligenceV1_Entity;
+    entity?: Schema$GoogleCloudVideointelligenceV1_Entity;
     /**
      * All video frames where a label was detected.
      */
-    frames: Schema$GoogleCloudVideointelligenceV1_LabelFrame[];
+    frames?: Schema$GoogleCloudVideointelligenceV1_LabelFrame[];
     /**
      * All video segments where a label was detected.
      */
-    segments: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
+    segments?: Schema$GoogleCloudVideointelligenceV1_LabelSegment[];
   }
   /**
    * Config for LABEL_DETECTION.
@@ -939,19 +941,19 @@ export namespace videointelligence_v1 {
      * video-level labels or segment-level labels. If unspecified, defaults to
      * `SHOT_MODE`.
      */
-    labelDetectionMode: string;
+    labelDetectionMode?: string;
     /**
      * Model to use for label detection. Supported values:
      * &quot;builtin/stable&quot; (the default if unset) and
      * &quot;builtin/latest&quot;.
      */
-    model: string;
+    model?: string;
     /**
      * Whether the video has been shot from a stationary (i.e. non-moving)
      * camera. When set to true, might improve detection accuracy for moving
      * objects. Should be used with `SHOT_AND_FRAME_MODE` enabled.
      */
-    stationaryCamera: boolean;
+    stationaryCamera?: boolean;
   }
   /**
    * Video frame level annotation results for label detection.
@@ -960,12 +962,12 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * video frame for this location.
      */
-    timeOffset: string;
+    timeOffset?: string;
   }
   /**
    * Video segment level annotation results for label detection.
@@ -974,11 +976,11 @@ export namespace videointelligence_v1 {
     /**
      * Confidence that the label is accurate. Range: [0, 1].
      */
-    confidence: number;
+    confidence?: number;
     /**
      * Video segment where a label was detected.
      */
-    segment: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
+    segment?: Schema$GoogleCloudVideointelligenceV1_VideoSegment;
   }
   /**
    * Config for SHOT_CHANGE_DETECTION.
@@ -989,7 +991,7 @@ export namespace videointelligence_v1 {
      * &quot;builtin/stable&quot; (the default if unset) and
      * &quot;builtin/latest&quot;.
      */
-    model: string;
+    model?: string;
   }
   /**
    * Annotation progress for a single video.
@@ -999,20 +1001,20 @@ export namespace videointelligence_v1 {
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Approximate percentage processed thus far. Guaranteed to be 100 when
      * fully processed.
      */
-    progressPercent: number;
+    progressPercent?: number;
     /**
      * Time when the request was received.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Time of the most recent update.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Annotation results for a single video.
@@ -1022,38 +1024,38 @@ export namespace videointelligence_v1 {
      * If set, indicates an error. Note that for a single `AnnotateVideoRequest`
      * some videos may succeed and some may fail.
      */
-    error: Schema$GoogleRpc_Status;
+    error?: Schema$GoogleRpc_Status;
     /**
      * Explicit content annotation.
      */
-    explicitAnnotation:
+    explicitAnnotation?:
         Schema$GoogleCloudVideointelligenceV1_ExplicitContentAnnotation;
     /**
      * Label annotations on frame level. There is exactly one element for each
      * unique label.
      */
-    frameLabelAnnotations:
+    frameLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
      * Video file location in [Google Cloud
      * Storage](https://cloud.google.com/storage/).
      */
-    inputUri: string;
+    inputUri?: string;
     /**
      * Label annotations on video level or user specified segment level. There
      * is exactly one element for each unique label.
      */
-    segmentLabelAnnotations:
+    segmentLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
      * Shot annotations. Each shot is represented as a video segment.
      */
-    shotAnnotations: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+    shotAnnotations?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
     /**
      * Label annotations on shot level. There is exactly one element for each
      * unique label.
      */
-    shotLabelAnnotations:
+    shotLabelAnnotations?:
         Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
   }
   /**
@@ -1063,23 +1065,23 @@ export namespace videointelligence_v1 {
     /**
      * Config for EXPLICIT_CONTENT_DETECTION.
      */
-    explicitContentDetectionConfig:
+    explicitContentDetectionConfig?:
         Schema$GoogleCloudVideointelligenceV1_ExplicitContentDetectionConfig;
     /**
      * Config for LABEL_DETECTION.
      */
-    labelDetectionConfig:
+    labelDetectionConfig?:
         Schema$GoogleCloudVideointelligenceV1_LabelDetectionConfig;
     /**
      * Video segments to annotate. The segments may overlap and are not required
      * to be contiguous or span the whole video. If unspecified, each video is
      * treated as a single segment.
      */
-    segments: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
+    segments?: Schema$GoogleCloudVideointelligenceV1_VideoSegment[];
     /**
      * Config for SHOT_CHANGE_DETECTION.
      */
-    shotChangeDetectionConfig:
+    shotChangeDetectionConfig?:
         Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig;
   }
   /**
@@ -1090,12 +1092,12 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the
      * end of the segment (inclusive).
      */
-    endTimeOffset: string;
+    endTimeOffset?: string;
     /**
      * Time-offset, relative to the beginning of the video, corresponding to the
      * start of the segment (inclusive).
      */
-    startTimeOffset: string;
+    startTimeOffset?: string;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1108,11 +1110,11 @@ export namespace videointelligence_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$GoogleLongrunning_Operation[];
+    operations?: Schema$GoogleLongrunning_Operation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1124,24 +1126,24 @@ export namespace videointelligence_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$GoogleRpc_Status;
+    error?: Schema$GoogleRpc_Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -1151,7 +1153,7 @@ export namespace videointelligence_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -1201,19 +1203,20 @@ export namespace videointelligence_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
+
 
   export class Resource$Operations {
     root: Videointelligence;
@@ -1248,28 +1251,39 @@ export namespace videointelligence_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
+    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
         AxiosPromise<Schema$GoogleProtobuf_Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$Cancel,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+        callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Operations$Cancel|
+        BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
         void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://videointelligence.googleapis.com/';
       const parameters = {
@@ -1308,28 +1322,39 @@ export namespace videointelligence_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(params?: Params$Resource$Operations$Delete, options?: MethodOptions):
         AxiosPromise<Schema$GoogleProtobuf_Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$Delete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
-        callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+        callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$Delete,
+        callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobuf_Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Operations$Delete|
+        BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleProtobuf_Empty>,
         callback?: BodyResponseCallback<Schema$GoogleProtobuf_Empty>):
         void|AxiosPromise<Schema$GoogleProtobuf_Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://videointelligence.googleapis.com/';
       const parameters = {
@@ -1367,27 +1392,38 @@ export namespace videointelligence_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions):
+    get(params?: Params$Resource$Operations$Get, options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning_Operation>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
         void;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        void;
+    get(callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://videointelligence.googleapis.com/';
       const parameters = {
@@ -1435,30 +1471,42 @@ export namespace videointelligence_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$GoogleLongrunning_ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<
+            Schema$GoogleLongrunning_ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$GoogleLongrunning_ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
         callback?: BodyResponseCallback<
             Schema$GoogleLongrunning_ListOperationsResponse>):
         void|AxiosPromise<Schema$GoogleLongrunning_ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://videointelligence.googleapis.com/';
       const parameters = {
@@ -1482,6 +1530,68 @@ export namespace videointelligence_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleLongrunning_CancelOperationRequest;
+  }
+  export interface Params$Resource$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name: string;
+  }
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Videos {
     root: Videointelligence;
@@ -1510,29 +1620,42 @@ export namespace videointelligence_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    annotate(params?: any, options?: MethodOptions):
+    annotate(params?: Params$Resource$Videos$Annotate, options?: MethodOptions):
         AxiosPromise<Schema$GoogleLongrunning_Operation>;
     annotate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Videos$Annotate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
-        callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
         void;
     annotate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Videos$Annotate,
+        callback: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        void;
+    annotate(callback:
+                 BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
+        void;
+    annotate(
+        paramsOrCallback?: Params$Resource$Videos$Annotate|
+        BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleLongrunning_Operation>,
         callback?: BodyResponseCallback<Schema$GoogleLongrunning_Operation>):
         void|AxiosPromise<Schema$GoogleLongrunning_Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Videos$Annotate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Videos$Annotate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://videointelligence.googleapis.com/';
       const parameters = {
@@ -1555,5 +1678,17 @@ export namespace videointelligence_v1 {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Videos$Annotate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GoogleCloudVideointelligenceV1_AnnotateVideoRequest;
   }
 }

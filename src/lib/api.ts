@@ -21,9 +21,10 @@ import {GoogleApis} from '..';
 import {Endpoint} from './endpoint';
 import {SchemaParameters} from './schema';
 
-export interface APIRequestParams {
+// tslint:disable-next-line no-any
+export interface APIRequestParams<T = any> {
   options: AxiosRequestConfig;
-  params: APIRequestMethodParams;
+  params: T;
   requiredParams: string[];
   pathParams: string[];
   context: APIRequestContext;
@@ -82,18 +83,6 @@ export interface ServiceOptions extends GlobalOptions { version?: string; }
 
 export type BodyResponseCallback<T> =
     (err: Error|null, res?: AxiosResponse<T>|null) => void;
-
-export interface APIRequestMethodParams {
-  // tslint:disable-next-line: no-any
-  [index: string]: any;
-  url?: string;
-  media?: {body?: string|stream.Readable; mimeType?: string;};
-  resource?: {mimeType?: string;};
-  key?: string;
-  uploadType?: string;
-  auth?: OAuth2Client|string;
-  headers?: OutgoingHttpHeaders;
-}
 
 // tslint:disable-next-line: no-any
 export type APIEndpoint = Readonly<Endpoint&any>;

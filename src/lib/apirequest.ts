@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import {AxiosPromise} from 'axios';
-import {DefaultTransporter} from 'google-auth-library';
+import {DefaultTransporter, OAuth2Client} from 'google-auth-library';
 import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import * as qs from 'qs';
 import * as stream from 'stream';
@@ -231,7 +231,7 @@ async function createAPIRequestAsync<T>(parameters: APIRequestParams) {
   // now void.  This may be a source of confusion for users upgrading from
   // version 24.0 -> 25.0 or up.
   if (authClient && typeof authClient === 'object') {
-    return authClient.request<T>(mergedOptions);
+    return (authClient as OAuth2Client).request<T>(mergedOptions);
   } else {
     return (new DefaultTransporter()).request<T>(mergedOptions);
   }

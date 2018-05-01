@@ -123,7 +123,8 @@ describe('Clients', () => {
     // Override the default datasetId param for this particular API call
     createNock('myParam=456');
     const res = await datastore.projects.lookup(
-        {projectId: 'test-project-id', myParam: '456'});
+        // tslint:disable-next-line no-any
+        {projectId: 'test-project-id', myParam: '456'} as any);
     // If the default param handling is broken, query might be undefined, thus
     // concealing the assertion message with some generic "cannot call .indexOf
     // of undefined"
