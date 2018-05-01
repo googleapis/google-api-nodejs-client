@@ -780,9 +780,9 @@ export namespace videointelligence_v1beta2 {
      * in terms of accuracy, with the top (first) alternative being the most
      * probable, as ranked by the recognizer.
      */
-    alternatives?:
-        Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative
-            [];
+    // clang-format off
+    alternatives?: Schema$GoogleCloudVideointelligenceV1p1beta1_SpeechRecognitionAlternative[];
+    // clang-format on
   }
   /**
    * Annotation progress for a single video.
