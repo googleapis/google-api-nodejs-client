@@ -109,13 +109,12 @@ export class Generator {
   }
 
   private cleanPropertyName(prop: string) {
-    const match = prop.match(/@|\-|\./g);
+    const match = prop.match(/[-@.]/g);
     return match ? `'${prop}'` : prop;
   }
 
   private hasResourceParam(method: SchemaMethod) {
-    return method.parameters &&
-        Object.keys(method.parameters).indexOf('resource') > -1;
+    return method.parameters && method.parameters['resource'];
   }
 
   private options: GeneratorOptions;
