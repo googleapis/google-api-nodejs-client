@@ -4793,7 +4793,7 @@ export namespace sheets_v4 {
     /**
      * The spreadsheet to apply the updates to.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -4828,7 +4828,7 @@ export namespace sheets_v4 {
     /**
      * The spreadsheet to request.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
   }
   export interface Params$Resource$Spreadsheets$Getbydatafilter {
     /**
@@ -4839,7 +4839,7 @@ export namespace sheets_v4 {
     /**
      * The spreadsheet to request.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -5121,11 +5121,11 @@ export namespace sheets_v4 {
     /**
      * The ID of the developer metadata to retrieve.
      */
-    metadataId: number;
+    metadataId?: number;
     /**
      * The ID of the spreadsheet to retrieve metadata from.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
   }
   export interface Params$Resource$Spreadsheets$Developermetadata$Search {
     /**
@@ -5136,7 +5136,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to retrieve metadata from.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -5296,11 +5296,11 @@ export namespace sheets_v4 {
     /**
      * The ID of the sheet to copy.
      */
-    sheetId: number;
+    sheetId?: number;
     /**
      * The ID of the spreadsheet containing the sheet to copy.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6741,7 +6741,7 @@ export namespace sheets_v4 {
      * The A1 notation of a range to search for a logical table of data. Values
      * will be appended after the last row of the table.
      */
-    range: string;
+    range?: string;
     /**
      * Determines how dates, times, and durations in the response should be
      * rendered. This is ignored if response_value_render_option is
@@ -6757,7 +6757,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * How the input data should be interpreted.
      */
@@ -6776,7 +6776,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6791,7 +6791,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6824,7 +6824,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to retrieve data from.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * How values should be represented in the output. The default render option
      * is ValueRenderOption.FORMATTED_VALUE.
@@ -6840,7 +6840,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to retrieve data from.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6855,7 +6855,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6870,7 +6870,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6885,11 +6885,11 @@ export namespace sheets_v4 {
     /**
      * The A1 notation of the values to clear.
      */
-    range: string;
+    range?: string;
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * Request body metadata
      */
@@ -6918,11 +6918,11 @@ export namespace sheets_v4 {
     /**
      * The A1 notation of the values to retrieve.
      */
-    range: string;
+    range?: string;
     /**
      * The ID of the spreadsheet to retrieve data from.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * How values should be represented in the output. The default render option
      * is ValueRenderOption.FORMATTED_VALUE.
@@ -6946,7 +6946,7 @@ export namespace sheets_v4 {
     /**
      * The A1 notation of the values to update.
      */
-    range: string;
+    range?: string;
     /**
      * Determines how dates, times, and durations in the response should be
      * rendered. This is ignored if response_value_render_option is
@@ -6962,7 +6962,7 @@ export namespace sheets_v4 {
     /**
      * The ID of the spreadsheet to update.
      */
-    spreadsheetId: string;
+    spreadsheetId?: string;
     /**
      * How the input data should be interpreted.
      */

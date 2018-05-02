@@ -722,7 +722,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
   }
   export interface Params$Resource$Customers$Insert {
     /**
@@ -756,7 +756,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Request body metadata
      */
@@ -774,7 +774,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Request body metadata
      */
@@ -1770,7 +1770,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1778,7 +1778,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
   }
   export interface Params$Resource$Subscriptions$Changeplan {
     /**
@@ -1792,7 +1792,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1800,7 +1800,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * Request body metadata
      */
@@ -1818,7 +1818,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1826,7 +1826,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * Request body metadata
      */
@@ -1844,7 +1844,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1852,7 +1852,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * Request body metadata
      */
@@ -1870,12 +1870,12 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * The deletionType query string enables the cancellation, downgrade, or
      * suspension of a subscription.
      */
-    deletionType: string;
+    deletionType?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1883,7 +1883,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
   }
   export interface Params$Resource$Subscriptions$Get {
     /**
@@ -1897,7 +1897,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1905,7 +1905,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
   }
   export interface Params$Resource$Subscriptions$Insert {
     /**
@@ -1928,7 +1928,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Request body metadata
      */
@@ -1989,7 +1989,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -1997,7 +1997,7 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
   }
   export interface Params$Resource$Subscriptions$Suspend {
     /**
@@ -2011,7 +2011,7 @@ export namespace reseller_v1 {
      * customerId as a key for persistent data. If the domain name for a
      * customerId is changed, the Google system automatically updates.
      */
-    customerId: string;
+    customerId?: string;
     /**
      * This is a required property. The subscriptionId is the subscription
      * identifier and is unique for each customer. Since a subscriptionId
@@ -2019,6 +2019,6 @@ export namespace reseller_v1 {
      * as a key for persistent data. And the subscriptionId can be found using
      * the retrieve all reseller subscriptions method.
      */
-    subscriptionId: string;
+    subscriptionId?: string;
   }
 }

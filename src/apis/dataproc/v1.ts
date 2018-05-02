@@ -513,9 +513,8 @@ export namespace dataproc_v1 {
      */
     imageUri?: string;
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names
-     * from cluster_name, num_instances, and the instance group if not set by
-     * user (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from cluster_name, num_instances, and the instance group.
      */
     instanceNames?: string[];
     /**
@@ -1983,11 +1982,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two CreateClusterRequest requests with the same id, then the
@@ -2013,7 +2012,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Optional. Specifying the cluster_uuid means the RPC should fail (with
      * error NOT_FOUND) if cluster with specified UUID does not exist.
@@ -2023,11 +2022,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two DeleteClusterRequest requests with the same id, then the
@@ -2049,16 +2048,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -2073,16 +2072,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$List {
     /**
@@ -2117,11 +2116,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Patch {
     /**
@@ -2132,7 +2131,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Optional. Timeout for graceful YARN decomissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
@@ -2147,11 +2146,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project the cluster belongs
      * to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two UpdateClusterRequest requests with the same id, then the
@@ -3007,16 +3006,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -3031,16 +3030,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Get {
     /**
@@ -3051,16 +3050,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$List {
     /**
@@ -3102,11 +3101,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Patch {
     /**
@@ -3117,16 +3116,16 @@ export namespace dataproc_v1 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Required. Specifies the path, relative to <code>Job</code>, of the field
      * to update. For example, to update the labels of a Job the
@@ -3151,11 +3150,11 @@ export namespace dataproc_v1 {
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -3693,7 +3692,7 @@ export namespace dataproc_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Delete {
     /**
@@ -3704,7 +3703,7 @@ export namespace dataproc_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Get {
     /**
@@ -3715,7 +3714,7 @@ export namespace dataproc_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$List {
     /**
@@ -3730,7 +3729,7 @@ export namespace dataproc_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */

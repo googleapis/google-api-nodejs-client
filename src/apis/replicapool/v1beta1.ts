@@ -1013,15 +1013,15 @@ export namespace replicapool_v1beta1 {
     /**
      * The name of the replica pool for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this replica pool.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1036,15 +1036,15 @@ export namespace replicapool_v1beta1 {
     /**
      * The name of the replica pool for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this replica pool.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Pools$Insert {
     /**
@@ -1055,11 +1055,11 @@ export namespace replicapool_v1beta1 {
     /**
      * The project ID for this replica pool.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1084,11 +1084,11 @@ export namespace replicapool_v1beta1 {
     /**
      * The project ID for this request.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Pools$Resize {
     /**
@@ -1105,15 +1105,15 @@ export namespace replicapool_v1beta1 {
     /**
      * The name of the replica pool for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this replica pool.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Pools$Updatetemplate {
     /**
@@ -1124,15 +1124,15 @@ export namespace replicapool_v1beta1 {
     /**
      * The name of the replica pool for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this replica pool.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone for this replica pool.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1438,19 +1438,19 @@ export namespace replicapool_v1beta1 {
     /**
      * The replica pool name for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this request.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the replica for this request.
      */
-    replicaName: string;
+    replicaName?: string;
     /**
      * The zone where the replica lives.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1465,19 +1465,19 @@ export namespace replicapool_v1beta1 {
     /**
      * The replica pool name for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this request.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the replica for this request.
      */
-    replicaName: string;
+    replicaName?: string;
     /**
      * The zone where the replica lives.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Replicas$List {
     /**
@@ -1498,15 +1498,15 @@ export namespace replicapool_v1beta1 {
     /**
      * The replica pool name for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this request.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone where the replica pool lives.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Replicas$Restart {
     /**
@@ -1517,18 +1517,18 @@ export namespace replicapool_v1beta1 {
     /**
      * The replica pool name for this request.
      */
-    poolName: string;
+    poolName?: string;
     /**
      * The project ID for this request.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the replica for this request.
      */
-    replicaName: string;
+    replicaName?: string;
     /**
      * The zone where the replica lives.
      */
-    zone: string;
+    zone?: string;
   }
 }

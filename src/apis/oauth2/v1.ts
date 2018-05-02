@@ -575,7 +575,7 @@ export namespace oauth2_v1 {
     /**
      * The email of robot account.
      */
-    robotEmail: string;
+    robotEmail?: string;
   }
   export interface Params$$Getrobotmetadataraw {
     /**
@@ -586,7 +586,7 @@ export namespace oauth2_v1 {
     /**
      * The email of robot account.
      */
-    robotEmail: string;
+    robotEmail?: string;
   }
   export interface Params$$Getrobotmetadatax509 {
     /**
@@ -597,7 +597,7 @@ export namespace oauth2_v1 {
     /**
      * The email of robot account.
      */
-    robotEmail: string;
+    robotEmail?: string;
   }
   export interface Params$$Tokeninfo {
     /**

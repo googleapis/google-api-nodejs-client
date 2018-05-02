@@ -367,7 +367,7 @@ export namespace admin_datatransfer_v1 {
     /**
      * ID of the application resource to be retrieved.
      */
-    applicationId: string;
+    applicationId?: string;
   }
   export interface Params$Resource$Applications$List {
     /**
@@ -614,7 +614,7 @@ export namespace admin_datatransfer_v1 {
      * ID of the resource to be retrieved. This is returned in the response from
      * the insert method.
      */
-    dataTransferId: string;
+    dataTransferId?: string;
   }
   export interface Params$Resource$Transfers$Insert {
     /**

@@ -2709,7 +2709,7 @@ export namespace analytics_v3 {
      * date formatted as YYYY-MM-DD, or as a relative date (e.g., today,
      * yesterday, or 7daysAgo). The default value is yesterday.
      */
-    'end-date': string;
+    'end-date'?: string;
     /**
      * A comma-separated list of dimension or metric filters to be applied to
      * Analytics data.
@@ -2719,7 +2719,7 @@ export namespace analytics_v3 {
      * Unique table ID for retrieving Analytics data. Table ID is of the form
      * ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
-    ids: string;
+    ids?: string;
     /**
      * The response will include empty rows if this parameter is set to true,
      * the default is true
@@ -2733,7 +2733,7 @@ export namespace analytics_v3 {
      * A comma-separated list of Analytics metrics. E.g.,
      * 'ga:sessions,ga:pageviews'. At least one metric must be specified.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * The selected format for the response. Default format is JSON.
      */
@@ -2756,7 +2756,7 @@ export namespace analytics_v3 {
      * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
      * or 7daysAgo). The default value is 7daysAgo.
      */
-    'start-date': string;
+    'start-date'?: string;
     /**
      * An index of the first entity to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -2863,7 +2863,7 @@ export namespace analytics_v3 {
      * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
      * or 7daysAgo). The default value is 7daysAgo.
      */
-    'end-date': string;
+    'end-date'?: string;
     /**
      * A comma-separated list of dimension or metric filters to be applied to
      * the Analytics data.
@@ -2873,7 +2873,7 @@ export namespace analytics_v3 {
      * Unique table ID for retrieving Analytics data. Table ID is of the form
      * ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
-    ids: string;
+    ids?: string;
     /**
      * The maximum number of entries to include in this feed.
      */
@@ -2883,7 +2883,7 @@ export namespace analytics_v3 {
      * 'mcf:totalConversions,mcf:totalConversionValue'. At least one metric must
      * be specified.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * The desired sampling level.
      */
@@ -2898,7 +2898,7 @@ export namespace analytics_v3 {
      * formatted as YYYY-MM-DD, or as a relative date (e.g., today, yesterday,
      * or 7daysAgo). The default value is 7daysAgo.
      */
-    'start-date': string;
+    'start-date'?: string;
     /**
      * An index of the first entity to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -3007,7 +3007,7 @@ export namespace analytics_v3 {
      * Unique table ID for retrieving real time data. Table ID is of the form
      * ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
-    ids: string;
+    ids?: string;
     /**
      * The maximum number of entries to include in this feed.
      */
@@ -3016,7 +3016,7 @@ export namespace analytics_v3 {
      * A comma-separated list of real time metrics. E.g., 'rt:activeUsers'. At
      * least one metric must be specified.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * A comma-separated list of dimensions or metrics that determine the sort
      * order for real time data.
@@ -3579,11 +3579,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to delete the user link for.
      */
-    linkId: string;
+    linkId?: string;
   }
   export interface Params$Resource$Management$Accountuserlinks$Insert {
     /**
@@ -3594,7 +3594,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -3609,7 +3609,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve the user links for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of account-user links to include in this response.
      */
@@ -3629,11 +3629,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to update the account-user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to update the account-user link for.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Request body metadata
      */
@@ -3734,7 +3734,7 @@ export namespace analytics_v3 {
     /**
      * Account Id for the custom data sources to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of custom data sources to include in this response.
      */
@@ -3747,7 +3747,7 @@ export namespace analytics_v3 {
     /**
      * Web property Id for the custom data sources to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
 
 
@@ -4129,15 +4129,15 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom dimension to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the custom dimension to retrieve.
      */
-    customDimensionId: string;
+    customDimensionId?: string;
     /**
      * Web property ID for the custom dimension to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Customdimensions$Insert {
     /**
@@ -4148,11 +4148,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom dimension to create.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID for the custom dimension to create.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -4167,7 +4167,7 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom dimensions to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of custom dimensions to include in this response.
      */
@@ -4180,7 +4180,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom dimensions to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Customdimensions$Patch {
     /**
@@ -4191,11 +4191,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom dimension to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom dimension ID for the custom dimension to update.
      */
-    customDimensionId: string;
+    customDimensionId?: string;
     /**
      * Force the update and ignore any warnings related to the custom dimension
      * being linked to a custom data source / data set.
@@ -4204,7 +4204,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom dimension to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -4219,11 +4219,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom dimension to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom dimension ID for the custom dimension to update.
      */
-    customDimensionId: string;
+    customDimensionId?: string;
     /**
      * Force the update and ignore any warnings related to the custom dimension
      * being linked to a custom data source / data set.
@@ -4232,7 +4232,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom dimension to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -4618,15 +4618,15 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom metric to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the custom metric to retrieve.
      */
-    customMetricId: string;
+    customMetricId?: string;
     /**
      * Web property ID for the custom metric to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Custommetrics$Insert {
     /**
@@ -4637,11 +4637,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom metric to create.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID for the custom dimension to create.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -4656,7 +4656,7 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom metrics to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of custom metrics to include in this response.
      */
@@ -4669,7 +4669,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom metrics to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Custommetrics$Patch {
     /**
@@ -4680,11 +4680,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom metric to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom metric ID for the custom metric to update.
      */
-    customMetricId: string;
+    customMetricId?: string;
     /**
      * Force the update and ignore any warnings related to the custom metric
      * being linked to a custom data source / data set.
@@ -4693,7 +4693,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom metric to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -4708,11 +4708,11 @@ export namespace analytics_v3 {
     /**
      * Account ID for the custom metric to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom metric ID for the custom metric to update.
      */
-    customMetricId: string;
+    customMetricId?: string;
     /**
      * Force the update and ignore any warnings related to the custom metric
      * being linked to a custom data source / data set.
@@ -4721,7 +4721,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID for the custom metric to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -5184,19 +5184,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the experiment belongs
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the experiment to delete
      */
-    experimentId: string;
+    experimentId?: string;
     /**
      * View (Profile) ID to which the experiment belongs
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to which the experiment belongs
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Experiments$Get {
     /**
@@ -5207,19 +5207,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve the experiment for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Experiment ID to retrieve the experiment for.
      */
-    experimentId: string;
+    experimentId?: string;
     /**
      * View (Profile) ID to retrieve the experiment for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to retrieve the experiment for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Experiments$Insert {
     /**
@@ -5230,15 +5230,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the experiment for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to create the experiment for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to create the experiment for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -5253,7 +5253,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve experiments for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of experiments to include in this response.
      */
@@ -5261,7 +5261,7 @@ export namespace analytics_v3 {
     /**
      * View (Profile) ID to retrieve experiments for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first experiment to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -5270,7 +5270,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID to retrieve experiments for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Experiments$Patch {
     /**
@@ -5281,19 +5281,19 @@ export namespace analytics_v3 {
     /**
      * Account ID of the experiment to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Experiment ID of the experiment to update.
      */
-    experimentId: string;
+    experimentId?: string;
     /**
      * View (Profile) ID of the experiment to update.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID of the experiment to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -5308,19 +5308,19 @@ export namespace analytics_v3 {
     /**
      * Account ID of the experiment to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Experiment ID of the experiment to update.
      */
-    experimentId: string;
+    experimentId?: string;
     /**
      * View (Profile) ID of the experiment to update.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID of the experiment to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -5760,11 +5760,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the filter for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the filter to be deleted.
      */
-    filterId: string;
+    filterId?: string;
   }
   export interface Params$Resource$Management$Filters$Get {
     /**
@@ -5775,11 +5775,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve filters for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Filter ID to retrieve filters for.
      */
-    filterId: string;
+    filterId?: string;
   }
   export interface Params$Resource$Management$Filters$Insert {
     /**
@@ -5790,7 +5790,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to create filter for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -5805,7 +5805,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve filters for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of filters to include in this response.
      */
@@ -5825,11 +5825,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the filter belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the filter to be updated.
      */
-    filterId: string;
+    filterId?: string;
     /**
      * Request body metadata
      */
@@ -5844,11 +5844,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the filter belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the filter to be updated.
      */
-    filterId: string;
+    filterId?: string;
     /**
      * Request body metadata
      */
@@ -6231,19 +6231,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve the goal for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Goal ID to retrieve the goal for.
      */
-    goalId: string;
+    goalId?: string;
     /**
      * View (Profile) ID to retrieve the goal for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to retrieve the goal for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Goals$Insert {
     /**
@@ -6254,15 +6254,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the goal for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to create the goal for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to create the goal for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -6278,7 +6278,7 @@ export namespace analytics_v3 {
      * Account ID to retrieve goals for. Can either be a specific account ID or
      * '~all', which refers to all the accounts that user has access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of goals to include in this response.
      */
@@ -6288,7 +6288,7 @@ export namespace analytics_v3 {
      * (profile) ID or '~all', which refers to all the views (profiles) that
      * user has access to.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first goal to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -6299,7 +6299,7 @@ export namespace analytics_v3 {
      * property ID or '~all', which refers to all the web properties that user
      * has access to.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Goals$Patch {
     /**
@@ -6310,19 +6310,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to update the goal.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Index of the goal to be updated.
      */
-    goalId: string;
+    goalId?: string;
     /**
      * View (Profile) ID to update the goal.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to update the goal.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -6337,19 +6337,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to update the goal.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Index of the goal to be updated.
      */
-    goalId: string;
+    goalId?: string;
     /**
      * View (Profile) ID to update the goal.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to update the goal.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -6808,19 +6808,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the profile filter link belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the profile filter link to delete.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Profile ID to which the filter link belongs.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property Id to which the profile filter link belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profilefilterlinks$Get {
     /**
@@ -6831,19 +6831,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve profile filter link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the profile filter link.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Profile ID to retrieve filter link for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property Id to retrieve profile filter link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profilefilterlinks$Insert {
     /**
@@ -6854,15 +6854,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to create profile filter link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Profile ID to create filter link for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property Id to create profile filter link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -6877,7 +6877,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve profile filter links for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of profile filter links to include in this response.
      */
@@ -6886,7 +6886,7 @@ export namespace analytics_v3 {
      * Profile ID to retrieve filter links for. Can either be a specific profile
      * ID or '~all', which refers to all the profiles that user has access to.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first entity to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -6897,7 +6897,7 @@ export namespace analytics_v3 {
      * web property ID or '~all', which refers to all the web properties that
      * user has access to.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profilefilterlinks$Patch {
     /**
@@ -6908,19 +6908,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to which profile filter link belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the profile filter link to be updated.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Profile ID to which filter link belongs
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property Id to which profile filter link belongs
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -6935,19 +6935,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to which profile filter link belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the profile filter link to be updated.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Profile ID to which filter link belongs
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property Id to which profile filter link belongs
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -7395,15 +7395,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the view (profile) for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the view (profile) to be deleted.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to delete the view (profile) for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profiles$Get {
     /**
@@ -7414,15 +7414,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve the view (profile) for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to retrieve the view (profile) for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to retrieve the view (profile) for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profiles$Insert {
     /**
@@ -7433,11 +7433,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the view (profile) for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID to create the view (profile) for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -7454,7 +7454,7 @@ export namespace analytics_v3 {
      * account ID or '~all', which refers to all the accounts to which the user
      * has access.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of views (profiles) to include in this response.
      */
@@ -7469,7 +7469,7 @@ export namespace analytics_v3 {
      * specific web property ID or '~all', which refers to all the web
      * properties to which the user has access.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profiles$Patch {
     /**
@@ -7480,15 +7480,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the view (profile) belongs
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the view (profile) to be updated.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to which the view (profile) belongs
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -7503,15 +7503,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the view (profile) belongs
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID of the view (profile) to be updated.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to which the view (profile) belongs
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -7829,19 +7829,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to delete the user link for.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * View (Profile) ID to delete the user link for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web Property ID to delete the user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profileuserlinks$Insert {
     /**
@@ -7852,15 +7852,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to create the user link for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web Property ID to create the user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -7875,7 +7875,7 @@ export namespace analytics_v3 {
     /**
      * Account ID which the given view (profile) belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of profile-user links to include in this response.
      */
@@ -7885,7 +7885,7 @@ export namespace analytics_v3 {
      * specific profile ID or '~all', which refers to all the profiles that user
      * has access to.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first profile-user link to retrieve. Use this parameter
      * as a pagination mechanism along with the max-results parameter.
@@ -7896,7 +7896,7 @@ export namespace analytics_v3 {
      * a specific web property ID or '~all', which refers to all the web
      * properties that user has access to.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Profileuserlinks$Update {
     /**
@@ -7907,19 +7907,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to update the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to update the user link for.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * View (Profile ID) to update the user link for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web Property ID to update the user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -8377,15 +8377,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the remarketing audience belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the remarketing audience to delete.
      */
-    remarketingAudienceId: string;
+    remarketingAudienceId?: string;
     /**
      * Web property ID to which the remarketing audience belongs.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Remarketingaudience$Get {
     /**
@@ -8396,15 +8396,15 @@ export namespace analytics_v3 {
     /**
      * The account ID of the remarketing audience to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the remarketing audience to retrieve.
      */
-    remarketingAudienceId: string;
+    remarketingAudienceId?: string;
     /**
      * The web property ID of the remarketing audience to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Remarketingaudience$Insert {
     /**
@@ -8415,11 +8415,11 @@ export namespace analytics_v3 {
     /**
      * The account ID for which to create the remarketing audience.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID for which to create the remarketing audience.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -8434,7 +8434,7 @@ export namespace analytics_v3 {
     /**
      * The account ID of the remarketing audiences to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of remarketing audiences to include in this response.
      */
@@ -8451,7 +8451,7 @@ export namespace analytics_v3 {
     /**
      * The web property ID of the remarketing audiences to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Remarketingaudience$Patch {
     /**
@@ -8462,15 +8462,15 @@ export namespace analytics_v3 {
     /**
      * The account ID of the remarketing audience to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the remarketing audience to update.
      */
-    remarketingAudienceId: string;
+    remarketingAudienceId?: string;
     /**
      * The web property ID of the remarketing audience to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -8485,15 +8485,15 @@ export namespace analytics_v3 {
     /**
      * The account ID of the remarketing audience to update.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the remarketing audience to update.
      */
-    remarketingAudienceId: string;
+    remarketingAudienceId?: string;
     /**
      * The web property ID of the remarketing audience to update.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -8906,19 +8906,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the unsampled report for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to delete the unsampled report for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * ID of the unsampled report to be deleted.
      */
-    unsampledReportId: string;
+    unsampledReportId?: string;
     /**
      * Web property ID to delete the unsampled reports for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Unsampledreports$Get {
     /**
@@ -8929,19 +8929,19 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve unsampled report for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to retrieve unsampled report for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * ID of the unsampled report to retrieve.
      */
-    unsampledReportId: string;
+    unsampledReportId?: string;
     /**
      * Web property ID to retrieve unsampled reports for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Unsampledreports$Insert {
     /**
@@ -8952,15 +8952,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the unsampled report for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * View (Profile) ID to create the unsampled report for.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Web property ID to create the unsampled report for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -8976,7 +8976,7 @@ export namespace analytics_v3 {
      * Account ID to retrieve unsampled reports for. Must be a specific account
      * ID, ~all is not supported.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of unsampled reports to include in this response.
      */
@@ -8985,7 +8985,7 @@ export namespace analytics_v3 {
      * View (Profile) ID to retrieve unsampled reports for. Must be a specific
      * view (profile) ID, ~all is not supported.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first unsampled report to retrieve. Use this parameter as
      * a pagination mechanism along with the max-results parameter.
@@ -8995,7 +8995,7 @@ export namespace analytics_v3 {
      * Web property ID to retrieve unsampled reports for. Must be a specific web
      * property ID, ~all is not supported.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
 
 
@@ -9308,15 +9308,15 @@ export namespace analytics_v3 {
     /**
      * Account Id for the uploads to be deleted.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom data source Id for the uploads to be deleted.
      */
-    customDataSourceId: string;
+    customDataSourceId?: string;
     /**
      * Web property Id for the uploads to be deleted.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -9331,19 +9331,19 @@ export namespace analytics_v3 {
     /**
      * Account Id for the upload to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom data source Id for upload to retrieve.
      */
-    customDataSourceId: string;
+    customDataSourceId?: string;
     /**
      * Upload Id to retrieve.
      */
-    uploadId: string;
+    uploadId?: string;
     /**
      * Web property Id for the upload to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Uploads$List {
     /**
@@ -9354,11 +9354,11 @@ export namespace analytics_v3 {
     /**
      * Account Id for the uploads to retrieve.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom data source Id for uploads to retrieve.
      */
-    customDataSourceId: string;
+    customDataSourceId?: string;
     /**
      * The maximum number of uploads to include in this response.
      */
@@ -9371,7 +9371,7 @@ export namespace analytics_v3 {
     /**
      * Web property Id for the uploads to retrieve.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Uploads$Uploaddata {
     /**
@@ -9382,15 +9382,15 @@ export namespace analytics_v3 {
     /**
      * Account Id associated with the upload.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Custom data source Id to which the data being uploaded belongs.
      */
-    customDataSourceId: string;
+    customDataSourceId?: string;
     /**
      * Web property UA-string associated with the upload.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Media metadata
      */
@@ -9781,11 +9781,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to retrieve the web property for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * ID to retrieve the web property for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webproperties$Insert {
     /**
@@ -9796,7 +9796,7 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the web property for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -9813,7 +9813,7 @@ export namespace analytics_v3 {
      * account ID or '~all', which refers to all the accounts that user has
      * access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of web properties to include in this response.
      */
@@ -9833,11 +9833,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the web property belongs
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -9852,11 +9852,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to which the web property belongs
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10322,15 +10322,15 @@ export namespace analytics_v3 {
     /**
      * ID of the account which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property AdWords link ID.
      */
-    webPropertyAdWordsLinkId: string;
+    webPropertyAdWordsLinkId?: string;
     /**
      * Web property ID to delete the AdWords link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Get {
     /**
@@ -10341,15 +10341,15 @@ export namespace analytics_v3 {
     /**
      * ID of the account which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property-AdWords link ID.
      */
-    webPropertyAdWordsLinkId: string;
+    webPropertyAdWordsLinkId?: string;
     /**
      * Web property ID to retrieve the AdWords link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Insert {
     /**
@@ -10360,11 +10360,11 @@ export namespace analytics_v3 {
     /**
      * ID of the Google Analytics account to create the link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property ID to create the link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10379,7 +10379,7 @@ export namespace analytics_v3 {
     /**
      * ID of the account which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of webProperty-AdWords links to include in this
      * response.
@@ -10393,7 +10393,7 @@ export namespace analytics_v3 {
     /**
      * Web property ID to retrieve the AdWords links for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyadwordslinks$Patch {
     /**
@@ -10404,15 +10404,15 @@ export namespace analytics_v3 {
     /**
      * ID of the account which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property-AdWords link ID.
      */
-    webPropertyAdWordsLinkId: string;
+    webPropertyAdWordsLinkId?: string;
     /**
      * Web property ID to retrieve the AdWords link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10427,15 +10427,15 @@ export namespace analytics_v3 {
     /**
      * ID of the account which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web property-AdWords link ID.
      */
-    webPropertyAdWordsLinkId: string;
+    webPropertyAdWordsLinkId?: string;
     /**
      * Web property ID to retrieve the AdWords link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10751,15 +10751,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to delete the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to delete the user link for.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Web Property ID to delete the user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Insert {
     /**
@@ -10770,11 +10770,11 @@ export namespace analytics_v3 {
     /**
      * Account ID to create the user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Web Property ID to create the user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10789,7 +10789,7 @@ export namespace analytics_v3 {
     /**
      * Account ID which the given web property belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of webProperty-user Links to include in this response.
      */
@@ -10804,7 +10804,7 @@ export namespace analytics_v3 {
      * a specific web property ID or '~all', which refers to all the web
      * properties that user has access to.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
   export interface Params$Resource$Management$Webpropertyuserlinks$Update {
     /**
@@ -10815,15 +10815,15 @@ export namespace analytics_v3 {
     /**
      * Account ID to update the account-user link for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Link ID to update the account-user link for.
      */
-    linkId: string;
+    linkId?: string;
     /**
      * Web property ID to update the account-user link for.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
     /**
      * Request body metadata
      */
@@ -10935,7 +10935,7 @@ export namespace analytics_v3 {
      * Report type. Allowed Values: 'ga'. Where 'ga' corresponds to the Core
      * Reporting API
      */
-    reportType: string;
+    reportType?: string;
   }
 
 

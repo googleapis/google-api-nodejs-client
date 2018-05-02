@@ -3072,7 +3072,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation to be deleted.
      */
-    annotationId: string;
+    annotationId?: string;
   }
   export interface Params$Resource$Annotations$Get {
     /**
@@ -3083,7 +3083,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation to be retrieved.
      */
-    annotationId: string;
+    annotationId?: string;
   }
   export interface Params$Resource$Annotations$Search {
     /**
@@ -3105,7 +3105,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation to be updated.
      */
-    annotationId: string;
+    annotationId?: string;
     /**
      * An optional mask specifying which fields to update. Mutable fields are
      * name, variant, transcript, and info. If unspecified, all mutable fields
@@ -3790,7 +3790,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation set to be deleted.
      */
-    annotationSetId: string;
+    annotationSetId?: string;
   }
   export interface Params$Resource$Annotationsets$Get {
     /**
@@ -3801,7 +3801,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation set to be retrieved.
      */
-    annotationSetId: string;
+    annotationSetId?: string;
   }
   export interface Params$Resource$Annotationsets$Search {
     /**
@@ -3823,7 +3823,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the annotation set to be updated.
      */
-    annotationSetId: string;
+    annotationSetId?: string;
     /**
      * An optional mask specifying which fields to update. Mutable fields are
      * name, source_uri, and info. If unspecified, all mutable fields will be
@@ -4473,7 +4473,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the call set to be deleted.
      */
-    callSetId: string;
+    callSetId?: string;
   }
   export interface Params$Resource$Callsets$Get {
     /**
@@ -4484,7 +4484,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the call set.
      */
-    callSetId: string;
+    callSetId?: string;
   }
   export interface Params$Resource$Callsets$Patch {
     /**
@@ -4495,7 +4495,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the call set to be updated.
      */
-    callSetId: string;
+    callSetId?: string;
     /**
      * An optional mask specifying which fields to update. At this time, the
      * only mutable field is name. The only acceptable value is "name". If
@@ -5675,7 +5675,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the dataset to be deleted.
      */
-    datasetId: string;
+    datasetId?: string;
   }
   export interface Params$Resource$Datasets$Get {
     /**
@@ -5686,7 +5686,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the dataset.
      */
-    datasetId: string;
+    datasetId?: string;
   }
   export interface Params$Resource$Datasets$Getiampolicy {
     /**
@@ -5698,7 +5698,7 @@ export namespace genomics_v1 {
      * REQUIRED: The resource for which policy is being specified. Format is
      * `datasets/<dataset ID>`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5735,7 +5735,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the dataset to be updated.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * An optional mask specifying which fields to update. At this time, the
      * only mutable field is name. The only acceptable value is "name". If
@@ -5757,7 +5757,7 @@ export namespace genomics_v1 {
      * REQUIRED: The resource for which policy is being specified. Format is
      * `datasets/<dataset ID>`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5773,7 +5773,7 @@ export namespace genomics_v1 {
      * REQUIRED: The resource for which policy is being specified. Format is
      * `datasets/<dataset ID>`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5788,7 +5788,7 @@ export namespace genomics_v1 {
     /**
      * The ID of the dataset to be undeleted.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Request body metadata
      */
@@ -6192,7 +6192,7 @@ export namespace genomics_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -6207,7 +6207,7 @@ export namespace genomics_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -6239,7 +6239,7 @@ export namespace genomics_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return. If unspecified, defaults to 256.
      * The maximum value is 2048.
@@ -7006,7 +7006,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * The ID of the read group set to be deleted. The caller must have WRITE
      * permissions to the dataset associated with this read group set.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
   }
   export interface Params$Resource$Readgroupsets$Export {
     /**
@@ -7018,7 +7018,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * Required. The ID of the read group set to export. The caller must have
      * READ access to this read group set.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
     /**
      * Request body metadata
      */
@@ -7033,7 +7033,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     /**
      * The ID of the read group set.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
   }
   export interface Params$Resource$Readgroupsets$Import {
     /**
@@ -7056,7 +7056,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
      * The ID of the read group set to be updated. The caller must have WRITE
      * permissions to the dataset associated with this read group set.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
     /**
      * An optional mask specifying which fields to update. Supported fields:  *
      * name. * referenceSetId.  Leaving `updateMask` unset is equivalent to
@@ -7273,7 +7273,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     /**
      * Required. The ID of the read group set over which coverage is requested.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
     /**
      * The name of the reference to query, within the reference set associated
      * with this query. Optional.
@@ -7743,7 +7743,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     /**
      * The ID of the reference.
      */
-    referenceId: string;
+    referenceId?: string;
   }
   export interface Params$Resource$References$Search {
     /**
@@ -7932,7 +7932,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     /**
      * The ID of the reference.
      */
-    referenceId: string;
+    referenceId?: string;
     /**
      * The start position (0-based) of this query. Defaults to 0.
      */
@@ -8222,7 +8222,7 @@ import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallb
     /**
      * The ID of the reference set.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
   }
   export interface Params$Resource$Referencesets$Search {
     /**
@@ -9085,7 +9085,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * The ID of the variant to be deleted.
      */
-    variantId: string;
+    variantId?: string;
   }
   export interface Params$Resource$Variants$Get {
     /**
@@ -9096,7 +9096,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * The ID of the variant.
      */
-    variantId: string;
+    variantId?: string;
   }
   export interface Params$Resource$Variants$Import {
     /**
@@ -9135,7 +9135,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * The ID of the variant to be updated.
      */
-    variantId: string;
+    variantId?: string;
     /**
      * Request body metadata
      */
@@ -9938,7 +9938,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * The ID of the variant set to be deleted.
      */
-    variantSetId: string;
+    variantSetId?: string;
   }
   export interface Params$Resource$Variantsets$Export {
     /**
@@ -9950,7 +9950,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
      * Required. The ID of the variant set that contains variant data which
      * should be exported. The caller must have READ access to this variant set.
      */
-    variantSetId: string;
+    variantSetId?: string;
     /**
      * Request body metadata
      */
@@ -9965,7 +9965,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * Required. The ID of the variant set.
      */
-    variantSetId: string;
+    variantSetId?: string;
   }
   export interface Params$Resource$Variantsets$Patch {
     /**
@@ -9982,7 +9982,7 @@ import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<S
     /**
      * The ID of the variant to be updated (must already exist).
      */
-    variantSetId: string;
+    variantSetId?: string;
     /**
      * Request body metadata
      */

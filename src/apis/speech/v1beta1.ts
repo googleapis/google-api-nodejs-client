@@ -402,7 +402,7 @@ export namespace speech_v1beta1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
 
 

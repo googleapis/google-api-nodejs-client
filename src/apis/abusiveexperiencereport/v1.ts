@@ -204,7 +204,7 @@ export namespace abusiveexperiencereport_v1 {
      * user to go through that process before they can gain access to the
      * Abusive Experience Report.
      */
-    name: string;
+    name?: string;
   }
 
 

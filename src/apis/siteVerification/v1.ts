@@ -657,7 +657,7 @@ export namespace siteVerification_v1 {
     /**
      * The id of a verified site or domain.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Webresource$Get {
     /**
@@ -668,7 +668,7 @@ export namespace siteVerification_v1 {
     /**
      * The id of a verified site or domain.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Webresource$Gettoken {
     /**
@@ -685,7 +685,7 @@ export namespace siteVerification_v1 {
     /**
      * The method to use for verifying a site or domain.
      */
-    verificationMethod: string;
+    verificationMethod?: string;
     /**
      * Request body metadata
      */
@@ -706,7 +706,7 @@ export namespace siteVerification_v1 {
     /**
      * The id of a verified site or domain.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -721,7 +721,7 @@ export namespace siteVerification_v1 {
     /**
      * The id of a verified site or domain.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */

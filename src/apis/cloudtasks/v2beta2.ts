@@ -1303,7 +1303,7 @@ export namespace cloudtasks_v2beta2 {
     /**
      * Resource name for the location.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List {
     /**
@@ -1318,7 +1318,7 @@ export namespace cloudtasks_v2beta2 {
     /**
      * The resource that owns the locations collection, if applicable.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -2797,7 +2797,7 @@ export namespace cloudtasks_v2beta2 {
      * locations can be obtained by calling Cloud Tasks' implementation of
      * ListLocations.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2813,7 +2813,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Get {
     /**
@@ -2825,7 +2825,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The resource name of the queue. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Getiampolicy {
     /**
@@ -2837,7 +2837,7 @@ export namespace cloudtasks_v2beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2878,7 +2878,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The location name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID`
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Patch {
     /**
@@ -2900,7 +2900,7 @@ export namespace cloudtasks_v2beta2 {
      * (-). The maximum length is 100 characters.  Caller-specified and required
      * in CreateQueue, after which it becomes output only.
      */
-    name: string;
+    name?: string;
     /**
      * A mask used to specify which fields of the queue are being updated.  If
      * empty, then all fields will be updated.
@@ -2921,7 +2921,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2937,7 +2937,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2953,7 +2953,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2969,7 +2969,7 @@ export namespace cloudtasks_v2beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2985,7 +2985,7 @@ export namespace cloudtasks_v2beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4143,7 +4143,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -4159,7 +4159,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -4176,7 +4176,7 @@ export namespace cloudtasks_v2beta2 {
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  The queue
      * must already exist.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4192,7 +4192,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Tasks$Get {
     /**
@@ -4204,7 +4204,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
     /**
      * The response_view specifies which subset of the Task will be returned. By
      * default response_view is BASIC; not all information is retrieved by
@@ -4226,7 +4226,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4265,7 +4265,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The queue name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
-    parent: string;
+    parent?: string;
     /**
      * The response_view specifies which subset of the Task will be returned. By
      * default response_view is BASIC; not all information is retrieved by
@@ -4287,7 +4287,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -4303,7 +4303,7 @@ export namespace cloudtasks_v2beta2 {
      * Required.  The task name. For example:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

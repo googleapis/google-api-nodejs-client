@@ -651,7 +651,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                                     /**
                * Project ID against which to make the request.
                */
-              projectId: string;
+              projectId?: string;
                                       /**
                * Request body metadata
                */
@@ -666,7 +666,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
                                     /**
                * Project ID against which to make the request.
                */
-              projectId: string;
+              projectId?: string;
                                       /**
                * Request body metadata
                */

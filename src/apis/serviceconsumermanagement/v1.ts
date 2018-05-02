@@ -2570,7 +2570,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2585,7 +2585,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$Get {
     /**
@@ -2596,7 +2596,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -2611,7 +2611,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -2734,7 +2734,7 @@ export namespace serviceconsumermanagement_v1 {
      * Service for which search is performed. services/{service} {service} the
      * name of a service, for example 'service.googleapis.com'.
      */
-    parent: string;
+    parent?: string;
     /**
      * Set a query `{expression}` for querying tenancy units. Your
      * `{expression}` must be in the format: `field_name=literal_string`. The
@@ -3130,7 +3130,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Name of the tenancy unit.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3150,7 +3150,7 @@ export namespace serviceconsumermanagement_v1 {
      * service, for example 'service.googleapis.com'. Enabled service binding
      * using the new tenancy unit.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3165,7 +3165,7 @@ export namespace serviceconsumermanagement_v1 {
     /**
      * Name of the tenancy unit to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$List {
     /**
@@ -3195,7 +3195,7 @@ export namespace serviceconsumermanagement_v1 {
      * project number: '123456'. {service} the name of a service, for example
      * 'service.googleapis.com'.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Services$Tenancyunits$Removeproject {
     /**
@@ -3207,7 +3207,7 @@ export namespace serviceconsumermanagement_v1 {
      * Name of the tenancy unit. Such as
      * 'services/service.googleapis.com/projects/12345/tenancyUnits/abcd'.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

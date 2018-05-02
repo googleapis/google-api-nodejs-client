@@ -820,7 +820,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievementconfigurations$Get {
     /**
@@ -831,7 +831,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievementconfigurations$Insert {
     /**
@@ -842,7 +842,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * Request body metadata
      */
@@ -857,7 +857,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * The maximum number of resource configurations to return in the response,
      * used for paging. For any response, the actual number of resources
@@ -878,7 +878,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * Request body metadata
      */
@@ -893,7 +893,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * Request body metadata
      */
@@ -999,11 +999,11 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * Selects which image in a resource for this method.
      */
-    imageType: string;
+    imageType?: string;
     /**
      * The ID of the resource used by this method.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Media metadata
      */
@@ -1473,7 +1473,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
   }
   export interface Params$Resource$Leaderboardconfigurations$Get {
     /**
@@ -1484,7 +1484,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
   }
   export interface Params$Resource$Leaderboardconfigurations$Insert {
     /**
@@ -1495,7 +1495,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * Request body metadata
      */
@@ -1510,7 +1510,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * The maximum number of resource configurations to return in the response,
      * used for paging. For any response, the actual number of resources
@@ -1531,7 +1531,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * Request body metadata
      */
@@ -1546,7 +1546,7 @@ export namespace gamesConfiguration_v1configuration {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * Request body metadata
      */

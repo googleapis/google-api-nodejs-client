@@ -237,6 +237,6 @@ export namespace pagespeedonline_v1 {
     /**
      * The URL to fetch and analyze
      */
-    url: string;
+    url?: string;
   }
 }

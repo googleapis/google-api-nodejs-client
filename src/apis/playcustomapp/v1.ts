@@ -191,7 +191,7 @@ export namespace playcustomapp_v1 {
     /**
      * Developer account ID.
      */
-    account: string;
+    account?: string;
     /**
      * Request body metadata
      */

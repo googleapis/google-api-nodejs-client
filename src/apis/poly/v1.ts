@@ -573,7 +573,7 @@ export namespace poly_v1 {
     /**
      * Required. An asset's name in the form `assets/{ASSET_ID}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Assets$List {
     /**
@@ -748,7 +748,7 @@ export namespace poly_v1 {
      * currently-authenticated user is supported. To use 'me', you must pass an
      * OAuth token with the request.
      */
-    name: string;
+    name?: string;
     /**
      * Specifies an ordering for assets. Acceptable values are: `BEST`,
      * `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a
@@ -876,7 +876,7 @@ export namespace poly_v1 {
      * currently-authenticated user is supported. To use 'me', you must pass an
      * OAuth token with the request.
      */
-    name: string;
+    name?: string;
     /**
      * Specifies an ordering for assets. Acceptable values are: `BEST`,
      * `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which ranks

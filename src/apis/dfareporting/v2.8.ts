@@ -7613,11 +7613,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Account ID.
      */
-    summaryAccountId: string;
+    summaryAccountId?: string;
   }
 
 
@@ -7884,11 +7884,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Account permission group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Accountpermissiongroups$List {
     /**
@@ -7899,7 +7899,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -8165,11 +8165,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Account permission ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Accountpermissions$List {
     /**
@@ -8180,7 +8180,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -8699,11 +8699,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -8731,7 +8731,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "account*2015" will return objects with names like "account
@@ -8759,11 +8759,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Account ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -8778,7 +8778,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -9443,11 +9443,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Accountuserprofiles$Insert {
     /**
@@ -9458,7 +9458,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -9489,7 +9489,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name, ID or email. Wildcards (*) are
      * allowed. For example, "user profile*2015" will return objects with names
@@ -9526,11 +9526,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -9545,7 +9545,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -10197,11 +10197,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Ad ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Ads$Insert {
     /**
@@ -10212,7 +10212,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -10294,7 +10294,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Select only ads whose list targeting expression use these remarketing
      * list IDs.
@@ -10343,11 +10343,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Ad ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -10362,7 +10362,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -11144,11 +11144,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Advertisergroups$Get {
     /**
@@ -11159,11 +11159,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Advertisergroups$Insert {
     /**
@@ -11174,7 +11174,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -11201,7 +11201,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "advertiser*2015" will return objects with names like
@@ -11230,11 +11230,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -11249,7 +11249,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -11907,11 +11907,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Advertisers$Insert {
     /**
@@ -11922,7 +11922,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -11966,7 +11966,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "advertiser*2015" will return objects with names like
@@ -12003,11 +12003,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -12022,7 +12022,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -12166,7 +12166,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -12472,11 +12472,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign ID in this association.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -12491,7 +12491,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign ID in this association.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Maximum number of results to return.
      */
@@ -12503,7 +12503,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Order of sorted results.
      */
@@ -13161,11 +13161,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Campaigns$Insert {
     /**
@@ -13177,15 +13177,15 @@ export namespace dfareporting_v2_8 {
      * Default landing page name for this new campaign. Must be less than 256
      * characters long.
      */
-    defaultLandingPageName: string;
+    defaultLandingPageName?: string;
     /**
      * Default landing page URL for this new campaign.
      */
-    defaultLandingPageUrl: string;
+    defaultLandingPageUrl?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -13238,7 +13238,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for campaigns by name or ID. Wildcards (*) are allowed.
      * For example, "campaign*2015" will return campaigns with names like
@@ -13271,11 +13271,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Campaign ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -13290,7 +13290,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -13574,11 +13574,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Change log ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Changelogs$List {
     /**
@@ -13631,7 +13631,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Select only change logs whose object ID, user name, old or new values
      * match the search string.
@@ -13795,7 +13795,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Select only cities from these regions.
      */
@@ -14063,11 +14063,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Connection type ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Connectiontypes$List {
     /**
@@ -14078,7 +14078,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -14852,11 +14852,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Content category ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Contentcategories$Get {
     /**
@@ -14867,11 +14867,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Content category ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Contentcategories$Insert {
     /**
@@ -14882,7 +14882,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -14909,7 +14909,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "contentcategory*2015" will return objects with names like
@@ -14938,11 +14938,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Content category ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -14957,7 +14957,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -15246,7 +15246,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -15261,7 +15261,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -15520,11 +15520,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Country DART ID.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Countries$List {
     /**
@@ -15535,7 +15535,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -15701,11 +15701,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Advertiser ID of this creative. This is a required field.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -16499,11 +16499,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative Field ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creativefields$Get {
     /**
@@ -16514,11 +16514,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative Field ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creativefields$Insert {
     /**
@@ -16529,7 +16529,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -16560,7 +16560,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for creative fields by name or ID. Wildcards (*) are
      * allowed. For example, "creativefield*2015" will return creative fields
@@ -16589,11 +16589,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative Field ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -16608,7 +16608,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -17410,15 +17410,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * Creative Field Value ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creativefieldvalues$Get {
     /**
@@ -17429,15 +17429,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * Creative Field Value ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creativefieldvalues$Insert {
     /**
@@ -17448,11 +17448,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -17467,7 +17467,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * Select only creative field values with these IDs.
      */
@@ -17483,7 +17483,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for creative field values by their values. Wildcards
      * (e.g. *) are not allowed.
@@ -17507,15 +17507,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * Creative Field Value ID
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -17530,11 +17530,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative field ID for this creative field value.
      */
-    creativeFieldId: string;
+    creativeFieldId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -18199,11 +18199,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creativegroups$Insert {
     /**
@@ -18214,7 +18214,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -18249,7 +18249,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for creative groups by name or ID. Wildcards (*) are
      * allowed. For example, "creativegroup*2015" will return creative groups
@@ -18278,11 +18278,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -18297,7 +18297,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -18948,11 +18948,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Creatives$Insert {
     /**
@@ -18963,7 +18963,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -19016,7 +19016,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Select only creatives with these rendering IDs.
      */
@@ -19061,11 +19061,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Creative ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -19080,7 +19080,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -19254,7 +19254,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -19549,11 +19549,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Directory site contact ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Directorysitecontacts$List {
     /**
@@ -19581,7 +19581,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name, ID or email. Wildcards (*) are
      * allowed. For example, "directory site contact*2015" will return objects
@@ -20013,11 +20013,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Directory site ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Directorysites$Insert {
     /**
@@ -20028,7 +20028,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -20087,7 +20087,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name, ID or URL. Wildcards (*) are
      * allowed. For example, "directory site*2015" will return objects with
@@ -20512,20 +20512,20 @@ export namespace dfareporting_v2_8 {
      * less than 256 characters long and cannot contain commas. All characters
      * are converted to lowercase.
      */
-    name: string;
+    name?: string;
     /**
      * ID of the object of this dynamic targeting key. This is a required field.
      */
-    objectId: string;
+    objectId?: string;
     /**
      * Type of the object of this dynamic targeting key. This is a required
      * field.
      */
-    objectType: string;
+    objectType?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Dynamictargetingkeys$Insert {
     /**
@@ -20536,7 +20536,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -20567,7 +20567,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -21309,11 +21309,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Event tag ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Eventtags$Get {
     /**
@@ -21324,11 +21324,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Event tag ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Eventtags$Insert {
     /**
@@ -21339,7 +21339,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -21396,7 +21396,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "eventtag*2015" will return objects with names like
@@ -21425,11 +21425,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Event tag ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -21444,7 +21444,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -21723,11 +21723,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The ID of the report file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Files$List {
     /**
@@ -21746,7 +21746,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The scope that defines which results are returned.
      */
@@ -22663,11 +22663,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightactivities$Generatetag {
     /**
@@ -22682,7 +22682,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightactivities$Get {
     /**
@@ -22693,11 +22693,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightactivities$Insert {
     /**
@@ -22708,7 +22708,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -22769,7 +22769,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "floodlightactivity*2015" will return objects with names
@@ -22803,11 +22803,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -22822,7 +22822,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -23494,11 +23494,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity Group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightactivitygroups$Insert {
     /**
@@ -23509,7 +23509,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -23550,7 +23550,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "floodlightactivitygroup*2015" will return objects with
@@ -23585,11 +23585,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight activity Group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -23604,7 +23604,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -24128,11 +24128,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight configuration ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightconfigurations$List {
     /**
@@ -24148,7 +24148,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Floodlightconfigurations$Patch {
     /**
@@ -24159,11 +24159,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Floodlight configuration ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -24178,7 +24178,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -24477,15 +24477,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Inventory item ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for order documents.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Inventoryitems$List {
     /**
@@ -24516,11 +24516,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for order documents.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Select only inventory items that are associated with these sites.
      */
@@ -25308,15 +25308,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Landing page ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Landingpages$Get {
     /**
@@ -25327,15 +25327,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Landing page ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Landingpages$Insert {
     /**
@@ -25346,11 +25346,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -25365,11 +25365,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Landingpages$Patch {
     /**
@@ -25380,15 +25380,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * Landing page ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -25403,11 +25403,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Landing page campaign ID.
      */
-    campaignId: string;
+    campaignId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -25551,7 +25551,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -25690,7 +25690,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -25953,11 +25953,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Mobile carrier ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Mobilecarriers$List {
     /**
@@ -25968,7 +25968,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -26234,11 +26234,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Operating system DART ID.
      */
-    dartId: string;
+    dartId?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Operatingsystems$List {
     /**
@@ -26249,7 +26249,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -26516,11 +26516,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Operating system version ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Operatingsystemversions$List {
     /**
@@ -26531,7 +26531,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -26826,15 +26826,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Order document ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for order documents.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Orderdocuments$List {
     /**
@@ -26865,11 +26865,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for order documents.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Allows searching for order documents by name or ID. Wildcards (*) are
      * allowed. For example, "orderdocument*2015" will return order documents
@@ -27175,15 +27175,15 @@ export namespace dfareporting_v2_8 {
     /**
      * Order ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for orders.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Orders$List {
     /**
@@ -27206,11 +27206,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Project ID for orders.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Allows searching for orders by name or ID. Wildcards (*) are allowed. For
      * example, "order*2015" will return orders with names like "order June
@@ -27904,11 +27904,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Placementgroups$Insert {
     /**
@@ -27919,7 +27919,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -28009,7 +28009,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for placement groups by name or ID. Wildcards (*) are
      * allowed. For example, "placement*2015" will return placement groups with
@@ -28042,11 +28042,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -28061,7 +28061,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -28862,7 +28862,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Tag formats to generate for these placements.  Note:
      * PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
@@ -28878,11 +28878,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Placements$Insert {
     /**
@@ -28893,7 +28893,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -28988,7 +28988,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for placements by name or ID. Wildcards (*) are allowed.
      * For example, "placement*2015" will return placements with names like
@@ -29025,11 +29025,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -29044,7 +29044,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -29822,11 +29822,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement strategy ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Placementstrategies$Get {
     /**
@@ -29837,11 +29837,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement strategy ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Placementstrategies$Insert {
     /**
@@ -29852,7 +29852,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -29879,7 +29879,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "placementstrategy*2015" will return objects with names like
@@ -29909,11 +29909,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Placement strategy ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -29928,7 +29928,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -30192,11 +30192,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Platform type ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Platformtypes$List {
     /**
@@ -30207,7 +30207,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -30463,11 +30463,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Postal code ID.
      */
-    code: string;
+    code?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Postalcodes$List {
     /**
@@ -30478,7 +30478,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -30753,11 +30753,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Project ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Projects$List {
     /**
@@ -30784,7 +30784,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for projects by name or ID. Wildcards (*) are allowed.
      * For example, "project*2015" will return projects with names like "project
@@ -30940,7 +30940,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -31607,11 +31607,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Remarketing list ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Remarketinglists$Insert {
     /**
@@ -31622,7 +31622,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -31641,7 +31641,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Select only remarketing lists owned by this advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Select only remarketing lists that have this floodlight activity ID.
      */
@@ -31667,7 +31667,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Field by which to sort the list.
      */
@@ -31686,11 +31686,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Remarketing list ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -31705,7 +31705,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -32101,11 +32101,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Remarketing list ID.
      */
-    remarketingListId: string;
+    remarketingListId?: string;
   }
   export interface Params$Resource$Remarketinglistshares$Patch {
     /**
@@ -32116,11 +32116,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Remarketing list ID.
      */
-    remarketingListId: string;
+    remarketingListId?: string;
     /**
      * Request body metadata
      */
@@ -32135,7 +32135,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -33013,11 +33013,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Reports$Get {
     /**
@@ -33028,11 +33028,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Reports$Insert {
     /**
@@ -33043,7 +33043,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -33066,7 +33066,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The scope that defines which results are returned.
      */
@@ -33089,11 +33089,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
     /**
      * Request body metadata
      */
@@ -33108,11 +33108,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
     /**
      * If set and true, tries to run the report synchronously.
      */
@@ -33127,11 +33127,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
     /**
      * Request body metadata
      */
@@ -33281,7 +33281,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA user profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -33570,15 +33570,15 @@ export namespace dfareporting_v2_8 {
     /**
      * The ID of the report file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The DFA profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the report.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Reports$Files$List {
     /**
@@ -33597,11 +33597,11 @@ export namespace dfareporting_v2_8 {
     /**
      * The DFA profile ID.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * The ID of the parent report.
      */
-    reportId: string;
+    reportId?: string;
     /**
      * The field by which to sort the list.
      */
@@ -34254,11 +34254,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Site ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Sites$Insert {
     /**
@@ -34269,7 +34269,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -34326,7 +34326,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name, ID or keyName. Wildcards (*) are
      * allowed. For example, "site*2015" will return objects with names like
@@ -34362,11 +34362,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Site ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -34381,7 +34381,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -34760,11 +34760,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Size ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Sizes$Insert {
     /**
@@ -34775,7 +34775,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -34802,7 +34802,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Select only sizes with this width.
      */
@@ -35454,11 +35454,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Subaccount ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Subaccounts$Insert {
     /**
@@ -35469,7 +35469,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -35496,7 +35496,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "subaccount*2015" will return objects with names like
@@ -35525,11 +35525,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Subaccount ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -35544,7 +35544,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -35842,11 +35842,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Remarketing list ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Targetableremarketinglists$List {
     /**
@@ -35861,7 +35861,7 @@ export namespace dfareporting_v2_8 {
     /**
      * Select only targetable remarketing lists targetable by these advertisers.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Maximum number of results to return.
      */
@@ -35883,7 +35883,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Field by which to sort the list.
      */
@@ -36548,11 +36548,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Targeting template ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Targetingtemplates$Insert {
     /**
@@ -36563,7 +36563,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -36594,7 +36594,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "template*2015" will return objects with names like
@@ -36623,11 +36623,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Targeting template ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -36642,7 +36642,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -36893,7 +36893,7 @@ export namespace dfareporting_v2_8 {
     /**
      * The user profile ID.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Userprofiles$List {
     /**
@@ -37166,11 +37166,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User role permission group ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Userrolepermissiongroups$List {
     /**
@@ -37181,7 +37181,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -37448,11 +37448,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User role permission ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Userrolepermissions$List {
     /**
@@ -37467,7 +37467,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 
 
@@ -38221,11 +38221,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User role ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Userroles$Get {
     /**
@@ -38236,11 +38236,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User role ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Userroles$Insert {
     /**
@@ -38251,7 +38251,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -38283,7 +38283,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Allows searching for objects by name or ID. Wildcards (*) are allowed.
      * For example, "userrole*2015" will return objects with names like
@@ -38316,11 +38316,11 @@ export namespace dfareporting_v2_8 {
     /**
      * User role ID.
      */
-    id: string;
+    id?: string;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -38335,7 +38335,7 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * Request body metadata
      */
@@ -38596,11 +38596,11 @@ export namespace dfareporting_v2_8 {
     /**
      * Video format ID.
      */
-    id: number;
+    id?: number;
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
   export interface Params$Resource$Videoformats$List {
     /**
@@ -38611,6 +38611,6 @@ export namespace dfareporting_v2_8 {
     /**
      * User profile ID associated with this request.
      */
-    profileId: string;
+    profileId?: string;
   }
 }

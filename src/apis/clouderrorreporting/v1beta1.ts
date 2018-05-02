@@ -529,7 +529,7 @@ export namespace clouderrorreporting_v1beta1 {
      * ID](https://support.google.com/cloud/answer/6158840). Example:
      * `projects/my-project-123`.
      */
-    projectName: string;
+    projectName?: string;
   }
 
   export class Resource$Projects$Events {
@@ -719,7 +719,7 @@ export namespace clouderrorreporting_v1beta1 {
      * ID](https://support.google.com/cloud/answer/6158840). Example:
      * `projects/my-project-123`.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * [Optional] The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).
@@ -752,7 +752,7 @@ export namespace clouderrorreporting_v1beta1 {
      * ID](https://support.google.com/cloud/answer/6158840). Example:
      * `projects/my-project-123`.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * Request body metadata
      */
@@ -920,7 +920,7 @@ export namespace clouderrorreporting_v1beta1 {
      * this project.  Example:
      * <code>projects/my-project-123/groups/my-group</code>
      */
-    groupName: string;
+    groupName?: string;
   }
   export interface Params$Resource$Projects$Groups$Update {
     /**
@@ -932,7 +932,7 @@ export namespace clouderrorreporting_v1beta1 {
      * The group resource name. Example:
      * <code>projects/my-project-123/groups/my-groupid</code>
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1074,7 +1074,7 @@ export namespace clouderrorreporting_v1beta1 {
      * href="https://support.google.com/cloud/answer/6158840">Google Cloud
      * Platform project ID</a>.  Example: <code>projects/my-project-123</code>.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * [Optional] The exact value to match against
      * [`ServiceContext.resource_type`](/error-reporting/reference/rest/v1beta1/ServiceContext#FIELDS.resource_type).

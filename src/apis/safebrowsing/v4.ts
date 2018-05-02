@@ -672,7 +672,7 @@ export namespace safebrowsing_v4 {
     /**
      * A serialized FindFullHashesRequest proto.
      */
-    encodedRequest: string;
+    encodedRequest?: string;
   }
 
 
@@ -776,7 +776,7 @@ export namespace safebrowsing_v4 {
     /**
      * A serialized FetchThreatListUpdatesRequest proto.
      */
-    encodedRequest: string;
+    encodedRequest?: string;
   }
 
 

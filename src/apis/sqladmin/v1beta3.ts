@@ -1199,21 +1199,21 @@ export namespace sqladmin_v1beta3 {
      * Identifier for the backup configuration. This gets generated
      * automatically when a backup configuration is created.
      */
-    backupConfiguration: string;
+    backupConfiguration?: string;
     /**
      * The start time of the four-hour backup window. The backup can occur any
      * time in the window. The time is in RFC 3339 format, for example
      * 2012-11-15T16:19:00.094Z.
      */
-    dueTime: string;
+    dueTime?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backupruns$List {
     /**
@@ -1225,11 +1225,11 @@ export namespace sqladmin_v1beta3 {
      * Identifier for the backup configuration. This gets generated
      * automatically when a backup configuration is created.
      */
-    backupConfiguration: string;
+    backupConfiguration?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Maximum number of backup runs per response.
      */
@@ -1242,7 +1242,7 @@ export namespace sqladmin_v1beta3 {
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -2336,7 +2336,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the source as well as the clone Cloud SQL instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2351,11 +2351,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be deleted.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Export {
     /**
@@ -2366,11 +2366,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be exported.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2385,11 +2385,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Import {
     /**
@@ -2400,11 +2400,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2420,7 +2420,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project to which the newly created Cloud SQL instances
      * should belong.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2444,7 +2444,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Patch {
     /**
@@ -2455,11 +2455,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2474,11 +2474,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL read replica instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the read replica.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Resetsslconfig {
     /**
@@ -2489,11 +2489,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Restart {
     /**
@@ -2504,11 +2504,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be restarted.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Restorebackup {
     /**
@@ -2520,21 +2520,21 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * The identifier of the backup configuration. This gets generated
      * automatically when a backup configuration is created.
      */
-    backupConfiguration: string;
+    backupConfiguration?: string;
     /**
      * The start time of the four-hour backup window. The backup can occur any
      * time in the window. The time is in RFC 3339 format, for example
      * 2012-11-15T16:19:00.094Z.
      */
-    dueTime: string;
+    dueTime?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Setrootpassword {
     /**
@@ -2545,11 +2545,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2564,11 +2564,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2736,15 +2736,15 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Instance operation ID.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -2755,7 +2755,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Maximum number of operations per response.
      */
@@ -2768,7 +2768,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3069,15 +3069,15 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be deleted.
      */
-    project: string;
+    project?: string;
     /**
      * Sha1 FingerPrint.
      */
-    sha1Fingerprint: string;
+    sha1Fingerprint?: string;
   }
   export interface Params$Resource$Sslcerts$Get {
     /**
@@ -3088,15 +3088,15 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Sha1 FingerPrint.
      */
-    sha1Fingerprint: string;
+    sha1Fingerprint?: string;
   }
   export interface Params$Resource$Sslcerts$Insert {
     /**
@@ -3107,12 +3107,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project to which the newly created Cloud SQL instances
      * should belong.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3127,11 +3127,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3222,6 +3222,6 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project for which to list tiers.
      */
-    project: string;
+    project?: string;
   }
 }

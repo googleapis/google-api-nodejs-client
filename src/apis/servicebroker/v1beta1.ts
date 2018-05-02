@@ -921,7 +921,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * The project in which to create broker.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -936,7 +936,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * The broker to delete.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Brokers$List {
     /**
@@ -958,7 +958,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers`.
      */
-    parent: string;
+    parent?: string;
   }
 
   export class Resource$Projects$Brokers$Instances {
@@ -1233,7 +1233,7 @@ export namespace servicebroker_v1beta1 {
      * `v2/service_instances/[INSTANCE_ID]` or
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Brokers$Instances$Getlast_operation {
     /**
@@ -1245,7 +1245,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/`+
      * `service_instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -1280,7 +1280,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
   export class Resource$Projects$Brokers$Instances$Bindings {
@@ -1477,7 +1477,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]/service_binding/[BINDING_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -1514,7 +1514,7 @@ export namespace servicebroker_v1beta1 {
      * `v2/service_instances/[INSTANCE_ID]` or
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1654,7 +1654,7 @@ export namespace servicebroker_v1beta1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -2136,11 +2136,11 @@ export namespace servicebroker_v1beta1 {
      * The id of the service instance. Must be unique within GCP project.
      * Maximum length is 64, GUID recommended. Required.
      */
-    instance_id: string;
+    instance_id?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2161,7 +2161,7 @@ export namespace servicebroker_v1beta1 {
      * `v2/service_instances/[INSTANCE_ID]` or
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * The plan id of the service instance.
      */
@@ -2183,7 +2183,7 @@ export namespace servicebroker_v1beta1 {
      * `v2/service_instances/[INSTANCE_ID]` or
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation {
     /**
@@ -2195,7 +2195,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/`+
      * `service_instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -2224,7 +2224,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2616,12 +2616,12 @@ export namespace servicebroker_v1beta1 {
      * The id of the binding. Must be unique within GCP project. Maximum length
      * is 64, GUID recommended. Required.
      */
-    binding_id: string;
+    binding_id?: string;
     /**
      * The GCP container. Must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2643,7 +2643,7 @@ export namespace servicebroker_v1beta1 {
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/`
      * `/instances/[INSTANCE_ID]/bindings/[BINDING_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * The plan id of the service instance.
      */
@@ -2663,7 +2663,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]/service_bindings`.
      */
-    name: string;
+    name?: string;
     /**
      * Plan id.
      */
@@ -2683,7 +2683,7 @@ export namespace servicebroker_v1beta1 {
      * Name must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/v2/service_instances/[INSTANCE_ID]/service_binding/[BINDING_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -2945,7 +2945,7 @@ export namespace servicebroker_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$V1beta1$Setiampolicy {
     /**
@@ -2957,7 +2957,7 @@ export namespace servicebroker_v1beta1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2973,7 +2973,7 @@ export namespace servicebroker_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */

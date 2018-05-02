@@ -2206,15 +2206,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Devices$Getstate {
     /**
@@ -2225,15 +2225,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Devices$List {
     /**
@@ -2244,11 +2244,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Devices$Patch {
     /**
@@ -2259,11 +2259,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Mask that identifies which fields to update. If not set, all modifiable
      * fields will be modified.  When set in a query parameter, this field
@@ -2273,7 +2273,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2288,15 +2288,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2311,11 +2311,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Mask that identifies which fields to update. If not set, all modifiable
      * fields will be modified.  When set in a query parameter, this field
@@ -2325,7 +2325,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3679,7 +3679,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -3694,7 +3694,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Enroll {
     /**
@@ -3705,7 +3705,7 @@ export namespace androidenterprise_v1 {
     /**
      * The token provided by the enterprise to register the EMM.
      */
-    token: string;
+    token?: string;
     /**
      * Request body metadata
      */
@@ -3737,7 +3737,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Getandroiddevicepolicyconfig {
     /**
@@ -3748,7 +3748,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Getserviceaccount {
     /**
@@ -3759,7 +3759,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The type of credential to return with the service account. Required.
      */
@@ -3774,7 +3774,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Insert {
     /**
@@ -3785,7 +3785,7 @@ export namespace androidenterprise_v1 {
     /**
      * The token provided by the enterprise to register the EMM.
      */
-    token: string;
+    token?: string;
     /**
      * Request body metadata
      */
@@ -3800,7 +3800,7 @@ export namespace androidenterprise_v1 {
     /**
      * The exact primary domain name of the enterprise to look up.
      */
-    domain: string;
+    domain?: string;
   }
   export interface Params$Resource$Enterprises$Pullnotificationset {
     /**
@@ -3828,7 +3828,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Enterprises$Setaccount {
     /**
@@ -3839,7 +3839,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -3854,7 +3854,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -3869,7 +3869,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -3884,7 +3884,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
 
 
@@ -4260,16 +4260,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the entitlement (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    entitlementId: string;
+    entitlementId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Entitlements$Get {
     /**
@@ -4280,16 +4280,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the entitlement (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    entitlementId: string;
+    entitlementId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Entitlements$List {
     /**
@@ -4300,11 +4300,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Entitlements$Patch {
     /**
@@ -4315,12 +4315,12 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the entitlement (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    entitlementId: string;
+    entitlementId?: string;
     /**
      * Set to true to also install the product on all the user's devices where
      * possible. Failure to install on one or more devices will not prevent this
@@ -4331,7 +4331,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4346,12 +4346,12 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the entitlement (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    entitlementId: string;
+    entitlementId?: string;
     /**
      * Set to true to also install the product on all the user's devices where
      * possible. Failure to install on one or more devices will not prevent this
@@ -4362,7 +4362,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4529,12 +4529,12 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product the group license is for, e.g.
      * "app:com.google.android.gm".
      */
-    groupLicenseId: string;
+    groupLicenseId?: string;
   }
   export interface Params$Resource$Grouplicenses$List {
     /**
@@ -4545,7 +4545,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
 
 
@@ -4648,12 +4648,12 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product the group license is for, e.g.
      * "app:com.google.android.gm".
      */
-    groupLicenseId: string;
+    groupLicenseId?: string;
   }
 
 
@@ -5029,20 +5029,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product represented by the install, e.g.
      * "app:com.google.android.gm".
      */
-    installId: string;
+    installId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Installs$Get {
     /**
@@ -5053,20 +5053,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product represented by the install, e.g.
      * "app:com.google.android.gm".
      */
-    installId: string;
+    installId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Installs$List {
     /**
@@ -5077,15 +5077,15 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Installs$Patch {
     /**
@@ -5096,20 +5096,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product represented by the install, e.g.
      * "app:com.google.android.gm".
      */
-    installId: string;
+    installId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5124,20 +5124,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product represented by the install, e.g.
      * "app:com.google.android.gm".
      */
-    installId: string;
+    installId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5562,20 +5562,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForDeviceId: string;
+    managedConfigurationForDeviceId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Get {
     /**
@@ -5586,20 +5586,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForDeviceId: string;
+    managedConfigurationForDeviceId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsfordevice$List {
     /**
@@ -5610,15 +5610,15 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsfordevice$Patch {
     /**
@@ -5629,20 +5629,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForDeviceId: string;
+    managedConfigurationForDeviceId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5657,20 +5657,20 @@ export namespace androidenterprise_v1 {
     /**
      * The Android ID of the device.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForDeviceId: string;
+    managedConfigurationForDeviceId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -6077,16 +6077,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForUserId: string;
+    managedConfigurationForUserId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsforuser$Get {
     /**
@@ -6097,16 +6097,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForUserId: string;
+    managedConfigurationForUserId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsforuser$List {
     /**
@@ -6117,11 +6117,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Managedconfigurationsforuser$Patch {
     /**
@@ -6132,16 +6132,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForUserId: string;
+    managedConfigurationForUserId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -6156,16 +6156,16 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the managed configuration (a product ID), e.g.
      * "app:com.google.android.gm".
      */
-    managedConfigurationForUserId: string;
+    managedConfigurationForUserId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -6273,12 +6273,12 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product for which the managed configurations settings
      * applies to.
      */
-    productId: string;
+    productId?: string;
   }
 
 
@@ -6372,7 +6372,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the permission.
      */
-    permissionId: string;
+    permissionId?: string;
   }
 
 
@@ -6914,11 +6914,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product.
      */
-    productId: string;
+    productId?: string;
     /**
      * Request body metadata
      */
@@ -6933,7 +6933,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The BCP 47 language code used for permission names and descriptions in
      * the returned iframe, for instance "en-US".
@@ -6942,7 +6942,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Get {
     /**
@@ -6953,7 +6953,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      */
@@ -6961,7 +6961,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the product, e.g. "app:com.google.android.gm".
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Getapprestrictionsschema {
     /**
@@ -6972,7 +6972,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      */
@@ -6980,7 +6980,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Getpermissions {
     /**
@@ -6991,11 +6991,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$List {
     /**
@@ -7012,7 +7012,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The BCP47 tag for the user's preferred language (e.g. "en-US", "de").
      * Results are returned in the language best matching the preferred
@@ -7049,11 +7049,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the product.
      */
-    productId: string;
+    productId?: string;
   }
 
 
@@ -7304,11 +7304,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the key.
      */
-    keyId: string;
+    keyId?: string;
   }
   export interface Params$Resource$Serviceaccountkeys$Insert {
     /**
@@ -7319,7 +7319,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -7334,7 +7334,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
 
 
@@ -7789,15 +7789,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the cluster.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Storelayoutclusters$Get {
     /**
@@ -7808,15 +7808,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the cluster.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Storelayoutclusters$Insert {
     /**
@@ -7827,11 +7827,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Request body metadata
      */
@@ -7846,11 +7846,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Storelayoutclusters$Patch {
     /**
@@ -7861,15 +7861,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the cluster.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Request body metadata
      */
@@ -7884,15 +7884,15 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the cluster.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Request body metadata
      */
@@ -8344,11 +8344,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Storelayoutpages$Get {
     /**
@@ -8359,11 +8359,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Storelayoutpages$Insert {
     /**
@@ -8374,7 +8374,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -8389,7 +8389,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Storelayoutpages$Patch {
     /**
@@ -8400,11 +8400,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Request body metadata
      */
@@ -8419,11 +8419,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Request body metadata
      */
@@ -9297,11 +9297,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Generateauthenticationtoken {
     /**
@@ -9312,11 +9312,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Generatetoken {
     /**
@@ -9327,11 +9327,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Get {
     /**
@@ -9342,11 +9342,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Getavailableproductset {
     /**
@@ -9357,11 +9357,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Insert {
     /**
@@ -9372,7 +9372,7 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * Request body metadata
      */
@@ -9387,11 +9387,11 @@ export namespace androidenterprise_v1 {
     /**
      * The exact primary email address of the user to look up.
      */
-    email: string;
+    email?: string;
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
   }
   export interface Params$Resource$Users$Patch {
     /**
@@ -9402,11 +9402,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -9421,11 +9421,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Revoketoken {
     /**
@@ -9436,11 +9436,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Setavailableproductset {
     /**
@@ -9451,11 +9451,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -9470,11 +9470,11 @@ export namespace androidenterprise_v1 {
     /**
      * The ID of the enterprise.
      */
-    enterpriseId: string;
+    enterpriseId?: string;
     /**
      * The ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */

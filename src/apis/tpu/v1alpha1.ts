@@ -621,7 +621,7 @@ export namespace tpu_v1alpha1 {
     /**
      * Resource name for the location.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List {
     /**
@@ -636,7 +636,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource that owns the locations collection, if applicable.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -811,7 +811,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Acceleratortypes$List {
     /**
@@ -838,7 +838,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The parent resource name.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1406,7 +1406,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The parent resource name.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1421,7 +1421,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Get {
     /**
@@ -1432,7 +1432,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$List {
     /**
@@ -1451,7 +1451,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The parent resource name.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Reimage {
     /**
@@ -1462,7 +1462,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1477,7 +1477,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1492,7 +1492,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1507,7 +1507,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1823,7 +1823,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Delete {
     /**
@@ -1834,7 +1834,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get {
     /**
@@ -1845,7 +1845,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List {
     /**
@@ -1860,7 +1860,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -2038,7 +2038,7 @@ export namespace tpu_v1alpha1 {
     /**
      * The resource name.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Tensorflowversions$List {
     /**
@@ -2065,6 +2065,6 @@ export namespace tpu_v1alpha1 {
     /**
      * The parent resource name.
      */
-    parent: string;
+    parent?: string;
   }
 }

@@ -809,15 +809,15 @@ export namespace mirror_v1 {
     /**
      * The name of the account to be passed to the Android Account Manager.
      */
-    accountName: string;
+    accountName?: string;
     /**
      * Account type to be passed to Android Account Manager.
      */
-    accountType: string;
+    accountType?: string;
     /**
      * The ID for the user.
      */
-    userToken: string;
+    userToken?: string;
     /**
      * Request body metadata
      */
@@ -1229,7 +1229,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the contact.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Contacts$Get {
     /**
@@ -1240,7 +1240,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the contact.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Contacts$Insert {
     /**
@@ -1263,7 +1263,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the contact.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -1278,7 +1278,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the contact.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -1433,7 +1433,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the location or latest for the last known location.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Locations$List {
     /**
@@ -1529,7 +1529,7 @@ export namespace mirror_v1 {
      * current time zone region as defined in the tz database. Example:
      * America/Los_Angeles.
      */
-    id: string;
+    id?: string;
   }
 
 
@@ -1823,7 +1823,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the subscription.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Subscriptions$Insert {
     /**
@@ -1846,7 +1846,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the subscription.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -2282,7 +2282,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Timeline$Get {
     /**
@@ -2293,7 +2293,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Timeline$Insert {
     /**
@@ -2345,7 +2345,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -2360,7 +2360,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -2675,11 +2675,11 @@ export namespace mirror_v1 {
     /**
      * The ID of the attachment.
      */
-    attachmentId: string;
+    attachmentId?: string;
     /**
      * The ID of the timeline item the attachment belongs to.
      */
-    itemId: string;
+    itemId?: string;
   }
   export interface Params$Resource$Timeline$Attachments$Get {
     /**
@@ -2690,11 +2690,11 @@ export namespace mirror_v1 {
     /**
      * The ID of the attachment.
      */
-    attachmentId: string;
+    attachmentId?: string;
     /**
      * The ID of the timeline item the attachment belongs to.
      */
-    itemId: string;
+    itemId?: string;
   }
   export interface Params$Resource$Timeline$Attachments$Insert {
     /**
@@ -2705,7 +2705,7 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item the attachment belongs to.
      */
-    itemId: string;
+    itemId?: string;
     /**
      * Media metadata
      */
@@ -2730,6 +2730,6 @@ export namespace mirror_v1 {
     /**
      * The ID of the timeline item whose attachments should be listed.
      */
-    itemId: string;
+    itemId?: string;
   }
 }

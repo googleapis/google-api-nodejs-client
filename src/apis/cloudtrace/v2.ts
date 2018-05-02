@@ -590,7 +590,7 @@ export namespace cloudtrace_v2 {
      * Required. The name of the project where the spans belong. The format is
      * `projects/[PROJECT_ID]`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -689,7 +689,7 @@ export namespace cloudtrace_v2 {
      * within a trace; it is a 16-character hexadecimal encoding of an 8-byte
      * array.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

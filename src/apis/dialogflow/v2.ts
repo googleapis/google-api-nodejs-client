@@ -2516,7 +2516,7 @@ export namespace dialogflow_v2 {
      * Required. The project that the agent to fetch is associated with. Format:
      * `projects/<Project ID>`.
      */
-    parent: string;
+    parent?: string;
   }
 
   export class Resource$Projects$Agent {
@@ -2890,7 +2890,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The project that the agent to export is associated with.
      * Format: `projects/<Project ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2906,7 +2906,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The project that the agent to import is associated with.
      * Format: `projects/<Project ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2922,7 +2922,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The project that the agent to restore is associated with.
      * Format: `projects/<Project ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2948,7 +2948,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The project to list agents from. Format: `projects/<Project ID
      * or '-'>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Train {
     /**
@@ -2960,7 +2960,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The project that the agent to train is associated with. Format:
      * `projects/<Project ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3525,7 +3525,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3541,7 +3541,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the agent to update or create entity types in.
      * Format: `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3564,7 +3564,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The agent to create a entity type for. Format:
      * `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3580,7 +3580,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the entity type to delete. Format:
      * `projects/<Project ID>/agent/entityTypes/<EntityType ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Get {
     /**
@@ -3599,7 +3599,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the entity type. Format: `projects/<Project
      * ID>/agent/entityTypes/<EntityType ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$List {
     /**
@@ -3628,7 +3628,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The agent to list all entity types from. Format:
      * `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Entitytypes$Patch {
     /**
@@ -3648,7 +3648,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * automatically. The unique identifier of the entity type. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The mask to control which fields get updated.
      */
@@ -3921,7 +3921,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the entity type to create entities in. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3937,7 +3937,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the entity type to delete entries for. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3953,7 +3953,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the entity type to update the entities in. Format:
      * `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4507,7 +4507,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the agent to delete all entities types for. Format:
      * `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4523,7 +4523,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the agent to update or create intents in. Format:
      * `projects/<Project ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4551,7 +4551,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The agent to create a intent for. Format: `projects/<Project
      * ID>/agent`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4567,7 +4567,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the intent to delete. Format: `projects/<Project
      * ID>/agent/intents/<Intent ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Intents$Get {
     /**
@@ -4591,7 +4591,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the intent. Format: `projects/<Project
      * ID>/agent/intents/<Intent ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Intents$List {
     /**
@@ -4625,7 +4625,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The agent to list all intents from. Format: `projects/<Project
      * ID>/agent`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Intents$Patch {
     /**
@@ -4650,7 +4650,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * automatically. The unique identifier of this intent. Format:
      * `projects/<Project ID>/agent/intents/<Intent ID>`.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The mask to control which fields get updated.
      */
@@ -4837,7 +4837,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session to delete all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Detectintent {
     /**
@@ -4852,7 +4852,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * some type of user identifier (preferably hashed). The length of the
      * session ID must not exceed 36 bytes.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -5250,7 +5250,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a context for. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5266,7 +5266,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context to delete. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Get {
     /**
@@ -5278,7 +5278,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the context. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/contexts/<Context ID>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$List {
     /**
@@ -5300,7 +5300,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all contexts from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Contexts$Patch {
     /**
@@ -5313,7 +5313,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>/contexts/<Context
      * ID>`.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The mask to control which fields get updated.
      */
@@ -5728,7 +5728,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to create a session entity type for. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5745,7 +5745,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Get {
     /**
@@ -5757,7 +5757,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The name of the session entity type. Format: `projects/<Project
      * ID>/agent/sessions/<Session ID>/entityTypes/<Entity Type Display Name>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$List {
     /**
@@ -5779,7 +5779,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * Required. The session to list all session entity types from. Format:
      * `projects/<Project ID>/agent/sessions/<Session ID>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Agent$Sessions$Entitytypes$Patch {
     /**
@@ -5792,7 +5792,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
      * `projects/<Project ID>/agent/sessions/<Session ID>/entityTypes/<Entity
      * Type Display Name>`.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The mask to control which fields get updated.
      */
@@ -5896,6 +5896,6 @@ import(paramsOrCallback?: Params$Resource$Projects$Agent$Import|BodyResponseCall
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
 }

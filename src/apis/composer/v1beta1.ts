@@ -838,7 +838,7 @@ export namespace composer_v1beta1 {
      * The parent must be of the form
      * `projects/{projectId}/locations/{locationId}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -854,7 +854,7 @@ export namespace composer_v1beta1 {
      * The environment to delete, in the form:
      * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Environments$Get {
     /**
@@ -866,7 +866,7 @@ export namespace composer_v1beta1 {
      * The resource name of the environment to get, in the form:
      * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Environments$List {
     /**
@@ -886,7 +886,7 @@ export namespace composer_v1beta1 {
      * List environments in the given project and location, in the form:
      * `projects/{projectId}/locations/{locationId}`
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Environments$Patch {
     /**
@@ -898,7 +898,7 @@ export namespace composer_v1beta1 {
      * The relative resource name of the environment to update, in the form:
      * `projects/{projectId}/locations/{locationId}/environments/{environmentId}`
      */
-    name: string;
+    name?: string;
     /**
      * Required. A comma-separated list of paths, relative to `Environment`, of
      * fields to update. For example, to set the version of scikit-learn to
@@ -1214,7 +1214,7 @@ export namespace composer_v1beta1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$Get {
     /**
@@ -1225,7 +1225,7 @@ export namespace composer_v1beta1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Operations$List {
     /**
@@ -1240,7 +1240,7 @@ export namespace composer_v1beta1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */

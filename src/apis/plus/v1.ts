@@ -758,7 +758,7 @@ export namespace plus_v1 {
     /**
      * The ID of the activity to get.
      */
-    activityId: string;
+    activityId?: string;
   }
   export interface Params$Resource$Activities$List {
     /**
@@ -769,7 +769,7 @@ export namespace plus_v1 {
     /**
      * The collection of activities to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of activities to include in the response, which is
      * used for paging. For any response, the actual number returned might be
@@ -786,7 +786,7 @@ export namespace plus_v1 {
      * The ID of the user to get activities for. The special value "me" can be
      * used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Activities$Search {
     /**
@@ -819,7 +819,7 @@ export namespace plus_v1 {
     /**
      * Full-text search query string.
      */
-    query: string;
+    query?: string;
   }
 
 
@@ -973,7 +973,7 @@ export namespace plus_v1 {
     /**
      * The ID of the comment to get.
      */
-    commentId: string;
+    commentId?: string;
   }
   export interface Params$Resource$Comments$List {
     /**
@@ -984,7 +984,7 @@ export namespace plus_v1 {
     /**
      * The ID of the activity to get comments for.
      */
-    activityId: string;
+    activityId?: string;
     /**
      * The maximum number of comments to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -1297,7 +1297,7 @@ export namespace plus_v1 {
      * The ID of the person to get the profile for. The special value "me" can
      * be used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$People$List {
     /**
@@ -1308,7 +1308,7 @@ export namespace plus_v1 {
     /**
      * The collection of people to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -1329,7 +1329,7 @@ export namespace plus_v1 {
      * Get the collection of people for the person identified. Use "me" to
      * indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$People$Listbyactivity {
     /**
@@ -1340,11 +1340,11 @@ export namespace plus_v1 {
     /**
      * The ID of the activity to get the list of people for.
      */
-    activityId: string;
+    activityId?: string;
     /**
      * The collection of people to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -1386,6 +1386,6 @@ export namespace plus_v1 {
      * Specify a query string for full text search of public text in all
      * profiles.
      */
-    query: string;
+    query?: string;
   }
 }

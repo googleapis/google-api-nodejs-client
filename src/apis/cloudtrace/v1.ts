@@ -331,7 +331,7 @@ export namespace cloudtrace_v1 {
     /**
      * ID of the Cloud project where the trace data is stored.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -619,11 +619,11 @@ export namespace cloudtrace_v1 {
     /**
      * ID of the Cloud project where the trace data is stored.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * ID of the trace to return.
      */
-    traceId: string;
+    traceId?: string;
   }
   export interface Params$Resource$Projects$Traces$List {
     /**
@@ -684,7 +684,7 @@ export namespace cloudtrace_v1 {
     /**
      * ID of the Cloud project where the trace data is stored.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Start of the time interval (inclusive) during which the trace data was
      * collected from the application.

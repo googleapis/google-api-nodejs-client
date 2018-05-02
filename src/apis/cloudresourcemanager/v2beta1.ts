@@ -1346,7 +1346,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * the resource name of the Folder to be deleted. Must be of the form
      * `folders/{folder_id}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Folders$Get {
     /**
@@ -1358,7 +1358,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * The resource name of the Folder to retrieve. Must be of the form
      * `folders/{folder_id}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Folders$Getiampolicy {
     /**
@@ -1370,7 +1370,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1416,7 +1416,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * The resource name of the Folder to move. Must be of the form
      * folders/{folder_id}
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1432,7 +1432,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * Output only. The resource name of the Folder. Its format is
      * `folders/{folder_id}`, for example: "folders/1234".
      */
-    name: string;
+    name?: string;
     /**
      * Fields to be updated. Only the `display_name` can be updated.
      */
@@ -1463,7 +1463,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1479,7 +1479,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1495,7 +1495,7 @@ export namespace cloudresourcemanager_v2beta1 {
      * The resource name of the Folder to undelete. Must be of the form
      * `folders/{folder_id}`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

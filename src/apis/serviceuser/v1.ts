@@ -2309,7 +2309,7 @@ export namespace serviceuser_v1 {
      * "project:<project_id>"  A valid path would be: -
      * /v1/projects/my-project/services/servicemanagement.googleapis.com:disable
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2326,7 +2326,7 @@ export namespace serviceuser_v1 {
      * valid path would be: -
      * /v1/projects/my-project/services/servicemanagement.googleapis.com:enable
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2351,7 +2351,7 @@ export namespace serviceuser_v1 {
      * List enabled services for the specified parent.  An example valid parent
      * would be: - projects/my-project
      */
-    parent: string;
+    parent?: string;
   }
 
 

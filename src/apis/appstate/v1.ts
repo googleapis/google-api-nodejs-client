@@ -498,7 +498,7 @@ export namespace appstate_v1 {
     /**
      * The key for the data to be retrieved.
      */
-    stateKey: number;
+    stateKey?: number;
   }
   export interface Params$Resource$States$Delete {
     /**
@@ -509,7 +509,7 @@ export namespace appstate_v1 {
     /**
      * The key for the data to be retrieved.
      */
-    stateKey: number;
+    stateKey?: number;
   }
   export interface Params$Resource$States$Get {
     /**
@@ -520,7 +520,7 @@ export namespace appstate_v1 {
     /**
      * The key for the data to be retrieved.
      */
-    stateKey: number;
+    stateKey?: number;
   }
   export interface Params$Resource$States$List {
     /**
@@ -549,7 +549,7 @@ export namespace appstate_v1 {
     /**
      * The key for the data to be retrieved.
      */
-    stateKey: number;
+    stateKey?: number;
     /**
      * Request body metadata
      */

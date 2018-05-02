@@ -944,12 +944,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Get {
     /**
@@ -960,12 +960,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Insert {
     /**
@@ -976,7 +976,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Request body metadata
      */
@@ -991,7 +991,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Patch {
     /**
@@ -1002,12 +1002,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -1022,12 +1022,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -1454,7 +1454,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -1475,7 +1475,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -1500,7 +1500,7 @@ export namespace storage_v1beta2 {
     /**
      * A valid API project identifier.
      */
-    project: string;
+    project?: string;
     /**
      * Set of properties to return. Defaults to noAcl, unless the bucket
      * resource specifies acl or defaultObjectAcl properties, when it defaults
@@ -1530,7 +1530,7 @@ export namespace storage_v1beta2 {
     /**
      * A valid API project identifier.
      */
-    project: string;
+    project?: string;
     /**
      * Set of properties to return. Defaults to noAcl.
      */
@@ -1545,7 +1545,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -1574,7 +1574,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -2113,12 +2113,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Get {
     /**
@@ -2129,12 +2129,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Defaultobjectaccesscontrols$Insert {
     /**
@@ -2145,7 +2145,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Request body metadata
      */
@@ -2160,7 +2160,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, only return default ACL listing if the bucket's current
      * metageneration matches this value.
@@ -2181,12 +2181,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -2201,12 +2201,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -2658,12 +2658,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2672,7 +2672,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Get {
     /**
@@ -2683,12 +2683,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2697,7 +2697,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Insert {
     /**
@@ -2708,7 +2708,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2717,7 +2717,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -2732,7 +2732,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2741,7 +2741,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Patch {
     /**
@@ -2752,12 +2752,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2766,7 +2766,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -2781,12 +2781,12 @@ export namespace storage_v1beta2 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -2795,7 +2795,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -3484,11 +3484,11 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which to store the new object.
      */
-    destinationBucket: string;
+    destinationBucket?: string;
     /**
      * Name of the new object.
      */
-    destinationObject: string;
+    destinationObject?: string;
     /**
      * Makes the operation conditional on whether the object's current
      * generation matches the given value.
@@ -3514,12 +3514,12 @@ export namespace storage_v1beta2 {
      * Name of the bucket in which to store the new object. Overrides the
      * provided object metadata's bucket value, if any.
      */
-    destinationBucket: string;
+    destinationBucket?: string;
     /**
      * Name of the new object. Required when the object metadata is not
      * otherwise provided. Overrides the object metadata's name value, if any.
      */
-    destinationObject: string;
+    destinationObject?: string;
     /**
      * Makes the operation conditional on whether the destination object's
      * current generation matches the given value.
@@ -3568,7 +3568,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which to find the source object.
      */
-    sourceBucket: string;
+    sourceBucket?: string;
     /**
      * If present, selects a specific revision of the source object (as opposed
      * to the latest version, the default).
@@ -3577,7 +3577,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the source object.
      */
-    sourceObject: string;
+    sourceObject?: string;
     /**
      * Request body metadata
      */
@@ -3592,7 +3592,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, permanently deletes a specific revision of this object (as
      * opposed to the latest version, the default).
@@ -3621,7 +3621,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objects$Get {
     /**
@@ -3632,7 +3632,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -3661,7 +3661,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to noAcl.
      */
@@ -3677,7 +3677,7 @@ export namespace storage_v1beta2 {
      * Name of the bucket in which to store the new object. Overrides the
      * provided object metadata's bucket value, if any.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the operation conditional on whether the object's current
      * generation matches the given value.
@@ -3736,7 +3736,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which to look for objects.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Returns results in a directory-like mode. items will contain only objects
      * whose names, aside from the prefix, do not contain delimiter. Objects
@@ -3777,7 +3777,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -3806,7 +3806,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to full.
      */
@@ -3825,7 +3825,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -3854,7 +3854,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to full.
      */
@@ -3873,7 +3873,7 @@ export namespace storage_v1beta2 {
     /**
      * Name of the bucket in which to look for objects.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Returns results in a directory-like mode. items will contain only objects
      * whose names, aside from the prefix, do not contain delimiter. Objects

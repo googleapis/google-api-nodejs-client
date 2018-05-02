@@ -930,18 +930,22 @@ export namespace spanner_v1 {
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
@@ -1815,7 +1819,7 @@ export namespace spanner_v1 {
      * Required. The name of the requested instance configuration. Values are of
      * the form `projects/<project>/instanceConfigs/<config>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instanceconfigs$List {
     /**
@@ -1837,7 +1841,7 @@ export namespace spanner_v1 {
      * Required. The name of the project for which a list of supported instance
      * configurations is requested. Values are of the form `projects/<project>`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -2462,7 +2466,7 @@ export namespace spanner_v1 {
      * Required. The name of the project in which to create the instance. Values
      * are of the form `projects/<project>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2478,7 +2482,7 @@ export namespace spanner_v1 {
      * Required. The name of the instance to be deleted. Values are of the form
      * `projects/<project>/instances/<instance>`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Get {
     /**
@@ -2490,7 +2494,7 @@ export namespace spanner_v1 {
      * Required. The name of the requested instance. Values are of the form
      * `projects/<project>/instances/<instance>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Getiampolicy {
     /**
@@ -2504,7 +2508,7 @@ export namespace spanner_v1 {
      * for instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for database resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2544,7 +2548,7 @@ export namespace spanner_v1 {
      * Required. The name of the project for which a list of instances is
      * requested. Values are of the form `projects/<project>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Patch {
     /**
@@ -2558,7 +2562,7 @@ export namespace spanner_v1 {
      * `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the
      * name must be between 6 and 30 characters in length.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2576,7 +2580,7 @@ export namespace spanner_v1 {
      * instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for databases resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2594,7 +2598,7 @@ export namespace spanner_v1 {
      * instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for database resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3268,7 +3272,7 @@ export namespace spanner_v1 {
      * Required. The name of the instance that will serve the new database.
      * Values are of the form `projects/<project>/instances/<instance>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3283,7 +3287,7 @@ export namespace spanner_v1 {
     /**
      * Required. The database to be dropped.
      */
-    database: string;
+    database?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Get {
     /**
@@ -3295,7 +3299,7 @@ export namespace spanner_v1 {
      * Required. The name of the requested database. Values are of the form
      * `projects/<project>/instances/<instance>/databases/<database>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Getddl {
     /**
@@ -3306,7 +3310,7 @@ export namespace spanner_v1 {
     /**
      * Required. The database whose schema we wish to get.
      */
-    database: string;
+    database?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Getiampolicy {
     /**
@@ -3320,7 +3324,7 @@ export namespace spanner_v1 {
      * for instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for database resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3346,7 +3350,7 @@ export namespace spanner_v1 {
      * Required. The instance whose databases should be listed. Values are of
      * the form `projects/<project>/instances/<instance>`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Setiampolicy {
     /**
@@ -3360,7 +3364,7 @@ export namespace spanner_v1 {
      * instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for databases resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3378,7 +3382,7 @@ export namespace spanner_v1 {
      * instance resources and `projects/<project ID>/instances/<instance
      * ID>/databases/<database ID>` for database resources.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3393,7 +3397,7 @@ export namespace spanner_v1 {
     /**
      * Required. The database to update.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -3713,7 +3717,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$Delete {
     /**
@@ -3724,7 +3728,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$Get {
     /**
@@ -3735,7 +3739,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Operations$List {
     /**
@@ -3750,7 +3754,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -4764,7 +4768,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the transaction runs.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4780,7 +4784,7 @@ export namespace spanner_v1 {
      * Required. The session in which the transaction to be committed is
      * running.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4795,7 +4799,7 @@ export namespace spanner_v1 {
     /**
      * Required. The database in which the new session is created.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -4810,7 +4814,7 @@ export namespace spanner_v1 {
     /**
      * Required. The name of the session to delete.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql {
     /**
@@ -4821,7 +4825,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the SQL query should be performed.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4836,7 +4840,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the SQL query should be performed.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4851,7 +4855,7 @@ export namespace spanner_v1 {
     /**
      * Required. The name of the session to retrieve.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$Sessions$List {
     /**
@@ -4862,7 +4866,7 @@ export namespace spanner_v1 {
     /**
      * Required. The database in which to list sessions.
      */
-    database: string;
+    database?: string;
     /**
      * An expression for filtering the results of the request. Filter rules are
      * case insensitive. The fields eligible for filtering are:    *
@@ -4892,7 +4896,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session used to create the partitions.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4907,7 +4911,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session used to create the partitions.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4922,7 +4926,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the read should be performed.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4937,7 +4941,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the transaction to roll back is running.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -4952,7 +4956,7 @@ export namespace spanner_v1 {
     /**
      * Required. The session in which the read should be performed.
      */
-    session: string;
+    session?: string;
     /**
      * Request body metadata
      */
@@ -5266,7 +5270,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Operations$Delete {
     /**
@@ -5277,7 +5281,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Operations$Get {
     /**
@@ -5288,7 +5292,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Instances$Operations$List {
     /**
@@ -5303,7 +5307,7 @@ export namespace spanner_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */

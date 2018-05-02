@@ -744,7 +744,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog to get.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Maximum number of posts to pull back with the blog.
      */
@@ -764,7 +764,7 @@ export namespace blogger_v3 {
     /**
      * The URL of the blog to retrieve.
      */
-    url: string;
+    url?: string;
     /**
      * Access level with which to view the blog. Note that some fields require
      * elevated access.
@@ -797,7 +797,7 @@ export namespace blogger_v3 {
      * ID of the user whose blogs are to be fetched. Either the word 'self'
      * (sans quote marks) or the user's profile identifier.
      */
-    userId: string;
+    userId?: string;
     /**
      * Access level with which to view the blogs. Note that some fields require
      * elevated access.
@@ -892,7 +892,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog to get.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Maximum number of posts to pull back with the blog.
      */
@@ -901,7 +901,7 @@ export namespace blogger_v3 {
      * ID of the user whose blogs are to be fetched. Either the word 'self'
      * (sans quote marks) or the user's profile identifier.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -1415,15 +1415,15 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to mark as not spam.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Comments$Delete {
     /**
@@ -1434,15 +1434,15 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to delete.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Comments$Get {
     /**
@@ -1453,15 +1453,15 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to containing the comment.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to get.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * ID of the post to fetch posts from.
      */
-    postId: string;
+    postId?: string;
     /**
      * Access level for the requested comment (default: READER). Note that some
      * comments will require elevated permissions, for example comments where
@@ -1479,7 +1479,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch comments from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Latest date of comment to fetch, a date-time with RFC 3339 formatting.
      */
@@ -1499,7 +1499,7 @@ export namespace blogger_v3 {
     /**
      * ID of the post to fetch posts from.
      */
-    postId: string;
+    postId?: string;
     /**
      * Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
      */
@@ -1523,7 +1523,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch comments from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Latest date of comment to fetch, a date-time with RFC 3339 formatting.
      */
@@ -1558,15 +1558,15 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to mark as spam.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Comments$Removecontent {
     /**
@@ -1577,15 +1577,15 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to delete content from.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
 
 
@@ -2141,11 +2141,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Pages$Get {
     /**
@@ -2156,11 +2156,11 @@ export namespace blogger_v3 {
     /**
      * ID of the blog containing the page.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the page to get.
      */
-    pageId: string;
+    pageId?: string;
     /**
      *
      */
@@ -2175,7 +2175,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to add the page to.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether to create the page as a draft (default: false).
      */
@@ -2194,7 +2194,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch Pages from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether to retrieve the Page bodies.
      */
@@ -2226,11 +2226,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Whether a publish action should be performed when the page is updated
      * (default: false).
@@ -2255,11 +2255,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Pages$Revert {
     /**
@@ -2270,11 +2270,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the page.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Pages$Update {
     /**
@@ -2285,11 +2285,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Page.
      */
-    pageId: string;
+    pageId?: string;
     /**
      * Whether a publish action should be performed when the page is updated
      * (default: false).
@@ -2391,7 +2391,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog to get.
      */
-    blogId: string;
+    blogId?: string;
     /**
      *
      */
@@ -3103,11 +3103,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Posts$Get {
     /**
@@ -3118,7 +3118,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch the post from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of the post is included (default: true). This
      * should be set to false when the post bodies are not required, to help
@@ -3136,7 +3136,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the post
      */
-    postId: string;
+    postId?: string;
     /**
      * Access level with which to view the returned result. Note that some
      * fields require elevated access.
@@ -3152,7 +3152,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch the post from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Maximum number of comments to pull back on a post.
      */
@@ -3160,7 +3160,7 @@ export namespace blogger_v3 {
     /**
      * Path of the Post to retrieve.
      */
-    path: string;
+    path?: string;
     /**
      * Access level with which to view the returned result. Note that some
      * fields require elevated access.
@@ -3176,7 +3176,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to add the post to.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of the post is included with the result
      * (default: true).
@@ -3205,7 +3205,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch posts from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Latest post date to fetch, a date-time with RFC 3339 formatting.
      */
@@ -3259,7 +3259,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of the post is included with the result
      * (default: true).
@@ -3277,7 +3277,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
     /**
      * Whether a publish action should be performed when the post is updated
      * (default: false).
@@ -3302,11 +3302,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
     /**
      * Optional date and time to schedule the publishing of the Blog. If no
      * publishDate parameter is given, the post is either published at the a
@@ -3324,11 +3324,11 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Posts$Search {
     /**
@@ -3339,7 +3339,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch the post from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of posts is included (default: true). This
      * should be set to false when the post bodies are not required, to help
@@ -3353,7 +3353,7 @@ export namespace blogger_v3 {
     /**
      * Query terms to search this blog for matching posts.
      */
-    q: string;
+    q?: string;
   }
   export interface Params$Resource$Posts$Update {
     /**
@@ -3364,7 +3364,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the Blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of the post is included with the result
      * (default: true).
@@ -3382,7 +3382,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the Post.
      */
-    postId: string;
+    postId?: string;
     /**
      * Whether a publish action should be performed when the post is updated
      * (default: false).
@@ -3568,7 +3568,7 @@ export namespace blogger_v3 {
     /**
      * The ID of the blog.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Maximum number of comments to pull back on a post.
      */
@@ -3576,12 +3576,12 @@ export namespace blogger_v3 {
     /**
      * The ID of the post to get.
      */
-    postId: string;
+    postId?: string;
     /**
      * ID of the user for the per-user information to be fetched. Either the
      * word 'self' (sans quote marks) or the user's profile identifier.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Postuserinfos$List {
     /**
@@ -3592,7 +3592,7 @@ export namespace blogger_v3 {
     /**
      * ID of the blog to fetch posts from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Latest post date to fetch, a date-time with RFC 3339 formatting.
      */
@@ -3629,7 +3629,7 @@ export namespace blogger_v3 {
      * ID of the user for the per-user information to be fetched. Either the
      * word 'self' (sans quote marks) or the user's profile identifier.
      */
-    userId: string;
+    userId?: string;
     /**
      * Access level with which to view the returned result. Note that some
      * fields require elevated access.
@@ -3720,6 +3720,6 @@ export namespace blogger_v3 {
     /**
      * The ID of the user to get.
      */
-    userId: string;
+    userId?: string;
   }
 }

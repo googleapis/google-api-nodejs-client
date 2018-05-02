@@ -408,7 +408,7 @@ export namespace urlshortener_v1 {
     /**
      * The short URL, including the protocol.
      */
-    shortUrl: string;
+    shortUrl?: string;
   }
   export interface Params$Resource$Url$Insert {
     /**

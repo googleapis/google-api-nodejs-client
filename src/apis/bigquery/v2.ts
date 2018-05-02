@@ -2775,7 +2775,7 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of dataset being deleted
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * If True, delete all the tables in the dataset. If False and the dataset
      * contains tables, the request will fail. Default is False
@@ -2784,7 +2784,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the dataset being deleted
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Datasets$Get {
     /**
@@ -2795,11 +2795,11 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the requested dataset
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the requested dataset
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Datasets$Insert {
     /**
@@ -2810,7 +2810,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the new dataset
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -2846,7 +2846,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the datasets to be listed
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Datasets$Patch {
     /**
@@ -2857,11 +2857,11 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the dataset being updated
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the dataset being updated
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -2876,11 +2876,11 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the dataset being updated
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the dataset being updated
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -3701,7 +3701,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Job ID of the job to cancel
      */
-    jobId: string;
+    jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
      * and EU.
@@ -3710,7 +3710,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Project ID of the job to cancel
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Jobs$Get {
     /**
@@ -3721,7 +3721,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Job ID of the requested job
      */
-    jobId: string;
+    jobId?: string;
     /**
      * [Experimental] The geographic location of the job. Required except for US
      * and EU.
@@ -3730,7 +3730,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Project ID of the requested job
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Jobs$Getqueryresults {
     /**
@@ -3741,7 +3741,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Job ID of the query job
      */
-    jobId: string;
+    jobId?: string;
     /**
      * [Experimental] The geographic location where the job should run. Required
      * except for US and EU.
@@ -3759,7 +3759,7 @@ export namespace bigquery_v2 {
     /**
      * [Required] Project ID of the query job
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Zero-based index of the starting row
      */
@@ -3780,7 +3780,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the project that will be billed for the job
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -3832,7 +3832,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the jobs to list
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Restrict information returned to a set of selected fields
      */
@@ -3851,7 +3851,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the project billed for the query
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4135,7 +4135,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID for which the service account is requested.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$List {
     /**
@@ -4464,15 +4464,15 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the destination table.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the destination table.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Table ID of the destination table.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -4487,7 +4487,7 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the table to read
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Maximum number of results to return
      */
@@ -4499,7 +4499,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the table to read
      */
-    projectId: string;
+    projectId?: string;
     /**
      * List of fields to return (comma-separated). If unspecified, all fields
      * are returned
@@ -4512,7 +4512,7 @@ export namespace bigquery_v2 {
     /**
      * Table ID of the table to read
      */
-    tableId: string;
+    tableId?: string;
   }
 
 
@@ -5329,15 +5329,15 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the table to delete
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the table to delete
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Table ID of the table to delete
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Tables$Get {
     /**
@@ -5348,11 +5348,11 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the requested table
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the requested table
      */
-    projectId: string;
+    projectId?: string;
     /**
      * List of fields to return (comma-separated). If unspecified, all fields
      * are returned
@@ -5361,7 +5361,7 @@ export namespace bigquery_v2 {
     /**
      * Table ID of the requested table
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Tables$Insert {
     /**
@@ -5372,11 +5372,11 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the new table
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the new table
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5391,7 +5391,7 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the tables to list
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Maximum number of results to return
      */
@@ -5404,7 +5404,7 @@ export namespace bigquery_v2 {
     /**
      * Project ID of the tables to list
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Tables$Patch {
     /**
@@ -5415,15 +5415,15 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the table to update
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the table to update
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Table ID of the table to update
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -5438,15 +5438,15 @@ export namespace bigquery_v2 {
     /**
      * Dataset ID of the table to update
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * Project ID of the table to update
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Table ID of the table to update
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */

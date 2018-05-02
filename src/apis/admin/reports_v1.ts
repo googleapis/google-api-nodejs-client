@@ -409,7 +409,7 @@ export namespace admin_reports_v1 {
     /**
      * Application name for which the events are to be retrieved.
      */
-    applicationName: string;
+    applicationName?: string;
     /**
      * Represents the customer for which the data is to be fetched.
      */
@@ -444,7 +444,7 @@ export namespace admin_reports_v1 {
      * filtered. When 'all' is specified as the userKey, it returns usageReports
      * for all users.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Activities$Watch {
     /**
@@ -460,7 +460,7 @@ export namespace admin_reports_v1 {
     /**
      * Application name for which the events are to be retrieved.
      */
-    applicationName: string;
+    applicationName?: string;
     /**
      * Represents the customer for which the data is to be fetched.
      */
@@ -495,7 +495,7 @@ export namespace admin_reports_v1 {
      * filtered. When 'all' is specified as the userKey, it returns usageReports
      * for all users.
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -680,7 +680,7 @@ export namespace admin_reports_v1 {
      * Represents the date in yyyy-mm-dd format for which the data is to be
      * fetched.
      */
-    date: string;
+    date?: string;
     /**
      * Token to specify next page.
      */
@@ -792,15 +792,15 @@ export namespace admin_reports_v1 {
      * Represents the date in yyyy-mm-dd format for which the data is to be
      * fetched.
      */
-    date: string;
+    date?: string;
     /**
      * Represents the key of object for which the data should be filtered.
      */
-    entityKey: string;
+    entityKey?: string;
     /**
      * Type of object. Should be one of - gplus_communities.
      */
-    entityType: string;
+    entityType?: string;
     /**
      * Represents the set of filters including parameter operator value.
      */
@@ -918,7 +918,7 @@ export namespace admin_reports_v1 {
      * Represents the date in yyyy-mm-dd format for which the data is to be
      * fetched.
      */
-    date: string;
+    date?: string;
     /**
      * Represents the set of filters including parameter operator value.
      */
@@ -940,6 +940,6 @@ export namespace admin_reports_v1 {
      * Represents the profile id or the user email for which the data should be
      * filtered.
      */
-    userKey: string;
+    userKey?: string;
   }
 }

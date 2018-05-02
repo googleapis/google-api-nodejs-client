@@ -3350,7 +3350,7 @@ export namespace dataflow_v1b3 {
     /**
      * The project to send the WorkerMessages to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -3820,7 +3820,7 @@ export namespace dataflow_v1b3 {
     /**
      * The project which owns the jobs.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Level of information requested in response. Default is
      * `JOB_VIEW_SUMMARY`.
@@ -3840,7 +3840,7 @@ export namespace dataflow_v1b3 {
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Deprecated. This field is now in the Job message.
      */
@@ -3863,7 +3863,7 @@ export namespace dataflow_v1b3 {
     /**
      * The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location that contains this job.
      */
@@ -3871,7 +3871,7 @@ export namespace dataflow_v1b3 {
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The level of information requested in response.
      */
@@ -3886,7 +3886,7 @@ export namespace dataflow_v1b3 {
     /**
      * The job to get messages for.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
@@ -3894,7 +3894,7 @@ export namespace dataflow_v1b3 {
     /**
      * A project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Return only metric data that has changed since this time. Default is to
      * return all information about all metrics for the job.
@@ -3929,7 +3929,7 @@ export namespace dataflow_v1b3 {
     /**
      * The project which owns the jobs.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Level of information requested in response. Default is
      * `JOB_VIEW_SUMMARY`.
@@ -3945,7 +3945,7 @@ export namespace dataflow_v1b3 {
     /**
      * The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location that contains this job.
      */
@@ -3953,7 +3953,7 @@ export namespace dataflow_v1b3 {
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4125,11 +4125,11 @@ export namespace dataflow_v1b3 {
     /**
      * The job id.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4144,11 +4144,11 @@ export namespace dataflow_v1b3 {
     /**
      * The job id.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4258,7 +4258,7 @@ export namespace dataflow_v1b3 {
     /**
      * The job to get messages about.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
@@ -4281,7 +4281,7 @@ export namespace dataflow_v1b3 {
     /**
      * A project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * If specified, return only messages with timestamps >= start_time. The
      * default is the job creation time (i.e. beginning of messages).
@@ -4461,11 +4461,11 @@ export namespace dataflow_v1b3 {
     /**
      * Identifies the workflow job this worker belongs to.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Identifies the project this worker belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4480,11 +4480,11 @@ export namespace dataflow_v1b3 {
     /**
      * The job which the WorkItem is part of.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The project which owns the WorkItem's job.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4596,11 +4596,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location which contains the job
      */
-    location: string;
+    location?: string;
     /**
      * The project to send the WorkerMessages to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -4988,11 +4988,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location that contains this job.
      */
-    location: string;
+    location?: string;
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Deprecated. This field is now in the Job message.
      */
@@ -5015,15 +5015,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location that contains this job.
      */
-    location: string;
+    location?: string;
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The level of information requested in response.
      */
@@ -5038,15 +5038,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job to get messages for.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * A project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Return only metric data that has changed since this time. Default is to
      * return all information about all metrics for the job.
@@ -5066,7 +5066,7 @@ export namespace dataflow_v1b3 {
     /**
      * The location that contains this job.
      */
-    location: string;
+    location?: string;
     /**
      * If there are many jobs, limit response to at most this many. The actual
      * number of jobs returned will be the lesser of max_responses and an
@@ -5081,7 +5081,7 @@ export namespace dataflow_v1b3 {
     /**
      * The project which owns the jobs.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Level of information requested in response. Default is
      * `JOB_VIEW_SUMMARY`.
@@ -5097,15 +5097,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location that contains this job.
      */
-    location: string;
+    location?: string;
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5284,15 +5284,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job id.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5307,15 +5307,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job id.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * The project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5427,11 +5427,11 @@ export namespace dataflow_v1b3 {
     /**
      * The job to get messages about.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * Filter to only get messages with importance >= level
      */
@@ -5450,7 +5450,7 @@ export namespace dataflow_v1b3 {
     /**
      * A project id.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * If specified, return only messages with timestamps >= start_time. The
      * default is the job creation time (i.e. beginning of messages).
@@ -5636,15 +5636,15 @@ export namespace dataflow_v1b3 {
     /**
      * Identifies the workflow job this worker belongs to.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the WorkItem's job.
      */
-    location: string;
+    location?: string;
     /**
      * Identifies the project this worker belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5659,15 +5659,15 @@ export namespace dataflow_v1b3 {
     /**
      * The job which the WorkItem is part of.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The location which contains the WorkItem's job.
      */
-    location: string;
+    location?: string;
     /**
      * The project which owns the WorkItem's job.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5908,11 +5908,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location to which to direct the request.
      */
-    location: string;
+    location?: string;
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -5932,11 +5932,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location to which to direct the request.
      */
-    location: string;
+    location?: string;
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The view to retrieve. Defaults to METADATA_ONLY.
      */
@@ -5956,11 +5956,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location to which to direct the request.
      */
-    location: string;
+    location?: string;
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * If true, the request is validated but not actually executed. Defaults to
      * false.
@@ -6200,7 +6200,7 @@ export namespace dataflow_v1b3 {
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -6224,7 +6224,7 @@ export namespace dataflow_v1b3 {
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The view to retrieve. Defaults to METADATA_ONLY.
      */
@@ -6248,7 +6248,7 @@ export namespace dataflow_v1b3 {
     /**
      * Required. The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * If true, the request is validated but not actually executed. Defaults to
      * false.

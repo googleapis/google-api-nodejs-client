@@ -857,7 +857,7 @@ export namespace bigquerydatatransfer_v1 {
      * The data source in the form:
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -873,7 +873,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Datasources$List {
     /**
@@ -896,7 +896,7 @@ export namespace bigquerydatatransfer_v1 {
      * The BigQuery project id for which data sources should be returned. Must
      * be in the form: `projects/{project_id}`
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1060,7 +1060,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * Resource name for the location.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List {
     /**
@@ -1075,7 +1075,7 @@ export namespace bigquerydatatransfer_v1 {
     /**
      * The resource that owns the locations collection, if applicable.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -1322,7 +1322,7 @@ export namespace bigquerydatatransfer_v1 {
      * The data source in the form:
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1338,7 +1338,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/dataSources/{data_source_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasources$List {
     /**
@@ -1361,7 +1361,7 @@ export namespace bigquerydatatransfer_v1 {
      * The BigQuery project id for which data sources should be returned. Must
      * be in the form: `projects/{project_id}`
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1848,7 +1848,7 @@ export namespace bigquerydatatransfer_v1 {
      * location of the destination bigquery dataset do not match - the request
      * will fail.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1864,7 +1864,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get {
     /**
@@ -1876,7 +1876,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$List {
     /**
@@ -1904,7 +1904,7 @@ export namespace bigquerydatatransfer_v1 {
      * The BigQuery project id for which data sources should be returned:
      * `projects/{project_id}`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Patch {
     /**
@@ -1935,7 +1935,7 @@ export namespace bigquerydatatransfer_v1 {
      * `config_id` is usually a uuid, even though it is not guaranteed or
      * required. The name is ignored when creating a transfer config.
      */
-    name: string;
+    name?: string;
     /**
      * Required list of fields to be updated in this request.
      */
@@ -1955,7 +1955,7 @@ export namespace bigquerydatatransfer_v1 {
      * Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2197,7 +2197,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get {
     /**
@@ -2209,7 +2209,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$List {
     /**
@@ -2233,7 +2233,7 @@ export namespace bigquerydatatransfer_v1 {
      * retrieved. Format of transfer configuration resource name is:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Indicates how run attempts are to be pulled.
      */
@@ -2360,7 +2360,7 @@ export namespace bigquerydatatransfer_v1 {
      * Transfer run name in the form:
      * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -2838,7 +2838,7 @@ export namespace bigquerydatatransfer_v1 {
      * location of the destination bigquery dataset do not match - the request
      * will fail.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2854,7 +2854,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Get {
     /**
@@ -2866,7 +2866,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$List {
     /**
@@ -2894,7 +2894,7 @@ export namespace bigquerydatatransfer_v1 {
      * The BigQuery project id for which data sources should be returned:
      * `projects/{project_id}`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Patch {
     /**
@@ -2925,7 +2925,7 @@ export namespace bigquerydatatransfer_v1 {
      * `config_id` is usually a uuid, even though it is not guaranteed or
      * required. The name is ignored when creating a transfer config.
      */
-    name: string;
+    name?: string;
     /**
      * Required list of fields to be updated in this request.
      */
@@ -2945,7 +2945,7 @@ export namespace bigquerydatatransfer_v1 {
      * Transfer configuration name in the form:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3179,7 +3179,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$Get {
     /**
@@ -3191,7 +3191,7 @@ export namespace bigquerydatatransfer_v1 {
      * The field will contain name of the resource requested, for example:
      * `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$List {
     /**
@@ -3215,7 +3215,7 @@ export namespace bigquerydatatransfer_v1 {
      * retrieved. Format of transfer configuration resource name is:
      * `projects/{project_id}/transferConfigs/{config_id}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Indicates how run attempts are to be pulled.
      */
@@ -3340,6 +3340,6 @@ export namespace bigquerydatatransfer_v1 {
      * Transfer run name in the form:
      * `projects/{project_id}/transferConfigs/{config_Id}/runs/{run_id}`.
      */
-    parent: string;
+    parent?: string;
   }
 }

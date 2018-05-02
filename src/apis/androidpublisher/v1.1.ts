@@ -227,16 +227,16 @@ export namespace androidpublisher_v1_1 {
      * The package name of the application the inapp product was sold in (for
      * example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The inapp product SKU (for example, 'com.some.thing.inapp1').
      */
-    productId: string;
+    productId?: string;
     /**
      * The token provided to the user's device when the inapp product was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
 
 
@@ -398,16 +398,16 @@ export namespace androidpublisher_v1_1 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
   export interface Params$Resource$Purchases$Get {
     /**
@@ -419,15 +419,15 @@ export namespace androidpublisher_v1_1 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
 }

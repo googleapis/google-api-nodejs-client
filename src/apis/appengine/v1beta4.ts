@@ -1685,7 +1685,7 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. Name of the application to get. Example: apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Certain resources associated with an application are created on-demand.
      * Controls whether these resources should be created when performing the
@@ -1705,7 +1705,7 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the Application resource to update. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -1870,11 +1870,11 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. Resource name for the location.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    locationsId: string;
+    locationsId?: string;
   }
   export interface Params$Resource$Apps$Locations$List {
     /**
@@ -1886,7 +1886,7 @@ export namespace appengine_v1beta4 {
      * Part of `name`. The resource that owns the locations collection, if
      * applicable.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */
@@ -2194,11 +2194,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
   }
   export interface Params$Resource$Apps$Modules$Get {
     /**
@@ -2210,11 +2210,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
   }
   export interface Params$Resource$Apps$Modules$List {
     /**
@@ -2225,7 +2225,7 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. Name of the resource requested. Example: apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -2245,7 +2245,7 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/modules/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -2269,7 +2269,7 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Request body metadata
      */
@@ -2670,11 +2670,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/modules/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Request body metadata
      */
@@ -2690,15 +2690,15 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Modules$Versions$Get {
     /**
@@ -2710,15 +2710,15 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Controls the set of fields returned in the Get response.
      */
@@ -2734,11 +2734,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -2762,7 +2762,7 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/modules/default/versions/1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -2770,11 +2770,11 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Request body metadata
      */
@@ -3098,19 +3098,19 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Request body metadata
      */
@@ -3126,19 +3126,19 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Modules$Versions$Instances$Get {
     /**
@@ -3150,19 +3150,19 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Modules$Versions$Instances$List {
     /**
@@ -3174,11 +3174,11 @@ export namespace appengine_v1beta4 {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/modules/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    modulesId: string;
+    modulesId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -3190,7 +3190,7 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
 
 
@@ -3362,11 +3362,11 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. The name of the operation resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    operationsId: string;
+    operationsId?: string;
   }
   export interface Params$Resource$Apps$Operations$List {
     /**
@@ -3377,7 +3377,7 @@ export namespace appengine_v1beta4 {
     /**
      * Part of `name`. The name of the operation's parent resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */

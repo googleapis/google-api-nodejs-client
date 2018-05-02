@@ -133,7 +133,7 @@ export interface Schema${{ schema.id }} {
         /**
          * {{ p.description|oneLine|cleanComments|safe }}
          */
-        {{ pname|getSafeParamName }}{% if not p.required %}?{% endif %}: {{ p.type }};
+        {{ pname|getSafeParamName }}?: {{ p.type }};
         {% endfor %}
         {% if m.request %}
           /**

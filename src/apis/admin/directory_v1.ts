@@ -2576,12 +2576,12 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the ASP to be deleted.
      */
-    codeId: number;
+    codeId?: number;
     /**
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Asps$Get {
     /**
@@ -2592,12 +2592,12 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the ASP.
      */
-    codeId: number;
+    codeId?: number;
     /**
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Asps$List {
     /**
@@ -2609,7 +2609,7 @@ export namespace admin_directory_v1 {
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
 
 
@@ -3143,11 +3143,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Chrome OS Device
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Request body metadata
      */
@@ -3162,11 +3162,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Chrome OS Device
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * Restrict information returned to a set of selected fields.
      */
@@ -3181,7 +3181,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Maximum number of results to return. Default is 100
      */
@@ -3222,11 +3222,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Full path of the target organizational unit or its ID
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * Request body metadata
      */
@@ -3241,11 +3241,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Chrome OS Device
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * Restrict information returned to a set of selected fields.
      */
@@ -3264,11 +3264,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Chrome OS Device
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * Restrict information returned to a set of selected fields.
      */
@@ -3492,7 +3492,7 @@ export namespace admin_directory_v1 {
     /**
      * Id of the customer to be retrieved
      */
-    customerKey: string;
+    customerKey?: string;
   }
   export interface Params$Resource$Customers$Patch {
     /**
@@ -3503,7 +3503,7 @@ export namespace admin_directory_v1 {
     /**
      * Id of the customer to be updated
      */
-    customerKey: string;
+    customerKey?: string;
     /**
      * Request body metadata
      */
@@ -3518,7 +3518,7 @@ export namespace admin_directory_v1 {
     /**
      * Id of the customer to be updated
      */
-    customerKey: string;
+    customerKey?: string;
     /**
      * Request body metadata
      */
@@ -3818,11 +3818,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Name of domain alias to be retrieved.
      */
-    domainAliasName: string;
+    domainAliasName?: string;
   }
   export interface Params$Resource$Domainaliases$Get {
     /**
@@ -3833,11 +3833,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Name of domain alias to be retrieved.
      */
-    domainAliasName: string;
+    domainAliasName?: string;
   }
   export interface Params$Resource$Domainaliases$Insert {
     /**
@@ -3848,7 +3848,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -3863,7 +3863,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Name of the parent domain for which domain aliases are to be fetched.
      */
@@ -4151,11 +4151,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Name of domain to be deleted
      */
-    domainName: string;
+    domainName?: string;
   }
   export interface Params$Resource$Domains$Get {
     /**
@@ -4166,11 +4166,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Name of domain to be retrieved
      */
-    domainName: string;
+    domainName?: string;
   }
   export interface Params$Resource$Domains$Insert {
     /**
@@ -4181,7 +4181,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -4196,7 +4196,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
   }
 
 
@@ -4609,7 +4609,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
   }
   export interface Params$Resource$Groups$Get {
     /**
@@ -4620,7 +4620,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
   }
   export interface Params$Resource$Groups$Insert {
     /**
@@ -4669,7 +4669,7 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group. If ID, it should match with id of
      * group object
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Request body metadata
      */
@@ -4685,7 +4685,7 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group. If ID, it should match with id of
      * group object
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Request body metadata
      */
@@ -4912,11 +4912,11 @@ export namespace admin_directory_v1 {
     /**
      * The alias to be removed
      */
-    alias: string;
+    alias?: string;
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
   }
   export interface Params$Resource$Groups$Aliases$Insert {
     /**
@@ -4927,7 +4927,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Request body metadata
      */
@@ -4942,7 +4942,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
   }
 
 
@@ -5434,11 +5434,11 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Email or immutable ID of the member
      */
-    memberKey: string;
+    memberKey?: string;
   }
   export interface Params$Resource$Members$Get {
     /**
@@ -5449,11 +5449,11 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Email or immutable ID of the member
      */
-    memberKey: string;
+    memberKey?: string;
   }
   export interface Params$Resource$Members$Hasmember {
     /**
@@ -5465,12 +5465,12 @@ export namespace admin_directory_v1 {
      * Identifies the group in the API request. The value can be the group's
      * email address, group alias, or the unique group ID.
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Identifies the user member in the API request. The value can be the
      * user's primary email address, alias, or unique ID.
      */
-    memberKey: string;
+    memberKey?: string;
   }
   export interface Params$Resource$Members$Insert {
     /**
@@ -5481,7 +5481,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Request body metadata
      */
@@ -5496,7 +5496,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the group
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Maximum number of results to return. Default is 200
      */
@@ -5520,12 +5520,12 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group. If ID, it should match with id of
      * group object
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Email or immutable ID of the user. If ID, it should match with id of
      * member object
      */
-    memberKey: string;
+    memberKey?: string;
     /**
      * Request body metadata
      */
@@ -5541,12 +5541,12 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the group. If ID, it should match with id of
      * group object
      */
-    groupKey: string;
+    groupKey?: string;
     /**
      * Email or immutable ID of the user. If ID, it should match with id of
      * member object
      */
-    memberKey: string;
+    memberKey?: string;
     /**
      * Request body metadata
      */
@@ -5852,11 +5852,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Mobile Device
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Request body metadata
      */
@@ -5871,11 +5871,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Immutable ID of Mobile Device
      */
-    resourceId: string;
+    resourceId?: string;
   }
   export interface Params$Resource$Mobiledevices$Get {
     /**
@@ -5886,7 +5886,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Restrict information returned to a set of selected fields.
      */
@@ -5894,7 +5894,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of Mobile Device
      */
-    resourceId: string;
+    resourceId?: string;
   }
   export interface Params$Resource$Mobiledevices$List {
     /**
@@ -5905,7 +5905,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Maximum number of results to return. Default is 100
      */
@@ -6303,11 +6303,11 @@ export namespace admin_directory_v1 {
      * The unique ID for the customer's G Suite account. The customerId is also
      * returned as part of the Users resource.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the notification.
      */
-    notificationId: string;
+    notificationId?: string;
   }
   export interface Params$Resource$Notifications$Get {
     /**
@@ -6319,11 +6319,11 @@ export namespace admin_directory_v1 {
      * The unique ID for the customer's G Suite account. The customerId is also
      * returned as part of the Users resource.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the notification.
      */
-    notificationId: string;
+    notificationId?: string;
   }
   export interface Params$Resource$Notifications$List {
     /**
@@ -6334,7 +6334,7 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID for the customer's G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * The ISO 639-1 code of the language notifications are returned in. The
      * default is English (en).
@@ -6358,11 +6358,11 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID for the customer's G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the notification.
      */
-    notificationId: string;
+    notificationId?: string;
     /**
      * Request body metadata
      */
@@ -6377,11 +6377,11 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID for the customer's G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the notification.
      */
-    notificationId: string;
+    notificationId?: string;
     /**
      * Request body metadata
      */
@@ -6809,11 +6809,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Get {
     /**
@@ -6824,11 +6824,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Insert {
     /**
@@ -6839,7 +6839,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Request body metadata
      */
@@ -6854,7 +6854,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * the URL-encoded organizational unit's path or its ID
      */
@@ -6873,11 +6873,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * Request body metadata
      */
@@ -6892,11 +6892,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Full path of the organizational unit or its ID
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * Request body metadata
      */
@@ -6992,7 +6992,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
   }
 
 
@@ -7613,13 +7613,13 @@ export namespace admin_directory_v1 {
     /**
      * The ID of the building to delete.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
   }
   export interface Params$Resource$Resources$Buildings$Get {
     /**
@@ -7630,13 +7630,13 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the building to retrieve.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
   }
   export interface Params$Resource$Resources$Buildings$Insert {
     /**
@@ -7649,7 +7649,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -7666,7 +7666,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Maximum number of results to return.
      */
@@ -7685,13 +7685,13 @@ export namespace admin_directory_v1 {
     /**
      * The ID of the building to update.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -7706,13 +7706,13 @@ export namespace admin_directory_v1 {
     /**
      * The ID of the building to update.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -8165,13 +8165,13 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the calendar resource to delete.
      */
-    calendarResourceId: string;
+    calendarResourceId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
   }
   export interface Params$Resource$Resources$Calendars$Get {
     /**
@@ -8182,13 +8182,13 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the calendar resource to retrieve.
      */
-    calendarResourceId: string;
+    calendarResourceId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
   }
   export interface Params$Resource$Resources$Calendars$Insert {
     /**
@@ -8201,7 +8201,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -8218,7 +8218,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Maximum number of results to return.
      */
@@ -8257,13 +8257,13 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the calendar resource to update.
      */
-    calendarResourceId: string;
+    calendarResourceId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -8278,13 +8278,13 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the calendar resource to update.
      */
-    calendarResourceId: string;
+    calendarResourceId?: string;
     /**
      * The unique ID for the customer's G Suite account. As an account
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -8796,11 +8796,11 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the feature to delete.
      */
-    featureKey: string;
+    featureKey?: string;
   }
   export interface Params$Resource$Resources$Features$Get {
     /**
@@ -8813,11 +8813,11 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the feature to retrieve.
      */
-    featureKey: string;
+    featureKey?: string;
   }
   export interface Params$Resource$Resources$Features$Insert {
     /**
@@ -8830,7 +8830,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -8847,7 +8847,7 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * Maximum number of results to return.
      */
@@ -8868,11 +8868,11 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the feature to update.
      */
-    featureKey: string;
+    featureKey?: string;
     /**
      * Request body metadata
      */
@@ -8889,11 +8889,11 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the feature to rename.
      */
-    oldName: string;
+    oldName?: string;
     /**
      * Request body metadata
      */
@@ -8910,11 +8910,11 @@ export namespace admin_directory_v1 {
      * administrator, you can also use the my_customer alias to represent your
      * account's customer ID.
      */
-    customer: string;
+    customer?: string;
     /**
      * The unique ID of the feature to update.
      */
-    featureKey: string;
+    featureKey?: string;
     /**
      * Request body metadata
      */
@@ -9219,11 +9219,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role assignment.
      */
-    roleAssignmentId: string;
+    roleAssignmentId?: string;
   }
   export interface Params$Resource$Roleassignments$Get {
     /**
@@ -9234,11 +9234,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role assignment.
      */
-    roleAssignmentId: string;
+    roleAssignmentId?: string;
   }
   export interface Params$Resource$Roleassignments$Insert {
     /**
@@ -9249,7 +9249,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -9264,7 +9264,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Maximum number of results to return.
      */
@@ -9700,11 +9700,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role.
      */
-    roleId: string;
+    roleId?: string;
   }
   export interface Params$Resource$Roles$Get {
     /**
@@ -9715,11 +9715,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role.
      */
-    roleId: string;
+    roleId?: string;
   }
   export interface Params$Resource$Roles$Insert {
     /**
@@ -9730,7 +9730,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Request body metadata
      */
@@ -9745,7 +9745,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Maximum number of results to return.
      */
@@ -9764,11 +9764,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role.
      */
-    roleId: string;
+    roleId?: string;
     /**
      * Request body metadata
      */
@@ -9783,11 +9783,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account.
      */
-    customer: string;
+    customer?: string;
     /**
      * Immutable ID of the role.
      */
-    roleId: string;
+    roleId?: string;
     /**
      * Request body metadata
      */
@@ -10213,11 +10213,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Name or immutable ID of the schema
      */
-    schemaKey: string;
+    schemaKey?: string;
   }
   export interface Params$Resource$Schemas$Get {
     /**
@@ -10228,11 +10228,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Name or immutable ID of the schema
      */
-    schemaKey: string;
+    schemaKey?: string;
   }
   export interface Params$Resource$Schemas$Insert {
     /**
@@ -10243,7 +10243,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Request body metadata
      */
@@ -10258,7 +10258,7 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
   }
   export interface Params$Resource$Schemas$Patch {
     /**
@@ -10269,11 +10269,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Name or immutable ID of the schema.
      */
-    schemaKey: string;
+    schemaKey?: string;
     /**
      * Request body metadata
      */
@@ -10288,11 +10288,11 @@ export namespace admin_directory_v1 {
     /**
      * Immutable ID of the G Suite account
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Name or immutable ID of the schema.
      */
-    schemaKey: string;
+    schemaKey?: string;
     /**
      * Request body metadata
      */
@@ -10514,12 +10514,12 @@ export namespace admin_directory_v1 {
     /**
      * The Client ID of the application the token is issued to.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Tokens$Get {
     /**
@@ -10530,12 +10530,12 @@ export namespace admin_directory_v1 {
     /**
      * The Client ID of the application the token is issued to.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Tokens$List {
     /**
@@ -10547,7 +10547,7 @@ export namespace admin_directory_v1 {
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
 
 
@@ -11177,7 +11177,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Users$Get {
     /**
@@ -11197,7 +11197,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
      */
@@ -11278,7 +11278,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user as admin
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -11294,7 +11294,7 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user. If ID, it should match with id of user
      * object
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -11309,7 +11309,7 @@ export namespace admin_directory_v1 {
     /**
      * The immutable id of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -11325,7 +11325,7 @@ export namespace admin_directory_v1 {
      * Email or immutable ID of the user. If ID, it should match with id of user
      * object
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -11686,11 +11686,11 @@ export namespace admin_directory_v1 {
     /**
      * The alias to be removed
      */
-    alias: string;
+    alias?: string;
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Users$Aliases$Insert {
     /**
@@ -11701,7 +11701,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -11720,7 +11720,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Users$Aliases$Watch {
     /**
@@ -11735,7 +11735,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -12030,7 +12030,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Users$Photos$Get {
     /**
@@ -12041,7 +12041,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Users$Photos$Patch {
     /**
@@ -12052,7 +12052,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -12067,7 +12067,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
     /**
      * Request body metadata
      */
@@ -12300,7 +12300,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Verificationcodes$Invalidate {
     /**
@@ -12311,7 +12311,7 @@ export namespace admin_directory_v1 {
     /**
      * Email or immutable ID of the user
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Params$Resource$Verificationcodes$List {
     /**
@@ -12323,6 +12323,6 @@ export namespace admin_directory_v1 {
      * Identifies the user in the API request. The value can be the user's
      * primary email address, alias email address, or unique user ID.
      */
-    userKey: string;
+    userKey?: string;
   }
 }

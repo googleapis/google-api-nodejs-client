@@ -34,7 +34,14 @@ export namespace script_v1 {
   /**
    * Apps Script API
    *
-   * An API for managing and executing Google Apps Script projects.
+   * An API for managing and executing Google Apps Script projects. &lt;aside
+   * class=&quot;note&quot;&gt;&lt;b&gt;Note&lt;/b&gt;: In order to use this API
+   * in your apps, you must &lt;a
+   * href=&quot;/apps-script/api/how-tos/enable#using_the_apps_script_api_in_your_app&quot;&gt;
+   * enable it for use&lt;/a&gt;. To allow other apps to manage your scripts,
+   * you must &lt;a
+   * href=&quot;/apps-script/api/how-tos/enable#granting_third-party_applications_access_to_your_script_projects&quot;&gt;
+   * grant them access&lt;/a&gt;.&lt;/aside&gt;
    *
    * @example
    * const google = require('googleapis');
@@ -1382,7 +1389,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   export interface Params$Resource$Projects$Getcontent {
     /**
@@ -1393,7 +1400,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * The version number of the project to retrieve. If not provided, the
      * project's HEAD version is returned.
@@ -1417,7 +1424,7 @@ export namespace script_v1 {
     /**
      * Required field indicating the script to get metrics for.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   export interface Params$Resource$Projects$Updatecontent {
     /**
@@ -1428,7 +1435,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * Request body metadata
      */
@@ -1797,7 +1804,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * Request body metadata
      */
@@ -1812,11 +1819,11 @@ export namespace script_v1 {
     /**
      * The deployment ID to be undeployed.
      */
-    deploymentId: string;
+    deploymentId?: string;
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   export interface Params$Resource$Projects$Deployments$Get {
     /**
@@ -1827,11 +1834,11 @@ export namespace script_v1 {
     /**
      * The deployment ID.
      */
-    deploymentId: string;
+    deploymentId?: string;
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   export interface Params$Resource$Projects$Deployments$List {
     /**
@@ -1851,7 +1858,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
   export interface Params$Resource$Projects$Deployments$Update {
     /**
@@ -1862,11 +1869,11 @@ export namespace script_v1 {
     /**
      * The deployment ID for this deployment.
      */
-    deploymentId: string;
+    deploymentId?: string;
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * Request body metadata
      */
@@ -2097,7 +2104,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * Request body metadata
      */
@@ -2112,11 +2119,11 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * The version number.
      */
-    versionNumber: number;
+    versionNumber?: number;
   }
   export interface Params$Resource$Projects$Versions$List {
     /**
@@ -2136,7 +2143,7 @@ export namespace script_v1 {
     /**
      * The script project's Drive ID.
      */
-    scriptId: string;
+    scriptId?: string;
   }
 
 
@@ -2234,7 +2241,7 @@ export namespace script_v1 {
      * the project in the script editor and select **File > Project
      * properties**.
      */
-    scriptId: string;
+    scriptId?: string;
     /**
      * Request body metadata
      */

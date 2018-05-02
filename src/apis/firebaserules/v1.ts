@@ -550,7 +550,7 @@ export namespace firebaserules_v1 {
      * be the `Ruleset` resource name: Format:
      * `projects/{project_id}/rulesets/{ruleset_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1009,7 +1009,7 @@ export namespace firebaserules_v1 {
      * Resource name for the project which owns this `Release`.  Format:
      * `projects/{project_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1025,7 +1025,7 @@ export namespace firebaserules_v1 {
      * Resource name for the `Release` to delete.  Format:
      * `projects/{project_id}/releases/{release_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Releases$Get {
     /**
@@ -1037,7 +1037,7 @@ export namespace firebaserules_v1 {
      * Resource name of the `Release`.  Format:
      * `projects/{project_id}/releases/{release_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Releases$Getexecutable {
     /**
@@ -1054,7 +1054,7 @@ export namespace firebaserules_v1 {
      * Resource name of the `Release`.  Format:
      * `projects/{project_id}/releases/{release_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Releases$List {
     /**
@@ -1086,7 +1086,7 @@ export namespace firebaserules_v1 {
     /**
      * Resource name for the project.  Format: `projects/{project_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
      * just a hint and the service may choose to load fewer than `page_size`
@@ -1110,7 +1110,7 @@ export namespace firebaserules_v1 {
      * Resource name for the project which owns this `Release`.  Format:
      * `projects/{project_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1415,7 +1415,7 @@ export namespace firebaserules_v1 {
      * Resource name for Project which owns this `Ruleset`.  Format:
      * `projects/{project_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1431,7 +1431,7 @@ export namespace firebaserules_v1 {
      * Resource name for the ruleset to delete.  Format:
      * `projects/{project_id}/rulesets/{ruleset_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Rulesets$Get {
     /**
@@ -1443,7 +1443,7 @@ export namespace firebaserules_v1 {
      * Resource name for the ruleset to get.  Format:
      * `projects/{project_id}/rulesets/{ruleset_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Rulesets$List {
     /**
@@ -1462,7 +1462,7 @@ export namespace firebaserules_v1 {
     /**
      * Resource name for the project.  Format: `projects/{project_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
      * just a hint and the service may choose to load less than `page_size` due

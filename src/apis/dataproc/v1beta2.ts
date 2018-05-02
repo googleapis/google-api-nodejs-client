@@ -586,9 +586,8 @@ export namespace dataproc_v1beta2 {
      */
     imageUri?: string;
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names
-     * from cluster_name, num_instances, and the instance group if not set by
-     * user (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from cluster_name, num_instances, and the instance group.
      */
     instanceNames?: string[];
     /**
@@ -2359,7 +2358,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2376,7 +2375,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The version of workflow template to delete. If specified, will
      * only delete the template if the current server version matches specified
@@ -2395,7 +2394,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The version of workflow template to retrieve. Only previously
      * instatiated versions can be retrieved.If unspecified, retrieves the
@@ -2413,7 +2412,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate {
     /**
@@ -2426,7 +2425,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2452,7 +2451,7 @@ export namespace dataproc_v1beta2 {
      * described in https://cloud.google.com/apis/design/resource_names of the
      * form projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2478,7 +2477,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
     /**
@@ -2490,7 +2489,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2506,7 +2505,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2523,7 +2522,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3225,11 +3224,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two CreateClusterRequest requests with the same id, then the
@@ -3255,7 +3254,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Optional. Specifying the cluster_uuid means the RPC should fail (with
      * error NOT_FOUND) if cluster with specified UUID does not exist.
@@ -3265,11 +3264,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two DeleteClusterRequest requests with the same id, then the
@@ -3291,16 +3290,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -3315,16 +3314,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy {
     /**
@@ -3336,7 +3335,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$List {
     /**
@@ -3371,11 +3370,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project that the cluster
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Clusters$Patch {
     /**
@@ -3386,7 +3385,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster name.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Optional. Timeout for graceful YARN decomissioning. Graceful
      * decommissioning allows removing nodes from the cluster without
@@ -3401,11 +3400,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project the cluster belongs
      * to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two UpdateClusterRequest requests with the same id, then the
@@ -3458,7 +3457,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3474,7 +3473,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4144,16 +4143,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -4168,16 +4167,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Get {
     /**
@@ -4188,16 +4187,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy {
     /**
@@ -4209,7 +4208,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$List {
     /**
@@ -4251,11 +4250,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Projects$Regions$Jobs$Patch {
     /**
@@ -4266,16 +4265,16 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The job ID.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Required. Specifies the path, relative to <code>Job</code>, of the field
      * to update. For example, to update the labels of a Job the
@@ -4300,7 +4299,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4316,11 +4315,11 @@ export namespace dataproc_v1beta2 {
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Required. The Cloud Dataproc region in which to handle the request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -4336,7 +4335,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4867,7 +4866,7 @@ export namespace dataproc_v1beta2 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Delete {
     /**
@@ -4878,7 +4877,7 @@ export namespace dataproc_v1beta2 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Get {
     /**
@@ -4889,7 +4888,7 @@ export namespace dataproc_v1beta2 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$Getiampolicy {
     /**
@@ -4901,7 +4900,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Regions$Operations$List {
     /**
@@ -4916,7 +4915,7 @@ export namespace dataproc_v1beta2 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -4936,7 +4935,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4952,7 +4951,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5718,7 +5717,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5735,7 +5734,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The version of workflow template to delete. If specified, will
      * only delete the template if the current server version matches specified
@@ -5754,7 +5753,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Optional. The version of workflow template to retrieve. Only previously
      * instatiated versions can be retrieved.If unspecified, retrieves the
@@ -5772,7 +5771,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate {
     /**
@@ -5785,7 +5784,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5811,7 +5810,7 @@ export namespace dataproc_v1beta2 {
      * described in https://cloud.google.com/apis/design/resource_names of the
      * form projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5837,7 +5836,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
     /**
@@ -5849,7 +5848,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5865,7 +5864,7 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -5882,7 +5881,7 @@ export namespace dataproc_v1beta2 {
      * https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

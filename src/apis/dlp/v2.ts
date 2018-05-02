@@ -3960,7 +3960,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3977,7 +3977,7 @@ export namespace dlp_v2 {
      * for example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Deidentifytemplates$Get {
     /**
@@ -3990,7 +3990,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Deidentifytemplates$List {
     /**
@@ -4012,7 +4012,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Deidentifytemplates$Patch {
     /**
@@ -4025,7 +4025,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -4432,7 +4432,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4449,7 +4449,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Inspecttemplates$Get {
     /**
@@ -4462,7 +4462,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Inspecttemplates$List {
     /**
@@ -4484,7 +4484,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Inspecttemplates$Patch {
     /**
@@ -4497,7 +4497,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -4788,7 +4788,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4803,7 +4803,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4818,7 +4818,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5227,7 +5227,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5244,7 +5244,7 @@ export namespace dlp_v2 {
      * for example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Deidentifytemplates$Get {
     /**
@@ -5257,7 +5257,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Deidentifytemplates$List {
     /**
@@ -5279,7 +5279,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Deidentifytemplates$Patch {
     /**
@@ -5292,7 +5292,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/deidentifyTemplates/432452342` or
      * projects/project-id/deidentifyTemplates/432452342.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5676,7 +5676,7 @@ export namespace dlp_v2 {
     /**
      * The name of the DlpJob resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5691,7 +5691,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5706,7 +5706,7 @@ export namespace dlp_v2 {
     /**
      * The name of the DlpJob resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Dlpjobs$Get {
     /**
@@ -5717,7 +5717,7 @@ export namespace dlp_v2 {
     /**
      * The name of the DlpJob resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Dlpjobs$List {
     /**
@@ -5753,7 +5753,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * The type of job. Defaults to `DlpJobType.INSPECT`
      */
@@ -5864,7 +5864,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6269,7 +6269,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6286,7 +6286,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Inspecttemplates$Get {
     /**
@@ -6299,7 +6299,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Inspecttemplates$List {
     /**
@@ -6321,7 +6321,7 @@ export namespace dlp_v2 {
      * The parent resource name, for example projects/my-project-id or
      * organizations/my-org-id.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Inspecttemplates$Patch {
     /**
@@ -6334,7 +6334,7 @@ export namespace dlp_v2 {
      * example `organizations/433245324/inspectTemplates/432452342` or
      * projects/project-id/inspectTemplates/432452342.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -6726,7 +6726,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6742,7 +6742,7 @@ export namespace dlp_v2 {
      * Resource name of the project and the triggeredJob, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Jobtriggers$Get {
     /**
@@ -6754,7 +6754,7 @@ export namespace dlp_v2 {
      * Resource name of the project and the triggeredJob, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Jobtriggers$List {
     /**
@@ -6786,7 +6786,7 @@ export namespace dlp_v2 {
     /**
      * The parent resource name, for example projects/my-project-id.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Jobtriggers$Patch {
     /**
@@ -6798,7 +6798,7 @@ export namespace dlp_v2 {
      * Resource name of the project and the triggeredJob, for example
      * `projects/dlp-test-project/jobTriggers/53234423`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

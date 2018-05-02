@@ -1264,7 +1264,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The subscription whose message is being acknowledged.
      */
-    subscription: string;
+    subscription?: string;
     /**
      * Request body metadata
      */
@@ -1284,7 +1284,7 @@ export namespace pubsub_v1beta2 {
      * plus (`+`) or percent signs (`%`). It must be between 3 and 255
      * characters in length, and it must not start with `"goog"`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1299,7 +1299,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The subscription to delete.
      */
-    subscription: string;
+    subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Get {
     /**
@@ -1310,7 +1310,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the subscription to get.
      */
-    subscription: string;
+    subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Getiampolicy {
     /**
@@ -1322,7 +1322,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$List {
     /**
@@ -1343,7 +1343,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the cloud project that subscriptions belong to.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline {
     /**
@@ -1354,7 +1354,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the subscription.
      */
-    subscription: string;
+    subscription?: string;
     /**
      * Request body metadata
      */
@@ -1369,7 +1369,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the subscription.
      */
-    subscription: string;
+    subscription?: string;
     /**
      * Request body metadata
      */
@@ -1384,7 +1384,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The subscription from which messages should be pulled.
      */
-    subscription: string;
+    subscription?: string;
     /**
      * Request body metadata
      */
@@ -1400,7 +1400,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1416,7 +1416,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2004,7 +2004,7 @@ export namespace pubsub_v1beta2 {
      * percent signs (`%`). It must be between 3 and 255 characters in length,
      * and it must not start with `"goog"`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2019,7 +2019,7 @@ export namespace pubsub_v1beta2 {
     /**
      * Name of the topic to delete.
      */
-    topic: string;
+    topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Get {
     /**
@@ -2030,7 +2030,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the topic to get.
      */
-    topic: string;
+    topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Getiampolicy {
     /**
@@ -2042,7 +2042,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Topics$List {
     /**
@@ -2063,7 +2063,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the cloud project that topics belong to.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Projects$Topics$Publish {
     /**
@@ -2074,7 +2074,7 @@ export namespace pubsub_v1beta2 {
     /**
      * The messages in the request will be published on this topic.
      */
-    topic: string;
+    topic?: string;
     /**
      * Request body metadata
      */
@@ -2090,7 +2090,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2106,7 +2106,7 @@ export namespace pubsub_v1beta2 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2220,6 +2220,6 @@ export namespace pubsub_v1beta2 {
     /**
      * The name of the topic that subscriptions are attached to.
      */
-    topic: string;
+    topic?: string;
   }
 }

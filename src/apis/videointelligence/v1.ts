@@ -1540,7 +1540,7 @@ export namespace videointelligence_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1555,7 +1555,7 @@ export namespace videointelligence_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$Get {
     /**
@@ -1566,7 +1566,7 @@ export namespace videointelligence_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**

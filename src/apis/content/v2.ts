@@ -5469,13 +5469,13 @@ export namespace content_v2 {
     /**
      * The ID of the account whose website is claimed.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Only available to selected merchants. When set to True, this flag removes
      * any existing claim on the requested website by another account and
@@ -5507,7 +5507,7 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -5520,7 +5520,7 @@ export namespace content_v2 {
      * The ID of the managing account. This must be a multi-client account, and
      * accountId must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Accounts$Get {
     /**
@@ -5531,13 +5531,13 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Accounts$Insert {
     /**
@@ -5552,7 +5552,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -5572,7 +5572,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -5587,7 +5587,7 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -5597,7 +5597,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -5612,7 +5612,7 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -5622,7 +5622,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -5877,7 +5877,7 @@ export namespace content_v2 {
     /**
      * The ID of the account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * If set, only issues for the specified destinations are returned,
      * otherwise only issues for the Shopping destination.
@@ -5888,7 +5888,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Accountstatuses$List {
     /**
@@ -5909,7 +5909,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -6300,13 +6300,13 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account tax settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Accounttax$List {
     /**
@@ -6322,7 +6322,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -6337,7 +6337,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account tax settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -6347,7 +6347,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -6362,7 +6362,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update account tax settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -6372,7 +6372,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -6963,7 +6963,7 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -6972,7 +6972,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Datafeeds$Fetchnow {
     /**
@@ -6983,7 +6983,7 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed to be fetched.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -6992,7 +6992,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Datafeeds$Get {
     /**
@@ -7003,12 +7003,12 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Datafeeds$Insert {
     /**
@@ -7024,7 +7024,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -7045,7 +7045,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeeds. This account cannot be
      * a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -7060,7 +7060,7 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -7069,7 +7069,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -7084,7 +7084,7 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -7093,7 +7093,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -7358,7 +7358,7 @@ export namespace content_v2 {
     /**
      * The ID of the datafeed.
      */
-    datafeedId: string;
+    datafeedId?: string;
     /**
      * The language for which to get the datafeed status. If this parameter is
      * provided then country must also be provided. Note that this parameter is
@@ -7370,7 +7370,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeed. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Datafeedstatuses$List {
     /**
@@ -7387,7 +7387,7 @@ export namespace content_v2 {
      * The ID of the account that manages the datafeeds. This account cannot be
      * a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -7584,16 +7584,16 @@ export namespace content_v2 {
      * The ID of the account that contains the product. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The REST id of the product for which to update price and availability.
      */
-    productId: string;
+    productId?: string;
     /**
      * The code of the store for which to update price and availability. Use
      * online to update price and availability of an online product.
      */
-    storeCode: string;
+    storeCode?: string;
     /**
      * Request body metadata
      */
@@ -8324,13 +8324,13 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get or update LIA settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts {
     /**
@@ -8342,13 +8342,13 @@ export namespace content_v2 {
      * The ID of the account for which to retrieve accessible Google My Business
      * accounts.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Liasettings$List {
     /**
@@ -8364,7 +8364,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -8379,7 +8379,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get or update LIA settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -8389,7 +8389,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -8404,7 +8404,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which GMB access is requested.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The email of the Google My Business account.
      */
@@ -8414,7 +8414,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Requestinventoryverification {
     /**
@@ -8426,17 +8426,17 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The country for which inventory validation is requested.
      */
-    country: string;
+    country?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Setinventoryverificationcontact {
     /**
@@ -8448,7 +8448,7 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The email of the inventory verification contact.
      */
@@ -8470,7 +8470,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Liasettings$Update {
     /**
@@ -8481,7 +8481,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get or update LIA settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -8491,7 +8491,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -10062,11 +10062,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10082,11 +10082,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the test order to modify.
      */
-    orderId: string;
+    orderId?: string;
   }
   export interface Params$Resource$Orders$Cancel {
     /**
@@ -10098,11 +10098,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order to cancel.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10118,11 +10118,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10138,7 +10138,7 @@ export namespace content_v2 {
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -10160,11 +10160,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
   }
   export interface Params$Resource$Orders$Getbymerchantorderid {
     /**
@@ -10176,11 +10176,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The merchant order id to be looked for.
      */
-    merchantOrderId: string;
+    merchantOrderId?: string;
   }
   export interface Params$Resource$Orders$Gettestordertemplate {
     /**
@@ -10192,11 +10192,11 @@ export namespace content_v2 {
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The name of the template to retrieve.
      */
-    templateName: string;
+    templateName?: string;
   }
   export interface Params$Resource$Orders$Instorerefundlineitem {
     /**
@@ -10208,11 +10208,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10243,7 +10243,7 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ordering of the returned list. The only supported value are
      * placedDate desc and placedDate asc for now, which returns orders sorted
@@ -10284,11 +10284,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order to refund.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10304,11 +10304,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10324,11 +10324,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10344,11 +10344,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10364,11 +10364,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10384,11 +10384,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10404,11 +10404,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10424,11 +10424,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10444,11 +10444,11 @@ export namespace content_v2 {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -10973,15 +10973,15 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * A store code that is unique per merchant.
      */
-    storeCode: string;
+    storeCode?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Get {
     /**
@@ -10992,15 +10992,15 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * A store code that is unique per merchant.
      */
-    storeCode: string;
+    storeCode?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Insert {
     /**
@@ -11015,11 +11015,11 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
     /**
      * Request body metadata
      */
@@ -11038,11 +11038,11 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
     /**
      * Request body metadata
      */
@@ -11057,11 +11057,11 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
   }
   export interface Params$Resource$Pos$Sale {
     /**
@@ -11076,11 +11076,11 @@ export namespace content_v2 {
     /**
      * The ID of the POS or inventory data provider.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the target merchant.
      */
-    targetMerchantId: string;
+    targetMerchantId?: string;
     /**
      * Request body metadata
      */
@@ -11468,11 +11468,11 @@ export namespace content_v2 {
      * The ID of the account that contains the product. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The REST id of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Get {
     /**
@@ -11484,11 +11484,11 @@ export namespace content_v2 {
      * The ID of the account that contains the product. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The REST id of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Insert {
     /**
@@ -11504,7 +11504,7 @@ export namespace content_v2 {
      * The ID of the account that contains the product. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -11531,7 +11531,7 @@ export namespace content_v2 {
      * The ID of the account that contains the products. This account cannot be
      * a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -11811,11 +11811,11 @@ export namespace content_v2 {
      * The ID of the account that contains the product. This account cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The REST id of the product.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Productstatuses$List {
     /**
@@ -11848,7 +11848,7 @@ export namespace content_v2 {
      * The ID of the account that contains the products. This account cannot be
      * a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -12414,13 +12414,13 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update shipping settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the managing account. If this parameter is not the same as
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$Getsupportedcarriers {
     /**
@@ -12431,7 +12431,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to retrieve the supported carriers.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$Getsupportedholidays {
     /**
@@ -12442,7 +12442,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to retrieve the supported holidays.
      */
-    merchantId: string;
+    merchantId?: string;
   }
   export interface Params$Resource$Shippingsettings$List {
     /**
@@ -12458,7 +12458,7 @@ export namespace content_v2 {
     /**
      * The ID of the managing account. This must be a multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The token returned by the previous request.
      */
@@ -12473,7 +12473,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update shipping settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -12483,7 +12483,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -12498,7 +12498,7 @@ export namespace content_v2 {
     /**
      * The ID of the account for which to get/update shipping settings.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Flag to run the request in dry-run mode.
      */
@@ -12508,7 +12508,7 @@ export namespace content_v2 {
      * accountId, then this account must be a multi-client account and accountId
      * must be the ID of a sub-account of this account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */

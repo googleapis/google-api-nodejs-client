@@ -10308,7 +10308,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Acceleratortypes$Get {
     /**
@@ -10319,15 +10319,15 @@ export namespace compute_beta {
     /**
      * Name of the accelerator type to return.
      */
-    acceleratorType: string;
+    acceleratorType?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Acceleratortypes$List {
     /**
@@ -10381,11 +10381,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
 
 
@@ -11394,7 +11394,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Addresses$Delete {
     /**
@@ -11405,15 +11405,15 @@ export namespace compute_beta {
     /**
      * Name of the address resource to delete.
      */
-    address: string;
+    address?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -11437,15 +11437,15 @@ export namespace compute_beta {
     /**
      * Name of the address resource to return.
      */
-    address: string;
+    address?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Addresses$Insert {
     /**
@@ -11456,11 +11456,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -11531,11 +11531,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Addresses$Setlabels {
     /**
@@ -11546,11 +11546,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -11567,7 +11567,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -11582,15 +11582,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -12738,7 +12738,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Autoscalers$Delete {
     /**
@@ -12749,11 +12749,11 @@ export namespace compute_beta {
     /**
      * Name of the autoscaler to delete.
      */
-    autoscaler: string;
+    autoscaler?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -12770,7 +12770,7 @@ export namespace compute_beta {
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Autoscalers$Get {
     /**
@@ -12781,15 +12781,15 @@ export namespace compute_beta {
     /**
      * Name of the autoscaler to return.
      */
-    autoscaler: string;
+    autoscaler?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Autoscalers$Insert {
     /**
@@ -12800,7 +12800,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -12817,7 +12817,7 @@ export namespace compute_beta {
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -12875,11 +12875,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Autoscalers$Patch {
     /**
@@ -12894,7 +12894,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -12911,7 +12911,7 @@ export namespace compute_beta {
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -12926,15 +12926,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -12953,7 +12953,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -12970,7 +12970,7 @@ export namespace compute_beta {
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -13935,11 +13935,11 @@ export namespace compute_beta {
      * Name of the BackendBucket resource to which the Signed URL Key should be
      * added. The name should conform to RFC1035.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -13967,11 +13967,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendBucket resource to delete.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -13996,15 +13996,15 @@ export namespace compute_beta {
      * Name of the BackendBucket resource to which the Signed URL Key should be
      * added. The name should conform to RFC1035.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * The name of the Signed URL Key to delete.
      */
-    keyName: string;
+    keyName?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -14028,11 +14028,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendBucket resource to return.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backendbuckets$Insert {
     /**
@@ -14043,7 +14043,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -14114,7 +14114,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backendbuckets$Patch {
     /**
@@ -14125,11 +14125,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendBucket resource to patch.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -14157,11 +14157,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendBucket resource to update.
      */
-    backendBucket: string;
+    backendBucket?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15695,11 +15695,11 @@ export namespace compute_beta {
      * Name of the BackendService resource to which the Signed URL Key should be
      * added. The name should conform to RFC1035.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15770,7 +15770,7 @@ export namespace compute_beta {
     /**
      * Name of the project scoping this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backendservices$Delete {
     /**
@@ -15781,11 +15781,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to delete.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15810,15 +15810,15 @@ export namespace compute_beta {
      * Name of the BackendService resource to which the Signed URL Key should be
      * added. The name should conform to RFC1035.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * The name of the Signed URL Key to delete.
      */
-    keyName: string;
+    keyName?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15842,11 +15842,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to return.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backendservices$Gethealth {
     /**
@@ -15858,11 +15858,11 @@ export namespace compute_beta {
      * Name of the BackendService resource to which the queried instance
      * belongs.
      */
-    backendService: string;
+    backendService?: string;
     /**
      *
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -15877,7 +15877,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15948,7 +15948,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backendservices$Patch {
     /**
@@ -15959,11 +15959,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to patch.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -15992,11 +15992,11 @@ export namespace compute_beta {
      * Name of the BackendService resource to which the security policy should
      * be set. The name should conform to RFC1035.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -16024,11 +16024,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -16043,11 +16043,11 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to update.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17348,7 +17348,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Disks$Createsnapshot {
     /**
@@ -17359,7 +17359,7 @@ export namespace compute_beta {
     /**
      * Name of the persistent disk to snapshot.
      */
-    disk: string;
+    disk?: string;
     /**
      *
      */
@@ -17367,7 +17367,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17384,7 +17384,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -17399,11 +17399,11 @@ export namespace compute_beta {
     /**
      * Name of the persistent disk to delete.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17420,7 +17420,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Disks$Get {
     /**
@@ -17431,15 +17431,15 @@ export namespace compute_beta {
     /**
      * Name of the persistent disk to return.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Disks$Insert {
     /**
@@ -17450,7 +17450,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17471,7 +17471,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -17529,11 +17529,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Disks$Resize {
     /**
@@ -17544,11 +17544,11 @@ export namespace compute_beta {
     /**
      * The name of the persistent disk.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17565,7 +17565,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -17580,7 +17580,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -17597,11 +17597,11 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -17616,15 +17616,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -18102,7 +18102,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Disktypes$Get {
     /**
@@ -18113,15 +18113,15 @@ export namespace compute_beta {
     /**
      * Name of the disk type to return.
      */
-    diskType: string;
+    diskType?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Disktypes$List {
     /**
@@ -18175,11 +18175,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
 
 
@@ -19113,11 +19113,11 @@ export namespace compute_beta {
     /**
      * Name of the firewall rule to delete.
      */
-    firewall: string;
+    firewall?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -19141,11 +19141,11 @@ export namespace compute_beta {
     /**
      * Name of the firewall rule to return.
      */
-    firewall: string;
+    firewall?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Firewalls$Insert {
     /**
@@ -19156,7 +19156,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -19227,7 +19227,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Firewalls$Patch {
     /**
@@ -19238,11 +19238,11 @@ export namespace compute_beta {
     /**
      * Name of the firewall rule to patch.
      */
-    firewall: string;
+    firewall?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -19270,11 +19270,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -19289,11 +19289,11 @@ export namespace compute_beta {
     /**
      * Name of the firewall rule to update.
      */
-    firewall: string;
+    firewall?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -20472,7 +20472,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Forwardingrules$Delete {
     /**
@@ -20483,15 +20483,15 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource to delete.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -20515,15 +20515,15 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource to return.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Forwardingrules$Insert {
     /**
@@ -20534,11 +20534,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -20609,11 +20609,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Forwardingrules$Setlabels {
     /**
@@ -20624,11 +20624,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -20645,7 +20645,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -20660,15 +20660,15 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource in which target is to be set.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -20696,15 +20696,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -21511,11 +21511,11 @@ export namespace compute_beta {
     /**
      * Name of the address resource to delete.
      */
-    address: string;
+    address?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -21539,11 +21539,11 @@ export namespace compute_beta {
     /**
      * Name of the address resource to return.
      */
-    address: string;
+    address?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globaladdresses$Insert {
     /**
@@ -21554,7 +21554,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -21625,7 +21625,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globaladdresses$Setlabels {
     /**
@@ -21636,11 +21636,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -21655,11 +21655,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -22601,11 +22601,11 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource to delete.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -22629,11 +22629,11 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource to return.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globalforwardingrules$Insert {
     /**
@@ -22644,7 +22644,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -22715,7 +22715,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globalforwardingrules$Setlabels {
     /**
@@ -22726,11 +22726,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -22745,11 +22745,11 @@ export namespace compute_beta {
     /**
      * Name of the ForwardingRule resource in which target is to be set.
      */
-    forwardingRule: string;
+    forwardingRule?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -22777,11 +22777,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -23377,7 +23377,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globaloperations$Delete {
     /**
@@ -23388,11 +23388,11 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to delete.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globaloperations$Get {
     /**
@@ -23403,11 +23403,11 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to return.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Globaloperations$List {
     /**
@@ -23461,7 +23461,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -24402,11 +24402,11 @@ export namespace compute_beta {
     /**
      * Name of the HealthCheck resource to delete.
      */
-    healthCheck: string;
+    healthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -24430,11 +24430,11 @@ export namespace compute_beta {
     /**
      * Name of the HealthCheck resource to return.
      */
-    healthCheck: string;
+    healthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Healthchecks$Insert {
     /**
@@ -24445,7 +24445,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -24516,7 +24516,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Healthchecks$Patch {
     /**
@@ -24527,11 +24527,11 @@ export namespace compute_beta {
     /**
      * Name of the HealthCheck resource to patch.
      */
-    healthCheck: string;
+    healthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -24559,11 +24559,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -24578,11 +24578,11 @@ export namespace compute_beta {
     /**
      * Name of the HealthCheck resource to update.
      */
-    healthCheck: string;
+    healthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -25547,11 +25547,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpHealthCheck resource to delete.
      */
-    httpHealthCheck: string;
+    httpHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -25575,11 +25575,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpHealthCheck resource to return.
      */
-    httpHealthCheck: string;
+    httpHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Httphealthchecks$Insert {
     /**
@@ -25590,7 +25590,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -25661,7 +25661,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Httphealthchecks$Patch {
     /**
@@ -25672,11 +25672,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpHealthCheck resource to patch.
      */
-    httpHealthCheck: string;
+    httpHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -25704,11 +25704,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -25723,11 +25723,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpHealthCheck resource to update.
      */
-    httpHealthCheck: string;
+    httpHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -26693,11 +26693,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpsHealthCheck resource to delete.
      */
-    httpsHealthCheck: string;
+    httpsHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -26721,11 +26721,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpsHealthCheck resource to return.
      */
-    httpsHealthCheck: string;
+    httpsHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Httpshealthchecks$Insert {
     /**
@@ -26736,7 +26736,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -26807,7 +26807,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Httpshealthchecks$Patch {
     /**
@@ -26818,11 +26818,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpsHealthCheck resource to patch.
      */
-    httpsHealthCheck: string;
+    httpsHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -26850,11 +26850,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -26869,11 +26869,11 @@ export namespace compute_beta {
     /**
      * Name of the HttpsHealthCheck resource to update.
      */
-    httpsHealthCheck: string;
+    httpsHealthCheck?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -27947,11 +27947,11 @@ export namespace compute_beta {
     /**
      * Name of the image resource to delete.
      */
-    image: string;
+    image?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -27975,11 +27975,11 @@ export namespace compute_beta {
     /**
      * Image name.
      */
-    image: string;
+    image?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -28007,11 +28007,11 @@ export namespace compute_beta {
     /**
      * Name of the image resource to return.
      */
-    image: string;
+    image?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Images$Getfromfamily {
     /**
@@ -28022,11 +28022,11 @@ export namespace compute_beta {
     /**
      * Name of the image family to search for.
      */
-    family: string;
+    family?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Images$Insert {
     /**
@@ -28041,7 +28041,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -28112,7 +28112,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Images$Setlabels {
     /**
@@ -28123,11 +28123,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -28142,11 +28142,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -30622,11 +30622,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30643,7 +30643,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -30701,7 +30701,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Delete {
     /**
@@ -30712,11 +30712,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group to delete.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30733,7 +30733,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
     /**
@@ -30744,11 +30744,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30765,7 +30765,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -30780,15 +30780,15 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Insert {
     /**
@@ -30799,7 +30799,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30816,7 +30816,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where you want to create the managed instance group.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -30874,11 +30874,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Listmanagedinstances {
     /**
@@ -30893,7 +30893,7 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      *
      */
@@ -30909,11 +30909,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Patch {
     /**
@@ -30924,11 +30924,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30945,7 +30945,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where you want to create the managed instance group.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -30960,11 +30960,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -30981,7 +30981,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -30996,11 +30996,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31020,11 +31020,11 @@ export namespace compute_beta {
      * instances to maintain the number of instances specified by this
      * parameter.
      */
-    size: number;
+    size?: number;
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Resizeadvanced {
     /**
@@ -31035,11 +31035,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31056,7 +31056,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -31071,11 +31071,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31092,7 +31092,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -31107,11 +31107,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31128,7 +31128,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -31143,11 +31143,11 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31164,7 +31164,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the managed instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -31179,15 +31179,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -31202,11 +31202,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -31223,7 +31223,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where you want to create the managed instance group.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -32647,11 +32647,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group where you are adding instances.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -32668,7 +32668,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -32726,7 +32726,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instancegroups$Delete {
     /**
@@ -32737,11 +32737,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group to delete.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -32758,7 +32758,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroups$Get {
     /**
@@ -32769,15 +32769,15 @@ export namespace compute_beta {
     /**
      * The name of the instance group.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroups$Insert {
     /**
@@ -32788,7 +32788,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -32805,7 +32805,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where you want to create the instance group.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -32863,11 +32863,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroups$Listinstances {
     /**
@@ -32898,7 +32898,7 @@ export namespace compute_beta {
      * The name of the instance group from which you want to generate a list of
      * included instances.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * The maximum number of results per page that should be returned. If the
      * number of available results is larger than maxResults, Compute Engine
@@ -32926,11 +32926,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -32946,11 +32946,11 @@ export namespace compute_beta {
      * The name of the instance group where the specified instances will be
      * removed.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -32967,7 +32967,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -32982,11 +32982,11 @@ export namespace compute_beta {
     /**
      * The name of the instance group where the named ports are updated.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -33003,7 +33003,7 @@ export namespace compute_beta {
     /**
      * The name of the zone where the instance group is located.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -33018,15 +33018,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -36950,15 +36950,15 @@ export namespace compute_beta {
     /**
      * The instance name for this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * The name of the network interface to add to this instance.
      */
-    networkInterface: string;
+    networkInterface?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -36975,7 +36975,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37033,7 +37033,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Attachdisk {
     /**
@@ -37049,11 +37049,11 @@ export namespace compute_beta {
     /**
      * The instance name for this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37070,7 +37070,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37085,11 +37085,11 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to delete.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37106,7 +37106,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Deleteaccessconfig {
     /**
@@ -37117,19 +37117,19 @@ export namespace compute_beta {
     /**
      * The name of the access config to delete.
      */
-    accessConfig: string;
+    accessConfig?: string;
     /**
      * The instance name for this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * The name of the network interface.
      */
-    networkInterface: string;
+    networkInterface?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37146,7 +37146,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Detachdisk {
     /**
@@ -37157,15 +37157,15 @@ export namespace compute_beta {
     /**
      * Disk device name to detach.
      */
-    deviceName: string;
+    deviceName?: string;
     /**
      * Instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37182,7 +37182,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Get {
     /**
@@ -37193,15 +37193,15 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to return.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Getserialportoutput {
     /**
@@ -37212,7 +37212,7 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Specifies which COM or serial port to retrieve data from.
      */
@@ -37220,7 +37220,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Returns output starting from a specific byte position. Use this to page
      * through output when the output is too large to return in a single
@@ -37232,7 +37232,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Insert {
     /**
@@ -37243,7 +37243,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37269,7 +37269,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37327,11 +37327,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Listreferrers {
     /**
@@ -37362,7 +37362,7 @@ export namespace compute_beta {
      * Name of the target instance scoping this request, or '-' if the request
      * should span over all instances in the container.
      */
-    instance: string;
+    instance?: string;
     /**
      * The maximum number of results per page that should be returned. If the
      * number of available results is larger than maxResults, Compute Engine
@@ -37390,11 +37390,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Reset {
     /**
@@ -37405,11 +37405,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37426,7 +37426,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Setdeletionprotection {
     /**
@@ -37441,7 +37441,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37458,11 +37458,11 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Setdiskautodelete {
     /**
@@ -37473,19 +37473,19 @@ export namespace compute_beta {
     /**
      * Whether to auto-delete the disk when the instance is deleted.
      */
-    autoDelete: boolean;
+    autoDelete?: boolean;
     /**
      * The device name of the disk to modify.
      */
-    deviceName: string;
+    deviceName?: string;
     /**
      * The instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37502,7 +37502,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Setlabels {
     /**
@@ -37513,11 +37513,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37534,7 +37534,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37549,11 +37549,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37570,7 +37570,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37585,11 +37585,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37606,7 +37606,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37621,11 +37621,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37642,7 +37642,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37657,11 +37657,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37678,7 +37678,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37693,11 +37693,11 @@ export namespace compute_beta {
     /**
      * Instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37714,7 +37714,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37729,11 +37729,11 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to start.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37750,7 +37750,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37765,11 +37765,11 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37786,7 +37786,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37801,15 +37801,15 @@ export namespace compute_beta {
     /**
      * Name of the instance scoping this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Start {
     /**
@@ -37820,11 +37820,11 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to start.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37841,7 +37841,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Startwithencryptionkey {
     /**
@@ -37852,11 +37852,11 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to start.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37873,7 +37873,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37888,11 +37888,11 @@ export namespace compute_beta {
     /**
      * Name of the instance resource to stop.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37909,7 +37909,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instances$Testiampermissions {
     /**
@@ -37920,15 +37920,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37943,15 +37943,15 @@ export namespace compute_beta {
     /**
      * The instance name for this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * The name of the network interface where the access config is attached.
      */
-    networkInterface: string;
+    networkInterface?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -37968,7 +37968,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -37983,15 +37983,15 @@ export namespace compute_beta {
     /**
      * The instance name for this request.
      */
-    instance: string;
+    instance?: string;
     /**
      * The name of the network interface to update.
      */
-    networkInterface: string;
+    networkInterface?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -38008,7 +38008,7 @@ export namespace compute_beta {
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -38693,11 +38693,11 @@ export namespace compute_beta {
     /**
      * The name of the instance template to delete.
      */
-    instanceTemplate: string;
+    instanceTemplate?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -38721,11 +38721,11 @@ export namespace compute_beta {
     /**
      * The name of the instance template.
      */
-    instanceTemplate: string;
+    instanceTemplate?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instancetemplates$Insert {
     /**
@@ -38736,7 +38736,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -38807,7 +38807,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instancetemplates$Testiampermissions {
     /**
@@ -38818,11 +38818,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -39873,7 +39873,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Interconnectattachments$Delete {
     /**
@@ -39884,15 +39884,15 @@ export namespace compute_beta {
     /**
      * Name of the interconnect attachment to delete.
      */
-    interconnectAttachment: string;
+    interconnectAttachment?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -39916,15 +39916,15 @@ export namespace compute_beta {
     /**
      * Name of the interconnect attachment to return.
      */
-    interconnectAttachment: string;
+    interconnectAttachment?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Interconnectattachments$Insert {
     /**
@@ -39935,11 +39935,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -40010,11 +40010,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Interconnectattachments$Patch {
     /**
@@ -40025,15 +40025,15 @@ export namespace compute_beta {
     /**
      * Name of the interconnect attachment to patch.
      */
-    interconnectAttachment: string;
+    interconnectAttachment?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -40061,11 +40061,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -40082,7 +40082,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -40097,15 +40097,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -40400,11 +40400,11 @@ export namespace compute_beta {
     /**
      * Name of the interconnect location to return.
      */
-    interconnectLocation: string;
+    interconnectLocation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Interconnectlocations$List {
     /**
@@ -40458,7 +40458,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -41338,11 +41338,11 @@ export namespace compute_beta {
     /**
      * Name of the interconnect to delete.
      */
-    interconnect: string;
+    interconnect?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -41366,11 +41366,11 @@ export namespace compute_beta {
     /**
      * Name of the interconnect to return.
      */
-    interconnect: string;
+    interconnect?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Interconnects$Insert {
     /**
@@ -41381,7 +41381,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -41452,7 +41452,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Interconnects$Patch {
     /**
@@ -41463,11 +41463,11 @@ export namespace compute_beta {
     /**
      * Name of the interconnect to update.
      */
-    interconnect: string;
+    interconnect?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -41495,11 +41495,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -41514,11 +41514,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -41613,11 +41613,11 @@ export namespace compute_beta {
     /**
      * Number corresponding to the License code resource to return.
      */
-    licenseCode: string;
+    licenseCode?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -41975,11 +41975,11 @@ export namespace compute_beta {
     /**
      * Name of the license resource to delete.
      */
-    license: string;
+    license?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -42003,11 +42003,11 @@ export namespace compute_beta {
     /**
      * Name of the License resource to return.
      */
-    license: string;
+    license?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Licenses$Insert {
     /**
@@ -42018,7 +42018,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -42089,7 +42089,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -42569,7 +42569,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Machinetypes$Get {
     /**
@@ -42580,15 +42580,15 @@ export namespace compute_beta {
     /**
      * Name of the machine type to return.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Machinetypes$List {
     /**
@@ -42642,11 +42642,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
 
 
@@ -43838,11 +43838,11 @@ export namespace compute_beta {
     /**
      * Name of the network resource to add peering to.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -43870,11 +43870,11 @@ export namespace compute_beta {
     /**
      * Name of the network to delete.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -43898,11 +43898,11 @@ export namespace compute_beta {
     /**
      * Name of the network to return.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Networks$Insert {
     /**
@@ -43913,7 +43913,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -43984,7 +43984,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Networks$Patch {
     /**
@@ -43995,11 +43995,11 @@ export namespace compute_beta {
     /**
      * Name of the network to update.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -44027,11 +44027,11 @@ export namespace compute_beta {
     /**
      * Name of the network resource to remove peering from.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -44059,11 +44059,11 @@ export namespace compute_beta {
     /**
      * Name of the network to be updated.
      */
-    network: string;
+    network?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -44087,11 +44087,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -45719,7 +45719,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45743,7 +45743,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45771,7 +45771,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45795,7 +45795,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45823,7 +45823,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Projects$Getxpnhost {
     /**
@@ -45834,7 +45834,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Projects$Getxpnresources {
     /**
@@ -45861,7 +45861,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Projects$Listxpnhosts {
     /**
@@ -45888,7 +45888,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -45903,7 +45903,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45931,7 +45931,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45959,7 +45959,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -45987,7 +45987,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -46015,7 +46015,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -47000,15 +47000,15 @@ export namespace compute_beta {
     /**
      * Name of the autoscaler to delete.
      */
-    autoscaler: string;
+    autoscaler?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -47032,15 +47032,15 @@ export namespace compute_beta {
     /**
      * Name of the autoscaler to return.
      */
-    autoscaler: string;
+    autoscaler?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionautoscalers$Insert {
     /**
@@ -47051,11 +47051,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -47126,11 +47126,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionautoscalers$Patch {
     /**
@@ -47145,11 +47145,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -47177,15 +47177,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -47204,11 +47204,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48348,15 +48348,15 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to delete.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48380,15 +48380,15 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to return.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionbackendservices$Gethealth {
     /**
@@ -48399,15 +48399,15 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource for which to get health.
      */
-    backendService: string;
+    backendService?: string;
     /**
      *
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -48422,11 +48422,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48497,11 +48497,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionbackendservices$Patch {
     /**
@@ -48512,15 +48512,15 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to patch.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -48548,15 +48548,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -48571,15 +48571,15 @@ export namespace compute_beta {
     /**
      * Name of the BackendService resource to update.
      */
-    backendService: string;
+    backendService?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49209,7 +49209,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Regioncommitments$Get {
     /**
@@ -49220,15 +49220,15 @@ export namespace compute_beta {
     /**
      * Name of the commitment to return.
      */
-    commitment: string;
+    commitment?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioncommitments$Insert {
     /**
@@ -49239,11 +49239,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49314,11 +49314,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
 
 
@@ -49920,15 +49920,15 @@ export namespace compute_beta {
     /**
      * Name of the regional persistent disk to snapshot.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49956,15 +49956,15 @@ export namespace compute_beta {
     /**
      * Name of the regional persistent disk to delete.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -49988,15 +49988,15 @@ export namespace compute_beta {
     /**
      * Name of the regional persistent disk to return.
      */
-    disk: string;
+    disk?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regiondisks$Insert {
     /**
@@ -50007,11 +50007,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -50086,11 +50086,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regiondisks$Resize {
     /**
@@ -50101,15 +50101,15 @@ export namespace compute_beta {
     /**
      * Name of the regional persistent disk.
      */
-    disk: string;
+    disk?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -50137,11 +50137,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -50158,7 +50158,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -50173,15 +50173,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -50352,15 +50352,15 @@ export namespace compute_beta {
     /**
      * Name of the disk type to return.
      */
-    diskType: string;
+    diskType?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regiondisktypes$List {
     /**
@@ -50414,11 +50414,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
 
 
@@ -52585,15 +52585,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52621,15 +52621,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group to delete.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52653,15 +52653,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52689,15 +52689,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group to return.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Insert {
     /**
@@ -52708,11 +52708,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52783,11 +52783,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Listmanagedinstances {
     /**
@@ -52802,7 +52802,7 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      *
      */
@@ -52818,11 +52818,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Patch {
     /**
@@ -52833,15 +52833,15 @@ export namespace compute_beta {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52869,15 +52869,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52905,15 +52905,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52930,7 +52930,7 @@ export namespace compute_beta {
     /**
      * Number of instances that should exist in this instance group manager.
      */
-    size: number;
+    size?: number;
   }
   export interface Params$Resource$Regioninstancegroupmanagers$Setautohealingpolicies {
     /**
@@ -52941,15 +52941,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -52977,15 +52977,15 @@ export namespace compute_beta {
     /**
      * The name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -53013,15 +53013,15 @@ export namespace compute_beta {
     /**
      * Name of the managed instance group.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -53049,15 +53049,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -53072,15 +53072,15 @@ export namespace compute_beta {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -53833,15 +53833,15 @@ export namespace compute_beta {
     /**
      * Name of the instance group resource to return.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioninstancegroups$List {
     /**
@@ -53895,11 +53895,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regioninstancegroups$Listinstances {
     /**
@@ -53930,7 +53930,7 @@ export namespace compute_beta {
      * Name of the regional instance group for which we want to list the
      * instances.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * The maximum number of results per page that should be returned. If the
      * number of available results is larger than maxResults, Compute Engine
@@ -53958,11 +53958,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -53978,15 +53978,15 @@ export namespace compute_beta {
      * The name of the regional instance group where the named ports are
      * updated.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -54014,15 +54014,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -54446,15 +54446,15 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to delete.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionoperations$Get {
     /**
@@ -54465,15 +54465,15 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to return.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionoperations$List {
     /**
@@ -54527,11 +54527,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
 
 
@@ -54812,11 +54812,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region resource to return.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regions$List {
     /**
@@ -54870,7 +54870,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -56284,7 +56284,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Routers$Delete {
     /**
@@ -56295,11 +56295,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -56316,7 +56316,7 @@ export namespace compute_beta {
     /**
      * Name of the Router resource to delete.
      */
-    router: string;
+    router?: string;
   }
   export interface Params$Resource$Routers$Get {
     /**
@@ -56327,15 +56327,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the Router resource to return.
      */
-    router: string;
+    router?: string;
   }
   export interface Params$Resource$Routers$Getrouterstatus {
     /**
@@ -56346,15 +56346,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the Router resource to query.
      */
-    router: string;
+    router?: string;
   }
   export interface Params$Resource$Routers$Insert {
     /**
@@ -56365,11 +56365,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -56440,11 +56440,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Routers$Patch {
     /**
@@ -56455,11 +56455,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -56476,7 +56476,7 @@ export namespace compute_beta {
     /**
      * Name of the Router resource to patch.
      */
-    router: string;
+    router?: string;
     /**
      * Request body metadata
      */
@@ -56491,15 +56491,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the Router resource to query.
      */
-    router: string;
+    router?: string;
     /**
      * Request body metadata
      */
@@ -56514,15 +56514,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -56537,11 +56537,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -56558,7 +56558,7 @@ export namespace compute_beta {
     /**
      * Name of the Router resource to update.
      */
-    router: string;
+    router?: string;
     /**
      * Request body metadata
      */
@@ -57225,7 +57225,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -57242,7 +57242,7 @@ export namespace compute_beta {
     /**
      * Name of the Route resource to delete.
      */
-    route: string;
+    route?: string;
   }
   export interface Params$Resource$Routes$Get {
     /**
@@ -57253,11 +57253,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the Route resource to return.
      */
-    route: string;
+    route?: string;
   }
   export interface Params$Resource$Routes$Insert {
     /**
@@ -57268,7 +57268,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -57339,7 +57339,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Routes$Testiampermissions {
     /**
@@ -57350,11 +57350,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -58452,11 +58452,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the security policy to update.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
     /**
      * Request body metadata
      */
@@ -58471,7 +58471,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -58488,7 +58488,7 @@ export namespace compute_beta {
     /**
      * Name of the security policy to delete.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
   }
   export interface Params$Resource$Securitypolicies$Get {
     /**
@@ -58499,11 +58499,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the security policy to get.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
   }
   export interface Params$Resource$Securitypolicies$Getrule {
     /**
@@ -58518,11 +58518,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the security policy to which the queried rule belongs.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
   }
   export interface Params$Resource$Securitypolicies$Insert {
     /**
@@ -58533,7 +58533,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -58604,7 +58604,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Securitypolicies$Patch {
     /**
@@ -58615,7 +58615,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -58632,7 +58632,7 @@ export namespace compute_beta {
     /**
      * Name of the security policy to update.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
     /**
      * Request body metadata
      */
@@ -58651,11 +58651,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the security policy to update.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
     /**
      * Request body metadata
      */
@@ -58674,11 +58674,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the security policy to update.
      */
-    securityPolicy: string;
+    securityPolicy?: string;
   }
   export interface Params$Resource$Securitypolicies$Testiampermissions {
     /**
@@ -58689,11 +58689,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -59374,7 +59374,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -59391,7 +59391,7 @@ export namespace compute_beta {
     /**
      * Name of the Snapshot resource to delete.
      */
-    snapshot: string;
+    snapshot?: string;
   }
   export interface Params$Resource$Snapshots$Get {
     /**
@@ -59402,11 +59402,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the Snapshot resource to return.
      */
-    snapshot: string;
+    snapshot?: string;
   }
   export interface Params$Resource$Snapshots$List {
     /**
@@ -59460,7 +59460,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Snapshots$Setlabels {
     /**
@@ -59471,11 +59471,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -59490,11 +59490,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -60173,7 +60173,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -60190,7 +60190,7 @@ export namespace compute_beta {
     /**
      * Name of the SslCertificate resource to delete.
      */
-    sslCertificate: string;
+    sslCertificate?: string;
   }
   export interface Params$Resource$Sslcertificates$Get {
     /**
@@ -60201,11 +60201,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the SslCertificate resource to return.
      */
-    sslCertificate: string;
+    sslCertificate?: string;
   }
   export interface Params$Resource$Sslcertificates$Insert {
     /**
@@ -60216,7 +60216,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -60287,7 +60287,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Sslcertificates$Testiampermissions {
     /**
@@ -60298,11 +60298,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -60840,7 +60840,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -60858,7 +60858,7 @@ export namespace compute_beta {
      * Name of the SSL policy to delete. The name must be 1-63 characters long,
      * and comply with RFC1035.
      */
-    sslPolicy: string;
+    sslPolicy?: string;
   }
   export interface Params$Resource$Sslpolicies$Get {
     /**
@@ -60869,12 +60869,12 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the SSL policy to update. The name must be 1-63 characters long,
      * and comply with RFC1035.
      */
-    sslPolicy: string;
+    sslPolicy?: string;
   }
   export interface Params$Resource$Sslpolicies$Insert {
     /**
@@ -60885,7 +60885,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -60956,7 +60956,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Sslpolicies$Listavailablefeatures {
     /**
@@ -61010,7 +61010,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Sslpolicies$Patch {
     /**
@@ -61021,7 +61021,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -61039,7 +61039,7 @@ export namespace compute_beta {
      * Name of the SSL policy to update. The name must be 1-63 characters long,
      * and comply with RFC1035.
      */
-    sslPolicy: string;
+    sslPolicy?: string;
     /**
      * Request body metadata
      */
@@ -61054,11 +61054,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -62695,7 +62695,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Subnetworks$Delete {
     /**
@@ -62706,11 +62706,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -62727,7 +62727,7 @@ export namespace compute_beta {
     /**
      * Name of the Subnetwork resource to delete.
      */
-    subnetwork: string;
+    subnetwork?: string;
   }
   export interface Params$Resource$Subnetworks$Expandipcidrrange {
     /**
@@ -62738,11 +62738,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -62759,7 +62759,7 @@ export namespace compute_beta {
     /**
      * Name of the Subnetwork resource to update.
      */
-    subnetwork: string;
+    subnetwork?: string;
     /**
      * Request body metadata
      */
@@ -62774,15 +62774,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the Subnetwork resource to return.
      */
-    subnetwork: string;
+    subnetwork?: string;
   }
   export interface Params$Resource$Subnetworks$Getiampolicy {
     /**
@@ -62793,15 +62793,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Subnetworks$Insert {
     /**
@@ -62812,11 +62812,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -62887,11 +62887,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Subnetworks$Listusable {
     /**
@@ -62945,7 +62945,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Subnetworks$Patch {
     /**
@@ -62956,11 +62956,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -62977,7 +62977,7 @@ export namespace compute_beta {
     /**
      * Name of the Subnetwork resource to patch.
      */
-    subnetwork: string;
+    subnetwork?: string;
     /**
      * Request body metadata
      */
@@ -62992,15 +62992,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -63015,11 +63015,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -63036,7 +63036,7 @@ export namespace compute_beta {
     /**
      * Name of the Subnetwork resource.
      */
-    subnetwork: string;
+    subnetwork?: string;
     /**
      * Request body metadata
      */
@@ -63051,15 +63051,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -63871,7 +63871,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -63888,7 +63888,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetHttpProxy resource to delete.
      */
-    targetHttpProxy: string;
+    targetHttpProxy?: string;
   }
   export interface Params$Resource$Targethttpproxies$Get {
     /**
@@ -63899,11 +63899,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the TargetHttpProxy resource to return.
      */
-    targetHttpProxy: string;
+    targetHttpProxy?: string;
   }
   export interface Params$Resource$Targethttpproxies$Insert {
     /**
@@ -63914,7 +63914,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -63985,7 +63985,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targethttpproxies$Seturlmap {
     /**
@@ -63996,7 +63996,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -64013,7 +64013,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetHttpProxy to set a URL map for.
      */
-    targetHttpProxy: string;
+    targetHttpProxy?: string;
     /**
      * Request body metadata
      */
@@ -64028,11 +64028,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -65127,7 +65127,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65144,7 +65144,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetHttpsProxy resource to delete.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
   }
   export interface Params$Resource$Targethttpsproxies$Get {
     /**
@@ -65155,11 +65155,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the TargetHttpsProxy resource to return.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
   }
   export interface Params$Resource$Targethttpsproxies$Insert {
     /**
@@ -65170,7 +65170,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65241,7 +65241,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targethttpsproxies$Setquicoverride {
     /**
@@ -65252,7 +65252,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65270,7 +65270,7 @@ export namespace compute_beta {
      * Name of the TargetHttpsProxy resource to set the QUIC override policy
      * for. The name should conform to RFC1035.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
     /**
      * Request body metadata
      */
@@ -65285,7 +65285,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65303,7 +65303,7 @@ export namespace compute_beta {
      * Name of the TargetHttpsProxy resource to set an SslCertificates resource
      * for.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
     /**
      * Request body metadata
      */
@@ -65318,7 +65318,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65336,7 +65336,7 @@ export namespace compute_beta {
      * Name of the TargetHttpsProxy resource whose SSL policy is to be set. The
      * name must be 1-63 characters long, and comply with RFC1035.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
     /**
      * Request body metadata
      */
@@ -65351,7 +65351,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -65368,7 +65368,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetHttpsProxy resource whose URL map is to be set.
      */
-    targetHttpsProxy: string;
+    targetHttpsProxy?: string;
     /**
      * Request body metadata
      */
@@ -65383,11 +65383,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -66279,7 +66279,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targetinstances$Delete {
     /**
@@ -66290,7 +66290,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -66307,11 +66307,11 @@ export namespace compute_beta {
     /**
      * Name of the TargetInstance resource to delete.
      */
-    targetInstance: string;
+    targetInstance?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Targetinstances$Get {
     /**
@@ -66322,15 +66322,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the TargetInstance resource to return.
      */
-    targetInstance: string;
+    targetInstance?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Targetinstances$Insert {
     /**
@@ -66341,7 +66341,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -66358,7 +66358,7 @@ export namespace compute_beta {
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -66416,11 +66416,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Targetinstances$Testiampermissions {
     /**
@@ -66431,15 +66431,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * The name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -68094,11 +68094,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68115,7 +68115,7 @@ export namespace compute_beta {
     /**
      * Name of the target pool to add a health check to.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68130,11 +68130,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68151,7 +68151,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetPool resource to add instances to.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68209,7 +68209,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targetpools$Delete {
     /**
@@ -68220,11 +68220,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68241,7 +68241,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetPool resource to delete.
      */
-    targetPool: string;
+    targetPool?: string;
   }
   export interface Params$Resource$Targetpools$Get {
     /**
@@ -68252,15 +68252,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the TargetPool resource to return.
      */
-    targetPool: string;
+    targetPool?: string;
   }
   export interface Params$Resource$Targetpools$Gethealth {
     /**
@@ -68271,15 +68271,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the TargetPool resource to which the queried instance belongs.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68294,11 +68294,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68369,11 +68369,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Targetpools$Removehealthcheck {
     /**
@@ -68384,11 +68384,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68405,7 +68405,7 @@ export namespace compute_beta {
     /**
      * Name of the target pool to remove health checks from.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68420,11 +68420,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68441,7 +68441,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetPool resource to remove instances from.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68460,11 +68460,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region scoping this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -68481,7 +68481,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetPool resource to set a backup pool for.
      */
-    targetPool: string;
+    targetPool?: string;
     /**
      * Request body metadata
      */
@@ -68496,15 +68496,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -69651,7 +69651,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69668,7 +69668,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetSslProxy resource to delete.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
   }
   export interface Params$Resource$Targetsslproxies$Get {
     /**
@@ -69679,11 +69679,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the TargetSslProxy resource to return.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
   }
   export interface Params$Resource$Targetsslproxies$Insert {
     /**
@@ -69694,7 +69694,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69765,7 +69765,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targetsslproxies$Setbackendservice {
     /**
@@ -69776,7 +69776,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69794,7 +69794,7 @@ export namespace compute_beta {
      * Name of the TargetSslProxy resource whose BackendService resource is to
      * be set.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
     /**
      * Request body metadata
      */
@@ -69809,7 +69809,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69826,7 +69826,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetSslProxy resource whose ProxyHeader is to be set.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
     /**
      * Request body metadata
      */
@@ -69841,7 +69841,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69859,7 +69859,7 @@ export namespace compute_beta {
      * Name of the TargetSslProxy resource whose SslCertificate resource is to
      * be set.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
     /**
      * Request body metadata
      */
@@ -69874,7 +69874,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -69892,7 +69892,7 @@ export namespace compute_beta {
      * Name of the TargetSslProxy resource whose SSL policy is to be set. The
      * name must be 1-63 characters long, and comply with RFC1035.
      */
-    targetSslProxy: string;
+    targetSslProxy?: string;
     /**
      * Request body metadata
      */
@@ -69907,11 +69907,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -70721,7 +70721,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -70738,7 +70738,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetTcpProxy resource to delete.
      */
-    targetTcpProxy: string;
+    targetTcpProxy?: string;
   }
   export interface Params$Resource$Targettcpproxies$Get {
     /**
@@ -70749,11 +70749,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the TargetTcpProxy resource to return.
      */
-    targetTcpProxy: string;
+    targetTcpProxy?: string;
   }
   export interface Params$Resource$Targettcpproxies$Insert {
     /**
@@ -70764,7 +70764,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -70835,7 +70835,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targettcpproxies$Setbackendservice {
     /**
@@ -70846,7 +70846,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -70864,7 +70864,7 @@ export namespace compute_beta {
      * Name of the TargetTcpProxy resource whose BackendService resource is to
      * be set.
      */
-    targetTcpProxy: string;
+    targetTcpProxy?: string;
     /**
      * Request body metadata
      */
@@ -70879,7 +70879,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -70896,7 +70896,7 @@ export namespace compute_beta {
     /**
      * Name of the TargetTcpProxy resource whose ProxyHeader is to be set.
      */
-    targetTcpProxy: string;
+    targetTcpProxy?: string;
     /**
      * Request body metadata
      */
@@ -71863,7 +71863,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Targetvpngateways$Delete {
     /**
@@ -71874,11 +71874,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -71895,7 +71895,7 @@ export namespace compute_beta {
     /**
      * Name of the target VPN gateway to delete.
      */
-    targetVpnGateway: string;
+    targetVpnGateway?: string;
   }
   export interface Params$Resource$Targetvpngateways$Get {
     /**
@@ -71906,15 +71906,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the target VPN gateway to return.
      */
-    targetVpnGateway: string;
+    targetVpnGateway?: string;
   }
   export interface Params$Resource$Targetvpngateways$Insert {
     /**
@@ -71925,11 +71925,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -72000,11 +72000,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Targetvpngateways$Setlabels {
     /**
@@ -72015,11 +72015,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -72036,7 +72036,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -72051,15 +72051,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -73258,7 +73258,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -73275,7 +73275,7 @@ export namespace compute_beta {
     /**
      * Name of the UrlMap resource to delete.
      */
-    urlMap: string;
+    urlMap?: string;
   }
   export interface Params$Resource$Urlmaps$Get {
     /**
@@ -73286,11 +73286,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the UrlMap resource to return.
      */
-    urlMap: string;
+    urlMap?: string;
   }
   export interface Params$Resource$Urlmaps$Insert {
     /**
@@ -73301,7 +73301,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -73329,7 +73329,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -73346,7 +73346,7 @@ export namespace compute_beta {
     /**
      * Name of the UrlMap scoping this request.
      */
-    urlMap: string;
+    urlMap?: string;
     /**
      * Request body metadata
      */
@@ -73404,7 +73404,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Urlmaps$Patch {
     /**
@@ -73415,7 +73415,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -73432,7 +73432,7 @@ export namespace compute_beta {
     /**
      * Name of the UrlMap resource to patch.
      */
-    urlMap: string;
+    urlMap?: string;
     /**
      * Request body metadata
      */
@@ -73447,11 +73447,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -73466,7 +73466,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -73483,7 +73483,7 @@ export namespace compute_beta {
     /**
      * Name of the UrlMap resource to update.
      */
-    urlMap: string;
+    urlMap?: string;
     /**
      * Request body metadata
      */
@@ -73498,11 +73498,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the UrlMap resource to be validated as.
      */
-    urlMap: string;
+    urlMap?: string;
     /**
      * Request body metadata
      */
@@ -74454,7 +74454,7 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Vpntunnels$Delete {
     /**
@@ -74465,11 +74465,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -74486,7 +74486,7 @@ export namespace compute_beta {
     /**
      * Name of the VpnTunnel resource to delete.
      */
-    vpnTunnel: string;
+    vpnTunnel?: string;
   }
   export interface Params$Resource$Vpntunnels$Get {
     /**
@@ -74497,15 +74497,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the VpnTunnel resource to return.
      */
-    vpnTunnel: string;
+    vpnTunnel?: string;
   }
   export interface Params$Resource$Vpntunnels$Insert {
     /**
@@ -74516,11 +74516,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -74591,11 +74591,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the region for this request.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Vpntunnels$Setlabels {
     /**
@@ -74606,11 +74606,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * An optional request ID to identify requests. Specify a unique request ID
      * so that if you must retry your request, the server will know to ignore
@@ -74627,7 +74627,7 @@ export namespace compute_beta {
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -74642,15 +74642,15 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the region for this request.
      */
-    region: string;
+    region?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -75072,15 +75072,15 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to delete.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneoperations$Get {
     /**
@@ -75091,15 +75091,15 @@ export namespace compute_beta {
     /**
      * Name of the Operations resource to return.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone for this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneoperations$List {
     /**
@@ -75153,11 +75153,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone for request.
      */
-    zone: string;
+    zone?: string;
   }
 
 
@@ -75436,11 +75436,11 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone resource to return.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zones$List {
     /**
@@ -75494,6 +75494,6 @@ export namespace compute_beta {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 }

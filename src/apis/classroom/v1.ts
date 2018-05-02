@@ -1743,7 +1743,7 @@ export namespace classroom_v1 {
      * Identifier of the course to delete. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Get {
     /**
@@ -1755,7 +1755,7 @@ export namespace classroom_v1 {
      * Identifier of the course to return. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$List {
     /**
@@ -1805,7 +1805,7 @@ export namespace classroom_v1 {
      * Identifier of the course to update. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    id: string;
+    id?: string;
     /**
      * Mask that identifies which fields on the course to update. This field is
      * required to do an update. The update will fail if invalid fields are
@@ -1832,7 +1832,7 @@ export namespace classroom_v1 {
      * Identifier of the course to update. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -2082,7 +2082,7 @@ export namespace classroom_v1 {
      * Identifier of the course to alias. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Request body metadata
      */
@@ -2097,12 +2097,12 @@ export namespace classroom_v1 {
     /**
      * Alias to delete. This may not be the Classroom-assigned identifier.
      */
-    alias: string;
+    alias?: string;
     /**
      * Identifier of the course whose alias should be deleted. This identifier
      * can be either the Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
   }
   export interface Params$Resource$Courses$Aliases$List {
     /**
@@ -2114,7 +2114,7 @@ export namespace classroom_v1 {
      * The identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Maximum number of items to return. Zero or unspecified indicates that the
      * server may assign a maximum.  The server may return fewer than the
@@ -2603,7 +2603,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Request body metadata
      */
@@ -2619,12 +2619,12 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the announcement to delete. This identifier is a
      * Classroom-assigned identifier.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Announcements$Get {
     /**
@@ -2636,11 +2636,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the announcement.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Announcements$List {
     /**
@@ -2657,7 +2657,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Optional sort ordering for results. A comma-separated list of fields with
      * an optional sort direction keyword. Supported field is `updateTime`.
@@ -2689,11 +2689,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the announcement.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -2709,11 +2709,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the announcement.
      */
-    id: string;
+    id?: string;
     /**
      * Mask that identifies which fields on the announcement to update. This
      * field is required to do an update. The update fails if invalid fields are
@@ -3215,7 +3215,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Request body metadata
      */
@@ -3231,12 +3231,12 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work to delete. This identifier is a
      * Classroom-assigned identifier.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Coursework$Get {
     /**
@@ -3248,11 +3248,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Coursework$List {
     /**
@@ -3264,7 +3264,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Restriction on the work status to return. Only courseWork that matches is
      * returned. If unspecified, items with a work status of `PUBLISHED` is
@@ -3302,11 +3302,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the coursework.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -3322,11 +3322,11 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    id: string;
+    id?: string;
     /**
      * Mask that identifies which fields on the course work to update. This
      * field is required to do an update. The update fails if invalid fields are
@@ -3964,15 +3964,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Courses$Coursework$Studentsubmissions$List {
     /**
@@ -3984,13 +3984,13 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the student work to request. This may be set to the string
      * literal `"-"` to request student work for all course work in the
      * specified course.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Requested lateness value. If specified, returned student submissions are
      * restricted by the requested value. If unspecified, submissions are
@@ -4032,15 +4032,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -4056,15 +4056,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
     /**
      * Mask that identifies which fields on the student submission to update.
      * This field is required to do an update. The update fails if invalid
@@ -4087,15 +4087,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -4111,15 +4111,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -4135,15 +4135,15 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the course work.
      */
-    courseWorkId: string;
+    courseWorkId?: string;
     /**
      * Identifier of the student submission.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -4461,7 +4461,7 @@ export namespace classroom_v1 {
      * Identifier of the course to create the student in. This identifier can be
      * either the Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Enrollment code of the course to create the student in. This code is
      * required if userId corresponds to the requesting user; it may be omitted
@@ -4484,13 +4484,13 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the student to delete. The identifier can be one of the
      * following:  * the numeric identifier for the user * the email address of
      * the user * the string literal `"me"`, indicating the requesting user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Courses$Students$Get {
     /**
@@ -4502,13 +4502,13 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the student to return. The identifier can be one of the
      * following:  * the numeric identifier for the user * the email address of
      * the user * the string literal `"me"`, indicating the requesting user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Courses$Students$List {
     /**
@@ -4520,7 +4520,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Maximum number of items to return. Zero means no maximum.  The server may
      * return fewer than the specified number of results.
@@ -4844,7 +4844,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Request body metadata
      */
@@ -4860,13 +4860,13 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the teacher to delete. The identifier can be one of the
      * following:  * the numeric identifier for the user * the email address of
      * the user * the string literal `"me"`, indicating the requesting user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Courses$Teachers$Get {
     /**
@@ -4878,13 +4878,13 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Identifier of the teacher to return. The identifier can be one of the
      * following:  * the numeric identifier for the user * the email address of
      * the user * the string literal `"me"`, indicating the requesting user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Courses$Teachers$List {
     /**
@@ -4896,7 +4896,7 @@ export namespace classroom_v1 {
      * Identifier of the course. This identifier can be either the
      * Classroom-assigned identifier or an alias.
      */
-    courseId: string;
+    courseId?: string;
     /**
      * Maximum number of items to return. Zero means no maximum.  The server may
      * return fewer than the specified number of results.
@@ -5287,7 +5287,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the invitation to accept.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Invitations$Create {
     /**
@@ -5309,7 +5309,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the invitation to delete.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Invitations$Get {
     /**
@@ -5320,7 +5320,7 @@ export namespace classroom_v1 {
     /**
      * Identifier of the invitation to return.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Invitations$List {
     /**
@@ -5539,7 +5539,7 @@ export namespace classroom_v1 {
     /**
      * The `registration_id` of the `Registration` to be deleted.
      */
-    registrationId: string;
+    registrationId?: string;
   }
 
 
@@ -5636,7 +5636,7 @@ export namespace classroom_v1 {
      * following:  * the numeric identifier for the user * the email address of
      * the user * the string literal `"me"`, indicating the requesting user
      */
-    userId: string;
+    userId?: string;
   }
 
   export class Resource$Userprofiles$Guardianinvitations {
@@ -6009,7 +6009,7 @@ export namespace classroom_v1 {
     /**
      * ID of the student (in standard format)
      */
-    studentId: string;
+    studentId?: string;
     /**
      * Request body metadata
      */
@@ -6024,11 +6024,11 @@ export namespace classroom_v1 {
     /**
      * The `id` field of the `GuardianInvitation` being requested.
      */
-    invitationId: string;
+    invitationId?: string;
     /**
      * The ID of the student whose guardian invitation is being requested.
      */
-    studentId: string;
+    studentId?: string;
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$List {
     /**
@@ -6067,7 +6067,7 @@ export namespace classroom_v1 {
      * that results should be returned for   all students that the requesting
      * user is permitted to view guardian   invitations.
      */
-    studentId: string;
+    studentId?: string;
   }
   export interface Params$Resource$Userprofiles$Guardianinvitations$Patch {
     /**
@@ -6078,11 +6078,11 @@ export namespace classroom_v1 {
     /**
      * The `id` field of the `GuardianInvitation` to be modified.
      */
-    invitationId: string;
+    invitationId?: string;
     /**
      * The ID of the student whose guardian invitation is to be modified.
      */
-    studentId: string;
+    studentId?: string;
     /**
      * Mask that identifies which fields on the course to update. This field is
      * required to do an update. The update will fail if invalid fields are
@@ -6358,13 +6358,13 @@ export namespace classroom_v1 {
     /**
      * The `id` field from a `Guardian`.
      */
-    guardianId: string;
+    guardianId?: string;
     /**
      * The student whose guardian is to be deleted. One of the following:  * the
      * numeric identifier for the user * the email address of the user * the
      * string literal `"me"`, indicating the requesting user
      */
-    studentId: string;
+    studentId?: string;
   }
   export interface Params$Resource$Userprofiles$Guardians$Get {
     /**
@@ -6375,13 +6375,13 @@ export namespace classroom_v1 {
     /**
      * The `id` field from a `Guardian`.
      */
-    guardianId: string;
+    guardianId?: string;
     /**
      * The student whose guardian is being requested. One of the following:  *
      * the numeric identifier for the user * the email address of the user * the
      * string literal `"me"`, indicating the requesting user
      */
-    studentId: string;
+    studentId?: string;
   }
   export interface Params$Resource$Userprofiles$Guardians$List {
     /**
@@ -6415,6 +6415,6 @@ export namespace classroom_v1 {
      * that results should be returned for   all students that the requesting
      * user has access to view.
      */
-    studentId: string;
+    studentId?: string;
   }
 }

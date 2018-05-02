@@ -1279,7 +1279,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer that manages the configuration. An API resource
      * name in the format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1296,7 +1296,7 @@ export namespace androiddeviceprovisioning_v1 {
      * `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. If the
      * configuration is applied to any devices, the API call fails.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Customers$Configurations$Get {
     /**
@@ -1308,7 +1308,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The configuration to get. An API resource name in the format
      * `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Customers$Configurations$List {
     /**
@@ -1320,7 +1320,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer that manages the listed configurations. An API
      * resource name in the format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Customers$Configurations$Patch {
     /**
@@ -1333,7 +1333,7 @@ export namespace androiddeviceprovisioning_v1 {
      * `customers/[CUSTOMER_ID]/configurations/[CONFIGURATION_ID]`. Assigned by
      * the server.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The field mask applied to the target `Configuration` before
      * updating the fields. To learn more about using field masks, read
@@ -1718,7 +1718,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer managing the device. An API resource name in the
      * format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1734,7 +1734,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The device to get. An API resource name in the format
      * `customers/[CUSTOMER_ID]/devices/[DEVICE_ID]`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Customers$Devices$List {
     /**
@@ -1755,7 +1755,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer managing the devices. An API resource name in the
      * format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Customers$Devices$Removeconfiguration {
     /**
@@ -1767,7 +1767,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer managing the device in the format
      * `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1783,7 +1783,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer managing the device. An API resource name in the
      * format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1882,7 +1882,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The customer that can use the DPCs in configurations. An API
      * resource name in the format `customers/[CUSTOMER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1972,7 +1972,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -2157,7 +2157,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The parent resource ID in the format `partners/[PARTNER_ID]`
      * that identifies the reseller.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2172,7 +2172,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
   }
 
 
@@ -2847,7 +2847,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2862,7 +2862,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2877,7 +2877,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2892,7 +2892,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2908,7 +2908,7 @@ export namespace androiddeviceprovisioning_v1 {
      * Required. The device API resource name in the format
      * `partners/[PARTNER_ID]/devices/[DEVICE_ID]`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Partners$Devices$Metadata {
     /**
@@ -2919,12 +2919,12 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * Required. The owner of the newly set metadata. Set this to the partner
      * ID.
      */
-    metadataOwnerId: string;
+    metadataOwnerId?: string;
     /**
      * Request body metadata
      */
@@ -2939,7 +2939,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The ID of the reseller partner.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2954,7 +2954,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The reseller partner ID.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */
@@ -2969,7 +2969,7 @@ export namespace androiddeviceprovisioning_v1 {
     /**
      * Required. The reseller partner ID.
      */
-    partnerId: string;
+    partnerId?: string;
     /**
      * Request body metadata
      */

@@ -1022,7 +1022,7 @@ export namespace cloudbuild_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1037,7 +1037,7 @@ export namespace cloudbuild_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -1052,7 +1052,7 @@ export namespace cloudbuild_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -1463,11 +1463,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the build.
      */
-    id: string;
+    id?: string;
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1482,7 +1482,7 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1497,11 +1497,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the build.
      */
-    id: string;
+    id?: string;
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Builds$List {
     /**
@@ -1524,7 +1524,7 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Builds$Retry {
     /**
@@ -1535,11 +1535,11 @@ export namespace cloudbuild_v1 {
     /**
      * Build ID of the original build.
      */
-    id: string;
+    id?: string;
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1976,7 +1976,7 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project for which to configure automatic builds.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1991,11 +1991,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project that owns the trigger.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * ID of the `BuildTrigger` to delete.
      */
-    triggerId: string;
+    triggerId?: string;
   }
   export interface Params$Resource$Projects$Triggers$Get {
     /**
@@ -2006,11 +2006,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project that owns the trigger.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * ID of the `BuildTrigger` to get.
      */
-    triggerId: string;
+    triggerId?: string;
   }
   export interface Params$Resource$Projects$Triggers$List {
     /**
@@ -2021,7 +2021,7 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project for which to list BuildTriggers.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Triggers$Patch {
     /**
@@ -2032,11 +2032,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project that owns the trigger.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * ID of the `BuildTrigger` to update.
      */
-    triggerId: string;
+    triggerId?: string;
     /**
      * Request body metadata
      */
@@ -2051,11 +2051,11 @@ export namespace cloudbuild_v1 {
     /**
      * ID of the project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * ID of the trigger.
      */
-    triggerId: string;
+    triggerId?: string;
     /**
      * Request body metadata
      */

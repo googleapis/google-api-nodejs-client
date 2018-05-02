@@ -1930,7 +1930,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Patch {
     /**
@@ -1941,7 +1941,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    name: string;
+    name?: string;
     /**
      * The field mask indicating the fields to update. If not set, all
      * modifiable fields will be modified.
@@ -2045,7 +2045,7 @@ export namespace androidmanagement_v1 {
      * The name of the application in the form
      * enterprises/{enterpriseId}/applications/{package_name}.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -2410,7 +2410,7 @@ export namespace androidmanagement_v1 {
      * The name of the device in the form
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Get {
     /**
@@ -2422,7 +2422,7 @@ export namespace androidmanagement_v1 {
      * The name of the device in the form
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Issuecommand {
     /**
@@ -2434,7 +2434,7 @@ export namespace androidmanagement_v1 {
      * The name of the device in the form
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2458,7 +2458,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Patch {
     /**
@@ -2470,7 +2470,7 @@ export namespace androidmanagement_v1 {
      * The name of the device in the form
      * enterprises/{enterpriseId}/devices/{deviceId}.
      */
-    name: string;
+    name?: string;
     /**
      * The field mask indicating the fields to update. If not set, all
      * modifiable fields will be modified.
@@ -2793,7 +2793,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$Delete {
     /**
@@ -2804,7 +2804,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$Get {
     /**
@@ -2815,7 +2815,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Devices$Operations$List {
     /**
@@ -2830,7 +2830,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -3000,7 +3000,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3016,7 +3016,7 @@ export namespace androidmanagement_v1 {
      * The name of the enrollment token in the form
      * enterprises/{enterpriseId}/enrollmentTokens/{enrollmentTokenId}.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -3310,7 +3310,7 @@ export namespace androidmanagement_v1 {
      * The name of the policy in the form
      * enterprises/{enterpriseId}/policies/{policyId}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Policies$Get {
     /**
@@ -3322,7 +3322,7 @@ export namespace androidmanagement_v1 {
      * The name of the policy in the form
      * enterprises/{enterpriseId}/policies/{policyId}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Enterprises$Policies$List {
     /**
@@ -3342,7 +3342,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Enterprises$Policies$Patch {
     /**
@@ -3354,7 +3354,7 @@ export namespace androidmanagement_v1 {
      * The name of the policy in the form
      * enterprises/{enterpriseId}/policies/{policyId}.
      */
-    name: string;
+    name?: string;
     /**
      * The field mask indicating the fields to update. If not set, all
      * modifiable fields will be modified.
@@ -3457,7 +3457,7 @@ export namespace androidmanagement_v1 {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId}.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */

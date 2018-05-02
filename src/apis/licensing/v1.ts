@@ -654,15 +654,15 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku
      */
-    skuId: string;
+    skuId?: string;
     /**
      * email id or unique Id of the user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Licenseassignments$Get {
     /**
@@ -673,15 +673,15 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku
      */
-    skuId: string;
+    skuId?: string;
     /**
      * email id or unique Id of the user
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Licenseassignments$Insert {
     /**
@@ -692,11 +692,11 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku
      */
-    skuId: string;
+    skuId?: string;
     /**
      * Request body metadata
      */
@@ -712,7 +712,7 @@ export namespace licensing_v1 {
      * CustomerId represents the customer for whom licenseassignments are
      * queried
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Maximum number of campaigns to return at one time. Must be positive.
      * Optional. Default value is 100.
@@ -726,7 +726,7 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Licenseassignments$Listforproductandsku {
     /**
@@ -738,7 +738,7 @@ export namespace licensing_v1 {
      * CustomerId represents the customer for whom licenseassignments are
      * queried
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Maximum number of campaigns to return at one time. Must be positive.
      * Optional. Default value is 100.
@@ -752,11 +752,11 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku
      */
-    skuId: string;
+    skuId?: string;
   }
   export interface Params$Resource$Licenseassignments$Patch {
     /**
@@ -767,15 +767,15 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku for which license would be revoked
      */
-    skuId: string;
+    skuId?: string;
     /**
      * email id or unique Id of the user
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -790,15 +790,15 @@ export namespace licensing_v1 {
     /**
      * Name for product
      */
-    productId: string;
+    productId?: string;
     /**
      * Name for sku for which license would be revoked
      */
-    skuId: string;
+    skuId?: string;
     /**
      * email id or unique Id of the user
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */

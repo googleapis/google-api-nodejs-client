@@ -1755,7 +1755,7 @@ export namespace people_v1 {
     /**
      * The resource name of the contact group to delete.
      */
-    resourceName: string;
+    resourceName?: string;
   }
   export interface Params$Resource$Contactgroups$Get {
     /**
@@ -1770,7 +1770,7 @@ export namespace people_v1 {
     /**
      * The resource name of the contact group to get.
      */
-    resourceName: string;
+    resourceName?: string;
   }
   export interface Params$Resource$Contactgroups$List {
     /**
@@ -1804,7 +1804,7 @@ export namespace people_v1 {
      * The resource name for the contact group, assigned by the server. An ASCII
      * string, in the form of `contactGroups/`<var>contact_group_id</var>.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * Request body metadata
      */
@@ -1912,7 +1912,7 @@ export namespace people_v1 {
     /**
      * The resource name of the contact group to modify.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * Request body metadata
      */
@@ -2306,7 +2306,7 @@ export namespace people_v1 {
     /**
      * The resource name of the contact to delete.
      */
-    resourceName: string;
+    resourceName?: string;
   }
   export interface Params$Resource$People$Get {
     /**
@@ -2339,7 +2339,7 @@ export namespace people_v1 {
      * specify the resource name that   identifies the contact as returned by
      * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
      */
-    resourceName: string;
+    resourceName?: string;
   }
   export interface Params$Resource$People$Getbatchget {
     /**
@@ -2386,7 +2386,7 @@ export namespace people_v1 {
      * with a max length of 27 characters, in the form of
      * `people/`<var>person_id</var>.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * **Required.** A field mask to restrict which fields on the person are
      * updated. Multiple fields can be specified by separating them with commas.
@@ -2533,7 +2533,7 @@ export namespace people_v1 {
     /**
      * The resource name to return connections for. Only `people/me` is valid.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * The order in which the connections should be sorted. Defaults to
      * `LAST_MODIFIED_ASCENDING`.

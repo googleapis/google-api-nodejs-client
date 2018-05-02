@@ -1124,15 +1124,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1147,15 +1147,15 @@ export namespace replicapool_v1beta2 {
     /**
      * Name of the Instance Group Manager resource to delete.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Deleteinstances {
     /**
@@ -1166,15 +1166,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1189,15 +1189,15 @@ export namespace replicapool_v1beta2 {
     /**
      * Name of the instance resource to return.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Insert {
     /**
@@ -1208,15 +1208,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * Number of instances that should exist.
      */
-    size: number;
+    size?: number;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1245,11 +1245,11 @@ export namespace replicapool_v1beta2 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Recreateinstances {
     /**
@@ -1260,15 +1260,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1283,19 +1283,19 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * Number of instances that should exist in this Instance Group Manager.
      */
-    size: number;
+    size?: number;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Instancegroupmanagers$Setinstancetemplate {
     /**
@@ -1306,15 +1306,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1329,15 +1329,15 @@ export namespace replicapool_v1beta2 {
     /**
      * The name of the instance group manager.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the instance group manager resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1506,15 +1506,15 @@ export namespace replicapool_v1beta2 {
     /**
      * Name of the operation resource to return.
      */
-    operation: string;
+    operation?: string;
     /**
      * Name of the project scoping this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneoperations$List {
     /**
@@ -1539,10 +1539,10 @@ export namespace replicapool_v1beta2 {
     /**
      * Name of the project scoping this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
 }

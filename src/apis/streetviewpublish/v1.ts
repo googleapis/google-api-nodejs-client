@@ -843,7 +843,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Required. ID of the Photo.
      */
-    photoId: string;
+    photoId?: string;
   }
   export interface Params$Resource$Photo$Get {
     /**
@@ -854,7 +854,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Required. ID of the Photo.
      */
-    photoId: string;
+    photoId?: string;
     /**
      * Specifies if a download URL for the photo bytes should be returned in the
      * Photo response.
@@ -881,7 +881,7 @@ export namespace streetviewpublish_v1 {
     /**
      * Required. A unique identifier for a photo.
      */
-    id: string;
+    id?: string;
     /**
      * Mask that identifies fields on the photo metadata to update. If not
      * present, the old Photo metadata will be entirely replaced with the new

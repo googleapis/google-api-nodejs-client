@@ -452,7 +452,7 @@ export namespace webmasters_v3 {
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
     /**
      * Request body metadata
      */
@@ -744,11 +744,11 @@ export namespace webmasters_v3 {
      * The URL of the actual sitemap. For example:
      * http://www.example.com/sitemap.xml
      */
-    feedpath: string;
+    feedpath?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$Get {
     /**
@@ -760,11 +760,11 @@ export namespace webmasters_v3 {
      * The URL of the actual sitemap. For example:
      * http://www.example.com/sitemap.xml
      */
-    feedpath: string;
+    feedpath?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$List {
     /**
@@ -780,7 +780,7 @@ export namespace webmasters_v3 {
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sitemaps$Submit {
     /**
@@ -792,11 +792,11 @@ export namespace webmasters_v3 {
      * The URL of the sitemap to add. For example:
      * http://www.example.com/sitemap.xml
      */
-    feedpath: string;
+    feedpath?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
 
 
@@ -1068,7 +1068,7 @@ export namespace webmasters_v3 {
     /**
      * The URL of the site to add.
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sites$Delete {
     /**
@@ -1082,7 +1082,7 @@ export namespace webmasters_v3 {
      * property-sets, use the URI that starts with sc-set: which is used in
      * Search Console URLs.
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sites$Get {
     /**
@@ -1096,7 +1096,7 @@ export namespace webmasters_v3 {
      * property-sets, use the URI that starts with sc-set: which is used in
      * Search Console URLs.
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Sites$List {
     /**
@@ -1224,7 +1224,7 @@ export namespace webmasters_v3 {
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
 
 
@@ -1471,22 +1471,22 @@ export namespace webmasters_v3 {
     /**
      * The crawl error category. For example: authPermissions
      */
-    category: string;
+    category?: string;
     /**
      * The user agent type (platform) that made the request. For example: web
      */
-    platform: string;
+    platform?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
     /**
      * The relative path (without the site) of the sample URL. It must be one of
      * the URLs returned by list(). For example, for the URL
      * https://www.example.com/pagename on the site https://www.example.com/,
      * the url value is pagename
      */
-    url: string;
+    url?: string;
   }
   export interface Params$Resource$Urlcrawlerrorssamples$List {
     /**
@@ -1497,15 +1497,15 @@ export namespace webmasters_v3 {
     /**
      * The crawl error category. For example: authPermissions
      */
-    category: string;
+    category?: string;
     /**
      * The user agent type (platform) that made the request. For example: web
      */
-    platform: string;
+    platform?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed {
     /**
@@ -1516,21 +1516,21 @@ export namespace webmasters_v3 {
     /**
      * The crawl error category. For example: authPermissions
      */
-    category: string;
+    category?: string;
     /**
      * The user agent type (platform) that made the request. For example: web
      */
-    platform: string;
+    platform?: string;
     /**
      * The site's URL, including protocol. For example: http://www.example.com/
      */
-    siteUrl: string;
+    siteUrl?: string;
     /**
      * The relative path (without the site) of the sample URL. It must be one of
      * the URLs returned by list(). For example, for the URL
      * https://www.example.com/pagename on the site https://www.example.com/,
      * the url value is pagename
      */
-    url: string;
+    url?: string;
   }
 }

@@ -1254,7 +1254,7 @@ export namespace cloudbilling_v1 {
      * The resource name of the billing account to retrieve. For example,
      * `billingAccounts/012345-567890-ABCDEF`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Billingaccounts$Getiampolicy {
     /**
@@ -1266,7 +1266,7 @@ export namespace cloudbilling_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Billingaccounts$List {
     /**
@@ -1305,7 +1305,7 @@ export namespace cloudbilling_v1 {
     /**
      * The name of the billing account resource to be updated.
      */
-    name: string;
+    name?: string;
     /**
      * The update mask applied to the resource. Only "display_name" is currently
      * supported.
@@ -1326,7 +1326,7 @@ export namespace cloudbilling_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1342,7 +1342,7 @@ export namespace cloudbilling_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1521,7 +1521,7 @@ export namespace cloudbilling_v1 {
      * that you want to list. For example,
      * `billingAccounts/012345-567890-ABCDEF`.
      */
-    name: string;
+    name?: string;
     /**
      * Requested page size. The maximum page size is 100; this is also the
      * default.
@@ -1837,7 +1837,7 @@ export namespace cloudbilling_v1 {
      * The resource name of the project for which billing information is
      * retrieved. For example, `projects/tokyo-rain-123`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Updatebillinginfo {
     /**
@@ -1849,7 +1849,7 @@ export namespace cloudbilling_v1 {
      * The resource name of the project associated with the billing information
      * that you want to update. For example, `projects/tokyo-rain-123`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2202,7 +2202,7 @@ export namespace cloudbilling_v1 {
     /**
      * The name of the service. Example: "services/DA34-426B-A397"
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional inclusive start time of the time range for which the pricing
      * versions will be returned. Timestamps in the future are not allowed. The

@@ -557,7 +557,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Account to get information about.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -568,7 +568,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad clients to list accounts for.
      */
-    filterAdClientId: string;
+    filterAdClientId?: string;
   }
 
   export class Resource$Accounts$Adclients {
@@ -728,11 +728,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client to get.
      */
-    adClientId: string;
+    adClientId?: string;
   }
   export interface Params$Resource$Accounts$Adclients$List {
     /**
@@ -743,7 +743,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Account for which to list ad clients.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of ad clients to include in the response, used for
      * paging.
@@ -1274,15 +1274,15 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad unit.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to get ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to delete.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Accounts$Adunits$Get {
     /**
@@ -1293,15 +1293,15 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad unit.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to get ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to get.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Accounts$Adunits$Getadcode {
     /**
@@ -1312,15 +1312,15 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client with contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to get the code for.
      */
-    adUnitId: string;
+    adUnitId?: string;
     /**
      * Host custom channel to attach to the ad code.
      */
@@ -1335,11 +1335,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which will contain the ad unit.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client into which to insert the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Request body metadata
      */
@@ -1354,11 +1354,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list ad units.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -1384,15 +1384,15 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to get.
      */
-    adUnitId: string;
+    adUnitId?: string;
     /**
      * Request body metadata
      */
@@ -1407,11 +1407,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Request body metadata
      */
@@ -1517,7 +1517,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Hosted account upon which to report.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Dimensions to base the report on.
      */
@@ -1525,7 +1525,7 @@ export namespace adsensehost_v4_1 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -1552,7 +1552,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -1710,7 +1710,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client to get.
      */
-    adClientId: string;
+    adClientId?: string;
   }
   export interface Params$Resource$Adclients$List {
     /**
@@ -1892,7 +1892,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Products to associate with the user.
      */
-    productCode: string;
+    productCode?: string;
     /**
      * The preferred locale of the user.
      */
@@ -1904,7 +1904,7 @@ export namespace adsensehost_v4_1 {
     /**
      * The URL of the user's hosted website.
      */
-    websiteUrl: string;
+    websiteUrl?: string;
   }
   export interface Params$Resource$Associationsessions$Verify {
     /**
@@ -1915,7 +1915,7 @@ export namespace adsensehost_v4_1 {
     /**
      * The token returned to the association callback URL.
      */
-    token: string;
+    token?: string;
   }
 
 
@@ -2354,11 +2354,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client from which to delete the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to delete.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Customchannels$Get {
     /**
@@ -2369,11 +2369,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client from which to get the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to get.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Customchannels$Insert {
     /**
@@ -2384,7 +2384,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client to which the new custom channel will be added.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Request body metadata
      */
@@ -2399,7 +2399,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client for which to list custom channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -2421,11 +2421,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client in which the custom channel will be updated.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to get.
      */
-    customChannelId: string;
+    customChannelId?: string;
     /**
      * Request body metadata
      */
@@ -2440,7 +2440,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client in which the custom channel will be updated.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Request body metadata
      */
@@ -2548,7 +2548,7 @@ export namespace adsensehost_v4_1 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -2575,7 +2575,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -2811,11 +2811,11 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client from which to delete the URL channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * URL channel to delete.
      */
-    urlChannelId: string;
+    urlChannelId?: string;
   }
   export interface Params$Resource$Urlchannels$Insert {
     /**
@@ -2826,7 +2826,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client to which the new URL channel will be added.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Request body metadata
      */
@@ -2841,7 +2841,7 @@ export namespace adsensehost_v4_1 {
     /**
      * Ad client for which to list URL channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of URL channels to include in the response, used for
      * paging.

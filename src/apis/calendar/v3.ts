@@ -1639,11 +1639,11 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * ACL rule identifier.
      */
-    ruleId: string;
+    ruleId?: string;
   }
   export interface Params$Resource$Acl$Get {
     /**
@@ -1656,11 +1656,11 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * ACL rule identifier.
      */
-    ruleId: string;
+    ruleId?: string;
   }
   export interface Params$Resource$Acl$Insert {
     /**
@@ -1673,7 +1673,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Whether to send notifications about the calendar sharing change.
      * Optional. The default is True.
@@ -1695,7 +1695,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Maximum number of entries returned on one result page. By default the
      * value is 100 entries. The page size can never be larger than 250 entries.
@@ -1736,11 +1736,11 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * ACL rule identifier.
      */
-    ruleId: string;
+    ruleId?: string;
     /**
      * Whether to send notifications about the calendar sharing change. Note
      * that there are no notifications on access removal. Optional. The default
@@ -1763,11 +1763,11 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * ACL rule identifier.
      */
-    ruleId: string;
+    ruleId?: string;
     /**
      * Whether to send notifications about the calendar sharing change. Note
      * that there are no notifications on access removal. Optional. The default
@@ -1790,7 +1790,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Maximum number of entries returned on one result page. By default the
      * value is 100 entries. The page size can never be larger than 250 entries.
@@ -2324,7 +2324,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
   }
   export interface Params$Resource$Calendarlist$Get {
     /**
@@ -2337,7 +2337,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
   }
   export interface Params$Resource$Calendarlist$Insert {
     /**
@@ -2415,7 +2415,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Whether to use the foregroundColor and backgroundColor fields to write
      * the calendar colors (RGB). If this feature is used, the index-based
@@ -2439,7 +2439,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Whether to use the foregroundColor and backgroundColor fields to write
      * the calendar colors (RGB). If this feature is used, the index-based
@@ -2912,7 +2912,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
   }
   export interface Params$Resource$Calendars$Delete {
     /**
@@ -2925,7 +2925,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
   }
   export interface Params$Resource$Calendars$Get {
     /**
@@ -2938,7 +2938,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
   }
   export interface Params$Resource$Calendars$Insert {
     /**
@@ -2957,7 +2957,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Request body metadata
      */
@@ -2974,7 +2974,7 @@ export namespace calendar_v3 {
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Request body metadata
      */
@@ -3929,11 +3929,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * Whether to send notifications about the deletion of the event. Optional.
      * The default is False.
@@ -3960,11 +3960,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The maximum number of attendees to include in the response. If there are
      * more than the specified number of attendees, only the participant is
@@ -3988,7 +3988,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Version number of conference data supported by the API client. Version 0
      * assumes no conference data support and ignores conference data in the
@@ -4018,7 +4018,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Version number of conference data supported by the API client. Version 0
      * assumes no conference data support and ignores conference data in the
@@ -4068,11 +4068,11 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Recurring event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The maximum number of attendees to include in the response. If there are
      * more than the specified number of attendees, only the participant is
@@ -4137,7 +4137,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Specifies event ID in the iCalendar format to be included in the
      * response. Optional.
@@ -4259,16 +4259,16 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * Calendar identifier of the source calendar where the event currently is
      * on.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Calendar identifier of the target calendar where the event is to be moved
      * to.
      */
-    destination: string;
+    destination?: string;
     /**
      * Event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * Whether to send notifications about the change of the event's organizer.
      * Optional. The default is False.
@@ -4295,7 +4295,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Version number of conference data supported by the API client. Version 0
      * assumes no conference data support and ignores conference data in the
@@ -4307,7 +4307,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The maximum number of attendees to include in the response. If there are
      * more than the specified number of attendees, only the participant is
@@ -4340,7 +4340,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Whether to send notifications about the creation of the event. Optional.
      * The default is False.
@@ -4349,7 +4349,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * The text describing the event to be created.
      */
-    text: string;
+    text?: string;
   }
   export interface Params$Resource$Events$Update {
     /**
@@ -4371,7 +4371,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Version number of conference data supported by the API client. Version 0
      * assumes no conference data support and ignores conference data in the
@@ -4383,7 +4383,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * Event identifier.
      */
-    eventId: string;
+    eventId?: string;
     /**
      * The maximum number of attendees to include in the response. If there are
      * more than the specified number of attendees, only the participant is
@@ -4425,7 +4425,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
      * method. If you want to access the primary calendar of the currently
      * logged in user, use the "primary" keyword.
      */
-    calendarId: string;
+    calendarId?: string;
     /**
      * Specifies event ID in the iCalendar format to be included in the
      * response. Optional.
@@ -4843,7 +4843,7 @@ import(paramsOrCallback?: Params$Resource$Events$Import|BodyResponseCallback<Sch
     /**
      * The id of the user setting.
      */
-    setting: string;
+    setting?: string;
   }
   export interface Params$Resource$Settings$List {
     /**

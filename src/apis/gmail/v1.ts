@@ -1129,7 +1129,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Stop {
     /**
@@ -1141,7 +1141,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Watch {
     /**
@@ -1153,7 +1153,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1599,7 +1599,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1628,12 +1628,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the draft to delete.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Drafts$Get {
     /**
@@ -1648,12 +1648,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the draft to retrieve.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Drafts$List {
     /**
@@ -1683,7 +1683,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Drafts$Send {
     /**
@@ -1695,7 +1695,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1724,12 +1724,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the draft to update.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1875,7 +1875,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -2298,7 +2298,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2313,12 +2313,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the label to delete.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Labels$Get {
     /**
@@ -2329,12 +2329,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the label to retrieve.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Labels$List {
     /**
@@ -2346,7 +2346,7 @@ export namespace gmail_v1 {
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Labels$Patch {
     /**
@@ -2357,12 +2357,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the label to update.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2377,12 +2377,12 @@ export namespace gmail_v1 {
     /**
      * The ID of the label to update.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3143,7 +3143,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3159,7 +3159,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3174,12 +3174,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the message to delete.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Messages$Get {
     /**
@@ -3194,7 +3194,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the message to retrieve.
      */
-    id: string;
+    id?: string;
     /**
      * When given and format is METADATA, only include headers specified.
      */
@@ -3203,7 +3203,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Messages$Import {
     /**
@@ -3234,7 +3234,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3273,7 +3273,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3328,7 +3328,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Messages$Modify {
     /**
@@ -3339,12 +3339,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the message to modify.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3360,7 +3360,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3389,12 +3389,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the message to Trash.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Messages$Untrash {
     /**
@@ -3405,12 +3405,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the message to remove from Trash.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
   export class Resource$Users$Messages$Attachments {
@@ -3501,16 +3501,16 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the attachment.
      */
-    id: string;
+    id?: string;
     /**
      * The ID of the message containing the attachment.
      */
-    messageId: string;
+    messageId?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -4092,7 +4092,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Getimap {
     /**
@@ -4104,7 +4104,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Getpop {
     /**
@@ -4116,7 +4116,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Getvacation {
     /**
@@ -4128,7 +4128,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Updateautoforwarding {
     /**
@@ -4140,7 +4140,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4156,7 +4156,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4172,7 +4172,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4188,7 +4188,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4480,7 +4480,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4495,12 +4495,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the filter to be deleted.
      */
-    id: string;
+    id?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Filters$Get {
     /**
@@ -4511,12 +4511,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the filter to be fetched.
      */
-    id: string;
+    id?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Filters$List {
     /**
@@ -4528,7 +4528,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -4848,7 +4848,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -4863,12 +4863,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The forwarding address to be deleted.
      */
-    forwardingEmail: string;
+    forwardingEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$Get {
     /**
@@ -4879,12 +4879,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The forwarding address to be retrieved.
      */
-    forwardingEmail: string;
+    forwardingEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Forwardingaddresses$List {
     /**
@@ -4896,7 +4896,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -5418,7 +5418,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5433,12 +5433,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The send-as alias to be deleted.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Get {
     /**
@@ -5449,12 +5449,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The send-as alias to be retrieved.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$List {
     /**
@@ -5466,7 +5466,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Patch {
     /**
@@ -5477,12 +5477,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The send-as alias to be updated.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5497,12 +5497,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The send-as alias to be updated.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5517,12 +5517,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The send-as alias to be verified.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * User's email address. The special value "me" can be used to indicate the
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
   export class Resource$Users$Settings$Sendas$Smimeinfo {
@@ -5899,17 +5899,17 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The immutable ID for the SmimeInfo.
      */
-    id: string;
+    id?: string;
     /**
      * The email address that appears in the "From:" header for mail sent using
      * this alias.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Get {
     /**
@@ -5920,17 +5920,17 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The immutable ID for the SmimeInfo.
      */
-    id: string;
+    id?: string;
     /**
      * The email address that appears in the "From:" header for mail sent using
      * this alias.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert {
     /**
@@ -5942,12 +5942,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The email address that appears in the "From:" header for mail sent using
      * this alias.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -5963,12 +5963,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The email address that appears in the "From:" header for mail sent using
      * this alias.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault {
     /**
@@ -5979,17 +5979,17 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The immutable ID for the SmimeInfo.
      */
-    id: string;
+    id?: string;
     /**
      * The email address that appears in the "From:" header for mail sent using
      * this alias.
      */
-    sendAsEmail: string;
+    sendAsEmail?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -6421,12 +6421,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * ID of the Thread to delete.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Threads$Get {
     /**
@@ -6441,7 +6441,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the thread to retrieve.
      */
-    id: string;
+    id?: string;
     /**
      * When given and format is METADATA, only include headers specified.
      */
@@ -6450,7 +6450,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Threads$List {
     /**
@@ -6486,7 +6486,7 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Threads$Modify {
     /**
@@ -6497,12 +6497,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the thread to modify.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -6517,12 +6517,12 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the thread to Trash.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Threads$Untrash {
     /**
@@ -6533,11 +6533,11 @@ import(paramsOrCallback?: Params$Resource$Users$Messages$Import|BodyResponseCall
     /**
      * The ID of the thread to remove from Trash.
      */
-    id: string;
+    id?: string;
     /**
      * The user's email address. The special value me can be used to indicate
      * the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 }

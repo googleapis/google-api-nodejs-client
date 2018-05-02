@@ -524,7 +524,7 @@ export namespace cloudshell_v1alpha1 {
      * `users/me/environments/default` or
      * `users/someone@example.com/environments/default`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Environments$Patch {
     /**
@@ -537,7 +537,7 @@ export namespace cloudshell_v1alpha1 {
      * `users/me/environments/default` or
      * `users/someone@example.com/environments/default`.
      */
-    name: string;
+    name?: string;
     /**
      * Mask specifying which fields in the environment should be updated.
      */
@@ -558,7 +558,7 @@ export namespace cloudshell_v1alpha1 {
      * `users/me/environments/default` or
      * `users/someone@example.com/environments/default`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -725,7 +725,7 @@ export namespace cloudshell_v1alpha1 {
     /**
      * Parent resource name, e.g. `users/me/environments/default`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -741,6 +741,6 @@ export namespace cloudshell_v1alpha1 {
      * Name of the resource to be deleted, e.g.
      * `users/me/environments/default/publicKeys/my-key`.
      */
-    name: string;
+    name?: string;
   }
 }

@@ -728,7 +728,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The resource name of the instance to return.
      */
-    name: string;
+    name?: string;
   }
 
   export class Resource$Projects$Brokers$Instances$Service_bindings {
@@ -854,7 +854,7 @@ export namespace servicebroker_v1alpha1 {
      * Parent must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]/instances/[INSTANCE_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -979,7 +979,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1120,7 +1120,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1613,11 +1613,11 @@ export namespace servicebroker_v1alpha1 {
      * The id of the service instance. Must be unique within GCP project.
      * Maximum length is 64, GUID recommended. Required.
      */
-    instance_id: string;
+    instance_id?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1636,11 +1636,11 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The instance id to deprovision.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * The plan id of the service instance.
      */
@@ -1659,7 +1659,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The resource name of the instance to return.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Brokers$V2$Service_instances$Getlast_operation {
     /**
@@ -1670,7 +1670,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The instance id for which to return the last operation status.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -1679,7 +1679,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Plan id.
      */
@@ -1703,11 +1703,11 @@ export namespace servicebroker_v1alpha1 {
      * The id of the service instance. Must be unique within GCP project.
      * Maximum length is 64, GUID recommended. Required.
      */
-    instance_id: string;
+    instance_id?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2117,16 +2117,16 @@ export namespace servicebroker_v1alpha1 {
      * The id of the binding. Must be unique within GCP project. Maximum length
      * is 64, GUID recommended. Required.
      */
-    binding_id: string;
+    binding_id?: string;
     /**
      * The service instance to which to bind.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * The GCP container. Must match
      * `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2145,15 +2145,15 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The id of the binding to delete.
      */
-    bindingId: string;
+    bindingId?: string;
     /**
      * The service instance id that deleted binding is bound to.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * The plan id of the service instance.
      */
@@ -2172,15 +2172,15 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The binding id.
      */
-    bindingId: string;
+    bindingId?: string;
     /**
      * Instance id to which the binding is bound.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Plan id.
      */
@@ -2199,11 +2199,11 @@ export namespace servicebroker_v1alpha1 {
     /**
      * The binding id for which to return the last operation
      */
-    bindingId: string;
+    bindingId?: string;
     /**
      * The instance id that the binding is bound to.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * If `operation` was returned during mutation operation, this field must be
      * populated with the provided value.
@@ -2212,7 +2212,7 @@ export namespace servicebroker_v1alpha1 {
     /**
      * Parent must match `projects/[PROJECT_ID]/brokers/[BROKER_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Plan id.
      */
@@ -2469,7 +2469,7 @@ export namespace servicebroker_v1alpha1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$V1alpha1$Setiampolicy {
     /**
@@ -2481,7 +2481,7 @@ export namespace servicebroker_v1alpha1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2497,7 +2497,7 @@ export namespace servicebroker_v1alpha1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */

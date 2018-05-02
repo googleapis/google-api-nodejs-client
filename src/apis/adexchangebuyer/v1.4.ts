@@ -2029,7 +2029,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -2050,7 +2050,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -2069,7 +2069,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -2226,7 +2226,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id.
      */
-    accountId: number;
+    accountId?: number;
   }
   export interface Params$Resource$Billinginfo$List {
     /**
@@ -2458,11 +2458,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to get the budget information for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id to get the budget information for.
      */
-    billingId: string;
+    billingId?: string;
   }
   export interface Params$Resource$Budget$Patch {
     /**
@@ -2473,11 +2473,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id associated with the budget being updated.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id associated with the budget being updated.
      */
-    billingId: string;
+    billingId?: string;
     /**
      * Request body metadata
      */
@@ -2492,11 +2492,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id associated with the budget being updated.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id associated with the budget being updated.
      */
-    billingId: string;
+    billingId?: string;
     /**
      * Request body metadata
      */
@@ -2933,15 +2933,15 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
     /**
      * The id of the deal id to associate with this creative.
      */
-    dealId: string;
+    dealId?: string;
   }
   export interface Params$Resource$Creatives$Get {
     /**
@@ -2952,11 +2952,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
   }
   export interface Params$Resource$Creatives$Insert {
     /**
@@ -3010,11 +3010,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
   }
   export interface Params$Resource$Creatives$Removedeal {
     /**
@@ -3025,15 +3025,15 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
     /**
      * The id of the deal id to disassociate with this creative.
      */
-    dealId: string;
+    dealId?: string;
   }
 
 
@@ -3342,7 +3342,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposalId to delete deals from.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * Request body metadata
      */
@@ -3357,7 +3357,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * proposalId for which deals need to be added.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * Request body metadata
      */
@@ -3377,7 +3377,7 @@ export namespace adexchangebuyer_v1_4 {
      * The proposalId to get deals for. To search across all proposals specify
      * order_id = '-' as part of the URL.
      */
-    proposalId: string;
+    proposalId?: string;
   }
   export interface Params$Resource$Marketplacedeals$Update {
     /**
@@ -3388,7 +3388,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposalId to edit deals on.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * Request body metadata
      */
@@ -3557,7 +3557,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposalId to add notes for.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * Request body metadata
      */
@@ -3579,7 +3579,7 @@ export namespace adexchangebuyer_v1_4 {
      * The proposalId to get notes for. To search across all proposals specify
      * order_id = '-' as part of the URL.
      */
-    proposalId: string;
+    proposalId?: string;
   }
 
 
@@ -3673,7 +3673,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The private auction id to be updated.
      */
-    privateAuctionId: string;
+    privateAuctionId?: string;
     /**
      * Request body metadata
      */
@@ -3774,11 +3774,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to get the reports.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The end time of the report in ISO 8601 timestamp format using UTC.
      */
-    endDateTime: string;
+    endDateTime?: string;
     /**
      * Maximum number of entries returned on one result page. If not set, the
      * default is 100. Optional.
@@ -3793,7 +3793,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The start time of the report in ISO 8601 timestamp format using UTC.
      */
-    startDateTime: string;
+    startDateTime?: string;
   }
 
 
@@ -4234,11 +4234,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to delete the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to delete.
      */
-    configId: string;
+    configId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Get {
     /**
@@ -4249,11 +4249,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to get the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to retrieve.
      */
-    configId: string;
+    configId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Insert {
     /**
@@ -4264,7 +4264,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to insert the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -4279,7 +4279,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to get the pretargeting configs for.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Patch {
     /**
@@ -4290,11 +4290,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to update the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to update.
      */
-    configId: string;
+    configId?: string;
     /**
      * Request body metadata
      */
@@ -4309,11 +4309,11 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The account id to update the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to update.
      */
-    configId: string;
+    configId?: string;
     /**
      * Request body metadata
      */
@@ -4468,7 +4468,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The id for the product to get the head revision for.
      */
-    productId: string;
+    productId?: string;
   }
   export interface Params$Resource$Products$Search {
     /**
@@ -4902,7 +4902,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * Id of the proposal to retrieve.
      */
-    proposalId: string;
+    proposalId?: string;
   }
   export interface Params$Resource$Proposals$Insert {
     /**
@@ -4919,19 +4919,19 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposal id to update.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * The last known revision number to update. If the head revision in the
      * marketplace database has since changed, an error will be thrown. The
      * caller should then fetch the latest proposal at head revision and retry
      * the update at that revision.
      */
-    revisionNumber: string;
+    revisionNumber?: string;
     /**
      * The proposed action to take on the proposal. This field is required and
      * it must be set when updating a proposal.
      */
-    updateAction: string;
+    updateAction?: string;
     /**
      * Request body metadata
      */
@@ -4957,7 +4957,7 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposal id for which the setup is complete
      */
-    proposalId: string;
+    proposalId?: string;
   }
   export interface Params$Resource$Proposals$Update {
     /**
@@ -4968,19 +4968,19 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The proposal id to update.
      */
-    proposalId: string;
+    proposalId?: string;
     /**
      * The last known revision number to update. If the head revision in the
      * marketplace database has since changed, an error will be thrown. The
      * caller should then fetch the latest proposal at head revision and retry
      * the update at that revision.
      */
-    revisionNumber: string;
+    revisionNumber?: string;
     /**
      * The proposed action to take on the proposal. This field is required and
      * it must be set when updating a proposal.
      */
-    updateAction: string;
+    updateAction?: string;
     /**
      * Request body metadata
      */
@@ -5082,6 +5082,6 @@ export namespace adexchangebuyer_v1_4 {
     /**
      * The accountId of the publisher to get profiles for.
      */
-    accountId: number;
+    accountId?: number;
   }
 }

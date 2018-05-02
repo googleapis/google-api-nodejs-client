@@ -102,8 +102,6 @@ export {dialogflow_v2beta1} from './apis/dialogflow/v2beta1';
 export {digitalassetlinks_v1} from './apis/digitalassetlinks/v1';
 export {discovery_v1} from './apis/discovery/v1';
 export {dlp_v2} from './apis/dlp/v2';
-export {dlp_v2beta1} from './apis/dlp/v2beta1';
-export {dlp_v2beta2} from './apis/dlp/v2beta2';
 export {dns_v1} from './apis/dns/v1';
 export {dns_v1beta2} from './apis/dns/v1beta2';
 export {dns_v2beta1} from './apis/dns/v2beta1';

@@ -1816,7 +1816,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -1843,7 +1843,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -2214,7 +2214,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2230,7 +2230,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Get {
     /**
@@ -2242,7 +2242,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$List {
     /**
@@ -2257,7 +2257,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Update {
     /**
@@ -2274,7 +2274,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -2781,7 +2781,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2797,7 +2797,7 @@ export namespace tagmanager_v2 {
      * GTM Environment's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Get {
     /**
@@ -2809,7 +2809,7 @@ export namespace tagmanager_v2 {
      * GTM Environment's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$List {
     /**
@@ -2825,7 +2825,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Patch {
     /**
@@ -2842,7 +2842,7 @@ export namespace tagmanager_v2 {
      * GTM Environment's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -2858,7 +2858,7 @@ export namespace tagmanager_v2 {
      * GTM Environment's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -2879,7 +2879,7 @@ export namespace tagmanager_v2 {
      * GTM Environment's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/environments/{environment_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -3388,7 +3388,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Get {
     /**
@@ -3405,7 +3405,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Live {
     /**
@@ -3417,7 +3417,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Publish {
     /**
@@ -3434,7 +3434,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Set_latest {
     /**
@@ -3446,7 +3446,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Undelete {
     /**
@@ -3458,7 +3458,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update {
     /**
@@ -3475,7 +3475,7 @@ export namespace tagmanager_v2 {
      * GTM ContainerVersion's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/versions/{version_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -3652,7 +3652,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Version_headers$List {
     /**
@@ -3672,7 +3672,7 @@ export namespace tagmanager_v2 {
      * GTM Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -4560,7 +4560,7 @@ export namespace tagmanager_v2 {
      * GTM parent Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -4576,7 +4576,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -4592,7 +4592,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Get {
     /**
@@ -4604,7 +4604,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Getproposal {
     /**
@@ -4616,7 +4616,7 @@ export namespace tagmanager_v2 {
      * GTM workspace proposal's relative path: Example:
      * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Getstatus {
     /**
@@ -4628,7 +4628,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$List {
     /**
@@ -4644,7 +4644,7 @@ export namespace tagmanager_v2 {
      * GTM parent Container's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Quick_preview {
     /**
@@ -4656,7 +4656,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict {
     /**
@@ -4673,7 +4673,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -4689,7 +4689,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Update {
     /**
@@ -4706,7 +4706,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -4722,7 +4722,7 @@ export namespace tagmanager_v2 {
      * GTM workspace proposal's relative path: Example:
      * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -5072,7 +5072,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * The types of built-in variables to enable.
      */
@@ -5088,7 +5088,7 @@ export namespace tagmanager_v2 {
      * GTM BuiltInVariable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
-    path: string;
+    path?: string;
     /**
      * The types of built-in variables to delete.
      */
@@ -5108,7 +5108,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert {
     /**
@@ -5120,7 +5120,7 @@ export namespace tagmanager_v2 {
      * GTM BuiltInVariable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/built_in_variables
      */
-    path: string;
+    path?: string;
     /**
      * The type of built-in variable to revert.
      */
@@ -5707,7 +5707,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5723,7 +5723,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Entities {
     /**
@@ -5739,7 +5739,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Get {
     /**
@@ -5751,7 +5751,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$List {
     /**
@@ -5767,7 +5767,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder {
     /**
@@ -5779,7 +5779,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
     /**
      * The tags to be moved to the folder.
      */
@@ -5812,7 +5812,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Folders$Update {
     /**
@@ -5829,7 +5829,7 @@ export namespace tagmanager_v2 {
      * GTM Folder's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/folders/{folder_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -5996,7 +5996,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{aid}/containers/{cid}/workspace/{wid}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6012,7 +6012,7 @@ export namespace tagmanager_v2 {
      * GTM workspace proposal's relative path: Example:
      * accounts/{aid}/containers/{cid}/workspace/{wid}/workspace_proposal
      */
-    path: string;
+    path?: string;
   }
 
 
@@ -6446,7 +6446,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6462,7 +6462,7 @@ export namespace tagmanager_v2 {
      * GTM Tag's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Get {
     /**
@@ -6474,7 +6474,7 @@ export namespace tagmanager_v2 {
      * GTM Tag's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$List {
     /**
@@ -6490,7 +6490,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Revert {
     /**
@@ -6507,7 +6507,7 @@ export namespace tagmanager_v2 {
      * GTM Tag's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Tags$Update {
     /**
@@ -6524,7 +6524,7 @@ export namespace tagmanager_v2 {
      * GTM Tag's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/tags/{tag_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -6966,7 +6966,7 @@ export namespace tagmanager_v2 {
      * GTM Workspaces's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6982,7 +6982,7 @@ export namespace tagmanager_v2 {
      * GTM Trigger's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Get {
     /**
@@ -6994,7 +6994,7 @@ export namespace tagmanager_v2 {
      * GTM Trigger's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$List {
     /**
@@ -7010,7 +7010,7 @@ export namespace tagmanager_v2 {
      * GTM Workspaces's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert {
     /**
@@ -7027,7 +7027,7 @@ export namespace tagmanager_v2 {
      * GTM Trigger's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Triggers$Update {
     /**
@@ -7044,7 +7044,7 @@ export namespace tagmanager_v2 {
      * GTM Trigger's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/triggers/{trigger_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -7490,7 +7490,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -7506,7 +7506,7 @@ export namespace tagmanager_v2 {
      * GTM Variable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Get {
     /**
@@ -7518,7 +7518,7 @@ export namespace tagmanager_v2 {
      * GTM Variable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$List {
     /**
@@ -7534,7 +7534,7 @@ export namespace tagmanager_v2 {
      * GTM Workspace's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Revert {
     /**
@@ -7551,7 +7551,7 @@ export namespace tagmanager_v2 {
      * GTM Variable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$Containers$Workspaces$Variables$Update {
     /**
@@ -7568,7 +7568,7 @@ export namespace tagmanager_v2 {
      * GTM Variable's API relative path. Example:
      * accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/variables/{variable_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */
@@ -7938,7 +7938,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Account's API relative path. Example: accounts/{account_id}
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -7954,7 +7954,7 @@ export namespace tagmanager_v2 {
      * GTM UserPermission's API relative path. Example:
      * accounts/{account_id}/user_permissions/{user_permission_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$Get {
     /**
@@ -7966,7 +7966,7 @@ export namespace tagmanager_v2 {
      * GTM UserPermission's API relative path. Example:
      * accounts/{account_id}/user_permissions/{user_permission_id}
      */
-    path: string;
+    path?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$List {
     /**
@@ -7981,7 +7981,7 @@ export namespace tagmanager_v2 {
     /**
      * GTM Accounts's API relative path. Example: accounts/{account_id}
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$User_permissions$Update {
     /**
@@ -7993,7 +7993,7 @@ export namespace tagmanager_v2 {
      * GTM UserPermission's API relative path. Example:
      * accounts/{account_id}/user_permissions/{user_permission_id}
      */
-    path: string;
+    path?: string;
     /**
      * Request body metadata
      */

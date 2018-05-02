@@ -433,7 +433,7 @@ export namespace blogger_v2 {
     /**
      * The ID of the blog to get.
      */
-    blogId: string;
+    blogId?: string;
   }
 
 
@@ -594,15 +594,15 @@ export namespace blogger_v2 {
     /**
      * ID of the blog to containing the comment.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the comment to get.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * ID of the post to fetch posts from.
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Comments$List {
     /**
@@ -613,7 +613,7 @@ export namespace blogger_v2 {
     /**
      * ID of the blog to fetch comments from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of the comments is included.
      */
@@ -629,7 +629,7 @@ export namespace blogger_v2 {
     /**
      * ID of the post to fetch posts from.
      */
-    postId: string;
+    postId?: string;
     /**
      * Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
      */
@@ -785,11 +785,11 @@ export namespace blogger_v2 {
     /**
      * ID of the blog containing the page.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the page to get.
      */
-    pageId: string;
+    pageId?: string;
   }
   export interface Params$Resource$Pages$List {
     /**
@@ -800,7 +800,7 @@ export namespace blogger_v2 {
     /**
      * ID of the blog to fetch pages from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether to retrieve the Page bodies.
      */
@@ -959,11 +959,11 @@ export namespace blogger_v2 {
     /**
      * ID of the blog to fetch the post from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The ID of the post
      */
-    postId: string;
+    postId?: string;
   }
   export interface Params$Resource$Posts$List {
     /**
@@ -974,7 +974,7 @@ export namespace blogger_v2 {
     /**
      * ID of the blog to fetch posts from.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * Whether the body content of posts is included.
      */
@@ -1078,7 +1078,7 @@ export namespace blogger_v2 {
     /**
      * The ID of the user to get.
      */
-    userId: string;
+    userId?: string;
   }
 
   export class Resource$Users$Blogs {
@@ -1167,6 +1167,6 @@ export namespace blogger_v2 {
      * ID of the user whose blogs are to be fetched. Either the word 'self'
      * (sans quote marks) or the user's profile identifier.
      */
-    userId: string;
+    userId?: string;
   }
 }

@@ -1037,7 +1037,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf to retrieve.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -1045,7 +1045,7 @@ export namespace books_v1 {
     /**
      * ID of user for whom to retrieve bookshelves.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Bookshelves$List {
     /**
@@ -1060,7 +1060,7 @@ export namespace books_v1 {
     /**
      * ID of user for whom to retrieve bookshelves.
      */
-    userId: string;
+    userId?: string;
   }
 
   export class Resource$Bookshelves$Volumes {
@@ -1160,7 +1160,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf to retrieve volumes.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * Set to true to show pre-ordered books. Defaults to false.
      */
@@ -1176,7 +1176,7 @@ export namespace books_v1 {
     /**
      * ID of user for whom to retrieve bookshelf volumes.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -1433,7 +1433,7 @@ export namespace books_v1 {
     /**
      * The id of the book to be removed.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Cloudloading$Updatebook {
     /**
@@ -1530,7 +1530,7 @@ export namespace books_v1 {
     /**
      * The device/version ID from which to request the data.
      */
-    cpksver: string;
+    cpksver?: string;
   }
 
 
@@ -1968,11 +1968,11 @@ export namespace books_v1 {
     /**
      * The ID for the layer to get the summary for.
      */
-    summaryId: string;
+    summaryId?: string;
     /**
      * The volume to retrieve layers for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Layers$List {
     /**
@@ -1999,7 +1999,7 @@ export namespace books_v1 {
     /**
      * The volume to retrieve layers for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
   export class Resource$Layers$Annotationdata {
@@ -2182,11 +2182,11 @@ export namespace books_v1 {
     /**
      * The ID of the annotation data to retrieve.
      */
-    annotationDataId: string;
+    annotationDataId?: string;
     /**
      * The content version for the volume you are trying to retrieve.
      */
-    contentVersion: string;
+    contentVersion?: string;
     /**
      * The requested pixel height for any images. If height is provided width
      * must also be provided.
@@ -2195,7 +2195,7 @@ export namespace books_v1 {
     /**
      * The ID for the layer to get the annotations.
      */
-    layerId: string;
+    layerId?: string;
     /**
      * The locale information for the data. ISO-639-1 language and ISO-3166-1
      * country code. Ex: 'en_US'.
@@ -2212,7 +2212,7 @@ export namespace books_v1 {
     /**
      * The volume to retrieve annotations for.
      */
-    volumeId: string;
+    volumeId?: string;
     /**
      * The requested pixel width for any images. If width is provided height
      * must also be provided.
@@ -2233,7 +2233,7 @@ export namespace books_v1 {
     /**
      * The content version for the requested volume.
      */
-    contentVersion: string;
+    contentVersion?: string;
     /**
      * The requested pixel height for any images. If height is provided width
      * must also be provided.
@@ -2242,7 +2242,7 @@ export namespace books_v1 {
     /**
      * The ID for the layer to get the annotation data.
      */
-    layerId: string;
+    layerId?: string;
     /**
      * The locale information for the data. ISO-639-1 language and ISO-3166-1
      * country code. Ex: 'en_US'.
@@ -2277,7 +2277,7 @@ export namespace books_v1 {
     /**
      * The volume to retrieve annotation data for.
      */
-    volumeId: string;
+    volumeId?: string;
     /**
      * The requested pixel width for any images. If width is provided height
      * must also be provided.
@@ -2457,11 +2457,11 @@ export namespace books_v1 {
     /**
      * The ID of the volume annotation to retrieve.
      */
-    annotationId: string;
+    annotationId?: string;
     /**
      * The ID for the layer to get the annotations.
      */
-    layerId: string;
+    layerId?: string;
     /**
      * The locale information for the data. ISO-639-1 language and ISO-3166-1
      * country code. Ex: 'en_US'.
@@ -2474,7 +2474,7 @@ export namespace books_v1 {
     /**
      * The volume to retrieve annotations for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Layers$Volumeannotations$List {
     /**
@@ -2485,7 +2485,7 @@ export namespace books_v1 {
     /**
      * The content version for the requested volume.
      */
-    contentVersion: string;
+    contentVersion?: string;
     /**
      * The end offset to end retrieving data from.
      */
@@ -2497,7 +2497,7 @@ export namespace books_v1 {
     /**
      * The ID for the layer to get the annotations.
      */
-    layerId: string;
+    layerId?: string;
     /**
      * The locale information for the data. ISO-639-1 language and ISO-3166-1
      * country code. Ex: 'en_US'.
@@ -2545,7 +2545,7 @@ export namespace books_v1 {
     /**
      * The volume to retrieve annotations for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
 
@@ -2930,7 +2930,7 @@ export namespace books_v1 {
     /**
      * The device/version ID from which to release the restriction.
      */
-    cpksver: string;
+    cpksver?: string;
     /**
      * ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
      */
@@ -2942,7 +2942,7 @@ export namespace books_v1 {
     /**
      * The volume(s) to release restrictions for.
      */
-    volumeIds: string;
+    volumeIds?: string;
   }
   export interface Params$Resource$Myconfig$Requestaccess {
     /**
@@ -2953,7 +2953,7 @@ export namespace books_v1 {
     /**
      * The device/version ID from which to request the restrictions.
      */
-    cpksver: string;
+    cpksver?: string;
     /**
      * The type of access license to request. If not specified, the default is
      * BOTH.
@@ -2966,15 +2966,15 @@ export namespace books_v1 {
     /**
      * The client nonce value.
      */
-    nonce: string;
+    nonce?: string;
     /**
      * String to identify the originator of this request.
      */
-    source: string;
+    source?: string;
     /**
      * The volume to request concurrent/download restrictions for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Myconfig$Syncvolumelicenses {
     /**
@@ -2985,7 +2985,7 @@ export namespace books_v1 {
     /**
      * The device/version ID from which to release the restriction.
      */
-    cpksver: string;
+    cpksver?: string;
     /**
      * List of features supported by the client, i.e., 'RENTALS'
      */
@@ -3001,7 +3001,7 @@ export namespace books_v1 {
     /**
      * The client nonce value.
      */
-    nonce: string;
+    nonce?: string;
     /**
      * Set to true to show pre-ordered books. Defaults to false.
      */
@@ -3009,7 +3009,7 @@ export namespace books_v1 {
     /**
      * String to identify the originator of this request.
      */
-    source: string;
+    source?: string;
     /**
      * The volume(s) to request download restrictions for.
      */
@@ -3413,7 +3413,7 @@ export namespace books_v1 {
     /**
      * The ID for the annotation to delete.
      */
-    annotationId: string;
+    annotationId?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -3506,11 +3506,11 @@ export namespace books_v1 {
     /**
      * Array of layer IDs to get the summary for.
      */
-    layerIds: string;
+    layerIds?: string;
     /**
      * Volume id to get the summary for.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Mylibrary$Annotations$Update {
     /**
@@ -3521,7 +3521,7 @@ export namespace books_v1 {
     /**
      * The ID for the annotation to update.
      */
-    annotationId: string;
+    annotationId?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -3967,7 +3967,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf to which to add a volume.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -3975,7 +3975,7 @@ export namespace books_v1 {
     /**
      * ID of volume to add.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Clearvolumes {
     /**
@@ -3986,7 +3986,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf from which to remove a volume.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -4001,7 +4001,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf to retrieve.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -4027,7 +4027,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf with the volume.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -4035,12 +4035,12 @@ export namespace books_v1 {
     /**
      * ID of volume to move.
      */
-    volumeId: string;
+    volumeId?: string;
     /**
      * Position on shelf to move the item (0 puts the item before the current
      * first item, 1 puts it between the first and the second and so on.)
      */
-    volumePosition: number;
+    volumePosition?: number;
   }
   export interface Params$Resource$Mylibrary$Bookshelves$Removevolume {
     /**
@@ -4055,7 +4055,7 @@ export namespace books_v1 {
     /**
      * ID of bookshelf from which to remove a volume.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -4063,7 +4063,7 @@ export namespace books_v1 {
     /**
      * ID of volume to remove.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
   export class Resource$Mylibrary$Bookshelves$Volumes {
@@ -4176,7 +4176,7 @@ export namespace books_v1 {
     /**
      * The bookshelf ID or name retrieve volumes for.
      */
-    shelf: string;
+    shelf?: string;
     /**
      * Set to true to show pre-ordered books. Defaults to false.
      */
@@ -4361,7 +4361,7 @@ export namespace books_v1 {
     /**
      * ID of volume for which to retrieve a reading position.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Mylibrary$Readingpositions$Setposition {
     /**
@@ -4384,7 +4384,7 @@ export namespace books_v1 {
     /**
      * Position string for the new volume reading position.
      */
-    position: string;
+    position?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -4392,11 +4392,11 @@ export namespace books_v1 {
     /**
      * RFC 3339 UTC format timestamp associated with this reading position.
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * ID of volume for which to update the reading position.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
 
@@ -4491,7 +4491,7 @@ export namespace books_v1 {
     /**
      * String to identify the notification.
      */
-    notification_id: string;
+    notification_id?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -5199,7 +5199,7 @@ export namespace books_v1 {
     /**
      * String that identifies the series
      */
-    series_id: string;
+    series_id?: string;
   }
 
   export class Resource$Series$Membership {
@@ -5296,7 +5296,7 @@ export namespace books_v1 {
     /**
      * String that identifies the series
      */
-    series_id: string;
+    series_id?: string;
   }
 
 
@@ -5498,7 +5498,7 @@ export namespace books_v1 {
     /**
      * ID of volume to retrieve.
      */
-    volumeId: string;
+    volumeId?: string;
   }
   export interface Params$Resource$Volumes$List {
     /**
@@ -5550,7 +5550,7 @@ export namespace books_v1 {
     /**
      * Full-text search query string.
      */
-    q: string;
+    q?: string;
     /**
      * Set to true to show books available for preorder. Defaults to false.
      */
@@ -5674,7 +5674,7 @@ export namespace books_v1 {
     /**
      * ID of the source volume.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
 
@@ -5997,7 +5997,7 @@ export namespace books_v1 {
     /**
      * Rating to be given to the volume.
      */
-    rating: string;
+    rating?: string;
     /**
      * String to identify the originator of this request.
      */
@@ -6005,7 +6005,7 @@ export namespace books_v1 {
     /**
      * ID of the source volume.
      */
-    volumeId: string;
+    volumeId?: string;
   }
 
 

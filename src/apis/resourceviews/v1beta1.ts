@@ -761,15 +761,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * Request body metadata
      */
@@ -784,15 +784,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
   }
   export interface Params$Resource$Regionviews$Get {
     /**
@@ -803,15 +803,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
   }
   export interface Params$Resource$Regionviews$Insert {
     /**
@@ -822,11 +822,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * Request body metadata
      */
@@ -852,11 +852,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
   }
   export interface Params$Resource$Regionviews$Listresources {
     /**
@@ -878,15 +878,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
   }
   export interface Params$Resource$Regionviews$Removeresources {
     /**
@@ -897,15 +897,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The region name of the resource view.
      */
-    region: string;
+    region?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * Request body metadata
      */
@@ -1430,15 +1430,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1453,15 +1453,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneviews$Get {
     /**
@@ -1472,15 +1472,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneviews$Insert {
     /**
@@ -1491,11 +1491,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1521,11 +1521,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneviews$Listresources {
     /**
@@ -1547,15 +1547,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneviews$Removeresources {
     /**
@@ -1566,15 +1566,15 @@ export namespace resourceviews_v1beta1 {
     /**
      * The project name of the resource view.
      */
-    projectName: string;
+    projectName?: string;
     /**
      * The name of the resource view.
      */
-    resourceViewName: string;
+    resourceViewName?: string;
     /**
      * The zone name of the resource view.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */

@@ -339,7 +339,7 @@ export namespace oslogin_v1beta {
     /**
      * The unique ID for the user in format `users/{user}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Importsshpublickey {
     /**
@@ -350,7 +350,7 @@ export namespace oslogin_v1beta {
     /**
      * The unique ID for the user in format `users/{user}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * The project ID of the Google Cloud Platform project.
      */
@@ -449,7 +449,7 @@ export namespace oslogin_v1beta {
      * by the project ID they are associated with. A reference to the POSIX
      * account is in format `users/{user}/projects/{project}`.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -672,7 +672,7 @@ export namespace oslogin_v1beta {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Get {
     /**
@@ -685,7 +685,7 @@ export namespace oslogin_v1beta {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Patch {
     /**
@@ -698,7 +698,7 @@ export namespace oslogin_v1beta {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
     /**
      * Mask to control which fields get updated. Updates all if not present.
      */

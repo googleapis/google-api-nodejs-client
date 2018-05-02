@@ -533,11 +533,11 @@ export namespace discovery_v1 {
     /**
      * The name of the API.
      */
-    api: string;
+    api?: string;
     /**
      * The version of the API.
      */
-    version: string;
+    version?: string;
   }
   export interface Params$Resource$Apis$List {
     /**

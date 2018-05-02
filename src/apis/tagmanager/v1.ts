@@ -1230,7 +1230,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -1247,7 +1247,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the account
      * in storage.
@@ -1640,7 +1640,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -1655,11 +1655,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Get {
     /**
@@ -1670,11 +1670,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$List {
     /**
@@ -1685,7 +1685,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Update {
     /**
@@ -1696,11 +1696,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * container in storage.
@@ -2162,11 +2162,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -2181,15 +2181,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Environment ID.
      */
-    environmentId: string;
+    environmentId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Get {
     /**
@@ -2200,15 +2200,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Environment ID.
      */
-    environmentId: string;
+    environmentId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$List {
     /**
@@ -2219,11 +2219,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Environments$Patch {
     /**
@@ -2234,15 +2234,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Environment ID.
      */
-    environmentId: string;
+    environmentId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * environment in storage.
@@ -2262,15 +2262,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Environment ID.
      */
-    environmentId: string;
+    environmentId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * environment in storage.
@@ -2653,11 +2653,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -2672,15 +2672,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Folder ID.
      */
-    folderId: string;
+    folderId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Folders$Get {
     /**
@@ -2691,15 +2691,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Folder ID.
      */
-    folderId: string;
+    folderId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Folders$List {
     /**
@@ -2710,11 +2710,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Folders$Update {
     /**
@@ -2725,11 +2725,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the folder
      * in storage.
@@ -2738,7 +2738,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Folder ID.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * Request body metadata
      */
@@ -2839,15 +2839,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Folder ID.
      */
-    folderId: string;
+    folderId?: string;
   }
 
 
@@ -2947,15 +2947,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Folder ID.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * The tags to be moved to the folder.
      */
@@ -3073,15 +3073,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Environment ID.
      */
-    environmentId: string;
+    environmentId?: string;
     /**
      * Request body metadata
      */
@@ -3457,11 +3457,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -3476,15 +3476,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Tag ID.
      */
-    tagId: string;
+    tagId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Tags$Get {
     /**
@@ -3495,15 +3495,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Tag ID.
      */
-    tagId: string;
+    tagId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Tags$List {
     /**
@@ -3514,11 +3514,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Tags$Update {
     /**
@@ -3529,11 +3529,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the tag in
      * storage.
@@ -3542,7 +3542,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Tag ID.
      */
-    tagId: string;
+    tagId?: string;
     /**
      * Request body metadata
      */
@@ -3919,11 +3919,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -3938,15 +3938,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Trigger ID.
      */
-    triggerId: string;
+    triggerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Get {
     /**
@@ -3957,15 +3957,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Trigger ID.
      */
-    triggerId: string;
+    triggerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Triggers$List {
     /**
@@ -3976,11 +3976,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Triggers$Update {
     /**
@@ -3991,11 +3991,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the trigger
      * in storage.
@@ -4004,7 +4004,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Trigger ID.
      */
-    triggerId: string;
+    triggerId?: string;
     /**
      * Request body metadata
      */
@@ -4381,11 +4381,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -4400,15 +4400,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Variable ID.
      */
-    variableId: string;
+    variableId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Variables$Get {
     /**
@@ -4419,15 +4419,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Variable ID.
      */
-    variableId: string;
+    variableId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Variables$List {
     /**
@@ -4438,11 +4438,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Variables$Update {
     /**
@@ -4453,11 +4453,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * variable in storage.
@@ -4466,7 +4466,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Variable ID.
      */
-    variableId: string;
+    variableId?: string;
     /**
      * Request body metadata
      */
@@ -5089,11 +5089,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Request body metadata
      */
@@ -5108,15 +5108,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Get {
     /**
@@ -5127,16 +5127,16 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID. Specify published to retrieve the currently
      * published version.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$List {
     /**
@@ -5147,11 +5147,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * Retrieve headers only when true.
      */
@@ -5170,15 +5170,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * container version in storage.
@@ -5194,15 +5194,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Undelete {
     /**
@@ -5213,15 +5213,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Versions$Update {
     /**
@@ -5232,15 +5232,15 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM Container ID.
      */
-    containerId: string;
+    containerId?: string;
     /**
      * The GTM Container Version ID.
      */
-    containerVersionId: string;
+    containerVersionId?: string;
     /**
      * When provided, this fingerprint must match the fingerprint of the
      * container version in storage.
@@ -5618,7 +5618,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -5633,11 +5633,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM User ID.
      */
-    permissionId: string;
+    permissionId?: string;
   }
   export interface Params$Resource$Accounts$Permissions$Get {
     /**
@@ -5648,11 +5648,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM User ID.
      */
-    permissionId: string;
+    permissionId?: string;
   }
   export interface Params$Resource$Accounts$Permissions$List {
     /**
@@ -5663,7 +5663,7 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID. @required tagmanager.accounts.permissions.list
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Accounts$Permissions$Update {
     /**
@@ -5674,11 +5674,11 @@ export namespace tagmanager_v1 {
     /**
      * The GTM Account ID.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GTM User ID.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Request body metadata
      */

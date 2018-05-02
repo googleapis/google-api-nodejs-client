@@ -574,11 +574,11 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client for which to get the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to retrieve.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Adunits$List {
     /**
@@ -589,7 +589,7 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client for which to list ad units.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -700,11 +700,11 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client which contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit for which to list custom channels.
      */
-    adUnitId: string;
+    adUnitId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -880,11 +880,11 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to retrieve.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Customchannels$List {
     /**
@@ -895,7 +895,7 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client for which to list custom channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -1002,11 +1002,11 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel for which to list ad units.
      */
-    customChannelId: string;
+    customChannelId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -1128,7 +1128,7 @@ export namespace adexchangeseller_v1 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -1155,7 +1155,7 @@ export namespace adexchangeseller_v1 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -1329,7 +1329,7 @@ export namespace adexchangeseller_v1 {
     /**
      * The saved report to retrieve.
      */
-    savedReportId: string;
+    savedReportId?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -1446,7 +1446,7 @@ export namespace adexchangeseller_v1 {
     /**
      * Ad client for which to list URL channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of URL channels to include in the response, used for
      * paging.

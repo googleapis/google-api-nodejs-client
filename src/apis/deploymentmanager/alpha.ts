@@ -1886,11 +1886,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the type for this request.
      */
-    compositeType: string;
+    compositeType?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Compositetypes$Get {
     /**
@@ -1901,11 +1901,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the composite type for this request.
      */
-    compositeType: string;
+    compositeType?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Compositetypes$Insert {
     /**
@@ -1916,7 +1916,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -1974,7 +1974,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Compositetypes$Patch {
     /**
@@ -1985,11 +1985,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the composite type for this request.
      */
-    compositeType: string;
+    compositeType?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2004,11 +2004,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the composite type for this request.
      */
-    compositeType: string;
+    compositeType?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2823,11 +2823,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2846,11 +2846,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Get {
     /**
@@ -2861,11 +2861,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Getiampolicy {
     /**
@@ -2876,11 +2876,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Deployments$Insert {
     /**
@@ -2905,7 +2905,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2963,7 +2963,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Patch {
     /**
@@ -2982,7 +2982,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * If set to true, updates the deployment and creates and updates the
      * "shell" resources but does not actually alter or instantiate these
@@ -2999,7 +2999,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3014,11 +3014,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3033,11 +3033,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3052,11 +3052,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3079,7 +3079,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * If set to true, updates the deployment and creates and updates the
      * "shell" resources but does not actually alter or instantiate these
@@ -3096,7 +3096,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3263,15 +3263,15 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The name of the manifest for this request.
      */
-    manifest: string;
+    manifest?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Manifests$List {
     /**
@@ -3282,7 +3282,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * A filter expression that filters resources listed in the response. The
      * expression must specify the field name, a comparison operator, and the
@@ -3329,7 +3329,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3491,11 +3491,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the operation for this request.
      */
-    operation: string;
+    operation?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -3549,7 +3549,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3712,15 +3712,15 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Resources$List {
     /**
@@ -3731,7 +3731,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * A filter expression that filters resources listed in the response. The
      * expression must specify the field name, a comparison operator, and the
@@ -3778,7 +3778,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -4378,11 +4378,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
   }
   export interface Params$Resource$Typeproviders$Get {
     /**
@@ -4393,11 +4393,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
   }
   export interface Params$Resource$Typeproviders$Gettype {
     /**
@@ -4408,15 +4408,15 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    type: string;
+    type?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
   }
   export interface Params$Resource$Typeproviders$Insert {
     /**
@@ -4427,7 +4427,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -4485,7 +4485,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Typeproviders$Listtypes {
     /**
@@ -4539,11 +4539,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
   }
   export interface Params$Resource$Typeproviders$Patch {
     /**
@@ -4554,11 +4554,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
     /**
      * Request body metadata
      */
@@ -4573,11 +4573,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type provider for this request.
      */
-    typeProvider: string;
+    typeProvider?: string;
     /**
      * Request body metadata
      */
@@ -5013,11 +5013,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type for this request.
      */
-    type: string;
+    type?: string;
   }
   export interface Params$Resource$Types$Get {
     /**
@@ -5028,11 +5028,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type for this request.
      */
-    type: string;
+    type?: string;
   }
   export interface Params$Resource$Types$Insert {
     /**
@@ -5043,7 +5043,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -5101,7 +5101,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Types$Patch {
     /**
@@ -5112,11 +5112,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type for this request.
      */
-    type: string;
+    type?: string;
     /**
      * Request body metadata
      */
@@ -5131,11 +5131,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the type for this request.
      */
-    type: string;
+    type?: string;
     /**
      * Request body metadata
      */

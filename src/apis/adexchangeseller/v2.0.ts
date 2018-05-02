@@ -595,7 +595,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account to get information about. Tip: 'myaccount' is a valid ID.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -707,7 +707,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of ad clients to include in the response, used for
      * paging.
@@ -811,7 +811,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account owning the alerts.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The locale to use for translating alert messages. The account locale will
      * be used if this is not supplied. The AdSense default (English) will be
@@ -982,15 +982,15 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to retrieve.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Accounts$Customchannels$List {
     /**
@@ -1001,11 +1001,11 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list custom channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -1127,7 +1127,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account with visibility to the dimensions.
      */
-    accountId: string;
+    accountId?: string;
   }
 
 
@@ -1221,7 +1221,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account with visibility to the metrics.
      */
-    accountId: string;
+    accountId?: string;
   }
 
 
@@ -1382,11 +1382,11 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account owning the deal.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Preferred deal to get information about.
      */
-    dealId: string;
+    dealId?: string;
   }
   export interface Params$Resource$Accounts$Preferreddeals$List {
     /**
@@ -1397,7 +1397,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account owning the deals.
      */
-    accountId: string;
+    accountId?: string;
   }
 
 
@@ -1502,7 +1502,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account which owns the generated report.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Dimensions to base the report on.
      */
@@ -1510,7 +1510,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -1537,7 +1537,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -1708,7 +1708,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account owning the saved report.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -1721,7 +1721,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * The saved report to retrieve.
      */
-    savedReportId: string;
+    savedReportId?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -1736,7 +1736,7 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account owning the saved reports.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of saved reports to include in the response, used for
      * paging.
@@ -1846,11 +1846,11 @@ export namespace adexchangeseller_v2_0 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list URL channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of URL channels to include in the response, used for
      * paging.

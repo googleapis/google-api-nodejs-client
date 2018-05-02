@@ -59,7 +59,6 @@ export namespace youtube_v3 {
     channelSections: Resource$Channelsections;
     comments: Resource$Comments;
     commentThreads: Resource$Commentthreads;
-    fanFundingEvents: Resource$Fanfundingevents;
     guideCategories: Resource$Guidecategories;
     i18nLanguages: Resource$I18nlanguages;
     i18nRegions: Resource$I18nregions;
@@ -92,7 +91,6 @@ export namespace youtube_v3 {
       this.channelSections = new Resource$Channelsections(this);
       this.comments = new Resource$Comments(this);
       this.commentThreads = new Resource$Commentthreads(this);
-      this.fanFundingEvents = new Resource$Fanfundingevents(this);
       this.guideCategories = new Resource$Guidecategories(this);
       this.i18nLanguages = new Resource$I18nlanguages(this);
       this.i18nRegions = new Resource$I18nregions(this);
@@ -1759,93 +1757,6 @@ export namespace youtube_v3 {
      * A rating that YouTube uses to identify age-restricted content.
      */
     ytRating?: string;
-  }
-  /**
-   * A fanFundingEvent resource represents a fan funding event on a YouTube
-   * channel. Fan funding events occur when a user gives one-time monetary
-   * support to the channel owner.
-   */
-  export interface Schema$FanFundingEvent {
-    /**
-     * Etag of this resource.
-     */
-    etag?: string;
-    /**
-     * The ID that YouTube assigns to uniquely identify the fan funding event.
-     */
-    id?: string;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#fanFundingEvent&quot;.
-     */
-    kind?: string;
-    /**
-     * The snippet object contains basic details about the fan funding event.
-     */
-    snippet?: Schema$FanFundingEventSnippet;
-  }
-  export interface Schema$FanFundingEventListResponse {
-    /**
-     * Etag of this resource.
-     */
-    etag?: string;
-    /**
-     * Serialized EventId of the request which produced this response.
-     */
-    eventId?: string;
-    /**
-     * A list of fan funding events that match the request criteria.
-     */
-    items?: Schema$FanFundingEvent[];
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string
-     * &quot;youtube#fanFundingEventListResponse&quot;.
-     */
-    kind?: string;
-    /**
-     * The token that can be used as the value of the pageToken parameter to
-     * retrieve the next page in the result set.
-     */
-    nextPageToken?: string;
-    pageInfo?: Schema$PageInfo;
-    tokenPagination?: Schema$TokenPagination;
-    /**
-     * The visitorId identifies the visitor.
-     */
-    visitorId?: string;
-  }
-  export interface Schema$FanFundingEventSnippet {
-    /**
-     * The amount of funding in micros of fund_currency. e.g., 1 is represented
-     */
-    amountMicros?: string;
-    /**
-     * Channel id where the funding event occurred.
-     */
-    channelId?: string;
-    /**
-     * The text contents of the comment left by the user.
-     */
-    commentText?: string;
-    /**
-     * The date and time when the funding occurred. The value is specified in
-     * ISO 8601 (YYYY-MM-DDThh:mm:ss.sZ) format.
-     */
-    createdAt?: string;
-    /**
-     * The currency in which the fund was made. ISO 4217.
-     */
-    currency?: string;
-    /**
-     * A rendered string that displays the fund amount and currency (e.g.,
-     * &quot;$1.00&quot;). The string is rendered for the given language.
-     */
-    displayString?: string;
-    /**
-     * Details about the supporter. Only filled if the event was made public by
-     * the user.
-     */
-    supporterDetails?: Schema$ChannelProfileDetails;
   }
   /**
    * Geographical coordinates of a point, in WGS84.
@@ -3678,10 +3589,6 @@ export namespace youtube_v3 {
      */
     etag?: string;
     /**
-     * The ID that YouTube assigns to uniquely identify the sponsor.
-     */
-    id?: string;
-    /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;youtube#sponsor&quot;.
      */
@@ -5208,7 +5115,7 @@ export namespace youtube_v3 {
      * the properties that the write operation will set as well as the
      * properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -5256,7 +5163,7 @@ export namespace youtube_v3 {
      * you set part=snippet, the API response will also contain all of those
      * nested properties.
      */
-    part: string;
+    part?: string;
     /**
      * The publishedAfter parameter specifies the earliest date and time that an
      * activity could have occurred for that activity to be included in the API
@@ -5664,7 +5571,7 @@ export namespace youtube_v3 {
      * value is a caption track ID as identified by the id property in a caption
      * resource.
      */
-    id: string;
+    id?: string;
     /**
      * ID of the Google+ Page for the channel that the request is be on behalf
      * of
@@ -5695,7 +5602,7 @@ export namespace youtube_v3 {
      * The value is a caption track ID as identified by the id property in a
      * caption resource.
      */
-    id: string;
+    id?: string;
     /**
      * ID of the Google+ Page for the channel that the request is be on behalf
      * of
@@ -5757,7 +5664,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the caption resource parts that the API
      * response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The sync parameter indicates whether YouTube should automatically
      * synchronize the caption file with the audio track of the video. If you
@@ -5821,12 +5728,12 @@ export namespace youtube_v3 {
      * caption resource parts that the API response will include. The part names
      * that you can include in the parameter value are id and snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The videoId parameter specifies the YouTube video ID of the video for
      * which the API should return caption tracks.
      */
-    videoId: string;
+    videoId?: string;
   }
   export interface Params$Resource$Captions$Update {
     /**
@@ -5859,7 +5766,7 @@ export namespace youtube_v3 {
      * snippet if you are updating the track's draft status. Otherwise, set the
      * property value to id.
      */
-    part: string;
+    part?: string;
     /**
      * Note: The API server only processes the parameter value if the request
      * contains an updated caption file.  The sync parameter indicates whether
@@ -6270,7 +6177,7 @@ export namespace youtube_v3 {
      * the uploads properties. As such, if you set part=contentDetails, the API
      * response will also contain all of those nested properties.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Channels$Update {
     /**
@@ -6299,7 +6206,7 @@ export namespace youtube_v3 {
      * the mutable properties that are contained in any parts that the parameter
      * value specifies.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -6613,7 +6520,7 @@ export namespace youtube_v3 {
      * that is being deleted. In a channelSection resource, the id property
      * specifies the YouTube channelSection ID.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -6672,7 +6579,7 @@ export namespace youtube_v3 {
      * properties that the API response will include.  The part names that you
      * can include in the parameter value are snippet and contentDetails.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -6735,7 +6642,7 @@ export namespace youtube_v3 {
      * channelSection. If you set part=snippet, the API response will also
      * contain all of those nested properties.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Channelsections$Update {
     /**
@@ -6762,7 +6669,7 @@ export namespace youtube_v3 {
      * properties that the API response will include.  The part names that you
      * can include in the parameter value are snippet and contentDetails.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -7191,7 +7098,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the comment ID for the resource that is being
      * deleted.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Comments$Insert {
     /**
@@ -7204,7 +7111,7 @@ export namespace youtube_v3 {
      * include. Set the parameter value to snippet. The snippet part has a quota
      * cost of 2 units.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -7246,7 +7153,7 @@ export namespace youtube_v3 {
      * The part parameter specifies a comma-separated list of one or more
      * comment resource properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * This parameter indicates whether the API should return comments formatted
      * as HTML or as plain text.
@@ -7263,7 +7170,7 @@ export namespace youtube_v3 {
      * The id parameter specifies a comma-separated list of IDs of comments that
      * the caller believes should be classified as spam.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Comments$Setmoderationstatus {
     /**
@@ -7282,11 +7189,11 @@ export namespace youtube_v3 {
      * The id parameter specifies a comma-separated list of IDs that identify
      * the comments for which you are updating the moderation status.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies the new moderation status of the specified comments.
      */
-    moderationStatus: string;
+    moderationStatus?: string;
   }
   export interface Params$Resource$Comments$Update {
     /**
@@ -7300,7 +7207,7 @@ export namespace youtube_v3 {
      * value since that part contains all of the properties that the API request
      * can update.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -7548,7 +7455,7 @@ export namespace youtube_v3 {
      * include. Set the parameter value to snippet. The snippet part has a quota
      * cost of 2 units.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -7608,7 +7515,7 @@ export namespace youtube_v3 {
      * The part parameter specifies a comma-separated list of one or more
      * commentThread resource properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * The searchTerms parameter instructs the API to limit the API response to
      * only contain comments that contain the specified search terms.  Note:
@@ -7639,135 +7546,11 @@ export namespace youtube_v3 {
      * include the snippet part in the parameter value since that part contains
      * all of the properties that the API request can update.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
     resource?: Schema$CommentThread;
-  }
-
-
-  export class Resource$Fanfundingevents {
-    root: Youtube;
-    constructor(root: Youtube) {
-      this.root = root;
-      this.getRoot.bind(this);
-    }
-
-    getRoot() {
-      return this.root;
-    }
-
-
-    /**
-     * youtube.fanFundingEvents.list
-     * @desc Lists fan funding events for a channel.
-     * @alias youtube.fanFundingEvents.list
-     * @memberOf! ()
-     *
-     * @param {object} params Parameters for request
-     * @param {string=} params.hl The hl parameter instructs the API to retrieve localized resource metadata for a specific application language that the YouTube website supports. The parameter value must be a language code included in the list returned by the i18nLanguages.list method.  If localized resource details are available in that language, the resource's snippet.localized object will contain the localized values. However, if localized details are not available, the snippet.localized object will contain resource details in the resource's default language.
-     * @param {integer=} params.maxResults The maxResults parameter specifies the maximum number of items that should be returned in the result set.
-     * @param {string=} params.pageToken The pageToken parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
-     * @param {string} params.part The part parameter specifies the fanFundingEvent resource parts that the API response will include. Supported values are id and snippet.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
-     */
-    list(
-        params?: Params$Resource$Fanfundingevents$List,
-        options?: MethodOptions):
-        AxiosPromise<Schema$FanFundingEventListResponse>;
-    list(
-        params: Params$Resource$Fanfundingevents$List,
-        options: MethodOptions|
-        BodyResponseCallback<Schema$FanFundingEventListResponse>,
-        callback: BodyResponseCallback<Schema$FanFundingEventListResponse>):
-        void;
-    list(
-        params: Params$Resource$Fanfundingevents$List,
-        callback: BodyResponseCallback<Schema$FanFundingEventListResponse>):
-        void;
-    list(callback: BodyResponseCallback<Schema$FanFundingEventListResponse>):
-        void;
-    list(
-        paramsOrCallback?: Params$Resource$Fanfundingevents$List|
-        BodyResponseCallback<Schema$FanFundingEventListResponse>,
-        optionsOrCallback?: MethodOptions|
-        BodyResponseCallback<Schema$FanFundingEventListResponse>,
-        callback?: BodyResponseCallback<Schema$FanFundingEventListResponse>):
-        void|AxiosPromise<Schema$FanFundingEventListResponse> {
-      let params =
-          (paramsOrCallback || {}) as Params$Resource$Fanfundingevents$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Fanfundingevents$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-            {
-              url: (rootUrl + '/youtube/v3/fanFundingEvents')
-                       .replace(/([^:]\/)\/+/g, '$1'),
-              method: 'GET'
-            },
-            options),
-        params,
-        requiredParams: ['part'],
-        pathParams: [],
-        context: this.getRoot()
-      };
-      if (callback) {
-        createAPIRequest<Schema$FanFundingEventListResponse>(
-            parameters, callback);
-      } else {
-        return createAPIRequest<Schema$FanFundingEventListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Fanfundingevents$List {
-    /**
-     * Auth client or API Key for the request
-     */
-    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
-
-    /**
-     * The hl parameter instructs the API to retrieve localized resource
-     * metadata for a specific application language that the YouTube website
-     * supports. The parameter value must be a language code included in the
-     * list returned by the i18nLanguages.list method.  If localized resource
-     * details are available in that language, the resource's snippet.localized
-     * object will contain the localized values. However, if localized details
-     * are not available, the snippet.localized object will contain resource
-     * details in the resource's default language.
-     */
-    hl?: string;
-    /**
-     * The maxResults parameter specifies the maximum number of items that
-     * should be returned in the result set.
-     */
-    maxResults?: number;
-    /**
-     * The pageToken parameter identifies a specific page in the result set that
-     * should be returned. In an API response, the nextPageToken and
-     * prevPageToken properties identify other pages that could be retrieved.
-     */
-    pageToken?: string;
-    /**
-     * The part parameter specifies the fanFundingEvent resource parts that the
-     * API response will include. Supported values are id and snippet.
-     */
-    part: string;
   }
 
 
@@ -7879,7 +7662,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the guideCategory resource properties that
      * the API response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The regionCode parameter instructs the API to return the list of guide
      * categories available in the specified country. The parameter value is an
@@ -7985,7 +7768,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the i18nLanguage resource properties that
      * the API response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -8084,7 +7867,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the i18nRegion resource properties that the
      * API response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -8619,7 +8402,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the unique ID of the broadcast that is being
      * bound to a video stream.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -8658,7 +8441,7 @@ export namespace youtube_v3 {
      * part names that you can include in the parameter value are id, snippet,
      * contentDetails, and status.
      */
-    part: string;
+    part?: string;
     /**
      * The streamId parameter specifies the unique ID of the video stream that
      * is being bound to a broadcast. If this parameter is omitted, the API will
@@ -8681,7 +8464,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the YouTube live broadcast ID that uniquely
      * identifies the broadcast in which the slate is being updated.
      */
-    id: string;
+    id?: string;
     /**
      * The offsetTimeMs parameter specifies a positive time offset when the
      * specified slate change will occur. The value is measured in milliseconds
@@ -8733,7 +8516,7 @@ export namespace youtube_v3 {
      * part names that you can include in the parameter value are id, snippet,
      * contentDetails, and status.
      */
-    part: string;
+    part?: string;
     /**
      * The walltime parameter specifies the wall clock time at which the
      * specified slate change will occur. The value is specified in ISO 8601
@@ -8751,7 +8534,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the YouTube live broadcast ID for the resource
      * that is being deleted.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -8830,7 +8613,7 @@ export namespace youtube_v3 {
      * you can include in the parameter value are id, snippet, contentDetails,
      * and status.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -8914,7 +8697,7 @@ export namespace youtube_v3 {
      * part names that you can include in the parameter value are id, snippet,
      * contentDetails, and status.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Livebroadcasts$Transition {
     /**
@@ -8928,12 +8711,12 @@ export namespace youtube_v3 {
      * live state, the status.streamStatus must be active for the stream that
      * the broadcast is bound to.
      */
-    broadcastStatus: string;
+    broadcastStatus?: string;
     /**
      * The id parameter specifies the unique ID of the broadcast that is
      * transitioning to another status.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -8972,7 +8755,7 @@ export namespace youtube_v3 {
      * part names that you can include in the parameter value are id, snippet,
      * contentDetails, and status.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Livebroadcasts$Update {
     /**
@@ -9027,7 +8810,7 @@ export namespace youtube_v3 {
      * not specify a value, the existing privacy setting will be removed and the
      * broadcast will revert to the default privacy setting.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -9190,7 +8973,7 @@ export namespace youtube_v3 {
      * The id parameter identifies the chat ban to remove. The value uniquely
      * identifies both the ban and the chat.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Livechatbans$Insert {
     /**
@@ -9204,7 +8987,7 @@ export namespace youtube_v3 {
      * properties that the API response returns. Set the parameter value to
      * snippet.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -9445,7 +9228,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the YouTube chat message ID of the resource
      * that is being deleted.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Livechatmessages$Insert {
     /**
@@ -9458,7 +9241,7 @@ export namespace youtube_v3 {
      * the write operation will set as well as the properties that the API
      * response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -9485,7 +9268,7 @@ export namespace youtube_v3 {
      * The liveChatId parameter specifies the ID of the chat whose messages will
      * be returned.
      */
-    liveChatId: string;
+    liveChatId?: string;
     /**
      * The maxResults parameter specifies the maximum number of messages that
      * should be returned in the result set.
@@ -9501,7 +9284,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the liveChatComment resource parts that the
      * API response will include. Supported values are id and snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The profileImageSize parameter specifies the size of the user profile
      * pictures that should be returned in the result set. Default: 88.
@@ -9742,7 +9525,7 @@ export namespace youtube_v3 {
      * The id parameter identifies the chat moderator to remove. The value
      * uniquely identifies both the moderator and the chat.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Livechatmoderators$Insert {
     /**
@@ -9756,7 +9539,7 @@ export namespace youtube_v3 {
      * properties that the API response returns. Set the parameter value to
      * snippet.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -9772,7 +9555,7 @@ export namespace youtube_v3 {
      * The liveChatId parameter specifies the YouTube live chat for which the
      * API should return moderators.
      */
-    liveChatId: string;
+    liveChatId?: string;
     /**
      * The maxResults parameter specifies the maximum number of items that
      * should be returned in the result set.
@@ -9788,7 +9571,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the liveChatModerator resource parts that
      * the API response will include. Supported values are id and snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -10097,7 +9880,7 @@ export namespace youtube_v3 {
      * The id parameter specifies the YouTube live stream ID for the resource
      * that is being deleted.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -10175,7 +9958,7 @@ export namespace youtube_v3 {
      * properties that the API response will include.  The part properties that
      * you can include in the parameter value are id, snippet, cdn, and status.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -10248,7 +10031,7 @@ export namespace youtube_v3 {
      * part names that you can include in the parameter value are id, snippet,
      * cdn, and status.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Livestreams$Update {
     /**
@@ -10298,7 +10081,7 @@ export namespace youtube_v3 {
      * value specifies. If the request body does not specify a value for a
      * mutable property, the existing value for that property will be removed.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -10609,7 +10392,7 @@ export namespace youtube_v3 {
      * item that is being deleted. In a playlistItem resource, the id property
      * specifies the playlist item's ID.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -10648,7 +10431,7 @@ export namespace youtube_v3 {
      * the properties that the write operation will set as well as the
      * properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -10699,7 +10482,7 @@ export namespace youtube_v3 {
      * such, if you set part=snippet, the API response will contain all of those
      * properties.
      */
-    part: string;
+    part?: string;
     /**
      * The playlistId parameter specifies the unique ID of the playlist for
      * which you want to retrieve playlist items. Note that even though this is
@@ -10747,7 +10530,7 @@ export namespace youtube_v3 {
      * does not specify values, the existing start and end times will be removed
      * and replaced with the default settings.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -11053,7 +10836,7 @@ export namespace youtube_v3 {
      * is being deleted. In a playlist resource, the id property specifies the
      * playlist's ID.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -11111,7 +10894,7 @@ export namespace youtube_v3 {
      * the properties that the write operation will set as well as the
      * properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -11196,7 +10979,7 @@ export namespace youtube_v3 {
      * description, tags, and timeCreated. As such, if you set part=snippet, the
      * API response will contain all of those properties.
      */
-    part: string;
+    part?: string;
   }
   export interface Params$Resource$Playlists$Update {
     /**
@@ -11228,7 +11011,7 @@ export namespace youtube_v3 {
      * the snippet.description property, the playlist's existing description
      * will be deleted.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -11450,7 +11233,7 @@ export namespace youtube_v3 {
      * resource properties that the API response will include. Set the parameter
      * value to snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The publishedAfter parameter indicates that the API response should only
      * contain resources created after the specified time. The value is an RFC
@@ -11680,7 +11463,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the sponsor resource parts that the API
      * response will include. Supported values are id and snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -11918,7 +11701,7 @@ export namespace youtube_v3 {
      * that is being deleted. In a subscription resource, the id property
      * specifies the YouTube subscription ID.
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Subscriptions$Insert {
     /**
@@ -11931,7 +11714,7 @@ export namespace youtube_v3 {
      * the properties that the write operation will set as well as the
      * properties that the API response will include.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -12033,7 +11816,7 @@ export namespace youtube_v3 {
      * such as a display title for the subscription. If you set part=snippet,
      * the API response will also contain all of those nested properties.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -12156,7 +11939,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the superChatEvent resource parts that the
      * API response will include. Supported values are id and snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -12265,7 +12048,7 @@ export namespace youtube_v3 {
      * The videoId parameter specifies a YouTube video ID for which the custom
      * video thumbnail is being provided.
      */
-    videoId: string;
+    videoId?: string;
     /**
      * Media metadata
      */
@@ -12390,7 +12173,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the videoCategory resource parts that the
      * API response will include. Supported values are id and snippet.
      */
-    part: string;
+    part?: string;
   }
 
 
@@ -12500,7 +12283,7 @@ export namespace youtube_v3 {
      * The part parameter specifies the videoCategory resource properties that
      * the API response will include. Set the parameter value to snippet.
      */
-    part: string;
+    part?: string;
     /**
      * The regionCode parameter instructs the API to return the list of video
      * categories available in the specified country. The parameter value is an
@@ -13017,7 +12800,7 @@ export namespace youtube_v3 {
      * being deleted. In a video resource, the id property specifies the video's
      * ID.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -13043,7 +12826,7 @@ export namespace youtube_v3 {
      * ID(s) for the resource(s) for which you are retrieving rating data. In a
      * video resource, the id property specifies the video's ID.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -13120,7 +12903,7 @@ export namespace youtube_v3 {
      * modify. If the parameter value specifies a part that does not contain
      * mutable values, that part will still be included in the API response.
      */
-    part: string;
+    part?: string;
     /**
      * The stabilize parameter indicates whether YouTube should adjust the video
      * to remove shaky camera motions.
@@ -13231,7 +13014,7 @@ export namespace youtube_v3 {
      * description, tags, and categoryId properties. As such, if you set
      * part=snippet, the API response will contain all of those properties.
      */
-    part: string;
+    part?: string;
     /**
      * The regionCode parameter instructs the API to select a video chart
      * available in the specified region. This parameter can only be used in
@@ -13257,11 +13040,11 @@ export namespace youtube_v3 {
      * The id parameter specifies the YouTube video ID of the video that is
      * being rated or having its rating removed.
      */
-    id: string;
+    id?: string;
     /**
      * Specifies the rating to record.
      */
-    rating: string;
+    rating?: string;
   }
   export interface Params$Resource$Videos$Reportabuse {
     /**
@@ -13325,7 +13108,7 @@ export namespace youtube_v3 {
      * part that does not contain mutable values, that part will still be
      * included in the API response.
      */
-    part: string;
+    part?: string;
     /**
      * Request body metadata
      */
@@ -13486,7 +13269,7 @@ export namespace youtube_v3 {
      * The channelId parameter specifies the YouTube channel ID for which the
      * watermark is being provided.
      */
-    channelId: string;
+    channelId?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -13529,7 +13312,7 @@ export namespace youtube_v3 {
      * The channelId parameter specifies the YouTube channel ID for which the
      * watermark is being unset.
      */
-    channelId: string;
+    channelId?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the

@@ -1174,7 +1174,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1189,7 +1189,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$List {
     /**
@@ -1221,7 +1221,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return. If unspecified, defaults to 256.
      * The maximum value is 2048.
@@ -1323,7 +1323,7 @@ export namespace genomics_v2alpha1 {
     /**
      * The worker id, assigned when it was created.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */

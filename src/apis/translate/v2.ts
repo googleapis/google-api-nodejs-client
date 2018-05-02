@@ -354,7 +354,7 @@ export namespace translate_v2 {
      * The input text upon which to perform language detection. Repeat this
      * parameter to perform language detection on multiple text inputs.
      */
-    q: string;
+    q?: string;
   }
 
 
@@ -633,7 +633,7 @@ export namespace translate_v2 {
      * The input text to translate. Repeat this parameter to perform translation
      * operations on multiple text inputs.
      */
-    q: string;
+    q?: string;
     /**
      * The language of the source text, set to one of the language codes listed
      * in Language Support. If the source language is not specified, the API
@@ -645,7 +645,7 @@ export namespace translate_v2 {
      * The language to use for translation of the input text, set to one of the
      * language codes listed in Language Support.
      */
-    target: string;
+    target?: string;
   }
   export interface Params$Resource$Translations$Translate {
     /**

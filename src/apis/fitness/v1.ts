@@ -727,7 +727,7 @@ export namespace fitness_v1 {
      * Aggregate data for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1190,7 +1190,7 @@ export namespace fitness_v1 {
      * Create the data source for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1205,12 +1205,12 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source to delete.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Retrieve a data source for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Get {
     /**
@@ -1221,12 +1221,12 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source to retrieve.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Retrieve a data source for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Datasources$List {
     /**
@@ -1243,7 +1243,7 @@ export namespace fitness_v1 {
      * List data sources for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Patch {
     /**
@@ -1254,12 +1254,12 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source to update.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Update the data source for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1274,12 +1274,12 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source to update.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Update the data source for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1387,7 +1387,7 @@ export namespace fitness_v1 {
     /**
      * The data stream ID of the data source that created the dataset.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * If specified, no more than this many data point changes will be included
      * in the response.
@@ -1403,7 +1403,7 @@ export namespace fitness_v1 {
      * List data points for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -1659,11 +1659,11 @@ export namespace fitness_v1 {
      * epoch. The ID is formatted like: "startTime-endTime" where startTime and
      * endTime are 64 bit integers.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The data stream ID of the data source that created the dataset.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * When the operation was performed on the client.
      */
@@ -1672,7 +1672,7 @@ export namespace fitness_v1 {
      * Delete a dataset for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Datasets$Get {
     /**
@@ -1686,11 +1686,11 @@ export namespace fitness_v1 {
      * epoch. The ID is formatted like: "startTime-endTime" where startTime and
      * endTime are 64 bit integers.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The data stream ID of the data source that created the dataset.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * If specified, no more than this many data points will be included in the
      * dataset. If there are more data points in the dataset, nextPageToken will
@@ -1709,7 +1709,7 @@ export namespace fitness_v1 {
      * Retrieve a dataset for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Datasources$Datasets$Patch {
     /**
@@ -1729,16 +1729,16 @@ export namespace fitness_v1 {
      * epoch. The ID is formatted like: "startTime-endTime" where startTime and
      * endTime are 64 bit integers.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The data stream ID of the data source that created the dataset.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Patch a dataset for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1979,12 +1979,12 @@ export namespace fitness_v1 {
     /**
      * The ID of the session to be deleted.
      */
-    sessionId: string;
+    sessionId?: string;
     /**
      * Delete a session for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Sessions$List {
     /**
@@ -2018,7 +2018,7 @@ export namespace fitness_v1 {
      * List sessions for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Sessions$Update {
     /**
@@ -2033,12 +2033,12 @@ export namespace fitness_v1 {
     /**
      * The ID of the session to be created.
      */
-    sessionId: string;
+    sessionId?: string;
     /**
      * Create sessions for the person identified. Use me to indicate the
      * authenticated user. Only me is supported at this time.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */

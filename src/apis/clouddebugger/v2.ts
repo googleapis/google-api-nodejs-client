@@ -1173,7 +1173,7 @@ export namespace clouddebugger_v2 {
     /**
      * Identifies the debuggee.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
     /**
      * If set to `true` (recommended), returns `google.rpc.Code.OK` status and
      * sets the `wait_expired` response field to `true` when the server-selected
@@ -1199,11 +1199,11 @@ export namespace clouddebugger_v2 {
     /**
      * Identifies the debuggee being debugged.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
     /**
      * Breakpoint identifier, unique in the scope of the debuggee.
      */
-    id: string;
+    id?: string;
     /**
      * Request body metadata
      */
@@ -1898,7 +1898,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the breakpoint to delete.
      */
-    breakpointId: string;
+    breakpointId?: string;
     /**
      * The client version making the call. Schema: `domain/type/version` (e.g.,
      * `google.com/intellij/v1`).
@@ -1907,7 +1907,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the debuggee whose breakpoint to delete.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
   }
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get {
     /**
@@ -1918,7 +1918,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the breakpoint to get.
      */
-    breakpointId: string;
+    breakpointId?: string;
     /**
      * The client version making the call. Schema: `domain/type/version` (e.g.,
      * `google.com/intellij/v1`).
@@ -1927,7 +1927,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the debuggee whose breakpoint to get.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
   }
   export interface Params$Resource$Debugger$Debuggees$Breakpoints$List {
     /**
@@ -1947,7 +1947,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the debuggee whose breakpoints to list.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
     /**
      * When set to `true`, the response includes the list of breakpoints set by
      * any user. Otherwise, it includes only breakpoints set by the caller.
@@ -1986,7 +1986,7 @@ export namespace clouddebugger_v2 {
     /**
      * ID of the debuggee where the breakpoint is to be set.
      */
-    debuggeeId: string;
+    debuggeeId?: string;
     /**
      * Request body metadata
      */

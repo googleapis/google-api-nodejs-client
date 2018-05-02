@@ -298,7 +298,7 @@ export namespace pagespeedonline_v4 {
     /**
      * The URL to fetch and analyze
      */
-    url: string;
+    url?: string;
     /**
      * Campaign name for analytics.
      */

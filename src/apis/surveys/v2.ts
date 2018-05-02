@@ -688,7 +688,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the panel.
      */
-    panelId: string;
+    panelId?: string;
   }
   export interface Params$Resource$Mobileapppanels$List {
     /**
@@ -718,7 +718,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the panel.
      */
-    panelId: string;
+    panelId?: string;
     /**
      * Request body metadata
      */
@@ -812,7 +812,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the survey.
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
     /**
      * Request body metadata
      */
@@ -1297,7 +1297,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the survey.
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
   }
   export interface Params$Resource$Surveys$Get {
     /**
@@ -1308,7 +1308,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the survey.
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
   }
   export interface Params$Resource$Surveys$Insert {
     /**
@@ -1344,7 +1344,7 @@ export namespace surveys_v2 {
     /**
      *
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Request body metadata
      */
@@ -1359,7 +1359,7 @@ export namespace surveys_v2 {
     /**
      *
      */
-    resourceId: string;
+    resourceId?: string;
   }
   export interface Params$Resource$Surveys$Update {
     /**
@@ -1370,7 +1370,7 @@ export namespace surveys_v2 {
     /**
      * External URL ID for the survey.
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
     /**
      * Request body metadata
      */

@@ -3517,7 +3517,7 @@ export namespace games_v1 {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * A randomly generated numeric ID for each request specified by the caller.
      * This number is used at the server to ensure that the request is handled
@@ -3527,7 +3527,7 @@ export namespace games_v1 {
     /**
      * The number of steps to increment.
      */
-    stepsToIncrement: number;
+    stepsToIncrement?: number;
   }
   export interface Params$Resource$Achievements$List {
     /**
@@ -3553,7 +3553,7 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
     /**
      * Tells the server to return only achievements with the specified state. If
      * this parameter isn't specified, all achievements are returned.
@@ -3569,7 +3569,7 @@ export namespace games_v1 {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievements$Setstepsatleast {
     /**
@@ -3580,11 +3580,11 @@ export namespace games_v1 {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
     /**
      * The minimum value to set the steps to.
      */
-    steps: number;
+    steps?: number;
   }
   export interface Params$Resource$Achievements$Unlock {
     /**
@@ -3595,7 +3595,7 @@ export namespace games_v1 {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievements$Updatemultiple {
     /**
@@ -3829,7 +3829,7 @@ export namespace games_v1 {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -3854,7 +3854,7 @@ export namespace games_v1 {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
   }
 
 
@@ -4299,7 +4299,7 @@ export namespace games_v1 {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
   }
   export interface Params$Resource$Leaderboards$List {
     /**
@@ -4493,7 +4493,7 @@ export namespace games_v1 {
     /**
      * The collection of categories for which data will be returned.
      */
-    collection: string;
+    collection?: string;
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4512,7 +4512,7 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
 
 
@@ -4673,7 +4673,7 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
   export interface Params$Resource$Players$List {
     /**
@@ -4684,7 +4684,7 @@ export namespace games_v1 {
     /**
      * Collection of players being retrieved
      */
-    collection: string;
+    collection?: string;
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -4948,16 +4948,16 @@ export namespace games_v1 {
     /**
      * The ID of the milestone.
      */
-    milestoneId: string;
+    milestoneId?: string;
     /**
      * The ID of the quest.
      */
-    questId: string;
+    questId?: string;
     /**
      * A numeric ID to ensure that the request is handled correctly across
      * retries. Your client application must generate this ID randomly.
      */
-    requestId: string;
+    requestId?: string;
   }
 
 
@@ -5121,7 +5121,7 @@ export namespace games_v1 {
     /**
      * The ID of the quest.
      */
-    questId: string;
+    questId?: string;
   }
   export interface Params$Resource$Quests$List {
     /**
@@ -5148,7 +5148,7 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
 
 
@@ -5242,7 +5242,7 @@ export namespace games_v1 {
      * - "ANDROID" - Client is running the Android SDK.  - "IOS" - Client is
      * running the iOS SDK.  - "WEB_APP" - Client is running as a Web App.
      */
-    clientRevision: string;
+    clientRevision?: string;
   }
 
 
@@ -5814,7 +5814,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
   }
   export interface Params$Resource$Rooms$Dismiss {
     /**
@@ -5825,7 +5825,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
   }
   export interface Params$Resource$Rooms$Get {
     /**
@@ -5840,7 +5840,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
   }
   export interface Params$Resource$Rooms$Join {
     /**
@@ -5855,7 +5855,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
     /**
      * Request body metadata
      */
@@ -5874,7 +5874,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
     /**
      * Request body metadata
      */
@@ -5914,7 +5914,7 @@ export namespace games_v1 {
     /**
      * The ID of the room.
      */
-    roomId: string;
+    roomId?: string;
     /**
      * Request body metadata
      */
@@ -6324,7 +6324,7 @@ export namespace games_v1 {
      * The ID of the leaderboard. Can be set to 'ALL' to retrieve data for all
      * leaderboards for this application.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * The maximum number of leaderboard scores to return in the response. For
      * any response, the actual number of leaderboard scores returned may be
@@ -6339,11 +6339,11 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
     /**
      * The time span for the scores and ranks you're requesting.
      */
-    timeSpan: string;
+    timeSpan?: string;
   }
   export interface Params$Resource$Scores$List {
     /**
@@ -6354,7 +6354,7 @@ export namespace games_v1 {
     /**
      * The collection of scores you're requesting.
      */
-    collection: string;
+    collection?: string;
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -6362,7 +6362,7 @@ export namespace games_v1 {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * The maximum number of leaderboard scores to return in the response. For
      * any response, the actual number of leaderboard scores returned may be
@@ -6376,7 +6376,7 @@ export namespace games_v1 {
     /**
      * The time span for the scores and ranks you're requesting.
      */
-    timeSpan: string;
+    timeSpan?: string;
   }
   export interface Params$Resource$Scores$Listwindow {
     /**
@@ -6387,7 +6387,7 @@ export namespace games_v1 {
     /**
      * The collection of scores you're requesting.
      */
-    collection: string;
+    collection?: string;
     /**
      * The preferred language to use for strings returned by this method.
      */
@@ -6395,7 +6395,7 @@ export namespace games_v1 {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * The maximum number of leaderboard scores to return in the response. For
      * any response, the actual number of leaderboard scores returned may be
@@ -6421,7 +6421,7 @@ export namespace games_v1 {
     /**
      * The time span for the scores and ranks you're requesting.
      */
-    timeSpan: string;
+    timeSpan?: string;
   }
   export interface Params$Resource$Scores$Submit {
     /**
@@ -6436,7 +6436,7 @@ export namespace games_v1 {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
     /**
      * The score you're submitting. The submitted score is ignored if it is
      * worse than a previously submitted score, where worse depends on the
@@ -6445,7 +6445,7 @@ export namespace games_v1 {
      * value. For time, the score represents elapsed time in milliseconds. For
      * currency, the score represents a value in micro units.
      */
-    score: string;
+    score?: string;
     /**
      * Additional information about the score you're submitting. Values must
      * contain no more than 64 URI-safe characters as defined by section 2.3 of
@@ -6627,7 +6627,7 @@ export namespace games_v1 {
     /**
      * The ID of the snapshot.
      */
-    snapshotId: string;
+    snapshotId?: string;
   }
   export interface Params$Resource$Snapshots$List {
     /**
@@ -6653,7 +6653,7 @@ export namespace games_v1 {
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
 
 
@@ -7576,7 +7576,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Create {
     /**
@@ -7606,7 +7606,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Dismiss {
     /**
@@ -7617,7 +7617,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Finish {
     /**
@@ -7632,7 +7632,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
     /**
      * Request body metadata
      */
@@ -7655,7 +7655,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Join {
     /**
@@ -7670,7 +7670,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Leave {
     /**
@@ -7685,7 +7685,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
   }
   export interface Params$Resource$Turnbasedmatches$Leaveturn {
     /**
@@ -7700,11 +7700,11 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
     /**
      * The version of the match being updated.
      */
-    matchVersion: number;
+    matchVersion?: number;
     /**
      * The ID of another participant who should take their turn next. If not
      * set, the match will wait for other player(s) to join via automatching;
@@ -7761,7 +7761,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
     /**
      * A randomly generated numeric ID for each request specified by the caller.
      * This number is used at the server to ensure that the request is handled
@@ -7817,7 +7817,7 @@ export namespace games_v1 {
     /**
      * The ID of the match.
      */
-    matchId: string;
+    matchId?: string;
     /**
      * Request body metadata
      */

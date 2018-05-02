@@ -1732,15 +1732,15 @@ export namespace sqladmin_v1beta4 {
      * The ID of the Backup Run to delete. To find a Backup Run ID, use the list
      * method.
      */
-    id: string;
+    id?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backupruns$Get {
     /**
@@ -1751,15 +1751,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * The ID of this Backup Run.
      */
-    id: string;
+    id?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Backupruns$Insert {
     /**
@@ -1770,11 +1770,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -1789,7 +1789,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Maximum number of backup runs per response.
      */
@@ -1802,7 +1802,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -2243,15 +2243,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the database to be deleted in the instance.
      */
-    database: string;
+    database?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Databases$Get {
     /**
@@ -2262,15 +2262,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the database in the instance.
      */
-    database: string;
+    database?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Databases$Insert {
     /**
@@ -2281,11 +2281,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2300,11 +2300,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Databases$Patch {
     /**
@@ -2315,15 +2315,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the database to be updated in the instance.
      */
-    database: string;
+    database?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2338,15 +2338,15 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the database to be updated in the instance.
      */
-    database: string;
+    database?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3692,11 +3692,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * The ID of the Cloud SQL instance to be cloned (source). This does not
      * include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the source as well as the clone Cloud SQL instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3711,11 +3711,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be deleted.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Demotemaster {
     /**
@@ -3726,11 +3726,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3745,11 +3745,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be exported.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3764,11 +3764,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the read replica.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3783,11 +3783,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Import {
     /**
@@ -3798,11 +3798,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3818,7 +3818,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
      * Project ID of the project to which the newly created Cloud SQL instances
      * should belong.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3847,7 +3847,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Patch {
     /**
@@ -3858,11 +3858,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3877,11 +3877,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL read replica instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the read replica.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Resetsslconfig {
     /**
@@ -3892,11 +3892,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Restart {
     /**
@@ -3907,11 +3907,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be restarted.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Restorebackup {
     /**
@@ -3922,11 +3922,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3941,11 +3941,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL read replica instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the read replica.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Stopreplica {
     /**
@@ -3956,11 +3956,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL read replica instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * ID of the project that contains the read replica.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Instances$Truncatelog {
     /**
@@ -3971,11 +3971,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the Cloud SQL project.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -3990,11 +3990,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -4158,11 +4158,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Instance operation ID.
      */
-    operation: string;
+    operation?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -4173,7 +4173,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Maximum number of operations per response.
      */
@@ -4186,7 +4186,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -4562,11 +4562,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the Cloud SQL project.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -4581,15 +4581,15 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance to be deleted.
      */
-    project: string;
+    project?: string;
     /**
      * Sha1 FingerPrint.
      */
-    sha1Fingerprint: string;
+    sha1Fingerprint?: string;
   }
   export interface Params$Resource$Sslcerts$Get {
     /**
@@ -4600,15 +4600,15 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Sha1 FingerPrint.
      */
-    sha1Fingerprint: string;
+    sha1Fingerprint?: string;
   }
   export interface Params$Resource$Sslcerts$Insert {
     /**
@@ -4619,12 +4619,12 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project to which the newly created Cloud SQL instances
      * should belong.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -4639,11 +4639,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project for which to list Cloud SQL instances.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -4734,7 +4734,7 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Project ID of the project for which to list tiers.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -5037,19 +5037,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Host of the user in the instance.
      */
-    host: string;
+    host?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Name of the user in the instance.
      */
-    name: string;
+    name?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Users$Insert {
     /**
@@ -5060,11 +5060,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -5079,11 +5079,11 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Users$Update {
     /**
@@ -5094,19 +5094,19 @@ import(paramsOrCallback?: Params$Resource$Instances$Import|BodyResponseCallback<
     /**
      * Host of the user in the instance.
      */
-    host: string;
+    host?: string;
     /**
      * Database instance ID. This does not include the project ID.
      */
-    instance: string;
+    instance?: string;
     /**
      * Name of the user in the instance.
      */
-    name: string;
+    name?: string;
     /**
      * Project ID of the project that contains the instance.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */

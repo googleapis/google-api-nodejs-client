@@ -1588,12 +1588,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -1609,12 +1609,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -1630,7 +1630,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -1650,7 +1650,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -1666,12 +1666,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -1691,12 +1691,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -2935,7 +2935,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If set, only deletes the bucket if its metageneration matches this value.
      */
@@ -2960,7 +2960,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -2990,7 +2990,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -3014,7 +3014,7 @@ export namespace storage_v1 {
     /**
      * A valid API project identifier.
      */
-    project: string;
+    project?: string;
     /**
      * Set of properties to return. Defaults to noAcl, unless the bucket
      * resource specifies acl or defaultObjectAcl properties, when it defaults
@@ -3053,7 +3053,7 @@ export namespace storage_v1 {
     /**
      * A valid API project identifier.
      */
-    project: string;
+    project?: string;
     /**
      * Set of properties to return. Defaults to noAcl.
      */
@@ -3072,12 +3072,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the operation conditional on whether bucket's current
      * metageneration matches the given value.
      */
-    ifMetagenerationMatch: string;
+    ifMetagenerationMatch?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -3093,7 +3093,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -3135,7 +3135,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -3155,11 +3155,11 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Permissions to test.
      */
-    permissions: string;
+    permissions?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -3175,7 +3175,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Makes the return of the bucket metadata conditional on whether the
      * bucket's current metageneration matches the given value.
@@ -4124,12 +4124,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4145,12 +4145,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4166,7 +4166,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4186,7 +4186,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, only return default ACL listing if the bucket's current
      * metageneration matches this value.
@@ -4212,12 +4212,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4237,12 +4237,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4765,11 +4765,11 @@ export namespace storage_v1 {
     /**
      * The parent bucket of the notification.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * ID of the notification to delete.
      */
-    notification: string;
+    notification?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4785,11 +4785,11 @@ export namespace storage_v1 {
     /**
      * The parent bucket of the notification.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Notification ID
      */
-    notification: string;
+    notification?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4805,7 +4805,7 @@ export namespace storage_v1 {
     /**
      * The parent bucket of the notification.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -4825,7 +4825,7 @@ export namespace storage_v1 {
     /**
      * Name of a Google Cloud Storage bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5660,12 +5660,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5675,7 +5675,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5691,12 +5691,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5706,7 +5706,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5722,7 +5722,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5732,7 +5732,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5752,7 +5752,7 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5762,7 +5762,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5778,12 +5778,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5793,7 +5793,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -5813,12 +5813,12 @@ export namespace storage_v1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -5828,7 +5828,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -7683,12 +7683,12 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which to store the new object.
      */
-    destinationBucket: string;
+    destinationBucket?: string;
     /**
      * Name of the new object. For information about how to URL encode object
      * names to be path safe, see Encoding URI Path Parts.
      */
-    destinationObject: string;
+    destinationObject?: string;
     /**
      * Apply a predefined set of access controls to the destination object.
      */
@@ -7732,12 +7732,12 @@ export namespace storage_v1 {
      * provided object metadata's bucket value, if any.For information about how
      * to URL encode object names to be path safe, see Encoding URI Path Parts.
      */
-    destinationBucket: string;
+    destinationBucket?: string;
     /**
      * Name of the new object. Required when the object metadata is not
      * otherwise provided. Overrides the object metadata's name value, if any.
      */
-    destinationObject: string;
+    destinationObject?: string;
     /**
      * Apply a predefined set of access controls to the destination object.
      */
@@ -7793,7 +7793,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which to find the source object.
      */
-    sourceBucket: string;
+    sourceBucket?: string;
     /**
      * If present, selects a specific revision of the source object (as opposed
      * to the latest version, the default).
@@ -7803,7 +7803,7 @@ export namespace storage_v1 {
      * Name of the source object. For information about how to URL encode object
      * names to be path safe, see Encoding URI Path Parts.
      */
-    sourceObject: string;
+    sourceObject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -7823,7 +7823,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, permanently deletes a specific revision of this object (as
      * opposed to the latest version, the default).
@@ -7856,7 +7856,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -7872,7 +7872,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -7905,7 +7905,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to noAcl.
      */
@@ -7925,7 +7925,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -7935,7 +7935,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -7952,7 +7952,7 @@ export namespace storage_v1 {
      * Name of the bucket in which to store the new object. Overrides the
      * provided object metadata's bucket value, if any.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If set, sets the contentEncoding property of the final object to this
      * value. Setting this parameter is equivalent to setting the
@@ -8041,7 +8041,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which to look for objects.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Returns results in a directory-like mode. items will contain only objects
      * whose names, aside from the prefix, do not contain delimiter. Objects
@@ -8090,7 +8090,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -8123,7 +8123,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * Apply a predefined set of access controls to this object.
      */
@@ -8151,7 +8151,7 @@ export namespace storage_v1 {
      * Name of the bucket in which to store the new object. Overrides the
      * provided object metadata's bucket value, if any.
      */
-    destinationBucket: string;
+    destinationBucket?: string;
     /**
      * Resource name of the Cloud KMS key, of the form
      * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
@@ -8165,7 +8165,7 @@ export namespace storage_v1 {
      * For information about how to URL encode object names to be path safe, see
      * Encoding URI Path Parts.
      */
-    destinationObject: string;
+    destinationObject?: string;
     /**
      * Apply a predefined set of access controls to the destination object.
      */
@@ -8239,7 +8239,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which to find the source object.
      */
-    sourceBucket: string;
+    sourceBucket?: string;
     /**
      * If present, selects a specific revision of the source object (as opposed
      * to the latest version, the default).
@@ -8249,7 +8249,7 @@ export namespace storage_v1 {
      * Name of the source object. For information about how to URL encode object
      * names to be path safe, see Encoding URI Path Parts.
      */
-    sourceObject: string;
+    sourceObject?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -8269,7 +8269,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -8279,7 +8279,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -8299,7 +8299,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -8309,11 +8309,11 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * Permissions to test.
      */
-    permissions: string;
+    permissions?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays
      * buckets.
@@ -8329,7 +8329,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * If present, selects a specific revision of this object (as opposed to the
      * latest version, the default).
@@ -8362,7 +8362,7 @@ export namespace storage_v1 {
      * Name of the object. For information about how to URL encode object names
      * to be path safe, see Encoding URI Path Parts.
      */
-    object: string;
+    object?: string;
     /**
      * Apply a predefined set of access controls to this object.
      */
@@ -8390,7 +8390,7 @@ export namespace storage_v1 {
     /**
      * Name of the bucket in which to look for objects.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Returns results in a directory-like mode. items will contain only objects
      * whose names, aside from the prefix, do not contain delimiter. Objects
@@ -8590,7 +8590,7 @@ export namespace storage_v1 {
     /**
      * Project ID
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The project to be billed for this request.
      */

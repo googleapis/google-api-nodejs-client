@@ -684,7 +684,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -825,7 +825,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The resource that owns the locations collection, if applicable.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -1439,7 +1439,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The name of the function to be called.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1455,7 +1455,7 @@ export namespace cloudfunctions_v1 {
      * The project and location in which the function should be created,
      * specified in the format `projects/x/locations/x`
      */
-    location: string;
+    location?: string;
     /**
      * Request body metadata
      */
@@ -1470,7 +1470,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The name of the function which should be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Generatedownloadurl {
     /**
@@ -1482,7 +1482,7 @@ export namespace cloudfunctions_v1 {
      * The name of function for which source code Google Cloud Storage signed
      * URL should be generated.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1498,7 +1498,7 @@ export namespace cloudfunctions_v1 {
      * The project and location in which the Google Cloud Storage signed URL
      * should be generated, specified in the format `projects/x/locations/x`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1513,7 +1513,7 @@ export namespace cloudfunctions_v1 {
     /**
      * The name of the function which details should be obtained.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$List {
     /**
@@ -1536,7 +1536,7 @@ export namespace cloudfunctions_v1 {
      * specified in the format `projects/x/locations/x` If you want to list
      * functions in all locations, use "-" in place of a location.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Functions$Patch {
     /**
@@ -1548,7 +1548,7 @@ export namespace cloudfunctions_v1 {
      * A user-defined name of the function. Function names must be unique
      * globally and match pattern `projects/x/locations/x/functions/x`
      */
-    name: string;
+    name?: string;
     /**
      * Required list of fields to be updated in this request.
      */

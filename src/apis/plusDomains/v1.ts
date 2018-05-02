@@ -979,7 +979,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the activity to get.
      */
-    activityId: string;
+    activityId?: string;
   }
   export interface Params$Resource$Activities$Insert {
     /**
@@ -997,7 +997,7 @@ export namespace plusDomains_v1 {
      * The ID of the user to create the activity on behalf of. Its value should
      * be "me", to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1012,7 +1012,7 @@ export namespace plusDomains_v1 {
     /**
      * The collection of activities to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of activities to include in the response, which is
      * used for paging. For any response, the actual number returned might be
@@ -1029,7 +1029,7 @@ export namespace plusDomains_v1 {
      * The ID of the user to get activities for. The special value "me" can be
      * used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -1134,7 +1134,7 @@ export namespace plusDomains_v1 {
      * The ID of the user to get audiences for. The special value "me" can be
      * used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
 
 
@@ -1682,7 +1682,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to add the person to.
      */
-    circleId: string;
+    circleId?: string;
     /**
      * Email of the people to add to the circle. Optional, can be repeated.
      */
@@ -1701,7 +1701,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to get.
      */
-    circleId: string;
+    circleId?: string;
   }
   export interface Params$Resource$Circles$Insert {
     /**
@@ -1713,7 +1713,7 @@ export namespace plusDomains_v1 {
      * The ID of the user to create the circle on behalf of. The value "me" can
      * be used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -1741,7 +1741,7 @@ export namespace plusDomains_v1 {
      * The ID of the user to get circles for. The special value "me" can be used
      * to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Circles$Patch {
     /**
@@ -1752,7 +1752,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to update.
      */
-    circleId: string;
+    circleId?: string;
     /**
      * Request body metadata
      */
@@ -1767,7 +1767,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to delete.
      */
-    circleId: string;
+    circleId?: string;
   }
   export interface Params$Resource$Circles$Removepeople {
     /**
@@ -1778,7 +1778,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to remove the person from.
      */
-    circleId: string;
+    circleId?: string;
     /**
      * Email of the people to add to the circle. Optional, can be repeated.
      */
@@ -1797,7 +1797,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to update.
      */
-    circleId: string;
+    circleId?: string;
     /**
      * Request body metadata
      */
@@ -2022,7 +2022,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the comment to get.
      */
-    commentId: string;
+    commentId?: string;
   }
   export interface Params$Resource$Comments$Insert {
     /**
@@ -2033,7 +2033,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the activity to reply to.
      */
-    activityId: string;
+    activityId?: string;
     /**
      * Request body metadata
      */
@@ -2048,7 +2048,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the activity to get comments for.
      */
-    activityId: string;
+    activityId?: string;
     /**
      * The maximum number of comments to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -2165,11 +2165,11 @@ export namespace plusDomains_v1 {
     /**
      *
      */
-    collection: string;
+    collection?: string;
     /**
      * The ID of the user to create the activity on behalf of.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2486,7 +2486,7 @@ export namespace plusDomains_v1 {
      * The ID of the person to get the profile for. The special value "me" can
      * be used to indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$People$List {
     /**
@@ -2497,7 +2497,7 @@ export namespace plusDomains_v1 {
     /**
      * The collection of people to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -2518,7 +2518,7 @@ export namespace plusDomains_v1 {
      * Get the collection of people for the person identified. Use "me" to
      * indicate the authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$People$Listbyactivity {
     /**
@@ -2529,11 +2529,11 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the activity to get the list of people for.
      */
-    activityId: string;
+    activityId?: string;
     /**
      * The collection of people to list.
      */
-    collection: string;
+    collection?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less
@@ -2556,7 +2556,7 @@ export namespace plusDomains_v1 {
     /**
      * The ID of the circle to get the members of.
      */
-    circleId: string;
+    circleId?: string;
     /**
      * The maximum number of people to include in the response, which is used
      * for paging. For any response, the actual number returned might be less

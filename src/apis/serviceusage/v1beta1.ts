@@ -2340,7 +2340,7 @@ export namespace serviceusage_v1beta1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -2734,7 +2734,7 @@ export namespace serviceusage_v1beta1 {
      * where `123` is the project number (not project ID).  The
      * `BatchEnableServices` method currently only supports projects.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2752,7 +2752,7 @@ export namespace serviceusage_v1beta1 {
      * would be: `projects/123/services/serviceusage.googleapis.com` where `123`
      * is the project number (not project ID).
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2772,7 +2772,7 @@ export namespace serviceusage_v1beta1 {
      * `projects/123/services/serviceusage.googleapis.com` where `123` is the
      * project number (not project ID).
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2790,7 +2790,7 @@ export namespace serviceusage_v1beta1 {
      * `projects/123/services/serviceusage.googleapis.com` where `123` is the
      * project number (not project ID).
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Services$List {
     /**
@@ -2817,6 +2817,6 @@ export namespace serviceusage_v1beta1 {
      * Parent to search for services on.  An example name would be:
      * `projects/123` where `123` is the project number (not project ID).
      */
-    parent: string;
+    parent?: string;
   }
 }

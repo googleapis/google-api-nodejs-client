@@ -1630,7 +1630,7 @@ export namespace servicecontrol_v1 {
      * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
      * definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -1648,7 +1648,7 @@ export namespace servicecontrol_v1 {
      * [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
      * for the definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -1665,7 +1665,7 @@ export namespace servicecontrol_v1 {
      * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
      * definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -1682,7 +1682,7 @@ export namespace servicecontrol_v1 {
      * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
      * definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -1700,7 +1700,7 @@ export namespace servicecontrol_v1 {
      * [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service)
      * for the definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -1717,7 +1717,7 @@ export namespace servicecontrol_v1 {
      * example, `"pubsub.googleapis.com"`.  See google.api.Service for the
      * definition of a service name.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */

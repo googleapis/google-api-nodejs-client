@@ -1110,7 +1110,7 @@ export namespace runtimeconfig_v1beta1 {
      * ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848)
      * for this request, in the format `projects/[PROJECT_ID]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * An optional but recommended unique `request_id`. If the server receives
      * two `create()` requests  with the same `request_id`, then the second
@@ -1135,7 +1135,7 @@ export namespace runtimeconfig_v1beta1 {
      * The RuntimeConfig resource to delete, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Get {
     /**
@@ -1147,7 +1147,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the RuntimeConfig resource to retrieve, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Getiampolicy {
     /**
@@ -1159,7 +1159,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Configs$List {
     /**
@@ -1182,7 +1182,7 @@ export namespace runtimeconfig_v1beta1 {
      * ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848)
      * for this request, in the format `projects/[PROJECT_ID]`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Configs$Setiampolicy {
     /**
@@ -1194,7 +1194,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1210,7 +1210,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1226,7 +1226,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the RuntimeConfig resource to update, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1401,7 +1401,7 @@ export namespace runtimeconfig_v1beta1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Operations$Testiampermissions {
     /**
@@ -1413,7 +1413,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1952,7 +1952,7 @@ export namespace runtimeconfig_v1beta1 {
      * to. The configuration must exist beforehand; the path must be in the
      * format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    parent: string;
+    parent?: string;
     /**
      * An optional but recommended unique `request_id`. If the server receives
      * two `create()` requests  with the same `request_id`, then the second
@@ -1977,7 +1977,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the variable to delete, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
-    name: string;
+    name?: string;
     /**
      * Set to `true` to recursively delete multiple variables with the same
      * prefix.
@@ -1994,7 +1994,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the variable to return, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Variables$List {
     /**
@@ -2022,7 +2022,7 @@ export namespace runtimeconfig_v1beta1 {
      * variables. The configuration must exist beforehand; the path must be in
      * the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    parent: string;
+    parent?: string;
     /**
      * The flag indicates whether the user wants to return values of variables.
      * If true, then only those variables that user has IAM GetVariable
@@ -2040,7 +2040,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2056,7 +2056,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the variable to update, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2072,7 +2072,7 @@ export namespace runtimeconfig_v1beta1 {
      * The name of the variable to watch, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2458,7 +2458,7 @@ export namespace runtimeconfig_v1beta1 {
      * must exist beforehand; the path must be in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
      */
-    parent: string;
+    parent?: string;
     /**
      * An optional but recommended unique `request_id`. If the server receives
      * two `create()` requests  with the same `request_id`, then the second
@@ -2483,7 +2483,7 @@ export namespace runtimeconfig_v1beta1 {
      * The Waiter resource to delete, in the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Waiters$Get {
     /**
@@ -2496,7 +2496,7 @@ export namespace runtimeconfig_v1beta1 {
      * the format:
      * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Configs$Waiters$List {
     /**
@@ -2519,7 +2519,7 @@ export namespace runtimeconfig_v1beta1 {
      * waiters. The configuration must exist beforehand; the path must be in the
      * format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions {
     /**
@@ -2531,7 +2531,7 @@ export namespace runtimeconfig_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */

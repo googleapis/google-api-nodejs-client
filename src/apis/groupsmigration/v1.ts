@@ -171,7 +171,7 @@ export namespace groupsmigration_v1 {
     /**
      * The group ID
      */
-    groupId: string;
+    groupId?: string;
     /**
      * Media metadata
      */

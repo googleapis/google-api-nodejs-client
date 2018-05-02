@@ -847,7 +847,7 @@ export namespace youtubereporting_v1 {
     /**
      * The ID of the job to delete.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The content owner's external ID on which behalf the user is acting on. If
      * not set, the user is acting for himself (his own channel).
@@ -863,7 +863,7 @@ export namespace youtubereporting_v1 {
     /**
      * The ID of the job to retrieve.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The content owner's external ID on which behalf the user is acting on. If
      * not set, the user is acting for himself (his own channel).
@@ -1059,7 +1059,7 @@ export namespace youtubereporting_v1 {
     /**
      * The ID of the job.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The content owner's external ID on which behalf the user is acting on. If
      * not set, the user is acting for himself (his own channel).
@@ -1068,7 +1068,7 @@ export namespace youtubereporting_v1 {
     /**
      * The ID of the report to retrieve.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Jobs$Reports$List {
     /**
@@ -1083,7 +1083,7 @@ export namespace youtubereporting_v1 {
     /**
      * The ID of the job.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The content owner's external ID on which behalf the user is acting on. If
      * not set, the user is acting for himself (his own channel).
@@ -1202,7 +1202,7 @@ export namespace youtubereporting_v1 {
     /**
      * Name of the media that is being downloaded.
      */
-    resourceName: string;
+    resourceName?: string;
   }
 
 

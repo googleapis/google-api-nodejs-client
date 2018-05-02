@@ -3382,7 +3382,7 @@ export namespace slides_v1 {
     /**
      * The presentation to apply the updates to.
      */
-    presentationId: string;
+    presentationId?: string;
     /**
      * Request body metadata
      */
@@ -3408,7 +3408,7 @@ export namespace slides_v1 {
     /**
      * The ID of the presentation to retrieve.
      */
-    presentationId: string;
+    presentationId?: string;
   }
 
   export class Resource$Presentations$Pages {
@@ -3571,11 +3571,11 @@ export namespace slides_v1 {
     /**
      * The object ID of the page to retrieve.
      */
-    pageObjectId: string;
+    pageObjectId?: string;
     /**
      * The ID of the presentation to retrieve.
      */
-    presentationId: string;
+    presentationId?: string;
   }
   export interface Params$Resource$Presentations$Pages$Getthumbnail {
     /**
@@ -3586,11 +3586,11 @@ export namespace slides_v1 {
     /**
      * The object ID of the page whose thumbnail to retrieve.
      */
-    pageObjectId: string;
+    pageObjectId?: string;
     /**
      * The ID of the presentation to retrieve.
      */
-    presentationId: string;
+    presentationId?: string;
     /**
      * The optional mime type of the thumbnail image.  If you don't specify the
      * mime type, the default mime type will be PNG.

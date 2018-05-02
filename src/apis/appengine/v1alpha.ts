@@ -1074,7 +1074,7 @@ export namespace appengine_v1alpha {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Request body metadata
      */
@@ -1090,11 +1090,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource to delete. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Get {
     /**
@@ -1106,11 +1106,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
     /**
      * Controls the set of fields returned in the GET response.
      */
@@ -1126,7 +1126,7 @@ export namespace appengine_v1alpha {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -1150,11 +1150,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
     /**
      * Standard field mask for the set of fields to be updated. Updates are only
      * supported on the certificate_raw_data and display_name fields.
@@ -1265,7 +1265,7 @@ export namespace appengine_v1alpha {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -1658,7 +1658,7 @@ export namespace appengine_v1alpha {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Whether a managed certificate should be provided by App Engine. If true,
      * a certificate ID must be manaually set in the DomainMapping resource to
@@ -1686,11 +1686,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource to delete. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
   }
   export interface Params$Resource$Apps$Domainmappings$Get {
     /**
@@ -1702,11 +1702,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
   }
   export interface Params$Resource$Apps$Domainmappings$List {
     /**
@@ -1718,7 +1718,7 @@ export namespace appengine_v1alpha {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -1738,11 +1738,11 @@ export namespace appengine_v1alpha {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
     /**
      * Whether a managed certificate should be provided by App Engine. If true,
      * a certificate ID must be manually set in the DomainMapping resource to
@@ -1917,11 +1917,11 @@ export namespace appengine_v1alpha {
     /**
      * Part of `name`. Resource name for the location.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    locationsId: string;
+    locationsId?: string;
   }
   export interface Params$Resource$Apps$Locations$List {
     /**
@@ -1933,7 +1933,7 @@ export namespace appengine_v1alpha {
      * Part of `name`. The resource that owns the locations collection, if
      * applicable.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */
@@ -2116,11 +2116,11 @@ export namespace appengine_v1alpha {
     /**
      * Part of `name`. The name of the operation resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    operationsId: string;
+    operationsId?: string;
   }
   export interface Params$Resource$Apps$Operations$List {
     /**
@@ -2131,7 +2131,7 @@ export namespace appengine_v1alpha {
     /**
      * Part of `name`. The name of the operation's parent resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */

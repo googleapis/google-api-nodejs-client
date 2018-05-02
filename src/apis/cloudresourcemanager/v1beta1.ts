@@ -1298,7 +1298,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * The resource name of the Organization to fetch, e.g.
      * "organizations/1234".
      */
-    name: string;
+    name?: string;
     /**
      * The id of the Organization resource to fetch. This field is deprecated
      * and will be removed in v1. Use name instead.
@@ -1315,7 +1315,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1360,7 +1360,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1376,7 +1376,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1393,7 +1393,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * organization's relative path in the API. Its format is
      * "organizations/[organization_id]". For example, "organizations/1234".
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2734,7 +2734,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Get {
     /**
@@ -2745,7 +2745,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry {
     /**
@@ -2756,7 +2756,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -2772,7 +2772,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2828,7 +2828,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2844,7 +2844,7 @@ export namespace cloudresourcemanager_v1beta1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2859,7 +2859,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The project ID (for example, `foo-bar-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -2874,7 +2874,7 @@ export namespace cloudresourcemanager_v1beta1 {
     /**
      * The project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */

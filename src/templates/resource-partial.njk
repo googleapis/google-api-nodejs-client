@@ -47,7 +47,7 @@
               /**
                * {{ p.description|oneLine|cleanComments|safe }}
                */
-              {{ pname|cleanPropertyName|safe }}{% if not p.required %}?{% endif %}: {{ p|getType }};
+              {{ pname|cleanPropertyName|safe }}?: {{ p|getType }};
             {% endfor %}
             {% if m.request %}
               /**

@@ -753,7 +753,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievements$Resetall {
     /**
@@ -776,7 +776,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the achievement used by this method.
      */
-    achievementId: string;
+    achievementId?: string;
   }
   export interface Params$Resource$Achievements$Resetmultipleforallplayers {
     /**
@@ -879,7 +879,7 @@ export namespace gamesManagement_v1management {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * The maximum number of player resources to return in the response, used
      * for paging. For any response, the actual number of player resources
@@ -1249,7 +1249,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the event.
      */
-    eventId: string;
+    eventId?: string;
   }
   export interface Params$Resource$Events$Resetall {
     /**
@@ -1272,7 +1272,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the event.
      */
-    eventId: string;
+    eventId?: string;
   }
   export interface Params$Resource$Events$Resetmultipleforallplayers {
     /**
@@ -1439,12 +1439,12 @@ export namespace gamesManagement_v1management {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
   export interface Params$Resource$Players$Unhide {
     /**
@@ -1455,12 +1455,12 @@ export namespace gamesManagement_v1management {
     /**
      * The application ID from the Google Play developer console.
      */
-    applicationId: string;
+    applicationId?: string;
     /**
      * A player ID. A value of me may be used in place of the authenticated
      * player's ID.
      */
-    playerId: string;
+    playerId?: string;
   }
 
 
@@ -1816,7 +1816,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the quest.
      */
-    questId: string;
+    questId?: string;
   }
   export interface Params$Resource$Quests$Resetall {
     /**
@@ -1839,7 +1839,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the quest.
      */
-    questId: string;
+    questId?: string;
   }
   export interface Params$Resource$Quests$Resetmultipleforallplayers {
     /**
@@ -2372,7 +2372,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
   }
   export interface Params$Resource$Scores$Resetall {
     /**
@@ -2395,7 +2395,7 @@ export namespace gamesManagement_v1management {
     /**
      * The ID of the leaderboard.
      */
-    leaderboardId: string;
+    leaderboardId?: string;
   }
   export interface Params$Resource$Scores$Resetmultipleforallplayers {
     /**

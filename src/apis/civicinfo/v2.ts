@@ -1110,7 +1110,7 @@ export namespace civicinfo_v2 {
     /**
      * The registered address of the voter to look up.
      */
-    address: string;
+    address?: string;
     /**
      * The unique ID of the election to look up. A list of election IDs can be
      * obtained at https://www.googleapis.com/civicinfo/{version}/elections
@@ -1350,7 +1350,7 @@ export namespace civicinfo_v2 {
     /**
      * The Open Civic Data division identifier of the division to look up.
      */
-    ocdId: string;
+    ocdId?: string;
     /**
      * If true, information about all divisions contained in the division
      * requested will be included as well. For example, if querying

@@ -838,11 +838,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -858,7 +858,7 @@ export namespace dns_v1beta2 {
      * The identifier of the requested change, from a previous
      * ResourceRecordSetsChangeResponse.
      */
-    changeId: string;
+    changeId?: string;
     /**
      * For mutating operation requests only. An optional identifier specified by
      * the client. Must be unique for operation resources in the Operations
@@ -869,11 +869,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Changes$List {
     /**
@@ -885,7 +885,7 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the
      * server will decide how many results to return.
@@ -899,7 +899,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Sorting criterion. The only supported value is change sequence.
      */
@@ -1082,16 +1082,16 @@ export namespace dns_v1beta2 {
     /**
      * The identifier of the requested DnsKey.
      */
-    dnsKeyId: string;
+    dnsKeyId?: string;
     /**
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Dnskeys$List {
     /**
@@ -1109,7 +1109,7 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the
      * server will decide how many results to return.
@@ -1123,7 +1123,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -1306,15 +1306,15 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the managed zone addressed by this request.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the operation addressed by this request.
      */
-    operation: string;
+    operation?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Managedzoneoperations$List {
     /**
@@ -1325,7 +1325,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the managed zone addressed by this request.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the
      * server will decide how many results to return.
@@ -1339,7 +1339,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Sorting criterion. The only supported values are START_TIME and ID.
      */
@@ -1791,7 +1791,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -1813,11 +1813,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Managedzones$Get {
     /**
@@ -1835,11 +1835,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Managedzones$List {
     /**
@@ -1864,7 +1864,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Managedzones$Patch {
     /**
@@ -1882,11 +1882,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -1908,11 +1908,11 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2009,7 +2009,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -2117,7 +2117,7 @@ export namespace dns_v1beta2 {
      * Identifies the managed zone addressed by this request. Can be the managed
      * zone name or id.
      */
-    managedZone: string;
+    managedZone?: string;
     /**
      * Optional. Maximum number of results to be returned. If unspecified, the
      * server will decide how many results to return.
@@ -2136,7 +2136,7 @@ export namespace dns_v1beta2 {
     /**
      * Identifies the project addressed by this request.
      */
-    project: string;
+    project?: string;
     /**
      * Restricts the list to return only records of this type. If present, the
      * "name" parameter must also be present.

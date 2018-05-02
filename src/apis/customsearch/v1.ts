@@ -361,7 +361,7 @@ export namespace customsearch_v1 {
     /**
      * Query
      */
-    q: string;
+    q?: string;
     /**
      * Specifies that all search results should be pages that are related to the
      * specified URL
@@ -618,7 +618,7 @@ export namespace customsearch_v1 {
     /**
      * Query
      */
-    q: string;
+    q?: string;
     /**
      * Specifies that all search results should be pages that are related to the
      * specified URL

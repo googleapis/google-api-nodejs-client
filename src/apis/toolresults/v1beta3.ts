@@ -1557,7 +1557,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Initializesettings {
     /**
@@ -1568,7 +1568,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
 
   export class Resource$Projects$Histories {
@@ -1812,7 +1812,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A unique request ID for server to detect duplicated requests. For
      * example, a UUID.  Optional, but strongly recommended.
@@ -1832,11 +1832,11 @@ export namespace toolresults_v1beta3 {
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$List {
     /**
@@ -1861,7 +1861,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
 
   export class Resource$Projects$Histories$Executions {
@@ -2191,11 +2191,11 @@ export namespace toolresults_v1beta3 {
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A unique request ID for server to detect duplicated requests. For
      * example, a UUID.  Optional, but strongly recommended.
@@ -2215,15 +2215,15 @@ export namespace toolresults_v1beta3 {
     /**
      * An Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$List {
     /**
@@ -2234,7 +2234,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The maximum number of Executions to fetch.  Default value: 25. The server
      * will use this default if the field is not set or has a value of 0.
@@ -2248,7 +2248,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Patch {
     /**
@@ -2259,15 +2259,15 @@ export namespace toolresults_v1beta3 {
     /**
      * Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id. Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A unique request ID for server to detect duplicated requests. For
      * example, a UUID.  Optional, but strongly recommended.
@@ -2456,19 +2456,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A Cluster id  Required.
      */
-    clusterId: string;
+    clusterId?: string;
     /**
      * An Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Clusters$List {
     /**
@@ -2479,15 +2479,15 @@ export namespace toolresults_v1beta3 {
     /**
      * An Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
 
 
@@ -3001,15 +3001,15 @@ export namespace toolresults_v1beta3 {
     /**
      * A Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A unique request ID for server to detect duplicated requests. For
      * example, a UUID.  Optional, but strongly recommended.
@@ -3029,19 +3029,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A Step id.  Required.
      */
-    stepId: string;
+    stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary {
     /**
@@ -3052,19 +3052,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$List {
     /**
@@ -3075,11 +3075,11 @@ export namespace toolresults_v1beta3 {
     /**
      * A Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The maximum number of Steps to fetch.  Default value: 25. The server will
      * use this default if the field is not set or has a value of 0.  Optional.
@@ -3092,7 +3092,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Patch {
     /**
@@ -3103,15 +3103,15 @@ export namespace toolresults_v1beta3 {
     /**
      * A Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A unique request ID for server to detect duplicated requests. For
      * example, a UUID.  Optional, but strongly recommended.
@@ -3120,7 +3120,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A Step id.  Required.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * Request body metadata
      */
@@ -3135,19 +3135,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A Step id. Note: This step must include a TestExecutionStep.  Required.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * Request body metadata
      */
@@ -3256,19 +3256,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * Request body metadata
      */
@@ -3553,19 +3553,19 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * Request body metadata
      */
@@ -3580,23 +3580,23 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A sample series id
      */
-    sampleSeriesId: string;
+    sampleSeriesId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
   export interface Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List {
     /**
@@ -3607,7 +3607,7 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * Specify one or more PerfMetricType values such as CPU to filter the
      * result
@@ -3616,15 +3616,15 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
 
   export class
@@ -3842,23 +3842,23 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A sample series id
      */
-    sampleSeriesId: string;
+    sampleSeriesId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
     /**
      * Request body metadata
      */
@@ -3873,11 +3873,11 @@ export namespace toolresults_v1beta3 {
     /**
      * A tool results execution ID.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The default page size is 500 samples, and the maximum size is 5000. If
      * the page_size is greater than 5000, the effective page size will be 5000
@@ -3890,15 +3890,15 @@ export namespace toolresults_v1beta3 {
     /**
      * The cloud project
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A sample series id
      */
-    sampleSeriesId: string;
+    sampleSeriesId?: string;
     /**
      * A tool results step ID.
      */
-    stepId: string;
+    stepId?: string;
   }
 
 
@@ -4013,11 +4013,11 @@ export namespace toolresults_v1beta3 {
     /**
      * An Execution id.  Required.
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A History id.  Required.
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The maximum number of thumbnails to fetch.  Default value: 50. The server
      * will use this default if the field is not set or has a value of 0.
@@ -4031,10 +4031,10 @@ export namespace toolresults_v1beta3 {
     /**
      * A Project id.  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A Step id.  Required.
      */
-    stepId: string;
+    stepId?: string;
   }
 }

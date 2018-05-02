@@ -819,7 +819,7 @@ export namespace sourcerepo_v1 {
      * The project in which to create the repo. Values are of the form
      * `projects/<project>`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -835,7 +835,7 @@ export namespace sourcerepo_v1 {
      * The name of the repo to delete. Values are of the form
      * `projects/<project>/repos/<repo>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Repos$Get {
     /**
@@ -847,7 +847,7 @@ export namespace sourcerepo_v1 {
      * The name of the requested repository. Values are of the form
      * `projects/<project>/repos/<repo>`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Repos$Getiampolicy {
     /**
@@ -859,7 +859,7 @@ export namespace sourcerepo_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Repos$List {
     /**
@@ -871,7 +871,7 @@ export namespace sourcerepo_v1 {
      * The project ID whose repos should be listed. Values are of the form
      * `projects/<project>`.
      */
-    name: string;
+    name?: string;
     /**
      * Maximum number of repositories to return; between 1 and 500. If not set
      * or zero, defaults to 100 at the server.
@@ -894,7 +894,7 @@ export namespace sourcerepo_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -910,7 +910,7 @@ export namespace sourcerepo_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */

@@ -930,15 +930,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Get {
     /**
@@ -949,15 +949,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Insert {
     /**
@@ -968,11 +968,11 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
     /**
      * Request body metadata
      */
@@ -1001,11 +1001,11 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Listinstanceupdates {
     /**
@@ -1030,15 +1030,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Pause {
     /**
@@ -1049,15 +1049,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Resume {
     /**
@@ -1068,15 +1068,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Rollingupdates$Rollback {
     /**
@@ -1087,15 +1087,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * The Google Developers Console project name.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the update.
      */
-    rollingUpdate: string;
+    rollingUpdate?: string;
     /**
      * The name of the zone in which the update's target resides.
      */
-    zone: string;
+    zone?: string;
   }
 
 
@@ -1260,15 +1260,15 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Name of the operation resource to return.
      */
-    operation: string;
+    operation?: string;
     /**
      * Name of the project scoping this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
   export interface Params$Resource$Zoneoperations$List {
     /**
@@ -1293,10 +1293,10 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Name of the project scoping this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the zone scoping this request.
      */
-    zone: string;
+    zone?: string;
   }
 }

@@ -165,7 +165,7 @@ export namespace analytics_v2_4 {
      * End date for fetching report data. All requests should specify an end
      * date formatted as YYYY-MM-DD.
      */
-    'end-date': string;
+    'end-date'?: string;
     /**
      * A comma-separated list of dimension or metric filters to be applied to
      * the report data.
@@ -175,7 +175,7 @@ export namespace analytics_v2_4 {
      * Unique table ID for retrieving report data. Table ID is of the form
      * ga:XXXX, where XXXX is the Analytics view (profile) ID.
      */
-    ids: string;
+    ids?: string;
     /**
      * The maximum number of entries to include in this feed.
      */
@@ -185,7 +185,7 @@ export namespace analytics_v2_4 {
      * 'ga:sessions,ga:pageviews'. At least one metric must be specified to
      * retrieve a valid Analytics report.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * An Analytics advanced segment to be applied to the report data.
      */
@@ -199,7 +199,7 @@ export namespace analytics_v2_4 {
      * Start date for fetching report data. All requests should specify a start
      * date formatted as YYYY-MM-DD.
      */
-    'start-date': string;
+    'start-date'?: string;
     /**
      * An index of the first entity to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -420,7 +420,7 @@ export namespace analytics_v2_4 {
      * Account ID to retrieve goals for. Can either be a specific account ID or
      * '~all', which refers to all the accounts that user has access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of goals to include in this response.
      */
@@ -430,7 +430,7 @@ export namespace analytics_v2_4 {
      * (profile) ID or '~all', which refers to all the views (profiles) that
      * user has access to.
      */
-    profileId: string;
+    profileId?: string;
     /**
      * An index of the first goal to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter.
@@ -441,7 +441,7 @@ export namespace analytics_v2_4 {
      * property ID or '~all', which refers to all the web properties that user
      * has access to.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
 
 
@@ -538,7 +538,7 @@ export namespace analytics_v2_4 {
      * account ID or '~all', which refers to all the accounts to which the user
      * has access.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of views (profiles) to include in this response.
      */
@@ -553,7 +553,7 @@ export namespace analytics_v2_4 {
      * specific web property ID or '~all', which refers to all the web
      * properties to which the user has access.
      */
-    webPropertyId: string;
+    webPropertyId?: string;
   }
 
 
@@ -745,7 +745,7 @@ export namespace analytics_v2_4 {
      * account ID or '~all', which refers to all the accounts that user has
      * access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of web properties to include in this response.
      */

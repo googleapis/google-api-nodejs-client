@@ -856,7 +856,7 @@ export namespace storagetransfer_v1 {
      * The ID of the Google Cloud Platform Console project that the Google
      * service account is associated with. Required.
      */
-    projectId: string;
+    projectId?: string;
   }
 
 
@@ -1394,7 +1394,7 @@ export namespace storagetransfer_v1 {
     /**
      * The job to get. Required.
      */
-    jobName: string;
+    jobName?: string;
     /**
      * The ID of the Google Cloud Platform Console project that owns the job.
      * Required.
@@ -1435,7 +1435,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of job to update. Required.
      */
-    jobName: string;
+    jobName?: string;
     /**
      * Request body metadata
      */
@@ -2213,7 +2213,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Transferoperations$Delete {
     /**
@@ -2224,7 +2224,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Transferoperations$Get {
     /**
@@ -2235,7 +2235,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Transferoperations$List {
     /**
@@ -2256,7 +2256,7 @@ export namespace storagetransfer_v1 {
     /**
      * The value `transferOperations`.
      */
-    name: string;
+    name?: string;
     /**
      * The list page size. The max allowed value is 256.
      */
@@ -2275,7 +2275,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of the transfer operation. Required.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2290,7 +2290,7 @@ export namespace storagetransfer_v1 {
     /**
      * The name of the transfer operation. Required.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

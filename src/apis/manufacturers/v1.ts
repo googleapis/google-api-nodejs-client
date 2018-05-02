@@ -819,12 +819,12 @@ export namespace manufacturers_v1 {
      * more information, see
      * https://support.google.com/manufacturers/answer/6124116#id.
      */
-    name: string;
+    name?: string;
     /**
      * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
      * of the Manufacturer Center account.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Products$Get {
     /**
@@ -849,12 +849,12 @@ export namespace manufacturers_v1 {
      * more information, see
      * https://support.google.com/manufacturers/answer/6124116#id.
      */
-    name: string;
+    name?: string;
     /**
      * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
      * of the Manufacturer Center account.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Products$List {
     /**
@@ -883,7 +883,7 @@ export namespace manufacturers_v1 {
      * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
      * of the Manufacturer Center account.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Accounts$Products$Update {
     /**
@@ -900,12 +900,12 @@ export namespace manufacturers_v1 {
      * more information, see
      * https://support.google.com/manufacturers/answer/6124116#id.
      */
-    name: string;
+    name?: string;
     /**
      * Parent ID in the format `accounts/{account_id}`.  `account_id` - The ID
      * of the Manufacturer Center account.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */

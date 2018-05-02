@@ -1455,11 +1455,11 @@ export namespace testing_v1 {
     /**
      * Cloud project that owns the test.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Test matrix that will be canceled.
      */
-    testMatrixId: string;
+    testMatrixId?: string;
   }
   export interface Params$Resource$Projects$Testmatrices$Create {
     /**
@@ -1470,7 +1470,7 @@ export namespace testing_v1 {
     /**
      * The GCE project under which this job will run.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A string id used to detect duplicated requests. Ids are automatically
      * scoped to a project, so users should ensure the ID is unique per-project.
@@ -1491,11 +1491,11 @@ export namespace testing_v1 {
     /**
      * Cloud project that owns the test matrix.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Unique test matrix id which was assigned by the service.
      */
-    testMatrixId: string;
+    testMatrixId?: string;
   }
 
 
@@ -1589,7 +1589,7 @@ export namespace testing_v1 {
     /**
      * The type of environment that should be listed. Required
      */
-    environmentType: string;
+    environmentType?: string;
     /**
      * For authorization, the cloud project requesting the
      * TestEnvironmentCatalog. Optional

@@ -2386,11 +2386,11 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2409,11 +2409,11 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Get {
     /**
@@ -2424,11 +2424,11 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Getiampolicy {
     /**
@@ -2439,11 +2439,11 @@ export namespace deploymentmanager_v2 {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Deployments$Insert {
     /**
@@ -2468,7 +2468,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2526,7 +2526,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Deployments$Patch {
     /**
@@ -2545,7 +2545,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * If set to true, updates the deployment and creates and updates the
      * "shell" resources but does not actually alter or instantiate these
@@ -2562,7 +2562,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2577,11 +2577,11 @@ export namespace deploymentmanager_v2 {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2596,11 +2596,11 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2615,11 +2615,11 @@ export namespace deploymentmanager_v2 {
     /**
      * Project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2642,7 +2642,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * If set to true, updates the deployment and creates and updates the
      * "shell" resources but does not actually alter or instantiate these
@@ -2659,7 +2659,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * Request body metadata
      */
@@ -2954,15 +2954,15 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The name of the manifest for this request.
      */
-    manifest: string;
+    manifest?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Manifests$List {
     /**
@@ -2973,7 +2973,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * A filter expression that filters resources listed in the response. The
      * expression must specify the field name, a comparison operator, and the
@@ -3020,7 +3020,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3305,11 +3305,11 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the operation for this request.
      */
-    operation: string;
+    operation?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -3363,7 +3363,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3654,15 +3654,15 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
     /**
      * The name of the resource for this request.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Resources$List {
     /**
@@ -3673,7 +3673,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The name of the deployment for this request.
      */
-    deployment: string;
+    deployment?: string;
     /**
      * A filter expression that filters resources listed in the response. The
      * expression must specify the field name, a comparison operator, and the
@@ -3720,7 +3720,7 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 
 
@@ -3924,6 +3924,6 @@ export namespace deploymentmanager_v2 {
     /**
      * The project ID for this request.
      */
-    project: string;
+    project?: string;
   }
 }

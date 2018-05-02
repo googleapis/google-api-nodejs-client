@@ -2115,7 +2115,7 @@ export namespace firestore_v1beta1 {
      * The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2131,7 +2131,7 @@ export namespace firestore_v1beta1 {
      * The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2147,7 +2147,7 @@ export namespace firestore_v1beta1 {
      * The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2163,7 +2163,7 @@ export namespace firestore_v1beta1 {
      * The collection ID, relative to `parent`, to list. For example:
      * `chatrooms`.
      */
-    collectionId: string;
+    collectionId?: string;
     /**
      * The client-assigned document ID to use for this document.  Optional. If
      * not specified, an ID will be assigned by the service.
@@ -2179,7 +2179,7 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}/documents` or
      * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2205,7 +2205,7 @@ export namespace firestore_v1beta1 {
      * The resource name of the Document to delete. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Databases$Documents$Get {
     /**
@@ -2222,7 +2222,7 @@ export namespace firestore_v1beta1 {
      * The resource name of the Document to get. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    name: string;
+    name?: string;
     /**
      * Reads the version of the document at the given time. This may not be
      * older than 60 seconds.
@@ -2243,7 +2243,7 @@ export namespace firestore_v1beta1 {
      * The collection ID, relative to `parent`, to list. For example:
      * `chatrooms` or `messages`.
      */
-    collectionId: string;
+    collectionId?: string;
     /**
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
@@ -2269,7 +2269,7 @@ export namespace firestore_v1beta1 {
      * For example: `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
-    parent: string;
+    parent?: string;
     /**
      * Reads documents as they were at the given time. This may not be older
      * than 60 seconds.
@@ -2300,7 +2300,7 @@ export namespace firestore_v1beta1 {
      * For example:
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2316,7 +2316,7 @@ export namespace firestore_v1beta1 {
      * The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2347,7 +2347,7 @@ export namespace firestore_v1beta1 {
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    name: string;
+    name?: string;
     /**
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
@@ -2368,7 +2368,7 @@ export namespace firestore_v1beta1 {
      * The database name. In the format:
      * `projects/{project_id}/databases/{database_id}`.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2387,7 +2387,7 @@ export namespace firestore_v1beta1 {
      * For example: `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2404,7 +2404,7 @@ export namespace firestore_v1beta1 {
      * `projects/{project_id}/databases/{database_id}`. This is only required in
      * the first message.
      */
-    database: string;
+    database?: string;
     /**
      * Request body metadata
      */
@@ -2706,7 +2706,7 @@ export namespace firestore_v1beta1 {
      * The name of the database this index will apply to. For example:
      * `projects/{project_id}/databases/{database_id}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2722,7 +2722,7 @@ export namespace firestore_v1beta1 {
      * The index name. For example:
      * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Databases$Indexes$Get {
     /**
@@ -2734,7 +2734,7 @@ export namespace firestore_v1beta1 {
      * The name of the index. For example:
      * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Databases$Indexes$List {
     /**
@@ -2758,6 +2758,6 @@ export namespace firestore_v1beta1 {
      * The database name. For example:
      * `projects/{project_id}/databases/{database_id}`
      */
-    parent: string;
+    parent?: string;
   }
 }

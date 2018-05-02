@@ -3372,11 +3372,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3392,11 +3392,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the test order to modify.
      */
-    orderId: string;
+    orderId?: string;
   }
   export interface Params$Resource$Orders$Cancel {
     /**
@@ -3408,11 +3408,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order to cancel.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3428,11 +3428,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3448,7 +3448,7 @@ export namespace content_v2sandbox {
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * Request body metadata
      */
@@ -3470,11 +3470,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
   }
   export interface Params$Resource$Orders$Getbymerchantorderid {
     /**
@@ -3486,11 +3486,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The merchant order id to be looked for.
      */
-    merchantOrderId: string;
+    merchantOrderId?: string;
   }
   export interface Params$Resource$Orders$Gettestordertemplate {
     /**
@@ -3502,11 +3502,11 @@ export namespace content_v2sandbox {
      * The ID of the account that should manage the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The name of the template to retrieve.
      */
-    templateName: string;
+    templateName?: string;
   }
   export interface Params$Resource$Orders$Instorerefundlineitem {
     /**
@@ -3518,11 +3518,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3553,7 +3553,7 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ordering of the returned list. The only supported value are
      * placedDate desc and placedDate asc for now, which returns orders sorted
@@ -3594,11 +3594,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order to refund.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3614,11 +3614,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3634,11 +3634,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3654,11 +3654,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3674,11 +3674,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3694,11 +3694,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3714,11 +3714,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3734,11 +3734,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */
@@ -3754,11 +3754,11 @@ export namespace content_v2sandbox {
      * The ID of the account that manages the order. This cannot be a
      * multi-client account.
      */
-    merchantId: string;
+    merchantId?: string;
     /**
      * The ID of the order.
      */
-    orderId: string;
+    orderId?: string;
     /**
      * Request body metadata
      */

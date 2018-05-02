@@ -1856,7 +1856,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource for the `Policy` to clear.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1871,7 +1871,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1886,7 +1886,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource the `Policy` is set on.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1901,7 +1901,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list `Constraints` for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1916,7 +1916,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list Policies for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1931,7 +1931,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2343,7 +2343,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name/identifier of the Lien to delete.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Liens$List {
     /**
@@ -2507,7 +2507,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -3999,7 +3999,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource for the `Policy` to clear.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4015,7 +4015,7 @@ export namespace cloudresourcemanager_v1 {
      * The resource name of the Organization to fetch, e.g.
      * "organizations/1234".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Geteffectiveorgpolicy {
     /**
@@ -4026,7 +4026,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4042,7 +4042,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4057,7 +4057,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource the `Policy` is set on.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4072,7 +4072,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list `Constraints` for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4087,7 +4087,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list Policies for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4114,7 +4114,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4129,7 +4129,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4145,7 +4145,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6283,7 +6283,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource for the `Policy` to clear.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6309,7 +6309,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The Project ID (for example, `foo-bar-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Get {
     /**
@@ -6320,7 +6320,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Params$Resource$Projects$Getancestry {
     /**
@@ -6331,7 +6331,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The Project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -6346,7 +6346,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The name of the resource to start computing the effective `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6362,7 +6362,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6377,7 +6377,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource the `Policy` is set on.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6432,7 +6432,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list `Constraints` for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6447,7 +6447,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Name of the resource to list Policies for.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6463,7 +6463,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6478,7 +6478,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * Resource name of the resource to attach the `Policy`.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6494,7 +6494,7 @@ export namespace cloudresourcemanager_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -6509,7 +6509,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The project ID (for example, `foo-bar-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -6524,7 +6524,7 @@ export namespace cloudresourcemanager_v1 {
     /**
      * The project ID (for example, `my-project-123`).  Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */

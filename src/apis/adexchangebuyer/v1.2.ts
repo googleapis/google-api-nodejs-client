@@ -537,7 +537,7 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -554,7 +554,7 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -569,7 +569,7 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -795,11 +795,11 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
   }
   export interface Params$Resource$Creatives$Insert {
     /**

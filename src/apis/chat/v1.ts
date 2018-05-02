@@ -697,7 +697,7 @@ export namespace chat_v1 {
      * Required. Resource name of the space, in the form "spaces/x".  Example:
      * spaces/AAAAMpdlehY
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Spaces$List {
     /**
@@ -870,7 +870,7 @@ export namespace chat_v1 {
      * "spaces/x/members/x".  Example:
      * spaces/AAAAMpdlehY/members/105115627578887013105
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Spaces$Members$List {
     /**
@@ -891,7 +891,7 @@ export namespace chat_v1 {
      * Required. The resource name of the space for which membership list is to
      * be fetched, in the form "spaces/x".  Example: spaces/AAAAMpdlehY
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -1178,7 +1178,7 @@ export namespace chat_v1 {
      * Required. Space resource name, in the form "spaces/x". Example:
      * spaces/AAAAMpdlehY
      */
-    parent: string;
+    parent?: string;
     /**
      * Opaque thread identifier string that can be specified to group messages
      * into a single thread. If this is the first message with a given thread
@@ -1205,7 +1205,7 @@ export namespace chat_v1 {
      * "spaces/x/messages/x"  Example:
      * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Get {
     /**
@@ -1218,7 +1218,7 @@ export namespace chat_v1 {
      * "spaces/x/messages/x".  Example:
      * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Update {
     /**
@@ -1230,7 +1230,7 @@ export namespace chat_v1 {
      * Resource name, in the form "spaces/x/messages/x".  Example:
      * spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
-    name: string;
+    name?: string;
     /**
      * Required. The field paths to be updated.  Currently supported field
      * paths: "text", "cards".

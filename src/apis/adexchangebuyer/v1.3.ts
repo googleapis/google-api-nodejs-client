@@ -946,7 +946,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
   }
   export interface Params$Resource$Accounts$List {
     /**
@@ -963,7 +963,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -978,7 +978,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id
      */
-    id: number;
+    id?: number;
     /**
      * Request body metadata
      */
@@ -1135,7 +1135,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id.
      */
-    accountId: number;
+    accountId?: number;
   }
   export interface Params$Resource$Billinginfo$List {
     /**
@@ -1367,11 +1367,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to get the budget information for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id to get the budget information for.
      */
-    billingId: string;
+    billingId?: string;
   }
   export interface Params$Resource$Budget$Patch {
     /**
@@ -1382,11 +1382,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id associated with the budget being updated.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id associated with the budget being updated.
      */
-    billingId: string;
+    billingId?: string;
     /**
      * Request body metadata
      */
@@ -1401,11 +1401,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id associated with the budget being updated.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The billing id associated with the budget being updated.
      */
-    billingId: string;
+    billingId?: string;
     /**
      * Request body metadata
      */
@@ -1633,11 +1633,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The id for the account that will serve this creative.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * The buyer-specific id for this creative.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
   }
   export interface Params$Resource$Creatives$Insert {
     /**
@@ -1825,7 +1825,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The direct deal id
      */
-    id: string;
+    id?: string;
   }
   export interface Params$Resource$Directdeals$List {
     /**
@@ -1928,11 +1928,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to get the reports.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The end time of the report in ISO 8601 timestamp format using UTC.
      */
-    endDateTime: string;
+    endDateTime?: string;
     /**
      * Maximum number of entries returned on one result page. If not set, the
      * default is 100. Optional.
@@ -1947,7 +1947,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The start time of the report in ISO 8601 timestamp format using UTC.
      */
-    startDateTime: string;
+    startDateTime?: string;
   }
 
 
@@ -2388,11 +2388,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to delete the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to delete.
      */
-    configId: string;
+    configId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Get {
     /**
@@ -2403,11 +2403,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to get the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to retrieve.
      */
-    configId: string;
+    configId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Insert {
     /**
@@ -2418,7 +2418,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to insert the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -2433,7 +2433,7 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to get the pretargeting configs for.
      */
-    accountId: string;
+    accountId?: string;
   }
   export interface Params$Resource$Pretargetingconfig$Patch {
     /**
@@ -2444,11 +2444,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to update the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to update.
      */
-    configId: string;
+    configId?: string;
     /**
      * Request body metadata
      */
@@ -2463,11 +2463,11 @@ export namespace adexchangebuyer_v1_3 {
     /**
      * The account id to update the pretargeting config for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The specific id of the configuration to update.
      */
-    configId: string;
+    configId?: string;
     /**
      * Request body metadata
      */

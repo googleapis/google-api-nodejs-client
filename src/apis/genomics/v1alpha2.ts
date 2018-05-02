@@ -1292,7 +1292,7 @@ export namespace genomics_v1alpha2 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1307,7 +1307,7 @@ export namespace genomics_v1alpha2 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -1339,7 +1339,7 @@ export namespace genomics_v1alpha2 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return. If unspecified, defaults to 256.
      * The maximum value is 2048.
@@ -2232,7 +2232,7 @@ export namespace genomics_v1alpha2 {
      * Caller must have WRITE access to the project in which this pipeline is
      * defined.
      */
-    pipelineId: string;
+    pipelineId?: string;
   }
   export interface Params$Resource$Pipelines$Get {
     /**
@@ -2244,7 +2244,7 @@ export namespace genomics_v1alpha2 {
      * Caller must have READ access to the project in which this pipeline is
      * defined.
      */
-    pipelineId: string;
+    pipelineId?: string;
   }
   export interface Params$Resource$Pipelines$Getcontrollerconfig {
     /**

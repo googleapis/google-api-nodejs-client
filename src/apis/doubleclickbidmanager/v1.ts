@@ -1050,7 +1050,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID to delete.
      */
-    queryId: string;
+    queryId?: string;
   }
   export interface Params$Resource$Queries$Getquery {
     /**
@@ -1061,7 +1061,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID to retrieve.
      */
-    queryId: string;
+    queryId?: string;
   }
   export interface Params$Resource$Queries$Listqueries {
     /**
@@ -1078,7 +1078,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID to run.
      */
-    queryId: string;
+    queryId?: string;
     /**
      * Request body metadata
      */
@@ -1176,7 +1176,7 @@ export namespace doubleclickbidmanager_v1 {
     /**
      * Query ID with which the reports are associated.
      */
-    queryId: string;
+    queryId?: string;
   }
 
 

@@ -1551,7 +1551,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1566,7 +1566,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1581,7 +1581,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1596,7 +1596,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1611,7 +1611,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1626,7 +1626,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1641,7 +1641,7 @@ export namespace datastore_v1beta3 {
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */

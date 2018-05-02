@@ -339,7 +339,7 @@ export namespace oslogin_v1alpha {
     /**
      * The unique ID for the user in format `users/{user}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Importsshpublickey {
     /**
@@ -350,7 +350,7 @@ export namespace oslogin_v1alpha {
     /**
      * The unique ID for the user in format `users/{user}`.
      */
-    parent: string;
+    parent?: string;
     /**
      * The project ID of the Google Cloud Platform project.
      */
@@ -381,6 +381,7 @@ export namespace oslogin_v1alpha {
      *
      * @param {object} params Parameters for request
      * @param {string} params.name A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user}/projects/{project}`.
+     * @param {string=} params.operatingSystemType The type of operating system associated with the account.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -449,7 +450,11 @@ export namespace oslogin_v1alpha {
      * by the project ID they are associated with. A reference to the POSIX
      * account is in format `users/{user}/projects/{project}`.
      */
-    name: string;
+    name?: string;
+    /**
+     * The type of operating system associated with the account.
+     */
+    operatingSystemType?: string;
   }
 
 
@@ -672,7 +677,7 @@ export namespace oslogin_v1alpha {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Get {
     /**
@@ -685,7 +690,7 @@ export namespace oslogin_v1alpha {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Users$Sshpublickeys$Patch {
     /**
@@ -698,7 +703,7 @@ export namespace oslogin_v1alpha {
      * by their SHA-256 fingerprint. The fingerprint of the public key is in
      * format `users/{user}/sshPublicKeys/{fingerprint}`.
      */
-    name: string;
+    name?: string;
     /**
      * Mask to control which fields get updated. Updates all if not present.
      */

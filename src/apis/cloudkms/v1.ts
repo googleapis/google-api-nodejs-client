@@ -668,7 +668,7 @@ export namespace cloudkms_v1 {
     /**
      * Resource name for the location.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List {
     /**
@@ -683,7 +683,7 @@ export namespace cloudkms_v1 {
     /**
      * The resource that owns the locations collection, if applicable.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */
@@ -1141,7 +1141,7 @@ export namespace cloudkms_v1 {
      * Required. The resource name of the location associated with the KeyRings,
      * in the format `projects/x/locations/x`.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1156,7 +1156,7 @@ export namespace cloudkms_v1 {
     /**
      * The name of the KeyRing to get.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy {
     /**
@@ -1168,7 +1168,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$List {
     /**
@@ -1192,7 +1192,7 @@ export namespace cloudkms_v1 {
      * Required. The resource name of the location associated with the KeyRings,
      * in the format `projects/x/locations/x`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy {
     /**
@@ -1204,7 +1204,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1220,7 +1220,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1982,7 +1982,7 @@ export namespace cloudkms_v1 {
     /**
      * Required. The name of the KeyRing associated with the CryptoKeys.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1998,7 +1998,7 @@ export namespace cloudkms_v1 {
      * Required. The resource name of the CryptoKey to use for decryption. The
      * server will choose the appropriate version.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2015,7 +2015,7 @@ export namespace cloudkms_v1 {
      * for encryption.  If a CryptoKey is specified, the server will use its
      * primary version.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2030,7 +2030,7 @@ export namespace cloudkms_v1 {
     /**
      * The name of the CryptoKey to get.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy {
     /**
@@ -2042,7 +2042,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List {
     /**
@@ -2066,7 +2066,7 @@ export namespace cloudkms_v1 {
      * Required. The resource name of the KeyRing to list, in the format
      * `projects/x/locations/x/keyRings/x`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch {
     /**
@@ -2078,7 +2078,7 @@ export namespace cloudkms_v1 {
      * Output only. The resource name for this CryptoKey in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
-    name: string;
+    name?: string;
     /**
      * Required list of fields to be updated in this request.
      */
@@ -2098,7 +2098,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2114,7 +2114,7 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2129,7 +2129,7 @@ export namespace cloudkms_v1 {
     /**
      * The resource name of the CryptoKey to update.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2615,7 +2615,7 @@ export namespace cloudkms_v1 {
      * Required. The name of the CryptoKey associated with the
      * CryptoKeyVersions.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2630,7 +2630,7 @@ export namespace cloudkms_v1 {
     /**
      * The resource name of the CryptoKeyVersion to destroy.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2645,7 +2645,7 @@ export namespace cloudkms_v1 {
     /**
      * The name of the CryptoKeyVersion to get.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List {
     /**
@@ -2670,7 +2670,7 @@ export namespace cloudkms_v1 {
      * Required. The resource name of the CryptoKey to list, in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch {
     /**
@@ -2682,7 +2682,7 @@ export namespace cloudkms_v1 {
      * Output only. The resource name for this CryptoKeyVersion in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
      */
-    name: string;
+    name?: string;
     /**
      * Required list of fields to be updated in this request.
      */
@@ -2701,7 +2701,7 @@ export namespace cloudkms_v1 {
     /**
      * The resource name of the CryptoKeyVersion to restore.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */

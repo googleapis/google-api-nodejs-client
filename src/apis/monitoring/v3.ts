@@ -2218,7 +2218,7 @@ export namespace monitoring_v3 {
      * suffix of the form /alertPolicies/[POLICY_ID], identifying the policy in
      * the container.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2235,7 +2235,7 @@ export namespace monitoring_v3 {
      * projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID] For more
      * information, see AlertPolicy.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Alertpolicies$Get {
     /**
@@ -2247,7 +2247,7 @@ export namespace monitoring_v3 {
      * The alerting policy to retrieve. The format is
      * projects/[PROJECT_ID]/alertPolicies/[ALERT_POLICY_ID]
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Alertpolicies$List {
     /**
@@ -2267,7 +2267,7 @@ export namespace monitoring_v3 {
      * which the alerting policies to be listed are stored. To retrieve a single
      * alerting policy by name, use the GetAlertPolicy operation, instead.
      */
-    name: string;
+    name?: string;
     /**
      * A comma-separated list of fields by which to sort the result. Supports
      * the same set of field references as the filter field. Entries can be
@@ -2299,7 +2299,7 @@ export namespace monitoring_v3 {
      * is created. When calling the alertPolicies.create method, do not include
      * the name field in the alerting policy passed as part of the request.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. A list of alerting policy field names. If this field is not
      * empty, each listed field in the existing alerting policy is set to the
@@ -2474,7 +2474,7 @@ export namespace monitoring_v3 {
      * The project in which to create the time series. The format is
      * "projects/PROJECT_ID_OR_NUMBER".
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3087,7 +3087,7 @@ export namespace monitoring_v3 {
      * The project in which to create the group. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * If true, validate this request but do not create the group.
      */
@@ -3107,7 +3107,7 @@ export namespace monitoring_v3 {
      * The group to delete. The format is
      * "projects/{project_id_or_number}/groups/{group_id}".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Groups$Get {
     /**
@@ -3119,7 +3119,7 @@ export namespace monitoring_v3 {
      * The group to retrieve. The format is
      * "projects/{project_id_or_number}/groups/{group_id}".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Groups$List {
     /**
@@ -3152,7 +3152,7 @@ export namespace monitoring_v3 {
      * The project whose groups are to be listed. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * A positive number that is the maximum number of results to return.
      */
@@ -3177,7 +3177,7 @@ export namespace monitoring_v3 {
      * project specified in the call to CreateGroup and a unique {group_id} that
      * is generated automatically.
      */
-    name: string;
+    name?: string;
     /**
      * If true, validate this request but do not update the existing group.
      */
@@ -3355,7 +3355,7 @@ export namespace monitoring_v3 {
      * The group whose members are listed. The format is
      * "projects/{project_id_or_number}/groups/{group_id}".
      */
-    name: string;
+    name?: string;
     /**
      * A positive number that is the maximum number of results to return.
      */
@@ -3859,7 +3859,7 @@ export namespace monitoring_v3 {
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3876,7 +3876,7 @@ export namespace monitoring_v3 {
      * "projects/{project_id_or_number}/metricDescriptors/{metric_id}". An
      * example of {metric_id} is: "custom.googleapis.com/my_test_metric".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Metricdescriptors$Get {
     /**
@@ -3890,7 +3890,7 @@ export namespace monitoring_v3 {
      * example value of {metric_id} is
      * "compute.googleapis.com/instance/disk/read_bytes_count".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Metricdescriptors$List {
     /**
@@ -3909,7 +3909,7 @@ export namespace monitoring_v3 {
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * A positive number that is the maximum number of results to return.
      */
@@ -4201,7 +4201,7 @@ export namespace monitoring_v3 {
      * "projects/{project_id_or_number}/monitoredResourceDescriptors/{resource_type}".
      * The {resource_type} is a predefined type, such as cloudsql_database.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Monitoredresourcedescriptors$List {
     /**
@@ -4220,7 +4220,7 @@ export namespace monitoring_v3 {
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * A positive number that is the maximum number of results to return.
      */
@@ -4410,7 +4410,7 @@ export namespace monitoring_v3 {
      * The channel type for which to execute the request. The format is
      * projects/[PROJECT_ID]/notificationChannelDescriptors/{channel_type}.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Notificationchanneldescriptors$List {
     /**
@@ -4425,7 +4425,7 @@ export namespace monitoring_v3 {
      * to look for the descriptors; to retrieve a single descriptor by name, use
      * the GetNotificationChannelDescriptor operation, instead.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return in a single response. If not set
      * to a positive number, a reasonable value will be chosen by the service.
@@ -5065,7 +5065,7 @@ export namespace monitoring_v3 {
      * as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify
      * the channel.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5088,7 +5088,7 @@ export namespace monitoring_v3 {
      * The channel for which to execute the request. The format is
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Notificationchannels$Get {
     /**
@@ -5100,7 +5100,7 @@ export namespace monitoring_v3 {
      * The channel for which to execute the request. The format is
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID].
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Notificationchannels$Getverificationcode {
     /**
@@ -5113,7 +5113,7 @@ export namespace monitoring_v3 {
      * and retrieved. This must name a channel that is already verified; if the
      * specified channel is not verified, the request will fail.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5138,7 +5138,7 @@ export namespace monitoring_v3 {
      * query a specific channel by REST resource name, use the
      * GetNotificationChannel operation.
      */
-    name: string;
+    name?: string;
     /**
      * A comma-separated list of fields by which to sort the result. Supports
      * the same set of fields as in filter. Entries can be prefixed with a minus
@@ -5169,7 +5169,7 @@ export namespace monitoring_v3 {
      * projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID]
      * is automatically assigned by the server on creation.
      */
-    name: string;
+    name?: string;
     /**
      * The fields to update.
      */
@@ -5188,7 +5188,7 @@ export namespace monitoring_v3 {
     /**
      * The notification channel to which to send a verification code.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5203,7 +5203,7 @@ export namespace monitoring_v3 {
     /**
      * The notification channel to verify.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5483,7 +5483,7 @@ export namespace monitoring_v3 {
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -5564,7 +5564,7 @@ export namespace monitoring_v3 {
      * The project on which to execute the request. The format is
      * "projects/{project_id_or_number}".
      */
-    name: string;
+    name?: string;
     /**
      * Unsupported: must be left blank. The points in each time series are
      * returned in reverse time order.
@@ -5958,7 +5958,7 @@ export namespace monitoring_v3 {
      * The project in which to create the uptime check. The format  is
      * projects/[PROJECT_ID].
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5974,7 +5974,7 @@ export namespace monitoring_v3 {
      * The uptime check configuration to delete. The format  is
      * projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$Get {
     /**
@@ -5986,7 +5986,7 @@ export namespace monitoring_v3 {
      * The uptime check configuration to retrieve. The format  is
      * projects/[PROJECT_ID]/uptimeCheckConfigs/[UPTIME_CHECK_ID].
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$List {
     /**
@@ -6011,7 +6011,7 @@ export namespace monitoring_v3 {
      * The project whose uptime check configurations are listed. The format  is
      * projects/[PROJECT_ID].
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Uptimecheckconfigs$Patch {
     /**
@@ -6026,7 +6026,7 @@ export namespace monitoring_v3 {
      * create, the resource name is assigned by the server and included in the
      * response.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. If present, only the listed fields in the current uptime check
      * configuration are updated with values from the new configuration. If this

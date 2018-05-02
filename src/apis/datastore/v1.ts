@@ -1845,7 +1845,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1860,7 +1860,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1875,7 +1875,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1890,7 +1890,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * Project ID against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1905,7 +1905,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * Project ID against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1920,7 +1920,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1935,7 +1935,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1950,7 +1950,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -1965,7 +1965,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The ID of the project against which to make the request.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Request body metadata
      */
@@ -2291,7 +2291,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$Delete {
     /**
@@ -2302,7 +2302,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$Get {
     /**
@@ -2313,7 +2313,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$List {
     /**
@@ -2328,7 +2328,7 @@ import(paramsOrCallback?: Params$Resource$Projects$Import|BodyResponseCallback<S
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */

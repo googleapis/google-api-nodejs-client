@@ -963,11 +963,11 @@ export namespace doubleclicksearch_v2 {
     /**
      * Numeric ID of the advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Numeric ID of the agency.
      */
-    agencyId: string;
+    agencyId?: string;
     /**
      * Numeric ID of the campaign.
      */
@@ -980,24 +980,24 @@ export namespace doubleclicksearch_v2 {
      * Last date (inclusive) on which to retrieve conversions. Format is
      * yyyymmdd.
      */
-    endDate: number;
+    endDate?: number;
     /**
      * Numeric ID of the engine account.
      */
-    engineAccountId: string;
+    engineAccountId?: string;
     /**
      * The number of conversions to return per call.
      */
-    rowCount: number;
+    rowCount?: number;
     /**
      * First date (inclusive) on which to retrieve conversions. Format is
      * yyyymmdd.
      */
-    startDate: number;
+    startDate?: number;
     /**
      * The 0-based starting index for retrieving conversions results.
      */
-    startRow: number;
+    startRow?: number;
   }
   export interface Params$Resource$Conversion$Insert {
     /**
@@ -1014,33 +1014,33 @@ export namespace doubleclicksearch_v2 {
     /**
      * Numeric ID of the advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * Numeric ID of the agency.
      */
-    agencyId: string;
+    agencyId?: string;
     /**
      * Last date (inclusive) on which to retrieve conversions. Format is
      * yyyymmdd.
      */
-    endDate: number;
+    endDate?: number;
     /**
      * Numeric ID of the engine account.
      */
-    engineAccountId: string;
+    engineAccountId?: string;
     /**
      * The number of conversions to return per call.
      */
-    rowCount: number;
+    rowCount?: number;
     /**
      * First date (inclusive) on which to retrieve conversions. Format is
      * yyyymmdd.
      */
-    startDate: number;
+    startDate?: number;
     /**
      * The 0-based starting index for retrieving conversions results.
      */
-    startRow: number;
+    startRow?: number;
     /**
      * Request body metadata
      */
@@ -1343,7 +1343,7 @@ export namespace doubleclicksearch_v2 {
     /**
      * ID of the report request being polled.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Reports$Getfile {
     /**
@@ -1354,11 +1354,11 @@ export namespace doubleclicksearch_v2 {
     /**
      * The index of the report fragment to download.
      */
-    reportFragment: number;
+    reportFragment?: number;
     /**
      * ID of the report.
      */
-    reportId: string;
+    reportId?: string;
   }
   export interface Params$Resource$Reports$Request {
     /**
@@ -1458,10 +1458,10 @@ export namespace doubleclicksearch_v2 {
     /**
      * DS ID of the advertiser.
      */
-    advertiserId: string;
+    advertiserId?: string;
     /**
      * DS ID of the agency.
      */
-    agencyId: string;
+    agencyId?: string;
   }
 }

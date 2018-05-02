@@ -100,8 +100,6 @@ import {dialogflow_v2beta1} from './dialogflow/v2beta1';
 import {digitalassetlinks_v1} from './digitalassetlinks/v1';
 import {discovery_v1} from './discovery/v1';
 import {dlp_v2} from './dlp/v2';
-import {dlp_v2beta1} from './dlp/v2beta1';
-import {dlp_v2beta2} from './dlp/v2beta2';
 import {dns_v1} from './dns/v1';
 import {dns_v1beta2} from './dns/v1beta2';
 import {dns_v2beta1} from './dns/v2beta1';
@@ -404,8 +402,6 @@ export const APIS: APIList = {
   },
   dlp: {
     'v2': dlp_v2.Dlp,
-    'v2beta1': dlp_v2beta1.Dlp,
-    'v2beta2': dlp_v2beta2.Dlp,
   },
   dns: {
     'v1': dns_v1.Dns,
@@ -918,9 +914,7 @@ export class GeneratedAPIs {
   discovery<T = discovery_v1.Discovery>(options: ServiceOptions|string) {
     return this.getAPI<T>('discovery', options);
   }
-  dlp<T = dlp_v2.Dlp | dlp_v2beta1.Dlp | dlp_v2beta2.Dlp>(options:
-                                                              ServiceOptions|
-                                                          string) {
+  dlp<T = dlp_v2.Dlp>(options: ServiceOptions|string) {
     return this.getAPI<T>('dlp', options);
   }
   dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(options:

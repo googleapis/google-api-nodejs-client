@@ -778,12 +778,12 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Get {
     /**
@@ -794,12 +794,12 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Insert {
     /**
@@ -810,7 +810,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Request body metadata
      */
@@ -825,7 +825,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
   }
   export interface Params$Resource$Bucketaccesscontrols$Patch {
     /**
@@ -836,12 +836,12 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -856,12 +856,12 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Request body metadata
      */
@@ -1279,7 +1279,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
   }
   export interface Params$Resource$Buckets$Get {
     /**
@@ -1290,7 +1290,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Set of properties to return. Defaults to no_acl.
      */
@@ -1331,7 +1331,7 @@ export namespace storage_v1beta1 {
     /**
      * A valid API project identifier.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Set of properties to return. Defaults to no_acl.
      */
@@ -1346,7 +1346,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Set of properties to return. Defaults to full.
      */
@@ -1365,7 +1365,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Set of properties to return. Defaults to full.
      */
@@ -1815,16 +1815,16 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Get {
     /**
@@ -1835,16 +1835,16 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Insert {
     /**
@@ -1855,11 +1855,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -1874,11 +1874,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objectaccesscontrols$Patch {
     /**
@@ -1889,16 +1889,16 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -1913,16 +1913,16 @@ export namespace storage_v1beta1 {
     /**
      * Name of a bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The entity holding the permission. Can be user-userId, user-emailAddress,
      * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
      */
-    entity: string;
+    entity?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Request body metadata
      */
@@ -2354,11 +2354,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
   }
   export interface Params$Resource$Objects$Get {
     /**
@@ -2369,11 +2369,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to no_acl.
      */
@@ -2389,7 +2389,7 @@ export namespace storage_v1beta1 {
      * Name of the bucket in which to store the new object. Overrides the
      * provided object metadata's bucket value, if any.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object. Required when the object metadata is not otherwise
      * provided. Overrides the object metadata's name value, if any.
@@ -2428,7 +2428,7 @@ export namespace storage_v1beta1 {
     /**
      * Name of the bucket in which to look for objects.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Returns results in a directory-like mode. items will contain only objects
      * whose names, aside from the prefix, do not contain delimiter. Objects
@@ -2465,11 +2465,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to full.
      */
@@ -2488,11 +2488,11 @@ export namespace storage_v1beta1 {
     /**
      * Name of the bucket in which the object resides.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Name of the object.
      */
-    object: string;
+    object?: string;
     /**
      * Set of properties to return. Defaults to full.
      */

@@ -764,7 +764,7 @@ export namespace adsense_v1_4 {
     /**
      * Account to get information about.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Whether the tree of sub accounts should be returned.
      */
@@ -879,7 +879,7 @@ export namespace adsense_v1_4 {
     /**
      * Account for which to list ad clients.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of ad clients to include in the response, used for
      * paging.
@@ -1127,15 +1127,15 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to get the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to retrieve.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Accounts$Adunits$Getadcode {
     /**
@@ -1146,15 +1146,15 @@ export namespace adsense_v1_4 {
     /**
      * Account which contains the ad client.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client with contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to get the code for.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Accounts$Adunits$List {
     /**
@@ -1165,11 +1165,11 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list ad units.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -1281,15 +1281,15 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit for which to list custom channels.
      */
-    adUnitId: string;
+    adUnitId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -1461,11 +1461,11 @@ export namespace adsense_v1_4 {
     /**
      * Account which contains the ad unit.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Alert to delete.
      */
-    alertId: string;
+    alertId?: string;
   }
   export interface Params$Resource$Accounts$Alerts$List {
     /**
@@ -1476,7 +1476,7 @@ export namespace adsense_v1_4 {
     /**
      * Account for which to retrieve the alerts.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The locale to use for translating alert messages. The account locale will
      * be used if this is not supplied. The AdSense default (English) will be
@@ -1650,15 +1650,15 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to retrieve.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Accounts$Customchannels$List {
     /**
@@ -1669,11 +1669,11 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list custom channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -1781,15 +1781,15 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel for which to list ad units.
      */
-    customChannelId: string;
+    customChannelId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -1896,7 +1896,7 @@ export namespace adsense_v1_4 {
     /**
      * Account for which to retrieve the payments.
      */
-    accountId: string;
+    accountId?: string;
   }
 
 
@@ -2011,7 +2011,7 @@ export namespace adsense_v1_4 {
     /**
      * Account upon which to report.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Optional currency to use when reporting on monetary metrics. Defaults to
      * the account's currency if not set.
@@ -2024,7 +2024,7 @@ export namespace adsense_v1_4 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -2051,7 +2051,7 @@ export namespace adsense_v1_4 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -2236,7 +2236,7 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the saved reports belong.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Optional locale to use for translating report output to a local language.
      * Defaults to "en_US" if not specified.
@@ -2249,7 +2249,7 @@ export namespace adsense_v1_4 {
     /**
      * The saved report to retrieve.
      */
-    savedReportId: string;
+    savedReportId?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -2264,7 +2264,7 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the saved reports belong.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of saved reports to include in the response, used for
      * paging.
@@ -2437,11 +2437,11 @@ export namespace adsense_v1_4 {
     /**
      * Account for which to get the saved ad style.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Saved ad style to retrieve.
      */
-    savedAdStyleId: string;
+    savedAdStyleId?: string;
   }
   export interface Params$Resource$Accounts$Savedadstyles$List {
     /**
@@ -2452,7 +2452,7 @@ export namespace adsense_v1_4 {
     /**
      * Account for which to list saved ad styles.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The maximum number of saved ad styles to include in the response, used
      * for paging.
@@ -2561,11 +2561,11 @@ export namespace adsense_v1_4 {
     /**
      * Account to which the ad client belongs.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Ad client for which to list URL channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of URL channels to include in the response, used for
      * paging.
@@ -2902,11 +2902,11 @@ export namespace adsense_v1_4 {
     /**
      * Ad client for which to get the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to retrieve.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Adunits$Getadcode {
     /**
@@ -2917,11 +2917,11 @@ export namespace adsense_v1_4 {
     /**
      * Ad client with contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit to get the code for.
      */
-    adUnitId: string;
+    adUnitId?: string;
   }
   export interface Params$Resource$Adunits$List {
     /**
@@ -2932,7 +2932,7 @@ export namespace adsense_v1_4 {
     /**
      * Ad client for which to list ad units.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -3043,11 +3043,11 @@ export namespace adsense_v1_4 {
     /**
      * Ad client which contains the ad unit.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Ad unit for which to list custom channels.
      */
-    adUnitId: string;
+    adUnitId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -3212,7 +3212,7 @@ export namespace adsense_v1_4 {
     /**
      * Alert to delete.
      */
-    alertId: string;
+    alertId?: string;
   }
   export interface Params$Resource$Alerts$List {
     /**
@@ -3388,11 +3388,11 @@ export namespace adsense_v1_4 {
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel to retrieve.
      */
-    customChannelId: string;
+    customChannelId?: string;
   }
   export interface Params$Resource$Customchannels$List {
     /**
@@ -3403,7 +3403,7 @@ export namespace adsense_v1_4 {
     /**
      * Ad client for which to list custom channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of custom channels to include in the response, used
      * for paging.
@@ -3510,11 +3510,11 @@ export namespace adsense_v1_4 {
     /**
      * Ad client which contains the custom channel.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * Custom channel for which to list ad units.
      */
-    customChannelId: string;
+    customChannelId?: string;
     /**
      * Whether to include inactive ad units. Default: true.
      */
@@ -3929,7 +3929,7 @@ export namespace adsense_v1_4 {
     /**
      * End of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * Filters to be run on the report.
      */
@@ -3956,7 +3956,7 @@ export namespace adsense_v1_4 {
     /**
      * Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -4144,7 +4144,7 @@ export namespace adsense_v1_4 {
     /**
      * The saved report to retrieve.
      */
-    savedReportId: string;
+    savedReportId?: string;
     /**
      * Index of the first row of report data to return.
      */
@@ -4322,7 +4322,7 @@ export namespace adsense_v1_4 {
     /**
      * Saved ad style to retrieve.
      */
-    savedAdStyleId: string;
+    savedAdStyleId?: string;
   }
   export interface Params$Resource$Savedadstyles$List {
     /**
@@ -4434,7 +4434,7 @@ export namespace adsense_v1_4 {
     /**
      * Ad client for which to list URL channels.
      */
-    adClientId: string;
+    adClientId?: string;
     /**
      * The maximum number of URL channels to include in the response, used for
      * paging.

@@ -1264,12 +1264,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Delete {
     /**
@@ -1280,12 +1280,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Get {
     /**
@@ -1296,12 +1296,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Insert {
     /**
@@ -1313,7 +1313,7 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -1328,12 +1328,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
 
   export class Resource$Edits$Apklistings {
@@ -1788,22 +1788,22 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the APK-specific localized
      * listing to read or modify. For example, to select Austrian German, pass
      * "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Apklistings$Deleteall {
     /**
@@ -1815,16 +1815,16 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Apklistings$Get {
     /**
@@ -1836,22 +1836,22 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the APK-specific localized
      * listing to read or modify. For example, to select Austrian German, pass
      * "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Apklistings$List {
     /**
@@ -1863,16 +1863,16 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Apklistings$Patch {
     /**
@@ -1884,22 +1884,22 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the APK-specific localized
      * listing to read or modify. For example, to select Austrian German, pass
      * "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -1915,22 +1915,22 @@ export namespace androidpublisher_v2 {
      * The APK version code whose APK-specific listings should be read or
      * modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the APK-specific localized
      * listing to read or modify. For example, to select Austrian German, pass
      * "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -2183,12 +2183,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -2203,12 +2203,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Apks$Upload {
     /**
@@ -2219,12 +2219,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Media metadata
      */
@@ -2358,20 +2358,20 @@ export namespace androidpublisher_v2 {
     /**
      * The version code of the APK whose deobfuscation file is being uploaded.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      *
      */
-    deobfuscationFileType: string;
+    deobfuscationFileType?: string;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier of the Android app for which the deobfuscatiuon files
      * are being uploaded; for example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Media metadata
      */
@@ -2620,12 +2620,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Details$Patch {
     /**
@@ -2636,12 +2636,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -2656,12 +2656,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -3002,20 +3002,20 @@ export namespace androidpublisher_v2 {
      * The version code of the APK whose Expansion File configuration is being
      * read or modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    expansionFileType: string;
+    expansionFileType?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Expansionfiles$Patch {
     /**
@@ -3027,20 +3027,20 @@ export namespace androidpublisher_v2 {
      * The version code of the APK whose Expansion File configuration is being
      * read or modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    expansionFileType: string;
+    expansionFileType?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -3056,20 +3056,20 @@ export namespace androidpublisher_v2 {
      * The version code of the APK whose Expansion File configuration is being
      * read or modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    expansionFileType: string;
+    expansionFileType?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -3085,20 +3085,20 @@ export namespace androidpublisher_v2 {
      * The version code of the APK whose Expansion File configuration is being
      * read or modified.
      */
-    apkVersionCode: number;
+    apkVersionCode?: number;
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    expansionFileType: string;
+    expansionFileType?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Media metadata
      */
@@ -3436,27 +3436,27 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier an image within the set of images attached to this
      * edit.
      */
-    imageId: string;
+    imageId?: string;
     /**
      *
      */
-    imageType: string;
+    imageType?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing whose
      * images are to read or modified. For example, to select Austrian German,
      * pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Images$Deleteall {
     /**
@@ -3467,22 +3467,22 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    imageType: string;
+    imageType?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing whose
      * images are to read or modified. For example, to select Austrian German,
      * pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Images$List {
     /**
@@ -3493,22 +3493,22 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    imageType: string;
+    imageType?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing whose
      * images are to read or modified. For example, to select Austrian German,
      * pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Images$Upload {
     /**
@@ -3519,22 +3519,22 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      *
      */
-    imageType: string;
+    imageType?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing whose
      * images are to read or modified. For example, to select Austrian German,
      * pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Media metadata
      */
@@ -3989,17 +3989,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing to
      * read or modify. For example, to select Austrian German, pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Deleteall {
     /**
@@ -4010,12 +4010,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Get {
     /**
@@ -4026,17 +4026,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing to
      * read or modify. For example, to select Austrian German, pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$List {
     /**
@@ -4047,12 +4047,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Listings$Patch {
     /**
@@ -4063,17 +4063,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing to
      * read or modify. For example, to select Austrian German, pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -4088,17 +4088,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * The language code (a BCP-47 language tag) of the localized listing to
      * read or modify. For example, to select Austrian German, pass "de-AT".
      */
-    language: string;
+    language?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -4332,17 +4332,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify. Acceptable values are: "alpha", "beta",
      * "production", "rollout" or "internal".
      */
-    track: string;
+    track?: string;
   }
   export interface Params$Resource$Edits$Testers$Patch {
     /**
@@ -4353,17 +4353,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify. Acceptable values are: "alpha", "beta",
      * "production", "rollout" or "internal".
      */
-    track: string;
+    track?: string;
     /**
      * Request body metadata
      */
@@ -4378,17 +4378,17 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify. Acceptable values are: "alpha", "beta",
      * "production", "rollout" or "internal".
      */
-    track: string;
+    track?: string;
     /**
      * Request body metadata
      */
@@ -4698,16 +4698,16 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify.
      */
-    track: string;
+    track?: string;
   }
   export interface Params$Resource$Edits$Tracks$List {
     /**
@@ -4718,12 +4718,12 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
   }
   export interface Params$Resource$Edits$Tracks$Patch {
     /**
@@ -4734,16 +4734,16 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify.
      */
-    track: string;
+    track?: string;
     /**
      * Request body metadata
      */
@@ -4758,16 +4758,16 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for this edit.
      */
-    editId: string;
+    editId?: string;
     /**
      * Unique identifier for the Android app that is being updated; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The track to read or modify.
      */
-    track: string;
+    track?: string;
     /**
      * Request body metadata
      */
@@ -5223,11 +5223,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app with the in-app product; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Unique identifier for the in-app product.
      */
-    sku: string;
+    sku?: string;
   }
   export interface Params$Resource$Inappproducts$Get {
     /**
@@ -5238,11 +5238,11 @@ export namespace androidpublisher_v2 {
     /**
      *
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Unique identifier for the in-app product.
      */
-    sku: string;
+    sku?: string;
   }
   export interface Params$Resource$Inappproducts$Insert {
     /**
@@ -5259,7 +5259,7 @@ export namespace androidpublisher_v2 {
     /**
      * Unique identifier for the Android app; for example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Request body metadata
      */
@@ -5279,7 +5279,7 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app with in-app products; for example,
      * "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      *
      */
@@ -5305,11 +5305,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app with the in-app product; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Unique identifier for the in-app product.
      */
-    sku: string;
+    sku?: string;
     /**
      * Request body metadata
      */
@@ -5331,11 +5331,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app with the in-app product; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Unique identifier for the in-app product.
      */
-    sku: string;
+    sku?: string;
     /**
      * Request body metadata
      */
@@ -5451,16 +5451,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application the inapp product was sold in (for
      * example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The inapp product SKU (for example, 'com.some.thing.inapp1').
      */
-    productId: string;
+    productId?: string;
     /**
      * The token provided to the user's device when the inapp product was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
 
 
@@ -5850,16 +5850,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
   export interface Params$Resource$Purchases$Subscriptions$Defer {
     /**
@@ -5871,16 +5871,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
     /**
      * Request body metadata
      */
@@ -5896,16 +5896,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
   export interface Params$Resource$Purchases$Subscriptions$Refund {
     /**
@@ -5917,16 +5917,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
   export interface Params$Resource$Purchases$Subscriptions$Revoke {
     /**
@@ -5938,16 +5938,16 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which this subscription was
      * purchased (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      * The purchased subscription ID (for example, 'monthly001').
      */
-    subscriptionId: string;
+    subscriptionId?: string;
     /**
      * The token provided to the user's device when the subscription was
      * purchased.
      */
-    token: string;
+    token?: string;
   }
 
 
@@ -6066,7 +6066,7 @@ export namespace androidpublisher_v2 {
      * The package name of the application for which voided purchases need to be
      * returned (for example, 'com.some.thing').
      */
-    packageName: string;
+    packageName?: string;
     /**
      *
      */
@@ -6316,11 +6316,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app for which we want reviews; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      *
      */
-    reviewId: string;
+    reviewId?: string;
     /**
      *
      */
@@ -6340,7 +6340,7 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app for which we want reviews; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      *
      */
@@ -6364,11 +6364,11 @@ export namespace androidpublisher_v2 {
      * Unique identifier for the Android app for which we want reviews; for
      * example, "com.spiffygame".
      */
-    packageName: string;
+    packageName?: string;
     /**
      *
      */
-    reviewId: string;
+    reviewId?: string;
     /**
      * Request body metadata
      */

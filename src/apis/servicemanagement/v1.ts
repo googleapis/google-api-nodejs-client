@@ -2697,7 +2697,7 @@ export namespace servicemanagement_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Operations$List {
     /**
@@ -3634,7 +3634,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   export interface Params$Resource$Services$Disable {
     /**
@@ -3646,7 +3646,7 @@ export namespace servicemanagement_v1 {
      * Name of the service to disable. Specifying an unknown service name will
      * cause the request to fail.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -3662,7 +3662,7 @@ export namespace servicemanagement_v1 {
      * Name of the service to enable. Specifying an unknown service name will
      * cause the request to fail.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -3689,7 +3689,7 @@ export namespace servicemanagement_v1 {
      * The name of the service.  See the `ServiceManager` overview for naming
      * requirements.  For example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   export interface Params$Resource$Services$Getconfig {
     /**
@@ -3706,7 +3706,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Specifies which parts of the Service Config should be returned in the
      * response.
@@ -3723,7 +3723,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3765,7 +3765,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3781,7 +3781,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3797,7 +3797,7 @@ export namespace servicemanagement_v1 {
      * The name of the service. See the [overview](/service-management/overview)
      * for naming requirements. For example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
 
   export class Resource$Services$Configs {
@@ -4114,7 +4114,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -4129,13 +4129,13 @@ export namespace servicemanagement_v1 {
     /**
      * The id of the service configuration resource.
      */
-    configId: string;
+    configId?: string;
     /**
      * The name of the service.  See the
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Specifies which parts of the Service Config should be returned in the
      * response.
@@ -4161,7 +4161,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   export interface Params$Resource$Services$Configs$Submit {
     /**
@@ -4174,7 +4174,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -4423,7 +4423,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4439,7 +4439,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4455,7 +4455,7 @@ export namespace servicemanagement_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -4706,7 +4706,7 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
     /**
      * Request body metadata
      */
@@ -4721,13 +4721,13 @@ export namespace servicemanagement_v1 {
     /**
      * The id of the rollout resource.
      */
-    rolloutId: string;
+    rolloutId?: string;
     /**
      * The name of the service.  See the
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   export interface Params$Resource$Services$Rollouts$List {
     /**
@@ -4757,6 +4757,6 @@ export namespace servicemanagement_v1 {
      * [overview](/service-management/overview) for naming requirements.  For
      * example: `example.googleapis.com`.
      */
-    serviceName: string;
+    serviceName?: string;
   }
 }

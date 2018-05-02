@@ -364,7 +364,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * The id parameter specifies the YouTube group item ID for the group that
      * is being deleted.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -413,7 +413,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * The id parameter specifies the unique ID of the group for which you want
      * to retrieve group items.
      */
-    groupId: string;
+    groupId?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -717,7 +717,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * The id parameter specifies the YouTube group ID for the group that is
      * being deleted.
      */
-    id: string;
+    id?: string;
     /**
      * Note: This parameter is intended exclusively for YouTube content
      * partners.  The onBehalfOfContentOwner parameter indicates that the
@@ -930,7 +930,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * The end date for fetching YouTube Analytics data. The value should be in
      * YYYY-MM-DD format.
      */
-    'end-date': string;
+    'end-date'?: string;
     /**
      * A list of filters that should be applied when retrieving YouTube
      * Analytics data. The Available Reports document identifies the dimensions
@@ -951,7 +951,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * contentOwner==OWNER_NAME, where OWNER_NAME is the CMS name of the content
      * owner.
      */
-    ids: string;
+    ids?: string;
     /**
      * If set to true historical data (i.e. channel data from before the linking
      * of the channel to the content owner) will be retrieved.
@@ -967,7 +967,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * reports that you can retrieve and the metrics available in each report,
      * and see the Metrics document for definitions of those metrics.
      */
-    metrics: string;
+    metrics?: string;
     /**
      * A comma-separated list of dimensions or metrics that determine the sort
      * order for YouTube Analytics data. By default the sort order is ascending.
@@ -978,7 +978,7 @@ export namespace youtubeAnalytics_v1beta1 {
      * The start date for fetching YouTube Analytics data. The value should be
      * in YYYY-MM-DD format.
      */
-    'start-date': string;
+    'start-date'?: string;
     /**
      * An index of the first entity to retrieve. Use this parameter as a
      * pagination mechanism along with the max-results parameter (one-based,

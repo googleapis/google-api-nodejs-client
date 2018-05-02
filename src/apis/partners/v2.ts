@@ -1819,7 +1819,7 @@ export namespace partners_v2 {
     /**
      * The ID of the company to retrieve.
      */
-    companyId: string;
+    companyId?: string;
     /**
      * If the company's budget is in a different currency code than this one,
      * then the converted budget is converted to this currency code.
@@ -2096,7 +2096,7 @@ export namespace partners_v2 {
     /**
      * The ID of the company to contact.
      */
-    companyId: string;
+    companyId?: string;
     /**
      * Request body metadata
      */
@@ -2958,7 +2958,7 @@ export namespace partners_v2 {
      * The ID of the user. Can be set to <code>me</code> to mean the currently
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -3005,7 +3005,7 @@ export namespace partners_v2 {
      * The ID of the user. Can be set to <code>me</code> to mean the currently
      * authenticated user.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Users$Get {
     /**
@@ -3048,7 +3048,7 @@ export namespace partners_v2 {
      * Identifier of the user. Can be set to <code>me</code> to mean the
      * currently authenticated user.
      */
-    userId: string;
+    userId?: string;
     /**
      * Specifies what parts of the user information to return.
      */

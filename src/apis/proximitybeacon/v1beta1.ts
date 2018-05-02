@@ -1294,7 +1294,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to activate. If the project id is not
      * specified then the project making the request is used. The project id
@@ -1316,7 +1316,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to deactivate. If the project id is not
      * specified then the project making the request is used. The project id
@@ -1338,7 +1338,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * of the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to decommission. If the project id is not
      * specified then the project making the request is used. The project id
@@ -1360,7 +1360,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to delete. If not provided, the project that
      * is making the request is used. Optional.
@@ -1381,7 +1381,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to request. If the project id is not
      * specified then the project making the request is used. The project id
@@ -1494,7 +1494,7 @@ export namespace proximitybeacon_v1beta1 {
      * left empty when registering. After reading a beacon, clients can use the
      * name for future operations.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the beacon to update. If the project id is not
      * specified then the project making the request is used. The project id
@@ -1855,7 +1855,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * Specifies the namespace and type of attachments to delete in
      * `namespace/type` format. Accepts `x/x` to specify "all types in all
@@ -1885,7 +1885,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * The project id of the project the attachment will belong to. If the
      * project id is not specified then the project making the request is used.
@@ -1910,7 +1910,7 @@ export namespace proximitybeacon_v1beta1 {
      * Eddystone-EID beacons, the beacon ID portion (`3!893737abc9`) may be the
      * beacon's current EID, or its "stable" Eddystone-UID. Required.
      */
-    attachmentName: string;
+    attachmentName?: string;
     /**
      * The project id of the attachment to delete. If not provided, the project
      * that is making the request is used. Optional.
@@ -1931,7 +1931,7 @@ export namespace proximitybeacon_v1beta1 {
      * AltBeacon. For Eddystone-EID beacons, you may use either the current EID
      * or the beacon's "stable" UID. Required.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * Specifies the namespace and type of attachment to include in response in
      * <var>namespace/type</var> format. Accepts `x/x` to specify "all types in
@@ -2054,7 +2054,7 @@ export namespace proximitybeacon_v1beta1 {
     /**
      * Beacon that the diagnostics are for.
      */
-    beaconName: string;
+    beaconName?: string;
     /**
      * Specifies the maximum number of results to return. Defaults to 10.
      * Maximum 1000. Optional.
@@ -2251,7 +2251,7 @@ export namespace proximitybeacon_v1beta1 {
      * Resource name of this namespace. Namespaces names have the format:
      * <code>namespaces/<var>namespace</var></code>.
      */
-    namespaceName: string;
+    namespaceName?: string;
     /**
      * The project id of the namespace to update. If the project id is not
      * specified then the project making the request is used. The project id

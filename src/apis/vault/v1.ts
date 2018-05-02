@@ -1047,7 +1047,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1062,7 +1062,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1088,7 +1088,7 @@ export namespace vault_v1 {
     /**
      * The matter ID
      */
-    matterId: string;
+    matterId?: string;
   }
   export interface Params$Resource$Matters$Get {
     /**
@@ -1099,7 +1099,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Specifies which parts of the Matter to return in the response.
      */
@@ -1139,7 +1139,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1154,7 +1154,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1169,7 +1169,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1184,7 +1184,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1553,7 +1553,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1568,11 +1568,11 @@ export namespace vault_v1 {
     /**
      * The hold ID.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
   }
   export interface Params$Resource$Matters$Holds$Get {
     /**
@@ -1583,11 +1583,11 @@ export namespace vault_v1 {
     /**
      * The hold ID.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Specifies which parts of the Hold to return.
      */
@@ -1602,7 +1602,7 @@ export namespace vault_v1 {
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * The number of holds to return in the response, between 0 and 100
      * inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
@@ -1627,11 +1627,11 @@ export namespace vault_v1 {
     /**
      * The ID of the hold.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1873,11 +1873,11 @@ export namespace vault_v1 {
     /**
      * The hold ID.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
     /**
      * Request body metadata
      */
@@ -1892,15 +1892,15 @@ export namespace vault_v1 {
     /**
      * The ID of the account to remove from the hold.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The hold ID.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
   }
   export interface Params$Resource$Matters$Holds$Accounts$List {
     /**
@@ -1911,10 +1911,10 @@ export namespace vault_v1 {
     /**
      * The hold ID.
      */
-    holdId: string;
+    holdId?: string;
     /**
      * The matter ID.
      */
-    matterId: string;
+    matterId?: string;
   }
 }

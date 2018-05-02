@@ -427,7 +427,7 @@ export namespace groupssettings_v1 {
     /**
      * The resource ID
      */
-    groupUniqueId: string;
+    groupUniqueId?: string;
   }
   export interface Params$Resource$Groups$Patch {
     /**
@@ -438,7 +438,7 @@ export namespace groupssettings_v1 {
     /**
      * The resource ID
      */
-    groupUniqueId: string;
+    groupUniqueId?: string;
     /**
      * Request body metadata
      */
@@ -453,7 +453,7 @@ export namespace groupssettings_v1 {
     /**
      * The resource ID
      */
-    groupUniqueId: string;
+    groupUniqueId?: string;
     /**
      * Request body metadata
      */

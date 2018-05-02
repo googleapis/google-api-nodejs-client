@@ -1013,11 +1013,11 @@ export namespace fusiontables_v1 {
     /**
      * Name or identifier for the column being deleted.
      */
-    columnId: string;
+    columnId?: string;
     /**
      * Table from which the column is being deleted.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Column$Get {
     /**
@@ -1028,11 +1028,11 @@ export namespace fusiontables_v1 {
     /**
      * Name or identifier for the column that is being requested.
      */
-    columnId: string;
+    columnId?: string;
     /**
      * Table to which the column belongs.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Column$Insert {
     /**
@@ -1043,7 +1043,7 @@ export namespace fusiontables_v1 {
     /**
      * Table for which a new column is being added.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -1066,7 +1066,7 @@ export namespace fusiontables_v1 {
     /**
      * Table whose columns are being listed.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Column$Patch {
     /**
@@ -1077,11 +1077,11 @@ export namespace fusiontables_v1 {
     /**
      * Name or identifier for the column that is being updated.
      */
-    columnId: string;
+    columnId?: string;
     /**
      * Table for which the column is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -1096,11 +1096,11 @@ export namespace fusiontables_v1 {
     /**
      * Name or identifier for the column that is being updated.
      */
-    columnId: string;
+    columnId?: string;
     /**
      * Table for which the column is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -1265,7 +1265,7 @@ export namespace fusiontables_v1 {
     /**
      * An SQL SELECT/SHOW/DESCRIBE/INSERT/UPDATE/DELETE/CREATE statement.
      */
-    sql: string;
+    sql?: string;
     /**
      * Should typed values be returned in the (JSON) response -- numbers for
      * numeric values and parsed geometries for KML values? Default is true.
@@ -1285,7 +1285,7 @@ export namespace fusiontables_v1 {
     /**
      * An SQL SELECT/SHOW/DESCRIBE statement.
      */
-    sql: string;
+    sql?: string;
     /**
      * Should typed values be returned in the (JSON) response -- numbers for
      * numeric values and parsed geometries for KML values? Default is true.
@@ -1713,11 +1713,11 @@ export namespace fusiontables_v1 {
     /**
      * Identifier (within a table) for the style being deleted
      */
-    styleId: number;
+    styleId?: number;
     /**
      * Table from which the style is being deleted
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Style$Get {
     /**
@@ -1728,11 +1728,11 @@ export namespace fusiontables_v1 {
     /**
      * Identifier (integer) for a specific style in a table
      */
-    styleId: number;
+    styleId?: number;
     /**
      * Table to which the requested style belongs
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Style$Insert {
     /**
@@ -1743,7 +1743,7 @@ export namespace fusiontables_v1 {
     /**
      * Table for which a new style is being added
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -1766,7 +1766,7 @@ export namespace fusiontables_v1 {
     /**
      * Table whose styles are being listed
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Style$Patch {
     /**
@@ -1777,11 +1777,11 @@ export namespace fusiontables_v1 {
     /**
      * Identifier (within a table) for the style being updated.
      */
-    styleId: number;
+    styleId?: number;
     /**
      * Table whose style is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -1796,11 +1796,11 @@ export namespace fusiontables_v1 {
     /**
      * Identifier (within a table) for the style being updated.
      */
-    styleId: number;
+    styleId?: number;
     /**
      * Table whose style is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -2435,7 +2435,7 @@ export namespace fusiontables_v1 {
     /**
      * ID of the table that is being copied.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Table$Delete {
     /**
@@ -2446,7 +2446,7 @@ export namespace fusiontables_v1 {
     /**
      * ID of the table that is being deleted.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Table$Get {
     /**
@@ -2457,7 +2457,7 @@ export namespace fusiontables_v1 {
     /**
      * Identifier(ID) for the table being requested.
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Table$Importrows {
     /**
@@ -2500,7 +2500,7 @@ export namespace fusiontables_v1 {
     /**
      * The table into which new rows are being imported.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Media metadata
      */
@@ -2535,7 +2535,7 @@ export namespace fusiontables_v1 {
     /**
      * The name to be assigned to the new table.
      */
-    name: string;
+    name?: string;
     /**
      * Media metadata
      */
@@ -2587,7 +2587,7 @@ export namespace fusiontables_v1 {
     /**
      * ID of the table that is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -2608,7 +2608,7 @@ export namespace fusiontables_v1 {
     /**
      * ID of the table that is being updated.
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -2832,11 +2832,11 @@ export namespace fusiontables_v1 {
     /**
      * Table from which the task is being deleted.
      */
-    tableId: string;
+    tableId?: string;
     /**
      *
      */
-    taskId: string;
+    taskId?: string;
   }
   export interface Params$Resource$Task$Get {
     /**
@@ -2847,11 +2847,11 @@ export namespace fusiontables_v1 {
     /**
      * Table to which the task belongs.
      */
-    tableId: string;
+    tableId?: string;
     /**
      *
      */
-    taskId: string;
+    taskId?: string;
   }
   export interface Params$Resource$Task$List {
     /**
@@ -2874,7 +2874,7 @@ export namespace fusiontables_v1 {
     /**
      * Table whose tasks are being listed.
      */
-    tableId: string;
+    tableId?: string;
   }
 
 
@@ -3293,11 +3293,11 @@ export namespace fusiontables_v1 {
     /**
      * Table from which the template is being deleted
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Identifier for the template which is being deleted
      */
-    templateId: number;
+    templateId?: number;
   }
   export interface Params$Resource$Template$Get {
     /**
@@ -3308,11 +3308,11 @@ export namespace fusiontables_v1 {
     /**
      * Table to which the template belongs
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Identifier for the template that is being requested
      */
-    templateId: number;
+    templateId?: number;
   }
   export interface Params$Resource$Template$Insert {
     /**
@@ -3323,7 +3323,7 @@ export namespace fusiontables_v1 {
     /**
      * Table for which a new template is being created
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Request body metadata
      */
@@ -3346,7 +3346,7 @@ export namespace fusiontables_v1 {
     /**
      * Identifier for the table whose templates are being requested
      */
-    tableId: string;
+    tableId?: string;
   }
   export interface Params$Resource$Template$Patch {
     /**
@@ -3357,11 +3357,11 @@ export namespace fusiontables_v1 {
     /**
      * Table to which the updated template belongs
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Identifier for the template that is being updated
      */
-    templateId: number;
+    templateId?: number;
     /**
      * Request body metadata
      */
@@ -3376,11 +3376,11 @@ export namespace fusiontables_v1 {
     /**
      * Table to which the updated template belongs
      */
-    tableId: string;
+    tableId?: string;
     /**
      * Identifier for the template that is being updated
      */
-    templateId: number;
+    templateId?: number;
     /**
      * Request body metadata
      */

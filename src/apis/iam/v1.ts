@@ -1249,7 +1249,7 @@ export namespace iam_v1 {
      * The resource name of the parent resource in one of the following formats:
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1270,7 +1270,7 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Roles$Get {
     /**
@@ -1283,7 +1283,7 @@ export namespace iam_v1 {
      * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Roles$List {
     /**
@@ -1304,7 +1304,7 @@ export namespace iam_v1 {
      * `` (empty string) -- this refers to curated roles.
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Include Roles that have been deleted.
      */
@@ -1325,7 +1325,7 @@ export namespace iam_v1 {
      * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
     /**
      * A mask describing which fields in the Role have changed.
      */
@@ -1346,7 +1346,7 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1902,7 +1902,7 @@ export namespace iam_v1 {
      * The resource name of the parent resource in one of the following formats:
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1923,7 +1923,7 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Roles$Get {
     /**
@@ -1936,7 +1936,7 @@ export namespace iam_v1 {
      * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Roles$List {
     /**
@@ -1957,7 +1957,7 @@ export namespace iam_v1 {
      * `` (empty string) -- this refers to curated roles.
      * `organizations/{ORGANIZATION_ID}` `projects/{PROJECT_ID}`
      */
-    parent: string;
+    parent?: string;
     /**
      * Include Roles that have been deleted.
      */
@@ -1978,7 +1978,7 @@ export namespace iam_v1 {
      * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
     /**
      * A mask describing which fields in the Role have changed.
      */
@@ -1999,7 +1999,7 @@ export namespace iam_v1 {
      * `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2721,7 +2721,7 @@ export namespace iam_v1 {
      * Required. The resource name of the project associated with the service
      * accounts, such as `projects/my-project-123`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2740,7 +2740,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Get {
     /**
@@ -2755,7 +2755,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Getiampolicy {
     /**
@@ -2767,7 +2767,7 @@ export namespace iam_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$List {
     /**
@@ -2779,7 +2779,7 @@ export namespace iam_v1 {
      * Required. The resource name of the project associated with the service
      * accounts, such as `projects/my-project-123`.
      */
-    name: string;
+    name?: string;
     /**
      * Optional limit on the number of service accounts to include in the
      * response. Further accounts can subsequently be obtained by including the
@@ -2802,7 +2802,7 @@ export namespace iam_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2821,7 +2821,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2840,7 +2840,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -2856,7 +2856,7 @@ export namespace iam_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2876,7 +2876,7 @@ export namespace iam_v1 {
      * the service account.  In responses the resource name will always be in
      * the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3177,7 +3177,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3196,7 +3196,7 @@ export namespace iam_v1 {
      * account. The `ACCOUNT` value can be the `email` address or the
      * `unique_id` of the service account.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Get {
     /**
@@ -3211,7 +3211,7 @@ export namespace iam_v1 {
      * account. The `ACCOUNT` value can be the `email` address or the
      * `unique_id` of the service account.
      */
-    name: string;
+    name?: string;
     /**
      * The output format of the public key requested. X509_PEM is the default
      * output format.
@@ -3237,7 +3237,7 @@ export namespace iam_v1 {
      * The `ACCOUNT` value can be the `email` address or the `unique_id` of the
      * service account.
      */
-    name: string;
+    name?: string;
   }
 
 
@@ -3469,7 +3469,7 @@ export namespace iam_v1 {
      * `roles/{ROLE_NAME}` `organizations/{ORGANIZATION_ID}/roles/{ROLE_NAME}`
      * `projects/{PROJECT_ID}/roles/{ROLE_NAME}`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Roles$List {
     /**

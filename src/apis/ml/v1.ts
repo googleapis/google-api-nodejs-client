@@ -1315,7 +1315,7 @@ export namespace ml_v1 {
     /**
      * Required. The project name.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Predict {
     /**
@@ -1327,7 +1327,7 @@ export namespace ml_v1 {
      * Required. The resource name of a model or a version.  Authorization:
      * requires the `predict` permission on the specified resource.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1855,7 +1855,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the job to cancel.
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -1870,7 +1870,7 @@ export namespace ml_v1 {
     /**
      * Required. The project name.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1885,7 +1885,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the job to get the description of.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Jobs$Getiampolicy {
     /**
@@ -1897,7 +1897,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Jobs$List {
     /**
@@ -1932,7 +1932,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the project for which to list jobs.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Jobs$Setiampolicy {
     /**
@@ -1944,7 +1944,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -1960,7 +1960,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2133,7 +2133,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the location.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List {
     /**
@@ -2158,7 +2158,7 @@ export namespace ml_v1 {
      * Required. The name of the project for which available locations are to be
      * listed (since some locations might be whitelisted for specific projects).
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -2775,7 +2775,7 @@ export namespace ml_v1 {
     /**
      * Required. The project name.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -2790,7 +2790,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the model.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Models$Get {
     /**
@@ -2801,7 +2801,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the model.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Models$Getiampolicy {
     /**
@@ -2813,7 +2813,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
   }
   export interface Params$Resource$Projects$Models$List {
     /**
@@ -2841,7 +2841,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the project whose models are to be listed.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Models$Patch {
     /**
@@ -2852,7 +2852,7 @@ export namespace ml_v1 {
     /**
      * Required. The project name.
      */
-    name: string;
+    name?: string;
     /**
      * Required. Specifies the path, relative to `Model`, of the field to
      * update.  For example, to change the description of a model to "foo" and
@@ -2879,7 +2879,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy is being specified. See the
      * operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -2895,7 +2895,7 @@ export namespace ml_v1 {
      * REQUIRED: The resource for which the policy detail is being requested.
      * See the operation documentation for the appropriate value for this field.
      */
-    resource: string;
+    resource?: string;
     /**
      * Request body metadata
      */
@@ -3384,7 +3384,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the model.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3401,7 +3401,7 @@ export namespace ml_v1 {
      * versions of a model by calling
      * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Models$Versions$Get {
     /**
@@ -3412,7 +3412,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the version.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Models$Versions$List {
     /**
@@ -3440,7 +3440,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the model for which to list the version.
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Models$Versions$Patch {
     /**
@@ -3451,7 +3451,7 @@ export namespace ml_v1 {
     /**
      * Required. The name of the model.
      */
-    name: string;
+    name?: string;
     /**
      * Required. Specifies the path, relative to `Version`, of the field to
      * update. Must be present and non-empty.  For example, to change the
@@ -3477,7 +3477,7 @@ export namespace ml_v1 {
      * can get the names of all the versions of a model by calling
      * [projects.models.versions.list](/ml-engine/reference/rest/v1/projects.models.versions/list).
      */
-    name: string;
+    name?: string;
     /**
      * Request body metadata
      */
@@ -3810,7 +3810,7 @@ export namespace ml_v1 {
     /**
      * The name of the operation resource to be cancelled.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$Delete {
     /**
@@ -3821,7 +3821,7 @@ export namespace ml_v1 {
     /**
      * The name of the operation resource to be deleted.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$Get {
     /**
@@ -3832,7 +3832,7 @@ export namespace ml_v1 {
     /**
      * The name of the operation resource.
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Operations$List {
     /**
@@ -3847,7 +3847,7 @@ export namespace ml_v1 {
     /**
      * The name of the operation's parent resource.
      */
-    name: string;
+    name?: string;
     /**
      * The standard list page size.
      */

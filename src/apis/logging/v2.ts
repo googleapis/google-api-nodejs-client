@@ -1646,7 +1646,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -1666,7 +1666,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Billingaccounts$Exclusions$Get {
     /**
@@ -1682,7 +1682,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Billingaccounts$Exclusions$List {
     /**
@@ -1708,7 +1708,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Billingaccounts$Exclusions$Patch {
     /**
@@ -1724,7 +1724,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
     /**
      * Required. A nonempty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -1906,7 +1906,7 @@ export namespace logging_v2 {
      * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
   }
   export interface Params$Resource$Billingaccounts$Logs$List {
     /**
@@ -1932,7 +1932,7 @@ export namespace logging_v2 {
      * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
      * "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -2369,7 +2369,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
@@ -2403,7 +2403,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Billingaccounts$Sinks$Get {
     /**
@@ -2419,7 +2419,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Billingaccounts$Sinks$List {
     /**
@@ -2445,7 +2445,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Billingaccounts$Sinks$Patch {
     /**
@@ -2462,7 +2462,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -2507,7 +2507,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -3065,7 +3065,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3085,7 +3085,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Exclusions$Get {
     /**
@@ -3101,7 +3101,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Exclusions$List {
     /**
@@ -3127,7 +3127,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Exclusions$Patch {
     /**
@@ -3143,7 +3143,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
     /**
      * Required. A nonempty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -3538,7 +3538,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -3558,7 +3558,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Folders$Exclusions$Get {
     /**
@@ -3574,7 +3574,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Folders$Exclusions$List {
     /**
@@ -3600,7 +3600,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Folders$Exclusions$Patch {
     /**
@@ -3616,7 +3616,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
     /**
      * Required. A nonempty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -3797,7 +3797,7 @@ export namespace logging_v2 {
      * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
   }
   export interface Params$Resource$Folders$Logs$List {
     /**
@@ -3823,7 +3823,7 @@ export namespace logging_v2 {
      * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
      * "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -4259,7 +4259,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
@@ -4293,7 +4293,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Folders$Sinks$Get {
     /**
@@ -4309,7 +4309,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Folders$Sinks$List {
     /**
@@ -4335,7 +4335,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Folders$Sinks$Patch {
     /**
@@ -4352,7 +4352,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -4397,7 +4397,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -4591,7 +4591,7 @@ export namespace logging_v2 {
      * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
   }
   export interface Params$Resource$Logs$List {
     /**
@@ -4617,7 +4617,7 @@ export namespace logging_v2 {
      * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
      * "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -5110,7 +5110,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -5130,7 +5130,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Exclusions$Get {
     /**
@@ -5146,7 +5146,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Organizations$Exclusions$List {
     /**
@@ -5172,7 +5172,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Exclusions$Patch {
     /**
@@ -5188,7 +5188,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
     /**
      * Required. A nonempty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -5370,7 +5370,7 @@ export namespace logging_v2 {
      * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
   }
   export interface Params$Resource$Organizations$Logs$List {
     /**
@@ -5396,7 +5396,7 @@ export namespace logging_v2 {
      * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
      * "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -5833,7 +5833,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
@@ -5867,7 +5867,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Organizations$Sinks$Get {
     /**
@@ -5883,7 +5883,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Organizations$Sinks$List {
     /**
@@ -5909,7 +5909,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Organizations$Sinks$Patch {
     /**
@@ -5926,7 +5926,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -5971,7 +5971,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -6384,7 +6384,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -6404,7 +6404,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Exclusions$Get {
     /**
@@ -6420,7 +6420,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Projects$Exclusions$List {
     /**
@@ -6446,7 +6446,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Exclusions$Patch {
     /**
@@ -6462,7 +6462,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/exclusions/[EXCLUSION_ID]" Example:
      * "projects/my-project-id/exclusions/my-exclusion-id".
      */
-    name: string;
+    name?: string;
     /**
      * Required. A nonempty list of fields to change in the existing exclusion.
      * New values for the fields are taken from the corresponding fields in the
@@ -6643,7 +6643,7 @@ export namespace logging_v2 {
      * "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".
      * For more information about log names, see LogEntry.
      */
-    logName: string;
+    logName?: string;
   }
   export interface Params$Resource$Projects$Logs$List {
     /**
@@ -6669,7 +6669,7 @@ export namespace logging_v2 {
      * "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]"
      * "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
 
 
@@ -7030,7 +7030,7 @@ export namespace logging_v2 {
      * The resource name of the project in which to create the metric:
      * "projects/[PROJECT_ID]" The new metric must be provided in the request.
      */
-    parent: string;
+    parent?: string;
     /**
      * Request body metadata
      */
@@ -7046,7 +7046,7 @@ export namespace logging_v2 {
      * The resource name of the metric to delete:
      * "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
-    metricName: string;
+    metricName?: string;
   }
   export interface Params$Resource$Projects$Metrics$Get {
     /**
@@ -7058,7 +7058,7 @@ export namespace logging_v2 {
      * The resource name of the desired metric:
      * "projects/[PROJECT_ID]/metrics/[METRIC_ID]"
      */
-    metricName: string;
+    metricName?: string;
   }
   export interface Params$Resource$Projects$Metrics$List {
     /**
@@ -7083,7 +7083,7 @@ export namespace logging_v2 {
      * Required. The name of the project containing the metrics:
      * "projects/[PROJECT_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Metrics$Update {
     /**
@@ -7098,7 +7098,7 @@ export namespace logging_v2 {
      * [METRIC_ID] If the metric does not exist in [PROJECT_ID], then a new
      * metric is created.
      */
-    metricName: string;
+    metricName?: string;
     /**
      * Request body metadata
      */
@@ -7538,7 +7538,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
@@ -7572,7 +7572,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Projects$Sinks$Get {
     /**
@@ -7588,7 +7588,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Projects$Sinks$List {
     /**
@@ -7614,7 +7614,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Projects$Sinks$Patch {
     /**
@@ -7631,7 +7631,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -7676,7 +7676,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the
@@ -8062,7 +8062,7 @@ export namespace logging_v2 {
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" Examples:
      * "projects/my-logging-project", "organizations/123456789".
      */
-    parent: string;
+    parent?: string;
     /**
      * Optional. Determines the kind of IAM identity returned as writer_identity
      * in the new sink. If this value is omitted or set to false, and if the
@@ -8096,7 +8096,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Sinks$Get {
     /**
@@ -8112,7 +8112,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
   }
   export interface Params$Resource$Sinks$List {
     /**
@@ -8138,7 +8138,7 @@ export namespace logging_v2 {
      * "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]"
      * "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
-    parent: string;
+    parent?: string;
   }
   export interface Params$Resource$Sinks$Update {
     /**
@@ -8155,7 +8155,7 @@ export namespace logging_v2 {
      * "folders/[FOLDER_ID]/sinks/[SINK_ID]" Example:
      * "projects/my-project-id/sinks/my-sink-id".
      */
-    sinkName: string;
+    sinkName?: string;
     /**
      * Optional. See sinks.create for a description of this field. When updating
      * a sink, the effect of this field on the value of writer_identity in the

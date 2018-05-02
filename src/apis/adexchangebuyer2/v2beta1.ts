@@ -1013,6 +1013,16 @@ export namespace adexchangebuyer2_v2beta1 {
     nonBillableWinningBidStatusRows?: Schema$NonBillableWinningBidStatusRow[];
   }
   /**
+   * Response message for listing publishers that had recent inventory matches
+   * with the requesting buyer.
+   */
+  export interface Schema$ListPublishersResponse {
+    /**
+     * List of publishers.
+     */
+    publisher?: Schema$Publisher[];
+  }
+  /**
    * @OutputOnly The Geo criteria the restriction applies to.
    */
   export interface Schema$LocationContext {
@@ -1126,6 +1136,26 @@ export namespace adexchangebuyer2_v2beta1 {
      * The platforms this restriction applies to.
      */
     platforms?: string[];
+  }
+  /**
+   * The publisher ID and name contain values relevant to the requesting buyer
+   * depending on whether it is an Ad Exchange buyer or Exchange Bidding buyer.
+   */
+  export interface Schema$Publisher {
+    /**
+     * Publisher name contains: - Seller network name when the requesting buyer
+     * is an Ad Exchange buyer. - DFP network name or AdMob publisher code when
+     * the requesting buyer is an   Exchange Bidding buyer.
+     */
+    publisherDisplayName?: string;
+    /**
+     * Publisher ID contains: - Seller network ID when the requesting buyer is
+     * an Ad Exchange buyer.   See
+     * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
+     * - DFP network code or AdMob publisher code when the requesting buyer is
+     * an   Exchange Bidding buyer.
+     */
+    publisherId?: string;
   }
   /**
    * An open-ended realtime time range specified by the start timestamp. For
@@ -1304,11 +1334,13 @@ export namespace adexchangebuyer2_v2beta1 {
     root: Adexchangebuyer2;
     clients: Resource$Accounts$Clients;
     creatives: Resource$Accounts$Creatives;
+    publishers: Resource$Accounts$Publishers;
     constructor(root: Adexchangebuyer2) {
       this.root = root;
       this.getRoot.bind(this);
       this.clients = new Resource$Accounts$Clients(root);
       this.creatives = new Resource$Accounts$Creatives(root);
+      this.publishers = new Resource$Accounts$Publishers(root);
     }
 
     getRoot() {
@@ -1617,7 +1649,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * Unique numerical account ID for the buyer of which the client buyer is a
      * customer; the sponsor buyer to create a client for. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Request body metadata
      */
@@ -1632,11 +1664,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer to retrieve. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
   }
   export interface Params$Resource$Accounts$Clients$List {
     /**
@@ -1647,7 +1679,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Unique numerical account ID of the sponsor buyer to list the clients for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Requested page size. The server may return fewer clients than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -1676,11 +1708,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * Unique numerical account ID for the buyer of which the client buyer is a
      * customer; the sponsor buyer to update a client for. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Unique numerical account ID of the client to update. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Request body metadata
      */
@@ -1936,12 +1968,12 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer that the user should be
      * associated with. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Request body metadata
      */
@@ -1956,16 +1988,16 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer that the user invitation to be
      * retrieved is associated with. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Numerical identifier of the user invitation to retrieve. (required)
      */
-    invitationId: string;
+    invitationId?: string;
   }
   export interface Params$Resource$Accounts$Clients$Invitations$List {
     /**
@@ -1976,14 +2008,14 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer to list invitations for.
      * (required) You must either specify a string representation of a numerical
      * account identifier or the `-` character to list all the invitations for
      * all the clients of a given sponsor buyer.
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Requested page size. Server may return fewer clients than requested. If
      * unspecified, server will pick an appropriate default.
@@ -2237,16 +2269,16 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer that the user to be retrieved is
      * associated with. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Numerical identifier of the user to retrieve. (required)
      */
-    userId: string;
+    userId?: string;
   }
   export interface Params$Resource$Accounts$Clients$Users$List {
     /**
@@ -2258,14 +2290,14 @@ export namespace adexchangebuyer2_v2beta1 {
      * Numerical account ID of the sponsor buyer of the client to list users
      * for. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The account ID of the client buyer to list users for. (required) You must
      * specify either a string representation of a numerical account identifier
      * or the `-` character to list all the client users for all the clients of
      * a given sponsor buyer.
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Requested page size. The server may return fewer clients than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -2288,16 +2320,16 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Numerical account ID of the client's sponsor buyer. (required)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Numerical account ID of the client buyer that the user to be retrieved is
      * associated with. (required)
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Numerical identifier of the user to retrieve. (required)
      */
-    userId: string;
+    userId?: string;
     /**
      * Request body metadata
      */
@@ -2751,7 +2783,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * The account that this creative belongs to. Can be used to filter the
      * response of the creatives.list method.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Indicates if multiple creatives can share an ID or not. Default is
      * NO_DUPLICATES (one ID per creative).
@@ -2771,11 +2803,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account the creative belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the creative to retrieve.
      */
-    creativeId: string;
+    creativeId?: string;
   }
   export interface Params$Resource$Accounts$Creatives$List {
     /**
@@ -2787,7 +2819,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * The account to list the creatives from. Specify "-" to list all creatives
      * the current user has access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * Requested page size. The server may return fewer creatives than requested
      * (due to timeout constraint) even if more are available via another call.
@@ -2824,12 +2856,12 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account of the creative to stop notifications for.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The creative ID of the creative to stop notifications for. Specify "-" to
      * specify stopping account level notifications.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Request body metadata
      */
@@ -2845,12 +2877,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * The account that this creative belongs to. Can be used to filter the
      * response of the creatives.list method.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The buyer-defined creative ID of this creative. Can be used to filter the
      * response of the creatives.list method.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Request body metadata
      */
@@ -2865,14 +2897,14 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account of the creative to watch.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The creative ID to watch for status changes. Specify "-" to watch all
      * creatives under the above account. If both creative-level and
      * account-level notifications are sent, only a single notification will be
      * sent to the creative-level notification topic.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Request body metadata
      */
@@ -3123,11 +3155,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account the creative belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the creative associated with the deal.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Request body metadata
      */
@@ -3143,12 +3175,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * The account to list the associations from. Specify "-" to list all
      * creatives the current user has access to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The creative ID to list the associations from. Specify "-" to list all
      * creatives under the above account.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Requested page size. Server may return fewer associations than requested.
      * If unspecified, server will pick an appropriate default.
@@ -3182,15 +3214,118 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account the creative belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the creative associated with the deal.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * Request body metadata
      */
     resource?: Schema$RemoveDealAssociationRequest;
+  }
+
+
+
+  export class Resource$Accounts$Publishers {
+    root: Adexchangebuyer2;
+    constructor(root: Adexchangebuyer2) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * adexchangebuyer2.accounts.publishers.list
+     * @desc Lists publishers that had recent inventory matches with the
+     * requesting buyer.
+     * @alias adexchangebuyer2.accounts.publishers.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.accountId Account ID of the requesting buyer.
+     * @param {string=} params.environment Optional environment (WEB, APP) for which to return publishers. If specified, response will only include publishers that had recent inventory matches with the requesting buyer on the specified platform.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Accounts$Publishers$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListPublishersResponse>;
+    list(
+        params: Params$Resource$Accounts$Publishers$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListPublishersResponse>,
+        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+    list(
+        params: Params$Resource$Accounts$Publishers$List,
+        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Publishers$List|
+        BodyResponseCallback<Schema$ListPublishersResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListPublishersResponse>,
+        callback?: BodyResponseCallback<Schema$ListPublishersResponse>):
+        void|AxiosPromise<Schema$ListPublishersResponse> {
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Publishers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Publishers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+          options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v2beta1/accounts/{accountId}/publishers')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPublishersResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListPublishersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Publishers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID of the requesting buyer.
+     */
+    accountId?: string;
+    /**
+     * Optional environment (WEB, APP) for which to return publishers. If
+     * specified, response will only include publishers that had recent
+     * inventory matches with the requesting buyer on the specified platform.
+     */
+    environment?: string;
   }
 
 
@@ -3560,7 +3695,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * account-level filter set for the child seat buyer account 456   whose
      * bidder is 123: `bidders/123/accounts/456`
      */
-    ownerName: string;
+    ownerName?: string;
     /**
      * Request body metadata
      */
@@ -3580,7 +3715,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$Get {
     /**
@@ -3596,7 +3731,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * filter set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Bidders$Accounts$Filtersets$List {
     /**
@@ -3612,7 +3747,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * account-level filter set for the child seat buyer account 456   whose
      * bidder is 123: `bidders/123/accounts/456`
      */
-    ownerName: string;
+    ownerName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -3726,7 +3861,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -3852,7 +3987,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -3985,7 +4120,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4114,7 +4249,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4237,7 +4372,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4363,7 +4498,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * creative. See
      * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
      */
-    creativeStatusId: number;
+    creativeStatusId?: number;
     /**
      * Name of the filter set that should be applied to the requested metrics.
      * For example:  - For a bidder-level filter set for bidder 123:
@@ -4373,7 +4508,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4503,7 +4638,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
      * and 87.
      */
-    creativeStatusId: number;
+    creativeStatusId?: number;
     /**
      * Name of the filter set that should be applied to the requested metrics.
      * For example:  - For a bidder-level filter set for bidder 123:
@@ -4513,7 +4648,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4641,7 +4776,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4758,7 +4893,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -4889,7 +5024,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5233,7 +5368,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * account-level filter set for the child seat buyer account 456   whose
      * bidder is 123: `bidders/123/accounts/456`
      */
-    ownerName: string;
+    ownerName?: string;
     /**
      * Request body metadata
      */
@@ -5253,7 +5388,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$Get {
     /**
@@ -5269,7 +5404,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * filter set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    name: string;
+    name?: string;
   }
   export interface Params$Resource$Bidders$Filtersets$List {
     /**
@@ -5285,7 +5420,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * account-level filter set for the child seat buyer account 456   whose
      * bidder is 123: `bidders/123/accounts/456`
      */
-    ownerName: string;
+    ownerName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5397,7 +5532,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5519,7 +5654,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5649,7 +5784,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5774,7 +5909,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -5894,7 +6029,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -6016,7 +6151,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * creative. See
      * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
      */
-    creativeStatusId: number;
+    creativeStatusId?: number;
     /**
      * Name of the filter set that should be applied to the requested metrics.
      * For example:  - For a bidder-level filter set for bidder 123:
@@ -6026,7 +6161,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -6152,7 +6287,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
      * and 87.
      */
-    creativeStatusId: number;
+    creativeStatusId?: number;
     /**
      * Name of the filter set that should be applied to the requested metrics.
      * For example:  - For a bidder-level filter set for bidder 123:
@@ -6162,7 +6297,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -6286,7 +6421,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -6401,7 +6536,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.
@@ -6528,7 +6663,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * set for the child seat buyer account 456   whose bidder is 123:
      * `bidders/123/accounts/456/filterSets/abc`
      */
-    filterSetName: string;
+    filterSetName?: string;
     /**
      * Requested page size. The server may return fewer results than requested.
      * If unspecified, the server will pick an appropriate default.

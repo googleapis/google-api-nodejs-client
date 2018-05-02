@@ -1067,7 +1067,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The subscription to delete.
      */
-    subscription: string;
+    subscription?: string;
   }
   export interface Params$Resource$Subscriptions$Get {
     /**
@@ -1078,7 +1078,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The name of the subscription to get.
      */
-    subscription: string;
+    subscription?: string;
   }
   export interface Params$Resource$Subscriptions$List {
     /**
@@ -1572,7 +1572,7 @@ export namespace pubsub_v1beta1a {
     /**
      * Name of the topic to delete.
      */
-    topic: string;
+    topic?: string;
   }
   export interface Params$Resource$Topics$Get {
     /**
@@ -1583,7 +1583,7 @@ export namespace pubsub_v1beta1a {
     /**
      * The name of the topic to get.
      */
-    topic: string;
+    topic?: string;
   }
   export interface Params$Resource$Topics$List {
     /**

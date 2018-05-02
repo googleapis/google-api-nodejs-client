@@ -614,7 +614,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasklists$Get {
     /**
@@ -625,7 +625,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasklists$Insert {
     /**
@@ -658,7 +658,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Request body metadata
      */
@@ -673,7 +673,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Request body metadata
      */
@@ -1235,7 +1235,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasks$Delete {
     /**
@@ -1246,11 +1246,11 @@ export namespace tasks_v1 {
     /**
      * Task identifier.
      */
-    task: string;
+    task?: string;
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasks$Get {
     /**
@@ -1261,11 +1261,11 @@ export namespace tasks_v1 {
     /**
      * Task identifier.
      */
-    task: string;
+    task?: string;
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasks$Insert {
     /**
@@ -1286,7 +1286,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Request body metadata
      */
@@ -1345,7 +1345,7 @@ export namespace tasks_v1 {
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Lower bound for a task's last modification time (as a RFC 3339 timestamp)
      * to filter by. Optional. The default is not to filter by last modification
@@ -1372,11 +1372,11 @@ export namespace tasks_v1 {
     /**
      * Task identifier.
      */
-    task: string;
+    task?: string;
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
   }
   export interface Params$Resource$Tasks$Patch {
     /**
@@ -1387,11 +1387,11 @@ export namespace tasks_v1 {
     /**
      * Task identifier.
      */
-    task: string;
+    task?: string;
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Request body metadata
      */
@@ -1406,11 +1406,11 @@ export namespace tasks_v1 {
     /**
      * Task identifier.
      */
-    task: string;
+    task?: string;
     /**
      * Task list identifier.
      */
-    tasklist: string;
+    tasklist?: string;
     /**
      * Request body metadata
      */

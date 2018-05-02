@@ -2303,7 +2303,7 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Application resource to get. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
   }
   export interface Params$Resource$Apps$Patch {
     /**
@@ -2315,7 +2315,7 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Application resource to update. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -2334,7 +2334,7 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. Name of the application to repair. Example: apps/myapp
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Request body metadata
      */
@@ -2727,7 +2727,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Request body metadata
      */
@@ -2743,11 +2743,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to delete. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
   }
   export interface Params$Resource$Apps$Authorizedcertificates$Get {
     /**
@@ -2759,11 +2759,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
     /**
      * Controls the set of fields returned in the GET response.
      */
@@ -2779,7 +2779,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -2803,11 +2803,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/authorizedCertificates/12345.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    authorizedCertificatesId: string;
+    authorizedCertificatesId?: string;
     /**
      * Standard field mask for the set of fields to be updated. Updates are only
      * supported on the certificate_raw_data and display_name fields.
@@ -2918,7 +2918,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -3309,7 +3309,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Whether the domain creation should override any existing mappings for
      * this domain. By default, overrides are rejected.
@@ -3330,11 +3330,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to delete. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
   }
   export interface Params$Resource$Apps$Domainmappings$Get {
     /**
@@ -3346,11 +3346,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
   }
   export interface Params$Resource$Apps$Domainmappings$List {
     /**
@@ -3362,7 +3362,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -3382,11 +3382,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/domainMappings/example.com.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    domainMappingsId: string;
+    domainMappingsId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -3864,7 +3864,7 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Firewall collection to set. Example:
      * apps/myapp/firewall/ingressRules.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Request body metadata
      */
@@ -3880,7 +3880,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Firewall collection in which to
      * create a new rule. Example: apps/myapp/firewall/ingressRules.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Request body metadata
      */
@@ -3896,11 +3896,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Firewall resource to delete. Example:
      * apps/myapp/firewall/ingressRules/100.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    ingressRulesId: string;
+    ingressRulesId?: string;
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$Get {
     /**
@@ -3912,11 +3912,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Firewall resource to retrieve. Example:
      * apps/myapp/firewall/ingressRules/100.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    ingressRulesId: string;
+    ingressRulesId?: string;
   }
   export interface Params$Resource$Apps$Firewall$Ingressrules$List {
     /**
@@ -3928,7 +3928,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the Firewall collection to retrieve. Example:
      * apps/myapp/firewall/ingressRules.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * A valid IP Address. If set, only rules matching this address will be
      * returned. The first returned rule will be the rule that fires on requests
@@ -3954,11 +3954,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the Firewall resource to update. Example:
      * apps/myapp/firewall/ingressRules/100.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    ingressRulesId: string;
+    ingressRulesId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -4125,11 +4125,11 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. Resource name for the location.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    locationsId: string;
+    locationsId?: string;
   }
   export interface Params$Resource$Apps$Locations$List {
     /**
@@ -4141,7 +4141,7 @@ export namespace appengine_v1beta {
      * Part of `name`. The resource that owns the locations collection, if
      * applicable.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */
@@ -4323,11 +4323,11 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. The name of the operation resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    operationsId: string;
+    operationsId?: string;
   }
   export interface Params$Resource$Apps$Operations$List {
     /**
@@ -4338,7 +4338,7 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. The name of the operation's parent resource.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * The standard list filter.
      */
@@ -4649,11 +4649,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
   }
   export interface Params$Resource$Apps$Services$Get {
     /**
@@ -4665,11 +4665,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
   }
   export interface Params$Resource$Apps$Services$List {
     /**
@@ -4681,7 +4681,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Application resource. Example:
      * apps/myapp.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -4701,7 +4701,7 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/services/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Set to true to gradually shift traffic to one or more versions that you
      * specify. By default, traffic is shifted immediately. For gradual traffic
@@ -4721,7 +4721,7 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -5139,11 +5139,11 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent resource to create this version
      * under. Example: apps/myapp/services/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `parent`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Request body metadata
      */
@@ -5159,15 +5159,15 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Services$Versions$Get {
     /**
@@ -5179,15 +5179,15 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Controls the set of fields returned in the Get response.
      */
@@ -5203,7 +5203,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Service resource. Example:
      * apps/myapp/services/default.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -5215,7 +5215,7 @@ export namespace appengine_v1beta {
     /**
      * Part of `parent`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Controls the set of fields returned in the List response.
      */
@@ -5231,11 +5231,11 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource to update. Example:
      * apps/myapp/services/default/versions/1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Standard field mask for the set of fields to be updated.
      */
@@ -5243,7 +5243,7 @@ export namespace appengine_v1beta {
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Request body metadata
      */
@@ -5568,19 +5568,19 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
     /**
      * Request body metadata
      */
@@ -5596,19 +5596,19 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Services$Versions$Instances$Get {
     /**
@@ -5620,19 +5620,19 @@ export namespace appengine_v1beta {
      * Part of `name`. Name of the resource requested. Example:
      * apps/myapp/services/default/versions/v1/instances/instance-1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    instancesId: string;
+    instancesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `name`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
   export interface Params$Resource$Apps$Services$Versions$Instances$List {
     /**
@@ -5644,7 +5644,7 @@ export namespace appengine_v1beta {
      * Part of `parent`. Name of the parent Version resource. Example:
      * apps/myapp/services/default/versions/v1.
      */
-    appsId: string;
+    appsId?: string;
     /**
      * Maximum results to return per page.
      */
@@ -5656,10 +5656,10 @@ export namespace appengine_v1beta {
     /**
      * Part of `parent`. See documentation of `appsId`.
      */
-    servicesId: string;
+    servicesId?: string;
     /**
      * Part of `parent`. See documentation of `appsId`.
      */
-    versionsId: string;
+    versionsId?: string;
   }
 }

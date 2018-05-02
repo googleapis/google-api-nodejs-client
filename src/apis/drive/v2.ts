@@ -1819,7 +1819,7 @@ export namespace drive_v2 {
     /**
      * The ID of the app.
      */
-    appId: string;
+    appId?: string;
   }
   export interface Params$Resource$Apps$List {
     /**
@@ -2152,7 +2152,7 @@ export namespace drive_v2 {
     /**
      * The ID of the change.
      */
-    changeId: string;
+    changeId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -2669,11 +2669,11 @@ export namespace drive_v2 {
     /**
      * The ID of the child.
      */
-    childId: string;
+    childId?: string;
     /**
      * The ID of the folder.
      */
-    folderId: string;
+    folderId?: string;
   }
   export interface Params$Resource$Children$Get {
     /**
@@ -2684,11 +2684,11 @@ export namespace drive_v2 {
     /**
      * The ID of the child.
      */
-    childId: string;
+    childId?: string;
     /**
      * The ID of the folder.
      */
-    folderId: string;
+    folderId?: string;
   }
   export interface Params$Resource$Children$Insert {
     /**
@@ -2699,7 +2699,7 @@ export namespace drive_v2 {
     /**
      * The ID of the folder.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -2718,7 +2718,7 @@ export namespace drive_v2 {
     /**
      * The ID of the folder.
      */
-    folderId: string;
+    folderId?: string;
     /**
      * Maximum number of children to return.
      */
@@ -3158,11 +3158,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
   }
   export interface Params$Resource$Comments$Get {
     /**
@@ -3173,11 +3173,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * If set, this will succeed when retrieving a deleted comment, and will
      * include any deleted replies.
@@ -3193,7 +3193,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Request body metadata
      */
@@ -3208,7 +3208,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * If set, all comments and replies, including deleted comments and replies
      * (with content stripped) will be returned.
@@ -3240,11 +3240,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Request body metadata
      */
@@ -3259,11 +3259,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Request body metadata
      */
@@ -4279,7 +4279,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to copy.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
      */
@@ -4325,7 +4325,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to delete.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -4346,11 +4346,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The MIME type of the format requested for this export.
      */
-    mimeType: string;
+    mimeType?: string;
   }
   export interface Params$Resource$Files$Generateids {
     /**
@@ -4382,7 +4382,7 @@ export namespace drive_v2 {
     /**
      * The ID for the file in question.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * This parameter is deprecated and has no function.
      */
@@ -4549,7 +4549,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to update.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Determines the behavior in which modifiedDate is updated. This overrides
      * setModifiedDate.
@@ -4625,7 +4625,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to update.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -4640,7 +4640,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to trash.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -4655,7 +4655,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to untrash.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -4678,7 +4678,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file to update.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Determines the behavior in which modifiedDate is updated. This overrides
      * setModifiedDate.
@@ -4773,7 +4773,7 @@ export namespace drive_v2 {
     /**
      * The ID for the file in question.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * This parameter is deprecated and has no function.
      */
@@ -5079,11 +5079,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the parent.
      */
-    parentId: string;
+    parentId?: string;
   }
   export interface Params$Resource$Parents$Get {
     /**
@@ -5094,11 +5094,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the parent.
      */
-    parentId: string;
+    parentId?: string;
   }
   export interface Params$Resource$Parents$Insert {
     /**
@@ -5109,7 +5109,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -5128,7 +5128,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
   }
 
 
@@ -5643,11 +5643,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the permission.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -5668,11 +5668,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the permission.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Whether the requesting application supports Team Drives.
      */
@@ -5693,7 +5693,7 @@ export namespace drive_v2 {
     /**
      * The email address for which to return a permission ID
      */
-    email: string;
+    email?: string;
   }
   export interface Params$Resource$Permissions$Insert {
     /**
@@ -5708,7 +5708,7 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Whether to send notification emails when sharing to users or groups. This
      * parameter is ignored and an email is sent if the role is owner.
@@ -5738,7 +5738,7 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The maximum number of permissions to return per page. When not set for
      * files in a Team Drive, at most 100 results will be returned. When not set
@@ -5770,11 +5770,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the permission.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Whether to remove the expiration date.
      */
@@ -5808,11 +5808,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file or Team Drive.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the permission.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Whether to remove the expiration date.
      */
@@ -6259,11 +6259,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The key of the property.
      */
-    propertyKey: string;
+    propertyKey?: string;
     /**
      * The visibility of the property.
      */
@@ -6278,11 +6278,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The key of the property.
      */
-    propertyKey: string;
+    propertyKey?: string;
     /**
      * The visibility of the property.
      */
@@ -6297,7 +6297,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Request body metadata
      */
@@ -6312,7 +6312,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
   }
   export interface Params$Resource$Properties$Patch {
     /**
@@ -6323,11 +6323,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The key of the property.
      */
-    propertyKey: string;
+    propertyKey?: string;
     /**
      * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
      * (Default: PRIVATE)
@@ -6347,11 +6347,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The key of the property.
      */
-    propertyKey: string;
+    propertyKey?: string;
     /**
      * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
      * (Default: PRIVATE)
@@ -6517,7 +6517,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file that the Realtime API data model is associated with.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The revision of the Realtime API data model to export. Revisions start at
      * 1 (the initial empty data model) and are incremented with each change. If
@@ -6542,7 +6542,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file that the Realtime API data model is associated with.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Media metadata
      */
@@ -6993,15 +6993,15 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the reply.
      */
-    replyId: string;
+    replyId?: string;
   }
   export interface Params$Resource$Replies$Get {
     /**
@@ -7012,11 +7012,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * If set, this will succeed when retrieving a deleted reply.
      */
@@ -7024,7 +7024,7 @@ export namespace drive_v2 {
     /**
      * The ID of the reply.
      */
-    replyId: string;
+    replyId?: string;
   }
   export interface Params$Resource$Replies$Insert {
     /**
@@ -7035,11 +7035,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Request body metadata
      */
@@ -7054,11 +7054,11 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * If set, all replies, including deleted replies (with content stripped)
      * will be returned.
@@ -7085,15 +7085,15 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the reply.
      */
-    replyId: string;
+    replyId?: string;
     /**
      * Request body metadata
      */
@@ -7108,15 +7108,15 @@ export namespace drive_v2 {
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the reply.
      */
-    replyId: string;
+    replyId?: string;
     /**
      * Request body metadata
      */
@@ -7470,11 +7470,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the revision.
      */
-    revisionId: string;
+    revisionId?: string;
   }
   export interface Params$Resource$Revisions$Get {
     /**
@@ -7485,11 +7485,11 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the revision.
      */
-    revisionId: string;
+    revisionId?: string;
   }
   export interface Params$Resource$Revisions$List {
     /**
@@ -7500,7 +7500,7 @@ export namespace drive_v2 {
     /**
      * The ID of the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * Maximum number of revisions to return.
      */
@@ -7520,11 +7520,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the revision.
      */
-    revisionId: string;
+    revisionId?: string;
     /**
      * Request body metadata
      */
@@ -7539,11 +7539,11 @@ export namespace drive_v2 {
     /**
      * The ID for the file.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID for the revision.
      */
-    revisionId: string;
+    revisionId?: string;
     /**
      * Request body metadata
      */
@@ -7902,7 +7902,7 @@ export namespace drive_v2 {
     /**
      * The ID of the Team Drive
      */
-    teamDriveId: string;
+    teamDriveId?: string;
   }
   export interface Params$Resource$Teamdrives$Get {
     /**
@@ -7913,7 +7913,7 @@ export namespace drive_v2 {
     /**
      * The ID of the Team Drive
      */
-    teamDriveId: string;
+    teamDriveId?: string;
     /**
      * Whether the request should be treated as if it was issued by a domain
      * administrator; if set to true, then the requester will be granted access
@@ -7935,7 +7935,7 @@ export namespace drive_v2 {
      * by attempting to create the same Team Drive. If the Team Drive already
      * exists a 409 error will be returned.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * Request body metadata
      */
@@ -7975,7 +7975,7 @@ export namespace drive_v2 {
     /**
      * The ID of the Team Drive
      */
-    teamDriveId: string;
+    teamDriveId?: string;
     /**
      * Request body metadata
      */

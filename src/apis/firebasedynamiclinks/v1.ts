@@ -1006,7 +1006,7 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
      */
-    dynamicLink: string;
+    dynamicLink?: string;
   }
   export interface Params$Resource$V1$Installattribution {
     /**
