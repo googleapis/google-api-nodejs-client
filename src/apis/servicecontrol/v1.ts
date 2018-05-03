@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace servicecontrol_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Service Control API
    *

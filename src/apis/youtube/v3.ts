@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace youtube_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * YouTube Data API
    *

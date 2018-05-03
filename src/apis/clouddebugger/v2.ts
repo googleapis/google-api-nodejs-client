@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace clouddebugger_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Stackdriver Debugger API
    *

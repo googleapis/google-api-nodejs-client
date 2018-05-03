@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace genomics_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Genomics API
    *
@@ -391,6 +393,16 @@ export namespace genomics_v1 {
      * The exit status of the container.
      */
     exitStatus?: number;
+    /**
+     * The tail end of any content written to standard error by the container.
+     * To prevent this from being recorded if the action is known to emit large
+     * amounts of debugging noise or sensitive information, set the
+     * DISABLE_STANDARD_ERROR_CAPTURE flag.  Note that only a small amount of
+     * the end of the stream is captured here. The entire stream is stored in
+     * the /google/logs directory mounted into each action, and may be copied
+     * off the machine as described elsewhere.
+     */
+    stderr?: string;
   }
   /**
    * A bucket over which read coverage has been precomputed. A bucket

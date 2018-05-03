@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace oslogin_v1beta {
+  export interface Options extends GlobalOptions { version: 'v1beta'; }
+
   /**
    * Cloud OS Login API
    *

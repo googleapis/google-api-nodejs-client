@@ -92,7 +92,12 @@ export class Endpoint implements Target, APIRequestContext {
    */
   private makeMethod(
       schema: Schema, method: SchemaMethod, context: APIRequestContext) {
-    return (params: {}, callback: BodyResponseCallback<{}>) => {
+    return (paramsOrCallback: {}|BodyResponseCallback<{}>,
+            callback?: BodyResponseCallback<{}>) => {
+      const params =
+          typeof paramsOrCallback === 'function' ? {} : paramsOrCallback;
+      callback =
+          typeof paramsOrCallback === 'function' ? paramsOrCallback : callback;
       const schemaUrl =
           buildurl(schema.rootUrl + schema.servicePath + method.path);
 
@@ -115,7 +120,11 @@ export class Endpoint implements Target, APIRequestContext {
         parameters.mediaUrl = mediaUrl.substring(1, mediaUrl.length - 1);
       }
 
-      return createAPIRequest(parameters, callback);
+      if (!callback) {
+        return createAPIRequest(parameters);
+      }
+      createAPIRequest(parameters, callback);
+      return;
     };
   }
 

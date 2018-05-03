@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace oauth2_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google OAuth2 API
    *

@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace datastore_v1beta3 {
+  export interface Options extends GlobalOptions { version: 'v1beta3'; }
+
   /**
    * Cloud Datastore API
    *

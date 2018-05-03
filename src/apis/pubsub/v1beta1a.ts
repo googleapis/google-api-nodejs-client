@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace pubsub_v1beta1a {
+  export interface Options extends GlobalOptions { version: 'v1beta1a'; }
+
   /**
    * Cloud Pub/Sub API
    *

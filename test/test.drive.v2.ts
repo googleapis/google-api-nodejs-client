@@ -13,14 +13,16 @@
 
 import * as assert from 'assert';
 import * as nock from 'nock';
-import {GoogleApis} from '../src';
+
+import {drive_v2, GoogleApis} from '../src';
 import {APIEndpoint} from '../src/lib/api';
+
 import {Utils} from './utils';
 
 const googleapis = new GoogleApis();
 
 describe('drive:v2', () => {
-  let localDrive: APIEndpoint, remoteDrive: APIEndpoint;
+  let localDrive: drive_v2.Drive, remoteDrive: APIEndpoint;
 
   before(async () => {
     nock.cleanAll();
@@ -86,9 +88,9 @@ describe('drive:v2', () => {
       });
 
       it('should not return a Request object', (done) => {
-        let req = localDrive.files.insert({}, Utils.noop);
+        let req = localDrive.files.insert(Utils.noop);
         assert.equal(req, undefined);
-        req = remoteDrive.files.insert({}, Utils.noop);
+        req = remoteDrive.files.insert(Utils.noop);
         assert.equal(req, undefined);
         done();
       });

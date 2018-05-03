@@ -99,7 +99,7 @@ describe('Media', () => {
     const fileName = path.join(__dirname, '../../test/fixtures/mediabody.txt');
     const fileSize = (await pify(fs.stat)(fileName)).size;
     const google = new GoogleApis();
-    const youtube = google.youtube<youtube_v3.Youtube>('v3');
+    const youtube = google.youtube('v3');
     const progressEvents = new Array<number>();
     const res = await youtube.videos.insert(
         {

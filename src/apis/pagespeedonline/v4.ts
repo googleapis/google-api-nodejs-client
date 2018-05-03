@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace pagespeedonline_v4 {
+  export interface Options extends GlobalOptions { version: 'v4'; }
+
   /**
    * PageSpeed Insights API
    *

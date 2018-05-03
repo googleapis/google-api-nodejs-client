@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace webmasters_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Search Console API
    *

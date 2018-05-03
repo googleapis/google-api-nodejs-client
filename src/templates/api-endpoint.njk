@@ -40,6 +40,11 @@ export namespace {{api.name}}_{{api.version|replace('\.', '_')}} {
 {% set Version = api.version|replace('\.', '_')|capitalize %}
 {% endif %}
 {% set Namespace = [Name, Version]|join('') %}
+
+export interface Options extends GlobalOptions {
+  version: '{{api.version|replace('\.', '_')}}';
+}
+
 /**
  * {{ api.title }}
  *

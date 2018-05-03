@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace analytics_v2_4 {
+  export interface Options extends GlobalOptions { version: 'v2_4'; }
+
   /**
    * Google Analytics API
    *

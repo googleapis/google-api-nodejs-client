@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dataproc_v1beta2 {
+  export interface Options extends GlobalOptions { version: 'v1beta2'; }
+
   /**
    * Cloud Dataproc API
    *
@@ -586,8 +588,9 @@ export namespace dataproc_v1beta2 {
      */
     imageUri?: string;
     /**
-     * Output only. The list of instance names. Cloud Dataproc derives the names
-     * from cluster_name, num_instances, and the instance group.
+     * Optional. The list of instance names. Cloud Dataproc derives the names
+     * from cluster_name, num_instances, and the instance group if not set by
+     * user (recommended practice is to let Cloud Dataproc derive the name).
      */
     instanceNames?: string[];
     /**

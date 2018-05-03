@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace appengine_v1beta5 {
+  export interface Options extends GlobalOptions { version: 'v1beta5'; }
+
   /**
    * App Engine Admin API
    *

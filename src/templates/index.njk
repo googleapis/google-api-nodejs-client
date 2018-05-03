@@ -58,8 +58,13 @@ export class GeneratedAPIs {
   }
 
 {% for apiName, api in apis %}
-{{ apiName }}<T = {% for versionName, version in api %}{{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(options: ServiceOptions|string) {
-  return this.getAPI<T>('{{ apiName }}', options);
-}
+  {% for versionName, version in api %}
+    {% set Version = version|replace('.','_') %}
+    {{ apiName }}(version: '{{ Version }}'): {{ apiName }}_{{ Version }}.{{ apiName|capitalize }};
+    {{ apiName }}(options: {{ apiName }}_{{ Version }}.Options): {{ apiName }}_{{ Version }}.{{ apiName|capitalize }};
+  {% endfor %}
+  {{ apiName }}<T = {% for versionName, version in api %}{{ apiName }}_{{ version|replace('.','_') }}.{{apiName|capitalize}}{% if not loop.last %}|{% endif %}{% endfor %}>(versionOrOptions: {% for versionName, version in api %}'{{ version|replace('.','_') }}'|{{ apiName }}_{{ version|replace('.','_') }}.Options{% if not loop.last %}|{% endif %}{% endfor %}) {
+    return this.getAPI<T>('{{ apiName }}', versionOrOptions);
+  }
 {% endfor %}
 }

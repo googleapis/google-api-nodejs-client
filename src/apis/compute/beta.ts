@@ -31,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace compute_beta {
+  export interface Options extends GlobalOptions { version: 'beta'; }
+
   /**
    * Compute Engine API
    *
