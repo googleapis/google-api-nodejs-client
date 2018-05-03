@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace androidpublisher_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Play Developer API
    *
@@ -74,23 +77,24 @@ export namespace androidpublisher_v1 {
      * Whether the subscription will automatically be renewed when it reaches
      * its current expiry time.
      */
-    autoRenewing: boolean;
+    autoRenewing?: boolean;
     /**
      * Time at which the subscription was granted, in milliseconds since the
      * Epoch.
      */
-    initiationTimestampMsec: string;
+    initiationTimestampMsec?: string;
     /**
      * This kind represents a subscriptionPurchase object in the
      * androidpublisher service.
      */
-    kind: string;
+    kind?: string;
     /**
      * Time at which the subscription will expire, in milliseconds since the
      * Epoch.
      */
-    validUntilTimestampMsec: string;
+    validUntilTimestampMsec?: string;
   }
+
 
   export class Resource$Purchases {
     root: Androidpublisher;
@@ -119,22 +123,35 @@ export namespace androidpublisher_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    cancel(params?: Params$Resource$Purchases$Cancel, options?: MethodOptions):
+        AxiosPromise<void>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Purchases$Cancel,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Purchases$Cancel,
+        callback: BodyResponseCallback<void>): void;
+    cancel(callback: BodyResponseCallback<void>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Purchases$Cancel|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -174,26 +191,35 @@ export namespace androidpublisher_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Purchases$Get,
         options?: MethodOptions): AxiosPromise<Schema$SubscriptionPurchase>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Purchases$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
-        callback?: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+    get(params: Params$Resource$Purchases$Get,
+        callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+    get(callback: BodyResponseCallback<Schema$SubscriptionPurchase>): void;
+    get(paramsOrCallback?: Params$Resource$Purchases$Get|
+        BodyResponseCallback<Schema$SubscriptionPurchase>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SubscriptionPurchase>,
         callback?: BodyResponseCallback<Schema$SubscriptionPurchase>):
         void|AxiosPromise<Schema$SubscriptionPurchase> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Purchases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -216,5 +242,48 @@ export namespace androidpublisher_v1 {
         return createAPIRequest<Schema$SubscriptionPurchase>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Purchases$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The package name of the application for which this subscription was
+     * purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * The purchased subscription ID (for example, 'monthly001').
+     */
+    subscriptionId?: string;
+    /**
+     * The token provided to the user's device when the subscription was
+     * purchased.
+     */
+    token?: string;
+  }
+  export interface Params$Resource$Purchases$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The package name of the application for which this subscription was
+     * purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * The purchased subscription ID (for example, 'monthly001').
+     */
+    subscriptionId?: string;
+    /**
+     * The token provided to the user's device when the subscription was
+     * purchased.
+     */
+    token?: string;
   }
 }

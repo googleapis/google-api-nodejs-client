@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace translate_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Google Cloud Translation API
    *
@@ -74,7 +77,7 @@ export namespace translate_v2 {
     /**
      * A detections contains detection results of several text
      */
-    detections: Schema$DetectionsResource[];
+    detections?: Schema$DetectionsResource[];
   }
   /**
    * An array of languages which we detect for the given text The most likely
@@ -89,7 +92,7 @@ export namespace translate_v2 {
      * The input text upon which to perform language detection. Repeat this
      * parameter to perform language detection on multiple text inputs.
      */
-    q: string[];
+    q?: string[];
   }
   /**
    * The request message for discovering supported languages.
@@ -99,7 +102,7 @@ export namespace translate_v2 {
      * The language to use to return localized, human readable names of
      * supported languages.
      */
-    target: string;
+    target?: string;
   }
   export interface Schema$LanguagesListResponse {
     /**
@@ -109,7 +112,7 @@ export namespace translate_v2 {
      * list is sorted by the collation order of the language name in the target
      * language.
      */
-    languages: Schema$LanguagesResource[];
+    languages?: Schema$LanguagesResource[];
   }
   export interface Schema$LanguagesResource {
     /**
@@ -118,11 +121,11 @@ export namespace translate_v2 {
      * codes including language + region identifiers are returned (e.g.
      * &#39;zh-TW&#39; and &#39;zh-CH&#39;)
      */
-    language: string;
+    language?: string;
     /**
      * Human readable name of the language localized to the target language.
      */
-    name: string;
+    name?: string;
   }
   /**
    * The main translation request message for the Cloud Translation API.
@@ -133,29 +136,29 @@ export namespace translate_v2 {
      * value of &quot;html&quot; indicates HTML and a value of &quot;text&quot;
      * indicates plain-text.
      */
-    format: string;
+    format?: string;
     /**
      * The `model` type requested for this translation. Valid values are listed
      * in public documentation.
      */
-    model: string;
+    model?: string;
     /**
      * The input text to translate. Repeat this parameter to perform translation
      * operations on multiple text inputs.
      */
-    q: string[];
+    q?: string[];
     /**
      * The language of the source text, set to one of the language codes listed
      * in Language Support. If the source language is not specified, the API
      * will attempt to identify the source language automatically and return it
      * within the response.
      */
-    source: string;
+    source?: string;
     /**
      * The language to use for translation of the input text, set to one of the
      * language codes listed in Language Support.
      */
-    target: string;
+    target?: string;
   }
   /**
    * The main language translation response message.
@@ -164,7 +167,7 @@ export namespace translate_v2 {
     /**
      * Translations contains list of translation results of given text
      */
-    translations: Schema$TranslationsResource[];
+    translations?: Schema$TranslationsResource[];
   }
   export interface Schema$TranslationsResource {
     /**
@@ -173,18 +176,19 @@ export namespace translate_v2 {
      * language was passed, auto-detection of the language will not occur and
      * this field will be empty.
      */
-    detectedSourceLanguage: string;
+    detectedSourceLanguage?: string;
     /**
      * The `model` type used for this translation. Valid values are listed in
      * public documentation. Can be different from requested `model`. Present
      * only if specific model type was explicitly requested.
      */
-    model: string;
+    model?: string;
     /**
      * Text translated into the target language.
      */
-    translatedText: string;
+    translatedText?: string;
   }
+
 
   export class Resource$Detections {
     root: Translate;
@@ -210,28 +214,39 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    detect(params?: any, options?: MethodOptions):
+    detect(params?: Params$Resource$Detections$Detect, options?: MethodOptions):
         AxiosPromise<Schema$DetectionsListResponse>;
     detect(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Detections$Detect,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
     detect(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Detections$Detect,
+        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+    detect(callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+    detect(
+        paramsOrCallback?: Params$Resource$Detections$Detect|
+        BodyResponseCallback<Schema$DetectionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
         callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
         void|AxiosPromise<Schema$DetectionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Detections$Detect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Detections$Detect;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -266,28 +281,38 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Detections$List, options?: MethodOptions):
         AxiosPromise<Schema$DetectionsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Detections$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
-        callback?: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Detections$List,
+        callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$DetectionsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Detections$List|
+        BodyResponseCallback<Schema$DetectionsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DetectionsListResponse>,
         callback?: BodyResponseCallback<Schema$DetectionsListResponse>):
         void|AxiosPromise<Schema$DetectionsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Detections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Detections$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -309,6 +334,31 @@ export namespace translate_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Detections$Detect {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DetectLanguageRequest;
+  }
+  export interface Params$Resource$Detections$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The input text upon which to perform language detection. Repeat this
+     * parameter to perform language detection on multiple text inputs.
+     */
+    q?: string;
+  }
+
 
   export class Resource$Languages {
     root: Translate;
@@ -335,28 +385,38 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Languages$List, options?: MethodOptions):
         AxiosPromise<Schema$LanguagesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Languages$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
-        callback?: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Languages$List,
+        callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$LanguagesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Languages$List|
+        BodyResponseCallback<Schema$LanguagesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LanguagesListResponse>,
         callback?: BodyResponseCallback<Schema$LanguagesListResponse>):
         void|AxiosPromise<Schema$LanguagesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Languages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Languages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -378,6 +438,24 @@ export namespace translate_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Languages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The model type for which supported languages should be returned.
+     */
+    model?: string;
+    /**
+     * The language to use to return localized, human readable names of
+     * supported languages.
+     */
+    target?: string;
+  }
+
 
   export class Resource$Translations {
     root: Translate;
@@ -408,28 +486,39 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Translations$List, options?: MethodOptions):
         AxiosPromise<Schema$TranslationsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Translations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Translations$List,
+        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Translations$List|
+        BodyResponseCallback<Schema$TranslationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
         callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
         void|AxiosPromise<Schema$TranslationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Translations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Translations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -464,28 +553,41 @@ export namespace translate_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    translate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TranslationsListResponse>;
     translate(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Translations$Translate,
+        options?: MethodOptions): AxiosPromise<Schema$TranslationsListResponse>;
+    translate(
+        params: Params$Resource$Translations$Translate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
-        callback?: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
     translate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Translations$Translate,
+        callback: BodyResponseCallback<Schema$TranslationsListResponse>): void;
+    translate(callback: BodyResponseCallback<Schema$TranslationsListResponse>):
+        void;
+    translate(
+        paramsOrCallback?: Params$Resource$Translations$Translate|
+        BodyResponseCallback<Schema$TranslationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TranslationsListResponse>,
         callback?: BodyResponseCallback<Schema$TranslationsListResponse>):
         void|AxiosPromise<Schema$TranslationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Translations$Translate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Translations$Translate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -506,5 +608,56 @@ export namespace translate_v2 {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Translations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The customization id for translate
+     */
+    cid?: string;
+    /**
+     * The format of the source text, in either HTML (default) or plain-text. A
+     * value of "html" indicates HTML and a value of "text" indicates
+     * plain-text.
+     */
+    format?: string;
+    /**
+     * The `model` type requested for this translation. Valid values are listed
+     * in public documentation.
+     */
+    model?: string;
+    /**
+     * The input text to translate. Repeat this parameter to perform translation
+     * operations on multiple text inputs.
+     */
+    q?: string;
+    /**
+     * The language of the source text, set to one of the language codes listed
+     * in Language Support. If the source language is not specified, the API
+     * will attempt to identify the source language automatically and return it
+     * within the response.
+     */
+    source?: string;
+    /**
+     * The language to use for translation of the input text, set to one of the
+     * language codes listed in Language Support.
+     */
+    target?: string;
+  }
+  export interface Params$Resource$Translations$Translate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TranslateTextRequest;
   }
 }

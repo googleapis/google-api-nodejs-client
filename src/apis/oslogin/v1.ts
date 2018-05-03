@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace oslogin_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud OS Login API
    *
@@ -80,7 +83,7 @@ export namespace oslogin_v1 {
     /**
      * The login profile information for the user.
      */
-    loginProfile: Schema$LoginProfile;
+    loginProfile?: Schema$LoginProfile;
   }
   /**
    * The user profile information used for logging in to a virtual machine on
@@ -90,15 +93,15 @@ export namespace oslogin_v1 {
     /**
      * A unique user ID.
      */
-    name: string;
+    name?: string;
     /**
      * The list of POSIX accounts associated with the user.
      */
-    posixAccounts: Schema$PosixAccount[];
+    posixAccounts?: Schema$PosixAccount[];
     /**
      * A map from SSH public key fingerprint to the associated key object.
      */
-    sshPublicKeys: any;
+    sshPublicKeys?: any;
   }
   /**
    * The POSIX account information associated with a Google account.
@@ -107,44 +110,44 @@ export namespace oslogin_v1 {
     /**
      * Output only. A POSIX account identifier.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GECOS (user information) entry for this account.
      */
-    gecos: string;
+    gecos?: string;
     /**
      * The default group ID.
      */
-    gid: string;
+    gid?: string;
     /**
      * The path to the home directory for this account.
      */
-    homeDirectory: string;
+    homeDirectory?: string;
     /**
      * The operating system type where this account applies.
      */
-    operatingSystemType: string;
+    operatingSystemType?: string;
     /**
      * Only one POSIX account can be marked as primary.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * The path to the logic shell for this account.
      */
-    shell: string;
+    shell?: string;
     /**
      * System identifier for which account the username or uid applies to. By
      * default, the empty value is used.
      */
-    systemId: string;
+    systemId?: string;
     /**
      * The user ID.
      */
-    uid: string;
+    uid?: string;
     /**
      * The username of the POSIX account.
      */
-    username: string;
+    username?: string;
   }
   /**
    * The SSH public key information associated with a Google account.
@@ -153,18 +156,19 @@ export namespace oslogin_v1 {
     /**
      * An expiration time in microseconds since epoch.
      */
-    expirationTimeUsec: string;
+    expirationTimeUsec?: string;
     /**
      * Output only. The SHA-256 fingerprint of the SSH public key.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Public key text in SSH format, defined by &lt;a
      * href=&quot;https://www.ietf.org/rfc/rfc4253.txt&quot;
      * target=&quot;_blank&quot;&gt;RFC4253&lt;/a&gt; section 6.6.
      */
-    key: string;
+    key?: string;
   }
+
 
   export class Resource$Users {
     root: Oslogin;
@@ -195,26 +199,39 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getLoginProfile(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LoginProfile>;
     getLoginProfile(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
-        callback?: BodyResponseCallback<Schema$LoginProfile>): void;
+        params?: Params$Resource$Users$Getloginprofile,
+        options?: MethodOptions): AxiosPromise<Schema$LoginProfile>;
     getLoginProfile(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+        params: Params$Resource$Users$Getloginprofile,
+        options: MethodOptions|BodyResponseCallback<Schema$LoginProfile>,
+        callback: BodyResponseCallback<Schema$LoginProfile>): void;
+    getLoginProfile(
+        params: Params$Resource$Users$Getloginprofile,
+        callback: BodyResponseCallback<Schema$LoginProfile>): void;
+    getLoginProfile(callback: BodyResponseCallback<Schema$LoginProfile>): void;
+    getLoginProfile(
+        paramsOrCallback?: Params$Resource$Users$Getloginprofile|
+        BodyResponseCallback<Schema$LoginProfile>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LoginProfile>,
         callback?: BodyResponseCallback<Schema$LoginProfile>):
         void|AxiosPromise<Schema$LoginProfile> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Getloginprofile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Getloginprofile;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -253,29 +270,45 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    importSshPublicKey(params?: any, options?: MethodOptions):
+    importSshPublicKey(
+        params?: Params$Resource$Users$Importsshpublickey,
+        options?: MethodOptions):
         AxiosPromise<Schema$ImportSshPublicKeyResponse>;
     importSshPublicKey(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Importsshpublickey,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
-        callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
+        callback: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
         void;
     importSshPublicKey(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Importsshpublickey,
+        callback: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
+        void;
+    importSshPublicKey(
+        callback: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
+        void;
+    importSshPublicKey(
+        paramsOrCallback?: Params$Resource$Users$Importsshpublickey|
+        BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ImportSshPublicKeyResponse>,
         callback?: BodyResponseCallback<Schema$ImportSshPublicKeyResponse>):
         void|AxiosPromise<Schema$ImportSshPublicKeyResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Importsshpublickey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Importsshpublickey;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -298,6 +331,38 @@ export namespace oslogin_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Getloginprofile {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the user in format `users/{user}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Importsshpublickey {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the user in format `users/{user}`.
+     */
+    parent?: string;
+    /**
+     * The project ID of the Google Cloud Platform project.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SshPublicKey;
+  }
+
   export class Resource$Users$Projects {
     root: Oslogin;
     constructor(root: Oslogin) {
@@ -322,25 +387,38 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Users$Projects$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Users$Projects$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Users$Projects$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Projects$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Projects$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Projects$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -361,6 +439,21 @@ export namespace oslogin_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Projects$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A reference to the POSIX account to update. POSIX accounts are identified
+     * by the project ID they are associated with. A reference to the POSIX
+     * account is in format `users/{user}/projects/{project}`.
+     */
+    name?: string;
+  }
+
 
   export class Resource$Users$Sshpublickeys {
     root: Oslogin;
@@ -386,25 +479,38 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Users$Sshpublickeys$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Users$Sshpublickeys$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Users$Sshpublickeys$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Sshpublickeys$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Sshpublickeys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sshpublickeys$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -438,24 +544,35 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Users$Sshpublickeys$Get,
         options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
-        callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+    get(params: Params$Resource$Users$Sshpublickeys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+        callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    get(params: Params$Resource$Users$Sshpublickeys$Get,
+        callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    get(callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Sshpublickeys$Get|
+        BodyResponseCallback<Schema$SshPublicKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SshPublicKey>,
         callback?: BodyResponseCallback<Schema$SshPublicKey>):
         void|AxiosPromise<Schema$SshPublicKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Sshpublickeys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sshpublickeys$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -492,26 +609,39 @@ export namespace oslogin_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SshPublicKey>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
-        callback?: BodyResponseCallback<Schema$SshPublicKey>): void;
+        params?: Params$Resource$Users$Sshpublickeys$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$SshPublicKey>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+        params: Params$Resource$Users$Sshpublickeys$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$SshPublicKey>,
+        callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    patch(
+        params: Params$Resource$Users$Sshpublickeys$Patch,
+        callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    patch(callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Sshpublickeys$Patch|
+        BodyResponseCallback<Schema$SshPublicKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SshPublicKey>,
         callback?: BodyResponseCallback<Schema$SshPublicKey>):
         void|AxiosPromise<Schema$SshPublicKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Sshpublickeys$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sshpublickeys$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -531,5 +661,53 @@ export namespace oslogin_v1 {
         return createAPIRequest<Schema$SshPublicKey>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Users$Sshpublickeys$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fingerprint of the public key to update. Public keys are identified
+     * by their SHA-256 fingerprint. The fingerprint of the public key is in
+     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Sshpublickeys$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fingerprint of the public key to retrieve. Public keys are identified
+     * by their SHA-256 fingerprint. The fingerprint of the public key is in
+     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$Sshpublickeys$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fingerprint of the public key to update. Public keys are identified
+     * by their SHA-256 fingerprint. The fingerprint of the public key is in
+     * format `users/{user}/sshPublicKeys/{fingerprint}`.
+     */
+    name?: string;
+    /**
+     * Mask to control which fields get updated. Updates all if not present.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SshPublicKey;
   }
 }

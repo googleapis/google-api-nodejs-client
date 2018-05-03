@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace deploymentmanager_alpha {
+  export interface Options extends GlobalOptions { version: 'alpha'; }
+
   /**
    * Google Cloud Deployment Manager Alpha API
    *
@@ -85,13 +88,13 @@ export namespace deploymentmanager_alpha {
     /**
      * Method regex where this policy will apply.
      */
-    methodMatch: string;
+    methodMatch?: string;
     /**
      * Deployment manager will poll instances for this API resource setting a
      * RUNNING state, and blocking until polling conditions tell whether the
      * resource is completed or failed.
      */
-    pollingOptions: Schema$PollingOptions;
+    pollingOptions?: Schema$PollingOptions;
   }
   /**
    * Specifies the audit configuration for a service. The configuration
@@ -119,14 +122,14 @@ export namespace deploymentmanager_alpha {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
-    exemptedMembers: string[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
+    exemptedMembers?: string[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example:  {
@@ -142,11 +145,11 @@ export namespace deploymentmanager_alpha {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of [Binding.members][].
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Authorization-related information used by Cloud Audit Logging.
@@ -155,14 +158,14 @@ export namespace deploymentmanager_alpha {
     /**
      * The type of the permission that was checked.
      */
-    permissionType: string;
+    permissionType?: string;
   }
   /**
    * Basic Auth used as a credential.
    */
   export interface Schema$BasicAuth {
-    password: string;
-    user: string;
+    password?: string;
+    user?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -174,7 +177,7 @@ export namespace deploymentmanager_alpha {
      * bindings, including their conditions, are examined independently. This
      * field is only visible as GOOGLE_INTERNAL or CONDITION_TRUSTED_TESTER.
      */
-    condition: Schema$Expr;
+    condition?: Schema$Expr;
     /**
      * Specifies the identities requesting access for a Cloud Platform resource.
      * `members` can have the following values:  * `allUsers`: A special
@@ -190,12 +193,12 @@ export namespace deploymentmanager_alpha {
      * domain name that represents all the users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`.
      */
-    role: string;
+    role?: string;
   }
   /**
    * CollectionOverride allows resource handling overrides for specific
@@ -205,15 +208,15 @@ export namespace deploymentmanager_alpha {
     /**
      * The collection that identifies this resource within its service.
      */
-    collection: string;
+    collection?: string;
     /**
      * Custom verb method mappings to support unordered list API mappings.
      */
-    methodMap: Schema$MethodMap;
+    methodMap?: Schema$MethodMap;
     /**
      * The options to apply to this resource-level override
      */
-    options: Schema$Options;
+    options?: Schema$Options;
   }
   /**
    * Holds the composite type.
@@ -223,16 +226,16 @@ export namespace deploymentmanager_alpha {
      * An optional textual description of the resource; provided by the client
      * when the resource is created.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Timestamp when the composite type was created, in RFC3339
      * text format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Map of labels; provided by the client when the resource is created or
      * updated. Specifically: Label keys must be between 1 and 63 characters
@@ -241,30 +244,30 @@ export namespace deploymentmanager_alpha {
      * characters long and must conform to the regular expression
      * ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
-    labels: Schema$CompositeTypeLabelEntry[];
+    labels?: Schema$CompositeTypeLabelEntry[];
     /**
      * Name of the composite type, must follow the expression:
      * [a-z]([-a-z0-9_.]{0,61}[a-z0-9])?.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The Operation that most recently ran, or is currently
      * running, on this composite type.
      */
-    operation: Schema$Operation;
+    operation?: Schema$Operation;
     /**
      * Output only. Self link for the type provider.
      */
-    selfLink: string;
-    status: string;
+    selfLink?: string;
+    status?: string;
     /**
      * Files for the template type.
      */
-    templateContents: Schema$TemplateContents;
+    templateContents?: Schema$TemplateContents;
   }
   export interface Schema$CompositeTypeLabelEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   /**
    * A response that returns all Composite Types supported by Deployment Manager
@@ -274,11 +277,11 @@ export namespace deploymentmanager_alpha {
      * Output only. A list of resource composite types supported by Deployment
      * Manager.
      */
-    compositeTypes: Schema$CompositeType[];
+    compositeTypes?: Schema$CompositeType[];
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A condition to be met.
@@ -287,35 +290,35 @@ export namespace deploymentmanager_alpha {
     /**
      * Trusted attributes supplied by the IAM system.
      */
-    iam: string;
+    iam?: string;
     /**
      * An operator to apply the subject with.
      */
-    op: string;
+    op?: string;
     /**
      * Trusted attributes discharged by the service.
      */
-    svc: string;
+    svc?: string;
     /**
      * Trusted attributes supplied by any service that owns resources and uses
      * the IAM system for access control.
      */
-    sys: string;
+    sys?: string;
     /**
      * DEPRECATED. Use &#39;values&#39; instead.
      */
-    value: string;
+    value?: string;
     /**
      * The objects of the condition. This is mutually exclusive with
      * &#39;value&#39;.
      */
-    values: string[];
+    values?: string[];
   }
   export interface Schema$ConfigFile {
     /**
      * The contents of the file.
      */
-    content: string;
+    content?: string;
   }
   /**
    * BaseType that describes a service-backed Type.
@@ -324,19 +327,19 @@ export namespace deploymentmanager_alpha {
     /**
      * Allows resource handling overrides for specific collections
      */
-    collectionOverrides: Schema$CollectionOverride[];
+    collectionOverrides?: Schema$CollectionOverride[];
     /**
      * Credential used when interacting with this type.
      */
-    credential: Schema$Credential;
+    credential?: Schema$Credential;
     /**
      * Descriptor Url for the this type.
      */
-    descriptorUrl: string;
+    descriptorUrl?: string;
     /**
      * Options to apply when handling any resources in this service.
      */
-    options: Schema$Options;
+    options?: Schema$Options;
   }
   /**
    * The credential used by Deployment Manager and TypeProvider. Only one of the
@@ -346,26 +349,26 @@ export namespace deploymentmanager_alpha {
     /**
      * Basic Auth Credential, only used by TypeProvider.
      */
-    basicAuth: Schema$BasicAuth;
+    basicAuth?: Schema$BasicAuth;
     /**
      * Service Account Credential, only used by Deployment.
      */
-    serviceAccount: Schema$ServiceAccount;
+    serviceAccount?: Schema$ServiceAccount;
     /**
      * Specify to use the project default credential, only supported by
      * Deployment.
      */
-    useProjectDefault: boolean;
+    useProjectDefault?: boolean;
   }
   export interface Schema$Deployment {
     /**
      * User provided default credential for the deployment.
      */
-    credential: Schema$Credential;
+    credential?: Schema$Credential;
     /**
      * An optional user-provided description of the deployment.
      */
-    description: string;
+    description?: string;
     /**
      * Provides a fingerprint to use in requests to modify a deployment, such as
      * update(), stop(), and cancelPreview() requests. A fingerprint is a
@@ -376,16 +379,16 @@ export namespace deploymentmanager_alpha {
      * after every request to modify data. To get the latest fingerprint value,
      * perform a get() request to a deployment.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Timestamp when the deployment was created, in RFC3339 text
      * format .
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Map of labels; provided by the client when the resource is created or
      * updated. Specifically: Label keys must be between 1 and 63 characters
@@ -394,12 +397,12 @@ export namespace deploymentmanager_alpha {
      * characters long and must conform to the regular expression
      * ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
-    labels: Schema$DeploymentLabelEntry[];
+    labels?: Schema$DeploymentLabelEntry[];
     /**
      * Output only. URL of the manifest representing the last manifest that was
      * successfully deployed.
      */
-    manifest: string;
+    manifest?: string;
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -409,39 +412,39 @@ export namespace deploymentmanager_alpha {
      * lowercase letter, or digit, except the last character, which cannot be a
      * dash.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The Operation that most recently ran, or is currently
      * running, on this deployment.
      */
-    operation: Schema$Operation;
+    operation?: Schema$Operation;
     /**
      * Output only. Map of outputs from the last manifest that deployed
      * successfully.
      */
-    outputs: Schema$DeploymentOutputsEntry[];
+    outputs?: Schema$DeploymentOutputsEntry[];
     /**
      * Output only. Self link for the deployment.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Input Only] The parameters that define your deployment, including the
      * deployment configuration and relevant templates.
      */
-    target: Schema$TargetConfiguration;
+    target?: Schema$TargetConfiguration;
     /**
      * Output only. If Deployment Manager is currently updating or previewing an
      * update to this deployment, the updated configuration appears here.
      */
-    update: Schema$DeploymentUpdate;
+    update?: Schema$DeploymentUpdate;
   }
   export interface Schema$DeploymentLabelEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   export interface Schema$DeploymentOutputsEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
@@ -455,7 +458,7 @@ export namespace deploymentmanager_alpha {
      * after every request to modify a deployment. To get the latest fingerprint
      * value, perform a get() request on the deployment.
      */
-    fingerprint: string;
+    fingerprint?: string;
   }
   /**
    * A response containing a partial list of deployments and a page token used
@@ -465,11 +468,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. The deployments contained in this response.
      */
-    deployments: Schema$Deployment[];
+    deployments?: Schema$Deployment[];
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$DeploymentsStopRequest {
     /**
@@ -483,19 +486,19 @@ export namespace deploymentmanager_alpha {
      * request to modify a deployment. To get the latest fingerprint value,
      * perform a get() request on the deployment.
      */
-    fingerprint: string;
+    fingerprint?: string;
   }
   export interface Schema$DeploymentUpdate {
     /**
      * Output only. The user-provided default credential to use when deploying
      * this preview.
      */
-    credential: Schema$Credential;
+    credential?: Schema$Credential;
     /**
      * Output only. An optional user-provided description of the deployment
      * after the current update has been applied.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. Map of labels; provided by the client when the resource is
      * created or updated. Specifically: Label keys must be between 1 and 63
@@ -504,27 +507,27 @@ export namespace deploymentmanager_alpha {
      * characters long and must conform to the regular expression
      * ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
-    labels: Schema$DeploymentUpdateLabelEntry[];
+    labels?: Schema$DeploymentUpdateLabelEntry[];
     /**
      * Output only. URL of the manifest representing the update configuration of
      * this deployment.
      */
-    manifest: string;
+    manifest?: string;
   }
   export interface Schema$DeploymentUpdateLabelEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   export interface Schema$Diagnostic {
     /**
      * JsonPath expression on the resource that if non empty, indicates that
      * this field needs to be extracted as a diagnostic.
      */
-    field: string;
+    field?: string;
     /**
      * Level to record this diagnostic.
      */
-    level: string;
+    level?: string;
   }
   /**
    * Represents an expression text. Example:  title: &quot;User account
@@ -536,34 +539,34 @@ export namespace deploymentmanager_alpha {
      * An optional description of the expression. This is a longer text which
      * describes the expression, e.g. when hovered over it in a UI.
      */
-    description: string;
+    description?: string;
     /**
      * Textual representation of an expression in Common Expression Language
      * syntax.  The application context of the containing message determines
      * which well-known feature set of CEL is supported.
      */
-    expression: string;
+    expression?: string;
     /**
      * An optional string indicating the location of the expression for error
      * reporting, e.g. a file name and a position in the file.
      */
-    location: string;
+    location?: string;
     /**
      * An optional title for the expression, i.e. a short string describing its
      * purpose. This can be used e.g. in UIs which allow to enter the
      * expression.
      */
-    title: string;
+    title?: string;
   }
   export interface Schema$ImportFile {
     /**
      * The contents of the file.
      */
-    content: string;
+    content?: string;
     /**
      * The name of the file.
      */
-    name: string;
+    name?: string;
   }
   /**
    * InputMapping creates a &#39;virtual&#39; property that will be injected
@@ -573,19 +576,19 @@ export namespace deploymentmanager_alpha {
     /**
      * The name of the field that is going to be injected.
      */
-    fieldName: string;
+    fieldName?: string;
     /**
      * The location where this mapping applies.
      */
-    location: string;
+    location?: string;
     /**
      * Regex to evaluate on method to decide if input applies.
      */
-    methodMatch: string;
+    methodMatch?: string;
     /**
      * A jsonPath expression to select an element.
      */
-    value: string;
+    value?: string;
   }
   /**
    * Specifies what kind of log the caller must write
@@ -594,15 +597,15 @@ export namespace deploymentmanager_alpha {
     /**
      * Cloud audit options.
      */
-    cloudAudit: Schema$LogConfigCloudAuditOptions;
+    cloudAudit?: Schema$LogConfigCloudAuditOptions;
     /**
      * Counter options.
      */
-    counter: Schema$LogConfigCounterOptions;
+    counter?: Schema$LogConfigCounterOptions;
     /**
      * Data access options.
      */
-    dataAccess: Schema$LogConfigDataAccessOptions;
+    dataAccess?: Schema$LogConfigDataAccessOptions;
   }
   /**
    * Write a Cloud Audit log
@@ -611,11 +614,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Information used by the Cloud Audit Logging pipeline.
      */
-    authorizationLoggingOptions: Schema$AuthorizationLoggingOptions;
+    authorizationLoggingOptions?: Schema$AuthorizationLoggingOptions;
     /**
      * The log_name to populate in the Cloud Audit Record.
      */
-    logName: string;
+    logName?: string;
   }
   /**
    * Increment a streamz counter with the specified metric and field names.
@@ -638,11 +641,11 @@ export namespace deploymentmanager_alpha {
     /**
      * The field value to attribute.
      */
-    field: string;
+    field?: string;
     /**
      * The metric to update.
      */
-    metric: string;
+    metric?: string;
   }
   /**
    * Write a Data Access (Gin) log
@@ -652,43 +655,43 @@ export namespace deploymentmanager_alpha {
      * Whether Gin logging should happen in a fail-closed manner at the caller.
      * This is relevant only in the LocalIAM implementation, for now.
      */
-    logMode: string;
+    logMode?: string;
   }
   export interface Schema$Manifest {
     /**
      * Output only. The YAML configuration for this manifest.
      */
-    config: Schema$ConfigFile;
+    config?: Schema$ConfigFile;
     /**
      * Output only. The fully-expanded configuration file, including any
      * templates and references.
      */
-    expandedConfig: string;
+    expandedConfig?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. The imported files for this manifest.
      */
-    imports: Schema$ImportFile[];
+    imports?: Schema$ImportFile[];
     /**
      * Output only. Timestamp when the manifest was created, in RFC3339 text
      * format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Output only. The YAML layout for this manifest.
      */
-    layout: string;
+    layout?: string;
     /**
      * Output only.  The name of the manifest.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. Self link for the manifest.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A response containing a partial list of manifests and a page token used to
@@ -698,11 +701,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. Manifests contained in this list response.
      */
-    manifests: Schema$Manifest[];
+    manifests?: Schema$Manifest[];
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Deployment Manager will call these methods during the events of
@@ -713,26 +716,26 @@ export namespace deploymentmanager_alpha {
      * The action identifier for the create method to be used for this
      * collection
      */
-    create: string;
+    create?: string;
     /**
      * The action identifier for the delete method to be used for this
      * collection
      */
-    delete: string;
+    delete?: string;
     /**
      * The action identifier for the get method to be used for this collection
      */
-    get: string;
+    get?: string;
     /**
      * The action identifier for the setIamPolicy method to be used for this
      * collection
      */
-    setIamPolicy: string;
+    setIamPolicy?: string;
     /**
      * The action identifier for the update method to be used for this
      * collection
      */
-    update: string;
+    update?: string;
   }
   /**
    * An Operation resource, used to manage asynchronous API requests. (==
@@ -745,61 +748,61 @@ export namespace deploymentmanager_alpha {
     /**
      * [Output Only] Reserved for future use.
      */
-    clientOperationId: string;
+    clientOperationId?: string;
     /**
      * [Deprecated] This field is deprecated.
      */
-    creationTimestamp: string;
+    creationTimestamp?: string;
     /**
      * [Output Only] A textual description of the operation, which is set when
      * the operation is created.
      */
-    description: string;
+    description?: string;
     /**
      * [Output Only] The time that this operation was completed. This value is
      * in RFC3339 text format.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * [Output Only] If errors are generated during processing of the operation,
      * this field will be populated.
      */
-    error: any;
+    error?: any;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * message that was returned, such as NOT FOUND.
      */
-    httpErrorMessage: string;
+    httpErrorMessage?: string;
     /**
      * [Output Only] If the operation fails, this field contains the HTTP error
      * status code that was returned. For example, a 404 means the resource was
      * not found.
      */
-    httpErrorStatusCode: number;
+    httpErrorStatusCode?: number;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is
      * defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * [Output Only] The time that this operation was requested. This value is
      * in RFC3339 text format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * [Output Only] Type of the resource. Always compute#operation for
      * Operation resources.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output Only] Name of the resource.
      */
-    name: string;
+    name?: string;
     /**
      * [Output Only] The type of operation, such as insert, update, or delete,
      * and so on.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100.
      * There is no requirement that this be linear or support any granularity of
@@ -807,61 +810,61 @@ export namespace deploymentmanager_alpha {
      * complete. This number should monotonically increase as the operation
      * progresses.
      */
-    progress: number;
+    progress?: number;
     /**
      * [Output Only] The URL of the region where the operation resides. Only
      * available when performing regional operations. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
      */
-    region: string;
+    region?: string;
     /**
      * [Output Only] Server-defined URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output Only] The time that this operation was started by the server.
      * This value is in RFC3339 text format.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * [Output Only] The status of the operation, which can be one of the
      * following: PENDING, RUNNING, or DONE.
      */
-    status: string;
+    status?: string;
     /**
      * [Output Only] An optional textual description of the current status of
      * the operation.
      */
-    statusMessage: string;
+    statusMessage?: string;
     /**
      * [Output Only] The unique target ID, which identifies a specific
      * incarnation of the target resource.
      */
-    targetId: string;
+    targetId?: string;
     /**
      * [Output Only] The URL of the resource that the operation modifies. For
      * operations related to creating a snapshot, this points to the persistent
      * disk that the snapshot was created from.
      */
-    targetLink: string;
+    targetLink?: string;
     /**
      * [Output Only] User who requested the operation, for example:
      * user@example.com.
      */
-    user: string;
+    user?: string;
     /**
      * [Output Only] If warning messages are generated during processing of the
      * operation, this field will be populated.
      */
-    warnings: any[];
+    warnings?: any[];
     /**
      * [Output Only] The URL of the zone where the operation resides. Only
      * available when performing per-zone operations. You must specify this
      * field as part of the HTTP request URL. It is not settable as a field in
      * the request body.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * A response containing a partial list of operations and a page token used to
@@ -871,11 +874,11 @@ export namespace deploymentmanager_alpha {
     /**
      * Output only. A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Output only. Operations contained in this list response.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Options allows customized resource handling by Deployment Manager.
@@ -884,21 +887,21 @@ export namespace deploymentmanager_alpha {
     /**
      * Options regarding how to thread async requests.
      */
-    asyncOptions: Schema$AsyncOptions[];
+    asyncOptions?: Schema$AsyncOptions[];
     /**
      * The mappings that apply for requests.
      */
-    inputMappings: Schema$InputMapping[];
+    inputMappings?: Schema$InputMapping[];
     /**
      * The json path to the field in the resource JSON body into which the
      * resource name should be mapped. Leaving this empty indicates that there
      * should be no mapping performed.
      */
-    nameProperty: string;
+    nameProperty?: string;
     /**
      * Options for how to validate and process properties on a resource.
      */
-    validationOptions: Schema$ValidationOptions;
+    validationOptions?: Schema$ValidationOptions;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -920,12 +923,12 @@ export namespace deploymentmanager_alpha {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -937,8 +940,8 @@ export namespace deploymentmanager_alpha {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
-    iamOwned: boolean;
+    etag?: string;
+    iamOwned?: boolean;
     /**
      * If more than one rule is specified, the rules are applied in the
      * following manner: - All matching LOG rules are always applied. - If any
@@ -948,103 +951,103 @@ export namespace deploymentmanager_alpha {
      * will be applied if one or more matching rule requires logging. -
      * Otherwise, if no rule applies, permission is denied.
      */
-    rules: Schema$Rule[];
+    rules?: Schema$Rule[];
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   export interface Schema$PollingOptions {
     /**
      * An array of diagnostics to be collected by Deployment Manager, these
      * diagnostics will be displayed to the user.
      */
-    diagnostics: Schema$Diagnostic[];
+    diagnostics?: Schema$Diagnostic[];
     /**
      * JsonPath expression that determines if the request failed.
      */
-    failCondition: string;
+    failCondition?: string;
     /**
      * JsonPath expression that determines if the request is completed.
      */
-    finishCondition: string;
+    finishCondition?: string;
     /**
      * JsonPath expression that evaluates to string, it indicates where to poll.
      */
-    pollingLink: string;
+    pollingLink?: string;
     /**
      * JsonPath expression, after polling is completed, indicates where to fetch
      * the resource.
      */
-    targetLink: string;
+    targetLink?: string;
   }
   export interface Schema$Resource {
     /**
      * The Access Control Policy set on this resource.
      */
-    accessControl: Schema$ResourceAccessControl;
+    accessControl?: Schema$ResourceAccessControl;
     /**
      * Output only. The evaluated properties of the resource with references
      * expanded. Returned as serialized YAML.
      */
-    finalProperties: string;
+    finalProperties?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Timestamp when the resource was created or acquired, in
      * RFC3339 text format .
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Output only. The last used credential that successfully created/updated
      * the resource.
      */
-    lastUsedCredential: Schema$Credential;
+    lastUsedCredential?: Schema$Credential;
     /**
      * Output only. URL of the manifest representing the current configuration
      * of this resource.
      */
-    manifest: string;
+    manifest?: string;
     /**
      * Output only. The name of the resource as it appears in the YAML config.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The current properties of the resource before any references
      * have been filled in. Returned as serialized YAML.
      */
-    properties: string;
+    properties?: string;
     /**
      * Output only. In case this is an action, it will show the runtimePolicies
      * on which this action will run in the deployment
      */
-    runtimePolicies: string[];
+    runtimePolicies?: string[];
     /**
      * Output only. The type of the resource, for example compute.v1.instance,
      * or cloudfunctions.v1beta1.function.
      */
-    type: string;
+    type?: string;
     /**
      * Output only. If Deployment Manager is currently updating or previewing an
      * update to this resource, the updated configuration appears here.
      */
-    update: Schema$ResourceUpdate;
+    update?: Schema$ResourceUpdate;
     /**
      * Output only. Timestamp when the resource was updated, in RFC3339 text
      * format .
      */
-    updateTime: string;
+    updateTime?: string;
     /**
      * Output only. The URL of the actual resource.
      */
-    url: string;
+    url?: string;
     /**
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings: any[];
+    warnings?: any[];
   }
   /**
    * The access controls set on the resource.
@@ -1053,7 +1056,7 @@ export namespace deploymentmanager_alpha {
     /**
      * The GCP IAM Policy to set on the resource.
      */
-    gcpIamPolicy: string;
+    gcpIamPolicy?: string;
   }
   /**
    * A response containing a partial list of resources and a page token used to
@@ -1063,61 +1066,61 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Resources contained in this list response.
      */
-    resources: Schema$Resource[];
+    resources?: Schema$Resource[];
   }
   export interface Schema$ResourceUpdate {
     /**
      * The Access Control Policy to set on this resource after updating the
      * resource itself.
      */
-    accessControl: Schema$ResourceAccessControl;
+    accessControl?: Schema$ResourceAccessControl;
     /**
      * Output only. The credential that will be used creating/updating this
      * resource.
      */
-    credential: Schema$Credential;
+    credential?: Schema$Credential;
     /**
      * Output only. If errors are generated during update of the resource, this
      * field will be populated.
      */
-    error: any;
+    error?: any;
     /**
      * Output only. The expanded properties of the resource with reference
      * values expanded. Returned as serialized YAML.
      */
-    finalProperties: string;
+    finalProperties?: string;
     /**
      * Output only. The intent of the resource: PREVIEW, UPDATE, or CANCEL.
      */
-    intent: string;
+    intent?: string;
     /**
      * Output only. URL of the manifest representing the update configuration of
      * this resource.
      */
-    manifest: string;
+    manifest?: string;
     /**
      * Output only. The set of updated properties for this resource, before
      * references are expanded. Returned as serialized YAML.
      */
-    properties: string;
+    properties?: string;
     /**
      * Output only. In case this is an action, it will show the runtimePolicies
      * that this action will have after updating the deployment.
      */
-    runtimePolicies: string[];
+    runtimePolicies?: string[];
     /**
      * Output only. The state of the resource.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. If warning messages are generated during processing of this
      * resource, this field will be populated.
      */
-    warnings: any[];
+    warnings?: any[];
   }
   /**
    * A rule to be applied in a Policy.
@@ -1126,38 +1129,38 @@ export namespace deploymentmanager_alpha {
     /**
      * Required
      */
-    action: string;
+    action?: string;
     /**
      * Additional restrictions that must be met. All conditions must pass for
      * the rule to match.
      */
-    conditions: Schema$Condition[];
+    conditions?: Schema$Condition[];
     /**
      * Human-readable description of the rule.
      */
-    description: string;
+    description?: string;
     /**
      * If one or more &#39;in&#39; clauses are specified, the rule matches if
      * the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
-    ins: string[];
+    ins?: string[];
     /**
      * The config returned to callers of tech.iam.IAM.CheckPolicy for any
      * entries that match the LOG action.
      */
-    logConfigs: Schema$LogConfig[];
+    logConfigs?: Schema$LogConfig[];
     /**
      * If one or more &#39;not_in&#39; clauses are specified, the rule matches
      * if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      */
-    notIns: string[];
+    notIns?: string[];
     /**
      * A permission is a string of form &#39;..&#39; (e.g.,
      * &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all
      * permissions, and a verb part of &#39;*&#39; (e.g.,
      * &#39;storage.buckets.*&#39;) matches all verbs.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Service Account used as a credential.
@@ -1167,19 +1170,19 @@ export namespace deploymentmanager_alpha {
      * The IAM service account email address like
      * test@myproject.iam.gserviceaccount.com
      */
-    email: string;
+    email?: string;
   }
   export interface Schema$TargetConfiguration {
     /**
      * The configuration to use for this deployment.
      */
-    config: Schema$ConfigFile;
+    config?: Schema$ConfigFile;
     /**
      * Specifies any files to import for this configuration. This can be used to
      * import templates or other files. For example, you might import a text
      * file in order to use the file in a template.
      */
-    imports: Schema$ImportFile[];
+    imports?: Schema$ImportFile[];
   }
   /**
    * Files that make up the template contents of a template type.
@@ -1188,23 +1191,23 @@ export namespace deploymentmanager_alpha {
     /**
      * Import files referenced by the main template.
      */
-    imports: Schema$ImportFile[];
+    imports?: Schema$ImportFile[];
     /**
      * Which interpreter (python or jinja) should be used during expansion.
      */
-    interpreter: string;
+    interpreter?: string;
     /**
      * The filename of the mainTemplate
      */
-    mainTemplate: string;
+    mainTemplate?: string;
     /**
      * The contents of the template schema.
      */
-    schema: string;
+    schema?: string;
     /**
      * The contents of the main template file.
      */
-    template: string;
+    template?: string;
   }
   export interface Schema$TestPermissionsRequest {
     /**
@@ -1212,14 +1215,14 @@ export namespace deploymentmanager_alpha {
      * with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   export interface Schema$TestPermissionsResponse {
     /**
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * A resource type supported by Deployment Manager.
@@ -1228,20 +1231,20 @@ export namespace deploymentmanager_alpha {
     /**
      * Base Type (configurable service) that backs this Type.
      */
-    configurableService: Schema$ConfigurableService;
+    configurableService?: Schema$ConfigurableService;
     /**
      * An optional textual description of the resource; provided by the client
      * when the resource is created.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Timestamp when the type was created, in RFC3339 text format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Map of labels; provided by the client when the resource is created or
      * updated. Specifically: Label keys must be between 1 and 63 characters
@@ -1250,20 +1253,20 @@ export namespace deploymentmanager_alpha {
      * characters long and must conform to the regular expression
      * ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
-    labels: Schema$TypeLabelEntry[];
+    labels?: Schema$TypeLabelEntry[];
     /**
      * Name of the type.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The Operation that most recently ran, or is currently
      * running, on this type.
      */
-    operation: Schema$Operation;
+    operation?: Schema$Operation;
     /**
      * Output only. Self link for the type.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * Contains detailed information about a composite type, base type, or base
@@ -1273,51 +1276,51 @@ export namespace deploymentmanager_alpha {
     /**
      * The description of the type.
      */
-    description: string;
+    description?: string;
     /**
      * For swagger 2.0 externalDocs field will be used. For swagger 1.2 this
      * field will be empty.
      */
-    documentationLink: string;
+    documentationLink?: string;
     /**
      * Output only. Type of the output. Always deploymentManager#TypeInfo for
      * TypeInfo.
      */
-    kind: string;
+    kind?: string;
     /**
      * The base type or composite type name.
      */
-    name: string;
+    name?: string;
     /**
      * For base types with a collection, we return a schema and documentation
      * link For template types, we return only a schema
      */
-    schema: Schema$TypeInfoSchemaInfo;
+    schema?: Schema$TypeInfoSchemaInfo;
     /**
      * Output only. Server-defined URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The title on the API descriptor URL provided.
      */
-    title: string;
+    title?: string;
   }
   export interface Schema$TypeInfoSchemaInfo {
     /**
      * The properties that this composite type or base type collection accept as
      * input, represented as a json blob, format is: JSON Schema Draft V4
      */
-    input: string;
+    input?: string;
     /**
      * The properties that this composite type or base type collection exposes
      * as output, these properties can be used for references, represented as
      * json blob, format is: JSON Schema Draft V4
      */
-    output: string;
+    output?: string;
   }
   export interface Schema$TypeLabelEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   /**
    * A type provider that describes a service-backed Type.
@@ -1326,29 +1329,29 @@ export namespace deploymentmanager_alpha {
     /**
      * Allows resource handling overrides for specific collections
      */
-    collectionOverrides: Schema$CollectionOverride[];
+    collectionOverrides?: Schema$CollectionOverride[];
     /**
      * Credential used when interacting with this type.
      */
-    credential: Schema$Credential;
+    credential?: Schema$Credential;
     /**
      * An optional textual description of the resource; provided by the client
      * when the resource is created.
      */
-    description: string;
+    description?: string;
     /**
      * Descriptor Url for the this type provider.
      */
-    descriptorUrl: string;
+    descriptorUrl?: string;
     /**
      * Output only. Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Output only. Timestamp when the type provider was created, in RFC3339
      * text format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * Map of labels; provided by the client when the resource is created or
      * updated. Specifically: Label keys must be between 1 and 63 characters
@@ -1357,7 +1360,7 @@ export namespace deploymentmanager_alpha {
      * characters long and must conform to the regular expression
      * ([a-z]([-a-z0-9]*[a-z0-9])?)?
      */
-    labels: Schema$TypeProviderLabelEntry[];
+    labels?: Schema$TypeProviderLabelEntry[];
     /**
      * Name of the resource; provided by the client when the resource is
      * created. The name must be 1-63 characters long, and comply with RFC1035.
@@ -1367,24 +1370,24 @@ export namespace deploymentmanager_alpha {
      * lowercase letter, or digit, except the last character, which cannot be a
      * dash.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The Operation that most recently ran, or is currently
      * running, on this type provider.
      */
-    operation: Schema$Operation;
+    operation?: Schema$Operation;
     /**
      * Options to apply when handling any resources in this service.
      */
-    options: Schema$Options;
+    options?: Schema$Options;
     /**
      * Output only. Self link for the type provider.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   export interface Schema$TypeProviderLabelEntry {
-    key: string;
-    value: string;
+    key?: string;
+    value?: string;
   }
   /**
    * A response that returns all Type Providers supported by Deployment Manager
@@ -1393,22 +1396,22 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Output only. A list of resource type providers supported by Deployment
      * Manager.
      */
-    typeProviders: Schema$TypeProvider[];
+    typeProviders?: Schema$TypeProvider[];
   }
   export interface Schema$TypeProvidersListTypesResponse {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Output only. A list of resource type info.
      */
-    types: Schema$TypeInfo[];
+    types?: Schema$TypeInfo[];
   }
   /**
    * A response that returns all Types supported by Deployment Manager
@@ -1417,11 +1420,11 @@ export namespace deploymentmanager_alpha {
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Output only. A list of resource types supported by Deployment Manager.
      */
-    types: Schema$Type[];
+    types?: Schema$Type[];
   }
   /**
    * Options for how to validate and process properties on a resource.
@@ -1431,12 +1434,13 @@ export namespace deploymentmanager_alpha {
      * Customize how deployment manager will validate the resource against
      * schema errors.
      */
-    schemaValidation: string;
+    schemaValidation?: string;
     /**
      * Specify what to do with extra properties when executing a request.
      */
-    undeclaredProperties: string;
+    undeclaredProperties?: string;
   }
+
 
   export class Resource$Compositetypes {
     root: Deploymentmanager;
@@ -1463,26 +1467,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Compositetypes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Compositetypes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Compositetypes$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Compositetypes$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1520,24 +1537,35 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Compositetypes$Get,
         options?: MethodOptions): AxiosPromise<Schema$CompositeType>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CompositeType>,
-        callback?: BodyResponseCallback<Schema$CompositeType>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CompositeType>,
+    get(params: Params$Resource$Compositetypes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CompositeType>,
+        callback: BodyResponseCallback<Schema$CompositeType>): void;
+    get(params: Params$Resource$Compositetypes$Get,
+        callback: BodyResponseCallback<Schema$CompositeType>): void;
+    get(callback: BodyResponseCallback<Schema$CompositeType>): void;
+    get(paramsOrCallback?: Params$Resource$Compositetypes$Get|
+        BodyResponseCallback<Schema$CompositeType>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CompositeType>,
         callback?: BodyResponseCallback<Schema$CompositeType>):
         void|AxiosPromise<Schema$CompositeType> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1575,26 +1603,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Compositetypes$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Compositetypes$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Compositetypes$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Compositetypes$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1635,29 +1676,42 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Compositetypes$List, options?: MethodOptions):
         AxiosPromise<Schema$CompositeTypesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Compositetypes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CompositeTypesListResponse>,
-        callback?: BodyResponseCallback<Schema$CompositeTypesListResponse>):
+        callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Compositetypes$List,
+        callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$CompositeTypesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Compositetypes$List|
+        BodyResponseCallback<Schema$CompositeTypesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CompositeTypesListResponse>,
         callback?: BodyResponseCallback<Schema$CompositeTypesListResponse>):
         void|AxiosPromise<Schema$CompositeTypesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1697,26 +1751,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Compositetypes$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Compositetypes$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Compositetypes$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Compositetypes$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1755,26 +1822,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Compositetypes$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Compositetypes$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        params: Params$Resource$Compositetypes$Update,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Compositetypes$Update|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Compositetypes$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Compositetypes$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1798,6 +1878,145 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Compositetypes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the type for this request.
+     */
+    compositeType?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Compositetypes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the composite type for this request.
+     */
+    compositeType?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Compositetypes$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CompositeType;
+  }
+  export interface Params$Resource$Compositetypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Compositetypes$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the composite type for this request.
+     */
+    compositeType?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CompositeType;
+  }
+  export interface Params$Resource$Compositetypes$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the composite type for this request.
+     */
+    compositeType?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CompositeType;
+  }
+
 
   export class Resource$Deployments {
     root: Deploymentmanager;
@@ -1826,26 +2045,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancelPreview(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     cancelPreview(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Deployments$Cancelpreview,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     cancelPreview(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Cancelpreview,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    cancelPreview(
+        params: Params$Resource$Deployments$Cancelpreview,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    cancelPreview(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancelPreview(
+        paramsOrCallback?: Params$Resource$Deployments$Cancelpreview|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Cancelpreview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Cancelpreview;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1884,26 +2116,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Deployments$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Deployments$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Deployments$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1941,23 +2186,34 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Deployment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
-        callback?: BodyResponseCallback<Schema$Deployment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+    get(params?: Params$Resource$Deployments$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Deployment>;
+    get(params: Params$Resource$Deployments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Deployment>,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(params: Params$Resource$Deployments$Get,
+        callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(callback: BodyResponseCallback<Schema$Deployment>): void;
+    get(paramsOrCallback?: Params$Resource$Deployments$Get|
+        BodyResponseCallback<Schema$Deployment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Deployment>,
         callback?: BodyResponseCallback<Schema$Deployment>):
         void|AxiosPromise<Schema$Deployment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1996,26 +2252,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Deployments$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Deployments$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Deployments$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Deployments$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2056,26 +2324,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Deployments$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Deployments$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Deployments$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2116,28 +2397,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Deployments$List, options?: MethodOptions):
         AxiosPromise<Schema$DeploymentsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Deployments$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$DeploymentsListResponse>,
-        callback?: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Deployments$List,
+        callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$DeploymentsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Deployments$List|
+        BodyResponseCallback<Schema$DeploymentsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$DeploymentsListResponse>,
         callback?: BodyResponseCallback<Schema$DeploymentsListResponse>):
         void|AxiosPromise<Schema$DeploymentsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2180,26 +2471,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Deployments$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Deployments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Deployments$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2239,26 +2542,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Deployments$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Deployments$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Deployments$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Deployments$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2298,25 +2613,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    stop(params?: Params$Resource$Deployments$Stop, options?: MethodOptions):
+        AxiosPromise<Schema$Operation>;
     stop(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Deployments$Stop,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     stop(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Stop,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Deployments$Stop|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Deployments$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2355,28 +2682,41 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TestPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Deployments$Testiampermissions,
+        options?: MethodOptions): AxiosPromise<Schema$TestPermissionsResponse>;
+    testIamPermissions(
+        params: Params$Resource$Deployments$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Deployments$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestPermissionsResponse>): void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Deployments$Testiampermissions|
+        BodyResponseCallback<Schema$TestPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestPermissionsResponse>):
         void|AxiosPromise<Schema$TestPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Deployments$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2419,26 +2759,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Deployments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Deployments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        params: Params$Resource$Deployments$Update,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Deployments$Update|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Deployments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Deployments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2462,6 +2815,296 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Deployments$Cancelpreview {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DeploymentsCancelPreviewRequest;
+  }
+  export interface Params$Resource$Deployments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Sets the policy to use for deleting resources.
+     */
+    deletePolicy?: string;
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Deployments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Deployments$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Deployments$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Sets the policy to use for creating new resources.
+     */
+    createPolicy?: string;
+    /**
+     * If set to true, creates a deployment and creates "shell" resources but
+     * does not actually instantiate these resources. This allows you to preview
+     * what your deployment looks like. After previewing a deployment, you can
+     * deploy your resources by making a request with the update() method or you
+     * can use the cancelPreview() method to cancel the preview altogether. Note
+     * that the deployment will still exist after you cancel the preview and you
+     * must separately delete this deployment if you want to remove it.
+     */
+    preview?: boolean;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Deployment;
+  }
+  export interface Params$Resource$Deployments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Deployments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Sets the policy to use for creating new resources.
+     */
+    createPolicy?: string;
+    /**
+     * Sets the policy to use for deleting resources.
+     */
+    deletePolicy?: string;
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * If set to true, updates the deployment and creates and updates the
+     * "shell" resources but does not actually alter or instantiate these
+     * resources. This allows you to preview what your deployment will look
+     * like. You can use this intent to preview how an update would affect your
+     * deployment. You must provide a target.config with a configuration if this
+     * is set to true. After previewing a deployment, you can deploy your
+     * resources by making a request with the update() or you can
+     * cancelPreview() to remove the preview altogether. Note that the
+     * deployment will still exist after you cancel the preview and you must
+     * separately delete this deployment if you want to remove it.
+     */
+    preview?: boolean;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Deployment;
+  }
+  export interface Params$Resource$Deployments$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$Policy;
+  }
+  export interface Params$Resource$Deployments$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DeploymentsStopRequest;
+  }
+  export interface Params$Resource$Deployments$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID for this request.
+     */
+    project?: string;
+    /**
+     * Name of the resource for this request.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestPermissionsRequest;
+  }
+  export interface Params$Resource$Deployments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Sets the policy to use for creating new resources.
+     */
+    createPolicy?: string;
+    /**
+     * Sets the policy to use for deleting resources.
+     */
+    deletePolicy?: string;
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * If set to true, updates the deployment and creates and updates the
+     * "shell" resources but does not actually alter or instantiate these
+     * resources. This allows you to preview what your deployment will look
+     * like. You can use this intent to preview how an update would affect your
+     * deployment. You must provide a target.config with a configuration if this
+     * is set to true. After previewing a deployment, you can deploy your
+     * resources by making a request with the update() or you can
+     * cancelPreview() to remove the preview altogether. Note that the
+     * deployment will still exist after you cancel the preview and you must
+     * separately delete this deployment if you want to remove it.
+     */
+    preview?: boolean;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Deployment;
+  }
+
 
   export class Resource$Manifests {
     root: Deploymentmanager;
@@ -2489,23 +3132,33 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Manifest>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
-        callback?: BodyResponseCallback<Schema$Manifest>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
+    get(params?: Params$Resource$Manifests$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Manifest>;
+    get(params: Params$Resource$Manifests$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Manifest>,
+        callback: BodyResponseCallback<Schema$Manifest>): void;
+    get(params: Params$Resource$Manifests$Get,
+        callback: BodyResponseCallback<Schema$Manifest>): void;
+    get(callback: BodyResponseCallback<Schema$Manifest>): void;
+    get(paramsOrCallback?: Params$Resource$Manifests$Get|
+        BodyResponseCallback<Schema$Manifest>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Manifest>,
         callback?: BodyResponseCallback<Schema$Manifest>):
         void|AxiosPromise<Schema$Manifest> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Manifests$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Manifests$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2547,28 +3200,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Manifests$List, options?: MethodOptions):
         AxiosPromise<Schema$ManifestsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Manifests$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ManifestsListResponse>,
-        callback?: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Manifests$List,
+        callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ManifestsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Manifests$List|
+        BodyResponseCallback<Schema$ManifestsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ManifestsListResponse>,
         callback?: BodyResponseCallback<Schema$ManifestsListResponse>):
         void|AxiosPromise<Schema$ManifestsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Manifests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Manifests$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2592,6 +3255,85 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Manifests$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The name of the manifest for this request.
+     */
+    manifest?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Manifests$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+
 
   export class Resource$Operations {
     root: Deploymentmanager;
@@ -2618,23 +3360,34 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2675,28 +3428,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$OperationsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$OperationsListResponse>,
-        callback?: BodyResponseCallback<Schema$OperationsListResponse>): void;
+        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$OperationsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$OperationsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$OperationsListResponse>,
         callback?: BodyResponseCallback<Schema$OperationsListResponse>):
         void|AxiosPromise<Schema$OperationsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2720,6 +3483,77 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation for this request.
+     */
+    operation?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+
 
   export class Resource$Resources {
     root: Deploymentmanager;
@@ -2747,23 +3581,33 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Resource>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Resource>,
-        callback?: BodyResponseCallback<Schema$Resource>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Resource>,
+    get(params?: Params$Resource$Resources$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Resource>;
+    get(params: Params$Resource$Resources$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Resource>,
+        callback: BodyResponseCallback<Schema$Resource>): void;
+    get(params: Params$Resource$Resources$Get,
+        callback: BodyResponseCallback<Schema$Resource>): void;
+    get(callback: BodyResponseCallback<Schema$Resource>): void;
+    get(paramsOrCallback?: Params$Resource$Resources$Get|
+        BodyResponseCallback<Schema$Resource>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Resource>,
         callback?: BodyResponseCallback<Schema$Resource>):
         void|AxiosPromise<Schema$Resource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Resources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2805,28 +3649,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Resources$List, options?: MethodOptions):
         AxiosPromise<Schema$ResourcesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Resources$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ResourcesListResponse>,
-        callback?: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Resources$List,
+        callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ResourcesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Resources$List|
+        BodyResponseCallback<Schema$ResourcesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ResourcesListResponse>,
         callback?: BodyResponseCallback<Schema$ResourcesListResponse>):
         void|AxiosPromise<Schema$ResourcesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Resources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2850,6 +3704,85 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Resources$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the resource for this request.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Resources$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the deployment for this request.
+     */
+    deployment?: string;
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+
 
   export class Resource$Typeproviders {
     root: Deploymentmanager;
@@ -2876,26 +3809,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Typeproviders$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Typeproviders$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Typeproviders$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Typeproviders$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2933,24 +3879,35 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Typeproviders$Get,
         options?: MethodOptions): AxiosPromise<Schema$TypeProvider>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypeProvider>,
-        callback?: BodyResponseCallback<Schema$TypeProvider>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypeProvider>,
+    get(params: Params$Resource$Typeproviders$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TypeProvider>,
+        callback: BodyResponseCallback<Schema$TypeProvider>): void;
+    get(params: Params$Resource$Typeproviders$Get,
+        callback: BodyResponseCallback<Schema$TypeProvider>): void;
+    get(callback: BodyResponseCallback<Schema$TypeProvider>): void;
+    get(paramsOrCallback?: Params$Resource$Typeproviders$Get|
+        BodyResponseCallback<Schema$TypeProvider>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TypeProvider>,
         callback?: BodyResponseCallback<Schema$TypeProvider>):
         void|AxiosPromise<Schema$TypeProvider> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2989,26 +3946,38 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getType(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TypeInfo>;
     getType(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
-        callback?: BodyResponseCallback<Schema$TypeInfo>): void;
+        params?: Params$Resource$Typeproviders$Gettype,
+        options?: MethodOptions): AxiosPromise<Schema$TypeInfo>;
     getType(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
+        params: Params$Resource$Typeproviders$Gettype,
+        options: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
+        callback: BodyResponseCallback<Schema$TypeInfo>): void;
+    getType(
+        params: Params$Resource$Typeproviders$Gettype,
+        callback: BodyResponseCallback<Schema$TypeInfo>): void;
+    getType(callback: BodyResponseCallback<Schema$TypeInfo>): void;
+    getType(
+        paramsOrCallback?: Params$Resource$Typeproviders$Gettype|
+        BodyResponseCallback<Schema$TypeInfo>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TypeInfo>,
         callback?: BodyResponseCallback<Schema$TypeInfo>):
         void|AxiosPromise<Schema$TypeInfo> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Gettype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Gettype;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3046,26 +4015,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Typeproviders$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Typeproviders$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Typeproviders$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Typeproviders$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3106,29 +4088,40 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Typeproviders$List, options?: MethodOptions):
         AxiosPromise<Schema$TypeProvidersListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Typeproviders$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListResponse>,
-        callback?: BodyResponseCallback<Schema$TypeProvidersListResponse>):
+        callback: BodyResponseCallback<Schema$TypeProvidersListResponse>): void;
+    list(
+        params: Params$Resource$Typeproviders$List,
+        callback: BodyResponseCallback<Schema$TypeProvidersListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$TypeProvidersListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Typeproviders$List|
+        BodyResponseCallback<Schema$TypeProvidersListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListResponse>,
         callback?: BodyResponseCallback<Schema$TypeProvidersListResponse>):
         void|AxiosPromise<Schema$TypeProvidersListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3171,29 +4164,45 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listTypes(params?: any, options?: MethodOptions):
+    listTypes(
+        params?: Params$Resource$Typeproviders$Listtypes,
+        options?: MethodOptions):
         AxiosPromise<Schema$TypeProvidersListTypesResponse>;
     listTypes(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Typeproviders$Listtypes,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
-        callback?: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
+        callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
         void;
     listTypes(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Typeproviders$Listtypes,
+        callback: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
+        void;
+    listTypes(callback:
+                  BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
+        void;
+    listTypes(
+        paramsOrCallback?: Params$Resource$Typeproviders$Listtypes|
+        BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TypeProvidersListTypesResponse>,
         callback?: BodyResponseCallback<Schema$TypeProvidersListTypesResponse>):
         void|AxiosPromise<Schema$TypeProvidersListTypesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Listtypes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Listtypes;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3234,26 +4243,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Typeproviders$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Typeproviders$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Typeproviders$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Typeproviders$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3292,26 +4314,39 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Typeproviders$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Typeproviders$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        params: Params$Resource$Typeproviders$Update,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Typeproviders$Update|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Typeproviders$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Typeproviders$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3335,6 +4370,222 @@ export namespace deploymentmanager_alpha {
       }
     }
   }
+
+  export interface Params$Resource$Typeproviders$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+  }
+  export interface Params$Resource$Typeproviders$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+  }
+  export interface Params$Resource$Typeproviders$Gettype {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    type?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+  }
+  export interface Params$Resource$Typeproviders$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TypeProvider;
+  }
+  export interface Params$Resource$Typeproviders$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Typeproviders$Listtypes {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+  }
+  export interface Params$Resource$Typeproviders$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TypeProvider;
+  }
+  export interface Params$Resource$Typeproviders$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type provider for this request.
+     */
+    typeProvider?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TypeProvider;
+  }
+
 
   export class Resource$Types {
     root: Deploymentmanager;
@@ -3361,26 +4612,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(params?: Params$Resource$Types$Delete, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Types$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Types$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Types$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3418,21 +4680,33 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Type>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Type>,
-        callback?: BodyResponseCallback<Schema$Type>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Type>,
+    get(params?: Params$Resource$Types$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Type>;
+    get(params: Params$Resource$Types$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Type>,
+        callback: BodyResponseCallback<Schema$Type>): void;
+    get(params: Params$Resource$Types$Get,
+        callback: BodyResponseCallback<Schema$Type>): void;
+    get(callback: BodyResponseCallback<Schema$Type>): void;
+    get(paramsOrCallback?: Params$Resource$Types$Get|
+        BodyResponseCallback<Schema$Type>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Type>,
         callback?: BodyResponseCallback<Schema$Type>):
         void|AxiosPromise<Schema$Type> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3470,26 +4744,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Types$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Types$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Types$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Types$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3529,26 +4814,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Types$List, options?: MethodOptions):
         AxiosPromise<Schema$TypesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
-        callback?: BodyResponseCallback<Schema$TypesListResponse>): void;
+        params: Params$Resource$Types$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
+        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TypesListResponse>,
+        params: Params$Resource$Types$List,
+        callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$TypesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Types$List|
+        BodyResponseCallback<Schema$TypesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TypesListResponse>,
         callback?: BodyResponseCallback<Schema$TypesListResponse>):
         void|AxiosPromise<Schema$TypesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3586,26 +4882,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Types$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Types$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Types$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Types$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3644,26 +4951,37 @@ export namespace deploymentmanager_alpha {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Types$Update, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Types$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Types$Update,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    update(callback: BodyResponseCallback<Schema$Operation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Types$Update|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Types$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Types$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3686,5 +5004,143 @@ export namespace deploymentmanager_alpha {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Types$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type for this request.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Types$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type for this request.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Types$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Type;
+  }
+  export interface Params$Resource$Types$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A filter expression that filters resources listed in the response. The
+     * expression must specify the field name, a comparison operator, and the
+     * value that you want to use for filtering. The value must be a string, a
+     * number, or a boolean. The comparison operator must be either =, !=, >, or
+     * <.  For example, if you are filtering Compute Engine instances, you can
+     * exclude instances named example-instance by specifying name !=
+     * example-instance.  You can also filter nested fields. For example, you
+     * could specify scheduling.automaticRestart = false to include instances
+     * only if they are not scheduled for automatic restarts. You can use
+     * filtering on nested fields to filter based on resource labels.  To filter
+     * on multiple expressions, provide each separate expression within
+     * parentheses. For example, (scheduling.automaticRestart = true)
+     * (cpuPlatform = "Intel Skylake"). By default, each expression is an AND
+     * expression. However, you can include AND and OR expressions explicitly.
+     * For example, (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel
+     * Broadwell") AND (scheduling.automaticRestart = true).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results per page that should be returned. If the
+     * number of available results is larger than maxResults, Compute Engine
+     * returns a nextPageToken that can be used to get the next page of results
+     * in subsequent list requests. Acceptable values are 0 to 500, inclusive.
+     * (Default: 500)
+     */
+    maxResults?: number;
+    /**
+     * Sorts list results by a certain order. By default, results are returned
+     * in alphanumerical order based on the resource name.  You can also sort
+     * results in descending order based on the creation timestamp using
+     * orderBy="creationTimestamp desc". This sorts results based on the
+     * creationTimestamp field in reverse chronological order (newest result
+     * first). Use this to sort resources like operations so that the newest
+     * operation is returned first.  Currently, only sorting by name or
+     * creationTimestamp desc is supported.
+     */
+    orderBy?: string;
+    /**
+     * Specifies a page token to use. Set pageToken to the nextPageToken
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Types$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type for this request.
+     */
+    type?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Type;
+  }
+  export interface Params$Resource$Types$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID for this request.
+     */
+    project?: string;
+    /**
+     * The name of the type for this request.
+     */
+    type?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Type;
   }
 }

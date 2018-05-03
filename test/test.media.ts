@@ -16,7 +16,7 @@ import * as fs from 'fs';
 import * as nock from 'nock';
 import * as path from 'path';
 import * as pify from 'pify';
-import {GoogleApis} from '../src';
+import {GoogleApis, youtube_v3} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
 import {Utils} from './utils';

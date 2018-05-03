@@ -16,7 +16,7 @@ import {BodyResponseCallback} from 'google-auth-library/build/src/transporters';
 import {GoogleApis} from '../index';
 import {buildurl} from '../scripts/generator_utils';
 
-import {APIRequestContext, APIRequestMethodParams, APIRequestParams, GlobalOptions} from './api';
+import {APIRequestContext, APIRequestParams, GlobalOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Discovery} from './discovery';
 import {Schema, SchemaMethod, SchemaParameters, SchemaResource} from './schema';
@@ -92,8 +92,12 @@ export class Endpoint implements Target, APIRequestContext {
    */
   private makeMethod(
       schema: Schema, method: SchemaMethod, context: APIRequestContext) {
-    return (params: APIRequestMethodParams,
-            callback: BodyResponseCallback<{}>) => {
+    return (paramsOrCallback: {}|BodyResponseCallback<{}>,
+            callback?: BodyResponseCallback<{}>) => {
+      const params =
+          typeof paramsOrCallback === 'function' ? {} : paramsOrCallback;
+      callback =
+          typeof paramsOrCallback === 'function' ? paramsOrCallback : callback;
       const schemaUrl =
           buildurl(schema.rootUrl + schema.servicePath + method.path);
 
@@ -116,7 +120,11 @@ export class Endpoint implements Target, APIRequestContext {
         parameters.mediaUrl = mediaUrl.substring(1, mediaUrl.length - 1);
       }
 
-      return createAPIRequest(parameters, callback);
+      if (!callback) {
+        return createAPIRequest(parameters);
+      }
+      createAPIRequest(parameters, callback);
+      return;
     };
   }
 

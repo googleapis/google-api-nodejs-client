@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dataproc_v1beta2 {
+  export interface Options extends GlobalOptions { version: 'v1beta2'; }
+
   /**
    * Cloud Dataproc API
    *
@@ -74,7 +77,7 @@ export namespace dataproc_v1beta2 {
      * The number of the accelerator cards of this type exposed to this
      * instance.
      */
-    acceleratorCount: number;
+    acceleratorCount?: number;
     /**
      * Full URL, partial URI, or short name of the accelerator type resource to
      * expose to this instance. See Compute Engine AcceleratorTypes(
@@ -86,7 +89,7 @@ export namespace dataproc_v1beta2 {
      * Dataproc Auto Zone Placement feature, you must use the short name of the
      * accelerator type resource, for example, nvidia-tesla-k80.
      */
-    acceleratorTypeUri: string;
+    acceleratorTypeUri?: string;
   }
   /**
    * Associates members with a role.
@@ -99,20 +102,19 @@ export namespace dataproc_v1beta2 {
      * account. allAuthenticatedUsers: A special identifier that represents
      * anyone  who is authenticated with a Google account or a service account.
      * user:{emailid}: An email address that represents a specific Google
-     * account. For example, alice@gmail.com or joe@example.com.
-     * serviceAccount:{emailid}: An email address that represents a service
-     * account. For example, my-other-app@appspot.gserviceaccount.com.
-     * group:{emailid}: An email address that represents a Google group.  For
-     * example, admins@example.com. domain:{domain}: A Google Apps domain name
-     * that represents all the  users of that domain. For example, google.com or
-     * example.com.
+     * account. For example, alice@gmail.com . serviceAccount:{emailid}: An
+     * email address that represents a service  account. For example,
+     * my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email
+     * address that represents a Google group.  For example, admins@example.com.
+     * domain:{domain}: A Google Apps domain name that represents all the  users
+     * of that domain. For example, google.com or example.com.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to members. For example, roles/viewer,
      * roles/editor, or roles/owner. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A request to cancel a job.
@@ -127,17 +129,17 @@ export namespace dataproc_v1beta2 {
      * Required. The cluster name. Cluster names within a project must be
      * unique. Names of deleted clusters can be reused.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
     /**
      * Required. The cluster config. Note that Cloud Dataproc may set default
      * values, and values may change when clusters are updated.
      */
-    config: Schema$ClusterConfig;
+    config?: Schema$ClusterConfig;
     /**
      * Optional. The labels to associate with this cluster. Label keys must
      * contain 1 to 63 characters, and must conform to RFC 1035
@@ -146,26 +148,26 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      */
-    labels: any;
+    labels?: any;
     /**
      * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
      * This report is available for testing purposes only. It may be changed
      * before final release.
      */
-    metrics: Schema$ClusterMetrics;
+    metrics?: Schema$ClusterMetrics;
     /**
      * Required. The Google Cloud Platform project ID that the cluster belongs
      * to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Output only. Cluster status.
      */
-    status: Schema$ClusterStatus;
+    status?: Schema$ClusterStatus;
     /**
      * Output only. The previous cluster status.
      */
-    statusHistory: Schema$ClusterStatus[];
+    statusHistory?: Schema$ClusterStatus[];
   }
   /**
    * The cluster config.
@@ -179,12 +181,12 @@ export namespace dataproc_v1beta2 {
      * Engine zone where your cluster is deployed, and then it will create and
      * manage this project-level, per-location bucket for you.
      */
-    configBucket: string;
+    configBucket?: string;
     /**
      * Required. The shared Compute Engine config settings for all instances in
      * a cluster.
      */
-    gceClusterConfig: Schema$GceClusterConfig;
+    gceClusterConfig?: Schema$GceClusterConfig;
     /**
      * Optional. Commands to execute on each node after config is completed. By
      * default, executables are run on master and all worker nodes. You can test
@@ -195,30 +197,30 @@ export namespace dataproc_v1beta2 {
      * if [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master
      * specific actions ... else   ... worker specific actions ... fi
      */
-    initializationActions: Schema$NodeInitializationAction[];
+    initializationActions?: Schema$NodeInitializationAction[];
     /**
      * Optional. The config setting for auto delete cluster schedule.
      */
-    lifecycleConfig: Schema$LifecycleConfig;
+    lifecycleConfig?: Schema$LifecycleConfig;
     /**
      * Optional. The Compute Engine config settings for the master instance in a
      * cluster.
      */
-    masterConfig: Schema$InstanceGroupConfig;
+    masterConfig?: Schema$InstanceGroupConfig;
     /**
      * Optional. The Compute Engine config settings for additional worker
      * instances in a cluster.
      */
-    secondaryWorkerConfig: Schema$InstanceGroupConfig;
+    secondaryWorkerConfig?: Schema$InstanceGroupConfig;
     /**
      * Optional. The config settings for software inside the cluster.
      */
-    softwareConfig: Schema$SoftwareConfig;
+    softwareConfig?: Schema$SoftwareConfig;
     /**
      * Optional. The Compute Engine config settings for worker instances in a
      * cluster.
      */
-    workerConfig: Schema$InstanceGroupConfig;
+    workerConfig?: Schema$InstanceGroupConfig;
   }
   /**
    * Contains cluster daemon metrics, such as HDFS and YARN stats.Beta Feature:
@@ -229,11 +231,11 @@ export namespace dataproc_v1beta2 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics: any;
+    hdfsMetrics?: any;
     /**
      * The YARN metrics.
      */
-    yarnMetrics: any;
+    yarnMetrics?: any;
   }
   /**
    * The cluster operation triggered by a workflow.
@@ -242,15 +244,15 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Indicates the operation is done.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * Output only. Error, if operation failed.
      */
-    error: string;
+    error?: string;
     /**
      * Output only. The id of the cluster operation.
      */
-    operationId: string;
+    operationId?: string;
   }
   /**
    * Metadata describing the operation.
@@ -259,35 +261,35 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Name of the cluster for the operation.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. Cluster UUID for the operation.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
     /**
      * Output only. Short description of operation.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. Labels associated with the operation
      */
-    labels: any;
+    labels?: any;
     /**
      * Output only. The operation type.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * Output only. Current operation status.
      */
-    status: Schema$ClusterOperationStatus;
+    status?: Schema$ClusterOperationStatus;
     /**
      * Output only. The previous operation status.
      */
-    statusHistory: Schema$ClusterOperationStatus[];
+    statusHistory?: Schema$ClusterOperationStatus[];
     /**
      * Output only. Errors encountered during operation execution.
      */
-    warnings: string[];
+    warnings?: string[];
   }
   /**
    * The status of the operation.
@@ -296,19 +298,19 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. A message containing any operation metadata details.
      */
-    details: string;
+    details?: string;
     /**
      * Output only. A message containing the detailed operation state.
      */
-    innerState: string;
+    innerState?: string;
     /**
      * Output only. A message containing the operation state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The time this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
   }
   /**
    * A selector that chooses target cluster for jobs based on metadata.
@@ -317,13 +319,13 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The cluster labels. Cluster must have all labels to match.
      */
-    clusterLabels: any;
+    clusterLabels?: any;
     /**
      * Optional. The zone where workflow process executes. This parameter does
      * not affect the selection of the cluster.If unspecified, the zone of the
      * first cluster matching the selector is used.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * The status of a cluster and its instances.
@@ -332,20 +334,20 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Optional details of cluster&#39;s state.
      */
-    detail: string;
+    detail?: string;
     /**
      * Output only. The cluster&#39;s state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. Time when this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
     /**
      * Output only. Additional state information that includes status reported
      * by the agent.
      */
-    substate: string;
+    substate?: string;
   }
   /**
    * A request to collect cluster diagnostic information.
@@ -359,7 +361,7 @@ export namespace dataproc_v1beta2 {
      * Output only. The Cloud Storage URI of the diagnostic output. The output
      * report is a plain text file with a summary of collected diagnostics.
      */
-    outputUri: string;
+    outputUri?: string;
   }
   /**
    * Specifies the config of disk options for a group of VM instances.
@@ -368,13 +370,13 @@ export namespace dataproc_v1beta2 {
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
-    bootDiskSizeGb: number;
+    bootDiskSizeGb?: number;
     /**
      * Optional. Type of the boot disk (default is &quot;pd-standard&quot;).
      * Valid values: &quot;pd-ssd&quot; (Persistent Disk Solid State Drive) or
      * &quot;pd-standard&quot; (Persistent Disk Hard Disk Drive).
      */
-    bootDiskType: string;
+    bootDiskType?: string;
     /**
      * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs
      * are not attached, the boot disk is used to store runtime logs and HDFS
@@ -382,7 +384,7 @@ export namespace dataproc_v1beta2 {
      * or more SSDs are attached, this runtime bulk data is spread across them,
      * and the boot disk contains only basic config and installed binaries.
      */
-    numLocalSsds: number;
+    numLocalSsds?: number;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -405,13 +407,13 @@ export namespace dataproc_v1beta2 {
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      */
-    internalIpOnly: boolean;
+    internalIpOnly?: boolean;
     /**
      * The Compute Engine metadata entries to add to all instances (see Project
      * and instance metadata
      * (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -422,7 +424,7 @@ export namespace dataproc_v1beta2 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default
      * projects/[project_id]/regions/global/default default
      */
-    networkUri: string;
+    networkUri?: string;
     /**
      * Optional. The service account of the instances. Defaults to the default
      * Compute Engine service account. Custom service accounts need permissions
@@ -432,7 +434,7 @@ export namespace dataproc_v1beta2 {
      * for more information). Example:
      * [account_id]@[project_id].iam.gserviceaccount.com
      */
-    serviceAccount: string;
+    serviceAccount?: string;
     /**
      * Optional. The URIs of service account scopes to be included in Compute
      * Engine instances. The following base set of scopes is always included:
@@ -445,7 +447,7 @@ export namespace dataproc_v1beta2 {
      * https://www.googleapis.com/auth/bigtable.data
      * https://www.googleapis.com/auth/devstorage.full_control
      */
-    serviceAccountScopes: string[];
+    serviceAccountScopes?: string[];
     /**
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.A full URL, partial
@@ -453,11 +455,11 @@ export namespace dataproc_v1beta2 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0
      * projects/[project_id]/regions/us-east1/sub0 sub0
      */
-    subnetworkUri: string;
+    subnetworkUri?: string;
     /**
      * The Compute Engine tags to add to all instances (see Tagging instances).
      */
-    tags: string[];
+    tags?: string[];
     /**
      * Optional. The zone where the Compute Engine cluster will be located. On a
      * create request, it is required in the &quot;global&quot; region. If
@@ -468,8 +470,12 @@ export namespace dataproc_v1beta2 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]
      * projects/[project_id]/zones/[zone] us-central1-f
      */
-    zoneUri: string;
+    zoneUri?: string;
   }
+  /**
+   * Request message for GetIamPolicy method.
+   */
+  export interface Schema$GetIamPolicyRequest {}
   /**
    * A Cloud Dataproc job for running Apache Hadoop MapReduce
    * (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html)
@@ -482,47 +488,47 @@ export namespace dataproc_v1beta2 {
      * of Hadoop drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
      * .tgz, or .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as -libjars or -Dfoo=bar, that can be set as job properties, since a
      * collision may occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS (Hadoop Compatible Filesystem) URIs of files to be copied
      * to the working directory of Hadoop drivers and distributed tasks. Useful
      * for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. Jar file URIs to add to the CLASSPATHs of the Hadoop driver and
      * tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * The name of the driver&#39;s main class. The jar file containing the
      * class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass: string;
+    mainClass?: string;
     /**
      * The HCFS URI of the jar file containing the main class. Examples:
      * &#39;gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar&#39;
      * &#39;hdfs:/tmp/test-samples/custom-wordcount.jar&#39;
      * &#39;file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar&#39;
      */
-    mainJarFileUri: string;
+    mainJarFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure
      * Hadoop. Properties that conflict with values set by the Cloud Dataproc
      * API may be overwritten. Can include properties set in
      * /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/)
@@ -534,32 +540,32 @@ export namespace dataproc_v1beta2 {
      * default value is false. Setting to true can be useful when executing
      * independent parallel queries.
      */
-    continueOnFailure: boolean;
+    continueOnFailure?: boolean;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Hive
      * server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes and UDFs.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * Optional. The config settings for Compute Engine resources in an instance
@@ -571,27 +577,27 @@ export namespace dataproc_v1beta2 {
      * instances.Beta Feature: This feature is still under development. It may
      * be changed before final release.
      */
-    accelerators: Schema$AcceleratorConfig[];
+    accelerators?: Schema$AcceleratorConfig[];
     /**
      * Optional. Disk option config settings.
      */
-    diskConfig: Schema$DiskConfig;
+    diskConfig?: Schema$DiskConfig;
     /**
      * Output only. The Compute Engine image resource used for cluster
      * instances. Inferred from SoftwareConfig.image_version.
      */
-    imageUri: string;
+    imageUri?: string;
     /**
      * Optional. The list of instance names. Cloud Dataproc derives the names
      * from cluster_name, num_instances, and the instance group if not set by
      * user (recommended practice is to let Cloud Dataproc derive the name).
      */
-    instanceNames: string[];
+    instanceNames?: string[];
     /**
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      */
-    isPreemptible: boolean;
+    isPreemptible?: boolean;
     /**
      * Optional. The Compute Engine machine type used for cluster instances.A
      * full URL, partial URI, or short name are valid. Examples:
@@ -601,22 +607,22 @@ export namespace dataproc_v1beta2 {
      * Auto Zone Placement feature, you must use the short name of the machine
      * type resource, for example, n1-standard-2.
      */
-    machineTypeUri: string;
+    machineTypeUri?: string;
     /**
      * Output only. The config for Compute Engine Instance Group Manager that
      * manages this group. This is only used for preemptible instance groups.
      */
-    managedGroupConfig: Schema$ManagedGroupConfig;
+    managedGroupConfig?: Schema$ManagedGroupConfig;
     /**
      * Optional. Specifies the minimum cpu platform for the Instance Group. See
      * Cloud Dataproc&amp;rarr;Minimum CPU Platform.
      */
-    minCpuPlatform: string;
+    minCpuPlatform?: string;
     /**
      * Optional. The number of VM instances in the instance group. For master
      * instance groups, must be set to 1.
      */
-    numInstances: number;
+    numInstances?: number;
   }
   /**
    * A request to instantiate a workflow template.
@@ -630,14 +636,14 @@ export namespace dataproc_v1beta2 {
      * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
      * and hyphens (-). The maximum length is 40 characters.
      */
-    instanceId: string;
+    instanceId?: string;
     /**
      * Optional. The version of workflow template to instantiate. If specified,
      * the workflow will be instantiated only if the current version of the
      * workflow template has the supplied version.This option cannot be used to
      * instantiate a previous version of workflow template.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A Cloud Dataproc job resource.
@@ -648,20 +654,20 @@ export namespace dataproc_v1beta2 {
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as driver_output_uri.
      */
-    driverControlFilesUri: string;
+    driverControlFilesUri?: string;
     /**
      * Output only. A URI pointing to the location of the stdout of the
      * job&#39;s driver program.
      */
-    driverOutputResourceUri: string;
+    driverOutputResourceUri?: string;
     /**
      * Job is a Hadoop job.
      */
-    hadoopJob: Schema$HadoopJob;
+    hadoopJob?: Schema$HadoopJob;
     /**
      * Job is a Hive job.
      */
-    hiveJob: Schema$HiveJob;
+    hiveJob?: Schema$HiveJob;
     /**
      * Optional. The labels to associate with this job. Label keys must contain
      * 1 to 63 characters, and must conform to RFC 1035
@@ -670,54 +676,54 @@ export namespace dataproc_v1beta2 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      */
-    labels: any;
+    labels?: any;
     /**
      * Job is a Pig job.
      */
-    pigJob: Schema$PigJob;
+    pigJob?: Schema$PigJob;
     /**
      * Required. Job information, including how, when, and where to run the job.
      */
-    placement: Schema$JobPlacement;
+    placement?: Schema$JobPlacement;
     /**
      * Job is a Pyspark job.
      */
-    pysparkJob: Schema$PySparkJob;
+    pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. The fully qualified reference to the job, which can be used to
      * obtain the equivalent REST path of the job resource. If this property is
      * not specified when a job is created, the server generates a
      * &lt;code&gt;job_id&lt;/code&gt;.
      */
-    reference: Schema$JobReference;
+    reference?: Schema$JobReference;
     /**
      * Optional. Job scheduling configuration.
      */
-    scheduling: Schema$JobScheduling;
+    scheduling?: Schema$JobScheduling;
     /**
      * Job is a Spark job.
      */
-    sparkJob: Schema$SparkJob;
+    sparkJob?: Schema$SparkJob;
     /**
      * Job is a SparkSql job.
      */
-    sparkSqlJob: Schema$SparkSqlJob;
+    sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Output only. The job status. Additional application-specific status
      * information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and
      * &lt;code&gt;yarn_applications&lt;/code&gt; fields.
      */
-    status: Schema$JobStatus;
+    status?: Schema$JobStatus;
     /**
      * Output only. The previous job status.
      */
-    statusHistory: Schema$JobStatus[];
+    statusHistory?: Schema$JobStatus[];
     /**
      * Output only. The collection of YARN applications spun up by this job.Beta
      * Feature: This report is available for testing purposes only. It may be
      * changed before final release.
      */
-    yarnApplications: Schema$YarnApplication[];
+    yarnApplications?: Schema$YarnApplication[];
   }
   /**
    * Cloud Dataproc job config.
@@ -726,12 +732,12 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The name of the cluster where the job will be submitted.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. A cluster UUID generated by the Cloud Dataproc service when
      * the job is submitted.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
   }
   /**
    * Encapsulates the full scoping used to reference a job.
@@ -744,12 +750,12 @@ export namespace dataproc_v1beta2 {
      * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or
      * hyphens (-). The maximum length is 100 characters.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * Job scheduling options.
@@ -761,7 +767,7 @@ export namespace dataproc_v1beta2 {
      * failed.A job may be reported as thrashing if driver exits with non-zero
      * code 4 times within 10 minute window.Maximum value is 10.
      */
-    maxFailuresPerHour: number;
+    maxFailuresPerHour?: number;
   }
   /**
    * Cloud Dataproc job status.
@@ -771,20 +777,20 @@ export namespace dataproc_v1beta2 {
      * Output only. Optional job state details, such as an error description if
      * the state is &lt;code&gt;ERROR&lt;/code&gt;.
      */
-    details: string;
+    details?: string;
     /**
      * Output only. A state message specifying the overall job state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The time when this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
     /**
      * Output only. Additional state information, which includes status reported
      * by the agent.
      */
-    substate: string;
+    substate?: string;
   }
   /**
    * Specifies the cluster auto delete related schedule configuration.
@@ -793,18 +799,18 @@ export namespace dataproc_v1beta2 {
     /**
      * Optional. The time when cluster will be auto-deleted.
      */
-    autoDeleteTime: string;
+    autoDeleteTime?: string;
     /**
      * Optional. The life duration of cluster, the cluster will be auto-deleted
      * at the end of this duration.
      */
-    autoDeleteTtl: string;
+    autoDeleteTtl?: string;
     /**
      * Optional. The longest duration that cluster would keep alive while
      * staying  idle; passing this threshold will cause cluster to be
      * auto-deleted.
      */
-    idleDeleteTtl: string;
+    idleDeleteTtl?: string;
   }
   /**
    * The list of all clusters in a project.
@@ -813,13 +819,13 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The clusters in the project.
      */
-    clusters: Schema$Cluster[];
+    clusters?: Schema$Cluster[];
     /**
      * Output only. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent &lt;code&gt;ListClustersRequest&lt;/code&gt;.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A list of jobs in a project.
@@ -828,13 +834,13 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. Jobs list.
      */
-    jobs: Schema$Job[];
+    jobs?: Schema$Job[];
     /**
      * Optional. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent &lt;code&gt;ListJobsRequest&lt;/code&gt;.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -843,11 +849,11 @@ export namespace dataproc_v1beta2 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * A response to a request to list workflow templates in a project.
@@ -859,11 +865,11 @@ export namespace dataproc_v1beta2 {
      * page_token in a subsequent
      * &lt;code&gt;ListWorkflowTemplatesRequest&lt;/code&gt;.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Output only. WorkflowTemplates list.
      */
-    templates: Schema$WorkflowTemplate[];
+    templates?: Schema$WorkflowTemplate[];
   }
   /**
    * The runtime logging config of the job.
@@ -875,7 +881,7 @@ export namespace dataproc_v1beta2 {
      * &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache =
      * DEBUG&#39;
      */
-    driverLogLevels: any;
+    driverLogLevels?: any;
   }
   /**
    * Cluster that is managed by the workflow.
@@ -888,11 +894,11 @@ export namespace dataproc_v1beta2 {
      * Cannot begin or end with hyphen. Must consist of between 2 and 35
      * characters.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Required. The cluster configuration.
      */
-    config: Schema$ClusterConfig;
+    config?: Schema$ClusterConfig;
     /**
      * Optional. The labels to associate with this cluster.Label keys must be
      * between 1 and 63 characters long, and must conform to the following PCRE
@@ -901,7 +907,7 @@ export namespace dataproc_v1beta2 {
      * expression: \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be
      * associated with a given cluster.
      */
-    labels: any;
+    labels?: any;
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -910,12 +916,12 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The name of the Instance Group Manager for this group.
      */
-    instanceGroupManagerName: string;
+    instanceGroupManagerName?: string;
     /**
      * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      */
-    instanceTemplateName: string;
+    instanceTemplateName?: string;
   }
   /**
    * Specifies an executable to run on a fully configured node and a timeout
@@ -925,14 +931,14 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. Cloud Storage URI of executable file.
      */
-    executableFile: string;
+    executableFile?: string;
     /**
      * Optional. Amount of time executable has to complete. Default is 10
      * minutes. Cluster creation fails with an explanatory error message (the
      * name of the executable that caused the error and the exceeded timeout
      * period) if the executable is not completed at end of the timeout period.
      */
-    executionTimeout: string;
+    executionTimeout?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -944,24 +950,24 @@ export namespace dataproc_v1beta2 {
      * true, the operation is completed, and either error or response is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation. It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
      * should have the format of operations/some/unique/name.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success. If the original
      * method returns no data on success, such as Delete, the response is
@@ -971,7 +977,7 @@ export namespace dataproc_v1beta2 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A job executed by the workflow.
@@ -980,11 +986,11 @@ export namespace dataproc_v1beta2 {
     /**
      * Job is a Hadoop job.
      */
-    hadoopJob: Schema$HadoopJob;
+    hadoopJob?: Schema$HadoopJob;
     /**
      * Job is a Hive job.
      */
-    hiveJob: Schema$HiveJob;
+    hiveJob?: Schema$HiveJob;
     /**
      * Optional. The labels to associate with this job.Label keys must be
      * between 1 and 63 characters long, and must conform to the following
@@ -993,32 +999,32 @@ export namespace dataproc_v1beta2 {
      * \p{Ll}\p{Lo}\p{N}_-{0,63}No more than 32 labels can be associated with a
      * given job.
      */
-    labels: any;
+    labels?: any;
     /**
      * Job is a Pig job.
      */
-    pigJob: Schema$PigJob;
+    pigJob?: Schema$PigJob;
     /**
      * Optional. The optional list of prerequisite job step_ids. If not
      * specified, the job will start at the beginning of workflow.
      */
-    prerequisiteStepIds: string[];
+    prerequisiteStepIds?: string[];
     /**
      * Job is a Pyspark job.
      */
-    pysparkJob: Schema$PySparkJob;
+    pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. Job scheduling configuration.
      */
-    scheduling: Schema$JobScheduling;
+    scheduling?: Schema$JobScheduling;
     /**
      * Job is a Spark job.
      */
-    sparkJob: Schema$SparkJob;
+    sparkJob?: Schema$SparkJob;
     /**
      * Job is a SparkSql job.
      */
-    sparkSqlJob: Schema$SparkSqlJob;
+    sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Required. The step id. The id must be unique among all jobs within the
      * template.The step id is used as prefix for job id, as job
@@ -1027,7 +1033,7 @@ export namespace dataproc_v1beta2 {
      * (0-9), underscores (_), and hyphens (-). Cannot begin or end with
      * underscore or hyphen. Must consist of between 3 and 50 characters.
      */
-    stepId: string;
+    stepId?: string;
   }
   /**
    * A Cloud Dataproc job for running Apache Pig (https://pig.apache.org/)
@@ -1039,36 +1045,36 @@ export namespace dataproc_v1beta2 {
      * default value is false. Setting to true can be useful when executing
      * independent parallel queries.
      */
-    continueOnFailure: boolean;
+    continueOnFailure?: boolean;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Pig
      * Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Pig command: name=[value]).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -1095,7 +1101,7 @@ export namespace dataproc_v1beta2 {
      * Associates a list of members to a role. bindings with no members will
      * result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * etag is used for optimistic concurrency control as a way to help prevent
      * simultaneous updates of a policy from overwriting each other. It is
@@ -1107,11 +1113,11 @@ export namespace dataproc_v1beta2 {
      * policy.If no etag is provided in the call to setIamPolicy, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A Cloud Dataproc job for running Apache PySpark
@@ -1123,44 +1129,44 @@ export namespace dataproc_v1beta2 {
      * Optional. HCFS URIs of archives to be extracted in the working directory
      * of .jar, .tar, .tar.gz, .tgz, and .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as --conf, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Python drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Python
      * driver and tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      */
-    mainPythonFileUri: string;
+    mainPythonFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure
      * PySpark. Properties that conflict with values set by the Cloud Dataproc
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
      */
-    pythonFileUris: string[];
+    pythonFileUris?: string[];
   }
   /**
    * A list of queries to run on a cluster.
@@ -1175,7 +1181,7 @@ export namespace dataproc_v1beta2 {
      * &quot;query1&quot;,       &quot;query2&quot;, &quot;query3;query4&quot;,
      * ]   } }
      */
-    queries: string[];
+    queries?: string[];
   }
   /**
    * Request message for SetIamPolicy method.
@@ -1187,7 +1193,7 @@ export namespace dataproc_v1beta2 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * Specifies the selection and config of software inside the cluster.
@@ -1200,7 +1206,7 @@ export namespace dataproc_v1beta2 {
      * &quot;preview&quot; version. If unspecified, it defaults to the latest
      * version.
      */
-    imageVersion: string;
+    imageVersion?: string;
     /**
      * Optional. The properties to set on daemon config files.Property keys are
      * specified in prefix:property format, such as core:fs.defaultFS. The
@@ -1210,7 +1216,7 @@ export namespace dataproc_v1beta2 {
      * pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more
      * information, see Cluster properties.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/)
@@ -1222,43 +1228,43 @@ export namespace dataproc_v1beta2 {
      * of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
      * .tgz, and .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as --conf, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Spark drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Spark
      * driver and tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * The name of the driver&#39;s main class. The jar file that contains the
      * class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass: string;
+    mainClass?: string;
     /**
      * The HCFS URI of the jar file that contains the main class.
      */
-    mainJarFileUri: string;
+    mainJarFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure Spark.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL
@@ -1268,30 +1274,30 @@ export namespace dataproc_v1beta2 {
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Optional. A mapping of property names to values, used to configure Spark
      * SQL&#39;s SparkConf. Properties that conflict with values set by the
      * Cloud Dataproc API may be overwritten.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1332,18 +1338,18 @@ export namespace dataproc_v1beta2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A request to submit a job.
@@ -1352,7 +1358,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The job resource.
      */
-    job: Schema$Job;
+    job?: Schema$Job;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two SubmitJobRequest requests with the same id, then the second
@@ -1362,7 +1368,7 @@ export namespace dataproc_v1beta2 {
      * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
      * hyphens (-). The maximum length is 40 characters.
      */
-    requestId: string;
+    requestId?: string;
   }
   /**
    * Request message for TestIamPermissions method.
@@ -1374,7 +1380,7 @@ export namespace dataproc_v1beta2 {
      * For more information see IAM Overview
      * (https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for TestIamPermissions method.
@@ -1384,7 +1390,7 @@ export namespace dataproc_v1beta2 {
      * A subset of TestPermissionsRequest.permissions that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * The workflow graph.
@@ -1393,7 +1399,7 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The workflow nodes.
      */
-    nodes: Schema$WorkflowNode[];
+    nodes?: Schema$WorkflowNode[];
   }
   /**
    * A Cloud Dataproc workflow template resource.
@@ -1402,36 +1408,36 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The name of the managed cluster.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. The create cluster operation metadata.
      */
-    createCluster: Schema$ClusterOperation;
+    createCluster?: Schema$ClusterOperation;
     /**
      * Output only. The delete cluster operation metadata.
      */
-    deleteCluster: Schema$ClusterOperation;
+    deleteCluster?: Schema$ClusterOperation;
     /**
      * Output only. The workflow graph.
      */
-    graph: Schema$WorkflowGraph;
+    graph?: Schema$WorkflowGraph;
     /**
      * Map from parameter names to values that were used for those parameters.
      */
-    parameters: any;
+    parameters?: any;
     /**
      * Output only. The workflow state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The &quot;resource name&quot; of the template.
      */
-    template: string;
+    template?: string;
     /**
      * Output only. The version of template at the time of workflow
      * instantiation.
      */
-    version: number;
+    version?: number;
   }
   /**
    * The workflow node.
@@ -1440,23 +1446,23 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The error detail.
      */
-    error: string;
+    error?: string;
     /**
      * Output only. The job id; populated after the node enters RUNNING state.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Output only. Node&#39;s prerequisite nodes.
      */
-    prerequisiteStepIds: string[];
+    prerequisiteStepIds?: string[];
     /**
      * Output only. The node state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The name of the node.
      */
-    stepId: string;
+    stepId?: string;
   }
   /**
    * A Cloud Dataproc workflow template resource.
@@ -1465,17 +1471,17 @@ export namespace dataproc_v1beta2 {
     /**
      * Output only. The time template was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Required. The template id.The id must contain only letters (a-z, A-Z),
      * numbers (0-9), underscores (_), and hyphens (-). Cannot begin or end with
      * underscore or hyphen. Must consist of between 3 and 50 characters.
      */
-    id: string;
+    id?: string;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.
      */
-    jobs: Schema$OrderedJob[];
+    jobs?: Schema$OrderedJob[];
     /**
      * Optional. The labels to associate with this template. These labels will
      * be propagated to all jobs and clusters created by the workflow
@@ -1485,21 +1491,21 @@ export namespace dataproc_v1beta2 {
      * to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt).No more than 32 labels
      * can be associated with a template.
      */
-    labels: any;
+    labels?: any;
     /**
      * Output only. The &quot;resource name&quot; of the template, as described
      * in https://cloud.google.com/apis/design/resource_names of the form
      * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
      */
-    name: string;
+    name?: string;
     /**
      * Required. WorkflowTemplate scheduling information.
      */
-    placement: Schema$WorkflowTemplatePlacement;
+    placement?: Schema$WorkflowTemplatePlacement;
     /**
      * Output only. The time template was last updated.
      */
-    updateTime: string;
+    updateTime?: string;
     /**
      * Optional. Used to perform a consistent read-modify-write.This field
      * should be left blank for a CreateWorkflowTemplate request. It is required
@@ -1510,7 +1516,7 @@ export namespace dataproc_v1beta2 {
      * version. The user updates other fields in the template, then returns it
      * as part of the UpdateWorkflowTemplate request.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Specifies workflow execution target.Either managed_cluster or
@@ -1521,11 +1527,11 @@ export namespace dataproc_v1beta2 {
      * Optional. A selector that chooses target cluster for jobs based on
      * metadata.The selector is evaluated at the time each job is submitted.
      */
-    clusterSelector: Schema$ClusterSelector;
+    clusterSelector?: Schema$ClusterSelector;
     /**
      * Optional. A cluster that is managed by the workflow.
      */
-    managedCluster: Schema$ManagedCluster;
+    managedCluster?: Schema$ManagedCluster;
   }
   /**
    * A YARN application created by a job. Application information is a subset of
@@ -1537,23 +1543,24 @@ export namespace dataproc_v1beta2 {
     /**
      * Required. The application name.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      */
-    progress: number;
+    progress?: number;
     /**
      * Required. The application state.
      */
-    state: string;
+    state?: string;
     /**
      * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL
      * uses the internal hostname, and requires a proxy server for resolution
      * and, possibly, access.
      */
-    trackingUrl: string;
+    trackingUrl?: string;
   }
+
 
   export class Resource$Projects {
     root: Dataproc;
@@ -1570,6 +1577,8 @@ export namespace dataproc_v1beta2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations {
     root: Dataproc;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
@@ -1584,6 +1593,8 @@ export namespace dataproc_v1beta2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations$Workflowtemplates {
     root: Dataproc;
     constructor(root: Dataproc) {
@@ -1609,26 +1620,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Create,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Create|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1665,25 +1691,40 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1719,24 +1760,36 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Locations$Workflowtemplates$Get,
         options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(params: Params$Resource$Projects$Locations$Workflowtemplates$Get,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Get|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1771,26 +1824,43 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1832,26 +1902,44 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instantiate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     instantiate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     instantiate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1896,26 +1984,44 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instantiateInline(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     instantiateInline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     instantiateInline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1953,29 +2059,46 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Workflowtemplates$List,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$List|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
         callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
         void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2014,26 +2137,43 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2073,29 +2213,50 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2133,26 +2294,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+        params?: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        params: Params$Resource$Projects$Locations$Workflowtemplates$Update,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Workflowtemplates$Update|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workflowtemplates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Workflowtemplates$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2173,6 +2349,189 @@ export namespace dataproc_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to delete. If specified, will
+     * only delete the template if the current server version matches specified
+     * version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to retrieve. Only previously
+     * instatiated versions can be retrieved.If unspecified, retrieves the
+     * current version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstantiateWorkflowTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    instanceId?: string;
+    /**
+     * Required. The "resource name" of the workflow template region, as
+     * described in https://cloud.google.com/apis/design/resource_names of the
+     * form projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Workflowtemplates$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
+  }
+
 
 
   export class Resource$Projects$Regions {
@@ -2195,6 +2554,8 @@ export namespace dataproc_v1beta2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Regions$Clusters {
     root: Dataproc;
     constructor(root: Dataproc) {
@@ -2222,26 +2583,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Regions$Clusters$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2281,26 +2655,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Clusters$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2341,26 +2728,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    diagnose(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     diagnose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     diagnose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(
+        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Diagnose|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Diagnose;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Diagnose;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2399,23 +2799,34 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback?: BodyResponseCallback<Schema$Cluster>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+    get(params?: Params$Resource$Projects$Regions$Clusters$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+    get(params: Params$Resource$Projects$Regions$Clusters$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(params: Params$Resource$Projects$Regions$Clusters$Get,
+        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Get|
+        BodyResponseCallback<Schema$Cluster>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
         void|AxiosPromise<Schema$Cluster> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2453,26 +2864,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2511,28 +2935,40 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListClustersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Regions$Clusters$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+    list(
+        params: Params$Resource$Projects$Regions$Clusters$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListClustersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Clusters$List,
+        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$List|
+        BodyResponseCallback<Schema$ListClustersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
         void|AxiosPromise<Schema$ListClustersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2574,26 +3010,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Projects$Regions$Clusters$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2632,26 +3081,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Clusters$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2691,29 +3153,47 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Clusters$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Clusters$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Clusters$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2736,6 +3216,273 @@ export namespace dataproc_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Regions$Clusters$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two CreateClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Cluster;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Optional. Specifying the cluster_uuid means the RPC should fail (with
+     * error NOT_FOUND) if cluster with specified UUID does not exist.
+     */
+    clusterUuid?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two DeleteClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DiagnoseClusterRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. A filter constraining the clusters to list. Filters are
+     * case-sensitive and have the following syntax:field = value AND field =
+     * value ...where field is one of status.state, clusterName, or
+     * labels.[KEY], and [KEY] is a label key. value can be * to match all
+     * values. status.state can be one of the following: ACTIVE, INACTIVE,
+     * CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the
+     * CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING
+     * and ERROR states. clusterName is the name of the cluster provided at
+     * creation time. Only the logical AND operator is supported;
+     * space-separated items are treated as having an implicit AND
+     * operator.Example filter:status.state = ACTIVE AND clusterName = mycluster
+     * AND labels.env = staging AND labels.starred = *
+     */
+    filter?: string;
+    /**
+     * Optional. The standard List page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard List page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * decommissioning allows removing nodes from the cluster without
+     * interrupting jobs in progress. Timeout specifies how long to wait for
+     * jobs in progress to finish before forcefully removing nodes (and
+     * potentially interrupting jobs). Default timeout is 0 (for forceful
+     * decommission), and the maximum allowed timeout is 1 day.Only supported on
+     * Dataproc image versions 1.2 and higher.
+     */
+    gracefulDecommissionTimeout?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project the cluster belongs
+     * to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two UpdateClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Required. Specifies the path, relative to Cluster, of the field to
+     * update. For example, to change the number of workers in a cluster to 5,
+     * the update_mask parameter would be specified as
+     * config.worker_config.num_instances, and the PATCH request body would
+     * specify the new value, as follows: {   "config":{     "workerConfig":{
+     * "numInstances":"5"     }   } } Similarly, to change the number of
+     * preemptible workers in a cluster to 5, the update_mask parameter would be
+     * config.secondary_worker_config.num_instances, and the PATCH request body
+     * would be set as follows: {   "config":{     "secondaryWorkerConfig":{
+     * "numInstances":"5"     }   } } <strong>Note:</strong> currently only the
+     * following fields can be updated: <table> <tr>
+     * <td><strong>Mask</strong></td><td><strong>Purpose</strong></td> </tr>
+     * <tr> <td>labels</td><td>Updates labels</td> </tr> <tr>
+     * <td>config.worker_config.num_instances</td><td>Resize primary worker
+     * group</td> </tr> <tr>
+     * <td>config.secondary_worker_config.num_instances</td><td>Resize secondary
+     * worker group</td> </tr> <tr>
+     * <td>config.lifecycle_config.auto_delete_ttl</td><td>Reset MAX TTL
+     * duration</td> </tr> <tr>
+     * <td>config.lifecycle_config.auto_delete_time</td><td>Update MAX TTL
+     * deletion timestamp</td> </tr> <tr>
+     * <td>config.lifecycle_config.idle_delete_ttl</td><td>Update Idle TTL
+     * duration</td> </tr> </table>
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Cluster;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Regions$Jobs {
     root: Dataproc;
@@ -2766,23 +3513,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(
+        params: Params$Resource$Projects$Regions$Jobs$Cancel,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Cancel|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2822,25 +3584,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Jobs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Jobs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2879,21 +3654,34 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Projects$Regions$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Projects$Regions$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Projects$Regions$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Regions$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2931,26 +3719,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2991,26 +3791,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Projects$Regions$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Regions$Jobs$List,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$List|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3050,23 +3863,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    patch(
+        params: Params$Resource$Projects$Regions$Jobs$Patch,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    patch(callback: BodyResponseCallback<Schema$Job>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Patch|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3105,26 +3933,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Jobs$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3161,23 +4001,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Submit,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Submit,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    submit(
+        params: Params$Resource$Projects$Regions$Jobs$Submit,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    submit(callback: BodyResponseCallback<Schema$Job>): void;
+    submit(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Submit|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Submit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3219,29 +4074,46 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Jobs$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Jobs$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3264,6 +4136,215 @@ export namespace dataproc_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelJobRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. If set, the returned jobs list includes only jobs that were
+     * submitted to the named cluster.
+     */
+    clusterName?: string;
+    /**
+     * Optional. A filter constraining the jobs to list. Filters are
+     * case-sensitive and have the following syntax:field = value AND field =
+     * value ...where field is status.state or labels.[KEY], and [KEY] is a
+     * label key. value can be * to match all values. status.state can be either
+     * ACTIVE or NON_ACTIVE. Only the logical AND operator is supported;
+     * space-separated items are treated as having an implicit AND
+     * operator.Example filter:status.state = ACTIVE AND labels.env = staging
+     * AND labels.starred = *
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies enumerated categories of jobs to list. (default =
+     * match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
+     */
+    jobStateMatcher?: string;
+    /**
+     * Optional. The number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Required. Specifies the path, relative to <code>Job</code>, of the field
+     * to update. For example, to update the labels of a Job the
+     * <code>update_mask</code> parameter would be specified as
+     * <code>labels</code>, and the PATCH request body would specify the new
+     * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
+     * field that can be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Submit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SubmitJobRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Regions$Operations {
     root: Dataproc;
@@ -3297,25 +4378,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Regions$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3353,25 +4447,38 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3407,23 +4514,35 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Regions$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Regions$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Regions$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3458,26 +4577,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3523,28 +4655,40 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Regions$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Regions$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3580,26 +4724,39 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Operations$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3639,29 +4796,47 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Operations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Operations$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Operations$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3684,6 +4859,108 @@ export namespace dataproc_v1beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Regions$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Regions$Workflowtemplates {
     root: Dataproc;
@@ -3710,26 +4987,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Create,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Create|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3766,25 +5058,40 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3820,24 +5127,36 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Regions$Workflowtemplates$Get,
         options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(params: Params$Resource$Projects$Regions$Workflowtemplates$Get,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Get|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3872,26 +5191,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3933,26 +5267,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instantiate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     instantiate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     instantiate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Instantiate,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiate(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3997,26 +5346,44 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    instantiateInline(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     instantiateInline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     instantiateInline(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(callback: BodyResponseCallback<Schema$Operation>): void;
+    instantiateInline(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4054,29 +5421,45 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListWorkflowTemplatesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Workflowtemplates$List,
+        callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$List|
+        BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>,
         callback?: BodyResponseCallback<Schema$ListWorkflowTemplatesResponse>):
         void|AxiosPromise<Schema$ListWorkflowTemplatesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4115,26 +5498,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4174,29 +5572,50 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4234,26 +5653,41 @@ export namespace dataproc_v1beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
-        callback?: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+        params?: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        options?: MethodOptions): AxiosPromise<Schema$WorkflowTemplate>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WorkflowTemplate>,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        params: Params$Resource$Projects$Regions$Workflowtemplates$Update,
+        callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(callback: BodyResponseCallback<Schema$WorkflowTemplate>): void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Projects$Regions$Workflowtemplates$Update|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WorkflowTemplate>,
         callback?: BodyResponseCallback<Schema$WorkflowTemplate>):
         void|AxiosPromise<Schema$WorkflowTemplate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Workflowtemplates$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Regions$Workflowtemplates$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4273,5 +5707,187 @@ export namespace dataproc_v1beta2 {
         return createAPIRequest<Schema$WorkflowTemplate>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to delete. If specified, will
+     * only delete the template if the current server version matches specified
+     * version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Optional. The version of workflow template to retrieve. Only previously
+     * instatiated versions can be retrieved.If unspecified, retrieves the
+     * current version.
+     */
+    version?: number;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The "resource name" of the workflow template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$InstantiateWorkflowTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. A tag that prevents multiple concurrent workflow instances with
+     * the same tag from running. This mitigates risk of concurrent instances
+     * started due to retries.It is recommended to always set this value to a
+     * UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The
+     * tag must contain only letters (a-z, A-Z), numbers (0-9), underscores (_),
+     * and hyphens (-). The maximum length is 40 characters.
+     */
+    instanceId?: string;
+    /**
+     * Required. The "resource name" of the workflow template region, as
+     * described in https://cloud.google.com/apis/design/resource_names of the
+     * form projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. The maximum number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The "resource name" of the region, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Workflowtemplates$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The "resource name" of the template, as described in
+     * https://cloud.google.com/apis/design/resource_names of the form
+     * projects/{project_id}/regions/{region}/workflowTemplates/{template_id}
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WorkflowTemplate;
   }
 }

@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace clouddebugger_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Stackdriver Debugger API
    *
@@ -75,11 +78,11 @@ export namespace clouddebugger_v2 {
     /**
      * The alias kind.
      */
-    kind: string;
+    kind?: string;
     /**
      * The alias name.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Represents the breakpoint specification, status and results.
@@ -89,17 +92,17 @@ export namespace clouddebugger_v2 {
      * Action that the agent should perform when the code at the breakpoint
      * location is hit.
      */
-    action: string;
+    action?: string;
     /**
      * Condition that triggers the breakpoint. The condition is a compound
      * boolean expression composed using expressions in a programming language
      * at the source location.
      */
-    condition: string;
+    condition?: string;
     /**
      * Time this breakpoint was created by the server in seconds resolution.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Values of evaluated expressions at breakpoint time. The evaluated
      * expressions appear in exactly the same order they are listed in the
@@ -108,41 +111,41 @@ export namespace clouddebugger_v2 {
      * expression. If the expression cannot be evaluated, the `status` inside
      * the `Variable` will indicate an error and contain the error text.
      */
-    evaluatedExpressions: Schema$Variable[];
+    evaluatedExpressions?: Schema$Variable[];
     /**
      * List of read-only expressions to evaluate at the breakpoint location. The
      * expressions are composed using expressions in the programming language at
      * the source location. If the breakpoint action is `LOG`, the evaluated
      * expressions are included in log statements.
      */
-    expressions: string[];
+    expressions?: string[];
     /**
      * Time this breakpoint was finalized as seen by the server in seconds
      * resolution.
      */
-    finalTime: string;
+    finalTime?: string;
     /**
      * Breakpoint identifier, unique in the scope of the debuggee.
      */
-    id: string;
+    id?: string;
     /**
      * When true, indicates that this is a final result and the breakpoint state
      * will not change from here on.
      */
-    isFinalState: boolean;
+    isFinalState?: boolean;
     /**
      * A set of custom breakpoint properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels: any;
+    labels?: any;
     /**
      * Breakpoint source location.
      */
-    location: Schema$SourceLocation;
+    location?: Schema$SourceLocation;
     /**
      * Indicates the severity of the log. Only relevant when action is `LOG`.
      */
-    logLevel: string;
+    logLevel?: string;
     /**
      * Only relevant when action is `LOG`. Defines the message to log when the
      * breakpoint hits. The message may include parameter placeholders `$0`,
@@ -151,11 +154,11 @@ export namespace clouddebugger_v2 {
      * `log_message_format` are not logged.  Example: `Message received, id =
      * $0, count = $1` with `expressions` = `[ message.id, message.count ]`.
      */
-    logMessageFormat: string;
+    logMessageFormat?: string;
     /**
      * The stack at breakpoint time.
      */
-    stackFrames: Schema$StackFrame[];
+    stackFrames?: Schema$StackFrame[];
     /**
      * Breakpoint status.  The status includes an error flag and a human
      * readable message. This field is usually unset. The message can be either
@@ -166,11 +169,11 @@ export namespace clouddebugger_v2 {
      * referring to location *   `Field f not found in class C` referring to
      * condition
      */
-    status: Schema$StatusMessage;
+    status?: Schema$StatusMessage;
     /**
      * E-mail address of the user that created this breakpoint
      */
-    userEmail: string;
+    userEmail?: string;
     /**
      * The `variable_table` exists to aid with computation, memory and network
      * traffic optimization.  It enables storing a variable once and reference
@@ -183,7 +186,7 @@ export namespace clouddebugger_v2 {
      * from the referencing variable. The effective variable is a merge of the
      * referencing variable and the referenced variable.
      */
-    variableTable: Schema$Variable[];
+    variableTable?: Schema$Variable[];
   }
   /**
    * A CloudRepoSourceContext denotes a particular revision in a cloud repo (a
@@ -193,19 +196,19 @@ export namespace clouddebugger_v2 {
     /**
      * An alias, which may be a branch or tag.
      */
-    aliasContext: Schema$AliasContext;
+    aliasContext?: Schema$AliasContext;
     /**
      * The name of an alias (branch, tag, etc.).
      */
-    aliasName: string;
+    aliasName?: string;
     /**
      * The ID of the repo.
      */
-    repoId: Schema$RepoId;
+    repoId?: Schema$RepoId;
     /**
      * A revision ID.
      */
-    revisionId: string;
+    revisionId?: string;
   }
   /**
    * A CloudWorkspaceId is a unique identifier for a cloud workspace. A cloud
@@ -217,11 +220,11 @@ export namespace clouddebugger_v2 {
      * The unique name of the workspace within the repo.  This is the name
      * chosen by the client in the Source API&#39;s CreateWorkspace method.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the repo containing the workspace.
      */
-    repoId: Schema$RepoId;
+    repoId?: Schema$RepoId;
   }
   /**
    * A CloudWorkspaceSourceContext denotes a workspace at a particular snapshot.
@@ -231,11 +234,11 @@ export namespace clouddebugger_v2 {
      * The ID of the snapshot. An empty snapshot_id refers to the most recent
      * snapshot.
      */
-    snapshotId: string;
+    snapshotId?: string;
     /**
      * The ID of the workspace.
      */
-    workspaceId: Schema$CloudWorkspaceId;
+    workspaceId?: Schema$CloudWorkspaceId;
   }
   /**
    * Represents the debugged application. The application may include one or
@@ -249,53 +252,53 @@ export namespace clouddebugger_v2 {
      * Version ID of the agent. Schema: `domain/language-platform/vmajor.minor`
      * (for example `google.com/java-gcp/v1.1`).
      */
-    agentVersion: string;
+    agentVersion?: string;
     /**
      * Human readable description of the debuggee. Including a human-readable
      * project name, environment name and version information is recommended.
      */
-    description: string;
+    description?: string;
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.
      */
-    extSourceContexts: Schema$ExtendedSourceContext[];
+    extSourceContexts?: Schema$ExtendedSourceContext[];
     /**
      * Unique identifier for the debuggee generated by the controller service.
      */
-    id: string;
+    id?: string;
     /**
      * If set to `true`, indicates that the agent should disable itself and
      * detach from the debuggee.
      */
-    isDisabled: boolean;
+    isDisabled?: boolean;
     /**
      * If set to `true`, indicates that Controller service does not detect any
      * activity from the debuggee agents and the application is possibly
      * stopped.
      */
-    isInactive: boolean;
+    isInactive?: boolean;
     /**
      * A set of custom debuggee properties, populated by the agent, to be
      * displayed to the user.
      */
-    labels: any;
+    labels?: any;
     /**
      * Project the debuggee is associated with. Use project number or id when
      * registering a Google Cloud Platform project.
      */
-    project: string;
+    project?: string;
     /**
      * References to the locations and revisions of the source code used in the
      * deployed application.
      */
-    sourceContexts: Schema$SourceContext[];
+    sourceContexts?: Schema$SourceContext[];
     /**
      * Human readable message to be displayed to the user about this debuggee.
      * Absence of this field indicates no status. The message can be either
      * informational or an error status.
      */
-    status: Schema$StatusMessage;
+    status?: Schema$StatusMessage;
     /**
      * Uniquifier to further distiguish the application. It is possible that
      * different applications might have identical values in the debuggee
@@ -304,7 +307,7 @@ export namespace clouddebugger_v2 {
      * application. Agents should consider seeding this field with value that
      * identifies the code, binary, configuration and environment.
      */
-    uniquifier: string;
+    uniquifier?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -322,11 +325,11 @@ export namespace clouddebugger_v2 {
     /**
      * Any source context.
      */
-    context: Schema$SourceContext;
+    context?: Schema$SourceContext;
     /**
      * Labels with user defined metadata.
      */
-    labels: any;
+    labels?: any;
   }
   /**
    * Represents a message with parameters.
@@ -339,11 +342,11 @@ export namespace clouddebugger_v2 {
      * $1 the first time it     is loaded.  Again, $0 is very important.` *
      * `Please pay $$10 to use $0 instead of $1.`
      */
-    format: string;
+    format?: string;
     /**
      * Optional parameters to be embedded into the message.
      */
-    parameters: string[];
+    parameters?: string[];
   }
   /**
    * A SourceContext referring to a Gerrit project.
@@ -352,25 +355,25 @@ export namespace clouddebugger_v2 {
     /**
      * An alias, which may be a branch or tag.
      */
-    aliasContext: Schema$AliasContext;
+    aliasContext?: Schema$AliasContext;
     /**
      * The name of an alias (branch, tag, etc.).
      */
-    aliasName: string;
+    aliasName?: string;
     /**
      * The full project name within the host. Projects may be nested, so
      * &quot;project/subproject&quot; is a valid project name. The &quot;repo
      * name&quot; is hostURI/project.
      */
-    gerritProject: string;
+    gerritProject?: string;
     /**
      * The URI of a running Gerrit instance.
      */
-    hostUri: string;
+    hostUri?: string;
     /**
      * A revision (commit) ID.
      */
-    revisionId: string;
+    revisionId?: string;
   }
   /**
    * Response for getting breakpoint information.
@@ -380,7 +383,7 @@ export namespace clouddebugger_v2 {
      * Complete breakpoint state. The fields `id` and `location` are guaranteed
      * to be set.
      */
-    breakpoint: Schema$Breakpoint;
+    breakpoint?: Schema$Breakpoint;
   }
   /**
    * A GitSourceContext denotes a particular revision in a third party Git
@@ -390,11 +393,11 @@ export namespace clouddebugger_v2 {
     /**
      * Git commit hash. required.
      */
-    revisionId: string;
+    revisionId?: string;
     /**
      * Git repository URL.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Response for listing active breakpoints.
@@ -404,18 +407,18 @@ export namespace clouddebugger_v2 {
      * List of all active breakpoints. The fields `id` and `location` are
      * guaranteed to be set on each breakpoint.
      */
-    breakpoints: Schema$Breakpoint[];
+    breakpoints?: Schema$Breakpoint[];
     /**
      * A token that can be used in the next method call to block until the list
      * of breakpoints changes.
      */
-    nextWaitToken: string;
+    nextWaitToken?: string;
     /**
      * If set to `true`, indicates that there is no change to the list of active
      * breakpoints and the server-selected timeout has expired. The
      * `breakpoints` field would be empty and should be ignored.
      */
-    waitExpired: boolean;
+    waitExpired?: boolean;
   }
   /**
    * Response for listing breakpoints.
@@ -427,13 +430,13 @@ export namespace clouddebugger_v2 {
      * `evaluated_expressions` and `variable_table` are cleared on each
      * breakpoint regardless of its status.
      */
-    breakpoints: Schema$Breakpoint[];
+    breakpoints?: Schema$Breakpoint[];
     /**
      * A wait token that can be used in the next call to `list` (REST) or
      * `ListBreakpoints` (RPC) to block until the list of breakpoints has
      * changes.
      */
-    nextWaitToken: string;
+    nextWaitToken?: string;
   }
   /**
    * Response for listing debuggees.
@@ -445,7 +448,7 @@ export namespace clouddebugger_v2 {
      * `description` field is a human readable field provided by agents and can
      * be displayed to users.
      */
-    debuggees: Schema$Debuggee[];
+    debuggees?: Schema$Debuggee[];
   }
   /**
    * Selects a repo using a Google Cloud Platform project ID (e.g.
@@ -455,11 +458,11 @@ export namespace clouddebugger_v2 {
     /**
      * The ID of the project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The name of the repo. Leave empty for the default repo.
      */
-    repoName: string;
+    repoName?: string;
   }
   /**
    * Request to register a debuggee.
@@ -469,7 +472,7 @@ export namespace clouddebugger_v2 {
      * Debuggee information to register. The fields `project`, `uniquifier`,
      * `description` and `agent_version` of the debuggee must be set.
      */
-    debuggee: Schema$Debuggee;
+    debuggee?: Schema$Debuggee;
   }
   /**
    * Response for registering a debuggee.
@@ -482,7 +485,7 @@ export namespace clouddebugger_v2 {
      * from the application. It should however continue to poll
      * `RegisterDebuggee` until reenabled.
      */
-    debuggee: Schema$Debuggee;
+    debuggee?: Schema$Debuggee;
   }
   /**
    * A unique identifier for a cloud repo.
@@ -491,11 +494,11 @@ export namespace clouddebugger_v2 {
     /**
      * A combination of a project ID and a repo name.
      */
-    projectRepoId: Schema$ProjectRepoId;
+    projectRepoId?: Schema$ProjectRepoId;
     /**
      * A server-assigned, globally unique identifier.
      */
-    uid: string;
+    uid?: string;
   }
   /**
    * Response for setting a breakpoint.
@@ -505,7 +508,7 @@ export namespace clouddebugger_v2 {
      * Breakpoint resource. The field `id` is guaranteed to be set (in addition
      * to the echoed fileds).
      */
-    breakpoint: Schema$Breakpoint;
+    breakpoint?: Schema$Breakpoint;
   }
   /**
    * A SourceContext is a reference to a tree of files. A SourceContext together
@@ -515,19 +518,19 @@ export namespace clouddebugger_v2 {
     /**
      * A SourceContext referring to a revision in a cloud repo.
      */
-    cloudRepo: Schema$CloudRepoSourceContext;
+    cloudRepo?: Schema$CloudRepoSourceContext;
     /**
      * A SourceContext referring to a snapshot in a cloud workspace.
      */
-    cloudWorkspace: Schema$CloudWorkspaceSourceContext;
+    cloudWorkspace?: Schema$CloudWorkspaceSourceContext;
     /**
      * A SourceContext referring to a Gerrit project.
      */
-    gerrit: Schema$GerritSourceContext;
+    gerrit?: Schema$GerritSourceContext;
     /**
      * A SourceContext referring to any third party Git repo (e.g. GitHub).
      */
-    git: Schema$GitSourceContext;
+    git?: Schema$GitSourceContext;
   }
   /**
    * Represents a location in the source code.
@@ -536,11 +539,11 @@ export namespace clouddebugger_v2 {
     /**
      * Line inside the file. The first line in the file has the value `1`.
      */
-    line: number;
+    line?: number;
     /**
      * Path to the source file within the source context of the target binary.
      */
-    path: string;
+    path?: string;
   }
   /**
    * Represents a stack frame context.
@@ -550,20 +553,20 @@ export namespace clouddebugger_v2 {
      * Set of arguments passed to this function. Note that this might not be
      * populated for all stack frames.
      */
-    arguments: Schema$Variable[];
+    arguments?: Schema$Variable[];
     /**
      * Demangled function name at the call site.
      */
-    function: string;
+    function?: string;
     /**
      * Set of local variables at the stack frame location. Note that this might
      * not be populated for all stack frames.
      */
-    locals: Schema$Variable[];
+    locals?: Schema$Variable[];
     /**
      * Source location of the call site.
      */
-    location: Schema$SourceLocation;
+    location?: Schema$SourceLocation;
   }
   /**
    * Represents a contextual status message. The message can indicate an error
@@ -576,15 +579,15 @@ export namespace clouddebugger_v2 {
     /**
      * Status message text.
      */
-    description: Schema$FormatMessage;
+    description?: Schema$FormatMessage;
     /**
      * Distinguishes errors from informational messages.
      */
-    isError: boolean;
+    isError?: boolean;
     /**
      * Reference to which the message applies.
      */
-    refersTo: string;
+    refersTo?: string;
   }
   /**
    * Request to update an active breakpoint.
@@ -594,7 +597,7 @@ export namespace clouddebugger_v2 {
      * Updated breakpoint information. The field `id` must be set. The agent
      * must echo all Breakpoint specification fields in the update.
      */
-    breakpoint: Schema$Breakpoint;
+    breakpoint?: Schema$Breakpoint;
   }
   /**
    * Response for updating an active breakpoint. The message is defined to allow
@@ -656,11 +659,11 @@ export namespace clouddebugger_v2 {
     /**
      * Members contained or pointed to by the variable.
      */
-    members: Schema$Variable[];
+    members?: Schema$Variable[];
     /**
      * Name of the variable, if any.
      */
-    name: string;
+    name?: string;
     /**
      * Status associated with the variable. This field will usually stay unset.
      * A status of a single variable only applies to that variable or
@@ -675,25 +678,26 @@ export namespace clouddebugger_v2 {
      * string`, *   `Field f not found in class C` *   `Null pointer
      * dereference`
      */
-    status: Schema$StatusMessage;
+    status?: Schema$StatusMessage;
     /**
      * Variable type (e.g. `MyClass`). If the variable is split with
      * `var_table_index`, `type` goes next to `value`. The interpretation of a
      * type is agent specific. It is recommended to include the dynamic type
      * rather than a static type of an object.
      */
-    type: string;
+    type?: string;
     /**
      * Simple value of the variable.
      */
-    value: string;
+    value?: string;
     /**
      * Reference to a variable in the shared variable table. More than one
      * variable can reference the same variable in the table. The
      * `var_table_index` field is an index into `variable_table` in Breakpoint.
      */
-    varTableIndex: number;
+    varTableIndex?: number;
   }
+
 
   export class Resource$Controller {
     root: Clouddebugger;
@@ -708,6 +712,8 @@ export namespace clouddebugger_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Controller$Debuggees {
     root: Clouddebugger;
     breakpoints: Resource$Controller$Debuggees$Breakpoints;
@@ -793,28 +799,41 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    register(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RegisterDebuggeeResponse>;
     register(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Controller$Debuggees$Register,
+        options?: MethodOptions): AxiosPromise<Schema$RegisterDebuggeeResponse>;
+    register(
+        params: Params$Resource$Controller$Debuggees$Register,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
-        callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
+        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
     register(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Controller$Debuggees$Register,
+        callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>): void;
+    register(callback: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
+        void;
+    register(
+        paramsOrCallback?: Params$Resource$Controller$Debuggees$Register|
+        BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegisterDebuggeeResponse>,
         callback?: BodyResponseCallback<Schema$RegisterDebuggeeResponse>):
         void|AxiosPromise<Schema$RegisterDebuggeeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Controller$Debuggees$Register;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Controller$Debuggees$Register;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -837,6 +856,19 @@ export namespace clouddebugger_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Controller$Debuggees$Register {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RegisterDebuggeeRequest;
+  }
+
   export class Resource$Controller$Debuggees$Breakpoints {
     root: Clouddebugger;
     constructor(root: Clouddebugger) {
@@ -923,29 +955,45 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Controller$Debuggees$Breakpoints$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListActiveBreakpointsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
+        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Controller$Debuggees$Breakpoints$List,
+        callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Controller$Debuggees$Breakpoints$List|
+        BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListActiveBreakpointsResponse>,
         callback?: BodyResponseCallback<Schema$ListActiveBreakpointsResponse>):
         void|AxiosPromise<Schema$ListActiveBreakpointsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Controller$Debuggees$Breakpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Controller$Debuggees$Breakpoints$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1052,29 +1100,46 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(
+        params?: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+        options?: MethodOptions):
         AxiosPromise<Schema$UpdateActiveBreakpointResponse>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
+        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
         void;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Controller$Debuggees$Breakpoints$Update,
+        callback: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
+        void;
+    update(callback:
+               BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
+        void;
+    update(
+        paramsOrCallback?:
+            Params$Resource$Controller$Debuggees$Breakpoints$Update|
+        BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$UpdateActiveBreakpointResponse>):
         void|AxiosPromise<Schema$UpdateActiveBreakpointResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Controller$Debuggees$Breakpoints$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Controller$Debuggees$Breakpoints$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1101,6 +1166,52 @@ export namespace clouddebugger_v2 {
     }
   }
 
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the debuggee.
+     */
+    debuggeeId?: string;
+    /**
+     * If set to `true` (recommended), returns `google.rpc.Code.OK` status and
+     * sets the `wait_expired` response field to `true` when the server-selected
+     * timeout has expired.  If set to `false` (deprecated), returns
+     * `google.rpc.Code.ABORTED` status when the server-selected timeout has
+     * expired.
+     */
+    successOnTimeout?: boolean;
+    /**
+     * A token that, if specified, blocks the method call until the list of
+     * active breakpoints has changed, or a server-selected timeout has expired.
+     * The value should be set from the `next_wait_token` field in the last
+     * response. The initial value should be set to `"init"`.
+     */
+    waitToken?: string;
+  }
+  export interface Params$Resource$Controller$Debuggees$Breakpoints$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the debuggee being debugged.
+     */
+    debuggeeId?: string;
+    /**
+     * Breakpoint identifier, unique in the scope of the debuggee.
+     */
+    id?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateActiveBreakpointRequest;
+  }
+
 
 
   export class Resource$Debugger {
@@ -1116,6 +1227,8 @@ export namespace clouddebugger_v2 {
       return this.root;
     }
   }
+
+
   export class Resource$Debugger$Debuggees {
     root: Clouddebugger;
     breakpoints: Resource$Debugger$Debuggees$Breakpoints;
@@ -1192,28 +1305,40 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDebuggeesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Debugger$Debuggees$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDebuggeesResponse>;
+    list(
+        params: Params$Resource$Debugger$Debuggees$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDebuggeesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Debugger$Debuggees$List,
+        callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDebuggeesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Debugger$Debuggees$List|
+        BodyResponseCallback<Schema$ListDebuggeesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDebuggeesResponse>,
         callback?: BodyResponseCallback<Schema$ListDebuggeesResponse>):
         void|AxiosPromise<Schema$ListDebuggeesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Debugger$Debuggees$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debugger$Debuggees$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1236,6 +1361,29 @@ export namespace clouddebugger_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Debugger$Debuggees$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client version making the call. Schema: `domain/type/version` (e.g.,
+     * `google.com/intellij/v1`).
+     */
+    clientVersion?: string;
+    /**
+     * When set to `true`, the result includes all debuggees. Otherwise, the
+     * result includes only debuggees that are active.
+     */
+    includeInactive?: boolean;
+    /**
+     * Project number of a Google Cloud project whose debuggees to list.
+     */
+    project?: string;
+  }
+
   export class Resource$Debugger$Debuggees$Breakpoints {
     root: Clouddebugger;
     constructor(root: Clouddebugger) {
@@ -1313,25 +1461,39 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Debugger$Debuggees$Breakpoints$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Debugger$Debuggees$Breakpoints$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debugger$Debuggees$Breakpoints$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1425,26 +1587,36 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
         options?: MethodOptions): AxiosPromise<Schema$GetBreakpointResponse>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+    get(params: Params$Resource$Debugger$Debuggees$Breakpoints$Get,
+        callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+    get(callback: BodyResponseCallback<Schema$GetBreakpointResponse>): void;
+    get(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Get|
+        BodyResponseCallback<Schema$GetBreakpointResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$GetBreakpointResponse>):
         void|AxiosPromise<Schema$GetBreakpointResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debugger$Debuggees$Breakpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debugger$Debuggees$Breakpoints$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1539,28 +1711,40 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListBreakpointsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListBreakpointsResponse>;
+    list(
+        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBreakpointsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Debugger$Debuggees$Breakpoints$List,
+        callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBreakpointsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$List|
+        BodyResponseCallback<Schema$ListBreakpointsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBreakpointsResponse>,
         callback?: BodyResponseCallback<Schema$ListBreakpointsResponse>):
         void|AxiosPromise<Schema$ListBreakpointsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debugger$Debuggees$Breakpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debugger$Debuggees$Breakpoints$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1653,26 +1837,36 @@ export namespace clouddebugger_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    set(params?: any,
+    set(params?: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
         options?: MethodOptions): AxiosPromise<Schema$SetBreakpointResponse>;
-    set(params?: any,
-        options?: MethodOptions|
+    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SetBreakpointResponse>,
-        callback?: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
-    set(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+    set(params: Params$Resource$Debugger$Debuggees$Breakpoints$Set,
+        callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+    set(callback: BodyResponseCallback<Schema$SetBreakpointResponse>): void;
+    set(paramsOrCallback?: Params$Resource$Debugger$Debuggees$Breakpoints$Set|
+        BodyResponseCallback<Schema$SetBreakpointResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SetBreakpointResponse>,
         callback?: BodyResponseCallback<Schema$SetBreakpointResponse>):
         void|AxiosPromise<Schema$SetBreakpointResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Debugger$Debuggees$Breakpoints$Set;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Debugger$Debuggees$Breakpoints$Set;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://clouddebugger.googleapis.com/';
       const parameters = {
@@ -1695,5 +1889,109 @@ export namespace clouddebugger_v2 {
         return createAPIRequest<Schema$SetBreakpointResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the breakpoint to delete.
+     */
+    breakpointId?: string;
+    /**
+     * The client version making the call. Schema: `domain/type/version` (e.g.,
+     * `google.com/intellij/v1`).
+     */
+    clientVersion?: string;
+    /**
+     * ID of the debuggee whose breakpoint to delete.
+     */
+    debuggeeId?: string;
+  }
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the breakpoint to get.
+     */
+    breakpointId?: string;
+    /**
+     * The client version making the call. Schema: `domain/type/version` (e.g.,
+     * `google.com/intellij/v1`).
+     */
+    clientVersion?: string;
+    /**
+     * ID of the debuggee whose breakpoint to get.
+     */
+    debuggeeId?: string;
+  }
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Only breakpoints with the specified action will pass the filter.
+     */
+    'action.value'?: string;
+    /**
+     * The client version making the call. Schema: `domain/type/version` (e.g.,
+     * `google.com/intellij/v1`).
+     */
+    clientVersion?: string;
+    /**
+     * ID of the debuggee whose breakpoints to list.
+     */
+    debuggeeId?: string;
+    /**
+     * When set to `true`, the response includes the list of breakpoints set by
+     * any user. Otherwise, it includes only breakpoints set by the caller.
+     */
+    includeAllUsers?: boolean;
+    /**
+     * When set to `true`, the response includes active and inactive
+     * breakpoints. Otherwise, it includes only active breakpoints.
+     */
+    includeInactive?: boolean;
+    /**
+     * This field is deprecated. The following fields are always stripped out of
+     * the result: `stack_frames`, `evaluated_expressions` and `variable_table`.
+     */
+    stripResults?: boolean;
+    /**
+     * A wait token that, if specified, blocks the call until the breakpoints
+     * list has changed, or a server selected timeout has expired.  The value
+     * should be set from the last response. The error code
+     * `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should
+     * be called again with the same `wait_token`.
+     */
+    waitToken?: string;
+  }
+  export interface Params$Resource$Debugger$Debuggees$Breakpoints$Set {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client version making the call. Schema: `domain/type/version` (e.g.,
+     * `google.com/intellij/v1`).
+     */
+    clientVersion?: string;
+    /**
+     * ID of the debuggee where the breakpoint is to be set.
+     */
+    debuggeeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Breakpoint;
   }
 }

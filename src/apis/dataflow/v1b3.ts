@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dataflow_v1b3 {
+  export interface Options extends GlobalOptions { version: 'v1b3'; }
+
   /**
    * Dataflow API
    *
@@ -73,15 +76,15 @@ export namespace dataflow_v1b3 {
     /**
      * Obsolete.
      */
-    percentComplete: number;
+    percentComplete?: number;
     /**
      * Obsolete.
      */
-    position: Schema$Position;
+    position?: Schema$Position;
     /**
      * Obsolete.
      */
-    remainingTime: string;
+    remainingTime?: string;
   }
   /**
    * A progress measurement of a WorkItem by a worker.
@@ -95,16 +98,16 @@ export namespace dataflow_v1b3 {
      * should equal the total amount of parallelism in this work item.  If
      * specified, must be finite.
      */
-    consumedParallelism: Schema$ReportedParallelism;
+    consumedParallelism?: Schema$ReportedParallelism;
     /**
      * Completion as fraction of the input consumed, from 0.0 (beginning,
      * nothing consumed), to 1.0 (end of the input, entire input consumed).
      */
-    fractionConsumed: number;
+    fractionConsumed?: number;
     /**
      * A Position within the work to represent a progress.
      */
-    position: Schema$Position;
+    position?: Schema$Position;
     /**
      * Total amount of parallelism in the input of this task that remains, (i.e.
      * can be delegated to this task and any new tasks via dynamic splitting).
@@ -126,7 +129,7 @@ export namespace dataflow_v1b3 {
      * perfectly splittable   input, this value should be 1, because apart from
      * the current task, no   additional remainder can be split off.
      */
-    remainingParallelism: Schema$ReportedParallelism;
+    remainingParallelism?: Schema$ReportedParallelism;
   }
   /**
    * A suggestion by the service to the worker to dynamically split the
@@ -137,11 +140,11 @@ export namespace dataflow_v1b3 {
      * A fraction at which to split the work item, from 0.0 (beginning of the
      * input) to 1.0 (end of the input).
      */
-    fractionConsumed: number;
+    fractionConsumed?: number;
     /**
      * A Position at which to split the work item.
      */
-    position: Schema$Position;
+    position?: Schema$Position;
   }
   /**
    * A structured message reporting an autoscaling decision made by the Dataflow
@@ -151,31 +154,31 @@ export namespace dataflow_v1b3 {
     /**
      * The current number of workers the job has.
      */
-    currentNumWorkers: string;
+    currentNumWorkers?: string;
     /**
      * A message describing why the system decided to adjust the current number
      * of workers, why it failed, or why the system decided to not make any
      * changes to the number of workers.
      */
-    description: Schema$StructuredMessage;
+    description?: Schema$StructuredMessage;
     /**
      * The type of autoscaling event to report.
      */
-    eventType: string;
+    eventType?: string;
     /**
      * The target number of workers the worker pool wants to resize to use.
      */
-    targetNumWorkers: string;
+    targetNumWorkers?: string;
     /**
      * The time this event was emitted to indicate a new target or current
      * num_workers value.
      */
-    time: string;
+    time?: string;
     /**
      * A short and friendly name for the worker pool this event refers to,
      * populated from the value of PoolStageRelation::user_pool_name.
      */
-    workerPool: string;
+    workerPool?: string;
   }
   /**
    * Settings for WorkerPool autoscaling.
@@ -184,11 +187,11 @@ export namespace dataflow_v1b3 {
     /**
      * The algorithm to use for autoscaling.
      */
-    algorithm: string;
+    algorithm?: string;
     /**
      * The maximum number of workers to cap scaling at.
      */
-    maxNumWorkers: number;
+    maxNumWorkers?: number;
   }
   /**
    * Description of an interstitial value between transforms in an execution
@@ -198,16 +201,16 @@ export namespace dataflow_v1b3 {
     /**
      * Dataflow service generated name for this source.
      */
-    name: string;
+    name?: string;
     /**
      * User name for the original user transform or collection with which this
      * source is most closely associated.
      */
-    originalTransformOrCollection: string;
+    originalTransformOrCollection?: string;
     /**
      * Human-readable name for this transform; may be user or system generated.
      */
-    userName: string;
+    userName?: string;
   }
   /**
    * Description of a transform executed as part of an execution stage.
@@ -216,16 +219,16 @@ export namespace dataflow_v1b3 {
     /**
      * Dataflow service generated name for this source.
      */
-    name: string;
+    name?: string;
     /**
      * User name for the original user transform with which this transform is
      * most closely associated.
      */
-    originalTransform: string;
+    originalTransform?: string;
     /**
      * Human-readable name for this transform; may be user or system generated.
      */
-    userName: string;
+    userName?: string;
   }
   /**
    * All configuration data for a particular Computation.
@@ -234,27 +237,27 @@ export namespace dataflow_v1b3 {
     /**
      * The ID of the computation.
      */
-    computationId: string;
+    computationId?: string;
     /**
      * The inputs to the computation.
      */
-    inputs: Schema$StreamLocation[];
+    inputs?: Schema$StreamLocation[];
     /**
      * The key ranges processed by the computation.
      */
-    keyRanges: Schema$KeyRangeLocation[];
+    keyRanges?: Schema$KeyRangeLocation[];
     /**
      * The outputs from the computation.
      */
-    outputs: Schema$StreamLocation[];
+    outputs?: Schema$StreamLocation[];
     /**
      * The state family values.
      */
-    stateFamilies: Schema$StateFamilyConfig[];
+    stateFamilies?: Schema$StateFamilyConfig[];
     /**
      * The system stage name.
      */
-    systemStageName: string;
+    systemStageName?: string;
   }
   /**
    * A position that encapsulates an inner position and an index for the inner
@@ -265,11 +268,11 @@ export namespace dataflow_v1b3 {
     /**
      * Index of the inner source.
      */
-    index: number;
+    index?: number;
     /**
      * Position within the inner source.
      */
-    position: Schema$Position;
+    position?: Schema$Position;
   }
   /**
    * CounterMetadata includes all static non-name non-value counter attributes.
@@ -278,19 +281,19 @@ export namespace dataflow_v1b3 {
     /**
      * Human-readable description of the counter semantics.
      */
-    description: string;
+    description?: string;
     /**
      * Counter aggregation kind.
      */
-    kind: string;
+    kind?: string;
     /**
      * A string referring to the unit type.
      */
-    otherUnits: string;
+    otherUnits?: string;
     /**
      * System defined Units, see above enum.
      */
-    standardUnits: string;
+    standardUnits?: string;
   }
   /**
    * Identifies a counter within a per-job namespace. Counters whose structured
@@ -300,11 +303,11 @@ export namespace dataflow_v1b3 {
     /**
      * Name of the optimized step being executed by the workers.
      */
-    componentStepName: string;
+    componentStepName?: string;
     /**
      * Name of the stage. An execution step contains multiple component steps.
      */
-    executionStepName: string;
+    executionStepName?: string;
     /**
      * Index of an input collection that&#39;s being read from/written to as a
      * side input. The index identifies a step&#39;s side inputs starting by 1
@@ -312,39 +315,39 @@ export namespace dataflow_v1b3 {
      * 3). Side inputs are identified by a pair of (original_step_name,
      * input_index). This field helps uniquely identify them.
      */
-    inputIndex: number;
+    inputIndex?: number;
     /**
      * Counter name. Not necessarily globally-unique, but unique within the
      * context of the other fields. Required.
      */
-    name: string;
+    name?: string;
     /**
      * One of the standard Origins defined above.
      */
-    origin: string;
+    origin?: string;
     /**
      * The step name requesting an operation, such as GBK. I.e. the ParDo
      * causing a read/write from shuffle to occur, or a read from side inputs.
      */
-    originalRequestingStepName: string;
+    originalRequestingStepName?: string;
     /**
      * System generated name of the original step in the user&#39;s graph,
      * before optimization.
      */
-    originalStepName: string;
+    originalStepName?: string;
     /**
      * A string containing a more specific namespace of the counter&#39;s
      * origin.
      */
-    originNamespace: string;
+    originNamespace?: string;
     /**
      * Portion of this counter, either key or value.
      */
-    portion: string;
+    portion?: string;
     /**
      * ID of a particular worker.
      */
-    workerId: string;
+    workerId?: string;
   }
   /**
    * A single message which encapsulates structured name and metadata for a
@@ -354,11 +357,11 @@ export namespace dataflow_v1b3 {
     /**
      * Metadata associated with a counter
      */
-    metadata: Schema$CounterMetadata;
+    metadata?: Schema$CounterMetadata;
     /**
      * Structured name of the counter.
      */
-    name: Schema$CounterStructuredName;
+    name?: Schema$CounterStructuredName;
   }
   /**
    * An update to a Counter sent from a worker.
@@ -367,66 +370,66 @@ export namespace dataflow_v1b3 {
     /**
      * Boolean value for And, Or.
      */
-    boolean: boolean;
+    boolean?: boolean;
     /**
      * True if this counter is reported as the total cumulative aggregate value
      * accumulated since the worker started working on this WorkItem. By default
      * this is false, indicating that this counter is reported as a delta.
      */
-    cumulative: boolean;
+    cumulative?: boolean;
     /**
      * Distribution data
      */
-    distribution: Schema$DistributionUpdate;
+    distribution?: Schema$DistributionUpdate;
     /**
      * Floating point value for Sum, Max, Min.
      */
-    floatingPoint: number;
+    floatingPoint?: number;
     /**
      * List of floating point numbers, for Set.
      */
-    floatingPointList: Schema$FloatingPointList;
+    floatingPointList?: Schema$FloatingPointList;
     /**
      * Floating point mean aggregation value for Mean.
      */
-    floatingPointMean: Schema$FloatingPointMean;
+    floatingPointMean?: Schema$FloatingPointMean;
     /**
      * Integer value for Sum, Max, Min.
      */
-    integer: Schema$SplitInt64;
+    integer?: Schema$SplitInt64;
     /**
      * Gauge data
      */
-    integerGauge: Schema$IntegerGauge;
+    integerGauge?: Schema$IntegerGauge;
     /**
      * List of integers, for Set.
      */
-    integerList: Schema$IntegerList;
+    integerList?: Schema$IntegerList;
     /**
      * Integer mean aggregation value for Mean.
      */
-    integerMean: Schema$IntegerMean;
+    integerMean?: Schema$IntegerMean;
     /**
      * Value for internally-defined counters used by the Dataflow service.
      */
-    internal: any;
+    internal?: any;
     /**
      * Counter name and aggregation type.
      */
-    nameAndKind: Schema$NameAndKind;
+    nameAndKind?: Schema$NameAndKind;
     /**
      * The service-generated short identifier for this counter. The short_id
      * -&gt; (name, metadata) mapping is constant for the lifetime of a job.
      */
-    shortId: string;
+    shortId?: string;
     /**
      * List of strings, for Set.
      */
-    stringList: Schema$StringList;
+    stringList?: Schema$StringList;
     /**
      * Counter structured name and metadata.
      */
-    structuredNameAndMetadata: Schema$CounterStructuredNameAndMetadata;
+    structuredNameAndMetadata?: Schema$CounterStructuredNameAndMetadata;
   }
   /**
    * Modeled after information exposed by /proc/stat.
@@ -436,16 +439,16 @@ export namespace dataflow_v1b3 {
      * Average CPU utilization rate (% non-idle cpu / second) since previous
      * sample.
      */
-    rate: number;
+    rate?: number;
     /**
      * Timestamp of the measurement.
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * Total active CPU time across all cores (ie., non-idle) in milliseconds
      * since start-up.
      */
-    totalMs: string;
+    totalMs?: string;
   }
   /**
    * A request to create a Cloud Dataflow job from a template.
@@ -454,24 +457,24 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime environment for the job.
      */
-    environment: Schema$RuntimeEnvironment;
+    environment?: Schema$RuntimeEnvironment;
     /**
      * Required. A Cloud Storage path to the template from which to create the
      * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
      */
-    gcsPath: string;
+    gcsPath?: string;
     /**
      * Required. The job name to use for the created job.
      */
-    jobName: string;
+    jobName?: string;
     /**
      * The location to which to direct the request.
      */
-    location: string;
+    location?: string;
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters: any;
+    parameters?: any;
   }
   /**
    * Identifies the location of a custom souce.
@@ -480,7 +483,7 @@ export namespace dataflow_v1b3 {
     /**
      * Whether this source is stateful.
      */
-    stateful: boolean;
+    stateful?: boolean;
   }
   /**
    * Data disk assignment for a given VM instance.
@@ -493,12 +496,12 @@ export namespace dataflow_v1b3 {
      * &quot;myproject-1014-104817-4c2-harness-0-disk-0&quot; }, {
      * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot; }.
      */
-    dataDisks: string[];
+    dataDisks?: string[];
     /**
      * VM instance name the data disks mounted to, for example
      * &quot;myproject-1014-104817-4c2-harness-0&quot;.
      */
-    vmInstance: string;
+    vmInstance?: string;
   }
   /**
    * Specification of one of the bundles produced as a result of splitting a
@@ -510,11 +513,11 @@ export namespace dataflow_v1b3 {
     /**
      * What source to base the produced source on (if any).
      */
-    derivationMode: string;
+    derivationMode?: string;
     /**
      * Specification of the source.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * Describes the data disk used by a workflow job.
@@ -536,16 +539,16 @@ export namespace dataflow_v1b3 {
      * like this:
      * compute.googleapis.com/projects/project-id/zones/zone/diskTypes/pd-standard
      */
-    diskType: string;
+    diskType?: string;
     /**
      * Directory in a VM where disk is mounted.
      */
-    mountPoint: string;
+    mountPoint?: string;
     /**
      * Size of disk in GB.  If zero or unspecified, the service will attempt to
      * choose a reasonable default.
      */
-    sizeGb: number;
+    sizeGb?: number;
   }
   /**
    * Data provided with a pipeline or transform to provide descriptive info.
@@ -554,39 +557,39 @@ export namespace dataflow_v1b3 {
     /**
      * Contains value if the data is of a boolean type.
      */
-    boolValue: boolean;
+    boolValue?: boolean;
     /**
      * Contains value if the data is of duration type.
      */
-    durationValue: string;
+    durationValue?: string;
     /**
      * Contains value if the data is of float type.
      */
-    floatValue: number;
+    floatValue?: number;
     /**
      * Contains value if the data is of int64 type.
      */
-    int64Value: string;
+    int64Value?: string;
     /**
      * Contains value if the data is of java class type.
      */
-    javaClassValue: string;
+    javaClassValue?: string;
     /**
      * The key identifying the display data. This is intended to be used as a
      * label for the display data when viewed in a dax monitoring system.
      */
-    key: string;
+    key?: string;
     /**
      * An optional label to display in a dax UI for the element.
      */
-    label: string;
+    label?: string;
     /**
      * The namespace for the key. This is usually a class name or programming
      * language namespace (i.e. python module) which defines the display data.
      * This allows a dax monitoring system to specially handle the data and
      * perform custom rendering.
      */
-    namespace: string;
+    namespace?: string;
     /**
      * A possible additional shorter value to display. For example a
      * java_class_name_value of com.mypackage.MyDoFn will be stored with MyDoFn
@@ -594,19 +597,19 @@ export namespace dataflow_v1b3 {
      * value. short_str_value can be displayed and java_class_name_value will be
      * displayed as a tooltip.
      */
-    shortStrValue: string;
+    shortStrValue?: string;
     /**
      * Contains value if the data is of string type.
      */
-    strValue: string;
+    strValue?: string;
     /**
      * Contains value if the data is of timestamp type.
      */
-    timestampValue: string;
+    timestampValue?: string;
     /**
      * An optional full URL.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A metric value representing a distribution.
@@ -615,28 +618,28 @@ export namespace dataflow_v1b3 {
     /**
      * The count of the number of elements present in the distribution.
      */
-    count: Schema$SplitInt64;
+    count?: Schema$SplitInt64;
     /**
      * (Optional) Histogram of value counts for the distribution.
      */
-    histogram: Schema$Histogram;
+    histogram?: Schema$Histogram;
     /**
      * The maximum value present in the distribution.
      */
-    max: Schema$SplitInt64;
+    max?: Schema$SplitInt64;
     /**
      * The minimum value present in the distribution.
      */
-    min: Schema$SplitInt64;
+    min?: Schema$SplitInt64;
     /**
      * Use an int64 since we&#39;d prefer the added precision. If overflow is a
      * common problem we can detect it and use an additional int64 or a double.
      */
-    sum: Schema$SplitInt64;
+    sum?: Schema$SplitInt64;
     /**
      * Use a double since the sum of squares is likely to overflow int64.
      */
-    sumOfSquares: number;
+    sumOfSquares?: number;
   }
   /**
    * When a task splits using WorkItemStatus.dynamic_source_split, this message
@@ -648,12 +651,12 @@ export namespace dataflow_v1b3 {
      * Primary part (continued to be processed by worker). Specified relative to
      * the previously-current source. Becomes current.
      */
-    primary: Schema$DerivedSource;
+    primary?: Schema$DerivedSource;
     /**
      * Residual part (returned to the pool of work). Specified relative to the
      * previously-current source.
      */
-    residual: Schema$DerivedSource;
+    residual?: Schema$DerivedSource;
   }
   /**
    * Describes the environment in which a Dataflow Job runs.
@@ -665,32 +668,32 @@ export namespace dataflow_v1b3 {
      * the form of the API service name, e.g.
      * &quot;compute.googleapis.com&quot;.
      */
-    clusterManagerApiService: string;
+    clusterManagerApiService?: string;
     /**
      * The dataset for the current project where various workflow related tables
      * are stored.  The supported resource type is:  Google BigQuery:
      * bigquery.googleapis.com/{dataset}
      */
-    dataset: string;
+    dataset?: string;
     /**
      * The list of experiments to enable.
      */
-    experiments: string[];
+    experiments?: string[];
     /**
      * Experimental settings.
      */
-    internalExperiments: any;
+    internalExperiments?: any;
     /**
      * The Cloud Dataflow SDK pipeline options specified by the user. These
      * options are passed through the service and are used to recreate the SDK
      * pipeline options on the worker in a language agnostic and platform
      * independent way.
      */
-    sdkPipelineOptions: any;
+    sdkPipelineOptions?: any;
     /**
      * Identity to run virtual machines as. Defaults to the default account.
      */
-    serviceAccountEmail: string;
+    serviceAccountEmail?: string;
     /**
      * The prefix of the resources the system should use for temporary storage.
      * The system will append the suffix &quot;/temp-{JOBNAME} to this resource
@@ -701,21 +704,21 @@ export namespace dataflow_v1b3 {
      * type is:  Google Cloud Storage: storage.googleapis.com/{bucket}/{object}
      * bucket.storage.googleapis.com/{object}
      */
-    tempStoragePrefix: string;
+    tempStoragePrefix?: string;
     /**
      * A description of the process that generated the request.
      */
-    userAgent: any;
+    userAgent?: any;
     /**
      * A structure describing which components and their versions of the service
      * are required in order to run the job.
      */
-    version: any;
+    version?: any;
     /**
      * The worker pools. At least one &quot;harness&quot; worker pool must be
      * specified in order for the job to have workers.
      */
-    workerPools: Schema$WorkerPool[];
+    workerPools?: Schema$WorkerPool[];
   }
   /**
    * A message describing the state of a particular execution stage.
@@ -724,15 +727,15 @@ export namespace dataflow_v1b3 {
     /**
      * The time at which the stage transitioned to this state.
      */
-    currentStateTime: string;
+    currentStateTime?: string;
     /**
      * The name of the execution stage.
      */
-    executionStageName: string;
+    executionStageName?: string;
     /**
      * Executions stage states allow the same set of values as JobState.
      */
-    executionStageState: string;
+    executionStageState?: string;
   }
   /**
    * Description of the composing transforms, names/ids, and input/outputs of a
@@ -743,31 +746,31 @@ export namespace dataflow_v1b3 {
     /**
      * Collections produced and consumed by component transforms of this stage.
      */
-    componentSource: Schema$ComponentSource[];
+    componentSource?: Schema$ComponentSource[];
     /**
      * Transforms that comprise this execution stage.
      */
-    componentTransform: Schema$ComponentTransform[];
+    componentTransform?: Schema$ComponentTransform[];
     /**
      * Dataflow service generated id for this stage.
      */
-    id: string;
+    id?: string;
     /**
      * Input sources for this stage.
      */
-    inputSource: Schema$StageSource[];
+    inputSource?: Schema$StageSource[];
     /**
      * Type of tranform this stage is executing.
      */
-    kind: string;
+    kind?: string;
     /**
      * Dataflow service generated name for this stage.
      */
-    name: string;
+    name?: string;
     /**
      * Output sources for this stage.
      */
-    outputSource: Schema$StageSource[];
+    outputSource?: Schema$StageSource[];
   }
   /**
    * Indicates which location failed to respond to a request for data.
@@ -776,7 +779,7 @@ export namespace dataflow_v1b3 {
     /**
      * The name of the failed location.
      */
-    name: string;
+    name?: string;
   }
   /**
    * An instruction that copies its inputs (zero or more) to its (single)
@@ -786,7 +789,7 @@ export namespace dataflow_v1b3 {
     /**
      * Describes the inputs to the flatten instruction.
      */
-    inputs: Schema$InstructionInput[];
+    inputs?: Schema$InstructionInput[];
   }
   /**
    * A metric value representing a list of floating point numbers.
@@ -795,7 +798,7 @@ export namespace dataflow_v1b3 {
     /**
      * Elements of the list.
      */
-    elements: number[];
+    elements?: number[];
   }
   /**
    * A representation of a floating point mean metric contribution.
@@ -804,11 +807,11 @@ export namespace dataflow_v1b3 {
     /**
      * The number of values being aggregated.
      */
-    count: Schema$SplitInt64;
+    count?: Schema$SplitInt64;
     /**
      * The sum of all values being aggregated.
      */
-    sum: number;
+    sum?: number;
   }
   /**
    * Request to get updated debug configuration for component.
@@ -817,15 +820,15 @@ export namespace dataflow_v1b3 {
     /**
      * The internal component id for which debug configuration is requested.
      */
-    componentId: string;
+    componentId?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * The worker id, i.e., VM hostname.
      */
-    workerId: string;
+    workerId?: string;
   }
   /**
    * Response to a get debug configuration request.
@@ -834,7 +837,7 @@ export namespace dataflow_v1b3 {
     /**
      * The encoded debug configuration for the requested component.
      */
-    config: string;
+    config?: string;
   }
   /**
    * The response to a GetTemplate request.
@@ -844,12 +847,12 @@ export namespace dataflow_v1b3 {
      * The template metadata describing the template name, available parameters,
      * etc.
      */
-    metadata: Schema$TemplateMetadata;
+    metadata?: Schema$TemplateMetadata;
     /**
      * The status of the get template request. Any problems with the request
      * will be indicated in the error_details.
      */
-    status: Schema$Status;
+    status?: Schema$Status;
   }
   /**
    * Histogram of value counts for a distribution.  Buckets have an inclusive
@@ -866,13 +869,13 @@ export namespace dataflow_v1b3 {
      * values of an unsigned long, with ULLONG_MAX falling into the 59th bucket
      * with range [1e19, 2e19).
      */
-    bucketCounts: string[];
+    bucketCounts?: string[];
     /**
      * Starting index of first stored bucket. The non-inclusive upper-bound of
      * the ith bucket is given by:   pow(10,(i-first_bucket_offset)/3) *
      * (1,2,5)[(i-first_bucket_offset)%3]
      */
-    firstBucketOffset: number;
+    firstBucketOffset?: number;
   }
   /**
    * An input of an instruction, as a reference to an output of a producer
@@ -882,13 +885,13 @@ export namespace dataflow_v1b3 {
     /**
      * The output index (origin zero) within the producer.
      */
-    outputNum: number;
+    outputNum?: number;
     /**
      * The index (origin zero) of the parallel instruction that produces the
      * output to be consumed by this input.  This index is relative to the list
      * of instructions in this input&#39;s instruction&#39;s containing MapTask.
      */
-    producerInstructionIndex: number;
+    producerInstructionIndex?: number;
   }
   /**
    * An output of an instruction.
@@ -897,31 +900,31 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data being written via this output.
      */
-    codec: any;
+    codec?: any;
     /**
      * The user-provided name of this output.
      */
-    name: string;
+    name?: string;
     /**
      * For system-generated byte and mean byte metrics, certain instructions
      * should only report the key size.
      */
-    onlyCountKeyBytes: boolean;
+    onlyCountKeyBytes?: boolean;
     /**
      * For system-generated byte and mean byte metrics, certain instructions
      * should only report the value size.
      */
-    onlyCountValueBytes: boolean;
+    onlyCountValueBytes?: boolean;
     /**
      * System-defined name for this output in the original workflow graph.
      * Outputs that do not contribute to an original instruction do not set
      * this.
      */
-    originalName: string;
+    originalName?: string;
     /**
      * System-defined name of this output. Unique across the workflow.
      */
-    systemName: string;
+    systemName?: string;
   }
   /**
    * A metric value representing temporal values of a variable.
@@ -930,11 +933,11 @@ export namespace dataflow_v1b3 {
     /**
      * The time at which this value was measured. Measured as msecs from epoch.
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * The value of the variable represented by this gauge.
      */
-    value: Schema$SplitInt64;
+    value?: Schema$SplitInt64;
   }
   /**
    * A metric value representing a list of integers.
@@ -943,7 +946,7 @@ export namespace dataflow_v1b3 {
     /**
      * Elements of the list.
      */
-    elements: Schema$SplitInt64[];
+    elements?: Schema$SplitInt64[];
   }
   /**
    * A representation of an integer mean metric contribution.
@@ -952,11 +955,11 @@ export namespace dataflow_v1b3 {
     /**
      * The number of values being aggregated.
      */
-    count: Schema$SplitInt64;
+    count?: Schema$SplitInt64;
     /**
      * The sum of all values being aggregated.
      */
-    sum: Schema$SplitInt64;
+    sum?: Schema$SplitInt64;
   }
   /**
    * Defines a job to be run by the Cloud Dataflow service.
@@ -971,12 +974,12 @@ export namespace dataflow_v1b3 {
      * retried attempts to create a job. By default, the field is empty and, in
      * that case, the service ignores it.
      */
-    clientRequestId: string;
+    clientRequestId?: string;
     /**
      * The timestamp when the job was initially created. Immutable and set by
      * the Cloud Dataflow service.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The current state of the job.  Jobs are created in the
      * `JOB_STATE_STOPPED` state unless otherwise specified.  A job in the
@@ -985,25 +988,25 @@ export namespace dataflow_v1b3 {
      * made.  This field may be mutated by the Cloud Dataflow service; callers
      * cannot mutate it.
      */
-    currentState: string;
+    currentState?: string;
     /**
      * The timestamp associated with the current state.
      */
-    currentStateTime: string;
+    currentStateTime?: string;
     /**
      * The environment for the job.
      */
-    environment: Schema$Environment;
+    environment?: Schema$Environment;
     /**
      * Deprecated.
      */
-    executionInfo: Schema$JobExecutionInfo;
+    executionInfo?: Schema$JobExecutionInfo;
     /**
      * The unique ID of this job.  This field is set by the Cloud Dataflow
      * service when the Job is created, and is immutable for the life of the
      * job.
      */
-    id: string;
+    id?: string;
     /**
      * User-defined labels for this job.  The labels map can contain no more
      * than 64 entries.  Entries of the labels map are UTF8 strings that comply
@@ -1012,11 +1015,11 @@ export namespace dataflow_v1b3 {
      * [\p{Ll}\p{Lo}\p{N}_-]{0,63} * Both keys and values are additionally
      * constrained to be &lt;= 128 bytes in size.
      */
-    labels: any;
+    labels?: any;
     /**
      * The location that contains this job.
      */
-    location: string;
+    location?: string;
     /**
      * The user-specified Cloud Dataflow job name.  Only one Job with a given
      * name may exist in a project at any given time. If a caller attempts to
@@ -1024,30 +1027,30 @@ export namespace dataflow_v1b3 {
      * returns the existing Job.  The name must match the regular expression
      * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
      */
-    name: string;
+    name?: string;
     /**
      * Preliminary field: The format of this data may change at any time. A
      * description of the user pipeline and stages through which it is executed.
      * Created by Cloud Dataflow service.  Only retrieved with
      * JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
      */
-    pipelineDescription: Schema$PipelineDescription;
+    pipelineDescription?: Schema$PipelineDescription;
     /**
      * The ID of the Cloud Platform project that the job belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * If another job is an update of this job (and thus, this job is in
      * `JOB_STATE_UPDATED`), this field contains the ID of that job.
      */
-    replacedByJobId: string;
+    replacedByJobId?: string;
     /**
      * If this job is an update of an existing job, this field is the job ID of
      * the job it replaced.  When sending a `CreateJobRequest`, you can update a
      * job by specifying it here. The job named here is stopped, and its
      * intermediate state is transferred to this job.
      */
-    replaceJobId: string;
+    replaceJobId?: string;
     /**
      * The job&#39;s requested state.  `UpdateJob` may be used to switch between
      * the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting
@@ -1056,16 +1059,16 @@ export namespace dataflow_v1b3 {
      * irrevocably terminating the job if it has not already reached a terminal
      * state.
      */
-    requestedState: string;
+    requestedState?: string;
     /**
      * This field may be mutated by the Cloud Dataflow service; callers cannot
      * mutate it.
      */
-    stageStates: Schema$ExecutionStageState[];
+    stageStates?: Schema$ExecutionStageState[];
     /**
      * The top-level steps that constitute the entire job.
      */
-    steps: Schema$Step[];
+    steps?: Schema$Step[];
     /**
      * A set of files the system should be aware of that are used for temporary
      * storage. These temporary files will be removed on job completion. No
@@ -1074,16 +1077,16 @@ export namespace dataflow_v1b3 {
      * storage.googleapis.com/{bucket}/{object}
      * bucket.storage.googleapis.com/{object}
      */
-    tempFiles: string[];
+    tempFiles?: string[];
     /**
      * The map of transform name prefixes of the job to be replaced to the
      * corresponding name prefixes of the new job.
      */
-    transformNameMapping: any;
+    transformNameMapping?: any;
     /**
      * The type of Cloud Dataflow job.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Additional information about how a Cloud Dataflow job will be executed that
@@ -1093,7 +1096,7 @@ export namespace dataflow_v1b3 {
     /**
      * A mapping from each stage to the information about that stage.
      */
-    stages: any;
+    stages?: any;
   }
   /**
    * Contains information about how a particular google.dataflow.v1beta3.Step
@@ -1104,7 +1107,7 @@ export namespace dataflow_v1b3 {
      * The steps associated with the execution stage. Note that stages may have
      * several steps, and that a given step might be run by more than one stage.
      */
-    stepName: string[];
+    stepName?: string[];
   }
   /**
    * A particular message pertaining to a Dataflow job.
@@ -1113,19 +1116,19 @@ export namespace dataflow_v1b3 {
     /**
      * Deprecated.
      */
-    id: string;
+    id?: string;
     /**
      * Importance level of the message.
      */
-    messageImportance: string;
+    messageImportance?: string;
     /**
      * The text of the message.
      */
-    messageText: string;
+    messageText?: string;
     /**
      * The timestamp of the message.
      */
-    time: string;
+    time?: string;
   }
   /**
    * JobMetrics contains a collection of metrics descibing the detailed progress
@@ -1138,11 +1141,11 @@ export namespace dataflow_v1b3 {
     /**
      * All metrics for this job.
      */
-    metrics: Schema$MetricUpdate[];
+    metrics?: Schema$MetricUpdate[];
     /**
      * Timestamp as of which metric values are current.
      */
-    metricTime: string;
+    metricTime?: string;
   }
   /**
    * Data disk assignment information for a specific key-range of a sharded
@@ -1156,15 +1159,15 @@ export namespace dataflow_v1b3 {
      * disk within that project, for example
      * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
-    dataDisk: string;
+    dataDisk?: string;
     /**
      * The end (exclusive) of the key range.
      */
-    end: string;
+    end?: string;
     /**
      * The start (inclusive) of the key range.
      */
-    start: string;
+    start?: string;
   }
   /**
    * Location information for a specific key-range of a sharded computation.
@@ -1178,25 +1181,25 @@ export namespace dataflow_v1b3 {
      * disk within that project, for example
      * &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
-    dataDisk: string;
+    dataDisk?: string;
     /**
      * The physical location of this range assignment to be used for streaming
      * computation cross-worker message delivery.
      */
-    deliveryEndpoint: string;
+    deliveryEndpoint?: string;
     /**
      * DEPRECATED. The location of the persistent state for this range, as a
      * persistent directory in the worker local filesystem.
      */
-    deprecatedPersistentDirectory: string;
+    deprecatedPersistentDirectory?: string;
     /**
      * The end (exclusive) of the key range.
      */
-    end: string;
+    end?: string;
     /**
      * The start (inclusive) of the key range.
      */
-    start: string;
+    start?: string;
   }
   /**
    * Parameters to provide to the template being launched.
@@ -1205,15 +1208,15 @@ export namespace dataflow_v1b3 {
     /**
      * The runtime environment for the job.
      */
-    environment: Schema$RuntimeEnvironment;
+    environment?: Schema$RuntimeEnvironment;
     /**
      * Required. The job name to use for the created job.
      */
-    jobName: string;
+    jobName?: string;
     /**
      * The runtime parameters to pass to the job.
      */
-    parameters: any;
+    parameters?: any;
   }
   /**
    * Response to the request to launch a template.
@@ -1223,7 +1226,7 @@ export namespace dataflow_v1b3 {
      * The job that was launched, if the request was not a dry run and the job
      * was successfully launched.
      */
-    job: Schema$Job;
+    job?: Schema$Job;
   }
   /**
    * Request to lease WorkItems.
@@ -1232,29 +1235,29 @@ export namespace dataflow_v1b3 {
     /**
      * The current timestamp at the worker.
      */
-    currentWorkerTime: string;
+    currentWorkerTime?: string;
     /**
      * The location which contains the WorkItem&#39;s job.
      */
-    location: string;
+    location?: string;
     /**
      * The initial lease period.
      */
-    requestedLeaseDuration: string;
+    requestedLeaseDuration?: string;
     /**
      * Worker capabilities. WorkItems might be limited to workers with specific
      * capabilities.
      */
-    workerCapabilities: string[];
+    workerCapabilities?: string[];
     /**
      * Identifies the worker leasing work -- typically the ID of the virtual
      * machine running the worker.
      */
-    workerId: string;
+    workerId?: string;
     /**
      * Filter for WorkItem type.
      */
-    workItemTypes: string[];
+    workItemTypes?: string[];
   }
   /**
    * Response to a request to lease WorkItems.
@@ -1263,7 +1266,7 @@ export namespace dataflow_v1b3 {
     /**
      * A list of the leased WorkItems.
      */
-    workItems: Schema$WorkItem[];
+    workItems?: Schema$WorkItem[];
   }
   /**
    * Response to a request to list job messages.
@@ -1272,15 +1275,15 @@ export namespace dataflow_v1b3 {
     /**
      * Autoscaling events in ascending timestamp order.
      */
-    autoscalingEvents: Schema$AutoscalingEvent[];
+    autoscalingEvents?: Schema$AutoscalingEvent[];
     /**
      * Messages in ascending timestamp order.
      */
-    jobMessages: Schema$JobMessage[];
+    jobMessages?: Schema$JobMessage[];
     /**
      * The token to obtain the next page of results if there are more.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response to a request to list Cloud Dataflow jobs.  This may be a partial
@@ -1290,15 +1293,15 @@ export namespace dataflow_v1b3 {
     /**
      * Zero or more messages describing locations that failed to respond.
      */
-    failedLocation: Schema$FailedLocation[];
+    failedLocation?: Schema$FailedLocation[];
     /**
      * A subset of the requested job information.
      */
-    jobs: Schema$Job[];
+    jobs?: Schema$Job[];
     /**
      * Set if there may be more results than fit in this response.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * MapTask consists of an ordered set of instructions, each of which describes
@@ -1310,16 +1313,16 @@ export namespace dataflow_v1b3 {
     /**
      * The instructions in the MapTask.
      */
-    instructions: Schema$ParallelInstruction[];
+    instructions?: Schema$ParallelInstruction[];
     /**
      * System-defined name of the stage containing this MapTask. Unique across
      * the workflow.
      */
-    stageName: string;
+    stageName?: string;
     /**
      * System-defined name of this MapTask. Unique across the workflow.
      */
-    systemName: string;
+    systemName?: string;
   }
   /**
    * The metric short id is returned to the user alongside an offset into
@@ -1330,11 +1333,11 @@ export namespace dataflow_v1b3 {
      * The index of the corresponding metric in the ReportWorkItemStatusRequest.
      * Required.
      */
-    metricIndex: number;
+    metricIndex?: number;
     /**
      * The service-generated short identifier for the metric.
      */
-    shortId: string;
+    shortId?: string;
   }
   /**
    * Identifies a metric, by describing the source which generated the metric.
@@ -1348,17 +1351,17 @@ export namespace dataflow_v1b3 {
      * PCollections in the SDK will have context[&#39;pcollection&#39;] =
      * &lt;pcollection-name&gt;.
      */
-    context: any;
+    context?: any;
     /**
      * Worker-defined metric name.
      */
-    name: string;
+    name?: string;
     /**
      * Origin (namespace) of metric name. May be blank for user-define metrics;
      * will be &quot;dataflow&quot; for metrics defined by the Dataflow service
      * or SDK.
      */
-    origin: string;
+    origin?: string;
   }
   /**
    * Describes the state of a metric.
@@ -1370,21 +1373,21 @@ export namespace dataflow_v1b3 {
      * this is false, indicating that this metric is reported as a delta that is
      * not associated with any WorkItem.
      */
-    cumulative: boolean;
+    cumulative?: boolean;
     /**
      * A struct value describing properties of a distribution of numeric values.
      */
-    distribution: any;
+    distribution?: any;
     /**
      * A struct value describing properties of a Gauge. Metrics of gauge type
      * show the value of a metric across time, and is aggregated based on the
      * newest value.
      */
-    gauge: any;
+    gauge?: any;
     /**
      * Worker-computed aggregate value for internal use by the Dataflow service.
      */
-    internal: any;
+    internal?: any;
     /**
      * Metric aggregation kind.  The possible metric aggregation kinds are
      * &quot;Sum&quot;, &quot;Max&quot;, &quot;Min&quot;, &quot;Mean&quot;,
@@ -1393,44 +1396,44 @@ export namespace dataflow_v1b3 {
      * case-insensitive.  If omitted, this is not an aggregated value but
      * instead a single metric sample value.
      */
-    kind: string;
+    kind?: string;
     /**
      * Worker-computed aggregate value for the &quot;Mean&quot; aggregation
      * kind. This holds the count of the aggregated values and is used in
      * combination with mean_sum above to obtain the actual mean aggregate
      * value. The only possible value type is Long.
      */
-    meanCount: any;
+    meanCount?: any;
     /**
      * Worker-computed aggregate value for the &quot;Mean&quot; aggregation
      * kind. This holds the sum of the aggregated values and is used in
      * combination with mean_count below to obtain the actual mean aggregate
      * value. The only possible value types are Long and Double.
      */
-    meanSum: any;
+    meanSum?: any;
     /**
      * Name of the metric.
      */
-    name: Schema$MetricStructuredName;
+    name?: Schema$MetricStructuredName;
     /**
      * Worker-computed aggregate value for aggregation kinds &quot;Sum&quot;,
      * &quot;Max&quot;, &quot;Min&quot;, &quot;And&quot;, and &quot;Or&quot;.
      * The possible value types are Long, Double, and Boolean.
      */
-    scalar: any;
+    scalar?: any;
     /**
      * Worker-computed aggregate value for the &quot;Set&quot; aggregation kind.
      * The only possible value type is a list of Values whose type can be Long,
      * Double, or String, according to the metric&#39;s type.  All Values in the
      * list must be of the same type.
      */
-    set: any;
+    set?: any;
     /**
      * Timestamp associated with the metric value. Optional when workers are
      * reporting work progress; it will be filled in responses from the metrics
      * API.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Describes mounted data disk.
@@ -1441,7 +1444,7 @@ export namespace dataflow_v1b3 {
      * Platform project and uniquely identifies the disk within that project,
      * for example &quot;myproject-1014-104817-4c2-harness-0-disk-1&quot;.
      */
-    dataDisk: string;
+    dataDisk?: string;
   }
   /**
    * Information about an output of a multi-output DoFn.
@@ -1451,7 +1454,7 @@ export namespace dataflow_v1b3 {
      * The id of the tag the user code will emit to this output by; this should
      * correspond to the tag of some SideInputInfo.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Basic metadata about a counter.
@@ -1460,11 +1463,11 @@ export namespace dataflow_v1b3 {
     /**
      * Counter aggregation kind.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of the counter.
      */
-    name: string;
+    name?: string;
   }
   /**
    * The packages that must be installed in order for a worker to run the steps
@@ -1481,11 +1484,11 @@ export namespace dataflow_v1b3 {
      * Google Cloud Storage:    storage.googleapis.com/{bucket}
      * bucket.storage.googleapis.com/
      */
-    location: string;
+    location?: string;
     /**
      * The name of the package.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Describes a particular operation comprising a MapTask.
@@ -1494,39 +1497,39 @@ export namespace dataflow_v1b3 {
     /**
      * Additional information for Flatten instructions.
      */
-    flatten: Schema$FlattenInstruction;
+    flatten?: Schema$FlattenInstruction;
     /**
      * User-provided name of this operation.
      */
-    name: string;
+    name?: string;
     /**
      * System-defined name for the operation in the original workflow graph.
      */
-    originalName: string;
+    originalName?: string;
     /**
      * Describes the outputs of the instruction.
      */
-    outputs: Schema$InstructionOutput[];
+    outputs?: Schema$InstructionOutput[];
     /**
      * Additional information for ParDo instructions.
      */
-    parDo: Schema$ParDoInstruction;
+    parDo?: Schema$ParDoInstruction;
     /**
      * Additional information for PartialGroupByKey instructions.
      */
-    partialGroupByKey: Schema$PartialGroupByKeyInstruction;
+    partialGroupByKey?: Schema$PartialGroupByKeyInstruction;
     /**
      * Additional information for Read instructions.
      */
-    read: Schema$ReadInstruction;
+    read?: Schema$ReadInstruction;
     /**
      * System-defined name of this operation. Unique across the workflow.
      */
-    systemName: string;
+    systemName?: string;
     /**
      * Additional information for Write instructions.
      */
-    write: Schema$WriteInstruction;
+    write?: Schema$WriteInstruction;
   }
   /**
    * Structured data associated with this message.
@@ -1535,11 +1538,11 @@ export namespace dataflow_v1b3 {
     /**
      * Key or name for this parameter.
      */
-    key: string;
+    key?: string;
     /**
      * Value for this parameter.
      */
-    value: any;
+    value?: any;
   }
   /**
    * Metadata for a specific parameter.
@@ -1548,23 +1551,23 @@ export namespace dataflow_v1b3 {
     /**
      * Required. The help text to display for the parameter.
      */
-    helpText: string;
+    helpText?: string;
     /**
      * Optional. Whether the parameter is optional. Defaults to false.
      */
-    isOptional: boolean;
+    isOptional?: boolean;
     /**
      * Required. The label to display for the parameter.
      */
-    label: string;
+    label?: string;
     /**
      * Required. The name of the parameter.
      */
-    name: string;
+    name?: string;
     /**
      * Optional. Regexes that the parameter must match.
      */
-    regexes: string[];
+    regexes?: string[];
   }
   /**
    * An instruction that does a ParDo operation. Takes one main input and zero
@@ -1574,23 +1577,23 @@ export namespace dataflow_v1b3 {
     /**
      * The input.
      */
-    input: Schema$InstructionInput;
+    input?: Schema$InstructionInput;
     /**
      * Information about each of the outputs, if user_fn is a  MultiDoFn.
      */
-    multiOutputInfos: Schema$MultiOutputInfo[];
+    multiOutputInfos?: Schema$MultiOutputInfo[];
     /**
      * The number of outputs.
      */
-    numOutputs: number;
+    numOutputs?: number;
     /**
      * Zero or more side inputs.
      */
-    sideInputs: Schema$SideInputInfo[];
+    sideInputs?: Schema$SideInputInfo[];
     /**
      * The user function to invoke.
      */
-    userFn: any;
+    userFn?: any;
   }
   /**
    * An instruction that does a partial group-by-key. One input and one output.
@@ -1599,29 +1602,29 @@ export namespace dataflow_v1b3 {
     /**
      * Describes the input to the partial group-by-key instruction.
      */
-    input: Schema$InstructionInput;
+    input?: Schema$InstructionInput;
     /**
      * The codec to use for interpreting an element in the input PTable.
      */
-    inputElementCodec: any;
+    inputElementCodec?: any;
     /**
      * If this instruction includes a combining function this is the name of the
      * intermediate store between the GBK and the CombineValues.
      */
-    originalCombineValuesInputStoreName: string;
+    originalCombineValuesInputStoreName?: string;
     /**
      * If this instruction includes a combining function, this is the name of
      * the CombineValues instruction lifted into this instruction.
      */
-    originalCombineValuesStepName: string;
+    originalCombineValuesStepName?: string;
     /**
      * Zero or more side inputs.
      */
-    sideInputs: Schema$SideInputInfo[];
+    sideInputs?: Schema$SideInputInfo[];
     /**
      * The value combining function to invoke.
      */
-    valueCombiningFn: any;
+    valueCombiningFn?: any;
   }
   /**
    * A descriptive representation of submitted pipeline as well as the executed
@@ -1632,16 +1635,16 @@ export namespace dataflow_v1b3 {
     /**
      * Pipeline level display data.
      */
-    displayData: Schema$DisplayData[];
+    displayData?: Schema$DisplayData[];
     /**
      * Description of each stage of execution of the pipeline.
      */
-    executionPipelineStage: Schema$ExecutionStageSummary[];
+    executionPipelineStage?: Schema$ExecutionStageSummary[];
     /**
      * Description of each transform in the pipeline and collections between
      * them.
      */
-    originalPipelineTransform: Schema$TransformSummary[];
+    originalPipelineTransform?: Schema$TransformSummary[];
   }
   /**
    * Position defines a position within a collection of data.  The value can be
@@ -1652,29 +1655,29 @@ export namespace dataflow_v1b3 {
     /**
      * Position is a byte offset.
      */
-    byteOffset: string;
+    byteOffset?: string;
     /**
      * CloudPosition is a concat position.
      */
-    concatPosition: Schema$ConcatPosition;
+    concatPosition?: Schema$ConcatPosition;
     /**
      * Position is past all other positions. Also useful for the end position of
      * an unbounded range.
      */
-    end: boolean;
+    end?: boolean;
     /**
      * Position is a string key, ordered lexicographically.
      */
-    key: string;
+    key?: string;
     /**
      * Position is a record index.
      */
-    recordIndex: string;
+    recordIndex?: string;
     /**
      * CloudPosition is a base64 encoded BatchShufflePosition (with FIXED
      * sharding).
      */
-    shufflePosition: string;
+    shufflePosition?: string;
   }
   /**
    * Identifies a pubsub location to use for transferring data into or out of a
@@ -1684,36 +1687,36 @@ export namespace dataflow_v1b3 {
     /**
      * Indicates whether the pipeline allows late-arriving data.
      */
-    dropLateData: boolean;
+    dropLateData?: boolean;
     /**
      * If set, contains a pubsub label from which to extract record ids. If left
      * empty, record deduplication will be strictly best effort.
      */
-    idLabel: string;
+    idLabel?: string;
     /**
      * A pubsub subscription, in the form of
      * &quot;pubsub.googleapis.com/subscriptions/&lt;project-id&gt;/&lt;subscription-name&gt;&quot;
      */
-    subscription: string;
+    subscription?: string;
     /**
      * If set, contains a pubsub label from which to extract record timestamps.
      * If left empty, record timestamps will be generated upon arrival.
      */
-    timestampLabel: string;
+    timestampLabel?: string;
     /**
      * A pubsub topic, in the form of
      * &quot;pubsub.googleapis.com/topics/&lt;project-id&gt;/&lt;topic-name&gt;&quot;
      */
-    topic: string;
+    topic?: string;
     /**
      * If set, specifies the pubsub subscription that will be used for tracking
      * custom time timestamps for watermark estimation.
      */
-    trackingSubscription: string;
+    trackingSubscription?: string;
     /**
      * If true, then the client has requested to get pubsub attributes.
      */
-    withAttributes: boolean;
+    withAttributes?: boolean;
   }
   /**
    * An instruction that reads records. Takes no inputs, produces one output.
@@ -1722,7 +1725,7 @@ export namespace dataflow_v1b3 {
     /**
      * The source to read from.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * Represents the level of parallelism in a WorkItem&#39;s input, reported by
@@ -1736,11 +1739,11 @@ export namespace dataflow_v1b3 {
      * splitting. This is a work-around for lack of support for infinity by the
      * current JSON-based Java RPC stack.
      */
-    isInfinite: boolean;
+    isInfinite?: boolean;
     /**
      * Specifies the level of parallelism in case it is finite.
      */
-    value: number;
+    value?: number;
   }
   /**
    * Request to report the status of WorkItems.
@@ -1749,24 +1752,24 @@ export namespace dataflow_v1b3 {
     /**
      * The current timestamp at the worker.
      */
-    currentWorkerTime: string;
+    currentWorkerTime?: string;
     /**
      * The location which contains the WorkItem&#39;s job.
      */
-    location: string;
+    location?: string;
     /**
      * The ID of the worker reporting the WorkItem status.  If this does not
      * match the ID of the worker which the Dataflow service believes currently
      * has the lease on the WorkItem, the report will be dropped (with an error
      * response).
      */
-    workerId: string;
+    workerId?: string;
     /**
      * The order is unimportant, except that the order of the
      * WorkItemServiceState messages in the ReportWorkItemStatusResponse
      * corresponds to the order of WorkItemStatus messages here.
      */
-    workItemStatuses: Schema$WorkItemStatus[];
+    workItemStatuses?: Schema$WorkItemStatus[];
   }
   /**
    * Response from a request to report the status of WorkItems.
@@ -1778,7 +1781,7 @@ export namespace dataflow_v1b3 {
      * messages in the ReportWorkItemStatusRequest which resulting in this
      * response.
      */
-    workItemServiceStates: Schema$WorkItemServiceState[];
+    workItemServiceStates?: Schema$WorkItemServiceState[];
   }
   /**
    * Worker metrics exported from workers. This contains resource utilization
@@ -1789,7 +1792,7 @@ export namespace dataflow_v1b3 {
     /**
      * CPU utilization samples.
      */
-    cpuTime: Schema$CPUTime[];
+    cpuTime?: Schema$CPUTime[];
   }
   /**
    * Service-side response to WorkerMessage reporting resource utilization.
@@ -1802,47 +1805,47 @@ export namespace dataflow_v1b3 {
     /**
      * Additional experiment flags for the job.
      */
-    additionalExperiments: string[];
+    additionalExperiments?: string[];
     /**
      * Whether to bypass the safety checks for the job&#39;s temporary
      * directory. Use with caution.
      */
-    bypassTempDirValidation: boolean;
+    bypassTempDirValidation?: boolean;
     /**
      * The machine type to use for the job. Defaults to the value from the
      * template if not specified.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * The maximum number of Google Compute Engine instances to be made
      * available to your pipeline during execution, from 1 to 1000.
      */
-    maxWorkers: number;
+    maxWorkers?: number;
     /**
      * Network to which VMs will be assigned.  If empty or unspecified, the
      * service will use the network &quot;default&quot;.
      */
-    network: string;
+    network?: string;
     /**
      * The email address of the service account to run the job as.
      */
-    serviceAccountEmail: string;
+    serviceAccountEmail?: string;
     /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
      * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
-    subnetwork: string;
+    subnetwork?: string;
     /**
      * The Cloud Storage path to use for temporary files. Must be a valid Cloud
      * Storage URL, beginning with `gs://`.
      */
-    tempLocation: string;
+    tempLocation?: string;
     /**
      * The Compute Engine [availability
      * zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones)
      * for launching worker instances to run your pipeline.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * Request to send encoded debug information.
@@ -1851,19 +1854,19 @@ export namespace dataflow_v1b3 {
     /**
      * The internal component id for which debug information is sent.
      */
-    componentId: string;
+    componentId?: string;
     /**
      * The encoded debug information.
      */
-    data: string;
+    data?: string;
     /**
      * The location which contains the job specified by job_id.
      */
-    location: string;
+    location?: string;
     /**
      * The worker id, i.e., VM hostname.
      */
-    workerId: string;
+    workerId?: string;
   }
   /**
    * Response to a send capture request. nothing
@@ -1876,11 +1879,11 @@ export namespace dataflow_v1b3 {
     /**
      * The location which contains the job
      */
-    location: string;
+    location?: string;
     /**
      * The WorkerMessages to send.
      */
-    workerMessages: Schema$WorkerMessage[];
+    workerMessages?: Schema$WorkerMessage[];
   }
   /**
    * The response to the worker messages.
@@ -1889,7 +1892,7 @@ export namespace dataflow_v1b3 {
     /**
      * The servers response to the worker messages.
      */
-    workerMessageResponses: Schema$WorkerMessageResponse[];
+    workerMessageResponses?: Schema$WorkerMessageResponse[];
   }
   /**
    * Describes a particular function to invoke.
@@ -1898,28 +1901,28 @@ export namespace dataflow_v1b3 {
     /**
      * Information about each of the inputs.
      */
-    inputs: Schema$SideInputInfo[];
+    inputs?: Schema$SideInputInfo[];
     /**
      * The user-provided name of the SeqDo operation.
      */
-    name: string;
+    name?: string;
     /**
      * Information about each of the outputs.
      */
-    outputInfos: Schema$SeqMapTaskOutputInfo[];
+    outputInfos?: Schema$SeqMapTaskOutputInfo[];
     /**
      * System-defined name of the stage containing the SeqDo operation. Unique
      * across the workflow.
      */
-    stageName: string;
+    stageName?: string;
     /**
      * System-defined name of the SeqDo operation. Unique across the workflow.
      */
-    systemName: string;
+    systemName?: string;
     /**
      * The user function to invoke.
      */
-    userFn: any;
+    userFn?: any;
   }
   /**
    * Information about an output of a SeqMapTask.
@@ -1928,11 +1931,11 @@ export namespace dataflow_v1b3 {
     /**
      * The sink to write the output value to.
      */
-    sink: Schema$Sink;
+    sink?: Schema$Sink;
     /**
      * The id of the TupleTag the user code will tag the output value by.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * A task which consists of a shell command for the worker to execute.
@@ -1941,11 +1944,11 @@ export namespace dataflow_v1b3 {
     /**
      * The shell command to run.
      */
-    command: string;
+    command?: string;
     /**
      * Exit code for the task.
      */
-    exitCode: number;
+    exitCode?: number;
   }
   /**
    * Information about a side input of a DoFn or an input of a SeqDoFn.
@@ -1954,19 +1957,19 @@ export namespace dataflow_v1b3 {
     /**
      * How to interpret the source element(s) as a side input value.
      */
-    kind: any;
+    kind?: any;
     /**
      * The source(s) to read element(s) from to get the value of this side
      * input. If more than one source, then the elements are taken from the
      * sources, in the specified order if order matters. At least one source is
      * required.
      */
-    sources: Schema$Source[];
+    sources?: Schema$Source[];
     /**
      * The id of the tag the user code will access this side input by; this
      * should correspond to the tag of some MultiOutputInfo.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * A sink that records can be encoded and written to.
@@ -1975,11 +1978,11 @@ export namespace dataflow_v1b3 {
     /**
      * The codec to use to encode data written to the sink.
      */
-    codec: any;
+    codec?: any;
     /**
      * The sink to write to, plus its parameters.
      */
-    spec: any;
+    spec?: any;
   }
   /**
    * A source that records can be read and decoded from.
@@ -1994,11 +1997,11 @@ export namespace dataflow_v1b3 {
      * order: base_specs (later items win), spec (overrides anything in
      * base_specs).
      */
-    baseSpecs: any[];
+    baseSpecs?: any[];
     /**
      * The codec to use to decode data read from the source.
      */
-    codec: any;
+    codec?: any;
     /**
      * Setting this value to true hints to the framework that the source
      * doesn&#39;t need splitting, and using SourceSplitRequest on it would
@@ -2013,7 +2016,7 @@ export namespace dataflow_v1b3 {
      * supplied by the framework to the user don&#39;t have this field
      * populated.
      */
-    doesNotNeedSplitting: boolean;
+    doesNotNeedSplitting?: boolean;
     /**
      * Optionally, metadata for this source can be supplied right away, avoiding
      * a SourceGetMetadataOperation roundtrip (see SourceOperationRequest). This
@@ -2021,11 +2024,11 @@ export namespace dataflow_v1b3 {
      * (e.g. when filling in a DerivedSource). Source objects supplied by the
      * framework to the user don&#39;t have this field populated.
      */
-    metadata: Schema$SourceMetadata;
+    metadata?: Schema$SourceMetadata;
     /**
      * The source to read from, plus its parameters.
      */
-    spec: any;
+    spec?: any;
   }
   /**
    * DEPRECATED in favor of DynamicSourceSplit.
@@ -2034,19 +2037,19 @@ export namespace dataflow_v1b3 {
     /**
      * DEPRECATED
      */
-    primary: Schema$SourceSplitShard;
+    primary?: Schema$SourceSplitShard;
     /**
      * DEPRECATED
      */
-    primarySource: Schema$DerivedSource;
+    primarySource?: Schema$DerivedSource;
     /**
      * DEPRECATED
      */
-    residual: Schema$SourceSplitShard;
+    residual?: Schema$SourceSplitShard;
     /**
      * DEPRECATED
      */
-    residualSource: Schema$DerivedSource;
+    residualSource?: Schema$DerivedSource;
   }
   /**
    * A request to compute the SourceMetadata of a Source.
@@ -2055,7 +2058,7 @@ export namespace dataflow_v1b3 {
     /**
      * Specification of the source whose metadata should be computed.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * The result of a SourceGetMetadataOperation.
@@ -2064,7 +2067,7 @@ export namespace dataflow_v1b3 {
     /**
      * The computed metadata.
      */
-    metadata: Schema$SourceMetadata;
+    metadata?: Schema$SourceMetadata;
   }
   /**
    * Metadata about a Source useful for automatically optimizing and tuning the
@@ -2076,17 +2079,17 @@ export namespace dataflow_v1b3 {
      * from this source.  This estimate is in terms of external storage size,
      * before any decompression or other processing done by the reader.
      */
-    estimatedSizeBytes: string;
+    estimatedSizeBytes?: string;
     /**
      * Specifies that the size of this source is known to be infinite (this is a
      * streaming source).
      */
-    infinite: boolean;
+    infinite?: boolean;
     /**
      * Whether this source is known to produce key/value pairs with the
      * (encoded) keys in lexicographically sorted order.
      */
-    producesSortedKeys: boolean;
+    producesSortedKeys?: boolean;
   }
   /**
    * A work item that represents the different operations that can be performed
@@ -2096,30 +2099,30 @@ export namespace dataflow_v1b3 {
     /**
      * Information about a request to get metadata about a source.
      */
-    getMetadata: Schema$SourceGetMetadataRequest;
+    getMetadata?: Schema$SourceGetMetadataRequest;
     /**
      * User-provided name of the Read instruction for this source.
      */
-    name: string;
+    name?: string;
     /**
      * System-defined name for the Read instruction for this source in the
      * original workflow graph.
      */
-    originalName: string;
+    originalName?: string;
     /**
      * Information about a request to split a source.
      */
-    split: Schema$SourceSplitRequest;
+    split?: Schema$SourceSplitRequest;
     /**
      * System-defined name of the stage containing the source operation. Unique
      * across the workflow.
      */
-    stageName: string;
+    stageName?: string;
     /**
      * System-defined name of the Read instruction for this source. Unique
      * across the workflow.
      */
-    systemName: string;
+    systemName?: string;
   }
   /**
    * The result of a SourceOperationRequest, specified in
@@ -2130,11 +2133,11 @@ export namespace dataflow_v1b3 {
     /**
      * A response to a request to get metadata about a source.
      */
-    getMetadata: Schema$SourceGetMetadataResponse;
+    getMetadata?: Schema$SourceGetMetadataResponse;
     /**
      * A response to a request to split a source.
      */
-    split: Schema$SourceSplitResponse;
+    split?: Schema$SourceSplitResponse;
   }
   /**
    * Hints for splitting a Source into bundles (parts for parallel processing)
@@ -2145,11 +2148,11 @@ export namespace dataflow_v1b3 {
      * The source should be split into a set of bundles where the estimated size
      * of each is approximately this many bytes.
      */
-    desiredBundleSizeBytes: string;
+    desiredBundleSizeBytes?: string;
     /**
      * DEPRECATED in favor of desired_bundle_size_bytes.
      */
-    desiredShardSizeBytes: string;
+    desiredShardSizeBytes?: string;
   }
   /**
    * Represents the operation to split a high-level Source specification into
@@ -2168,11 +2171,11 @@ export namespace dataflow_v1b3 {
     /**
      * Hints for tuning the splitting process.
      */
-    options: Schema$SourceSplitOptions;
+    options?: Schema$SourceSplitOptions;
     /**
      * Specification of the source to be split.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * The response to a SourceSplitRequest.
@@ -2183,7 +2186,7 @@ export namespace dataflow_v1b3 {
      * which the source was split. Otherwise this field is ignored. This list
      * can be empty, which means the source represents an empty input.
      */
-    bundles: Schema$DerivedSource[];
+    bundles?: Schema$DerivedSource[];
     /**
      * Indicates whether splitting happened and produced a list of bundles. If
      * this is USE_CURRENT_SOURCE_AS_IS, the current source should be processed
@@ -2191,11 +2194,11 @@ export namespace dataflow_v1b3 {
      * this case. If this is SPLITTING_HAPPENED, then &quot;bundles&quot;
      * contains a list of bundles into which the source was split.
      */
-    outcome: string;
+    outcome?: string;
     /**
      * DEPRECATED in favor of bundles.
      */
-    shards: Schema$SourceSplitShard[];
+    shards?: Schema$SourceSplitShard[];
   }
   /**
    * DEPRECATED in favor of DerivedSource.
@@ -2204,11 +2207,11 @@ export namespace dataflow_v1b3 {
     /**
      * DEPRECATED
      */
-    derivationMode: string;
+    derivationMode?: string;
     /**
      * DEPRECATED
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * A representation of an int64, n, that is immune to precision loss when
@@ -2218,11 +2221,11 @@ export namespace dataflow_v1b3 {
     /**
      * The high order bits, including the sign: n &gt;&gt; 32.
      */
-    highBits: number;
+    highBits?: number;
     /**
      * The low order bits: n &amp; 0xffffffff.
      */
-    lowBits: number;
+    lowBits?: number;
   }
   /**
    * Description of an input or output of an execution stage.
@@ -2231,20 +2234,20 @@ export namespace dataflow_v1b3 {
     /**
      * Dataflow service generated name for this source.
      */
-    name: string;
+    name?: string;
     /**
      * User name for the original user transform or collection with which this
      * source is most closely associated.
      */
-    originalTransformOrCollection: string;
+    originalTransformOrCollection?: string;
     /**
      * Size of the source, if measurable.
      */
-    sizeBytes: string;
+    sizeBytes?: string;
     /**
      * Human-readable name for this source; may be user or system generated.
      */
-    userName: string;
+    userName?: string;
   }
   /**
    * State family configuration.
@@ -2253,11 +2256,11 @@ export namespace dataflow_v1b3 {
     /**
      * If true, this family corresponds to a read operation.
      */
-    isRead: boolean;
+    isRead?: boolean;
     /**
      * The state family value.
      */
-    stateFamily: string;
+    stateFamily?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -2299,18 +2302,18 @@ export namespace dataflow_v1b3 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Defines a particular step within a Cloud Dataflow job.  A job consists of
@@ -2330,18 +2333,18 @@ export namespace dataflow_v1b3 {
     /**
      * The kind of step in the Cloud Dataflow job.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name that identifies the step. This must be unique for each step with
      * respect to all other steps in the Cloud Dataflow job.
      */
-    name: string;
+    name?: string;
     /**
      * Named properties associated with the step. Each kind of predefined step
      * has its own required set of properties. Must be provided on Create.  Only
      * retrieved with JOB_VIEW_ALL.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * Configuration information for a single streaming computation.
@@ -2350,19 +2353,19 @@ export namespace dataflow_v1b3 {
     /**
      * Unique identifier for this computation.
      */
-    computationId: string;
+    computationId?: string;
     /**
      * Instructions that comprise the computation.
      */
-    instructions: Schema$ParallelInstruction[];
+    instructions?: Schema$ParallelInstruction[];
     /**
      * Stage name of this computation.
      */
-    stageName: string;
+    stageName?: string;
     /**
      * System defined name for this computation.
      */
-    systemName: string;
+    systemName?: string;
   }
   /**
    * Describes full or partial data disk assignment information of the
@@ -2372,11 +2375,11 @@ export namespace dataflow_v1b3 {
     /**
      * The ID of the computation.
      */
-    computationId: string;
+    computationId?: string;
     /**
      * Data disk assignments for ranges from this computation.
      */
-    rangeAssignments: Schema$KeyRangeDataDiskAssignment[];
+    rangeAssignments?: Schema$KeyRangeDataDiskAssignment[];
   }
   /**
    * A task which describes what action should be performed for the specified
@@ -2386,15 +2389,15 @@ export namespace dataflow_v1b3 {
     /**
      * Contains ranges of a streaming computation this task should apply to.
      */
-    computationRanges: Schema$StreamingComputationRanges[];
+    computationRanges?: Schema$StreamingComputationRanges[];
     /**
      * Describes the set of data disks this task should apply to.
      */
-    dataDisks: Schema$MountedDataDisk[];
+    dataDisks?: Schema$MountedDataDisk[];
     /**
      * A type of streaming computation task.
      */
-    taskType: string;
+    taskType?: string;
   }
   /**
    * A task that carries configuration information for streaming computations.
@@ -2403,23 +2406,23 @@ export namespace dataflow_v1b3 {
     /**
      * Set of computation configuration information.
      */
-    streamingComputationConfigs: Schema$StreamingComputationConfig[];
+    streamingComputationConfigs?: Schema$StreamingComputationConfig[];
     /**
      * Map from user step names to state families.
      */
-    userStepToStateFamilyNameMap: any;
+    userStepToStateFamilyNameMap?: any;
     /**
      * If present, the worker must use this endpoint to communicate with
      * Windmill Service dispatchers, otherwise the worker must continue to use
      * whatever endpoint it had been using.
      */
-    windmillServiceEndpoint: string;
+    windmillServiceEndpoint?: string;
     /**
      * If present, the worker must use this port to communicate with Windmill
      * Service dispatchers. Only applicable when windmill_service_endpoint is
      * specified.
      */
-    windmillServicePort: string;
+    windmillServicePort?: string;
   }
   /**
    * A task which initializes part of a streaming Dataflow job.
@@ -2428,21 +2431,21 @@ export namespace dataflow_v1b3 {
     /**
      * The user has requested drain.
      */
-    drain: boolean;
+    drain?: boolean;
     /**
      * The TCP port on which the worker should listen for messages from other
      * streaming computation workers.
      */
-    receiveWorkPort: number;
+    receiveWorkPort?: number;
     /**
      * The global topology of the streaming Dataflow job.
      */
-    streamingComputationTopology: Schema$TopologyConfig;
+    streamingComputationTopology?: Schema$TopologyConfig;
     /**
      * The TCP port used by the worker to communicate with the Dataflow worker
      * harness.
      */
-    workerHarnessPort: number;
+    workerHarnessPort?: number;
   }
   /**
    * Identifies the location of a streaming side input.
@@ -2451,11 +2454,11 @@ export namespace dataflow_v1b3 {
     /**
      * Identifies the state family where this side input is stored.
      */
-    stateFamily: string;
+    stateFamily?: string;
     /**
      * Identifies the particular side input within the streaming Dataflow job.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Identifies the location of a streaming computation stage, for
@@ -2465,7 +2468,7 @@ export namespace dataflow_v1b3 {
     /**
      * Identifies the particular stream within the streaming Dataflow job.
      */
-    streamId: string;
+    streamId?: string;
   }
   /**
    * Describes a stream of data, either as input to be processed or as output of
@@ -2475,20 +2478,20 @@ export namespace dataflow_v1b3 {
     /**
      * The stream is a custom source.
      */
-    customSourceLocation: Schema$CustomSourceLocation;
+    customSourceLocation?: Schema$CustomSourceLocation;
     /**
      * The stream is a pubsub stream.
      */
-    pubsubLocation: Schema$PubsubLocation;
+    pubsubLocation?: Schema$PubsubLocation;
     /**
      * The stream is a streaming side input.
      */
-    sideInputLocation: Schema$StreamingSideInputLocation;
+    sideInputLocation?: Schema$StreamingSideInputLocation;
     /**
      * The stream is part of another computation within the current streaming
      * Dataflow job.
      */
-    streamingStageLocation: Schema$StreamingStageLocation;
+    streamingStageLocation?: Schema$StreamingStageLocation;
   }
   /**
    * A metric value representing a list of strings.
@@ -2497,7 +2500,7 @@ export namespace dataflow_v1b3 {
     /**
      * Elements of the list.
      */
-    elements: string[];
+    elements?: string[];
   }
   /**
    * A rich message format, including a human readable string, a key for
@@ -2509,15 +2512,15 @@ export namespace dataflow_v1b3 {
      * Idenfier for this message type.  Used by external systems to
      * internationalize or personalize message.
      */
-    messageKey: string;
+    messageKey?: string;
     /**
      * Human-readable version of message.
      */
-    messageText: string;
+    messageText?: string;
     /**
      * The structured data associated with this message.
      */
-    parameters: Schema$Parameter[];
+    parameters?: Schema$Parameter[];
   }
   /**
    * Taskrunner configuration settings.
@@ -2526,11 +2529,11 @@ export namespace dataflow_v1b3 {
     /**
      * Whether to also send taskrunner log info to stderr.
      */
-    alsologtostderr: boolean;
+    alsologtostderr?: boolean;
     /**
      * The location on the worker for task-specific subdirectories.
      */
-    baseTaskDir: string;
+    baseTaskDir?: string;
     /**
      * The base URL for the taskrunner to use when accessing Google Cloud APIs.
      * When workers access Google Cloud APIs, they logically do so via relative
@@ -2539,81 +2542,81 @@ export namespace dataflow_v1b3 {
      * by RFC 1808, &quot;Relative Uniform Resource Locators&quot;.  If not
      * specified, the default value is &quot;http://www.googleapis.com/&quot;
      */
-    baseUrl: string;
+    baseUrl?: string;
     /**
      * The file to store preprocessing commands in.
      */
-    commandlinesFileName: string;
+    commandlinesFileName?: string;
     /**
      * Whether to continue taskrunner if an exception is hit.
      */
-    continueOnException: boolean;
+    continueOnException?: boolean;
     /**
      * The API version of endpoint, e.g. &quot;v1b3&quot;
      */
-    dataflowApiVersion: string;
+    dataflowApiVersion?: string;
     /**
      * The command to launch the worker harness.
      */
-    harnessCommand: string;
+    harnessCommand?: string;
     /**
      * The suggested backend language.
      */
-    languageHint: string;
+    languageHint?: string;
     /**
      * The directory on the VM to store logs.
      */
-    logDir: string;
+    logDir?: string;
     /**
      * Whether to send taskrunner log info to Google Compute Engine VM serial
      * console.
      */
-    logToSerialconsole: boolean;
+    logToSerialconsole?: boolean;
     /**
      * Indicates where to put logs.  If this is not specified, the logs will not
      * be uploaded.  The supported resource type is:  Google Cloud Storage:
      * storage.googleapis.com/{bucket}/{object}
      * bucket.storage.googleapis.com/{object}
      */
-    logUploadLocation: string;
+    logUploadLocation?: string;
     /**
      * The OAuth2 scopes to be requested by the taskrunner in order to access
      * the Cloud Dataflow API.
      */
-    oauthScopes: string[];
+    oauthScopes?: string[];
     /**
      * The settings to pass to the parallel worker harness.
      */
-    parallelWorkerSettings: Schema$WorkerSettings;
+    parallelWorkerSettings?: Schema$WorkerSettings;
     /**
      * The streaming worker main class name.
      */
-    streamingWorkerMainClass: string;
+    streamingWorkerMainClass?: string;
     /**
      * The UNIX group ID on the worker VM to use for tasks launched by
      * taskrunner; e.g. &quot;wheel&quot;.
      */
-    taskGroup: string;
+    taskGroup?: string;
     /**
      * The UNIX user ID on the worker VM to use for tasks launched by
      * taskrunner; e.g. &quot;root&quot;.
      */
-    taskUser: string;
+    taskUser?: string;
     /**
      * The prefix of the resources the taskrunner should use for temporary
      * storage.  The supported resource type is:  Google Cloud Storage:
      * storage.googleapis.com/{bucket}/{object}
      * bucket.storage.googleapis.com/{object}
      */
-    tempStoragePrefix: string;
+    tempStoragePrefix?: string;
     /**
      * The ID string of the VM.
      */
-    vmId: string;
+    vmId?: string;
     /**
      * The file to store the workflow in.
      */
-    workflowFileName: string;
+    workflowFileName?: string;
   }
   /**
    * Metadata describing a template.
@@ -2622,15 +2625,15 @@ export namespace dataflow_v1b3 {
     /**
      * Optional. A description of the template.
      */
-    description: string;
+    description?: string;
     /**
      * Required. The name of the template.
      */
-    name: string;
+    name?: string;
     /**
      * The parameters for the template.
      */
-    parameters: Schema$ParameterMetadata[];
+    parameters?: Schema$ParameterMetadata[];
   }
   /**
    * Global topology of the streaming Dataflow job, including all computations
@@ -2640,23 +2643,23 @@ export namespace dataflow_v1b3 {
     /**
      * The computations associated with a streaming Dataflow job.
      */
-    computations: Schema$ComputationTopology[];
+    computations?: Schema$ComputationTopology[];
     /**
      * The disks assigned to a streaming Dataflow job.
      */
-    dataDiskAssignments: Schema$DataDiskAssignment[];
+    dataDiskAssignments?: Schema$DataDiskAssignment[];
     /**
      * The size (in bits) of keys that will be assigned to source messages.
      */
-    forwardingKeyBits: number;
+    forwardingKeyBits?: number;
     /**
      * Version number for persistent state.
      */
-    persistentStateVersion: number;
+    persistentStateVersion?: number;
     /**
      * Maps user stage names to stable computation names.
      */
-    userStageToComputationNameMap: any;
+    userStageToComputationNameMap?: any;
   }
   /**
    * Description of the type, names/ids, and input/outputs for a transform.
@@ -2665,27 +2668,27 @@ export namespace dataflow_v1b3 {
     /**
      * Transform-specific display data.
      */
-    displayData: Schema$DisplayData[];
+    displayData?: Schema$DisplayData[];
     /**
      * SDK generated id of this transform instance.
      */
-    id: string;
+    id?: string;
     /**
      * User names for all collection inputs to this transform.
      */
-    inputCollectionName: string[];
+    inputCollectionName?: string[];
     /**
      * Type of transform.
      */
-    kind: string;
+    kind?: string;
     /**
      * User provided name for this transform instance.
      */
-    name: string;
+    name?: string;
     /**
      * User  names for all collection outputs to this transform.
      */
-    outputCollectionName: string[];
+    outputCollectionName?: string[];
   }
   /**
    * WorkerHealthReport contains information about the health of a worker.  The
@@ -2699,21 +2702,21 @@ export namespace dataflow_v1b3 {
      * This field is used by the worker to send the status of the indvidual
      * containers running on each worker.
      */
-    pods: any[];
+    pods?: any[];
     /**
      * The interval at which the worker is sending health reports. The default
      * value of 0 should be interpreted as the field is not being explicitly set
      * by the worker.
      */
-    reportInterval: string;
+    reportInterval?: string;
     /**
      * Whether the VM is healthy.
      */
-    vmIsHealthy: boolean;
+    vmIsHealthy?: boolean;
     /**
      * The time the VM was booted.
      */
-    vmStartupTime: string;
+    vmStartupTime?: string;
   }
   /**
    * WorkerHealthReportResponse contains information returned to the worker in
@@ -2725,7 +2728,7 @@ export namespace dataflow_v1b3 {
      * interval to the specified value.  The default value of zero means no
      * change in report rate is requested by the server.
      */
-    reportInterval: string;
+    reportInterval?: string;
   }
   /**
    * A report of an event in a worker&#39;s lifecycle. The proto contains one
@@ -2739,16 +2742,16 @@ export namespace dataflow_v1b3 {
      * The start time of this container. All events will report this so that
      * events can be grouped together across container/VM restarts.
      */
-    containerStartTime: string;
+    containerStartTime?: string;
     /**
      * The event being reported.
      */
-    event: string;
+    event?: string;
     /**
      * Other stats that can accompany an event. E.g. {
      * &quot;downloaded_bytes&quot; : &quot;123456&quot; }
      */
-    metadata: any;
+    metadata?: any;
   }
   /**
    * WorkerMessage provides information to the backend about a worker.
@@ -2764,31 +2767,31 @@ export namespace dataflow_v1b3 {
      * of development other strings can be used as tags. LABEL_UNSPECIFIED
      * should not be used here.
      */
-    labels: any;
+    labels?: any;
     /**
      * The timestamp of the worker_message.
      */
-    time: string;
+    time?: string;
     /**
      * The health of a worker.
      */
-    workerHealthReport: Schema$WorkerHealthReport;
+    workerHealthReport?: Schema$WorkerHealthReport;
     /**
      * Record of worker lifecycle events.
      */
-    workerLifecycleEvent: Schema$WorkerLifecycleEvent;
+    workerLifecycleEvent?: Schema$WorkerLifecycleEvent;
     /**
      * A worker message code.
      */
-    workerMessageCode: Schema$WorkerMessageCode;
+    workerMessageCode?: Schema$WorkerMessageCode;
     /**
      * Resource metrics reported by workers.
      */
-    workerMetrics: Schema$ResourceUtilizationReport;
+    workerMetrics?: Schema$ResourceUtilizationReport;
     /**
      * Shutdown notice by workers.
      */
-    workerShutdownNotice: Schema$WorkerShutdownNotice;
+    workerShutdownNotice?: Schema$WorkerShutdownNotice;
   }
   /**
    * A message code is used to report status and error messages to the service.
@@ -2808,7 +2811,7 @@ export namespace dataflow_v1b3 {
      * of one of the worker containers.  This is a string and not an enum to
      * make it easy to add new codes without waiting for an API change.
      */
-    code: string;
+    code?: string;
     /**
      * Parameters contains specific information about the code.  This is a
      * struct to allow parameters of different types.  Examples:  1. For a
@@ -2824,7 +2827,7 @@ export namespace dataflow_v1b3 {
      * other worker identifiers should almost always be passed  as labels since
      * they will be included on most messages.
      */
-    parameters: any;
+    parameters?: any;
   }
   /**
    * A worker_message response allows the server to pass information to the
@@ -2834,15 +2837,15 @@ export namespace dataflow_v1b3 {
     /**
      * The service&#39;s response to a worker&#39;s health report.
      */
-    workerHealthReportResponse: Schema$WorkerHealthReportResponse;
+    workerHealthReportResponse?: Schema$WorkerHealthReportResponse;
     /**
      * Service&#39;s response to reporting worker metrics (currently empty).
      */
-    workerMetricsResponse: Schema$ResourceUtilizationReportResponse;
+    workerMetricsResponse?: Schema$ResourceUtilizationReportResponse;
     /**
      * Service&#39;s response to shutdown notice (currently empty).
      */
-    workerShutdownNoticeResponse: Schema$WorkerShutdownNoticeResponse;
+    workerShutdownNoticeResponse?: Schema$WorkerShutdownNoticeResponse;
   }
   /**
    * Describes one particular pool of Cloud Dataflow workers to be instantiated
@@ -2855,90 +2858,90 @@ export namespace dataflow_v1b3 {
     /**
      * Settings for autoscaling of this WorkerPool.
      */
-    autoscalingSettings: Schema$AutoscalingSettings;
+    autoscalingSettings?: Schema$AutoscalingSettings;
     /**
      * Data disks that are used by a VM in this workflow.
      */
-    dataDisks: Schema$Disk[];
+    dataDisks?: Schema$Disk[];
     /**
      * The default package set to install.  This allows the service to select a
      * default set of packages which are useful to worker harnesses written in a
      * particular language.
      */
-    defaultPackageSet: string;
+    defaultPackageSet?: string;
     /**
      * Size of root disk for VMs, in GB.  If zero or unspecified, the service
      * will attempt to choose a reasonable default.
      */
-    diskSizeGb: number;
+    diskSizeGb?: number;
     /**
      * Fully qualified source image for disks.
      */
-    diskSourceImage: string;
+    diskSourceImage?: string;
     /**
      * Type of root disk for VMs.  If empty or unspecified, the service will
      * attempt to choose a reasonable default.
      */
-    diskType: string;
+    diskType?: string;
     /**
      * Configuration for VM IPs.
      */
-    ipConfiguration: string;
+    ipConfiguration?: string;
     /**
      * The kind of the worker pool; currently only `harness` and `shuffle` are
      * supported.
      */
-    kind: string;
+    kind?: string;
     /**
      * Machine type (e.g. &quot;n1-standard-1&quot;).  If empty or unspecified,
      * the service will attempt to choose a reasonable default.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * Metadata to set on the Google Compute Engine VMs.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Network to which VMs will be assigned.  If empty or unspecified, the
      * service will use the network &quot;default&quot;.
      */
-    network: string;
+    network?: string;
     /**
      * The number of threads per worker harness. If empty or unspecified, the
      * service will choose a number of threads (according to the number of cores
      * on the selected machine type for batch, or 1 by convention for
      * streaming).
      */
-    numThreadsPerWorker: number;
+    numThreadsPerWorker?: number;
     /**
      * Number of Google Compute Engine workers in this pool needed to execute
      * the job.  If zero or unspecified, the service will attempt to choose a
      * reasonable default.
      */
-    numWorkers: number;
+    numWorkers?: number;
     /**
      * The action to take on host maintenance, as defined by the Google Compute
      * Engine API.
      */
-    onHostMaintenance: string;
+    onHostMaintenance?: string;
     /**
      * Packages to be installed on workers.
      */
-    packages: Schema$Package[];
+    packages?: Schema$Package[];
     /**
      * Extra arguments for this worker pool.
      */
-    poolArgs: any;
+    poolArgs?: any;
     /**
      * Subnetwork to which VMs will be assigned, if desired.  Expected to be of
      * the form &quot;regions/REGION/subnetworks/SUBNETWORK&quot;.
      */
-    subnetwork: string;
+    subnetwork?: string;
     /**
      * Settings passed through to Google Compute Engine workers when using the
      * standard Dataflow task runner.  Users should ignore this field.
      */
-    taskrunnerSettings: Schema$TaskRunnerSettings;
+    taskrunnerSettings?: Schema$TaskRunnerSettings;
     /**
      * Sets the policy for determining when to turndown worker pool. Allowed
      * values are: `TEARDOWN_ALWAYS`, `TEARDOWN_ON_SUCCESS`, and
@@ -2953,17 +2956,17 @@ export namespace dataflow_v1b3 {
      * If unknown or unspecified, the service will attempt to choose a
      * reasonable default.
      */
-    teardownPolicy: string;
+    teardownPolicy?: string;
     /**
      * Required. Docker container image that executes the Cloud Dataflow worker
      * harness, residing in Google Container Registry.
      */
-    workerHarnessContainerImage: string;
+    workerHarnessContainerImage?: string;
     /**
      * Zone to run the worker pools in.  If empty or unspecified, the service
      * will attempt to choose a reasonable default.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * Provides data to pass through to the worker harness.
@@ -2977,32 +2980,32 @@ export namespace dataflow_v1b3 {
      * &quot;Relative Uniform Resource Locators&quot;.  If not specified, the
      * default value is &quot;http://www.googleapis.com/&quot;
      */
-    baseUrl: string;
+    baseUrl?: string;
     /**
      * Whether to send work progress updates to the service.
      */
-    reportingEnabled: boolean;
+    reportingEnabled?: boolean;
     /**
      * The Cloud Dataflow service path relative to the root URL, for example,
      * &quot;dataflow/v1b3/projects&quot;.
      */
-    servicePath: string;
+    servicePath?: string;
     /**
      * The Shuffle service path relative to the root URL, for example,
      * &quot;shuffle/v1beta1&quot;.
      */
-    shuffleServicePath: string;
+    shuffleServicePath?: string;
     /**
      * The prefix of the resources the system should use for temporary storage.
      * The supported resource type is:  Google Cloud Storage:
      * storage.googleapis.com/{bucket}/{object}
      * bucket.storage.googleapis.com/{object}
      */
-    tempStoragePrefix: string;
+    tempStoragePrefix?: string;
     /**
      * The ID of the worker running this pipeline.
      */
-    workerId: string;
+    workerId?: string;
   }
   /**
    * Shutdown notification from workers. This is to be sent by the shutdown
@@ -3016,7 +3019,7 @@ export namespace dataflow_v1b3 {
      * shutdown reason is preemption. Other possible reasons may be added in the
      * future.
      */
-    reason: string;
+    reason?: string;
   }
   /**
    * Service-side response to WorkerMessage issuing shutdown notice.
@@ -3030,64 +3033,64 @@ export namespace dataflow_v1b3 {
     /**
      * Work item-specific configuration as an opaque blob.
      */
-    configuration: string;
+    configuration?: string;
     /**
      * Identifies this WorkItem.
      */
-    id: string;
+    id?: string;
     /**
      * The initial index to use when reporting the status of the WorkItem.
      */
-    initialReportIndex: string;
+    initialReportIndex?: string;
     /**
      * Identifies the workflow job this WorkItem belongs to.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Time when the lease on this Work will expire.
      */
-    leaseExpireTime: string;
+    leaseExpireTime?: string;
     /**
      * Additional information for MapTask WorkItems.
      */
-    mapTask: Schema$MapTask;
+    mapTask?: Schema$MapTask;
     /**
      * Any required packages that need to be fetched in order to execute this
      * WorkItem.
      */
-    packages: Schema$Package[];
+    packages?: Schema$Package[];
     /**
      * Identifies the cloud project this WorkItem belongs to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Recommended reporting interval.
      */
-    reportStatusInterval: string;
+    reportStatusInterval?: string;
     /**
      * Additional information for SeqMapTask WorkItems.
      */
-    seqMapTask: Schema$SeqMapTask;
+    seqMapTask?: Schema$SeqMapTask;
     /**
      * Additional information for ShellTask WorkItems.
      */
-    shellTask: Schema$ShellTask;
+    shellTask?: Schema$ShellTask;
     /**
      * Additional information for source operation WorkItems.
      */
-    sourceOperationTask: Schema$SourceOperationRequest;
+    sourceOperationTask?: Schema$SourceOperationRequest;
     /**
      * Additional information for StreamingComputationTask WorkItems.
      */
-    streamingComputationTask: Schema$StreamingComputationTask;
+    streamingComputationTask?: Schema$StreamingComputationTask;
     /**
      * Additional information for StreamingConfigTask WorkItems.
      */
-    streamingConfigTask: Schema$StreamingConfigTask;
+    streamingConfigTask?: Schema$StreamingConfigTask;
     /**
      * Additional information for StreamingSetupTask WorkItems.
      */
-    streamingSetupTask: Schema$StreamingSetupTask;
+    streamingSetupTask?: Schema$StreamingSetupTask;
   }
   /**
    * The Dataflow service&#39;s idea of the current state of a WorkItem being
@@ -3098,11 +3101,11 @@ export namespace dataflow_v1b3 {
      * Other data returned by the service, specific to the particular worker
      * harness.
      */
-    harnessData: any;
+    harnessData?: any;
     /**
      * Time at which the current lease will expire.
      */
-    leaseExpireTime: string;
+    leaseExpireTime?: string;
     /**
      * The short ids that workers should use in subsequent metric updates.
      * Workers should strive to use short ids whenever possible, but it is ok to
@@ -3110,30 +3113,30 @@ export namespace dataflow_v1b3 {
      * worker is recovering from a crash). NOTE: it is possible that the
      * response may have short ids for a subset of the metrics.
      */
-    metricShortId: Schema$MetricShortId[];
+    metricShortId?: Schema$MetricShortId[];
     /**
      * The index value to use for the next report sent by the worker. Note: If
      * the report call fails for whatever reason, the worker should reuse this
      * index for subsequent report attempts.
      */
-    nextReportIndex: string;
+    nextReportIndex?: string;
     /**
      * New recommended reporting interval.
      */
-    reportStatusInterval: string;
+    reportStatusInterval?: string;
     /**
      * The progress point in the WorkItem where the Dataflow service suggests
      * that the worker truncate the task.
      */
-    splitRequest: Schema$ApproximateSplitRequest;
+    splitRequest?: Schema$ApproximateSplitRequest;
     /**
      * DEPRECATED in favor of split_request.
      */
-    suggestedStopPoint: Schema$ApproximateProgress;
+    suggestedStopPoint?: Schema$ApproximateProgress;
     /**
      * Obsolete, always empty.
      */
-    suggestedStopPosition: Schema$Position;
+    suggestedStopPosition?: Schema$Position;
   }
   /**
    * Conveys a worker&#39;s progress through the work described by a WorkItem.
@@ -3142,33 +3145,33 @@ export namespace dataflow_v1b3 {
     /**
      * True if the WorkItem was completed (successfully or unsuccessfully).
      */
-    completed: boolean;
+    completed?: boolean;
     /**
      * Worker output counters for this WorkItem.
      */
-    counterUpdates: Schema$CounterUpdate[];
+    counterUpdates?: Schema$CounterUpdate[];
     /**
      * See documentation of stop_position.
      */
-    dynamicSourceSplit: Schema$DynamicSourceSplit;
+    dynamicSourceSplit?: Schema$DynamicSourceSplit;
     /**
      * Specifies errors which occurred during processing.  If errors are
      * provided, and completed = true, then the WorkItem is considered to have
      * failed.
      */
-    errors: Schema$Status[];
+    errors?: Schema$Status[];
     /**
      * DEPRECATED in favor of counter_updates.
      */
-    metricUpdates: Schema$MetricUpdate[];
+    metricUpdates?: Schema$MetricUpdate[];
     /**
      * DEPRECATED in favor of reported_progress.
      */
-    progress: Schema$ApproximateProgress;
+    progress?: Schema$ApproximateProgress;
     /**
      * The worker&#39;s progress through this WorkItem.
      */
-    reportedProgress: Schema$ApproximateReportedProgress;
+    reportedProgress?: Schema$ApproximateReportedProgress;
     /**
      * The report index.  When a WorkItem is leased, the lease will contain an
      * initial report index.  When a WorkItem&#39;s status is reported to the
@@ -3181,20 +3184,20 @@ export namespace dataflow_v1b3 {
      * not submit a subsequent report until the response for the previous report
      * had been received from the service.
      */
-    reportIndex: string;
+    reportIndex?: string;
     /**
      * Amount of time the worker requests for its lease.
      */
-    requestedLeaseDuration: string;
+    requestedLeaseDuration?: string;
     /**
      * DEPRECATED in favor of dynamic_source_split.
      */
-    sourceFork: Schema$SourceFork;
+    sourceFork?: Schema$SourceFork;
     /**
      * If the work item represented a SourceOperationRequest, and the work is
      * completed, contains the result of the operation.
      */
-    sourceOperationResponse: Schema$SourceOperationResponse;
+    sourceOperationResponse?: Schema$SourceOperationResponse;
     /**
      * A worker may split an active map task in two parts, &quot;primary&quot;
      * and &quot;residual&quot;, continuing to process the primary part and
@@ -3222,15 +3225,15 @@ export namespace dataflow_v1b3 {
      * and in a potential subsequent dynamic_source_split into {P&#39;, R&#39;},
      * P&#39; and R&#39; must be together equivalent to P, etc.
      */
-    stopPosition: Schema$Position;
+    stopPosition?: Schema$Position;
     /**
      * Total time the worker spent being throttled by external systems.
      */
-    totalThrottlerWaitTimeSeconds: number;
+    totalThrottlerWaitTimeSeconds?: number;
     /**
      * Identifies the WorkItem.
      */
-    workItemId: string;
+    workItemId?: string;
   }
   /**
    * An instruction that writes records. Takes one input, produces no outputs.
@@ -3239,12 +3242,13 @@ export namespace dataflow_v1b3 {
     /**
      * The input.
      */
-    input: Schema$InstructionInput;
+    input?: Schema$InstructionInput;
     /**
      * The sink to write to.
      */
-    sink: Schema$Sink;
+    sink?: Schema$Sink;
   }
+
 
   export class Resource$Projects {
     root: Dataflow;
@@ -3277,29 +3281,45 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    workerMessages(params?: any, options?: MethodOptions):
+    workerMessages(
+        params?: Params$Resource$Projects$Workermessages,
+        options?: MethodOptions):
         AxiosPromise<Schema$SendWorkerMessagesResponse>;
     workerMessages(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Workermessages,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
         void;
     workerMessages(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Workermessages,
+        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        void;
+    workerMessages(callback:
+                       BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        void;
+    workerMessages(
+        paramsOrCallback?: Params$Resource$Projects$Workermessages|
+        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
         callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
         void|AxiosPromise<Schema$SendWorkerMessagesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Workermessages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Workermessages;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3322,6 +3342,23 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Workermessages {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project to send the WorkerMessages to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SendWorkerMessagesRequest;
+  }
+
   export class Resource$Projects$Jobs {
     root: Dataflow;
     debug: Resource$Projects$Jobs$Debug;
@@ -3357,26 +3394,39 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregated(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
     aggregated(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params?: Params$Resource$Projects$Jobs$Aggregated,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
     aggregated(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Projects$Jobs$Aggregated,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    aggregated(
+        params: Params$Resource$Projects$Jobs$Aggregated,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    aggregated(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    aggregated(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Aggregated|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Aggregated;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Aggregated;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3415,23 +3465,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Jobs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Jobs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        params: Params$Resource$Projects$Jobs$Create,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Create|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3469,21 +3534,34 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Projects$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Projects$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Projects$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3521,26 +3599,39 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetrics(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-        callback?: BodyResponseCallback<Schema$JobMetrics>): void;
+        params?: Params$Resource$Projects$Jobs$Getmetrics,
+        options?: MethodOptions): AxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+        params: Params$Resource$Projects$Jobs$Getmetrics,
+        options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(
+        params: Params$Resource$Projects$Jobs$Getmetrics,
+        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Getmetrics|
+        BodyResponseCallback<Schema$JobMetrics>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$JobMetrics>,
         callback?: BodyResponseCallback<Schema$JobMetrics>):
         void|AxiosPromise<Schema$JobMetrics> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Getmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Getmetrics;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3580,26 +3671,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Jobs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params: Params$Resource$Projects$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Projects$Jobs$List,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$List|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3637,23 +3740,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Jobs$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Jobs$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    update(
+        params: Params$Resource$Projects$Jobs$Update,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    update(callback: BodyResponseCallback<Schema$Job>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Update|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Jobs$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3675,6 +3793,175 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Jobs$Aggregated {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The kind of filter to use.
+     */
+    filter?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * If there are many jobs, limit response to at most this many. The actual
+     * number of jobs returned will be the lesser of max_responses and an
+     * unspecified server-defined limit.
+     */
+    pageSize?: number;
+    /**
+     * Set this to the 'next_page_token' field of a previous response to request
+     * additional results in a long list.
+     */
+    pageToken?: string;
+    /**
+     * The project which owns the jobs.
+     */
+    projectId?: string;
+    /**
+     * Level of information requested in response. Default is
+     * `JOB_VIEW_SUMMARY`.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Deprecated. This field is now in the Job message.
+     */
+    replaceJobId?: string;
+    /**
+     * The level of information requested in response.
+     */
+    view?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+  export interface Params$Resource$Projects$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job ID.
+     */
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * The level of information requested in response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Getmetrics {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job to get messages for.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * A project id.
+     */
+    projectId?: string;
+    /**
+     * Return only metric data that has changed since this time. Default is to
+     * return all information about all metrics for the job.
+     */
+    startTime?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The kind of filter to use.
+     */
+    filter?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * If there are many jobs, limit response to at most this many. The actual
+     * number of jobs returned will be the lesser of max_responses and an
+     * unspecified server-defined limit.
+     */
+    pageSize?: number;
+    /**
+     * Set this to the 'next_page_token' field of a previous response to request
+     * additional results in a long list.
+     */
+    pageToken?: string;
+    /**
+     * The project which owns the jobs.
+     */
+    projectId?: string;
+    /**
+     * Level of information requested in response. Default is
+     * `JOB_VIEW_SUMMARY`.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Jobs$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job ID.
+     */
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+
   export class Resource$Projects$Jobs$Debug {
     root: Dataflow;
     constructor(root: Dataflow) {
@@ -3701,28 +3988,41 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetDebugConfigResponse>;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Debug$Getconfig,
+        options?: MethodOptions): AxiosPromise<Schema$GetDebugConfigResponse>;
+    getConfig(
+        params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Debug$Getconfig,
+        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+    getConfig(callback: BodyResponseCallback<Schema$GetDebugConfigResponse>):
+        void;
+    getConfig(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Debug$Getconfig|
+        BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetDebugConfigResponse>,
         callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
         void|AxiosPromise<Schema$GetDebugConfigResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Debug$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Debug$Getconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3760,28 +4060,41 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendCapture(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SendDebugCaptureResponse>;
     sendCapture(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+        options?: MethodOptions): AxiosPromise<Schema$SendDebugCaptureResponse>;
+    sendCapture(
+        params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
     sendCapture(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Debug$Sendcapture,
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+    sendCapture(
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+    sendCapture(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Debug$Sendcapture|
+        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendDebugCaptureResponse>,
         callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
         void|AxiosPromise<Schema$SendDebugCaptureResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Debug$Sendcapture;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Debug$Sendcapture;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3804,6 +4117,46 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Jobs$Debug$Getconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job id.
+     */
+    jobId?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetDebugConfigRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Debug$Sendcapture {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job id.
+     */
+    jobId?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SendDebugCaptureRequest;
+  }
+
 
   export class Resource$Projects$Jobs$Messages {
     root: Dataflow;
@@ -3836,28 +4189,40 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobMessagesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Messages$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobMessagesResponse>;
+    list(
+        params: Params$Resource$Projects$Jobs$Messages$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Messages$List,
+        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Messages$List|
+        BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobMessagesResponse>,
         callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
         void|AxiosPromise<Schema$ListJobMessagesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Messages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Messages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3880,6 +4245,52 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Jobs$Messages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Return only messages with timestamps < end_time. The default is now (i.e.
+     * return up to the latest messages available).
+     */
+    endTime?: string;
+    /**
+     * The job to get messages about.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * Filter to only get messages with importance >= level
+     */
+    minimumImportance?: string;
+    /**
+     * If specified, determines the maximum number of messages to return.  If
+     * unspecified, the service may choose an appropriate default, or may return
+     * an arbitrarily large number of results.
+     */
+    pageSize?: number;
+    /**
+     * If supplied, this should be the value of next_page_token returned by an
+     * earlier call. This will cause the next page of results to be returned.
+     */
+    pageToken?: string;
+    /**
+     * A project id.
+     */
+    projectId?: string;
+    /**
+     * If specified, return only messages with timestamps >= start_time. The
+     * default is the job creation time (i.e. beginning of messages).
+     */
+    startTime?: string;
+  }
+
 
   export class Resource$Projects$Jobs$Workitems {
     root: Dataflow;
@@ -3907,28 +4318,40 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lease(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaseWorkItemResponse>;
     lease(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Jobs$Workitems$Lease,
+        options?: MethodOptions): AxiosPromise<Schema$LeaseWorkItemResponse>;
+    lease(
+        params: Params$Resource$Projects$Jobs$Workitems$Lease,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
     lease(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Workitems$Lease,
+        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+    lease(callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+    lease(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Workitems$Lease|
+        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaseWorkItemResponse>,
         callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
         void|AxiosPromise<Schema$LeaseWorkItemResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Workitems$Lease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Workitems$Lease;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3966,29 +4389,45 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reportStatus(params?: any, options?: MethodOptions):
+    reportStatus(
+        params?: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+        options?: MethodOptions):
         AxiosPromise<Schema$ReportWorkItemStatusResponse>;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
         void;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Jobs$Workitems$Reportstatus,
+        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        void;
+    reportStatus(callback:
+                     BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        void;
+    reportStatus(
+        paramsOrCallback?: Params$Resource$Projects$Jobs$Workitems$Reportstatus|
+        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
         callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
         void|AxiosPromise<Schema$ReportWorkItemStatusResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Jobs$Workitems$Reportstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Jobs$Workitems$Reportstatus;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4014,6 +4453,46 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Jobs$Workitems$Lease {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the workflow job this worker belongs to.
+     */
+    jobId?: string;
+    /**
+     * Identifies the project this worker belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaseWorkItemRequest;
+  }
+  export interface Params$Resource$Projects$Jobs$Workitems$Reportstatus {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job which the WorkItem is part of.
+     */
+    jobId?: string;
+    /**
+     * The project which owns the WorkItem's job.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReportWorkItemStatusRequest;
+  }
+
 
 
   export class Resource$Projects$Locations {
@@ -4046,29 +4525,45 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    workerMessages(params?: any, options?: MethodOptions):
+    workerMessages(
+        params?: Params$Resource$Projects$Locations$Workermessages,
+        options?: MethodOptions):
         AxiosPromise<Schema$SendWorkerMessagesResponse>;
     workerMessages(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Workermessages,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
         void;
     workerMessages(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Workermessages,
+        callback: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        void;
+    workerMessages(callback:
+                       BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
+        void;
+    workerMessages(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Workermessages|
+        BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendWorkerMessagesResponse>,
         callback?: BodyResponseCallback<Schema$SendWorkerMessagesResponse>):
         void|AxiosPromise<Schema$SendWorkerMessagesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Workermessages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workermessages;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4093,6 +4588,27 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Workermessages {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The location which contains the job
+     */
+    location?: string;
+    /**
+     * The project to send the WorkerMessages to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SendWorkerMessagesRequest;
+  }
+
   export class Resource$Projects$Locations$Jobs {
     root: Dataflow;
     debug: Resource$Projects$Locations$Jobs$Debug;
@@ -4127,23 +4643,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Locations$Jobs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Locations$Jobs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Jobs$Create,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Create|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4182,21 +4713,34 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Projects$Locations$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Projects$Locations$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Projects$Locations$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4236,26 +4780,39 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getMetrics(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
-        callback?: BodyResponseCallback<Schema$JobMetrics>): void;
+        params?: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+        options?: MethodOptions): AxiosPromise<Schema$JobMetrics>;
     getMetrics(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+        params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+        options: MethodOptions|BodyResponseCallback<Schema$JobMetrics>,
+        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(
+        params: Params$Resource$Projects$Locations$Jobs$Getmetrics,
+        callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(callback: BodyResponseCallback<Schema$JobMetrics>): void;
+    getMetrics(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Getmetrics|
+        BodyResponseCallback<Schema$JobMetrics>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$JobMetrics>,
         callback?: BodyResponseCallback<Schema$JobMetrics>):
         void|AxiosPromise<Schema$JobMetrics> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Getmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Getmetrics;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4297,26 +4854,39 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params?: Params$Resource$Projects$Locations$Jobs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Projects$Locations$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Jobs$List,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$List|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4355,23 +4925,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Locations$Jobs$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Locations$Jobs$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    update(
+        params: Params$Resource$Projects$Locations$Jobs$Update,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    update(callback: BodyResponseCallback<Schema$Job>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Jobs$Update|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4395,6 +4980,140 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Deprecated. This field is now in the Job message.
+     */
+    replaceJobId?: string;
+    /**
+     * The level of information requested in response.
+     */
+    view?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job ID.
+     */
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * The level of information requested in response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Getmetrics {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job to get messages for.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * A project id.
+     */
+    projectId?: string;
+    /**
+     * Return only metric data that has changed since this time. Default is to
+     * return all information about all metrics for the job.
+     */
+    startTime?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The kind of filter to use.
+     */
+    filter?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * If there are many jobs, limit response to at most this many. The actual
+     * number of jobs returned will be the lesser of max_responses and an
+     * unspecified server-defined limit.
+     */
+    pageSize?: number;
+    /**
+     * Set this to the 'next_page_token' field of a previous response to request
+     * additional results in a long list.
+     */
+    pageToken?: string;
+    /**
+     * The project which owns the jobs.
+     */
+    projectId?: string;
+    /**
+     * Level of information requested in response. Default is
+     * `JOB_VIEW_SUMMARY`.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job ID.
+     */
+    jobId?: string;
+    /**
+     * The location that contains this job.
+     */
+    location?: string;
+    /**
+     * The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+
   export class Resource$Projects$Locations$Jobs$Debug {
     root: Dataflow;
     constructor(root: Dataflow) {
@@ -4422,28 +5141,42 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetDebugConfigResponse>;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+        options?: MethodOptions): AxiosPromise<Schema$GetDebugConfigResponse>;
+    getConfig(
+        params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetDebugConfigResponse>,
-        callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
     getConfig(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Debug$Getconfig,
+        callback: BodyResponseCallback<Schema$GetDebugConfigResponse>): void;
+    getConfig(callback: BodyResponseCallback<Schema$GetDebugConfigResponse>):
+        void;
+    getConfig(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Jobs$Debug$Getconfig|
+        BodyResponseCallback<Schema$GetDebugConfigResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetDebugConfigResponse>,
         callback?: BodyResponseCallback<Schema$GetDebugConfigResponse>):
         void|AxiosPromise<Schema$GetDebugConfigResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Debug$Getconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4483,28 +5216,43 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    sendCapture(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$SendDebugCaptureResponse>;
     sendCapture(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+        options?: MethodOptions): AxiosPromise<Schema$SendDebugCaptureResponse>;
+    sendCapture(
+        params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SendDebugCaptureResponse>,
-        callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
     sendCapture(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture,
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+    sendCapture(
+        callback: BodyResponseCallback<Schema$SendDebugCaptureResponse>): void;
+    sendCapture(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture|
+        BodyResponseCallback<Schema$SendDebugCaptureResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SendDebugCaptureResponse>,
         callback?: BodyResponseCallback<Schema$SendDebugCaptureResponse>):
         void|AxiosPromise<Schema$SendDebugCaptureResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4528,6 +5276,54 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job id.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetDebugConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job id.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SendDebugCaptureRequest;
+  }
+
 
   export class Resource$Projects$Locations$Jobs$Messages {
     root: Dataflow;
@@ -4560,28 +5356,41 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobMessagesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Jobs$Messages$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobMessagesResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListJobMessagesResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Messages$List,
+        callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobMessagesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Jobs$Messages$List|
+        BodyResponseCallback<Schema$ListJobMessagesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListJobMessagesResponse>,
         callback?: BodyResponseCallback<Schema$ListJobMessagesResponse>):
         void|AxiosPromise<Schema$ListJobMessagesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Messages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Messages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4605,6 +5414,52 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Messages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Return only messages with timestamps < end_time. The default is now (i.e.
+     * return up to the latest messages available).
+     */
+    endTime?: string;
+    /**
+     * The job to get messages about.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * Filter to only get messages with importance >= level
+     */
+    minimumImportance?: string;
+    /**
+     * If specified, determines the maximum number of messages to return.  If
+     * unspecified, the service may choose an appropriate default, or may return
+     * an arbitrarily large number of results.
+     */
+    pageSize?: number;
+    /**
+     * If supplied, this should be the value of next_page_token returned by an
+     * earlier call. This will cause the next page of results to be returned.
+     */
+    pageToken?: string;
+    /**
+     * A project id.
+     */
+    projectId?: string;
+    /**
+     * If specified, return only messages with timestamps >= start_time. The
+     * default is the job creation time (i.e. beginning of messages).
+     */
+    startTime?: string;
+  }
+
 
   export class Resource$Projects$Locations$Jobs$Workitems {
     root: Dataflow;
@@ -4633,28 +5488,41 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lease(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaseWorkItemResponse>;
     lease(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+        options?: MethodOptions): AxiosPromise<Schema$LeaseWorkItemResponse>;
+    lease(
+        params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LeaseWorkItemResponse>,
-        callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
     lease(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Workitems$Lease,
+        callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+    lease(callback: BodyResponseCallback<Schema$LeaseWorkItemResponse>): void;
+    lease(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Jobs$Workitems$Lease|
+        BodyResponseCallback<Schema$LeaseWorkItemResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LeaseWorkItemResponse>,
         callback?: BodyResponseCallback<Schema$LeaseWorkItemResponse>):
         void|AxiosPromise<Schema$LeaseWorkItemResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Jobs$Workitems$Lease;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4694,29 +5562,47 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    reportStatus(params?: any, options?: MethodOptions):
+    reportStatus(
+        params?: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+        options?: MethodOptions):
         AxiosPromise<Schema$ReportWorkItemStatusResponse>;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
-        callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
         void;
     reportStatus(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus,
+        callback: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        void;
+    reportStatus(callback:
+                     BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
+        void;
+    reportStatus(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus|
+        BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ReportWorkItemStatusResponse>,
         callback?: BodyResponseCallback<Schema$ReportWorkItemStatusResponse>):
         void|AxiosPromise<Schema$ReportWorkItemStatusResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4742,6 +5628,54 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Lease {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the workflow job this worker belongs to.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the WorkItem's job.
+     */
+    location?: string;
+    /**
+     * Identifies the project this worker belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaseWorkItemRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job which the WorkItem is part of.
+     */
+    jobId?: string;
+    /**
+     * The location which contains the WorkItem's job.
+     */
+    location?: string;
+    /**
+     * The project which owns the WorkItem's job.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReportWorkItemStatusRequest;
+  }
+
 
 
   export class Resource$Projects$Locations$Templates {
@@ -4770,23 +5704,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Locations$Templates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Locations$Templates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Templates$Create,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Create|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Templates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Templates$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4825,26 +5774,35 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Locations$Templates$Get,
         options?: MethodOptions): AxiosPromise<Schema$GetTemplateResponse>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Locations$Templates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(params: Params$Resource$Projects$Locations$Templates$Get,
+        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Get|
         BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetTemplateResponse>,
         callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
         void|AxiosPromise<Schema$GetTemplateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Templates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Templates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4885,28 +5843,40 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    launch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LaunchTemplateResponse>;
     launch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Templates$Launch,
+        options?: MethodOptions): AxiosPromise<Schema$LaunchTemplateResponse>;
+    launch(
+        params: Params$Resource$Projects$Locations$Templates$Launch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
     launch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Templates$Launch,
+        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+    launch(callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+    launch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Templates$Launch|
+        BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LaunchTemplateResponse>,
         callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
         void|AxiosPromise<Schema$LaunchTemplateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Templates$Launch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Templates$Launch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4930,6 +5900,80 @@ export namespace dataflow_v1b3 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Templates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The location to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateJobFromTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Templates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. A Cloud Storage path to the template from which to create the
+     * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     */
+    gcsPath?: string;
+    /**
+     * The location to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * The view to retrieve. Defaults to METADATA_ONLY.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Templates$Launch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. A Cloud Storage path to the template from which to create the
+     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     */
+    gcsPath?: string;
+    /**
+     * The location to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * If true, the request is validated but not actually executed. Defaults to
+     * false.
+     */
+    validateOnly?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LaunchTemplateParameters;
+  }
+
 
 
   export class Resource$Projects$Templates {
@@ -4957,23 +6001,38 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Templates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Templates$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        params: Params$Resource$Projects$Templates$Create,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Templates$Create|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Templates$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5011,26 +6070,35 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Templates$Get,
         options?: MethodOptions): AxiosPromise<Schema$GetTemplateResponse>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Projects$Templates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$GetTemplateResponse>,
+        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(params: Params$Resource$Projects$Templates$Get,
+        callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(callback: BodyResponseCallback<Schema$GetTemplateResponse>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Templates$Get|
         BodyResponseCallback<Schema$GetTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$GetTemplateResponse>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetTemplateResponse>,
         callback?: BodyResponseCallback<Schema$GetTemplateResponse>):
         void|AxiosPromise<Schema$GetTemplateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Templates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5069,28 +6137,40 @@ export namespace dataflow_v1b3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    launch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LaunchTemplateResponse>;
     launch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Templates$Launch,
+        options?: MethodOptions): AxiosPromise<Schema$LaunchTemplateResponse>;
+    launch(
+        params: Params$Resource$Projects$Templates$Launch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LaunchTemplateResponse>,
-        callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
     launch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Templates$Launch,
+        callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+    launch(callback: BodyResponseCallback<Schema$LaunchTemplateResponse>): void;
+    launch(
+        paramsOrCallback?: Params$Resource$Projects$Templates$Launch|
+        BodyResponseCallback<Schema$LaunchTemplateResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LaunchTemplateResponse>,
         callback?: BodyResponseCallback<Schema$LaunchTemplateResponse>):
         void|AxiosPromise<Schema$LaunchTemplateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Templates$Launch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Templates$Launch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5111,5 +6191,74 @@ export namespace dataflow_v1b3 {
         return createAPIRequest<Schema$LaunchTemplateResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Templates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateJobFromTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Templates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. A Cloud Storage path to the template from which to create the
+     * job. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     */
+    gcsPath?: string;
+    /**
+     * The location to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * The view to retrieve. Defaults to METADATA_ONLY.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Templates$Launch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. A Cloud Storage path to the template from which to create the
+     * job. Must be valid Cloud Storage URL, beginning with 'gs://'.
+     */
+    gcsPath?: string;
+    /**
+     * The location to which to direct the request.
+     */
+    location?: string;
+    /**
+     * Required. The ID of the Cloud Platform project that the job belongs to.
+     */
+    projectId?: string;
+    /**
+     * If true, the request is validated but not actually executed. Defaults to
+     * false.
+     */
+    validateOnly?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LaunchTemplateParameters;
   }
 }

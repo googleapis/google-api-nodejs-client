@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace webmasters_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Search Console API
    *
@@ -74,20 +77,20 @@ export namespace webmasters_v3 {
   }
 
   export interface Schema$ApiDataRow {
-    clicks: number;
-    ctr: number;
-    impressions: number;
-    keys: string[];
-    position: number;
+    clicks?: number;
+    ctr?: number;
+    impressions?: number;
+    keys?: string[];
+    position?: number;
   }
   export interface Schema$ApiDimensionFilter {
-    dimension: string;
-    expression: string;
-    operator: string;
+    dimension?: string;
+    expression?: string;
+    operator?: string;
   }
   export interface Schema$ApiDimensionFilterGroup {
-    filters: Schema$ApiDimensionFilter[];
-    groupType: string;
+    filters?: Schema$ApiDimensionFilter[];
+    groupType?: string;
   }
   export interface Schema$SearchAnalyticsQueryRequest {
     /**
@@ -103,47 +106,47 @@ export namespace webmasters_v3 {
      * request an invalid type, you will get an error. The API will never change
      * your aggregation type if the requested type is invalid.
      */
-    aggregationType: string;
+    aggregationType?: string;
     /**
      * [Optional] Zero or more filters to apply to the dimension grouping
      * values; for example, &#39;query contains &quot;buy&quot;&#39; to see only
      * data where the query string contains the substring &quot;buy&quot; (not
      * case-sensitive). You can filter by a dimension without grouping by it.
      */
-    dimensionFilterGroups: Schema$ApiDimensionFilterGroup[];
+    dimensionFilterGroups?: Schema$ApiDimensionFilterGroup[];
     /**
      * [Optional] Zero or more dimensions to group results by. Dimensions are
      * the group-by values in the Search Analytics page. Dimensions are combined
      * to create a unique row key for each row. Results are grouped in the order
      * that you supply these dimensions.
      */
-    dimensions: string[];
+    dimensions?: string[];
     /**
      * [Required] End date of the requested date range, in YYYY-MM-DD format, in
      * PST (UTC - 8:00). Must be greater than or equal to the start date. This
      * value is included in the range.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * [Optional; Default is 1000] The maximum number of rows to return. Must be
      * a number from 1 to 5,000 (inclusive).
      */
-    rowLimit: number;
+    rowLimit?: number;
     /**
      * [Optional; Default is &quot;web&quot;] The search type to filter for.
      */
-    searchType: string;
+    searchType?: string;
     /**
      * [Required] Start date of the requested date range, in YYYY-MM-DD format,
      * in PST time (UTC - 8:00). Must be less than or equal to the end date.
      * This value is included in the range.
      */
-    startDate: string;
+    startDate?: string;
     /**
      * [Optional; Default is 0] Zero-based index of the first row in the
      * response. Must be a non-negative number.
      */
-    startRow: number;
+    startRow?: number;
   }
   /**
    * A list of rows, one per result, grouped by key. Metrics in each row are
@@ -154,11 +157,11 @@ export namespace webmasters_v3 {
     /**
      * How the results were aggregated.
      */
-    responseAggregationType: string;
+    responseAggregationType?: string;
     /**
      * A list of rows grouped by the key values in the order given in the query.
      */
-    rows: Schema$ApiDataRow[];
+    rows?: Schema$ApiDataRow[];
   }
   /**
    * List of sitemaps.
@@ -168,7 +171,7 @@ export namespace webmasters_v3 {
      * Contains detailed information about a specific URL submitted as a
      * sitemap.
      */
-    sitemap: Schema$WmxSitemap[];
+    sitemap?: Schema$WmxSitemap[];
   }
   /**
    * List of sites with access level information.
@@ -178,7 +181,7 @@ export namespace webmasters_v3 {
      * Contains permission level information about a Search Console site. For
      * more information, see Permissions in Search Console.
      */
-    siteEntry: Schema$WmxSite[];
+    siteEntry?: Schema$WmxSite[];
   }
   /**
    * An entry in a URL crawl errors time series.
@@ -187,11 +190,11 @@ export namespace webmasters_v3 {
     /**
      * The error count at the given timestamp.
      */
-    count: string;
+    count?: string;
     /**
      * The date and time when the crawl attempt took place, in RFC 3339 format.
      */
-    timestamp: string;
+    timestamp?: string;
   }
   /**
    * Number of errors per day for a specific error type (defined by platform and
@@ -201,16 +204,16 @@ export namespace webmasters_v3 {
     /**
      * The crawl error type.
      */
-    category: string;
+    category?: string;
     /**
      * The error count entries time series.
      */
-    entries: Schema$UrlCrawlErrorCount[];
+    entries?: Schema$UrlCrawlErrorCount[];
     /**
      * The general type of Googlebot that made the request (see list of
      * Googlebot user-agents for the user-agents used).
      */
-    platform: string;
+    platform?: string;
   }
   /**
    * A time series of the number of URL crawl errors per error category and
@@ -221,7 +224,7 @@ export namespace webmasters_v3 {
      * The time series of the number of URL crawl errors per error category and
      * platform.
      */
-    countPerTypes: Schema$UrlCrawlErrorCountsPerType[];
+    countPerTypes?: Schema$UrlCrawlErrorCountsPerType[];
   }
   /**
    * Contains information about specific crawl errors.
@@ -230,23 +233,23 @@ export namespace webmasters_v3 {
     /**
      * The time the error was first detected, in RFC 3339 format.
      */
-    first_detected: string;
+    first_detected?: string;
     /**
      * The time when the URL was last crawled, in RFC 3339 format.
      */
-    last_crawled: string;
+    last_crawled?: string;
     /**
      * The URL of an error, relative to the site.
      */
-    pageUrl: string;
+    pageUrl?: string;
     /**
      * The HTTP response code, if any.
      */
-    responseCode: number;
+    responseCode?: number;
     /**
      * Additional details about the URL, set only when calling get().
      */
-    urlDetails: Schema$UrlSampleDetails;
+    urlDetails?: Schema$UrlSampleDetails;
   }
   /**
    * List of crawl error samples.
@@ -255,7 +258,7 @@ export namespace webmasters_v3 {
     /**
      * Information about the sample URL and its crawl error.
      */
-    urlCrawlErrorSample: Schema$UrlCrawlErrorsSample[];
+    urlCrawlErrorSample?: Schema$UrlCrawlErrorsSample[];
   }
   /**
    * Additional details about the URL, set only when calling get().
@@ -264,11 +267,11 @@ export namespace webmasters_v3 {
     /**
      * List of sitemaps pointing at this URL.
      */
-    containingSitemaps: string[];
+    containingSitemaps?: string[];
     /**
      * A sample set of URLs linking to this URL.
      */
-    linkedFromUrls: string[];
+    linkedFromUrls?: string[];
   }
   /**
    * Contains permission level information about a Search Console site. For more
@@ -278,11 +281,11 @@ export namespace webmasters_v3 {
     /**
      * The user&#39;s permission level for the site.
      */
-    permissionLevel: string;
+    permissionLevel?: string;
     /**
      * The URL of the site.
      */
-    siteUrl: string;
+    siteUrl?: string;
   }
   /**
    * Contains detailed information about a specific URL submitted as a sitemap.
@@ -291,43 +294,43 @@ export namespace webmasters_v3 {
     /**
      * The various content types in the sitemap.
      */
-    contents: Schema$WmxSitemapContent[];
+    contents?: Schema$WmxSitemapContent[];
     /**
      * Number of errors in the sitemap. These are issues with the sitemap itself
      * that need to be fixed before it can be processed correctly.
      */
-    errors: string;
+    errors?: string;
     /**
      * If true, the sitemap has not been processed.
      */
-    isPending: boolean;
+    isPending?: boolean;
     /**
      * If true, the sitemap is a collection of sitemaps.
      */
-    isSitemapsIndex: boolean;
+    isSitemapsIndex?: boolean;
     /**
      * Date &amp; time in which this sitemap was last downloaded. Date format is
      * in RFC 3339 format (yyyy-mm-dd).
      */
-    lastDownloaded: string;
+    lastDownloaded?: string;
     /**
      * Date &amp; time in which this sitemap was submitted. Date format is in
      * RFC 3339 format (yyyy-mm-dd).
      */
-    lastSubmitted: string;
+    lastSubmitted?: string;
     /**
      * The url of the sitemap.
      */
-    path: string;
+    path?: string;
     /**
      * The type of the sitemap. For example: rssFeed.
      */
-    type: string;
+    type?: string;
     /**
      * Number of warnings for the sitemap. These are generally non-critical
      * issues with URLs in the sitemaps.
      */
-    warnings: string;
+    warnings?: string;
   }
   /**
    * Information about the various content types in the sitemap.
@@ -337,16 +340,17 @@ export namespace webmasters_v3 {
      * The number of URLs from the sitemap that were indexed (of the content
      * type).
      */
-    indexed: string;
+    indexed?: string;
     /**
      * The number of URLs in the sitemap (of the content type).
      */
-    submitted: string;
+    submitted?: string;
     /**
      * The specific type of content in this sitemap. For example: web.
      */
-    type: string;
+    type?: string;
   }
+
 
   export class Resource$Searchanalytics {
     root: Webmasters;
@@ -378,29 +382,44 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: any, options?: MethodOptions):
+    query(
+        params?: Params$Resource$Searchanalytics$Query,
+        options?: MethodOptions):
         AxiosPromise<Schema$SearchAnalyticsQueryResponse>;
     query(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Searchanalytics$Query,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
-        callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
+        callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
         void;
     query(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Searchanalytics$Query,
+        callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
+        void;
+    query(callback: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
+        void;
+    query(
+        paramsOrCallback?: Params$Resource$Searchanalytics$Query|
+        BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnalyticsQueryResponse>):
         void|AxiosPromise<Schema$SearchAnalyticsQueryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Searchanalytics$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Searchanalytics$Query;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -425,6 +444,23 @@ export namespace webmasters_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Searchanalytics$Query {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchAnalyticsQueryRequest;
+  }
+
 
   export class Resource$Sitemaps {
     root: Webmasters;
@@ -451,22 +487,35 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Sitemaps$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Sitemaps$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Sitemaps$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Sitemaps$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sitemaps$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -503,23 +552,34 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$WmxSitemap>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
-        callback?: BodyResponseCallback<Schema$WmxSitemap>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
+    get(params?: Params$Resource$Sitemaps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WmxSitemap>;
+    get(params: Params$Resource$Sitemaps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WmxSitemap>,
+        callback: BodyResponseCallback<Schema$WmxSitemap>): void;
+    get(params: Params$Resource$Sitemaps$Get,
+        callback: BodyResponseCallback<Schema$WmxSitemap>): void;
+    get(callback: BodyResponseCallback<Schema$WmxSitemap>): void;
+    get(paramsOrCallback?: Params$Resource$Sitemaps$Get|
+        BodyResponseCallback<Schema$WmxSitemap>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WmxSitemap>,
         callback?: BodyResponseCallback<Schema$WmxSitemap>):
         void|AxiosPromise<Schema$WmxSitemap> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sitemaps$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -557,28 +617,38 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Sitemaps$List, options?: MethodOptions):
         AxiosPromise<Schema$SitemapsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Sitemaps$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SitemapsListResponse>,
-        callback?: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+        callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Sitemaps$List,
+        callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SitemapsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Sitemaps$List|
+        BodyResponseCallback<Schema$SitemapsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SitemapsListResponse>,
         callback?: BodyResponseCallback<Schema$SitemapsListResponse>):
         void|AxiosPromise<Schema$SitemapsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sitemaps$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -614,22 +684,35 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    submit(params?: Params$Resource$Sitemaps$Submit, options?: MethodOptions):
+        AxiosPromise<void>;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Sitemaps$Submit,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Sitemaps$Submit,
+        callback: BodyResponseCallback<void>): void;
+    submit(callback: BodyResponseCallback<void>): void;
+    submit(
+        paramsOrCallback?: Params$Resource$Sitemaps$Submit|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sitemaps$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sitemaps$Submit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -652,6 +735,72 @@ export namespace webmasters_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Sitemaps$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URL of the actual sitemap. For example:
+     * http://www.example.com/sitemap.xml
+     */
+    feedpath?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sitemaps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URL of the actual sitemap. For example:
+     * http://www.example.com/sitemap.xml
+     */
+    feedpath?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sitemaps$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A URL of a site's sitemap index. For example:
+     * http://www.example.com/sitemapindex.xml
+     */
+    sitemapIndex?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sitemaps$Submit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URL of the sitemap to add. For example:
+     * http://www.example.com/sitemap.xml
+     */
+    feedpath?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+
 
   export class Resource$Sites {
     root: Webmasters;
@@ -677,20 +826,31 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add(params?: any, options?: MethodOptions): AxiosPromise<void>;
-    add(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
-    add(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+    add(params?: Params$Resource$Sites$Add,
+        options?: MethodOptions): AxiosPromise<void>;
+    add(params: Params$Resource$Sites$Add,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    add(params: Params$Resource$Sites$Add,
+        callback: BodyResponseCallback<void>): void;
+    add(callback: BodyResponseCallback<void>): void;
+    add(paramsOrCallback?: Params$Resource$Sites$Add|BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Add;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Add;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -725,22 +885,35 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Sites$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Sites$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Sites$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Sites$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -775,23 +948,33 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$WmxSite>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
-        callback?: BodyResponseCallback<Schema$WmxSite>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
+    get(params?: Params$Resource$Sites$Get,
+        options?: MethodOptions): AxiosPromise<Schema$WmxSite>;
+    get(params: Params$Resource$Sites$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
+        callback: BodyResponseCallback<Schema$WmxSite>): void;
+    get(params: Params$Resource$Sites$Get,
+        callback: BodyResponseCallback<Schema$WmxSite>): void;
+    get(callback: BodyResponseCallback<Schema$WmxSite>): void;
+    get(paramsOrCallback?: Params$Resource$Sites$Get|
+        BodyResponseCallback<Schema$WmxSite>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$WmxSite>,
         callback?: BodyResponseCallback<Schema$WmxSite>):
         void|AxiosPromise<Schema$WmxSite> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -825,26 +1008,37 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Sites$List, options?: MethodOptions):
         AxiosPromise<Schema$SitesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
-        callback?: BodyResponseCallback<Schema$SitesListResponse>): void;
+        params: Params$Resource$Sites$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SitesListResponse>,
+        params: Params$Resource$Sites$List,
+        callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SitesListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Sites$List|
+        BodyResponseCallback<Schema$SitesListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SitesListResponse>,
         callback?: BodyResponseCallback<Schema$SitesListResponse>):
         void|AxiosPromise<Schema$SitesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -866,6 +1060,53 @@ export namespace webmasters_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Sites$Add {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URL of the site to add.
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sites$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URI of the property as defined in Search Console. Examples:
+     * http://www.example.com/ or android-app://com.example/ Note: for
+     * property-sets, use the URI that starts with sc-set: which is used in
+     * Search Console URLs.
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sites$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URI of the property as defined in Search Console. Examples:
+     * http://www.example.com/ or android-app://com.example/ Note: for
+     * property-sets, use the URI that starts with sc-set: which is used in
+     * Search Console URLs.
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Sites$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Urlcrawlerrorscounts {
     root: Webmasters;
@@ -895,31 +1136,48 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    query(params?: any, options?: MethodOptions):
+    query(
+        params?: Params$Resource$Urlcrawlerrorscounts$Query,
+        options?: MethodOptions):
         AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse>;
     query(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Urlcrawlerrorscounts$Query,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
         void;
     query(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Urlcrawlerrorscounts$Query,
+        callback:
+            BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
+        void;
+    query(callback:
+              BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
+        void;
+    query(
+        paramsOrCallback?: Params$Resource$Urlcrawlerrorscounts$Query|
+        BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>,
         callback?:
             BodyResponseCallback<Schema$UrlCrawlErrorsCountsQueryResponse>):
         void|AxiosPromise<Schema$UrlCrawlErrorsCountsQueryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Urlcrawlerrorscounts$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlcrawlerrorscounts$Query;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -944,6 +1202,33 @@ export namespace webmasters_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Urlcrawlerrorscounts$Query {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The crawl error category. For example: serverError. If not specified,
+     * returns results for all categories.
+     */
+    category?: string;
+    /**
+     * If true, returns only the latest crawl error counts.
+     */
+    latestCountsOnly?: boolean;
+    /**
+     * The user agent type (platform) that made the request. For example: web.
+     * If not specified, returns results for all platforms.
+     */
+    platform?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+
 
   export class Resource$Urlcrawlerrorssamples {
     root: Webmasters;
@@ -972,26 +1257,36 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Urlcrawlerrorssamples$Get,
         options?: MethodOptions): AxiosPromise<Schema$UrlCrawlErrorsSample>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Urlcrawlerrorssamples$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
-        callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
+    get(params: Params$Resource$Urlcrawlerrorssamples$Get,
+        callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
+    get(callback: BodyResponseCallback<Schema$UrlCrawlErrorsSample>): void;
+    get(paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$Get|
+        BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSample>,
         callback?: BodyResponseCallback<Schema$UrlCrawlErrorsSample>):
         void|AxiosPromise<Schema$UrlCrawlErrorsSample> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Urlcrawlerrorssamples$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlcrawlerrorssamples$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1031,31 +1326,48 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Urlcrawlerrorssamples$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Urlcrawlerrorssamples$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Urlcrawlerrorssamples$List,
+        callback:
+            BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$List|
+        BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>,
         callback?:
             BodyResponseCallback<Schema$UrlCrawlErrorsSamplesListResponse>):
         void|AxiosPromise<Schema$UrlCrawlErrorsSamplesListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Urlcrawlerrorssamples$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlcrawlerrorssamples$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1097,22 +1409,37 @@ export namespace webmasters_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    markAsFixed(params?: any, options?: MethodOptions): AxiosPromise<void>;
     markAsFixed(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+        options?: MethodOptions): AxiosPromise<void>;
     markAsFixed(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    markAsFixed(
+        params: Params$Resource$Urlcrawlerrorssamples$Markasfixed,
+        callback: BodyResponseCallback<void>): void;
+    markAsFixed(callback: BodyResponseCallback<void>): void;
+    markAsFixed(
+        paramsOrCallback?: Params$Resource$Urlcrawlerrorssamples$Markasfixed|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Urlcrawlerrorssamples$Markasfixed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlcrawlerrorssamples$Markasfixed;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1135,5 +1462,77 @@ export namespace webmasters_v3 {
         return createAPIRequest<void>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Urlcrawlerrorssamples$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The crawl error category. For example: authPermissions
+     */
+    category?: string;
+    /**
+     * The user agent type (platform) that made the request. For example: web
+     */
+    platform?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+    /**
+     * The relative path (without the site) of the sample URL. It must be one of
+     * the URLs returned by list(). For example, for the URL
+     * https://www.example.com/pagename on the site https://www.example.com/,
+     * the url value is pagename
+     */
+    url?: string;
+  }
+  export interface Params$Resource$Urlcrawlerrorssamples$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The crawl error category. For example: authPermissions
+     */
+    category?: string;
+    /**
+     * The user agent type (platform) that made the request. For example: web
+     */
+    platform?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+  }
+  export interface Params$Resource$Urlcrawlerrorssamples$Markasfixed {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The crawl error category. For example: authPermissions
+     */
+    category?: string;
+    /**
+     * The user agent type (platform) that made the request. For example: web
+     */
+    platform?: string;
+    /**
+     * The site's URL, including protocol. For example: http://www.example.com/
+     */
+    siteUrl?: string;
+    /**
+     * The relative path (without the site) of the sample URL. It must be one of
+     * the URLs returned by list(). For example, for the URL
+     * https://www.example.com/pagename on the site https://www.example.com/,
+     * the url value is pagename
+     */
+    url?: string;
   }
 }

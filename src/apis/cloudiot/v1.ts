@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudiot_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud IoT API
    *
@@ -77,21 +80,20 @@ export namespace cloudiot_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * The device resource.
@@ -102,7 +104,7 @@ export namespace cloudiot_v1 {
      * fail. Can be used to temporarily prevent the device from connecting if,
      * for example, the sensor is generating bad data and needs maintenance.
      */
-    blocked: boolean;
+    blocked?: boolean;
     /**
      * The most recent device configuration, which is eventually sent from Cloud
      * IoT Core to the device. If not present on creation, the configuration
@@ -110,7 +112,7 @@ export namespace cloudiot_v1 {
      * update this field after creation, use the
      * `DeviceManager.ModifyCloudToDeviceConfig` method.
      */
-    config: Schema$DeviceConfig;
+    config?: Schema$DeviceConfig;
     /**
      * The credentials used to authenticate this device. To allow credential
      * rotation without interruption, multiple device credentials can be bound
@@ -119,23 +121,23 @@ export namespace cloudiot_v1 {
      * verified against the registry credentials. For details, see the
      * description of the `DeviceRegistry.credentials` field.
      */
-    credentials: Schema$DeviceCredential[];
+    credentials?: Schema$DeviceCredential[];
     /**
      * The user-defined device identifier. The device ID must be unique within a
      * device registry.
      */
-    id: string;
+    id?: string;
     /**
      * [Output only] The last time a cloud-to-device config version
      * acknowledgment was received from the device. This field is only for
      * configurations sent through MQTT.
      */
-    lastConfigAckTime: string;
+    lastConfigAckTime?: string;
     /**
      * [Output only] The last time a cloud-to-device config version was sent to
      * the device.
      */
-    lastConfigSendTime: string;
+    lastConfigSendTime?: string;
     /**
      * [Output only] The error message of the most recent error, such as a
      * failure to publish to Cloud Pub/Sub. &#39;last_error_time&#39; is the
@@ -143,19 +145,19 @@ export namespace cloudiot_v1 {
      * empty message and the status code 0 == OK. Otherwise, this field is
      * expected to have a status code other than OK.
      */
-    lastErrorStatus: Schema$Status;
+    lastErrorStatus?: Schema$Status;
     /**
      * [Output only] The time the most recent error occurred, such as a failure
      * to publish to Cloud Pub/Sub. This field is the timestamp of
      * &#39;last_error_status&#39;.
      */
-    lastErrorTime: string;
+    lastErrorTime?: string;
     /**
      * [Output only] The last time a telemetry event was received. Timestamps
      * are periodically collected and written to storage; they may be stale by a
      * few minutes.
      */
-    lastEventTime: string;
+    lastEventTime?: string;
     /**
      * [Output only] The last time an MQTT `PINGREQ` was received. This field
      * applies only to devices connecting through MQTT. MQTT clients usually
@@ -163,13 +165,13 @@ export namespace cloudiot_v1 {
      * messages have been sent. Timestamps are periodically collected and
      * written to storage; they may be stale by a few minutes.
      */
-    lastHeartbeatTime: string;
+    lastHeartbeatTime?: string;
     /**
      * [Output only] The last time a state event was received. Timestamps are
      * periodically collected and written to storage; they may be stale by a few
      * minutes.
      */
-    lastStateTime: string;
+    lastStateTime?: string;
     /**
      * The metadata key-value pairs assigned to the device. This metadata is not
      * interpreted or indexed by Cloud IoT Core. It can be used to add
@@ -179,7 +181,7 @@ export namespace cloudiot_v1 {
      * size.  The total size of all keys and values must be less than 256 KB,
      * and the maximum number of key-value pairs is 500.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The resource path name. For example,
      * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
@@ -187,17 +189,17 @@ export namespace cloudiot_v1 {
      * When `name` is populated as a response from the service, it always ends
      * in the device numeric ID.
      */
-    name: string;
+    name?: string;
     /**
      * [Output only] A server-defined unique numeric ID for the device. This is
      * a more compact way to identify devices, and it is globally unique.
      */
-    numId: string;
+    numId?: string;
     /**
      * [Output only] The state most recently received from the device. If no
      * state has been reported, this field is not present.
      */
-    state: Schema$DeviceState;
+    state?: Schema$DeviceState;
   }
   /**
    * The device configuration. Eventually delivered to devices.
@@ -206,12 +208,12 @@ export namespace cloudiot_v1 {
     /**
      * The device configuration data.
      */
-    binaryData: string;
+    binaryData?: string;
     /**
      * [Output only] The time at which this configuration version was updated in
      * Cloud IoT Core. This timestamp is set by the server.
      */
-    cloudUpdateTime: string;
+    cloudUpdateTime?: string;
     /**
      * [Output only] The time at which Cloud IoT Core received the
      * acknowledgment from the device, indicating that the device has received
@@ -223,14 +225,14 @@ export namespace cloudiot_v1 {
      * may never be sent to the device, and therefore are never acknowledged.
      * This timestamp is set by Cloud IoT Core.
      */
-    deviceAckTime: string;
+    deviceAckTime?: string;
     /**
      * [Output only] The version of this update. The version number is assigned
      * by the server, and is always greater than 0 after device creation. The
      * version must be 0 on the `CreateDevice` request if a `config` is
      * specified; the response of `CreateDevice` will always have a value of 1.
      */
-    version: string;
+    version?: string;
   }
   /**
    * A server-stored device credential used for authentication.
@@ -241,7 +243,7 @@ export namespace cloudiot_v1 {
      * credential will be ignored for new client authentication requests after
      * this timestamp; however, it will not be automatically deleted.
      */
-    expirationTime: string;
+    expirationTime?: string;
     /**
      * A public key used to verify the signature of JSON Web Tokens (JWTs). When
      * adding a new device credential, either via device creation or via
@@ -255,7 +257,7 @@ export namespace cloudiot_v1 {
      * New device credentials must be different from every registry-level
      * certificate.
      */
-    publicKey: Schema$PublicKeyCredential;
+    publicKey?: Schema$PublicKeyCredential;
   }
   /**
    * A container for a group of devices.
@@ -273,7 +275,7 @@ export namespace cloudiot_v1 {
      * it should be able to connect even if its registry credentials are
      * revoked, deleted, or modified.
      */
-    credentials: Schema$RegistryCredential[];
+    credentials?: Schema$RegistryCredential[];
     /**
      * The configuration for notification of telemetry events received from the
      * device. All telemetry events that were successfully published by the
@@ -285,24 +287,24 @@ export namespace cloudiot_v1 {
      * try to do so using an HTTP connection, an error is returned. Up to 10
      * configurations may be provided.
      */
-    eventNotificationConfigs: Schema$EventNotificationConfig[];
+    eventNotificationConfigs?: Schema$EventNotificationConfig[];
     /**
      * The DeviceService (HTTP) configuration for this device registry.
      */
-    httpConfig: Schema$HttpConfig;
+    httpConfig?: Schema$HttpConfig;
     /**
      * The identifier of this device registry. For example, `myRegistry`.
      */
-    id: string;
+    id?: string;
     /**
      * The MQTT configuration for this device registry.
      */
-    mqttConfig: Schema$MqttConfig;
+    mqttConfig?: Schema$MqttConfig;
     /**
      * The resource path name. For example,
      * `projects/example-project/locations/us-central1/registries/my-registry`.
      */
-    name: string;
+    name?: string;
     /**
      * The configuration for notification of new states received from the
      * device. State updates are guaranteed to be stored in the state history,
@@ -311,7 +313,7 @@ export namespace cloudiot_v1 {
      * no notification will be published but the state will still be stored in
      * Cloud IoT Core.
      */
-    stateNotificationConfig: Schema$StateNotificationConfig;
+    stateNotificationConfig?: Schema$StateNotificationConfig;
   }
   /**
    * The device state, as reported by the device.
@@ -320,12 +322,12 @@ export namespace cloudiot_v1 {
     /**
      * The device state data.
      */
-    binaryData: string;
+    binaryData?: string;
     /**
      * [Output only] The time at which this state version was updated in Cloud
      * IoT Core.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -343,14 +345,14 @@ export namespace cloudiot_v1 {
      * A Cloud Pub/Sub topic name. For example,
      * `projects/myProject/topics/deviceEvents`.
      */
-    pubsubTopicName: string;
+    pubsubTopicName?: string;
     /**
      * If the subfolder name matches this string exactly, this configuration
      * will be used. The string must not include the leading &#39;/&#39;
      * character. If empty, all strings are matched. This field is used only for
      * telemetry events; subfolders are not supported for state changes.
      */
-    subfolderMatches: string;
+    subfolderMatches?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -364,7 +366,7 @@ export namespace cloudiot_v1 {
      * If enabled, allows devices to use DeviceService via the HTTP protocol.
      * Otherwise, any requests to DeviceService will fail for this registry.
      */
-    httpEnabledState: string;
+    httpEnabledState?: string;
   }
   /**
    * Response for `ListDeviceConfigVersions`.
@@ -374,7 +376,7 @@ export namespace cloudiot_v1 {
      * The device configuration for the last few versions. Versions are listed
      * in decreasing order, starting from the most recent one.
      */
-    deviceConfigs: Schema$DeviceConfig[];
+    deviceConfigs?: Schema$DeviceConfig[];
   }
   /**
    * Response for `ListDeviceRegistries`.
@@ -383,13 +385,13 @@ export namespace cloudiot_v1 {
     /**
      * The registries that matched the query.
      */
-    deviceRegistries: Schema$DeviceRegistry[];
+    deviceRegistries?: Schema$DeviceRegistry[];
     /**
      * If not empty, indicates that there may be more registries that match the
      * request; this value should be passed in a new
      * `ListDeviceRegistriesRequest`.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response for `ListDevices`.
@@ -398,12 +400,12 @@ export namespace cloudiot_v1 {
     /**
      * The devices that match the request.
      */
-    devices: Schema$Device[];
+    devices?: Schema$Device[];
     /**
      * If not empty, indicates that there may be more devices that match the
      * request; this value should be passed in a new `ListDevicesRequest`.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response for `ListDeviceStates`.
@@ -413,7 +415,7 @@ export namespace cloudiot_v1 {
      * The last few device states. States are listed in descending order of
      * server update time, starting from the most recent one.
      */
-    deviceStates: Schema$DeviceState[];
+    deviceStates?: Schema$DeviceState[];
   }
   /**
    * Request for `ModifyCloudToDeviceConfig`.
@@ -422,7 +424,7 @@ export namespace cloudiot_v1 {
     /**
      * The configuration data for the device.
      */
-    binaryData: string;
+    binaryData?: string;
     /**
      * The version number to update. If this value is zero, it will not check
      * the version number of the server and will always update the current
@@ -430,7 +432,7 @@ export namespace cloudiot_v1 {
      * the server does not match this version number. This is used to support
      * multiple simultaneous updates without losing data.
      */
-    versionToUpdate: string;
+    versionToUpdate?: string;
   }
   /**
    * The configuration of MQTT for a device registry.
@@ -440,7 +442,7 @@ export namespace cloudiot_v1 {
      * If enabled, allows connections using the MQTT protocol. Otherwise, MQTT
      * connections to this registry will fail.
      */
-    mqttEnabledState: string;
+    mqttEnabledState?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -467,7 +469,7 @@ export namespace cloudiot_v1 {
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -479,11 +481,11 @@ export namespace cloudiot_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A public key certificate format and data.
@@ -492,15 +494,15 @@ export namespace cloudiot_v1 {
     /**
      * The certificate data.
      */
-    certificate: string;
+    certificate?: string;
     /**
      * The certificate format.
      */
-    format: string;
+    format?: string;
     /**
      * [Output only] The certificate details. Used only for X.509 certificates.
      */
-    x509Details: Schema$X509CertificateDetails;
+    x509Details?: Schema$X509CertificateDetails;
   }
   /**
    * A public key format and data.
@@ -509,11 +511,11 @@ export namespace cloudiot_v1 {
     /**
      * The format of the key.
      */
-    format: string;
+    format?: string;
     /**
      * The key data.
      */
-    key: string;
+    key?: string;
   }
   /**
    * A server-stored registry credential used to validate device credentials.
@@ -522,7 +524,7 @@ export namespace cloudiot_v1 {
     /**
      * A public key certificate used to verify the device credentials.
      */
-    publicKeyCertificate: Schema$PublicKeyCertificate;
+    publicKeyCertificate?: Schema$PublicKeyCertificate;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -534,7 +536,7 @@ export namespace cloudiot_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * The configuration for notification of new states received from the device.
@@ -544,7 +546,7 @@ export namespace cloudiot_v1 {
      * A Cloud Pub/Sub topic name. For example,
      * `projects/myProject/topics/deviceEvents`.
      */
-    pubsubTopicName: string;
+    pubsubTopicName?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -586,18 +588,18 @@ export namespace cloudiot_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -609,7 +611,7 @@ export namespace cloudiot_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -619,7 +621,7 @@ export namespace cloudiot_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Details of an X.509 certificate. For informational purposes only.
@@ -628,28 +630,29 @@ export namespace cloudiot_v1 {
     /**
      * The time the certificate becomes invalid.
      */
-    expiryTime: string;
+    expiryTime?: string;
     /**
      * The entity that signed the certificate.
      */
-    issuer: string;
+    issuer?: string;
     /**
      * The type of public key in the certificate.
      */
-    publicKeyType: string;
+    publicKeyType?: string;
     /**
      * The algorithm used to sign the certificate.
      */
-    signatureAlgorithm: string;
+    signatureAlgorithm?: string;
     /**
      * The time the certificate becomes valid.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * The entity the certificate and public key belong to.
      */
-    subject: string;
+    subject?: string;
   }
+
 
   export class Resource$Projects {
     root: Cloudiot;
@@ -664,12 +667,16 @@ export namespace cloudiot_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations {
     root: Cloudiot;
+    groups: Resource$Projects$Locations$Groups;
     registries: Resource$Projects$Locations$Registries;
     constructor(root: Cloudiot) {
       this.root = root;
       this.getRoot.bind(this);
+      this.groups = new Resource$Projects$Locations$Groups(root);
       this.registries = new Resource$Projects$Locations$Registries(root);
     }
 
@@ -677,13 +684,162 @@ export namespace cloudiot_v1 {
       return this.root;
     }
   }
+
+
+  export class Resource$Projects$Locations$Groups {
+    root: Cloudiot;
+    devices: Resource$Projects$Locations$Groups$Devices;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.devices = new Resource$Projects$Locations$Groups$Devices(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+  }
+
+
+  export class Resource$Projects$Locations$Groups$Devices {
+    root: Cloudiot;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.groups.devices.list
+     * @desc List devices in a device registry.
+     * @alias cloudiot.projects.locations.groups.devices.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.deviceIds A list of device string identifiers. If empty, it will ignore this field. For example, `['device0', 'device12']`. This field cannot hold more than 10,000 entries.
+     * @param {string=} params.deviceNumIds A list of device numerical ids. If empty, it will ignore this field. This field cannot hold more than 10,000 entries.
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. The fields `id`, and `num_id` are always returned by default, along with any other fields specified.
+     * @param {integer=} params.pageSize The maximum number of devices to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested, but if there is a non-empty `page_token`, it indicates that more entries are available.
+     * @param {string=} params.pageToken The value returned by the last `ListDevicesResponse`; indicates that this is a continuation of a prior `ListDevices` call, and that the system should return the next page of data.
+     * @param {string} params.parent The device registry path. Required. For example, `projects/my-project/locations/us-central1/registries/my-registry`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?: Params$Resource$Projects$Locations$Groups$Devices$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Groups$Devices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Groups$Devices$List,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Groups$Devices$List|
+        BodyResponseCallback<Schema$ListDevicesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDevicesResponse>,
+        callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
+        void|AxiosPromise<Schema$ListDevicesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Groups$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Groups$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+parent}/devices')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDevicesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDevicesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Groups$Devices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A list of device string identifiers. If empty, it will ignore this field.
+     * For example, `['device0', 'device12']`. This field cannot hold more than
+     * 10,000 entries.
+     */
+    deviceIds?: string;
+    /**
+     * A list of device numerical ids. If empty, it will ignore this field. This
+     * field cannot hold more than 10,000 entries.
+     */
+    deviceNumIds?: string;
+    /**
+     * The fields of the `Device` resource to be returned in the response. The
+     * fields `id`, and `num_id` are always returned by default, along with any
+     * other fields specified.
+     */
+    fieldMask?: string;
+    /**
+     * The maximum number of devices to return in the response. If this value is
+     * zero, the service will select a default size. A call may return fewer
+     * objects than requested, but if there is a non-empty `page_token`, it
+     * indicates that more entries are available.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListDevicesResponse`; indicates that this
+     * is a continuation of a prior `ListDevices` call, and that the system
+     * should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The device registry path. Required. For example,
+     * `projects/my-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+  }
+
+
+
   export class Resource$Projects$Locations$Registries {
     root: Cloudiot;
     devices: Resource$Projects$Locations$Registries$Devices;
+    groups: Resource$Projects$Locations$Registries$Groups;
     constructor(root: Cloudiot) {
       this.root = root;
       this.getRoot.bind(this);
       this.devices = new Resource$Projects$Locations$Registries$Devices(root);
+      this.groups = new Resource$Projects$Locations$Registries$Groups(root);
     }
 
     getRoot() {
@@ -704,26 +860,39 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DeviceRegistry>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
-        callback?: BodyResponseCallback<Schema$DeviceRegistry>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Create,
+        options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+        params: Params$Resource$Projects$Locations$Registries$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Registries$Create,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    create(callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Registries$Create|
+        BodyResponseCallback<Schema$DeviceRegistry>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
         void|AxiosPromise<Schema$DeviceRegistry> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registries$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -758,25 +927,38 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Registries$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Registries$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Registries$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registries$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -810,24 +992,35 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Locations$Registries$Get,
         options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
-        callback?: BodyResponseCallback<Schema$DeviceRegistry>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+    get(params: Params$Resource$Projects$Locations$Registries$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    get(params: Params$Resource$Projects$Locations$Registries$Get,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    get(callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Registries$Get|
+        BodyResponseCallback<Schema$DeviceRegistry>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
         void|AxiosPromise<Schema$DeviceRegistry> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registries$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -863,26 +1056,40 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Locations$Registries$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -919,29 +1126,44 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Locations$Registries$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListDeviceRegistriesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Registries$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
+        callback: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Registries$List,
+        callback: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Registries$List|
+        BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceRegistriesResponse>,
         callback?: BodyResponseCallback<Schema$ListDeviceRegistriesResponse>):
         void|AxiosPromise<Schema$ListDeviceRegistriesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registries$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -980,26 +1202,39 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DeviceRegistry>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
-        callback?: BodyResponseCallback<Schema$DeviceRegistry>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$DeviceRegistry>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+        params: Params$Resource$Projects$Locations$Registries$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceRegistry>,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Registries$Patch,
+        callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    patch(callback: BodyResponseCallback<Schema$DeviceRegistry>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Registries$Patch|
+        BodyResponseCallback<Schema$DeviceRegistry>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceRegistry>,
         callback?: BodyResponseCallback<Schema$DeviceRegistry>):
         void|AxiosPromise<Schema$DeviceRegistry> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Registries$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1035,26 +1270,40 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Locations$Registries$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1092,29 +1341,50 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Registries$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Registries$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1137,6 +1407,145 @@ export namespace cloudiot_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Registries$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project and cloud region where this device registry must be created.
+     * For example, `projects/example-project/locations/us-central1`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DeviceRegistry;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device registry. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of registries to return in the response. If this value
+     * is zero, the service will select a default size. A call may return fewer
+     * objects than requested, but if there is a non-empty `page_token`, it
+     * indicates that more entries are available.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListDeviceRegistriesResponse`; indicates
+     * that this is a continuation of a prior `ListDeviceRegistries` call, and
+     * that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The project and cloud region path. For example,
+     * `projects/example-project/locations/us-central1`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource path name. For example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    name?: string;
+    /**
+     * Only updates the `device_registry` fields indicated by this mask. The
+     * field mask must not be empty, and it must not contain fields that are
+     * immutable or only set by the server. Mutable top-level fields:
+     * `event_notification_config`, `http_config`, `mqtt_config`, and
+     * `state_notification_config`.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DeviceRegistry;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Locations$Registries$Devices {
     root: Cloudiot;
     configVersions:
@@ -1170,25 +1579,40 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Devices$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        params: Params$Resource$Projects$Locations$Registries$Devices$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Registries$Devices$Create,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    create(callback: BodyResponseCallback<Schema$Device>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Create|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
         void|AxiosPromise<Schema$Device> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1223,25 +1647,40 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Devices$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Registries$Devices$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1276,23 +1715,36 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+    get(params?: Params$Resource$Projects$Locations$Registries$Devices$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
+    get(params: Params$Resource$Projects$Locations$Registries$Devices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(params: Params$Resource$Projects$Locations$Registries$Devices$Get,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(callback: BodyResponseCallback<Schema$Device>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Get|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
         void|AxiosPromise<Schema$Device> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1331,28 +1783,41 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDevicesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Registries$Devices$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDevicesResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Registries$Devices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListDevicesResponse>,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Registries$Devices$List,
+        callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDevicesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$List|
         BodyResponseCallback<Schema$ListDevicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDevicesResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDevicesResponse>,
         callback?: BodyResponseCallback<Schema$ListDevicesResponse>):
         void|AxiosPromise<Schema$ListDevicesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1391,26 +1856,45 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    modifyCloudToDeviceConfig(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DeviceConfig>;
     modifyCloudToDeviceConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceConfig>,
-        callback?: BodyResponseCallback<Schema$DeviceConfig>): void;
+        params?:
+            Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
+        options?: MethodOptions): AxiosPromise<Schema$DeviceConfig>;
     modifyCloudToDeviceConfig(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DeviceConfig>,
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceConfig>,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig|
+        BodyResponseCallback<Schema$DeviceConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceConfig>,
         callback?: BodyResponseCallback<Schema$DeviceConfig>):
         void|AxiosPromise<Schema$DeviceConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1447,25 +1931,40 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Device>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
-        callback?: BodyResponseCallback<Schema$Device>): void;
+        params?: Params$Resource$Projects$Locations$Registries$Devices$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Registries$Devices$Patch,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Patch|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
         callback?: BodyResponseCallback<Schema$Device>):
         void|AxiosPromise<Schema$Device> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1486,6 +1985,144 @@ export namespace cloudiot_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device registry where this device should be created. For
+     * example,
+     * `projects/example-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Device;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fields of the `Device` resource to be returned in the response. If
+     * the field mask is unset or empty, all fields are returned.
+     */
+    fieldMask?: string;
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A list of device string identifiers. If empty, it will ignore this field.
+     * For example, `['device0', 'device12']`. This field cannot hold more than
+     * 10,000 entries.
+     */
+    deviceIds?: string;
+    /**
+     * A list of device numerical ids. If empty, it will ignore this field. This
+     * field cannot hold more than 10,000 entries.
+     */
+    deviceNumIds?: string;
+    /**
+     * The fields of the `Device` resource to be returned in the response. The
+     * fields `id`, and `num_id` are always returned by default, along with any
+     * other fields specified.
+     */
+    fieldMask?: string;
+    /**
+     * The maximum number of devices to return in the response. If this value is
+     * zero, the service will select a default size. A call may return fewer
+     * objects than requested, but if there is a non-empty `page_token`, it
+     * indicates that more entries are available.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListDevicesResponse`; indicates that this
+     * is a continuation of a prior `ListDevices` call, and that the system
+     * should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * The device registry path. Required. For example,
+     * `projects/my-project/locations/us-central1/registries/my-registry`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ModifyCloudToDeviceConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource path name. For example,
+     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * When `name` is populated as a response from the service, it always ends
+     * in the device numeric ID.
+     */
+    name?: string;
+    /**
+     * Only updates the `device` fields indicated by this mask. The field mask
+     * must not be empty, and it must not contain fields that are immutable or
+     * only set by the server. Mutable top-level fields: `credentials`,
+     * `blocked`, and `metadata`
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Device;
+  }
+
   export class Resource$Projects$Locations$Registries$Devices$Configversions {
     root: Cloudiot;
     constructor(root: Cloudiot) {
@@ -1512,31 +2149,53 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$Configversions$List,
+        callback:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$Configversions$List|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
         void|AxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1560,6 +2219,28 @@ export namespace cloudiot_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Registries$Devices$Configversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of versions to list. Versions are listed in decreasing order
+     * of the version number. The maximum number of versions retained is 10. If
+     * this value is zero, it will return all the versions available.
+     */
+    numVersions?: number;
+  }
+
 
   export class Resource$Projects$Locations$Registries$Devices$States {
     root: Cloudiot;
@@ -1587,28 +2268,45 @@ export namespace cloudiot_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDeviceStatesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?:
+            Params$Resource$Projects$Locations$Registries$Devices$States$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDeviceStatesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$States$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceStatesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Registries$Devices$States$List,
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Devices$States$List|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDeviceStatesResponse>,
         callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>):
         void|AxiosPromise<Schema$ListDeviceStatesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Devices$States$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Devices$States$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1629,5 +2327,934 @@ export namespace cloudiot_v1 {
         return createAPIRequest<Schema$ListDeviceStatesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Devices$States$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of states to list. States are listed in descending order of
+     * update time. The maximum number of states retained is 10. If this value
+     * is zero, it will return all the states available.
+     */
+    numStates?: number;
+  }
+
+
+
+  export class Resource$Projects$Locations$Registries$Groups {
+    root: Cloudiot;
+    devices: Resource$Projects$Locations$Registries$Groups$Devices;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.devices =
+          new Resource$Projects$Locations$Registries$Groups$Devices(root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.getIamPolicy
+     * @desc Gets the access control policy for a resource. Returns an empty
+     * policy if the resource exists and does not have a policy set.
+     * @alias cloudiot.projects.locations.registries.groups.getIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().GetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    getIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:getIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.setIamPolicy
+     * @desc Sets the access control policy on the specified resource. Replaces
+     * any existing policy.
+     * @alias cloudiot.projects.locations.registries.groups.setIamPolicy
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     * @param {().SetIamPolicyRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    setIamPolicy(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback?: BodyResponseCallback<Schema$Policy>):
+        void|AxiosPromise<Schema$Policy> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:setIamPolicy')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.testIamPermissions
+     * @desc Returns permissions that a caller has on the specified resource. If
+     * the resource does not exist, this will return an empty set of
+     * permissions, not a NOT_FOUND error.
+     * @alias cloudiot.projects.locations.registries.groups.testIamPermissions
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     * @param {().TestIamPermissionsRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        options?: MethodOptions):
+        AxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void|AxiosPromise<Schema$TestIamPermissionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+resource}:testIamPermissions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Registries$Groups$Devices {
+    root: Cloudiot;
+    configVersions:
+        Resource$Projects$Locations$Registries$Groups$Devices$Configversions;
+    states: Resource$Projects$Locations$Registries$Groups$Devices$States;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+      this.configVersions =
+          new Resource$Projects$Locations$Registries$Groups$Devices$Configversions(
+              root);
+      this.states =
+          new Resource$Projects$Locations$Registries$Groups$Devices$States(
+              root);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.delete
+     * @desc Deletes a device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.delete
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    delete(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback?: BodyResponseCallback<Schema$Empty>):
+        void|AxiosPromise<Schema$Empty> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'DELETE'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.get
+     * @desc Gets details about a device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.get
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string=} params.fieldMask The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    get(params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
+    get(params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    get(callback: BodyResponseCallback<Schema$Device>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback?: BodyResponseCallback<Schema$Device>):
+        void|AxiosPromise<Schema$Device> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Device>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Device>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
+     * @desc Modifies the configuration for the device, which is eventually sent
+     * from the Cloud IoT Core servers. Returns the modified configuration
+     * version and its metadata.
+     * @alias
+     * cloudiot.projects.locations.registries.groups.devices.modifyCloudToDeviceConfig
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {().ModifyCloudToDeviceConfigRequest} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    modifyCloudToDeviceConfig(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        options?: MethodOptions): AxiosPromise<Schema$DeviceConfig>;
+    modifyCloudToDeviceConfig(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        options: MethodOptions|BodyResponseCallback<Schema$DeviceConfig>,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig,
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        callback: BodyResponseCallback<Schema$DeviceConfig>): void;
+    modifyCloudToDeviceConfig(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig|
+        BodyResponseCallback<Schema$DeviceConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DeviceConfig>,
+        callback?: BodyResponseCallback<Schema$DeviceConfig>):
+        void|AxiosPromise<Schema$DeviceConfig> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}:modifyCloudToDeviceConfig')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'POST'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceConfig>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$DeviceConfig>(parameters);
+      }
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.patch
+     * @desc Updates a device.
+     * @alias cloudiot.projects.locations.registries.groups.devices.patch
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
+     * @param {string=} params.updateMask Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
+     * @param {().Device} params.resource Request body data
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    patch(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Device>;
+    patch(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch,
+        callback: BodyResponseCallback<Schema$Device>): void;
+    patch(callback: BodyResponseCallback<Schema$Device>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch|
+        BodyResponseCallback<Schema$Device>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Device>,
+        callback?: BodyResponseCallback<Schema$Device>):
+        void|AxiosPromise<Schema$Device> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+              method: 'PATCH'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$Device>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$Device>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fields of the `Device` resource to be returned in the response. If
+     * the field mask is unset or empty, all fields are returned.
+     */
+    fieldMask?: string;
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Modifycloudtodeviceconfig {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ModifyCloudToDeviceConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource path name. For example,
+     * `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or
+     * `projects/p1/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * When `name` is populated as a response from the service, it always ends
+     * in the device numeric ID.
+     */
+    name?: string;
+    /**
+     * Only updates the `device` fields indicated by this mask. The field mask
+     * must not be empty, and it must not contain fields that are immutable or
+     * only set by the server. Mutable top-level fields: `credentials`,
+     * `blocked`, and `metadata`
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Device;
+  }
+
+  export class
+      Resource$Projects$Locations$Registries$Groups$Devices$Configversions {
+    root: Cloudiot;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.configVersions.list
+     * @desc Lists the last few versions of the device configuration in
+     * descending order (i.e.: newest first).
+     * @alias
+     * cloudiot.projects.locations.registries.groups.devices.configVersions.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numVersions The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        options?: MethodOptions):
+        AxiosPromise<Schema$ListDeviceConfigVersionsResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        callback:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List,
+        callback:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>,
+        callback?:
+            BodyResponseCallback<Schema$ListDeviceConfigVersionsResponse>):
+        void|AxiosPromise<Schema$ListDeviceConfigVersionsResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/configVersions')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
+            parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDeviceConfigVersionsResponse>(
+            parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$Configversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of versions to list. Versions are listed in decreasing order
+     * of the version number. The maximum number of versions retained is 10. If
+     * this value is zero, it will return all the versions available.
+     */
+    numVersions?: number;
+  }
+
+
+  export class Resource$Projects$Locations$Registries$Groups$Devices$States {
+    root: Cloudiot;
+    constructor(root: Cloudiot) {
+      this.root = root;
+      this.getRoot.bind(this);
+    }
+
+    getRoot() {
+      return this.root;
+    }
+
+
+    /**
+     * cloudiot.projects.locations.registries.groups.devices.states.list
+     * @desc Lists the last few versions of the device state in descending order
+     * (i.e.: newest first).
+     * @alias cloudiot.projects.locations.registries.groups.devices.states.list
+     * @memberOf! ()
+     *
+     * @param {object} params Parameters for request
+     * @param {string} params.name The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     * @param {integer=} params.numStates The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
+     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param {callback} callback The callback that handles the response.
+     * @return {object} Request object
+     */
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDeviceStatesResponse>;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        options: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(
+        params:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List,
+        callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDeviceStatesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListDeviceStatesResponse>,
+        callback?: BodyResponseCallback<Schema$ListDeviceStatesResponse>):
+        void|AxiosPromise<Schema$ListDeviceStatesResponse> {
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudiot.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+            {
+              url: (rootUrl + '/v1/{+name}/states')
+                       .replace(/([^:]\/)\/+/g, '$1'),
+              method: 'GET'
+            },
+            options),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.getRoot()
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceStatesResponse>(parameters, callback);
+      } else {
+        return createAPIRequest<Schema$ListDeviceStatesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Registries$Groups$Devices$States$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the device. For example,
+     * `projects/p0/locations/us-central1/registries/registry0/devices/device0`
+     * or
+     * `projects/p0/locations/us-central1/registries/registry0/devices/{num_id}`.
+     */
+    name?: string;
+    /**
+     * The number of states to list. States are listed in descending order of
+     * update time. The maximum number of states retained is 10. If this value
+     * is zero, it will return all the states available.
+     */
+    numStates?: number;
   }
 }

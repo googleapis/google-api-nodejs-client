@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace playcustomapp_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Play Custom App Publishing API
    *
@@ -72,12 +75,13 @@ export namespace playcustomapp_v1 {
     /**
      * Default listing language in BCP 47 format.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * Title for the Android app.
      */
-    title: string;
+    title?: string;
   }
+
 
   export class Resource$Accounts {
     root: Playcustomapp;
@@ -92,6 +96,8 @@ export namespace playcustomapp_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Accounts$Customapps {
     root: Playcustomapp;
     constructor(root: Playcustomapp) {
@@ -120,26 +126,39 @@ export namespace playcustomapp_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CustomApp>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
-        callback?: BodyResponseCallback<Schema$CustomApp>): void;
+        params?: Params$Resource$Accounts$Customapps$Create,
+        options?: MethodOptions): AxiosPromise<Schema$CustomApp>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
+        params: Params$Resource$Accounts$Customapps$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$CustomApp>,
+        callback: BodyResponseCallback<Schema$CustomApp>): void;
+    create(
+        params: Params$Resource$Accounts$Customapps$Create,
+        callback: BodyResponseCallback<Schema$CustomApp>): void;
+    create(callback: BodyResponseCallback<Schema$CustomApp>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Customapps$Create|
+        BodyResponseCallback<Schema$CustomApp>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CustomApp>,
         callback?: BodyResponseCallback<Schema$CustomApp>):
         void|AxiosPromise<Schema$CustomApp> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Customapps$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Customapps$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -163,5 +182,35 @@ export namespace playcustomapp_v1 {
         return createAPIRequest<Schema$CustomApp>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Accounts$Customapps$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Developer account ID.
+     */
+    account?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CustomApp;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
   }
 }

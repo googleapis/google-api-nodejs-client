@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace resourceviews_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Resource Views API
    *
@@ -75,11 +78,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * Key of the label.
      */
-    key: string;
+    key?: string;
     /**
      * Value of the label.
      */
-    value: string;
+    value?: string;
   }
   /**
    * The request to add resources to the resource view.
@@ -88,7 +91,7 @@ export namespace resourceviews_v1beta1 {
     /**
      * The list of resources to be added.
      */
-    resources: string[];
+    resources?: string[];
   }
   /**
    * The response to a resource view insert request.
@@ -97,7 +100,7 @@ export namespace resourceviews_v1beta1 {
     /**
      * The resource view object inserted.
      */
-    resource: Schema$ResourceView;
+    resource?: Schema$ResourceView;
   }
   /**
    * The response to the list resource request.
@@ -106,11 +109,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The resources in the view.
      */
-    members: string[];
+    members?: string[];
     /**
      * A token used for pagination.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response to the list resource view request.
@@ -119,11 +122,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * A token used for pagination.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of resource views that meet the criteria.
      */
-    resourceViews: Schema$ResourceView[];
+    resourceViews?: Schema$ResourceView[];
   }
   /**
    * The request to remove resources from the resource view.
@@ -132,7 +135,7 @@ export namespace resourceviews_v1beta1 {
     /**
      * The list of resources to be removed.
      */
-    resources: string[];
+    resources?: string[];
   }
   /**
    * The resource view object.
@@ -141,43 +144,43 @@ export namespace resourceviews_v1beta1 {
     /**
      * The creation time of the resource view.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * The detailed description of the resource view.
      */
-    description: string;
+    description?: string;
     /**
      * [Output Only] The ID of the resource view.
      */
-    id: string;
+    id?: string;
     /**
      * Type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The labels for events.
      */
-    labels: Schema$Label[];
+    labels?: Schema$Label[];
     /**
      * The last modified time of the view. Not supported yet.
      */
-    lastModified: string;
+    lastModified?: string;
     /**
      * A list of all resources in the resource view.
      */
-    members: string[];
+    members?: string[];
     /**
      * The name of the resource view.
      */
-    name: string;
+    name?: string;
     /**
      * The total number of resources in the resource view.
      */
-    numMembers: number;
+    numMembers?: number;
     /**
      * [Output Only] A self-link to the resource view.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * The request to add resources to the resource view.
@@ -186,7 +189,7 @@ export namespace resourceviews_v1beta1 {
     /**
      * The list of resources to be added.
      */
-    resources: string[];
+    resources?: string[];
   }
   /**
    * The response to an insert request.
@@ -195,7 +198,7 @@ export namespace resourceviews_v1beta1 {
     /**
      * The resource view object that has been inserted.
      */
-    resource: Schema$ResourceView;
+    resource?: Schema$ResourceView;
   }
   /**
    * The response to a list resource request.
@@ -204,11 +207,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * The full URL of resources in the view.
      */
-    members: string[];
+    members?: string[];
     /**
      * A token used for pagination.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response to a list request.
@@ -217,11 +220,11 @@ export namespace resourceviews_v1beta1 {
     /**
      * A token used for pagination.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The result that contains all resource views that meet the criteria.
      */
-    resourceViews: Schema$ResourceView[];
+    resourceViews?: Schema$ResourceView[];
   }
   /**
    * The request to remove resources from the resource view.
@@ -230,8 +233,9 @@ export namespace resourceviews_v1beta1 {
     /**
      * The list of resources to be removed.
      */
-    resources: string[];
+    resources?: string[];
   }
+
 
   export class Resource$Regionviews {
     root: Resourceviews;
@@ -260,22 +264,37 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources(params?: any, options?: MethodOptions): AxiosPromise<void>;
     addresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Regionviews$Addresources,
+        options?: MethodOptions): AxiosPromise<void>;
     addresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Regionviews$Addresources,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    addresources(
+        params: Params$Resource$Regionviews$Addresources,
+        callback: BodyResponseCallback<void>): void;
+    addresources(callback: BodyResponseCallback<void>): void;
+    addresources(
+        paramsOrCallback?: Params$Resource$Regionviews$Addresources|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionviews$Addresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Addresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -314,22 +333,37 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Regionviews$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Regionviews$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Regionviews$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Regionviews$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -368,24 +402,34 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Regionviews$Get,
         options?: MethodOptions): AxiosPromise<Schema$ResourceView>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
-        callback?: BodyResponseCallback<Schema$ResourceView>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+    get(params: Params$Resource$Regionviews$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+        callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(params: Params$Resource$Regionviews$Get,
+        callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(paramsOrCallback?: Params$Resource$Regionviews$Get|
+        BodyResponseCallback<Schema$ResourceView>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResourceView>,
         callback?: BodyResponseCallback<Schema$ResourceView>):
         void|AxiosPromise<Schema$ResourceView> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Regionviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -424,29 +468,41 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(
+        params?: Params$Resource$Regionviews$Insert, options?: MethodOptions):
         AxiosPromise<Schema$RegionViewsInsertResponse>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regionviews$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsInsertResponse>,
-        callback?: BodyResponseCallback<Schema$RegionViewsInsertResponse>):
+        callback: BodyResponseCallback<Schema$RegionViewsInsertResponse>): void;
+    insert(
+        params: Params$Resource$Regionviews$Insert,
+        callback: BodyResponseCallback<Schema$RegionViewsInsertResponse>): void;
+    insert(callback: BodyResponseCallback<Schema$RegionViewsInsertResponse>):
         void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Regionviews$Insert|
+        BodyResponseCallback<Schema$RegionViewsInsertResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsInsertResponse>,
         callback?: BodyResponseCallback<Schema$RegionViewsInsertResponse>):
         void|AxiosPromise<Schema$RegionViewsInsertResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionviews$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -487,28 +543,38 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Regionviews$List, options?: MethodOptions):
         AxiosPromise<Schema$RegionViewsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regionviews$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsListResponse>,
-        callback?: BodyResponseCallback<Schema$RegionViewsListResponse>): void;
+        callback: BodyResponseCallback<Schema$RegionViewsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regionviews$List,
+        callback: BodyResponseCallback<Schema$RegionViewsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$RegionViewsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Regionviews$List|
+        BodyResponseCallback<Schema$RegionViewsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsListResponse>,
         callback?: BodyResponseCallback<Schema$RegionViewsListResponse>):
         void|AxiosPromise<Schema$RegionViewsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Regionviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -549,31 +615,49 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listresources(params?: any, options?: MethodOptions):
+    listresources(
+        params?: Params$Resource$Regionviews$Listresources,
+        options?: MethodOptions):
         AxiosPromise<Schema$RegionViewsListResourcesResponse>;
     listresources(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regionviews$Listresources,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
         void;
     listresources(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Regionviews$Listresources,
+        callback:
+            BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
+        void;
+    listresources(
+        callback:
+            BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
+        void;
+    listresources(
+        paramsOrCallback?: Params$Resource$Regionviews$Listresources|
+        BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RegionViewsListResourcesResponse>,
         callback?:
             BodyResponseCallback<Schema$RegionViewsListResourcesResponse>):
         void|AxiosPromise<Schema$RegionViewsListResourcesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Regionviews$Listresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Listresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -615,22 +699,37 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeresources(params?: any, options?: MethodOptions): AxiosPromise<void>;
     removeresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Regionviews$Removeresources,
+        options?: MethodOptions): AxiosPromise<void>;
     removeresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Regionviews$Removeresources,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    removeresources(
+        params: Params$Resource$Regionviews$Removeresources,
+        callback: BodyResponseCallback<void>): void;
+    removeresources(callback: BodyResponseCallback<void>): void;
+    removeresources(
+        paramsOrCallback?: Params$Resource$Regionviews$Removeresources|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Regionviews$Removeresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regionviews$Removeresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -654,6 +753,167 @@ export namespace resourceviews_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Regionviews$Addresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RegionViewsAddResourcesRequest;
+  }
+  export interface Params$Resource$Regionviews$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+  }
+  export interface Params$Resource$Regionviews$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+  }
+  export interface Params$Resource$Regionviews$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResourceView;
+  }
+  export interface Params$Resource$Regionviews$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 5000,
+     * inclusive. (Default: 5000)
+     */
+    maxResults?: number;
+    /**
+     * Specifies a nextPageToken returned by a previous list request. This token
+     * can be used to request the next page of results from a previous list
+     * request.
+     */
+    pageToken?: string;
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Regionviews$Listresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 5000,
+     * inclusive. (Default: 5000)
+     */
+    maxResults?: number;
+    /**
+     * Specifies a nextPageToken returned by a previous list request. This token
+     * can be used to request the next page of results from a previous list
+     * request.
+     */
+    pageToken?: string;
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+  }
+  export interface Params$Resource$Regionviews$Removeresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The region name of the resource view.
+     */
+    region?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RegionViewsRemoveResourcesRequest;
+  }
+
 
   export class Resource$Zoneviews {
     root: Resourceviews;
@@ -682,22 +942,37 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    addresources(params?: any, options?: MethodOptions): AxiosPromise<void>;
     addresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Zoneviews$Addresources,
+        options?: MethodOptions): AxiosPromise<void>;
     addresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Zoneviews$Addresources,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    addresources(
+        params: Params$Resource$Zoneviews$Addresources,
+        callback: BodyResponseCallback<void>): void;
+    addresources(callback: BodyResponseCallback<void>): void;
+    addresources(
+        paramsOrCallback?: Params$Resource$Zoneviews$Addresources|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneviews$Addresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Addresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -736,22 +1011,35 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Zoneviews$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Zoneviews$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Zoneviews$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Zoneviews$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Zoneviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -790,24 +1078,34 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Zoneviews$Get,
         options?: MethodOptions): AxiosPromise<Schema$ResourceView>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
-        callback?: BodyResponseCallback<Schema$ResourceView>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+    get(params: Params$Resource$Zoneviews$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ResourceView>,
+        callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(params: Params$Resource$Zoneviews$Get,
+        callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(callback: BodyResponseCallback<Schema$ResourceView>): void;
+    get(paramsOrCallback?: Params$Resource$Zoneviews$Get|
+        BodyResponseCallback<Schema$ResourceView>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResourceView>,
         callback?: BodyResponseCallback<Schema$ResourceView>):
         void|AxiosPromise<Schema$ResourceView> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Zoneviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -846,28 +1144,39 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Zoneviews$Insert, options?: MethodOptions):
         AxiosPromise<Schema$ZoneViewsInsertResponse>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$Insert,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
-        callback?: BodyResponseCallback<Schema$ZoneViewsInsertResponse>): void;
+        callback: BodyResponseCallback<Schema$ZoneViewsInsertResponse>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$Insert,
+        callback: BodyResponseCallback<Schema$ZoneViewsInsertResponse>): void;
+    insert(callback: BodyResponseCallback<Schema$ZoneViewsInsertResponse>):
+        void;
+    insert(
+        paramsOrCallback?: Params$Resource$Zoneviews$Insert|
+        BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsInsertResponse>,
         callback?: BodyResponseCallback<Schema$ZoneViewsInsertResponse>):
         void|AxiosPromise<Schema$ZoneViewsInsertResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Zoneviews$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -907,28 +1216,38 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Zoneviews$List, options?: MethodOptions):
         AxiosPromise<Schema$ZoneViewsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsListResponse>,
-        callback?: BodyResponseCallback<Schema$ZoneViewsListResponse>): void;
+        callback: BodyResponseCallback<Schema$ZoneViewsListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$List,
+        callback: BodyResponseCallback<Schema$ZoneViewsListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ZoneViewsListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Zoneviews$List|
+        BodyResponseCallback<Schema$ZoneViewsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsListResponse>,
         callback?: BodyResponseCallback<Schema$ZoneViewsListResponse>):
         void|AxiosPromise<Schema$ZoneViewsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Zoneviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -969,29 +1288,45 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listresources(params?: any, options?: MethodOptions):
+    listresources(
+        params?: Params$Resource$Zoneviews$Listresources,
+        options?: MethodOptions):
         AxiosPromise<Schema$ZoneViewsListResourcesResponse>;
     listresources(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$Listresources,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
+        callback: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
         void;
     listresources(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Zoneviews$Listresources,
+        callback: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
+        void;
+    listresources(
+        callback: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
+        void;
+    listresources(
+        paramsOrCallback?: Params$Resource$Zoneviews$Listresources|
+        BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>,
         callback?: BodyResponseCallback<Schema$ZoneViewsListResourcesResponse>):
         void|AxiosPromise<Schema$ZoneViewsListResourcesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneviews$Listresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Listresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1033,22 +1368,37 @@ export namespace resourceviews_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeresources(params?: any, options?: MethodOptions): AxiosPromise<void>;
     removeresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Zoneviews$Removeresources,
+        options?: MethodOptions): AxiosPromise<void>;
     removeresources(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Zoneviews$Removeresources,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    removeresources(
+        params: Params$Resource$Zoneviews$Removeresources,
+        callback: BodyResponseCallback<void>): void;
+    removeresources(callback: BodyResponseCallback<void>): void;
+    removeresources(
+        paramsOrCallback?: Params$Resource$Zoneviews$Removeresources|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneviews$Removeresources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneviews$Removeresources;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1071,5 +1421,165 @@ export namespace resourceviews_v1beta1 {
         return createAPIRequest<void>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Zoneviews$Addresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ZoneViewsAddResourcesRequest;
+  }
+  export interface Params$Resource$Zoneviews$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneviews$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneviews$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResourceView;
+  }
+  export interface Params$Resource$Zoneviews$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 5000,
+     * inclusive. (Default: 5000)
+     */
+    maxResults?: number;
+    /**
+     * Specifies a nextPageToken returned by a previous list request. This token
+     * can be used to request the next page of results from a previous list
+     * request.
+     */
+    pageToken?: string;
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneviews$Listresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum count of results to be returned. Acceptable values are 0 to 5000,
+     * inclusive. (Default: 5000)
+     */
+    maxResults?: number;
+    /**
+     * Specifies a nextPageToken returned by a previous list request. This token
+     * can be used to request the next page of results from a previous list
+     * request.
+     */
+    pageToken?: string;
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneviews$Removeresources {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project name of the resource view.
+     */
+    projectName?: string;
+    /**
+     * The name of the resource view.
+     */
+    resourceViewName?: string;
+    /**
+     * The zone name of the resource view.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ZoneViewsRemoveResourcesRequest;
   }
 }

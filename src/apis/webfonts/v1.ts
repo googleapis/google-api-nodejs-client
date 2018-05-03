@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace webfonts_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Fonts Developer API
    *
@@ -71,48 +74,49 @@ export namespace webfonts_v1 {
     /**
      * The category of the font.
      */
-    category: string;
+    category?: string;
     /**
      * The name of the font.
      */
-    family: string;
+    family?: string;
     /**
      * The font files (with all supported scripts) for each one of the available
      * variants, as a key : value map.
      */
-    files: any;
+    files?: any;
     /**
      * This kind represents a webfont object in the webfonts service.
      */
-    kind: string;
+    kind?: string;
     /**
      * The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the
      * last time.
      */
-    lastModified: string;
+    lastModified?: string;
     /**
      * The scripts supported by the font.
      */
-    subsets: string[];
+    subsets?: string[];
     /**
      * The available variants for the font.
      */
-    variants: string[];
+    variants?: string[];
     /**
      * The font version.
      */
-    version: string;
+    version?: string;
   }
   export interface Schema$WebfontList {
     /**
      * The list of fonts currently served by the Google Fonts API.
      */
-    items: Schema$Webfont[];
+    items?: Schema$Webfont[];
     /**
      * This kind represents a list of webfont objects in the webfonts service.
      */
-    kind: string;
+    kind?: string;
   }
+
 
   export class Resource$Webfonts {
     root: Webfonts;
@@ -139,26 +143,37 @@ export namespace webfonts_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Webfonts$List, options?: MethodOptions):
         AxiosPromise<Schema$WebfontList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
-        callback?: BodyResponseCallback<Schema$WebfontList>): void;
+        params: Params$Resource$Webfonts$List,
+        options: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
+        callback: BodyResponseCallback<Schema$WebfontList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WebfontList>,
+        params: Params$Resource$Webfonts$List,
+        callback: BodyResponseCallback<Schema$WebfontList>): void;
+    list(callback: BodyResponseCallback<Schema$WebfontList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Webfonts$List|
+        BodyResponseCallback<Schema$WebfontList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WebfontList>,
         callback?: BodyResponseCallback<Schema$WebfontList>):
         void|AxiosPromise<Schema$WebfontList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Webfonts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Webfonts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -179,5 +194,17 @@ export namespace webfonts_v1 {
         return createAPIRequest<Schema$WebfontList>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Webfonts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Enables sorting of the list
+     */
+    sort?: string;
   }
 }

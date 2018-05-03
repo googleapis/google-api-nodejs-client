@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace surveys_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Surveys API
    *
@@ -71,8 +74,8 @@ export namespace surveys_v2 {
   }
 
   export interface Schema$FieldMask {
-    fields: Schema$FieldMask[];
-    id: number;
+    fields?: Schema$FieldMask[];
+    id?: number;
   }
   /**
    * Representation of an individual pre-defined panel object defining a
@@ -86,55 +89,55 @@ export namespace surveys_v2 {
      * Kingdom. Any survey created targeting this panel must also target the
      * corresponding country.
      */
-    country: string;
+    country?: string;
     /**
      * Whether or not the panel is accessible to all API users.
      */
-    isPublicPanel: boolean;
+    isPublicPanel?: boolean;
     /**
      * Language code that the panel can target. For instance, &#39;en-US&#39;.
      * Uses standard BCP47 language codes. See specification. Any survey created
      * targeting this panel must also target the corresponding language.
      */
-    language: string;
+    language?: string;
     /**
      * Unique panel ID string. This corresponds to the mobile_app_panel_id used
      * in Survey Insert requests.
      */
-    mobileAppPanelId: string;
+    mobileAppPanelId?: string;
     /**
      * Human readable name of the audience panel.
      */
-    name: string;
+    name?: string;
     /**
      * List of email addresses for users who can target members of this panel.
      * Must contain at least the address of the user making the API call for
      * panels that are not public. This field will be empty for public panels.
      */
-    owners: string[];
+    owners?: string[];
   }
   export interface Schema$MobileAppPanelsListResponse {
-    pageInfo: Schema$PageInfo;
+    pageInfo?: Schema$PageInfo;
     /**
      * Unique request ID used for logging and debugging. Please include in any
      * error reporting or troubleshooting requests.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * An individual predefined panel of Opinion Rewards mobile users.
      */
-    resources: Schema$MobileAppPanel[];
-    tokenPagination: Schema$TokenPagination;
+    resources?: Schema$MobileAppPanel[];
+    tokenPagination?: Schema$TokenPagination;
   }
   export interface Schema$PageInfo {
-    resultPerPage: number;
-    startIndex: number;
-    totalResults: number;
+    resultPerPage?: number;
+    startIndex?: number;
+    totalResults?: number;
   }
-  export interface Schema$ResultsGetRequest { resultMask: Schema$ResultsMask; }
+  export interface Schema$ResultsGetRequest { resultMask?: Schema$ResultsMask; }
   export interface Schema$ResultsMask {
-    fields: Schema$FieldMask[];
-    projection: string;
+    fields?: Schema$FieldMask[];
+    projection?: string;
   }
   /**
    * Representation of an individual survey object.
@@ -143,51 +146,51 @@ export namespace surveys_v2 {
     /**
      * Targeting-criteria message containing demographic information
      */
-    audience: Schema$SurveyAudience;
+    audience?: Schema$SurveyAudience;
     /**
      * Cost to run the survey and collect the necessary number of responses.
      */
-    cost: Schema$SurveyCost;
+    cost?: Schema$SurveyCost;
     /**
      * Additional information to store on behalf of the API consumer and
      * associate with this question. This binary blob is treated as opaque. This
      * field is limited to 64K bytes.
      */
-    customerData: string;
+    customerData?: string;
     /**
      * Text description of the survey.
      */
-    description: string;
+    description?: string;
     /**
      * List of email addresses for survey owners. Must contain at least the
      * address of the user making the API call.
      */
-    owners: string[];
+    owners?: string[];
     /**
      * List of questions defining the survey.
      */
-    questions: Schema$SurveyQuestion[];
+    questions?: Schema$SurveyQuestion[];
     /**
      * Reason for the survey being rejected. Only present if the survey state is
      * rejected.
      */
-    rejectionReason: Schema$SurveyRejection;
+    rejectionReason?: Schema$SurveyRejection;
     /**
      * State that the survey is in.
      */
-    state: string;
+    state?: string;
     /**
      * Unique survey ID, that is viewable in the URL of the Survey Creator UI
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
     /**
      * Optional name that will be given to the survey.
      */
-    title: string;
+    title?: string;
     /**
      * Number of responses desired for the survey.
      */
-    wantedResponseCount: number;
+    wantedResponseCount?: number;
   }
   /**
    * Specifications for the target audience of a survey run through the API.
@@ -198,14 +201,14 @@ export namespace surveys_v2 {
      * [&#39;18-24&#39;, &#39;25-34&#39;, &#39;35-44&#39;, &#39;45-54&#39;,
      * &#39;55-64&#39;, &#39;65+&#39;]
      */
-    ages: string[];
+    ages?: string[];
     /**
      * Required country code that surveys should be targeted to. Accepts
      * standard ISO 3166-1 2 character language codes. For instance,
      * &#39;US&#39; for the United States, and &#39;GB&#39; for the United
      * Kingdom.
      */
-    country: string;
+    country?: string;
     /**
      * Country subdivision (states/provinces/etc) that surveys should be
      * targeted to. For all countries except GB, ISO-3166-2 subdivision code is
@@ -213,11 +216,11 @@ export namespace surveys_v2 {
      * statistical region codes for the United Kingdom is required (eg.
      * &#39;UK-UKC&#39; for North East England).
      */
-    countrySubdivision: string;
+    countrySubdivision?: string;
     /**
      * Optional gender to target.
      */
-    gender: string;
+    gender?: string;
     /**
      * Language code that surveys should be targeted to. For instance,
      * &#39;en-US&#39;. Surveys may target bilingual users by specifying a list
@@ -226,17 +229,17 @@ export namespace surveys_v2 {
      * content (which is displayed) must match the first language listed.
      * Accepts standard BCP47 language codes. See specification.
      */
-    languages: string[];
+    languages?: string[];
     /**
      * Key for predefined panel that causes survey to be sent to a predefined
      * set of Opinion Rewards App users. You must set PopulationSource to
      * ANDROID_APP_PANEL to use this field.
      */
-    mobileAppPanelId: string;
+    mobileAppPanelId?: string;
     /**
      * Online population source where the respondents are sampled from.
      */
-    populationSource: string;
+    populationSource?: string;
   }
   /**
    * Message defining the cost to run a given survey through API.
@@ -246,11 +249,11 @@ export namespace surveys_v2 {
      * Cost per survey response in nano units of the given currency. To get the
      * total cost for a survey, multiply this value by wanted_response_count.
      */
-    costPerResponseNanos: string;
+    costPerResponseNanos?: string;
     /**
      * Currency code that the cost is given in.
      */
-    currencyCode: string;
+    currencyCode?: string;
     /**
      * Threshold to start a survey automatically if the quoted price is at most
      * this value. When a survey has a Screener (threshold) question, it must go
@@ -269,12 +272,12 @@ export namespace surveys_v2 {
      * attempting to start the survey again. This will immediately start the
      * survey as long the incidence test was run within the last 21 days.
      */
-    maxCostPerResponseNanos: string;
+    maxCostPerResponseNanos?: string;
     /**
      * Cost of survey in nano units of the given currency. DEPRECATED in favor
      * of cost_per_response_nanos
      */
-    nanos: string;
+    nanos?: string;
   }
   /**
    * Message defining the question specifications.
@@ -284,88 +287,88 @@ export namespace surveys_v2 {
      * The randomization option for multiple choice and multi-select questions.
      * If not specified, this option defaults to randomize.
      */
-    answerOrder: string;
+    answerOrder?: string;
     /**
      * Required list of answer options for a question.
      */
-    answers: string[];
+    answers?: string[];
     /**
      * Option to allow open-ended text box for Single Answer and Multiple Answer
      * question types. This can be used with SINGLE_ANSWER,
      * SINGLE_ANSWER_WITH_IMAGE, MULTIPLE_ANSWERS, and
      * MULTIPLE_ANSWERS_WITH_IMAGE question types.
      */
-    hasOther: boolean;
+    hasOther?: boolean;
     /**
      * For rating questions, the text for the higher end of the scale, such as
      * &#39;Best&#39;. For numeric questions, a string representing a
      * floating-point that is the maximum allowed number for a response.
      */
-    highValueLabel: string;
-    images: Schema$SurveyQuestionImage[];
+    highValueLabel?: string;
+    images?: Schema$SurveyQuestionImage[];
     /**
      * Currently only support pinning an answer option to the last position.
      */
-    lastAnswerPositionPinned: boolean;
+    lastAnswerPositionPinned?: boolean;
     /**
      * For rating questions, the text for the lower end of the scale, such as
      * &#39;Worst&#39;. For numeric questions, a string representing a
      * floating-point that is the minimum allowed number for a response.
      */
-    lowValueLabel: string;
+    lowValueLabel?: string;
     /**
      * Option to force the user to pick one of the open text suggestions. This
      * requires that suggestions are provided for this question.
      */
-    mustPickSuggestion: boolean;
+    mustPickSuggestion?: boolean;
     /**
      * Number of stars to use for ratings questions.
      */
-    numStars: string;
+    numStars?: string;
     /**
      * Placeholder text for an open text question.
      */
-    openTextPlaceholder: string;
+    openTextPlaceholder?: string;
     /**
      * A list of suggested answers for open text question auto-complete. This is
      * only valid if single_line_response is true.
      */
-    openTextSuggestions: string[];
+    openTextSuggestions?: string[];
     /**
      * Required question text shown to the respondent.
      */
-    question: string;
+    question?: string;
     /**
      * Used by the Rating Scale with Text question type. This text goes along
      * with the question field that is presented to the respondent, and is the
      * actual text that the respondent is asked to rate.
      */
-    sentimentText: string;
+    sentimentText?: string;
     /**
      * Option to allow multiple line open text responses instead of a single
      * line response. Note that we don&#39;t show auto-complete suggestions with
      * multiple line responses.
      */
-    singleLineResponse: boolean;
+    singleLineResponse?: boolean;
     /**
      * The threshold/screener answer options, which will screen a user into the
      * rest of the survey. These will be a subset of the answer option strings.
      */
-    thresholdAnswers: string[];
+    thresholdAnswers?: string[];
     /**
      * Required field defining the question type. For details about configuring
      * different type of questions, consult the question configuration guide.
      */
-    type: string;
+    type?: string;
     /**
      * Optional unit of measurement for display (for example: hours, people,
      * miles).
      */
-    unitOfMeasurementLabel: string;
+    unitOfMeasurementLabel?: string;
     /**
      * The YouTube video ID to be show in video questions.
      */
-    videoId: string;
+    videoId?: string;
   }
   /**
    * Container object for image data and alt_text.
@@ -374,16 +377,16 @@ export namespace surveys_v2 {
     /**
      * The alt text property used in image tags is required for all images.
      */
-    altText: string;
+    altText?: string;
     /**
      * Inline jpeg, gif, tiff, bmp, or png image raw bytes for an image question
      * types.
      */
-    data: string;
+    data?: string;
     /**
      * The read-only URL for the hosted images.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Message representing why the survey was rejected from review, if it was.
@@ -392,12 +395,12 @@ export namespace surveys_v2 {
     /**
      * A human-readable explanation of what was wrong with the survey.
      */
-    explanation: string;
+    explanation?: string;
     /**
      * Which category of rejection this was. See the  Google Surveys Help Center
      * for additional details on each category.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Reference to the current results for a given survey.
@@ -406,57 +409,58 @@ export namespace surveys_v2 {
     /**
      * Human readable string describing the status of the request.
      */
-    status: string;
+    status?: string;
     /**
      * External survey ID as viewable by survey owners in the editor view.
      */
-    surveyUrlId: string;
+    surveyUrlId?: string;
   }
   export interface Schema$SurveysDeleteResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any
      * error reporting or troubleshooting requests.
      */
-    requestId: string;
+    requestId?: string;
   }
   export interface Schema$SurveysListResponse {
-    pageInfo: Schema$PageInfo;
+    pageInfo?: Schema$PageInfo;
     /**
      * Unique request ID used for logging and debugging. Please include in any
      * error reporting or troubleshooting requests.
      */
-    requestId: string;
+    requestId?: string;
     /**
      * An individual survey resource.
      */
-    resources: Schema$Survey[];
-    tokenPagination: Schema$TokenPagination;
+    resources?: Schema$Survey[];
+    tokenPagination?: Schema$TokenPagination;
   }
   export interface Schema$SurveysStartRequest {
     /**
      * Threshold to start a survey automically if the quoted prices is less than
      * or equal to this value. See Survey.Cost for more details.
      */
-    maxCostPerResponseNanos: string;
+    maxCostPerResponseNanos?: string;
   }
   export interface Schema$SurveysStartResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any
      * error reporting or troubleshooting requests.
      */
-    requestId: string;
+    requestId?: string;
   }
   export interface Schema$SurveysStopResponse {
     /**
      * Unique request ID used for logging and debugging. Please include in any
      * error reporting or troubleshooting requests.
      */
-    requestId: string;
+    requestId?: string;
   }
   export interface Schema$TokenPagination {
-    nextPageToken: string;
-    previousPageToken: string;
+    nextPageToken?: string;
+    previousPageToken?: string;
   }
+
 
   export class Resource$Mobileapppanels {
     root: Surveys;
@@ -483,24 +487,35 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Mobileapppanels$Get,
         options?: MethodOptions): AxiosPromise<Schema$MobileAppPanel>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanel>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+    get(params: Params$Resource$Mobileapppanels$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    get(params: Params$Resource$Mobileapppanels$Get,
+        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    get(callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    get(paramsOrCallback?: Params$Resource$Mobileapppanels$Get|
+        BodyResponseCallback<Schema$MobileAppPanel>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileAppPanel>,
         callback?: BodyResponseCallback<Schema$MobileAppPanel>):
         void|AxiosPromise<Schema$MobileAppPanel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobileapppanels$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -537,29 +552,43 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Mobileapppanels$List, options?: MethodOptions):
         AxiosPromise<Schema$MobileAppPanelsListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Mobileapppanels$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
+        callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Mobileapppanels$List,
+        callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Mobileapppanels$List|
+        BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$MobileAppPanelsListResponse>,
         callback?: BodyResponseCallback<Schema$MobileAppPanelsListResponse>):
         void|AxiosPromise<Schema$MobileAppPanelsListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobileapppanels$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -597,26 +626,39 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$MobileAppPanel>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
-        callback?: BodyResponseCallback<Schema$MobileAppPanel>): void;
+        params?: Params$Resource$Mobileapppanels$Update,
+        options?: MethodOptions): AxiosPromise<Schema$MobileAppPanel>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+        params: Params$Resource$Mobileapppanels$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileAppPanel>,
+        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    update(
+        params: Params$Resource$Mobileapppanels$Update,
+        callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    update(callback: BodyResponseCallback<Schema$MobileAppPanel>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Mobileapppanels$Update|
+        BodyResponseCallback<Schema$MobileAppPanel>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileAppPanel>,
         callback?: BodyResponseCallback<Schema$MobileAppPanel>):
         void|AxiosPromise<Schema$MobileAppPanel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobileapppanels$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobileapppanels$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -638,6 +680,53 @@ export namespace surveys_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Mobileapppanels$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the panel.
+     */
+    panelId?: string;
+  }
+  export interface Params$Resource$Mobileapppanels$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    maxResults?: number;
+    /**
+     *
+     */
+    startIndex?: number;
+    /**
+     *
+     */
+    token?: string;
+  }
+  export interface Params$Resource$Mobileapppanels$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the panel.
+     */
+    panelId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$MobileAppPanel;
+  }
+
 
   export class Resource$Results {
     root: Surveys;
@@ -666,24 +755,34 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Results$Get,
         options?: MethodOptions): AxiosPromise<Schema$SurveyResults>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
-        callback?: BodyResponseCallback<Schema$SurveyResults>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
+    get(params: Params$Resource$Results$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SurveyResults>,
+        callback: BodyResponseCallback<Schema$SurveyResults>): void;
+    get(params: Params$Resource$Results$Get,
+        callback: BodyResponseCallback<Schema$SurveyResults>): void;
+    get(callback: BodyResponseCallback<Schema$SurveyResults>): void;
+    get(paramsOrCallback?: Params$Resource$Results$Get|
+        BodyResponseCallback<Schema$SurveyResults>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$SurveyResults>,
         callback?: BodyResponseCallback<Schema$SurveyResults>):
         void|AxiosPromise<Schema$SurveyResults> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Results$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Results$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -705,6 +804,23 @@ export namespace surveys_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Results$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the survey.
+     */
+    surveyUrlId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResultsGetRequest;
+  }
+
 
   export class Resource$Surveys {
     root: Surveys;
@@ -730,28 +846,38 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
+    delete(params?: Params$Resource$Surveys$Delete, options?: MethodOptions):
         AxiosPromise<Schema$SurveysDeleteResponse>;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$Delete,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SurveysDeleteResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+        callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$Delete,
+        callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+    delete(callback: BodyResponseCallback<Schema$SurveysDeleteResponse>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Surveys$Delete|
+        BodyResponseCallback<Schema$SurveysDeleteResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysDeleteResponse>,
         callback?: BodyResponseCallback<Schema$SurveysDeleteResponse>):
         void|AxiosPromise<Schema$SurveysDeleteResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -786,23 +912,33 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+    get(params?: Params$Resource$Surveys$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Survey>;
+    get(params: Params$Resource$Surveys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+        callback: BodyResponseCallback<Schema$Survey>): void;
+    get(params: Params$Resource$Surveys$Get,
+        callback: BodyResponseCallback<Schema$Survey>): void;
+    get(callback: BodyResponseCallback<Schema$Survey>): void;
+    get(paramsOrCallback?: Params$Resource$Surveys$Get|
+        BodyResponseCallback<Schema$Survey>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
         void|AxiosPromise<Schema$Survey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -837,25 +973,36 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
+    insert(params?: Params$Resource$Surveys$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Survey>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>): void;
+        params: Params$Resource$Surveys$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+        callback: BodyResponseCallback<Schema$Survey>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+        params: Params$Resource$Surveys$Insert,
+        callback: BodyResponseCallback<Schema$Survey>): void;
+    insert(callback: BodyResponseCallback<Schema$Survey>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Surveys$Insert|
+        BodyResponseCallback<Schema$Survey>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
         void|AxiosPromise<Schema$Survey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -892,28 +1039,37 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Surveys$List, options?: MethodOptions):
         AxiosPromise<Schema$SurveysListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysListResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysListResponse>): void;
+        params: Params$Resource$Surveys$List,
+        options: MethodOptions|BodyResponseCallback<Schema$SurveysListResponse>,
+        callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$List,
+        callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$SurveysListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Surveys$List|
+        BodyResponseCallback<Schema$SurveysListResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysListResponse>,
         callback?: BodyResponseCallback<Schema$SurveysListResponse>):
         void|AxiosPromise<Schema$SurveysListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -949,28 +1105,38 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    start(params?: any, options?: MethodOptions):
+    start(params?: Params$Resource$Surveys$Start, options?: MethodOptions):
         AxiosPromise<Schema$SurveysStartResponse>;
     start(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$Start,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SurveysStartResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+        callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
     start(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$Start,
+        callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+    start(callback: BodyResponseCallback<Schema$SurveysStartResponse>): void;
+    start(
+        paramsOrCallback?: Params$Resource$Surveys$Start|
+        BodyResponseCallback<Schema$SurveysStartResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysStartResponse>,
         callback?: BodyResponseCallback<Schema$SurveysStartResponse>):
         void|AxiosPromise<Schema$SurveysStartResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Start;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1005,28 +1171,37 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions):
+    stop(params?: Params$Resource$Surveys$Stop, options?: MethodOptions):
         AxiosPromise<Schema$SurveysStopResponse>;
     stop(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$SurveysStopResponse>,
-        callback?: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+        params: Params$Resource$Surveys$Stop,
+        options: MethodOptions|BodyResponseCallback<Schema$SurveysStopResponse>,
+        callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
     stop(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Surveys$Stop,
+        callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+    stop(callback: BodyResponseCallback<Schema$SurveysStopResponse>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Surveys$Stop|
+        BodyResponseCallback<Schema$SurveysStopResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SurveysStopResponse>,
         callback?: BodyResponseCallback<Schema$SurveysStopResponse>):
         void|AxiosPromise<Schema$SurveysStopResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1063,25 +1238,36 @@ export namespace surveys_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Survey>;
+    update(params?: Params$Resource$Surveys$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Survey>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
-        callback?: BodyResponseCallback<Schema$Survey>): void;
+        params: Params$Resource$Surveys$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Survey>,
+        callback: BodyResponseCallback<Schema$Survey>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Survey>,
+        params: Params$Resource$Surveys$Update,
+        callback: BodyResponseCallback<Schema$Survey>): void;
+    update(callback: BodyResponseCallback<Schema$Survey>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Surveys$Update|
+        BodyResponseCallback<Schema$Survey>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Survey>,
         callback?: BodyResponseCallback<Schema$Survey>):
         void|AxiosPromise<Schema$Survey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Surveys$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Surveys$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1102,5 +1288,94 @@ export namespace surveys_v2 {
         return createAPIRequest<Schema$Survey>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Surveys$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the survey.
+     */
+    surveyUrlId?: string;
+  }
+  export interface Params$Resource$Surveys$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the survey.
+     */
+    surveyUrlId?: string;
+  }
+  export interface Params$Resource$Surveys$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Surveys$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    maxResults?: number;
+    /**
+     *
+     */
+    startIndex?: number;
+    /**
+     *
+     */
+    token?: string;
+  }
+  export interface Params$Resource$Surveys$Start {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    resourceId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SurveysStartRequest;
+  }
+  export interface Params$Resource$Surveys$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    resourceId?: string;
+  }
+  export interface Params$Resource$Surveys$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * External URL ID for the survey.
+     */
+    surveyUrlId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Survey;
   }
 }

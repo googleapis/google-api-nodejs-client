@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace drive_v2 {
+  export interface Options extends GlobalOptions { version: 'v2'; }
+
   /**
    * Drive API
    *
@@ -100,113 +103,113 @@ export namespace drive_v2 {
      * Information about supported additional roles per file type. The most
      * specific type takes precedence.
      */
-    additionalRoleInfo: any[];
+    additionalRoleInfo?: any[];
     /**
      * Whether the user can create Team Drives.
      */
-    canCreateTeamDrives: boolean;
+    canCreateTeamDrives?: boolean;
     /**
      * The domain sharing policy for the current user. Possible values are:   -
      * allowed  - allowedWithWarning  - incomingOnly  - disallowed
      */
-    domainSharingPolicy: string;
+    domainSharingPolicy?: string;
     /**
      * The ETag of the item.
      */
-    etag: string;
+    etag?: string;
     /**
      * The allowable export formats.
      */
-    exportFormats: any[];
+    exportFormats?: any[];
     /**
      * List of additional features enabled on this account.
      */
-    features: any[];
+    features?: any[];
     /**
      * The palette of allowable folder colors as RGB hex strings.
      */
-    folderColorPalette: string[];
+    folderColorPalette?: string[];
     /**
      * The allowable import formats.
      */
-    importFormats: any[];
+    importFormats?: any[];
     /**
      * A boolean indicating whether the authenticated app is installed by the
      * authenticated user.
      */
-    isCurrentAppInstalled: boolean;
+    isCurrentAppInstalled?: boolean;
     /**
      * This is always drive#about.
      */
-    kind: string;
+    kind?: string;
     /**
      * The user&#39;s language or locale code, as defined by BCP 47, with some
      * extensions from Unicode&#39;s LDML format
      * (http://www.unicode.org/reports/tr35/).
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * The largest change id.
      */
-    largestChangeId: string;
+    largestChangeId?: string;
     /**
      * List of max upload sizes for each file type. The most specific type takes
      * precedence.
      */
-    maxUploadSizes: any[];
+    maxUploadSizes?: any[];
     /**
      * The name of the current user.
      */
-    name: string;
+    name?: string;
     /**
      * The current user&#39;s ID as visible in the permissions collection.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * The amount of storage quota used by different Google services.
      */
-    quotaBytesByService: any[];
+    quotaBytesByService?: any[];
     /**
      * The total number of quota bytes.
      */
-    quotaBytesTotal: string;
+    quotaBytesTotal?: string;
     /**
      * The number of quota bytes used by Google Drive.
      */
-    quotaBytesUsed: string;
+    quotaBytesUsed?: string;
     /**
      * The number of quota bytes used by all Google apps (Drive, Picasa, etc.).
      */
-    quotaBytesUsedAggregate: string;
+    quotaBytesUsedAggregate?: string;
     /**
      * The number of quota bytes used by trashed items.
      */
-    quotaBytesUsedInTrash: string;
+    quotaBytesUsedInTrash?: string;
     /**
      * The type of the user&#39;s storage quota. Possible values are:   -
      * LIMITED  - UNLIMITED
      */
-    quotaType: string;
+    quotaType?: string;
     /**
      * The number of remaining change ids, limited to no more than 2500.
      */
-    remainingChangeIds: string;
+    remainingChangeIds?: string;
     /**
      * The id of the root folder.
      */
-    rootFolderId: string;
+    rootFolderId?: string;
     /**
      * A link back to this item.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * A list of themes that are supported for Team Drives.
      */
-    teamDriveThemes: any[];
+    teamDriveThemes?: any[];
     /**
      * The authenticated user.
      */
-    user: Schema$User;
+    user?: Schema$User;
   }
   /**
    * The apps resource provides a list of the apps that a user has installed,
@@ -217,106 +220,106 @@ export namespace drive_v2 {
     /**
      * Whether the app is authorized to access data on the user&#39;s Drive.
      */
-    authorized: boolean;
+    authorized?: boolean;
     /**
      * The template url to create a new file with this app in a given folder.
      * The template will contain {folderId} to be replaced by the folder to
      * create the new file in.
      */
-    createInFolderTemplate: string;
+    createInFolderTemplate?: string;
     /**
      * The url to create a new file with this app.
      */
-    createUrl: string;
+    createUrl?: string;
     /**
      * Whether the app has drive-wide scope. An app with drive-wide scope can
      * access all files in the user&#39;s drive.
      */
-    hasDriveWideScope: boolean;
+    hasDriveWideScope?: boolean;
     /**
      * The various icons for the app.
      */
-    icons: any[];
+    icons?: any[];
     /**
      * The ID of the app.
      */
-    id: string;
+    id?: string;
     /**
      * Whether the app is installed.
      */
-    installed: boolean;
+    installed?: boolean;
     /**
      * This is always drive#app.
      */
-    kind: string;
+    kind?: string;
     /**
      * A long description of the app.
      */
-    longDescription: string;
+    longDescription?: string;
     /**
      * The name of the app.
      */
-    name: string;
+    name?: string;
     /**
      * The type of object this app creates (e.g. Chart). If empty, the app name
      * should be used instead.
      */
-    objectType: string;
+    objectType?: string;
     /**
      * The template url for opening files with this app. The template will
      * contain {ids} and/or {exportIds} to be replaced by the actual file ids.
      * See  Open Files  for the full documentation.
      */
-    openUrlTemplate: string;
+    openUrlTemplate?: string;
     /**
      * The list of primary file extensions.
      */
-    primaryFileExtensions: string[];
+    primaryFileExtensions?: string[];
     /**
      * The list of primary mime types.
      */
-    primaryMimeTypes: string[];
+    primaryMimeTypes?: string[];
     /**
      * The ID of the product listing for this app.
      */
-    productId: string;
+    productId?: string;
     /**
      * A link to the product listing for this app.
      */
-    productUrl: string;
+    productUrl?: string;
     /**
      * The list of secondary file extensions.
      */
-    secondaryFileExtensions: string[];
+    secondaryFileExtensions?: string[];
     /**
      * The list of secondary mime types.
      */
-    secondaryMimeTypes: string[];
+    secondaryMimeTypes?: string[];
     /**
      * A short description of the app.
      */
-    shortDescription: string;
+    shortDescription?: string;
     /**
      * Whether this app supports creating new objects.
      */
-    supportsCreate: boolean;
+    supportsCreate?: boolean;
     /**
      * Whether this app supports importing Google Docs.
      */
-    supportsImport: boolean;
+    supportsImport?: boolean;
     /**
      * Whether this app supports opening more than one file.
      */
-    supportsMultiOpen: boolean;
+    supportsMultiOpen?: boolean;
     /**
      * Whether this app supports creating new files when offline.
      */
-    supportsOfflineCreate: boolean;
+    supportsOfflineCreate?: boolean;
     /**
      * Whether the app is selected as the default handler for the types it
      * supports.
      */
-    useByDefault: boolean;
+    useByDefault?: boolean;
   }
   /**
    * A list of third-party applications which the user has installed or given
@@ -327,23 +330,23 @@ export namespace drive_v2 {
      * List of app IDs that the user has specified to use by default. The list
      * is in reverse-priority order (lowest to highest).
      */
-    defaultAppIds: string[];
+    defaultAppIds?: string[];
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of apps.
      */
-    items: Schema$App[];
+    items?: Schema$App[];
     /**
      * This is always drive#appList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * Representation of a change to a file or Team Drive.
@@ -353,46 +356,46 @@ export namespace drive_v2 {
      * Whether the file or Team Drive has been removed from this list of
      * changes, for example by deletion or loss of access.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * The updated state of the file. Present if the type is file and the file
      * has not been removed from this list of changes.
      */
-    file: Schema$File;
+    file?: Schema$File;
     /**
      * The ID of the file associated with this change.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The ID of the change.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#change.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time of this modification.
      */
-    modificationDate: string;
+    modificationDate?: string;
     /**
      * A link back to this change.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The updated state of the Team Drive. Present if the type is teamDrive,
      * the user is still a member of the Team Drive, and the Team Drive has not
      * been deleted.
      */
-    teamDrive: Schema$TeamDrive;
+    teamDrive?: Schema$TeamDrive;
     /**
      * The ID of the Team Drive associated with this change.
      */
-    teamDriveId: string;
+    teamDriveId?: string;
     /**
      * The type of the change. Possible values are file and teamDrive.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A list of changes for a user.
@@ -401,40 +404,40 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of changes. If nextPageToken is populated, then this list may be
      * incomplete and an additional page of results should be fetched.
      */
-    items: Schema$Change[];
+    items?: Schema$Change[];
     /**
      * This is always drive#changeList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The current largest change ID.
      */
-    largestChangeId: string;
+    largestChangeId?: string;
     /**
      * The starting page token for future changes. This will be present only if
      * the end of the current changes list has been reached.
      */
-    newStartPageToken: string;
+    newStartPageToken?: string;
     /**
      * A link to the next page of changes.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * The page token for the next page of changes. This will be absent if the
      * end of the changes list has been reached. If the token is rejected for
      * any reason, it should be discarded, and pagination should be restarted
      * from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -443,47 +446,47 @@ export namespace drive_v2 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address: string;
+    address?: string;
     /**
      * Date and time of notification channel expiration, expressed as a Unix
      * timestamp, in milliseconds. Optional.
      */
-    expiration: string;
+    expiration?: string;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies this as a notification channel used to watch for changes to a
      * resource. Value: the fixed string &quot;api#channel&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params: any;
+    params?: any;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload: boolean;
+    payload?: boolean;
     /**
      * An opaque ID that identifies the resource being watched on this channel.
      * Stable across different API versions.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri: string;
+    resourceUri?: string;
     /**
      * An arbitrary string delivered to the target address with each
      * notification delivered over this channel. Optional.
      */
-    token: string;
+    token?: string;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A list of children of a file.
@@ -492,31 +495,31 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of children. If nextPageToken is populated, then this list may
      * be incomplete and an additional page of results should be fetched.
      */
-    items: Schema$ChildReference[];
+    items?: Schema$ChildReference[];
     /**
      * This is always drive#childList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link to the next page of children.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * The page token for the next page of children. This will be absent if the
      * end of the children list has been reached. If the token is rejected for
      * any reason, it should be discarded, and pagination should be restarted
      * from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A reference to a folder&#39;s child.
@@ -525,19 +528,19 @@ export namespace drive_v2 {
     /**
      * A link to the child.
      */
-    childLink: string;
+    childLink?: string;
     /**
      * The ID of the child.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#childReference.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link back to this reference.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A comment on a file in Google Drive.
@@ -548,70 +551,70 @@ export namespace drive_v2 {
      * documentation for details on how to define and interpret anchor
      * properties.
      */
-    anchor: string;
+    anchor?: string;
     /**
      * The user who wrote this comment.
      */
-    author: Schema$User;
+    author?: Schema$User;
     /**
      * The ID of the comment.
      */
-    commentId: string;
+    commentId?: string;
     /**
      * The plain text content used to create this comment. This is not HTML safe
      * and should only be used as a starting point to make edits to a
      * comment&#39;s content.
      */
-    content: string;
+    content?: string;
     /**
      * The context of the file which is being commented on.
      */
-    context: any;
+    context?: any;
     /**
      * The date when this comment was first created.
      */
-    createdDate: string;
+    createdDate?: string;
     /**
      * Whether this comment has been deleted. If a comment has been deleted the
      * content will be cleared and this will only represent a comment that once
      * existed.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * The file which this comment is addressing.
      */
-    fileId: string;
+    fileId?: string;
     /**
      * The title of the file which this comment is addressing.
      */
-    fileTitle: string;
+    fileTitle?: string;
     /**
      * HTML formatted content for this comment.
      */
-    htmlContent: string;
+    htmlContent?: string;
     /**
      * This is always drive#comment.
      */
-    kind: string;
+    kind?: string;
     /**
      * The date when this comment or any of its replies were last modified.
      */
-    modifiedDate: string;
+    modifiedDate?: string;
     /**
      * Replies to this post.
      */
-    replies: Schema$CommentReply[];
+    replies?: Schema$CommentReply[];
     /**
      * A link back to this comment.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The status of this comment. Status can be changed by posting a reply to a
      * comment with the desired status.   - &quot;open&quot; - The comment is
      * still open.  - &quot;resolved&quot; - The comment has been resolved by
      * one of its replies.
      */
-    status: string;
+    status?: string;
   }
   /**
    * A list of comments on a file in Google Drive.
@@ -621,26 +624,26 @@ export namespace drive_v2 {
      * The list of comments. If nextPageToken is populated, then this list may
      * be incomplete and an additional page of results should be fetched.
      */
-    items: Schema$Comment[];
+    items?: Schema$Comment[];
     /**
      * This is always drive#commentList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link to the next page of comments.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * The page token for the next page of comments. This will be absent if the
      * end of the comments list has been reached. If the token is rejected for
      * any reason, it should be discarded, and pagination should be restarted
      * from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A comment on a file in Google Drive.
@@ -649,47 +652,47 @@ export namespace drive_v2 {
     /**
      * The user who wrote this reply.
      */
-    author: Schema$User;
+    author?: Schema$User;
     /**
      * The plain text content used to create this reply. This is not HTML safe
      * and should only be used as a starting point to make edits to a
      * reply&#39;s content. This field is required on inserts if no verb is
      * specified (resolve/reopen).
      */
-    content: string;
+    content?: string;
     /**
      * The date when this reply was first created.
      */
-    createdDate: string;
+    createdDate?: string;
     /**
      * Whether this reply has been deleted. If a reply has been deleted the
      * content will be cleared and this will only represent a reply that once
      * existed.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * HTML formatted content for this reply.
      */
-    htmlContent: string;
+    htmlContent?: string;
     /**
      * This is always drive#commentReply.
      */
-    kind: string;
+    kind?: string;
     /**
      * The date when this reply was last modified.
      */
-    modifiedDate: string;
+    modifiedDate?: string;
     /**
      * The ID of the reply.
      */
-    replyId: string;
+    replyId?: string;
     /**
      * The action this reply performed to the parent comment. When creating a
      * new reply this is the action to be perform to the parent comment.
      * Possible values are:   - &quot;resolve&quot; - To resolve a comment.  -
      * &quot;reopen&quot; - To reopen (un-resolve) a comment.
      */
-    verb: string;
+    verb?: string;
   }
   /**
    * A list of replies to a comment on a file in Google Drive.
@@ -699,26 +702,26 @@ export namespace drive_v2 {
      * The list of replies. If nextPageToken is populated, then this list may be
      * incomplete and an additional page of results should be fetched.
      */
-    items: Schema$CommentReply[];
+    items?: Schema$CommentReply[];
     /**
      * This is always drive#commentReplyList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link to the next page of replies.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * The page token for the next page of replies. This will be absent if the
      * end of the replies list has been reached. If the token is rejected for
      * any reason, it should be discarded, and pagination should be restarted
      * from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * The metadata for a file.
@@ -727,83 +730,83 @@ export namespace drive_v2 {
     /**
      * A link for opening the file in a relevant Google editor or viewer.
      */
-    alternateLink: string;
+    alternateLink?: string;
     /**
      * Whether this file is in the Application Data folder.
      */
-    appDataContents: boolean;
+    appDataContents?: boolean;
     /**
      * Deprecated: use capabilities/canComment.
      */
-    canComment: boolean;
+    canComment?: boolean;
     /**
      * Deprecated: use capabilities/canReadRevisions.
      */
-    canReadRevisions: boolean;
+    canReadRevisions?: boolean;
     /**
      * Capabilities the current user has on this file. Each capability
      * corresponds to a fine-grained action that a user may take.
      */
-    capabilities: any;
+    capabilities?: any;
     /**
      * Deprecated: use capabilities/canCopy.
      */
-    copyable: boolean;
+    copyable?: boolean;
     /**
      * Create time for this file (formatted RFC 3339 timestamp).
      */
-    createdDate: string;
+    createdDate?: string;
     /**
      * A link to open this file with the user&#39;s default app for this file.
      * Only populated when the drive.apps.readonly scope is used.
      */
-    defaultOpenWithLink: string;
+    defaultOpenWithLink?: string;
     /**
      * A short description of the file.
      */
-    description: string;
-    downloadUrl: string;
+    description?: string;
+    downloadUrl?: string;
     /**
      * Deprecated: use capabilities/canEdit.
      */
-    editable: boolean;
+    editable?: boolean;
     /**
      * A link for embedding the file.
      */
-    embedLink: string;
+    embedLink?: string;
     /**
      * ETag of the file.
      */
-    etag: string;
+    etag?: string;
     /**
      * Whether this file has been explicitly trashed, as opposed to recursively
      * trashed.
      */
-    explicitlyTrashed: boolean;
+    explicitlyTrashed?: boolean;
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks: any;
+    exportLinks?: any;
     /**
      * The final component of fullFileExtension with trailing text that does not
      * appear to be part of the extension removed. This field is only populated
      * for files with content stored in Drive; it is not populated for Google
      * Docs or shortcut files.
      */
-    fileExtension: string;
+    fileExtension?: string;
     /**
      * The size of the file in bytes. This field is only populated for files
      * with content stored in Drive; it is not populated for Google Docs or
      * shortcut files.
      */
-    fileSize: string;
+    fileSize?: string;
     /**
      * Folder color as an RGB hex string if the file is a folder. The list of
      * supported colors is available in the folderColorPalette field of the
      * About resource. If an unsupported color is specified, it will be changed
      * to the closest color in the palette. Not populated for Team Drive files.
      */
-    folderColorRgb: string;
+    folderColorRgb?: string;
     /**
      * The full file extension; extracted from the title. May contain multiple
      * concatenated extensions, such as &quot;tar.gz&quot;. Removing an
@@ -812,120 +815,120 @@ export namespace drive_v2 {
      * populated for files with content stored in Drive; it is not populated for
      * Google Docs or shortcut files.
      */
-    fullFileExtension: string;
+    fullFileExtension?: string;
     /**
      * Whether any users are granted file access directly on this file. This
      * field is only populated for Team Drive files.
      */
-    hasAugmentedPermissions: boolean;
+    hasAugmentedPermissions?: boolean;
     /**
      * Whether this file has a thumbnail. This does not indicate whether the
      * requesting app has access to the thumbnail. To check access, look for the
      * presence of the thumbnailLink field.
      */
-    hasThumbnail: boolean;
+    hasThumbnail?: boolean;
     /**
      * The ID of the file&#39;s head revision. This field is only populated for
      * files with content stored in Drive; it is not populated for Google Docs
      * or shortcut files.
      */
-    headRevisionId: string;
+    headRevisionId?: string;
     /**
      * A link to the file&#39;s icon.
      */
-    iconLink: string;
+    iconLink?: string;
     /**
      * The ID of the file.
      */
-    id: string;
+    id?: string;
     /**
      * Metadata about image media. This will only be present for image types,
      * and its contents will depend on what can be parsed from the image
      * content.
      */
-    imageMediaMetadata: any;
+    imageMediaMetadata?: any;
     /**
      * Indexable text attributes for the file (can only be written)
      */
-    indexableText: any;
+    indexableText?: any;
     /**
      * Whether the file was created or opened by the requesting app.
      */
-    isAppAuthorized: boolean;
+    isAppAuthorized?: boolean;
     /**
      * The type of file. This is always drive#file.
      */
-    kind: string;
+    kind?: string;
     /**
      * A group of labels for the file.
      */
-    labels: any;
+    labels?: any;
     /**
      * The last user to modify this file.
      */
-    lastModifyingUser: Schema$User;
+    lastModifyingUser?: Schema$User;
     /**
      * Name of the last user to modify this file.
      */
-    lastModifyingUserName: string;
+    lastModifyingUserName?: string;
     /**
      * Last time this file was viewed by the user (formatted RFC 3339
      * timestamp).
      */
-    lastViewedByMeDate: string;
+    lastViewedByMeDate?: string;
     /**
      * Deprecated.
      */
-    markedViewedByMeDate: string;
+    markedViewedByMeDate?: string;
     /**
      * An MD5 checksum for the content of this file. This field is only
      * populated for files with content stored in Drive; it is not populated for
      * Google Docs or shortcut files.
      */
-    md5Checksum: string;
+    md5Checksum?: string;
     /**
      * The MIME type of the file. This is only mutable on update when uploading
      * new content. This field can be left blank, and the mimetype will be
      * determined from the uploaded content&#39;s MIME type.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Last time this file was modified by the user (formatted RFC 3339
      * timestamp). Note that setting modifiedDate will also update the
      * modifiedByMe date for the user which set the date.
      */
-    modifiedByMeDate: string;
+    modifiedByMeDate?: string;
     /**
      * Last time this file was modified by anyone (formatted RFC 3339
      * timestamp). This is only mutable on update when the setModifiedDate
      * parameter is set.
      */
-    modifiedDate: string;
+    modifiedDate?: string;
     /**
      * A map of the id of each of the user&#39;s apps to a link to open this
      * file with that app. Only populated when the drive.apps.readonly scope is
      * used.
      */
-    openWithLinks: any;
+    openWithLinks?: any;
     /**
      * The original filename of the uploaded content if available, or else the
      * original value of the title field. This is only available for files with
      * binary content in Drive.
      */
-    originalFilename: string;
+    originalFilename?: string;
     /**
      * Whether the file is owned by the current user. Not populated for Team
      * Drive files.
      */
-    ownedByMe: boolean;
+    ownedByMe?: boolean;
     /**
      * Name(s) of the owner(s) of this file. Not populated for Team Drive files.
      */
-    ownerNames: string[];
+    ownerNames?: string[];
     /**
      * The owner(s) of this file. Not populated for Team Drive files.
      */
-    owners: Schema$User[];
+    owners?: Schema$User[];
     /**
      * Collection of parent folders which contain this file. If not specified as
      * part of an insert request, the file will be placed directly in the
@@ -934,115 +937,115 @@ export namespace drive_v2 {
      * requests can also use the addParents and removeParents parameters to
      * modify the parents list.
      */
-    parents: Schema$ParentReference[];
+    parents?: Schema$ParentReference[];
     /**
      * List of permission IDs for users with access to this file.
      */
-    permissionIds: string[];
+    permissionIds?: string[];
     /**
      * The list of permissions for users with access to this file. Not populated
      * for Team Drive files.
      */
-    permissions: Schema$Permission[];
+    permissions?: Schema$Permission[];
     /**
      * The list of properties.
      */
-    properties: Schema$Property[];
+    properties?: Schema$Property[];
     /**
      * The number of quota bytes used by this file.
      */
-    quotaBytesUsed: string;
+    quotaBytesUsed?: string;
     /**
      * A link back to this file.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Deprecated: use capabilities/canShare.
      */
-    shareable: boolean;
+    shareable?: boolean;
     /**
      * Whether the file has been shared. Not populated for Team Drive files.
      */
-    shared: boolean;
+    shared?: boolean;
     /**
      * Time at which this file was shared with the user (formatted RFC 3339
      * timestamp).
      */
-    sharedWithMeDate: string;
+    sharedWithMeDate?: string;
     /**
      * User that shared the item with the current user, if available.
      */
-    sharingUser: Schema$User;
+    sharingUser?: Schema$User;
     /**
      * The list of spaces which contain the file. Supported values are
      * &#39;drive&#39;, &#39;appDataFolder&#39; and &#39;photos&#39;.
      */
-    spaces: string[];
+    spaces?: string[];
     /**
      * ID of the Team Drive the file resides in.
      */
-    teamDriveId: string;
+    teamDriveId?: string;
     /**
      * A thumbnail for the file. This will only be used if Drive cannot generate
      * a standard thumbnail.
      */
-    thumbnail: any;
+    thumbnail?: any;
     /**
      * A short-lived link to the file&#39;s thumbnail. Typically lasts on the
      * order of hours. Only populated when the requesting app can access the
      * file&#39;s content.
      */
-    thumbnailLink: string;
+    thumbnailLink?: string;
     /**
      * The thumbnail version for use in thumbnail cache invalidation.
      */
-    thumbnailVersion: string;
+    thumbnailVersion?: string;
     /**
      * The title of this file. Note that for immutable items such as the top
      * level folders of Team Drives, My Drive root folder, and Application Data
      * folder the title is constant.
      */
-    title: string;
+    title?: string;
     /**
      * The time that the item was trashed (formatted RFC 3339 timestamp). Only
      * populated for Team Drive files.
      */
-    trashedDate: string;
+    trashedDate?: string;
     /**
      * If the file has been explicitly trashed, the user who trashed it. Only
      * populated for Team Drive files.
      */
-    trashingUser: Schema$User;
+    trashingUser?: Schema$User;
     /**
      * The permissions for the authenticated user on this file.
      */
-    userPermission: Schema$Permission;
+    userPermission?: Schema$Permission;
     /**
      * A monotonically increasing version number for the file. This reflects
      * every change made to the file on the server, even those not visible to
      * the requesting user.
      */
-    version: string;
+    version?: string;
     /**
      * Metadata about video media. This will only be present for video types.
      */
-    videoMediaMetadata: any;
+    videoMediaMetadata?: any;
     /**
      * A link for downloading the content of the file in a browser using cookie
      * based authentication. In cases where the content is shared publicly, the
      * content can be downloaded without any credentials.
      */
-    webContentLink: string;
+    webContentLink?: string;
     /**
      * A link only available on public folders for viewing their static web
      * assets (HTML, CSS, JS, etc) via Google Drive&#39;s Website Hosting.
      */
-    webViewLink: string;
+    webViewLink?: string;
     /**
      * Whether writers can share the document with other users. Not populated
      * for Team Drive files.
      */
-    writersCanShare: boolean;
+    writersCanShare?: boolean;
   }
   /**
    * A list of files.
@@ -1051,7 +1054,7 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * Whether the search process was incomplete. If true, then some search
      * results may be missing, since all documents were not searched. This may
@@ -1061,31 +1064,31 @@ export namespace drive_v2 {
      * query by choosing a different corpus such as &quot;default&quot; or
      * &quot;teamDrive&quot;.
      */
-    incompleteSearch: boolean;
+    incompleteSearch?: boolean;
     /**
      * The list of files. If nextPageToken is populated, then this list may be
      * incomplete and an additional page of results should be fetched.
      */
-    items: Schema$File[];
+    items?: Schema$File[];
     /**
      * This is always drive#fileList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link to the next page of files.
      */
-    nextLink: string;
+    nextLink?: string;
     /**
      * The page token for the next page of files. This will be absent if the end
      * of the files list has been reached. If the token is rejected for any
      * reason, it should be discarded, and pagination should be restarted from
      * the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A list of generated IDs which can be provided in insert requests
@@ -1094,15 +1097,15 @@ export namespace drive_v2 {
     /**
      * The IDs generated for the requesting user in the specified space.
      */
-    ids: string[];
+    ids?: string[];
     /**
      * This is always drive#generatedIds
      */
-    kind: string;
+    kind?: string;
     /**
      * The type of file that can be created with these IDs.
      */
-    space: string;
+    space?: string;
   }
   /**
    * A list of a file&#39;s parents.
@@ -1111,19 +1114,19 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of parents.
      */
-    items: Schema$ParentReference[];
+    items?: Schema$ParentReference[];
     /**
      * This is always drive#parentList.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A reference to a file&#39;s parent.
@@ -1132,23 +1135,23 @@ export namespace drive_v2 {
     /**
      * The ID of the parent.
      */
-    id: string;
+    id?: string;
     /**
      * Whether or not the parent is the root folder.
      */
-    isRoot: boolean;
+    isRoot?: boolean;
     /**
      * This is always drive#parentReference.
      */
-    kind: string;
+    kind?: string;
     /**
      * A link to the parent.
      */
-    parentLink: string;
+    parentLink?: string;
     /**
      * A link back to this reference.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A permission for a file.
@@ -1158,32 +1161,32 @@ export namespace drive_v2 {
      * Additional roles for this user. Only commenter is currently allowed,
      * though more may be supported in the future.
      */
-    additionalRoles: string[];
+    additionalRoles?: string[];
     /**
      * Deprecated.
      */
-    authKey: string;
+    authKey?: string;
     /**
      * Whether the account associated with this permission has been deleted.
      * This field only pertains to user and group permissions.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * The domain name of the entity this permission refers to. This is an
      * output-only field which is present when the permission type is user,
      * group or domain.
      */
-    domain: string;
+    domain?: string;
     /**
      * The email address of the user or group this permission refers to. This is
      * an output-only field which is present when the permission type is user or
      * group.
      */
-    emailAddress: string;
+    emailAddress?: string;
     /**
      * The ETag of the permission.
      */
-    etag: string;
+    etag?: string;
     /**
      * The time at which this permission will expire (RFC 3339 date-time).
      * Expiration dates have the following restrictions:   - They can only be
@@ -1191,7 +1194,7 @@ export namespace drive_v2 {
      * The date cannot be more than a year in the future  - The date can only be
      * set on drive.permissions.update or drive.permissions.patch requests
      */
-    expirationDate: string;
+    expirationDate?: string;
     /**
      * The ID of the user this permission refers to, and identical to the
      * permissionId in the About and Files resources. When making a
@@ -1199,40 +1202,40 @@ export namespace drive_v2 {
      * must be specified unless the permission type is anyone, in which case
      * both id and value are ignored.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#permission.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name for this permission.
      */
-    name: string;
+    name?: string;
     /**
      * A link to the profile photo, if available.
      */
-    photoLink: string;
+    photoLink?: string;
     /**
      * The primary role for this user. While new values may be supported in the
      * future, the following are currently allowed:   - organizer  - owner  -
      * reader  - writer
      */
-    role: string;
+    role?: string;
     /**
      * A link back to this permission.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Details of whether the permissions on this Team Drive item are inherited
      * or directly on this item. This is an output-only field which is present
      * only for Team Drive items.
      */
-    teamDrivePermissionDetails: any[];
+    teamDrivePermissionDetails?: any[];
     /**
      * The account type. Allowed values are:   - user  - group  - domain  -
      * anyone
      */
-    type: string;
+    type?: string;
     /**
      * The email address or domain name for the entity. This is used during
      * inserts and is not populated in responses. When making a
@@ -1240,11 +1243,11 @@ export namespace drive_v2 {
      * must be specified unless the permission type is anyone, in which case
      * both id and value are ignored.
      */
-    value: string;
+    value?: string;
     /**
      * Whether the link is required for this permission.
      */
-    withLink: boolean;
+    withLink?: boolean;
   }
   /**
    * An ID for a user or group as seen in Permission items.
@@ -1253,11 +1256,11 @@ export namespace drive_v2 {
     /**
      * The permission ID.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#permissionId.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A list of permissions associated with a file.
@@ -1266,26 +1269,26 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of permissions.
      */
-    items: Schema$Permission[];
+    items?: Schema$Permission[];
     /**
      * This is always drive#permissionList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The page token for the next page of permissions. This field will be
      * absent if the end of the permissions list has been reached. If the token
      * is rejected for any reason, it should be discarded, and pagination should
      * be restarted from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A key-value pair attached to a file that is either public or private to an
@@ -1298,28 +1301,28 @@ export namespace drive_v2 {
     /**
      * ETag of the property.
      */
-    etag: string;
+    etag?: string;
     /**
      * The key of this property.
      */
-    key: string;
+    key?: string;
     /**
      * This is always drive#property.
      */
-    kind: string;
+    kind?: string;
     /**
      * The link back to this property.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The value of this property.
      */
-    value: string;
+    value?: string;
     /**
      * The visibility of this property. Allowed values are PRIVATE and PUBLIC.
      * (Default: PRIVATE)
      */
-    visibility: string;
+    visibility?: string;
   }
   /**
    * A collection of properties, key-value pairs that are either public or
@@ -1329,19 +1332,19 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of properties.
      */
-    items: Schema$Property[];
+    items?: Schema$Property[];
     /**
      * This is always drive#propertyList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A revision of a file.
@@ -1351,54 +1354,54 @@ export namespace drive_v2 {
      * Short term download URL for the file. This will only be populated on
      * files with content stored in Drive.
      */
-    downloadUrl: string;
+    downloadUrl?: string;
     /**
      * The ETag of the revision.
      */
-    etag: string;
+    etag?: string;
     /**
      * Links for exporting Google Docs to specific formats.
      */
-    exportLinks: any;
+    exportLinks?: any;
     /**
      * The size of the revision in bytes. This will only be populated on files
      * with content stored in Drive.
      */
-    fileSize: string;
+    fileSize?: string;
     /**
      * The ID of the revision.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#revision.
      */
-    kind: string;
+    kind?: string;
     /**
      * The last user to modify this revision.
      */
-    lastModifyingUser: Schema$User;
+    lastModifyingUser?: Schema$User;
     /**
      * Name of the last user to modify this revision.
      */
-    lastModifyingUserName: string;
+    lastModifyingUserName?: string;
     /**
      * An MD5 checksum for the content of this revision. This will only be
      * populated on files with content stored in Drive.
      */
-    md5Checksum: string;
+    md5Checksum?: string;
     /**
      * The MIME type of the revision.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Last time this revision was modified (formatted RFC 3339 timestamp).
      */
-    modifiedDate: string;
+    modifiedDate?: string;
     /**
      * The original filename when this revision was created. This will only be
      * populated on files with content stored in Drive.
      */
-    originalFilename: string;
+    originalFilename?: string;
     /**
      * Whether this revision is pinned to prevent automatic purging. This will
      * only be populated and can only be modified on files with content stored
@@ -1406,30 +1409,30 @@ export namespace drive_v2 {
      * they are created through the drive.files.insert/update/copy by using the
      * pinned query parameter.
      */
-    pinned: boolean;
+    pinned?: boolean;
     /**
      * Whether subsequent revisions will be automatically republished. This is
      * only populated and can only be modified for Google Docs.
      */
-    publishAuto: boolean;
+    publishAuto?: boolean;
     /**
      * Whether this revision is published. This is only populated and can only
      * be modified for Google Docs.
      */
-    published: boolean;
+    published?: boolean;
     /**
      * A link to the published revision.
      */
-    publishedLink: string;
+    publishedLink?: string;
     /**
      * Whether this revision is published outside the domain. This is only
      * populated and can only be modified for Google Docs.
      */
-    publishedOutsideDomain: boolean;
+    publishedOutsideDomain?: boolean;
     /**
      * A link back to this revision.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * A list of revisions of a file.
@@ -1438,38 +1441,38 @@ export namespace drive_v2 {
     /**
      * The ETag of the list.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of revisions. If nextPageToken is populated, then this list may
      * be incomplete and an additional page of results should be fetched.
      */
-    items: Schema$Revision[];
+    items?: Schema$Revision[];
     /**
      * This is always drive#revisionList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The page token for the next page of revisions. This field will be absent
      * if the end of the revisions list has been reached. If the token is
      * rejected for any reason, it should be discarded and pagination should be
      * restarted from the first page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A link back to this list.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   export interface Schema$StartPageToken {
     /**
      * Identifies what kind of resource this is. Value: the fixed string
      * &quot;drive#startPageToken&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * The starting page token for listing changes.
      */
-    startPageToken: string;
+    startPageToken?: string;
   }
   /**
    * Representation of a Team Drive.
@@ -1481,37 +1484,37 @@ export namespace drive_v2 {
      * drive.teamdrives.update requests that don&#39;t set themeId. When
      * specified, all fields of the backgroundImageFile must be set.
      */
-    backgroundImageFile: any;
+    backgroundImageFile?: any;
     /**
      * A short-lived link to this Team Drive&#39;s background image.
      */
-    backgroundImageLink: string;
+    backgroundImageLink?: string;
     /**
      * Capabilities the current user has on this Team Drive.
      */
-    capabilities: any;
+    capabilities?: any;
     /**
      * The color of this Team Drive as an RGB hex string. It can only be set on
      * a drive.teamdrives.update request that does not set themeId.
      */
-    colorRgb: string;
+    colorRgb?: string;
     /**
      * The time at which the Team Drive was created (RFC 3339 date-time).
      */
-    createdDate: string;
+    createdDate?: string;
     /**
      * The ID of this Team Drive which is also the ID of the top level folder
      * for this Team Drive.
      */
-    id: string;
+    id?: string;
     /**
      * This is always drive#teamDrive
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of this Team Drive.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the theme from which the background image and color will be
      * set. The set of possible teamDriveThemes can be retrieved from a
@@ -1520,7 +1523,7 @@ export namespace drive_v2 {
      * color are set. This is a write-only field; it can only be set on requests
      * that don&#39;t set colorRgb or backgroundImageFile.
      */
-    themeId: string;
+    themeId?: string;
   }
   /**
    * A list of Team Drives.
@@ -1529,15 +1532,15 @@ export namespace drive_v2 {
     /**
      * The list of Team Drives.
      */
-    items: Schema$TeamDrive[];
+    items?: Schema$TeamDrive[];
     /**
      * This is always drive#teamDriveList
      */
-    kind: string;
+    kind?: string;
     /**
      * The page token for the next page of Team Drives.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Information about a Drive user.
@@ -1546,29 +1549,30 @@ export namespace drive_v2 {
     /**
      * A plain text displayable name for this user.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The email address of the user.
      */
-    emailAddress: string;
+    emailAddress?: string;
     /**
      * Whether this user is the same as the authenticated user for whom the
      * request was made.
      */
-    isAuthenticatedUser: boolean;
+    isAuthenticatedUser?: boolean;
     /**
      * This is always drive#user.
      */
-    kind: string;
+    kind?: string;
     /**
      * The user&#39;s ID as visible in the permissions collection.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * The user&#39;s profile picture.
      */
-    picture: any;
+    picture?: any;
   }
+
 
   export class Resource$About {
     root: Drive;
@@ -1597,23 +1601,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$About>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$About>,
-        callback?: BodyResponseCallback<Schema$About>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$About>,
+    get(params?: Params$Resource$About$Get,
+        options?: MethodOptions): AxiosPromise<Schema$About>;
+    get(params: Params$Resource$About$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$About>,
+        callback: BodyResponseCallback<Schema$About>): void;
+    get(params: Params$Resource$About$Get,
+        callback: BodyResponseCallback<Schema$About>): void;
+    get(callback: BodyResponseCallback<Schema$About>): void;
+    get(paramsOrCallback?: Params$Resource$About$Get|
+        BodyResponseCallback<Schema$About>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$About>,
         callback?: BodyResponseCallback<Schema$About>):
         void|AxiosPromise<Schema$About> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$About$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$About$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1634,6 +1648,31 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$About$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to count changes outside the My Drive hierarchy. When set to
+     * false, changes to files such as those in the Application Data folder or
+     * shared files which have not been added to My Drive will be omitted from
+     * the maxChangeIdCount.
+     */
+    includeSubscribed?: boolean;
+    /**
+     * Maximum number of remaining change IDs to count
+     */
+    maxChangeIdCount?: string;
+    /**
+     * Change ID to start counting from when calculating number of remaining
+     * change IDs
+     */
+    startChangeId?: string;
+  }
+
 
   export class Resource$Apps {
     root: Drive;
@@ -1659,21 +1698,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$App>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$App>,
-        callback?: BodyResponseCallback<Schema$App>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$App>,
+    get(params?: Params$Resource$Apps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$App>;
+    get(params: Params$Resource$Apps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$App>,
+        callback: BodyResponseCallback<Schema$App>): void;
+    get(params: Params$Resource$Apps$Get,
+        callback: BodyResponseCallback<Schema$App>): void;
+    get(callback: BodyResponseCallback<Schema$App>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Get|
+        BodyResponseCallback<Schema$App>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$App>,
         callback?: BodyResponseCallback<Schema$App>):
         void|AxiosPromise<Schema$App> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1710,25 +1761,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$AppList>;
+    list(params?: Params$Resource$Apps$List, options?: MethodOptions):
+        AxiosPromise<Schema$AppList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AppList>,
-        callback?: BodyResponseCallback<Schema$AppList>): void;
+        params: Params$Resource$Apps$List,
+        options: MethodOptions|BodyResponseCallback<Schema$AppList>,
+        callback: BodyResponseCallback<Schema$AppList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AppList>,
+        params: Params$Resource$Apps$List,
+        callback: BodyResponseCallback<Schema$AppList>): void;
+    list(callback: BodyResponseCallback<Schema$AppList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$List|
+        BodyResponseCallback<Schema$AppList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$AppList>,
         callback?: BodyResponseCallback<Schema$AppList>):
         void|AxiosPromise<Schema$AppList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1749,6 +1811,46 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the app.
+     */
+    appId?: string;
+  }
+  export interface Params$Resource$Apps$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A comma-separated list of file extensions for open with filtering. All
+     * apps within the given app query scope which can open any of the given
+     * file extensions will be included in the response. If appFilterMimeTypes
+     * are provided as well, the result is a union of the two resulting app
+     * lists.
+     */
+    appFilterExtensions?: string;
+    /**
+     * A comma-separated list of MIME types for open with filtering. All apps
+     * within the given app query scope which can open any of the given MIME
+     * types will be included in the response. If appFilterExtensions are
+     * provided as well, the result is a union of the two resulting app lists.
+     */
+    appFilterMimeTypes?: string;
+    /**
+     * A language or locale code, as defined by BCP 47, with some extensions
+     * from Unicode's LDML format (http://www.unicode.org/reports/tr35/).
+     */
+    languageCode?: string;
+  }
+
 
   export class Resource$Changes {
     root: Drive;
@@ -1777,23 +1879,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Change>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
-        callback?: BodyResponseCallback<Schema$Change>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Change>,
+    get(params?: Params$Resource$Changes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Change>;
+    get(params: Params$Resource$Changes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Change>,
+        callback: BodyResponseCallback<Schema$Change>): void;
+    get(params: Params$Resource$Changes$Get,
+        callback: BodyResponseCallback<Schema$Change>): void;
+    get(callback: BodyResponseCallback<Schema$Change>): void;
+    get(paramsOrCallback?: Params$Resource$Changes$Get|
+        BodyResponseCallback<Schema$Change>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Change>,
         callback?: BodyResponseCallback<Schema$Change>):
         void|AxiosPromise<Schema$Change> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1829,26 +1941,40 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getStartPageToken(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$StartPageToken>;
     getStartPageToken(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
-        callback?: BodyResponseCallback<Schema$StartPageToken>): void;
+        params?: Params$Resource$Changes$Getstartpagetoken,
+        options?: MethodOptions): AxiosPromise<Schema$StartPageToken>;
     getStartPageToken(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
+        params: Params$Resource$Changes$Getstartpagetoken,
+        options: MethodOptions|BodyResponseCallback<Schema$StartPageToken>,
+        callback: BodyResponseCallback<Schema$StartPageToken>): void;
+    getStartPageToken(
+        params: Params$Resource$Changes$Getstartpagetoken,
+        callback: BodyResponseCallback<Schema$StartPageToken>): void;
+    getStartPageToken(callback: BodyResponseCallback<Schema$StartPageToken>):
+        void;
+    getStartPageToken(
+        paramsOrCallback?: Params$Resource$Changes$Getstartpagetoken|
+        BodyResponseCallback<Schema$StartPageToken>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$StartPageToken>,
         callback?: BodyResponseCallback<Schema$StartPageToken>):
         void|AxiosPromise<Schema$StartPageToken> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Changes$Getstartpagetoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$Getstartpagetoken;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1892,26 +2018,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Changes$List, options?: MethodOptions):
         AxiosPromise<Schema$ChangeList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
-        callback?: BodyResponseCallback<Schema$ChangeList>): void;
+        params: Params$Resource$Changes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
+        callback: BodyResponseCallback<Schema$ChangeList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChangeList>,
+        params: Params$Resource$Changes$List,
+        callback: BodyResponseCallback<Schema$ChangeList>): void;
+    list(callback: BodyResponseCallback<Schema$ChangeList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Changes$List|
+        BodyResponseCallback<Schema$ChangeList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChangeList>,
         callback?: BodyResponseCallback<Schema$ChangeList>):
         void|AxiosPromise<Schema$ChangeList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1956,25 +2093,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+    watch(params?: Params$Resource$Changes$Watch, options?: MethodOptions):
+        AxiosPromise<Schema$Channel>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>): void;
+        params: Params$Resource$Changes$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        params: Params$Resource$Changes$Watch,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Changes$Watch|
+        BodyResponseCallback<Schema$Channel>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
         void|AxiosPromise<Schema$Channel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Changes$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Changes$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1996,6 +2144,165 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Changes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the change.
+     */
+    changeId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The Team Drive from which the change will be returned.
+     */
+    teamDriveId?: string;
+  }
+  export interface Params$Resource$Changes$Getstartpagetoken {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The ID of the Team Drive for which the starting pageToken for listing
+     * future changes from that Team Drive will be returned.
+     */
+    teamDriveId?: string;
+  }
+  export interface Params$Resource$Changes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether changes should include the file resource if the file is still
+     * accessible by the user at the time of the request, even when a file was
+     * removed from the list of changes and there will be no further change
+     * entries for this file.
+     */
+    includeCorpusRemovals?: boolean;
+    /**
+     * Whether to include changes indicating that items have been removed from
+     * the list of changes, for example by deletion or loss of access.
+     */
+    includeDeleted?: boolean;
+    /**
+     * Whether to include changes outside the My Drive hierarchy in the result.
+     * When set to false, changes to files such as those in the Application Data
+     * folder or shared files which have not been added to My Drive will be
+     * omitted from the result.
+     */
+    includeSubscribed?: boolean;
+    /**
+     * Whether Team Drive files or changes should be included in results.
+     */
+    includeTeamDriveItems?: boolean;
+    /**
+     * Maximum number of changes to return.
+     */
+    maxResults?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of 'nextPageToken' from the previous response
+     * or to the response from the getStartPageToken method.
+     */
+    pageToken?: string;
+    /**
+     * A comma-separated list of spaces to query. Supported values are 'drive',
+     * 'appDataFolder' and 'photos'.
+     */
+    spaces?: string;
+    /**
+     * Deprecated - use pageToken instead.
+     */
+    startChangeId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The Team Drive from which changes will be returned. If specified the
+     * change IDs will be reflective of the Team Drive; use the combined Team
+     * Drive ID and change ID as an identifier.
+     */
+    teamDriveId?: string;
+  }
+  export interface Params$Resource$Changes$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether changes should include the file resource if the file is still
+     * accessible by the user at the time of the request, even when a file was
+     * removed from the list of changes and there will be no further change
+     * entries for this file.
+     */
+    includeCorpusRemovals?: boolean;
+    /**
+     * Whether to include changes indicating that items have been removed from
+     * the list of changes, for example by deletion or loss of access.
+     */
+    includeDeleted?: boolean;
+    /**
+     * Whether to include changes outside the My Drive hierarchy in the result.
+     * When set to false, changes to files such as those in the Application Data
+     * folder or shared files which have not been added to My Drive will be
+     * omitted from the result.
+     */
+    includeSubscribed?: boolean;
+    /**
+     * Whether Team Drive files or changes should be included in results.
+     */
+    includeTeamDriveItems?: boolean;
+    /**
+     * Maximum number of changes to return.
+     */
+    maxResults?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of 'nextPageToken' from the previous response
+     * or to the response from the getStartPageToken method.
+     */
+    pageToken?: string;
+    /**
+     * A comma-separated list of spaces to query. Supported values are 'drive',
+     * 'appDataFolder' and 'photos'.
+     */
+    spaces?: string;
+    /**
+     * Deprecated - use pageToken instead.
+     */
+    startChangeId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The Team Drive from which changes will be returned. If specified the
+     * change IDs will be reflective of the Team Drive; use the combined Team
+     * Drive ID and change ID as an identifier.
+     */
+    teamDriveId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Channel;
+  }
+
 
   export class Resource$Channels {
     root: Drive;
@@ -2021,22 +2328,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
+        AxiosPromise<void>;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Channels$Stop,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Channels$Stop,
+        callback: BodyResponseCallback<void>): void;
+    stop(callback: BodyResponseCallback<void>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Channels$Stop|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Channels$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2058,6 +2378,14 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Channels$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Children {
     root: Drive;
@@ -2084,22 +2412,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Children$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Children$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Children$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Children$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Children$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Children$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2135,24 +2476,34 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Children$Get,
         options?: MethodOptions): AxiosPromise<Schema$ChildReference>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-        callback?: BodyResponseCallback<Schema$ChildReference>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+    get(params: Params$Resource$Children$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+        callback: BodyResponseCallback<Schema$ChildReference>): void;
+    get(params: Params$Resource$Children$Get,
+        callback: BodyResponseCallback<Schema$ChildReference>): void;
+    get(callback: BodyResponseCallback<Schema$ChildReference>): void;
+    get(paramsOrCallback?: Params$Resource$Children$Get|
+        BodyResponseCallback<Schema$ChildReference>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChildReference>,
         callback?: BodyResponseCallback<Schema$ChildReference>):
         void|AxiosPromise<Schema$ChildReference> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Children$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Children$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2189,26 +2540,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Children$Insert, options?: MethodOptions):
         AxiosPromise<Schema$ChildReference>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
-        callback?: BodyResponseCallback<Schema$ChildReference>): void;
+        params: Params$Resource$Children$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+        callback: BodyResponseCallback<Schema$ChildReference>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildReference>,
+        params: Params$Resource$Children$Insert,
+        callback: BodyResponseCallback<Schema$ChildReference>): void;
+    insert(callback: BodyResponseCallback<Schema$ChildReference>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Children$Insert|
+        BodyResponseCallback<Schema$ChildReference>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChildReference>,
         callback?: BodyResponseCallback<Schema$ChildReference>):
         void|AxiosPromise<Schema$ChildReference> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Children$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Children$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2247,25 +2609,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$ChildList>;
+    list(params?: Params$Resource$Children$List, options?: MethodOptions):
+        AxiosPromise<Schema$ChildList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildList>,
-        callback?: BodyResponseCallback<Schema$ChildList>): void;
+        params: Params$Resource$Children$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ChildList>,
+        callback: BodyResponseCallback<Schema$ChildList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChildList>,
+        params: Params$Resource$Children$List,
+        callback: BodyResponseCallback<Schema$ChildList>): void;
+    list(callback: BodyResponseCallback<Schema$ChildList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Children$List|
+        BodyResponseCallback<Schema$ChildList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChildList>,
         callback?: BodyResponseCallback<Schema$ChildList>):
         void|AxiosPromise<Schema$ChildList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Children$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Children$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2287,6 +2661,90 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Children$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the child.
+     */
+    childId?: string;
+    /**
+     * The ID of the folder.
+     */
+    folderId?: string;
+  }
+  export interface Params$Resource$Children$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the child.
+     */
+    childId?: string;
+    /**
+     * The ID of the folder.
+     */
+    folderId?: string;
+  }
+  export interface Params$Resource$Children$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the folder.
+     */
+    folderId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ChildReference;
+  }
+  export interface Params$Resource$Children$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the folder.
+     */
+    folderId?: string;
+    /**
+     * Maximum number of children to return.
+     */
+    maxResults?: number;
+    /**
+     * A comma-separated list of sort keys. Valid keys are 'createdDate',
+     * 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate',
+     * 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', and 'title'.
+     * Each key sorts ascending by default, but may be reversed with the 'desc'
+     * modifier. Example usage: ?orderBy=folder,modifiedDate desc,title. Please
+     * note that there is a current limitation for users with approximately one
+     * million files in which the requested sort order is ignored.
+     */
+    orderBy?: string;
+    /**
+     * Page token for children.
+     */
+    pageToken?: string;
+    /**
+     * Query string for searching children.
+     */
+    q?: string;
+  }
+
 
   export class Resource$Comments {
     root: Drive;
@@ -2313,22 +2771,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Comments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Comments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Comments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2365,23 +2836,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+    get(params?: Params$Resource$Comments$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+    get(params: Params$Resource$Comments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(params: Params$Resource$Comments$Get,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(callback: BodyResponseCallback<Schema$Comment>): void;
+    get(paramsOrCallback?: Params$Resource$Comments$Get|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2417,25 +2898,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+    insert(params?: Params$Resource$Comments$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Comment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params: Params$Resource$Comments$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Insert,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    insert(callback: BodyResponseCallback<Schema$Comment>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Comments$Insert|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2474,26 +2966,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
         AxiosPromise<Schema$CommentList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-        callback?: BodyResponseCallback<Schema$CommentList>): void;
+        params: Params$Resource$Comments$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        params: Params$Resource$Comments$List,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
+    list(callback: BodyResponseCallback<Schema$CommentList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Comments$List|
+        BodyResponseCallback<Schema$CommentList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
         void|AxiosPromise<Schema$CommentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2530,25 +3033,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+    patch(params?: Params$Resource$Comments$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Comment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params: Params$Resource$Comments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Patch,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    patch(callback: BodyResponseCallback<Schema$Comment>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Comments$Patch|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2585,25 +3099,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
+    update(params?: Params$Resource$Comments$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Comment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params: Params$Resource$Comments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Update,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    update(callback: BodyResponseCallback<Schema$Comment>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Comments$Update|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2625,6 +3150,128 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Comments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+  }
+  export interface Params$Resource$Comments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * If set, this will succeed when retrieving a deleted comment, and will
+     * include any deleted replies.
+     */
+    includeDeleted?: boolean;
+  }
+  export interface Params$Resource$Comments$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Comment;
+  }
+  export interface Params$Resource$Comments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * If set, all comments and replies, including deleted comments and replies
+     * (with content stripped) will be returned.
+     */
+    includeDeleted?: boolean;
+    /**
+     * The maximum number of discussions to include in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The continuation token, used to page through large result sets. To get
+     * the next page of results, set this parameter to the value of
+     * "nextPageToken" from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * Only discussions that were updated after this timestamp will be returned.
+     * Formatted as an RFC 3339 timestamp.
+     */
+    updatedMin?: string;
+  }
+  export interface Params$Resource$Comments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Comment;
+  }
+  export interface Params$Resource$Comments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Comment;
+  }
+
 
   export class Resource$Files {
     root: Drive;
@@ -2659,23 +3306,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    copy(params?: Params$Resource$Files$Copy, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     copy(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Copy,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     copy(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Copy,
+        callback: BodyResponseCallback<Schema$File>): void;
+    copy(callback: BodyResponseCallback<Schema$File>): void;
+    copy(
+        paramsOrCallback?: Params$Resource$Files$Copy|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Copy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Copy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2713,22 +3373,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Files$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Files$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Files$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Files$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2762,22 +3435,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    emptyTrash(params?: any, options?: MethodOptions): AxiosPromise<void>;
     emptyTrash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Files$Emptytrash,
+        options?: MethodOptions): AxiosPromise<void>;
     emptyTrash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Files$Emptytrash,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    emptyTrash(
+        params: Params$Resource$Files$Emptytrash,
+        callback: BodyResponseCallback<void>): void;
+    emptyTrash(callback: BodyResponseCallback<void>): void;
+    emptyTrash(
+        paramsOrCallback?: Params$Resource$Files$Emptytrash|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Emptytrash;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Emptytrash;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2815,22 +3502,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    export(params?: Params$Resource$Files$Export, options?: MethodOptions):
+        AxiosPromise<void>;
     export(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Files$Export,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     export(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Files$Export,
+        callback: BodyResponseCallback<void>): void;
+    export(callback: BodyResponseCallback<void>): void;
+    export(
+        paramsOrCallback?: Params$Resource$Files$Export|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Export;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2867,26 +3567,39 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generateIds(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GeneratedIds>;
     generateIds(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
-        callback?: BodyResponseCallback<Schema$GeneratedIds>): void;
+        params?: Params$Resource$Files$Generateids,
+        options?: MethodOptions): AxiosPromise<Schema$GeneratedIds>;
     generateIds(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
+        params: Params$Resource$Files$Generateids,
+        options: MethodOptions|BodyResponseCallback<Schema$GeneratedIds>,
+        callback: BodyResponseCallback<Schema$GeneratedIds>): void;
+    generateIds(
+        params: Params$Resource$Files$Generateids,
+        callback: BodyResponseCallback<Schema$GeneratedIds>): void;
+    generateIds(callback: BodyResponseCallback<Schema$GeneratedIds>): void;
+    generateIds(
+        paramsOrCallback?: Params$Resource$Files$Generateids|
+        BodyResponseCallback<Schema$GeneratedIds>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GeneratedIds>,
         callback?: BodyResponseCallback<Schema$GeneratedIds>):
         void|AxiosPromise<Schema$GeneratedIds> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Files$Generateids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Generateids;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2926,21 +3639,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+    get(params?: Params$Resource$Files$Get,
+        options?: MethodOptions): AxiosPromise<Schema$File>;
+    get(params: Params$Resource$Files$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(params: Params$Resource$Files$Get,
+        callback: BodyResponseCallback<Schema$File>): void;
+    get(callback: BodyResponseCallback<Schema$File>): void;
+    get(paramsOrCallback?: Params$Resource$Files$Get|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2987,23 +3712,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    insert(params?: Params$Resource$Files$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Insert,
+        callback: BodyResponseCallback<Schema$File>): void;
+    insert(callback: BodyResponseCallback<Schema$File>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Files$Insert|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3049,25 +3787,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$FileList>;
+    list(params?: Params$Resource$Files$List, options?: MethodOptions):
+        AxiosPromise<Schema$FileList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
-        callback?: BodyResponseCallback<Schema$FileList>): void;
+        params: Params$Resource$Files$List,
+        options: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        callback: BodyResponseCallback<Schema$FileList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FileList>,
+        params: Params$Resource$Files$List,
+        callback: BodyResponseCallback<Schema$FileList>): void;
+    list(callback: BodyResponseCallback<Schema$FileList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Files$List|
+        BodyResponseCallback<Schema$FileList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$FileList>,
         callback?: BodyResponseCallback<Schema$FileList>):
         void|AxiosPromise<Schema$FileList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3117,23 +3866,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    patch(params?: Params$Resource$Files$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Patch,
+        callback: BodyResponseCallback<Schema$File>): void;
+    patch(callback: BodyResponseCallback<Schema$File>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Files$Patch|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3169,23 +3931,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    touch(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    touch(params?: Params$Resource$Files$Touch, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     touch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Touch,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     touch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Touch,
+        callback: BodyResponseCallback<Schema$File>): void;
+    touch(callback: BodyResponseCallback<Schema$File>): void;
+    touch(
+        paramsOrCallback?: Params$Resource$Files$Touch|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Touch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Touch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3222,23 +3997,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    trash(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    trash(params?: Params$Resource$Files$Trash, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     trash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Trash,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     trash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Trash,
+        callback: BodyResponseCallback<Schema$File>): void;
+    trash(callback: BodyResponseCallback<Schema$File>): void;
+    trash(
+        paramsOrCallback?: Params$Resource$Files$Trash|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Trash;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Trash;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3274,23 +4062,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    untrash(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    untrash(params?: Params$Resource$Files$Untrash, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     untrash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Untrash,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     untrash(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Untrash,
+        callback: BodyResponseCallback<Schema$File>): void;
+    untrash(callback: BodyResponseCallback<Schema$File>): void;
+    untrash(
+        paramsOrCallback?: Params$Resource$Files$Untrash|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Untrash;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Untrash;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3343,23 +4144,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$File>;
+    update(params?: Params$Resource$Files$Update, options?: MethodOptions):
+        AxiosPromise<Schema$File>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
-        callback?: BodyResponseCallback<Schema$File>): void;
+        params: Params$Resource$Files$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$File>,
+        callback: BodyResponseCallback<Schema$File>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$File>,
+        params: Params$Resource$Files$Update,
+        callback: BodyResponseCallback<Schema$File>): void;
+    update(callback: BodyResponseCallback<Schema$File>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Files$Update|
+        BodyResponseCallback<Schema$File>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$File>,
         callback?: BodyResponseCallback<Schema$File>):
         void|AxiosPromise<Schema$File> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3402,25 +4216,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+    watch(params?: Params$Resource$Files$Watch, options?: MethodOptions):
+        AxiosPromise<Schema$Channel>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>): void;
+        params: Params$Resource$Files$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        params: Params$Resource$Files$Watch,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Files$Watch|
+        BodyResponseCallback<Schema$Channel>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
         void|AxiosPromise<Schema$Channel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Files$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3442,6 +4267,539 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Files$Copy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to convert this file to the corresponding Google Docs format.
+     */
+    convert?: boolean;
+    /**
+     * The ID of the file to copy.
+     */
+    fileId?: string;
+    /**
+     * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     */
+    ocr?: boolean;
+    /**
+     * If ocr is true, hints at the language to use. Valid values are BCP 47
+     * codes.
+     */
+    ocrLanguage?: string;
+    /**
+     * Whether to pin the head revision of the new copy. A file can have a
+     * maximum of 200 pinned revisions.
+     */
+    pinned?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The language of the timed text.
+     */
+    timedTextLanguage?: string;
+    /**
+     * The timed text track name.
+     */
+    timedTextTrackName?: string;
+    /**
+     * The visibility of the new file. This parameter is only relevant when the
+     * source is not a native Google Doc and convert=false.
+     */
+    visibility?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$File;
+  }
+  export interface Params$Resource$Files$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file to delete.
+     */
+    fileId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+  }
+  export interface Params$Resource$Files$Emptytrash {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Files$Export {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The MIME type of the format requested for this export.
+     */
+    mimeType?: string;
+  }
+  export interface Params$Resource$Files$Generateids {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of IDs to return.
+     */
+    maxResults?: number;
+    /**
+     * The space in which the IDs can be used to create new files. Supported
+     * values are 'drive' and 'appDataFolder'.
+     */
+    space?: string;
+  }
+  export interface Params$Resource$Files$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the user is acknowledging the risk of downloading known malware
+     * or other abusive files.
+     */
+    acknowledgeAbuse?: boolean;
+    /**
+     * The ID for the file in question.
+     */
+    fileId?: string;
+    /**
+     * This parameter is deprecated and has no function.
+     */
+    projection?: string;
+    /**
+     * Specifies the Revision ID that should be downloaded. Ignored unless
+     * alt=media is specified.
+     */
+    revisionId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Deprecated: Use files.update with modifiedDateBehavior=noChange,
+     * updateViewedDate=true and an empty request body.
+     */
+    updateViewedDate?: boolean;
+  }
+  export interface Params$Resource$Files$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to convert this file to the corresponding Google Docs format.
+     */
+    convert?: boolean;
+    /**
+     * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     */
+    ocr?: boolean;
+    /**
+     * If ocr is true, hints at the language to use. Valid values are BCP 47
+     * codes.
+     */
+    ocrLanguage?: string;
+    /**
+     * Whether to pin the head revision of the uploaded file. A file can have a
+     * maximum of 200 pinned revisions.
+     */
+    pinned?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The language of the timed text.
+     */
+    timedTextLanguage?: string;
+    /**
+     * The timed text track name.
+     */
+    timedTextTrackName?: string;
+    /**
+     * Whether to use the content as indexable text.
+     */
+    useContentAsIndexableText?: boolean;
+    /**
+     * The visibility of the new file. This parameter is only relevant when
+     * convert=false.
+     */
+    visibility?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$File;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+  export interface Params$Resource$Files$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Comma-separated list of bodies of items (files/documents) to which the
+     * query applies. Supported bodies are 'default', 'domain', 'teamDrive' and
+     * 'allTeamDrives'. 'allTeamDrives' must be combined with 'default'; all
+     * other values must be used in isolation. Prefer 'default' or 'teamDrive'
+     * to 'allTeamDrives' for efficiency.
+     */
+    corpora?: string;
+    /**
+     * The body of items (files/documents) to which the query applies.
+     * Deprecated: use 'corpora' instead.
+     */
+    corpus?: string;
+    /**
+     * Whether Team Drive items should be included in results.
+     */
+    includeTeamDriveItems?: boolean;
+    /**
+     * The maximum number of files to return per page. Partial or empty result
+     * pages are possible even before the end of the files list has been
+     * reached.
+     */
+    maxResults?: number;
+    /**
+     * A comma-separated list of sort keys. Valid keys are 'createdDate',
+     * 'folder', 'lastViewedByMeDate', 'modifiedByMeDate', 'modifiedDate',
+     * 'quotaBytesUsed', 'recency', 'sharedWithMeDate', 'starred', 'title', and
+     * 'title_natural'. Each key sorts ascending by default, but may be reversed
+     * with the 'desc' modifier. Example usage: ?orderBy=folder,modifiedDate
+     * desc,title. Please note that there is a current limitation for users with
+     * approximately one million files in which the requested sort order is
+     * ignored.
+     */
+    orderBy?: string;
+    /**
+     * Page token for files.
+     */
+    pageToken?: string;
+    /**
+     * This parameter is deprecated and has no function.
+     */
+    projection?: string;
+    /**
+     * Query string for searching files.
+     */
+    q?: string;
+    /**
+     * A comma-separated list of spaces to query. Supported values are 'drive',
+     * 'appDataFolder' and 'photos'.
+     */
+    spaces?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * ID of Team Drive to search.
+     */
+    teamDriveId?: string;
+  }
+  export interface Params$Resource$Files$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Comma-separated list of parent IDs to add.
+     */
+    addParents?: string;
+    /**
+     * This parameter is deprecated and has no function.
+     */
+    convert?: boolean;
+    /**
+     * The ID of the file to update.
+     */
+    fileId?: string;
+    /**
+     * Determines the behavior in which modifiedDate is updated. This overrides
+     * setModifiedDate.
+     */
+    modifiedDateBehavior?: string;
+    /**
+     * Whether a blob upload should create a new revision. If false, the blob
+     * data in the current head revision is replaced. If true or not set, a new
+     * blob is created as head revision, and previous unpinned revisions are
+     * preserved for a short period of time. Pinned revisions are stored
+     * indefinitely, using additional storage quota, up to a maximum of 200
+     * revisions. For details on how revisions are retained, see the Drive Help
+     * Center.
+     */
+    newRevision?: boolean;
+    /**
+     * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     */
+    ocr?: boolean;
+    /**
+     * If ocr is true, hints at the language to use. Valid values are BCP 47
+     * codes.
+     */
+    ocrLanguage?: string;
+    /**
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned
+     * revisions.
+     */
+    pinned?: boolean;
+    /**
+     * Comma-separated list of parent IDs to remove.
+     */
+    removeParents?: string;
+    /**
+     * Whether to set the modified date using the value supplied in the request
+     * body. Setting this field to true is equivalent to
+     * modifiedDateBehavior=fromBodyOrNow, and false is equivalent to
+     * modifiedDateBehavior=now. To prevent any changes to the modified date set
+     * modifiedDateBehavior=noChange.
+     */
+    setModifiedDate?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The language of the timed text.
+     */
+    timedTextLanguage?: string;
+    /**
+     * The timed text track name.
+     */
+    timedTextTrackName?: string;
+    /**
+     * Whether to update the view date after successfully updating the file.
+     */
+    updateViewedDate?: boolean;
+    /**
+     * Whether to use the content as indexable text.
+     */
+    useContentAsIndexableText?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$File;
+  }
+  export interface Params$Resource$Files$Touch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file to update.
+     */
+    fileId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+  }
+  export interface Params$Resource$Files$Trash {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file to trash.
+     */
+    fileId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+  }
+  export interface Params$Resource$Files$Untrash {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file to untrash.
+     */
+    fileId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+  }
+  export interface Params$Resource$Files$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Comma-separated list of parent IDs to add.
+     */
+    addParents?: string;
+    /**
+     * This parameter is deprecated and has no function.
+     */
+    convert?: boolean;
+    /**
+     * The ID of the file to update.
+     */
+    fileId?: string;
+    /**
+     * Determines the behavior in which modifiedDate is updated. This overrides
+     * setModifiedDate.
+     */
+    modifiedDateBehavior?: string;
+    /**
+     * Whether a blob upload should create a new revision. If false, the blob
+     * data in the current head revision is replaced. If true or not set, a new
+     * blob is created as head revision, and previous unpinned revisions are
+     * preserved for a short period of time. Pinned revisions are stored
+     * indefinitely, using additional storage quota, up to a maximum of 200
+     * revisions. For details on how revisions are retained, see the Drive Help
+     * Center.
+     */
+    newRevision?: boolean;
+    /**
+     * Whether to attempt OCR on .jpg, .png, .gif, or .pdf uploads.
+     */
+    ocr?: boolean;
+    /**
+     * If ocr is true, hints at the language to use. Valid values are BCP 47
+     * codes.
+     */
+    ocrLanguage?: string;
+    /**
+     * Whether to pin the new revision. A file can have a maximum of 200 pinned
+     * revisions.
+     */
+    pinned?: boolean;
+    /**
+     * Comma-separated list of parent IDs to remove.
+     */
+    removeParents?: string;
+    /**
+     * Whether to set the modified date using the value supplied in the request
+     * body. Setting this field to true is equivalent to
+     * modifiedDateBehavior=fromBodyOrNow, and false is equivalent to
+     * modifiedDateBehavior=now. To prevent any changes to the modified date set
+     * modifiedDateBehavior=noChange.
+     */
+    setModifiedDate?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * The language of the timed text.
+     */
+    timedTextLanguage?: string;
+    /**
+     * The timed text track name.
+     */
+    timedTextTrackName?: string;
+    /**
+     * Whether to update the view date after successfully updating the file.
+     */
+    updateViewedDate?: boolean;
+    /**
+     * Whether to use the content as indexable text.
+     */
+    useContentAsIndexableText?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$File;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+  export interface Params$Resource$Files$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the user is acknowledging the risk of downloading known malware
+     * or other abusive files.
+     */
+    acknowledgeAbuse?: boolean;
+    /**
+     * The ID for the file in question.
+     */
+    fileId?: string;
+    /**
+     * This parameter is deprecated and has no function.
+     */
+    projection?: string;
+    /**
+     * Specifies the Revision ID that should be downloaded. Ignored unless
+     * alt=media is specified.
+     */
+    revisionId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Deprecated: Use files.update with modifiedDateBehavior=noChange,
+     * updateViewedDate=true and an empty request body.
+     */
+    updateViewedDate?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Channel;
+  }
+
 
   export class Resource$Parents {
     root: Drive;
@@ -3468,22 +4826,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Parents$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Parents$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Parents$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Parents$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Parents$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Parents$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3519,24 +4890,34 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Parents$Get,
         options?: MethodOptions): AxiosPromise<Schema$ParentReference>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-        callback?: BodyResponseCallback<Schema$ParentReference>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+    get(params: Params$Resource$Parents$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+        callback: BodyResponseCallback<Schema$ParentReference>): void;
+    get(params: Params$Resource$Parents$Get,
+        callback: BodyResponseCallback<Schema$ParentReference>): void;
+    get(callback: BodyResponseCallback<Schema$ParentReference>): void;
+    get(paramsOrCallback?: Params$Resource$Parents$Get|
+        BodyResponseCallback<Schema$ParentReference>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ParentReference>,
         callback?: BodyResponseCallback<Schema$ParentReference>):
         void|AxiosPromise<Schema$ParentReference> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Parents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Parents$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3573,26 +4954,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Parents$Insert, options?: MethodOptions):
         AxiosPromise<Schema$ParentReference>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
-        callback?: BodyResponseCallback<Schema$ParentReference>): void;
+        params: Params$Resource$Parents$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+        callback: BodyResponseCallback<Schema$ParentReference>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentReference>,
+        params: Params$Resource$Parents$Insert,
+        callback: BodyResponseCallback<Schema$ParentReference>): void;
+    insert(callback: BodyResponseCallback<Schema$ParentReference>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Parents$Insert|
+        BodyResponseCallback<Schema$ParentReference>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ParentReference>,
         callback?: BodyResponseCallback<Schema$ParentReference>):
         void|AxiosPromise<Schema$ParentReference> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Parents$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Parents$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3627,26 +5019,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Parents$List, options?: MethodOptions):
         AxiosPromise<Schema$ParentList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentList>,
-        callback?: BodyResponseCallback<Schema$ParentList>): void;
+        params: Params$Resource$Parents$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ParentList>,
+        callback: BodyResponseCallback<Schema$ParentList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ParentList>,
+        params: Params$Resource$Parents$List,
+        callback: BodyResponseCallback<Schema$ParentList>): void;
+    list(callback: BodyResponseCallback<Schema$ParentList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Parents$List|
+        BodyResponseCallback<Schema$ParentList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ParentList>,
         callback?: BodyResponseCallback<Schema$ParentList>):
         void|AxiosPromise<Schema$ParentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Parents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Parents$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3668,6 +5071,68 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Parents$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the parent.
+     */
+    parentId?: string;
+  }
+  export interface Params$Resource$Parents$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the parent.
+     */
+    parentId?: string;
+  }
+  export interface Params$Resource$Parents$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ParentReference;
+  }
+  export interface Params$Resource$Parents$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+  }
+
 
   export class Resource$Permissions {
     root: Drive;
@@ -3696,22 +5161,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Permissions$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Permissions$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Permissions$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Permissions$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Permissions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3750,23 +5230,34 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Permission>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+    get(params?: Params$Resource$Permissions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Permission>;
+    get(params: Params$Resource$Permissions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    get(params: Params$Resource$Permissions$Get,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    get(callback: BodyResponseCallback<Schema$Permission>): void;
+    get(paramsOrCallback?: Params$Resource$Permissions$Get|
+        BodyResponseCallback<Schema$Permission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
         void|AxiosPromise<Schema$Permission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Permissions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3802,26 +5293,39 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIdForEmail(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PermissionId>;
     getIdForEmail(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
-        callback?: BodyResponseCallback<Schema$PermissionId>): void;
+        params?: Params$Resource$Permissions$Getidforemail,
+        options?: MethodOptions): AxiosPromise<Schema$PermissionId>;
     getIdForEmail(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
+        params: Params$Resource$Permissions$Getidforemail,
+        options: MethodOptions|BodyResponseCallback<Schema$PermissionId>,
+        callback: BodyResponseCallback<Schema$PermissionId>): void;
+    getIdForEmail(
+        params: Params$Resource$Permissions$Getidforemail,
+        callback: BodyResponseCallback<Schema$PermissionId>): void;
+    getIdForEmail(callback: BodyResponseCallback<Schema$PermissionId>): void;
+    getIdForEmail(
+        paramsOrCallback?: Params$Resource$Permissions$Getidforemail|
+        BodyResponseCallback<Schema$PermissionId>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PermissionId>,
         callback?: BodyResponseCallback<Schema$PermissionId>):
         void|AxiosPromise<Schema$PermissionId> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Permissions$Getidforemail;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Getidforemail;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3861,26 +5365,39 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Permission>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>): void;
+        params?: Params$Resource$Permissions$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Permission>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        params: Params$Resource$Permissions$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    insert(
+        params: Params$Resource$Permissions$Insert,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    insert(callback: BodyResponseCallback<Schema$Permission>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Permissions$Insert|
+        BodyResponseCallback<Schema$Permission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
         void|AxiosPromise<Schema$Permission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Permissions$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3919,26 +5436,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Permissions$List, options?: MethodOptions):
         AxiosPromise<Schema$PermissionList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
-        callback?: BodyResponseCallback<Schema$PermissionList>): void;
+        params: Params$Resource$Permissions$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
+        callback: BodyResponseCallback<Schema$PermissionList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PermissionList>,
+        params: Params$Resource$Permissions$List,
+        callback: BodyResponseCallback<Schema$PermissionList>): void;
+    list(callback: BodyResponseCallback<Schema$PermissionList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Permissions$List|
+        BodyResponseCallback<Schema$PermissionList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PermissionList>,
         callback?: BodyResponseCallback<Schema$PermissionList>):
         void|AxiosPromise<Schema$PermissionList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Permissions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3979,26 +5507,38 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Permissions$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Permission>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>): void;
+        params: Params$Resource$Permissions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        callback: BodyResponseCallback<Schema$Permission>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        params: Params$Resource$Permissions$Patch,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    patch(callback: BodyResponseCallback<Schema$Permission>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Permissions$Patch|
+        BodyResponseCallback<Schema$Permission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
         void|AxiosPromise<Schema$Permission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Permissions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4040,26 +5580,39 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Permission>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
-        callback?: BodyResponseCallback<Schema$Permission>): void;
+        params?: Params$Resource$Permissions$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Permission>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        params: Params$Resource$Permissions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Permission>,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    update(
+        params: Params$Resource$Permissions$Update,
+        callback: BodyResponseCallback<Schema$Permission>): void;
+    update(callback: BodyResponseCallback<Schema$Permission>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Permissions$Update|
+        BodyResponseCallback<Schema$Permission>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Permission>,
         callback?: BodyResponseCallback<Schema$Permission>):
         void|AxiosPromise<Schema$Permission> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Permissions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Permissions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4082,6 +5635,211 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Permissions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * The ID for the permission.
+     */
+    permissionId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Permissions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * The ID for the permission.
+     */
+    permissionId?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Permissions$Getidforemail {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The email address for which to return a permission ID
+     */
+    email?: string;
+  }
+  export interface Params$Resource$Permissions$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A plain text custom message to include in notification emails.
+     */
+    emailMessage?: string;
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * Whether to send notification emails when sharing to users or groups. This
+     * parameter is ignored and an email is sent if the role is owner.
+     */
+    sendNotificationEmails?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Permission;
+  }
+  export interface Params$Resource$Permissions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * The maximum number of permissions to return per page. When not set for
+     * files in a Team Drive, at most 100 results will be returned. When not set
+     * for files that are not in a Team Drive, the entire list will be returned.
+     */
+    maxResults?: number;
+    /**
+     * The token for continuing a previous list request on the next page. This
+     * should be set to the value of 'nextPageToken' from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Permissions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * The ID for the permission.
+     */
+    permissionId?: string;
+    /**
+     * Whether to remove the expiration date.
+     */
+    removeExpiration?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether changing a role to 'owner' downgrades the current owners to
+     * writers. Does nothing if the specified role is not 'owner'.
+     */
+    transferOwnership?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Permission;
+  }
+  export interface Params$Resource$Permissions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file or Team Drive.
+     */
+    fileId?: string;
+    /**
+     * The ID for the permission.
+     */
+    permissionId?: string;
+    /**
+     * Whether to remove the expiration date.
+     */
+    removeExpiration?: boolean;
+    /**
+     * Whether the requesting application supports Team Drives.
+     */
+    supportsTeamDrives?: boolean;
+    /**
+     * Whether changing a role to 'owner' downgrades the current owners to
+     * writers. Does nothing if the specified role is not 'owner'.
+     */
+    transferOwnership?: boolean;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the item belongs.
+     */
+    useDomainAdminAccess?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Permission;
+  }
+
 
   export class Resource$Properties {
     root: Drive;
@@ -4109,22 +5867,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Properties$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Properties$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Properties$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Properties$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Properties$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4162,23 +5934,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+    get(params?: Params$Resource$Properties$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Property>;
+    get(params: Params$Resource$Properties$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Property>,
+        callback: BodyResponseCallback<Schema$Property>): void;
+    get(params: Params$Resource$Properties$Get,
+        callback: BodyResponseCallback<Schema$Property>): void;
+    get(callback: BodyResponseCallback<Schema$Property>): void;
+    get(paramsOrCallback?: Params$Resource$Properties$Get|
+        BodyResponseCallback<Schema$Property>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
         callback?: BodyResponseCallback<Schema$Property>):
         void|AxiosPromise<Schema$Property> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Properties$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4215,26 +5997,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Properties$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Property>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>): void;
+        params: Params$Resource$Properties$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Property>,
+        callback: BodyResponseCallback<Schema$Property>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+        params: Params$Resource$Properties$Insert,
+        callback: BodyResponseCallback<Schema$Property>): void;
+    insert(callback: BodyResponseCallback<Schema$Property>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Properties$Insert|
+        BodyResponseCallback<Schema$Property>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
         callback?: BodyResponseCallback<Schema$Property>):
         void|AxiosPromise<Schema$Property> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Properties$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4269,26 +6062,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Properties$List, options?: MethodOptions):
         AxiosPromise<Schema$PropertyList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
-        callback?: BodyResponseCallback<Schema$PropertyList>): void;
+        params: Params$Resource$Properties$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
+        callback: BodyResponseCallback<Schema$PropertyList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PropertyList>,
+        params: Params$Resource$Properties$List,
+        callback: BodyResponseCallback<Schema$PropertyList>): void;
+    list(callback: BodyResponseCallback<Schema$PropertyList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Properties$List|
+        BodyResponseCallback<Schema$PropertyList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PropertyList>,
         callback?: BodyResponseCallback<Schema$PropertyList>):
         void|AxiosPromise<Schema$PropertyList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Properties$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4313,7 +6117,7 @@ export namespace drive_v2 {
 
     /**
      * drive.properties.patch
-     * @desc Updates a property. This method supports patch semantics.
+     * @desc Updates a property.
      * @alias drive.properties.patch
      * @memberOf! ()
      *
@@ -4326,25 +6130,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Property>;
+    patch(params?: Params$Resource$Properties$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Property>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>): void;
+        params: Params$Resource$Properties$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Property>,
+        callback: BodyResponseCallback<Schema$Property>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+        params: Params$Resource$Properties$Patch,
+        callback: BodyResponseCallback<Schema$Property>): void;
+    patch(callback: BodyResponseCallback<Schema$Property>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Properties$Patch|
+        BodyResponseCallback<Schema$Property>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
         callback?: BodyResponseCallback<Schema$Property>):
         void|AxiosPromise<Schema$Property> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Properties$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4383,26 +6198,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Properties$Update, options?: MethodOptions):
         AxiosPromise<Schema$Property>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
-        callback?: BodyResponseCallback<Schema$Property>): void;
+        params: Params$Resource$Properties$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Property>,
+        callback: BodyResponseCallback<Schema$Property>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Property>,
+        params: Params$Resource$Properties$Update,
+        callback: BodyResponseCallback<Schema$Property>): void;
+    update(callback: BodyResponseCallback<Schema$Property>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Properties$Update|
+        BodyResponseCallback<Schema$Property>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Property>,
         callback?: BodyResponseCallback<Schema$Property>):
         void|AxiosPromise<Schema$Property> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Properties$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4425,6 +6251,120 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Properties$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The key of the property.
+     */
+    propertyKey?: string;
+    /**
+     * The visibility of the property.
+     */
+    visibility?: string;
+  }
+  export interface Params$Resource$Properties$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The key of the property.
+     */
+    propertyKey?: string;
+    /**
+     * The visibility of the property.
+     */
+    visibility?: string;
+  }
+  export interface Params$Resource$Properties$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Property;
+  }
+  export interface Params$Resource$Properties$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+  }
+  export interface Params$Resource$Properties$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The key of the property.
+     */
+    propertyKey?: string;
+    /**
+     * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
+     * (Default: PRIVATE)
+     */
+    visibility?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Property;
+  }
+  export interface Params$Resource$Properties$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The key of the property.
+     */
+    propertyKey?: string;
+    /**
+     * The visibility of the property. Allowed values are PRIVATE and PUBLIC.
+     * (Default: PRIVATE)
+     */
+    visibility?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Property;
+  }
+
 
   export class Resource$Realtime {
     root: Drive;
@@ -4452,20 +6392,32 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<void>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+    get(params?: Params$Resource$Realtime$Get,
+        options?: MethodOptions): AxiosPromise<void>;
+    get(params: Params$Resource$Realtime$Get,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    get(params: Params$Resource$Realtime$Get,
+        callback: BodyResponseCallback<void>): void;
+    get(callback: BodyResponseCallback<void>): void;
+    get(paramsOrCallback?: Params$Resource$Realtime$Get|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Realtime$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Realtime$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4505,22 +6457,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    update(params?: Params$Resource$Realtime$Update, options?: MethodOptions):
+        AxiosPromise<void>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Realtime$Update,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Realtime$Update,
+        callback: BodyResponseCallback<void>): void;
+    update(callback: BodyResponseCallback<void>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Realtime$Update|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Realtime$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Realtime$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4544,6 +6509,58 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Realtime$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file that the Realtime API data model is associated with.
+     */
+    fileId?: string;
+    /**
+     * The revision of the Realtime API data model to export. Revisions start at
+     * 1 (the initial empty data model) and are incremented with each change. If
+     * this parameter is excluded, the most recent data model will be returned.
+     */
+    revision?: number;
+  }
+  export interface Params$Resource$Realtime$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The revision of the model to diff the uploaded model against. If set, the
+     * uploaded model is diffed against the provided revision and those
+     * differences are merged with any changes made to the model after the
+     * provided revision. If not set, the uploaded model replaces the current
+     * model on the server.
+     */
+    baseRevision?: string;
+    /**
+     * The ID of the file that the Realtime API data model is associated with.
+     */
+    fileId?: string;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+
 
   export class Resource$Replies {
     root: Drive;
@@ -4571,22 +6588,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Replies$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Replies$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Replies$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Replies$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4626,24 +6656,34 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Replies$Get,
         options?: MethodOptions): AxiosPromise<Schema$CommentReply>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+    get(params: Params$Resource$Replies$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    get(params: Params$Resource$Replies$Get,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    get(callback: BodyResponseCallback<Schema$CommentReply>): void;
+    get(paramsOrCallback?: Params$Resource$Replies$Get|
+        BodyResponseCallback<Schema$CommentReply>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentReply>,
         callback?: BodyResponseCallback<Schema$CommentReply>):
         void|AxiosPromise<Schema$CommentReply> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4682,26 +6722,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Replies$Insert, options?: MethodOptions):
         AxiosPromise<Schema$CommentReply>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>): void;
+        params: Params$Resource$Replies$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        params: Params$Resource$Replies$Insert,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    insert(callback: BodyResponseCallback<Schema$CommentReply>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Replies$Insert|
+        BodyResponseCallback<Schema$CommentReply>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentReply>,
         callback?: BodyResponseCallback<Schema$CommentReply>):
         void|AxiosPromise<Schema$CommentReply> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4741,26 +6792,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Replies$List, options?: MethodOptions):
         AxiosPromise<Schema$CommentReplyList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
-        callback?: BodyResponseCallback<Schema$CommentReplyList>): void;
+        params: Params$Resource$Replies$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
+        callback: BodyResponseCallback<Schema$CommentReplyList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReplyList>,
+        params: Params$Resource$Replies$List,
+        callback: BodyResponseCallback<Schema$CommentReplyList>): void;
+    list(callback: BodyResponseCallback<Schema$CommentReplyList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Replies$List|
+        BodyResponseCallback<Schema$CommentReplyList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentReplyList>,
         callback?: BodyResponseCallback<Schema$CommentReplyList>):
         void|AxiosPromise<Schema$CommentReplyList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4799,26 +6861,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Replies$Patch, options?: MethodOptions):
         AxiosPromise<Schema$CommentReply>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>): void;
+        params: Params$Resource$Replies$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        params: Params$Resource$Replies$Patch,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    patch(callback: BodyResponseCallback<Schema$CommentReply>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Replies$Patch|
+        BodyResponseCallback<Schema$CommentReply>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentReply>,
         callback?: BodyResponseCallback<Schema$CommentReply>):
         void|AxiosPromise<Schema$CommentReply> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4858,26 +6931,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Replies$Update, options?: MethodOptions):
         AxiosPromise<Schema$CommentReply>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
-        callback?: BodyResponseCallback<Schema$CommentReply>): void;
+        params: Params$Resource$Replies$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentReply>,
+        params: Params$Resource$Replies$Update,
+        callback: BodyResponseCallback<Schema$CommentReply>): void;
+    update(callback: BodyResponseCallback<Schema$CommentReply>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Replies$Update|
+        BodyResponseCallback<Schema$CommentReply>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentReply>,
         callback?: BodyResponseCallback<Schema$CommentReply>):
         void|AxiosPromise<Schema$CommentReply> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Replies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Replies$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4901,6 +6985,146 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Replies$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the reply.
+     */
+    replyId?: string;
+  }
+  export interface Params$Resource$Replies$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * If set, this will succeed when retrieving a deleted reply.
+     */
+    includeDeleted?: boolean;
+    /**
+     * The ID of the reply.
+     */
+    replyId?: string;
+  }
+  export interface Params$Resource$Replies$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommentReply;
+  }
+  export interface Params$Resource$Replies$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * If set, all replies, including deleted replies (with content stripped)
+     * will be returned.
+     */
+    includeDeleted?: boolean;
+    /**
+     * The maximum number of replies to include in the response, used for
+     * paging.
+     */
+    maxResults?: number;
+    /**
+     * The continuation token, used to page through large result sets. To get
+     * the next page of results, set this parameter to the value of
+     * "nextPageToken" from the previous response.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Replies$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the reply.
+     */
+    replyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommentReply;
+  }
+  export interface Params$Resource$Replies$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the comment.
+     */
+    commentId?: string;
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the reply.
+     */
+    replyId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommentReply;
+  }
+
 
   export class Resource$Revisions {
     root: Drive;
@@ -4927,22 +7151,35 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Revisions$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Revisions$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Revisions$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Revisions$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4978,23 +7215,33 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Revision>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+    get(params?: Params$Resource$Revisions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Revision>;
+    get(params: Params$Resource$Revisions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+        callback: BodyResponseCallback<Schema$Revision>): void;
+    get(params: Params$Resource$Revisions$Get,
+        callback: BodyResponseCallback<Schema$Revision>): void;
+    get(callback: BodyResponseCallback<Schema$Revision>): void;
+    get(paramsOrCallback?: Params$Resource$Revisions$Get|
+        BodyResponseCallback<Schema$Revision>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback?: BodyResponseCallback<Schema$Revision>):
         void|AxiosPromise<Schema$Revision> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5031,26 +7278,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Revisions$List, options?: MethodOptions):
         AxiosPromise<Schema$RevisionList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
-        callback?: BodyResponseCallback<Schema$RevisionList>): void;
+        params: Params$Resource$Revisions$List,
+        options: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
+        callback: BodyResponseCallback<Schema$RevisionList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RevisionList>,
+        params: Params$Resource$Revisions$List,
+        callback: BodyResponseCallback<Schema$RevisionList>): void;
+    list(callback: BodyResponseCallback<Schema$RevisionList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Revisions$List|
+        BodyResponseCallback<Schema$RevisionList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RevisionList>,
         callback?: BodyResponseCallback<Schema$RevisionList>):
         void|AxiosPromise<Schema$RevisionList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5087,25 +7345,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Revision>;
+    patch(params?: Params$Resource$Revisions$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Revision>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>): void;
+        params: Params$Resource$Revisions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+        callback: BodyResponseCallback<Schema$Revision>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+        params: Params$Resource$Revisions$Patch,
+        callback: BodyResponseCallback<Schema$Revision>): void;
+    patch(callback: BodyResponseCallback<Schema$Revision>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Revisions$Patch|
+        BodyResponseCallback<Schema$Revision>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback?: BodyResponseCallback<Schema$Revision>):
         void|AxiosPromise<Schema$Revision> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5142,26 +7411,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Revisions$Update, options?: MethodOptions):
         AxiosPromise<Schema$Revision>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
-        callback?: BodyResponseCallback<Schema$Revision>): void;
+        params: Params$Resource$Revisions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Revision>,
+        callback: BodyResponseCallback<Schema$Revision>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Revision>,
+        params: Params$Resource$Revisions$Update,
+        callback: BodyResponseCallback<Schema$Revision>): void;
+    update(callback: BodyResponseCallback<Schema$Revision>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Revisions$Update|
+        BodyResponseCallback<Schema$Revision>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Revision>,
         callback?: BodyResponseCallback<Schema$Revision>):
         void|AxiosPromise<Schema$Revision> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Revisions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Revisions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5183,6 +7462,96 @@ export namespace drive_v2 {
       }
     }
   }
+
+  export interface Params$Resource$Revisions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the revision.
+     */
+    revisionId?: string;
+  }
+  export interface Params$Resource$Revisions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * The ID of the revision.
+     */
+    revisionId?: string;
+  }
+  export interface Params$Resource$Revisions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the file.
+     */
+    fileId?: string;
+    /**
+     * Maximum number of revisions to return.
+     */
+    maxResults?: number;
+    /**
+     * Page token for revisions. To get the next page of results, set this
+     * parameter to the value of "nextPageToken" from the previous response.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Revisions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file.
+     */
+    fileId?: string;
+    /**
+     * The ID for the revision.
+     */
+    revisionId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Revision;
+  }
+  export interface Params$Resource$Revisions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID for the file.
+     */
+    fileId?: string;
+    /**
+     * The ID for the revision.
+     */
+    revisionId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Revision;
+  }
+
 
   export class Resource$Teamdrives {
     root: Drive;
@@ -5209,22 +7578,36 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Teamdrives$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Teamdrives$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Teamdrives$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Teamdrives$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Teamdrives$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5260,23 +7643,34 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+    get(params?: Params$Resource$Teamdrives$Get,
+        options?: MethodOptions): AxiosPromise<Schema$TeamDrive>;
+    get(params: Params$Resource$Teamdrives$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    get(params: Params$Resource$Teamdrives$Get,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    get(callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    get(paramsOrCallback?: Params$Resource$Teamdrives$Get|
+        BodyResponseCallback<Schema$TeamDrive>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
         void|AxiosPromise<Schema$TeamDrive> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Teamdrives$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5312,26 +7706,38 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Teamdrives$Insert, options?: MethodOptions):
         AxiosPromise<Schema$TeamDrive>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>): void;
+        params: Params$Resource$Teamdrives$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+        params: Params$Resource$Teamdrives$Insert,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    insert(callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Teamdrives$Insert|
+        BodyResponseCallback<Schema$TeamDrive>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
         void|AxiosPromise<Schema$TeamDrive> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Teamdrives$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5369,26 +7775,37 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Teamdrives$List, options?: MethodOptions):
         AxiosPromise<Schema$TeamDriveList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
-        callback?: BodyResponseCallback<Schema$TeamDriveList>): void;
+        params: Params$Resource$Teamdrives$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
+        callback: BodyResponseCallback<Schema$TeamDriveList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDriveList>,
+        params: Params$Resource$Teamdrives$List,
+        callback: BodyResponseCallback<Schema$TeamDriveList>): void;
+    list(callback: BodyResponseCallback<Schema$TeamDriveList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Teamdrives$List|
+        BodyResponseCallback<Schema$TeamDriveList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TeamDriveList>,
         callback?: BodyResponseCallback<Schema$TeamDriveList>):
         void|AxiosPromise<Schema$TeamDriveList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Teamdrives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Teamdrives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5424,26 +7841,38 @@ export namespace drive_v2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Teamdrives$Update, options?: MethodOptions):
         AxiosPromise<Schema$TeamDrive>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
-        callback?: BodyResponseCallback<Schema$TeamDrive>): void;
+        params: Params$Resource$Teamdrives$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TeamDrive>,
+        params: Params$Resource$Teamdrives$Update,
+        callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    update(callback: BodyResponseCallback<Schema$TeamDrive>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Teamdrives$Update|
+        BodyResponseCallback<Schema$TeamDrive>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TeamDrive>,
         callback?: BodyResponseCallback<Schema$TeamDrive>):
         void|AxiosPromise<Schema$TeamDrive> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Teamdrives$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Teamdrives$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5464,5 +7893,94 @@ export namespace drive_v2 {
         return createAPIRequest<Schema$TeamDrive>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Teamdrives$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Team Drive
+     */
+    teamDriveId?: string;
+  }
+  export interface Params$Resource$Teamdrives$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Team Drive
+     */
+    teamDriveId?: string;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then the requester will be granted access
+     * if they are an administrator of the domain to which the Team Drive
+     * belongs.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Teamdrives$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An ID, such as a random UUID, which uniquely identifies this user's
+     * request for idempotent creation of a Team Drive. A repeated request by
+     * the same user and with the same request ID will avoid creating duplicates
+     * by attempting to create the same Team Drive. If the Team Drive already
+     * exists a 409 error will be returned.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TeamDrive;
+  }
+  export interface Params$Resource$Teamdrives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of Team Drives to return.
+     */
+    maxResults?: number;
+    /**
+     * Page token for Team Drives.
+     */
+    pageToken?: string;
+    /**
+     * Query string for searching Team Drives.
+     */
+    q?: string;
+    /**
+     * Whether the request should be treated as if it was issued by a domain
+     * administrator; if set to true, then all Team Drives of the domain in
+     * which the requester is an administrator are returned.
+     */
+    useDomainAdminAccess?: boolean;
+  }
+  export interface Params$Resource$Teamdrives$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Team Drive
+     */
+    teamDriveId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TeamDrive;
   }
 }

@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace youtubereporting_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * YouTube Reporting API
    *
@@ -85,23 +88,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    blobGeneration: string;
+    blobGeneration?: string;
     /**
      * gdata
      */
-    blobId: string;
+    blobId?: string;
     /**
      * gdata
      */
-    downloadReadHandle: string;
+    downloadReadHandle?: string;
     /**
      * gdata
      */
-    readToken: string;
+    readToken?: string;
     /**
      * gdata
      */
-    uploadMetadataContainer: string;
+    uploadMetadataContainer?: string;
   }
   /**
    * gdata
@@ -110,47 +113,47 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    blobRef: string;
+    blobRef?: string;
     /**
      * gdata
      */
-    blobstore2Info: Schema$GdataBlobstore2Info;
+    blobstore2Info?: Schema$GdataBlobstore2Info;
     /**
      * gdata
      */
-    cosmoBinaryReference: string;
+    cosmoBinaryReference?: string;
     /**
      * gdata
      */
-    crc32cHash: number;
+    crc32cHash?: number;
     /**
      * gdata
      */
-    inline: string;
+    inline?: string;
     /**
      * gdata
      */
-    length: string;
+    length?: string;
     /**
      * gdata
      */
-    md5Hash: string;
+    md5Hash?: string;
     /**
      * gdata
      */
-    objectId: Schema$GdataObjectId;
+    objectId?: Schema$GdataObjectId;
     /**
      * gdata
      */
-    path: string;
+    path?: string;
     /**
      * gdata
      */
-    referenceType: string;
+    referenceType?: string;
     /**
      * gdata
      */
-    sha1Hash: string;
+    sha1Hash?: string;
   }
   /**
    * gdata
@@ -159,23 +162,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    bestGuess: string;
+    bestGuess?: string;
     /**
      * gdata
      */
-    fromBytes: string;
+    fromBytes?: string;
     /**
      * gdata
      */
-    fromFileName: string;
+    fromFileName?: string;
     /**
      * gdata
      */
-    fromHeader: string;
+    fromHeader?: string;
     /**
      * gdata
      */
-    fromUrlPath: string;
+    fromUrlPath?: string;
   }
   /**
    * gdata
@@ -184,23 +187,23 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    checksumsLocation: Schema$GdataCompositeMedia;
+    checksumsLocation?: Schema$GdataCompositeMedia;
     /**
      * gdata
      */
-    chunkSizeBytes: string;
+    chunkSizeBytes?: string;
     /**
      * gdata
      */
-    objectLocation: Schema$GdataCompositeMedia;
+    objectLocation?: Schema$GdataCompositeMedia;
     /**
      * gdata
      */
-    objectSizeBytes: string;
+    objectSizeBytes?: string;
     /**
      * gdata
      */
-    objectVersion: string;
+    objectVersion?: string;
   }
   /**
    * gdata
@@ -209,7 +212,7 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectLocation: Schema$GdataCompositeMedia;
+    objectLocation?: Schema$GdataCompositeMedia;
   }
   /**
    * gdata
@@ -218,15 +221,15 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    checksumsInfo: Schema$GdataCompositeMedia;
+    checksumsInfo?: Schema$GdataCompositeMedia;
     /**
      * gdata
      */
-    objectInfo: Schema$GdataCompositeMedia;
+    objectInfo?: Schema$GdataCompositeMedia;
     /**
      * gdata
      */
-    objectVersion: string;
+    objectVersion?: string;
   }
   /**
    * gdata
@@ -235,11 +238,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectVersion: string;
+    objectVersion?: string;
     /**
      * gdata
      */
-    originalObject: Schema$GdataCompositeMedia;
+    originalObject?: Schema$GdataCompositeMedia;
   }
   /**
    * gdata
@@ -248,11 +251,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    objectSizeBytes: string;
+    objectSizeBytes?: string;
     /**
      * gdata
      */
-    objectVersion: string;
+    objectVersion?: string;
   }
   /**
    * gdata
@@ -261,11 +264,11 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    allowGzipCompression: boolean;
+    allowGzipCompression?: boolean;
     /**
      * gdata
      */
-    ignoreRange: boolean;
+    ignoreRange?: boolean;
   }
   /**
    * gdata
@@ -274,123 +277,123 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    algorithm: string;
+    algorithm?: string;
     /**
      * gdata
      */
-    bigstoreObjectRef: string;
+    bigstoreObjectRef?: string;
     /**
      * gdata
      */
-    blobRef: string;
+    blobRef?: string;
     /**
      * gdata
      */
-    blobstore2Info: Schema$GdataBlobstore2Info;
+    blobstore2Info?: Schema$GdataBlobstore2Info;
     /**
      * gdata
      */
-    compositeMedia: Schema$GdataCompositeMedia[];
+    compositeMedia?: Schema$GdataCompositeMedia[];
     /**
      * gdata
      */
-    contentType: string;
+    contentType?: string;
     /**
      * gdata
      */
-    contentTypeInfo: Schema$GdataContentTypeInfo;
+    contentTypeInfo?: Schema$GdataContentTypeInfo;
     /**
      * gdata
      */
-    cosmoBinaryReference: string;
+    cosmoBinaryReference?: string;
     /**
      * gdata
      */
-    crc32cHash: number;
+    crc32cHash?: number;
     /**
      * gdata
      */
-    diffChecksumsResponse: Schema$GdataDiffChecksumsResponse;
+    diffChecksumsResponse?: Schema$GdataDiffChecksumsResponse;
     /**
      * gdata
      */
-    diffDownloadResponse: Schema$GdataDiffDownloadResponse;
+    diffDownloadResponse?: Schema$GdataDiffDownloadResponse;
     /**
      * gdata
      */
-    diffUploadRequest: Schema$GdataDiffUploadRequest;
+    diffUploadRequest?: Schema$GdataDiffUploadRequest;
     /**
      * gdata
      */
-    diffUploadResponse: Schema$GdataDiffUploadResponse;
+    diffUploadResponse?: Schema$GdataDiffUploadResponse;
     /**
      * gdata
      */
-    diffVersionResponse: Schema$GdataDiffVersionResponse;
+    diffVersionResponse?: Schema$GdataDiffVersionResponse;
     /**
      * gdata
      */
-    downloadParameters: Schema$GdataDownloadParameters;
+    downloadParameters?: Schema$GdataDownloadParameters;
     /**
      * gdata
      */
-    filename: string;
+    filename?: string;
     /**
      * gdata
      */
-    hash: string;
+    hash?: string;
     /**
      * gdata
      */
-    hashVerified: boolean;
+    hashVerified?: boolean;
     /**
      * gdata
      */
-    inline: string;
+    inline?: string;
     /**
      * gdata
      */
-    isPotentialRetry: boolean;
+    isPotentialRetry?: boolean;
     /**
      * gdata
      */
-    length: string;
+    length?: string;
     /**
      * gdata
      */
-    md5Hash: string;
+    md5Hash?: string;
     /**
      * gdata
      */
-    mediaId: string;
+    mediaId?: string;
     /**
      * gdata
      */
-    objectId: Schema$GdataObjectId;
+    objectId?: Schema$GdataObjectId;
     /**
      * gdata
      */
-    path: string;
+    path?: string;
     /**
      * gdata
      */
-    referenceType: string;
+    referenceType?: string;
     /**
      * gdata
      */
-    sha1Hash: string;
+    sha1Hash?: string;
     /**
      * gdata
      */
-    sha256Hash: string;
+    sha256Hash?: string;
     /**
      * gdata
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * gdata
      */
-    token: string;
+    token?: string;
   }
   /**
    * gdata
@@ -399,15 +402,15 @@ export namespace youtubereporting_v1 {
     /**
      * gdata
      */
-    bucketName: string;
+    bucketName?: string;
     /**
      * gdata
      */
-    generation: string;
+    generation?: string;
     /**
      * gdata
      */
-    objectName: string;
+    objectName?: string;
   }
   /**
    * A job creating reports of a specific type.
@@ -416,30 +419,30 @@ export namespace youtubereporting_v1 {
     /**
      * The creation date/time of the job.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The date/time when this job will expire/expired. After a job expired, no
      * new reports are generated.
      */
-    expireTime: string;
+    expireTime?: string;
     /**
      * The server-generated ID of the job (max. 40 characters).
      */
-    id: string;
+    id?: string;
     /**
      * The name of the job (max. 100 characters).
      */
-    name: string;
+    name?: string;
     /**
      * The type of reports this job creates. Corresponds to the ID of a
      * ReportType.
      */
-    reportTypeId: string;
+    reportTypeId?: string;
     /**
      * True if this a system-managed job that cannot be modified by the user;
      * otherwise false.
      */
-    systemManaged: boolean;
+    systemManaged?: boolean;
   }
   /**
    * Response message for ReportingService.ListJobs.
@@ -448,13 +451,13 @@ export namespace youtubereporting_v1 {
     /**
      * The list of jobs.
      */
-    jobs: Schema$Job[];
+    jobs?: Schema$Job[];
     /**
      * A token to retrieve next page of results. Pass this value in the
      * ListJobsRequest.page_token field in the subsequent call to `ListJobs`
      * method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for ReportingService.ListReports.
@@ -465,11 +468,11 @@ export namespace youtubereporting_v1 {
      * ListReportsRequest.page_token field in the subsequent call to
      * `ListReports` method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of report types.
      */
-    reports: Schema$Report[];
+    reports?: Schema$Report[];
   }
   /**
    * Response message for ReportingService.ListReportTypes.
@@ -480,11 +483,11 @@ export namespace youtubereporting_v1 {
      * ListReportTypesRequest.page_token field in the subsequent call to
      * `ListReportTypes` method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of report types.
      */
-    reportTypes: Schema$ReportType[];
+    reportTypes?: Schema$ReportType[];
   }
   /**
    * A report&#39;s metadata including the URL from which the report itself can
@@ -494,33 +497,33 @@ export namespace youtubereporting_v1 {
     /**
      * The date/time when this report was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The URL from which the report can be downloaded (max. 1000 characters).
      */
-    downloadUrl: string;
+    downloadUrl?: string;
     /**
      * The end of the time period that the report instance covers. The value is
      * exclusive.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The server-generated ID of the report.
      */
-    id: string;
+    id?: string;
     /**
      * The date/time when the job this report belongs to will expire/expired.
      */
-    jobExpireTime: string;
+    jobExpireTime?: string;
     /**
      * The ID of the job that created this report.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * The start of the time period that the report instance covers. The value
      * is inclusive.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * A report type.
@@ -529,22 +532,23 @@ export namespace youtubereporting_v1 {
     /**
      * The date/time when this report type was/will be deprecated.
      */
-    deprecateTime: string;
+    deprecateTime?: string;
     /**
      * The ID of the report type (max. 100 characters).
      */
-    id: string;
+    id?: string;
     /**
      * The name of the report type (max. 100 characters).
      */
-    name: string;
+    name?: string;
     /**
      * True if this a system-managed report type; otherwise false. Reporting
      * jobs for system-managed report types are created automatically and can
      * thus not be used in the `CreateJob` method.
      */
-    systemManaged: boolean;
+    systemManaged?: boolean;
   }
+
 
   export class Resource$Jobs {
     root: Youtubereporting;
@@ -573,23 +577,36 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
+    create(params?: Params$Resource$Jobs$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Job>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params: Params$Resource$Jobs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Jobs$Create,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Jobs$Create|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -625,25 +642,36 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Jobs$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Jobs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Jobs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Jobs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -679,21 +707,33 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -731,26 +771,37 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Jobs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params: Params$Resource$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Jobs$List,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Jobs$List|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -772,6 +823,85 @@ export namespace youtubereporting_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Jobs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+  export interface Params$Resource$Jobs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the job to delete.
+     */
+    jobId?: string;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+  }
+  export interface Params$Resource$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the job to retrieve.
+     */
+    jobId?: string;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+  }
+  export interface Params$Resource$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If set to true, also system-managed jobs will be returned; otherwise only
+     * user-created jobs will be returned. System-managed jobs can neither be
+     * modified nor deleted.
+     */
+    includeSystemManaged?: boolean;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Requested page size. Server may return fewer jobs than requested. If
+     * unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListReportTypesResponse.next_page_token
+     * returned in response to the previous call to the `ListJobs` method.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Jobs$Reports {
     root: Youtubereporting;
     constructor(root: Youtubereporting) {
@@ -798,23 +928,33 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Report>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
-        callback?: BodyResponseCallback<Schema$Report>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Report>,
+    get(params?: Params$Resource$Jobs$Reports$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Report>;
+    get(params: Params$Resource$Jobs$Reports$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Report>,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    get(params: Params$Resource$Jobs$Reports$Get,
+        callback: BodyResponseCallback<Schema$Report>): void;
+    get(callback: BodyResponseCallback<Schema$Report>): void;
+    get(paramsOrCallback?: Params$Resource$Jobs$Reports$Get|
+        BodyResponseCallback<Schema$Report>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Report>,
         callback?: BodyResponseCallback<Schema$Report>):
         void|AxiosPromise<Schema$Report> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Reports$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -857,28 +997,38 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Jobs$Reports$List, options?: MethodOptions):
         AxiosPromise<Schema$ListReportsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$ListReportsResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportsResponse>): void;
+        params: Params$Resource$Jobs$Reports$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListReportsResponse>,
+        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Jobs$Reports$List,
+        callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListReportsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Jobs$Reports$List|
+        BodyResponseCallback<Schema$ListReportsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportsResponse>,
         callback?: BodyResponseCallback<Schema$ListReportsResponse>):
         void|AxiosPromise<Schema$ListReportsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Jobs$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Reports$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -901,6 +1051,69 @@ export namespace youtubereporting_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Jobs$Reports$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the job.
+     */
+    jobId?: string;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * The ID of the report to retrieve.
+     */
+    reportId?: string;
+  }
+  export interface Params$Resource$Jobs$Reports$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If set, only reports created after the specified date/time are returned.
+     */
+    createdAfter?: string;
+    /**
+     * The ID of the job.
+     */
+    jobId?: string;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Requested page size. Server may return fewer report types than requested.
+     * If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListReportsResponse.next_page_token
+     * returned in response to the previous call to the `ListReports` method.
+     */
+    pageToken?: string;
+    /**
+     * If set, only reports whose start time is greater than or equal the
+     * specified date/time are returned.
+     */
+    startTimeAtOrAfter?: string;
+    /**
+     * If set, only reports whose start time is smaller than the specified
+     * date/time are returned.
+     */
+    startTimeBefore?: string;
+  }
+
 
 
   export class Resource$Media {
@@ -928,26 +1141,37 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    download(params?: any, options?: MethodOptions):
+    download(params?: Params$Resource$Media$Download, options?: MethodOptions):
         AxiosPromise<Schema$GdataMedia>;
     download(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
-        callback?: BodyResponseCallback<Schema$GdataMedia>): void;
+        params: Params$Resource$Media$Download,
+        options: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
+        callback: BodyResponseCallback<Schema$GdataMedia>): void;
     download(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GdataMedia>,
+        params: Params$Resource$Media$Download,
+        callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(
+        paramsOrCallback?: Params$Resource$Media$Download|
+        BodyResponseCallback<Schema$GdataMedia>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GdataMedia>,
         callback?: BodyResponseCallback<Schema$GdataMedia>):
         void|AxiosPromise<Schema$GdataMedia> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Download;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -970,6 +1194,19 @@ export namespace youtubereporting_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Media$Download {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the media that is being downloaded.
+     */
+    resourceName?: string;
+  }
+
 
   export class Resource$Reporttypes {
     root: Youtubereporting;
@@ -998,28 +1235,38 @@ export namespace youtubereporting_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Reporttypes$List, options?: MethodOptions):
         AxiosPromise<Schema$ListReportTypesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Reporttypes$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListReportTypesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Reporttypes$List,
+        callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListReportTypesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Reporttypes$List|
+        BodyResponseCallback<Schema$ListReportTypesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReportTypesResponse>,
         callback?: BodyResponseCallback<Schema$ListReportTypesResponse>):
         void|AxiosPromise<Schema$ListReportTypesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reporttypes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reporttypes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://youtubereporting.googleapis.com/';
       const parameters = {
@@ -1040,5 +1287,36 @@ export namespace youtubereporting_v1 {
         return createAPIRequest<Schema$ListReportTypesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Reporttypes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * If set to true, also system-managed report types will be returned;
+     * otherwise only the report types that can be used to create new reporting
+     * jobs will be returned.
+     */
+    includeSystemManaged?: boolean;
+    /**
+     * The content owner's external ID on which behalf the user is acting on. If
+     * not set, the user is acting for himself (his own channel).
+     */
+    onBehalfOfContentOwner?: string;
+    /**
+     * Requested page size. Server may return fewer report types than requested.
+     * If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListReportTypesResponse.next_page_token
+     * returned in response to the previous call to the `ListReportTypes`
+     * method.
+     */
+    pageToken?: string;
   }
 }

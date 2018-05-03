@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace adexperiencereport_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Ad Experience Report API
    *
@@ -75,31 +78,31 @@ export namespace adexperiencereport_v1 {
     /**
      * The status of the site reviewed for the Better Ads Standards.
      */
-    betterAdsStatus: string;
+    betterAdsStatus?: string;
     /**
      * The date on which ad filtering begins.
      */
-    enforcementTime: string;
+    enforcementTime?: string;
     /**
      * The ad filtering status of the site.
      */
-    filterStatus: string;
+    filterStatus?: string;
     /**
      * The last time that the site changed status.
      */
-    lastChangeTime: string;
+    lastChangeTime?: string;
     /**
      * The assigned regions for the site and platform.
      */
-    region: string[];
+    region?: string[];
     /**
      * A link that leads to a full ad experience report.
      */
-    reportUrl: string;
+    reportUrl?: string;
     /**
      * Whether the site is currently under review.
      */
-    underReview: boolean;
+    underReview?: boolean;
   }
   /**
    * Response message for GetSiteSummary. Do not confuse with same message in
@@ -109,15 +112,15 @@ export namespace adexperiencereport_v1 {
     /**
      * Summary for the desktop review of the site.
      */
-    desktopSummary: Schema$PlatformSummary;
+    desktopSummary?: Schema$PlatformSummary;
     /**
      * Summary for the mobile review of the site.
      */
-    mobileSummary: Schema$PlatformSummary;
+    mobileSummary?: Schema$PlatformSummary;
     /**
      * The name of the site reviewed.
      */
-    reviewedSite: string;
+    reviewedSite?: string;
   }
   /**
    * Response message for ListViolatingSites.
@@ -126,8 +129,9 @@ export namespace adexperiencereport_v1 {
     /**
      * A list of summaries of violating sites.
      */
-    violatingSites: Schema$SiteSummaryResponse[];
+    violatingSites?: Schema$SiteSummaryResponse[];
   }
+
 
   export class Resource$Sites {
     root: Adexperiencereport;
@@ -153,26 +157,34 @@ export namespace adexperiencereport_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Sites$Get,
         options?: MethodOptions): AxiosPromise<Schema$SiteSummaryResponse>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Sites$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$SiteSummaryResponse>,
+        callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
+    get(params: Params$Resource$Sites$Get,
+        callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
+    get(callback: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
+    get(paramsOrCallback?: Params$Resource$Sites$Get|
         BodyResponseCallback<Schema$SiteSummaryResponse>,
-        callback?: BodyResponseCallback<Schema$SiteSummaryResponse>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SiteSummaryResponse>,
         callback?: BodyResponseCallback<Schema$SiteSummaryResponse>):
         void|AxiosPromise<Schema$SiteSummaryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Sites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Sites$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexperiencereport.googleapis.com/';
       const parameters = {
@@ -194,6 +206,26 @@ export namespace adexperiencereport_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Sites$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The required site name. It should be the site property whose ad
+     * experiences may have been reviewed, and it should be URL-encoded. For
+     * example, sites/https%3A%2F%2Fwww.google.com. The server will return an
+     * error of BAD_REQUEST if this field is not filled in. Note that if the
+     * site property is not yet verified in Search Console, the reportUrl field
+     * returned by the API will lead to the verification page, prompting the
+     * user to go through that process before they can gain access to the Ad
+     * Experience Report.
+     */
+    name?: string;
+  }
+
 
   export class Resource$Violatingsites {
     root: Adexperiencereport;
@@ -219,28 +251,39 @@ export namespace adexperiencereport_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Violatingsites$List, options?: MethodOptions):
         AxiosPromise<Schema$ViolatingSitesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Violatingsites$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ViolatingSitesResponse>,
-        callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+        callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Violatingsites$List,
+        callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ViolatingSitesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Violatingsites$List|
+        BodyResponseCallback<Schema$ViolatingSitesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ViolatingSitesResponse>,
         callback?: BodyResponseCallback<Schema$ViolatingSitesResponse>):
         void|AxiosPromise<Schema$ViolatingSitesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Violatingsites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Violatingsites$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexperiencereport.googleapis.com/';
       const parameters = {
@@ -262,5 +305,12 @@ export namespace adexperiencereport_v1 {
         return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Violatingsites$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
   }
 }

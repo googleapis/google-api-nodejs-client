@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace replicapoolupdater_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Google Compute Engine Instance Group Updater API
    *
@@ -76,11 +79,11 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Errors that occurred during the instance update.
      */
-    error: any;
+    error?: any;
     /**
      * Fully-qualified URL of the instance being updated.
      */
-    instance: string;
+    instance?: string;
     /**
      * Status of the instance update. Possible values are:   -
      * &quot;PENDING&quot;: The instance update is pending execution.  -
@@ -94,7 +97,7 @@ export namespace replicapoolupdater_v1beta1 {
      * longer can be resumed, undefined in which template the instance is
      * running.
      */
-    status: string;
+    status?: string;
   }
   /**
    * Response returned by ListInstanceUpdates method.
@@ -103,95 +106,95 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Collection of requested instance updates.
      */
-    items: Schema$InstanceUpdate[];
+    items?: Schema$InstanceUpdate[];
     /**
      * [Output Only] Type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * [Output Only] The fully qualified URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * An operation resource, used to manage asynchronous API requests.
    */
   export interface Schema$Operation {
-    clientOperationId: string;
+    clientOperationId?: string;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
-    creationTimestamp: string;
-    endTime: string;
+    creationTimestamp?: string;
+    endTime?: string;
     /**
      * [Output Only] If errors occurred during processing of this operation,
      * this field will be populated.
      */
-    error: any;
-    httpErrorMessage: string;
-    httpErrorStatusCode: number;
+    error?: any;
+    httpErrorMessage?: string;
+    httpErrorStatusCode?: number;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * [Output Only] The time that this operation was requested. This is in RFC
      * 3339 format.
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * [Output Only] Type of the resource. Always replicapoolupdater#operation
      * for Operation resources.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output Only] Name of the resource.
      */
-    name: string;
-    operationType: string;
-    progress: number;
+    name?: string;
+    operationType?: string;
+    progress?: number;
     /**
      * [Output Only] URL of the region where the operation resides.
      */
-    region: string;
+    region?: string;
     /**
      * [Output Only] The fully qualified URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output Only] The time that this operation was started by the server.
      * This is in RFC 3339 format.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * [Output Only] Status of the operation. Can be one of the following:
      * &quot;PENDING&quot;, &quot;RUNNING&quot;, or &quot;DONE&quot;.
      */
-    status: string;
+    status?: string;
     /**
      * [Output Only] An optional textual description of the current status of
      * the operation.
      */
-    statusMessage: string;
+    statusMessage?: string;
     /**
      * [Output Only] Unique target id which identifies a particular incarnation
      * of the target.
      */
-    targetId: string;
+    targetId?: string;
     /**
      * [Output Only] URL of the resource the operation is mutating.
      */
-    targetLink: string;
-    user: string;
-    warnings: any[];
+    targetLink?: string;
+    user?: string;
+    warnings?: any[];
     /**
      * [Output Only] URL of the zone where the operation resides.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * Contains a list of Operation resources.
@@ -200,24 +203,24 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * [Output Only] The Operation resources.
      */
-    items: Schema$Operation[];
+    items?: Schema$Operation[];
     /**
      * [Output Only] Type of resource. Always replicapoolupdater#operationList
      * for OperationList resources.
      */
-    kind: string;
+    kind?: string;
     /**
      * [Output Only] A token used to continue a truncate.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * [Output Only] The fully qualified URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * The following represents a resource describing a single update (rollout) of
@@ -231,51 +234,51 @@ export namespace replicapoolupdater_v1beta1 {
      * performs a soft reboot for each instance and is only available for
      * regular (non-managed) instance groups.
      */
-    actionType: string;
+    actionType?: string;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      */
-    creationTimestamp: string;
+    creationTimestamp?: string;
     /**
      * An optional textual description of the resource; provided by the client
      * when the resource is created.
      */
-    description: string;
+    description?: string;
     /**
      * [Output Only] Errors that occurred during the rolling update.
      */
-    error: any;
+    error?: any;
     /**
      * [Output Only] Unique identifier for the resource; defined by the server.
      */
-    id: string;
+    id?: string;
     /**
      * Fully-qualified URL of an instance group being updated. Exactly one of
      * instanceGroupManager and instanceGroup must be set.
      */
-    instanceGroup: string;
+    instanceGroup?: string;
     /**
      * Fully-qualified URL of an instance group manager being updated. Exactly
      * one of instanceGroupManager and instanceGroup must be set.
      */
-    instanceGroupManager: string;
+    instanceGroupManager?: string;
     /**
      * Fully-qualified URL of an instance template to apply.
      */
-    instanceTemplate: string;
+    instanceTemplate?: string;
     /**
      * [Output Only] Type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * Fully-qualified URL of the instance template encountered while starting
      * the update.
      */
-    oldInstanceTemplate: string;
+    oldInstanceTemplate?: string;
     /**
      * Parameters of the update process.
      */
-    policy: any;
+    policy?: any;
     /**
      * [Output Only] An optional progress indicator that ranges from 0 to 100.
      * There is no requirement that this be linear or support any granularity of
@@ -283,11 +286,11 @@ export namespace replicapoolupdater_v1beta1 {
      * complete. This number should be monotonically increasing as the update
      * progresses.
      */
-    progress: number;
+    progress?: number;
     /**
      * [Output Only] The fully qualified URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * [Output Only] Status of the update. Possible values are:   -
      * &quot;ROLLING_FORWARD&quot;: The update is going forward.  -
@@ -299,17 +302,17 @@ export namespace replicapoolupdater_v1beta1 {
      * &quot;CANCELLED&quot;: The update is paused and no longer can be resumed,
      * undefined how many instances are running in which template.
      */
-    status: string;
+    status?: string;
     /**
      * [Output Only] An optional textual description of the current status of
      * the update.
      */
-    statusMessage: string;
+    statusMessage?: string;
     /**
      * [Output Only] User who requested the update, for example:
      * user@example.com.
      */
-    user: string;
+    user?: string;
   }
   /**
    * Response returned by List method.
@@ -318,20 +321,21 @@ export namespace replicapoolupdater_v1beta1 {
     /**
      * Collection of requested updates.
      */
-    items: Schema$RollingUpdate[];
+    items?: Schema$RollingUpdate[];
     /**
      * [Output Only] Type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * A token used to continue a truncated list request.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * [Output Only] The fully qualified URL for the resource.
      */
-    selfLink: string;
+    selfLink?: string;
   }
+
 
   export class Resource$Rollingupdates {
     root: Replicapoolupdater;
@@ -360,26 +364,39 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Rollingupdates$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Rollingupdates$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+        params: Params$Resource$Rollingupdates$Cancel,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Cancel|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -418,24 +435,35 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Rollingupdates$Get,
         options?: MethodOptions): AxiosPromise<Schema$RollingUpdate>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollingUpdate>,
-        callback?: BodyResponseCallback<Schema$RollingUpdate>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollingUpdate>,
+    get(params: Params$Resource$Rollingupdates$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RollingUpdate>,
+        callback: BodyResponseCallback<Schema$RollingUpdate>): void;
+    get(params: Params$Resource$Rollingupdates$Get,
+        callback: BodyResponseCallback<Schema$RollingUpdate>): void;
+    get(callback: BodyResponseCallback<Schema$RollingUpdate>): void;
+    get(paramsOrCallback?: Params$Resource$Rollingupdates$Get|
+        BodyResponseCallback<Schema$RollingUpdate>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RollingUpdate>,
         callback?: BodyResponseCallback<Schema$RollingUpdate>):
         void|AxiosPromise<Schema$RollingUpdate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -474,26 +502,39 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Rollingupdates$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Rollingupdates$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        params: Params$Resource$Rollingupdates$Insert,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(callback: BodyResponseCallback<Schema$Operation>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Insert|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -535,26 +576,38 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Rollingupdates$List, options?: MethodOptions):
         AxiosPromise<Schema$RollingUpdateList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollingUpdateList>,
-        callback?: BodyResponseCallback<Schema$RollingUpdateList>): void;
+        params: Params$Resource$Rollingupdates$List,
+        options: MethodOptions|BodyResponseCallback<Schema$RollingUpdateList>,
+        callback: BodyResponseCallback<Schema$RollingUpdateList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RollingUpdateList>,
+        params: Params$Resource$Rollingupdates$List,
+        callback: BodyResponseCallback<Schema$RollingUpdateList>): void;
+    list(callback: BodyResponseCallback<Schema$RollingUpdateList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Rollingupdates$List|
+        BodyResponseCallback<Schema$RollingUpdateList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RollingUpdateList>,
         callback?: BodyResponseCallback<Schema$RollingUpdateList>):
         void|AxiosPromise<Schema$RollingUpdateList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -596,26 +649,40 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listInstanceUpdates(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$InstanceUpdateList>;
     listInstanceUpdates(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InstanceUpdateList>,
-        callback?: BodyResponseCallback<Schema$InstanceUpdateList>): void;
+        params?: Params$Resource$Rollingupdates$Listinstanceupdates,
+        options?: MethodOptions): AxiosPromise<Schema$InstanceUpdateList>;
     listInstanceUpdates(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InstanceUpdateList>,
+        params: Params$Resource$Rollingupdates$Listinstanceupdates,
+        options: MethodOptions|BodyResponseCallback<Schema$InstanceUpdateList>,
+        callback: BodyResponseCallback<Schema$InstanceUpdateList>): void;
+    listInstanceUpdates(
+        params: Params$Resource$Rollingupdates$Listinstanceupdates,
+        callback: BodyResponseCallback<Schema$InstanceUpdateList>): void;
+    listInstanceUpdates(
+        callback: BodyResponseCallback<Schema$InstanceUpdateList>): void;
+    listInstanceUpdates(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Listinstanceupdates|
+        BodyResponseCallback<Schema$InstanceUpdateList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InstanceUpdateList>,
         callback?: BodyResponseCallback<Schema$InstanceUpdateList>):
         void|AxiosPromise<Schema$InstanceUpdateList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Rollingupdates$Listinstanceupdates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Listinstanceupdates;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -655,26 +722,39 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Rollingupdates$Pause,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Rollingupdates$Pause,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+        params: Params$Resource$Rollingupdates$Pause,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(callback: BodyResponseCallback<Schema$Operation>): void;
+    pause(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Pause|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Pause;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -714,26 +794,39 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Rollingupdates$Resume,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Rollingupdates$Resume,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+        params: Params$Resource$Rollingupdates$Resume,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(callback: BodyResponseCallback<Schema$Operation>): void;
+    resume(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Resume|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Resume;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -773,26 +866,39 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Rollingupdates$Rollback,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Rollingupdates$Rollback,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+        params: Params$Resource$Rollingupdates$Rollback,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+        paramsOrCallback?: Params$Resource$Rollingupdates$Rollback|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Rollingupdates$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rollingupdates$Rollback;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -816,6 +922,184 @@ export namespace replicapoolupdater_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Rollingupdates$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RollingUpdate;
+  }
+  export interface Params$Resource$Rollingupdates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Filter expression for filtering listed resources.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum count of results to be returned. Maximum value is 500
+     * and default value is 500.
+     */
+    maxResults?: number;
+    /**
+     * Optional. Tag returned by a previous list request truncated by
+     * maxResults. Used to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Listinstanceupdates {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Filter expression for filtering listed resources.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum count of results to be returned. Maximum value is 500
+     * and default value is 500.
+     */
+    maxResults?: number;
+    /**
+     * Optional. Tag returned by a previous list request truncated by
+     * maxResults. Used to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Pause {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Resume {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Rollingupdates$Rollback {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Google Developers Console project name.
+     */
+    project?: string;
+    /**
+     * The name of the update.
+     */
+    rollingUpdate?: string;
+    /**
+     * The name of the zone in which the update's target resides.
+     */
+    zone?: string;
+  }
+
 
   export class Resource$Zoneoperations {
     root: Replicapoolupdater;
@@ -843,23 +1127,35 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Zoneoperations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Zoneoperations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Zoneoperations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Zoneoperations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneoperations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -901,26 +1197,38 @@ export namespace replicapoolupdater_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Zoneoperations$List, options?: MethodOptions):
         AxiosPromise<Schema$OperationList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
-        callback?: BodyResponseCallback<Schema$OperationList>): void;
+        params: Params$Resource$Zoneoperations$List,
+        options: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OperationList>,
+        params: Params$Resource$Zoneoperations$List,
+        callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(callback: BodyResponseCallback<Schema$OperationList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Zoneoperations$List|
+        BodyResponseCallback<Schema$OperationList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$OperationList>,
         callback?: BodyResponseCallback<Schema$OperationList>):
         void|AxiosPromise<Schema$OperationList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Zoneoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Zoneoperations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -943,5 +1251,54 @@ export namespace replicapoolupdater_v1beta1 {
         return createAPIRequest<Schema$OperationList>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Zoneoperations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the operation resource to return.
+     */
+    operation?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone scoping this request.
+     */
+    zone?: string;
+  }
+  export interface Params$Resource$Zoneoperations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. Filter expression for filtering listed resources.
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum count of results to be returned. Maximum value is 500
+     * and default value is 500.
+     */
+    maxResults?: number;
+    /**
+     * Optional. Tag returned by a previous list request truncated by
+     * maxResults. Used to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Name of the project scoping this request.
+     */
+    project?: string;
+    /**
+     * Name of the zone scoping this request.
+     */
+    zone?: string;
   }
 }

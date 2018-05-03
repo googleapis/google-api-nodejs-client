@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace appengine_v1beta {
+  export interface Options extends GlobalOptions { version: 'v1beta'; }
+
   /**
    * App Engine Admin API
    *
@@ -76,23 +79,23 @@ export namespace appengine_v1beta {
      * Action to take when users access resources that require authentication.
      * Defaults to redirect.
      */
-    authFailAction: string;
+    authFailAction?: string;
     /**
      * Level of login required to access this resource. Defaults to optional.
      */
-    login: string;
+    login?: string;
     /**
      * Path to the script from the application root directory.
      */
-    script: string;
+    script?: string;
     /**
      * Security (HTTPS) enforcement for this URL.
      */
-    securityLevel: string;
+    securityLevel?: string;
     /**
      * URL to serve the endpoint at.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Uses Google Cloud Endpoints to handle requests.
@@ -101,7 +104,7 @@ export namespace appengine_v1beta {
     /**
      * Path to the script from the application root directory.
      */
-    scriptPath: string;
+    scriptPath?: string;
   }
   /**
    * An Application resource contains the top-level configuration of an App
@@ -112,49 +115,49 @@ export namespace appengine_v1beta {
      * Google Apps authentication domain that controls which users can access
      * this application.Defaults to open access for any Google Account.
      */
-    authDomain: string;
+    authDomain?: string;
     /**
      * Google Cloud Storage bucket that can be used for storing files associated
      * with this application. This bucket is associated with the application and
      * can be used by the gcloud deployment commands.@OutputOnly
      */
-    codeBucket: string;
+    codeBucket?: string;
     /**
      * Google Cloud Storage bucket that can be used by this application to store
      * content.@OutputOnly
      */
-    defaultBucket: string;
+    defaultBucket?: string;
     /**
      * Cookie expiration policy for this application.
      */
-    defaultCookieExpiration: string;
+    defaultCookieExpiration?: string;
     /**
      * Hostname used to reach this application, as resolved by App
      * Engine.@OutputOnly
      */
-    defaultHostname: string;
+    defaultHostname?: string;
     /**
      * HTTP path dispatch rules for requests to the application that do not
      * explicitly target a service or version. Rules are order-dependent. Up to
      * 20 dispatch rules can be supported.@OutputOnly
      */
-    dispatchRules: Schema$UrlDispatchRule[];
+    dispatchRules?: Schema$UrlDispatchRule[];
     /**
      * The feature specific settings to be used in the application.
      */
-    featureSettings: Schema$FeatureSettings;
+    featureSettings?: Schema$FeatureSettings;
     /**
      * The Google Container Registry domain used for storing managed build
      * docker images for this application.
      */
-    gcrDomain: string;
-    iap: Schema$IdentityAwareProxy;
+    gcrDomain?: string;
+    iap?: Schema$IdentityAwareProxy;
     /**
      * Identifier of the Application resource. This identifier is equivalent to
      * the project ID of the Google Cloud Platform project where you want to
      * deploy your application. Example: myapp.
      */
-    id: string;
+    id?: string;
     /**
      * Location from which this application runs. Application instances run out
      * of the data centers in the specified location, which is also where all of
@@ -162,16 +165,16 @@ export namespace appengine_v1beta {
      * us-central.View the list of supported locations
      * (https://cloud.google.com/appengine/docs/locations).
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Full path to the Application resource in the API. Example:
      * apps/myapp.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Serving status of this application.
      */
-    servingStatus: string;
+    servingStatus?: string;
   }
   /**
    * An SSL certificate that a user has been authorized to administer. A user is
@@ -183,35 +186,35 @@ export namespace appengine_v1beta {
      * The SSL certificate serving the AuthorizedCertificate resource. This must
      * be obtained independently from a certificate authority.
      */
-    certificateRawData: Schema$CertificateRawData;
+    certificateRawData?: Schema$CertificateRawData;
     /**
      * The user-specified display name of the certificate. This is not
      * guaranteed to be unique. Example: My Certificate.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Aggregate count of the domain mappings with this certificate mapped. This
      * count includes domain mappings on applications for which the user does
      * not have VIEWER permissions.Only returned by GET or LIST requests when
      * specifically requested by the view=FULL_CERTIFICATE option.@OutputOnly
      */
-    domainMappingsCount: number;
+    domainMappingsCount?: number;
     /**
      * Topmost applicable domains of this certificate. This certificate applies
      * to these domains and their subdomains. Example: example.com.@OutputOnly
      */
-    domainNames: string[];
+    domainNames?: string[];
     /**
      * The time when this certificate expires. To update the renewal time on
      * this certificate, upload an SSL certificate with a different expiration
      * time using AuthorizedCertificates.UpdateAuthorizedCertificate.@OutputOnly
      */
-    expireTime: string;
+    expireTime?: string;
     /**
      * Relative name of the certificate. This is a unique value autogenerated on
      * AuthorizedCertificate resource creation. Example: 12345.@OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * Only applicable if this certificate is managed by App Engine. Managed
      * certificates are tied to the lifecycle of a DomainMapping and cannot be
@@ -219,12 +222,12 @@ export namespace appengine_v1beta {
      * certificate is manually administered by the user, this field will be
      * empty.@OutputOnly
      */
-    managedCertificate: Schema$ManagedCertificate;
+    managedCertificate?: Schema$ManagedCertificate;
     /**
      * Full path to the AuthorizedCertificate resource in the API. Example:
      * apps/myapp/authorizedCertificates/12345.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * The full paths to user visible Domain Mapping resources that have this
      * certificate mapped. Example: apps/myapp/domainMappings/example.com.This
@@ -234,7 +237,7 @@ export namespace appengine_v1beta {
      * count.Only returned by GET or LIST requests when specifically requested
      * by the view=FULL_CERTIFICATE option.@OutputOnly
      */
-    visibleDomainMappings: string[];
+    visibleDomainMappings?: string[];
   }
   /**
    * A domain that a user has been authorized to administer. To authorize use of
@@ -246,12 +249,12 @@ export namespace appengine_v1beta {
      * Fully qualified domain name of the domain authorized for use. Example:
      * example.com.
      */
-    id: string;
+    id?: string;
     /**
      * Full path to the AuthorizedDomain resource in the API. Example:
      * apps/myapp/authorizedDomains/example.com.@OutputOnly
      */
-    name: string;
+    name?: string;
   }
   /**
    * Automatic scaling is based on request rate, response latencies, and other
@@ -264,67 +267,67 @@ export namespace appengine_v1beta {
      * changes to the number of virtual machines. Only applicable in the App
      * Engine flexible environment.
      */
-    coolDownPeriod: string;
+    coolDownPeriod?: string;
     /**
      * Target scaling by CPU usage.
      */
-    cpuUtilization: Schema$CpuUtilization;
+    cpuUtilization?: Schema$CpuUtilization;
     /**
      * Target scaling by user-provided metrics.
      */
-    customMetrics: Schema$CustomMetric[];
+    customMetrics?: Schema$CustomMetric[];
     /**
      * Target scaling by disk usage.
      */
-    diskUtilization: Schema$DiskUtilization;
+    diskUtilization?: Schema$DiskUtilization;
     /**
      * Number of concurrent requests an automatic scaling instance can accept
      * before the scheduler spawns a new instance.Defaults to a runtime-specific
      * value.
      */
-    maxConcurrentRequests: number;
+    maxConcurrentRequests?: number;
     /**
      * Maximum number of idle instances that should be maintained for this
      * version.
      */
-    maxIdleInstances: number;
+    maxIdleInstances?: number;
     /**
      * Maximum amount of time that a request should wait in the pending queue
      * before starting a new instance to handle it.
      */
-    maxPendingLatency: string;
+    maxPendingLatency?: string;
     /**
      * Maximum number of instances that should be started to handle requests for
      * this version.
      */
-    maxTotalInstances: number;
+    maxTotalInstances?: number;
     /**
      * Minimum number of idle instances that should be maintained for this
      * version. Only applicable for the default version of a service.
      */
-    minIdleInstances: number;
+    minIdleInstances?: number;
     /**
      * Minimum amount of time a request should wait in the pending queue before
      * starting a new instance to handle it.
      */
-    minPendingLatency: string;
+    minPendingLatency?: string;
     /**
      * Minimum number of running instances that should be maintained for this
      * version.
      */
-    minTotalInstances: number;
+    minTotalInstances?: number;
     /**
      * Target scaling by network usage.
      */
-    networkUtilization: Schema$NetworkUtilization;
+    networkUtilization?: Schema$NetworkUtilization;
     /**
      * Target scaling by request utilization.
      */
-    requestUtilization: Schema$RequestUtilization;
+    requestUtilization?: Schema$RequestUtilization;
     /**
      * Scheduler settings for standard environment.
      */
-    standardSchedulerSettings: Schema$StandardSchedulerSettings;
+    standardSchedulerSettings?: Schema$StandardSchedulerSettings;
   }
   /**
    * A service with basic scaling will create an instance when the application
@@ -337,11 +340,11 @@ export namespace appengine_v1beta {
      * Duration of time after the last request that an instance must wait before
      * the instance is shut down.
      */
-    idleTimeout: string;
+    idleTimeout?: string;
     /**
      * Maximum number of instances to create for this version.
      */
-    maxInstances: number;
+    maxInstances?: number;
   }
   /**
    * Request message for Firewall.BatchUpdateIngressRules.
@@ -350,7 +353,7 @@ export namespace appengine_v1beta {
     /**
      * A list of FirewallRules to replace the existing set.
      */
-    ingressRules: Schema$FirewallRule[];
+    ingressRules?: Schema$FirewallRule[];
   }
   /**
    * Response message for Firewall.UpdateAllIngressRules.
@@ -359,7 +362,7 @@ export namespace appengine_v1beta {
     /**
      * The full list of ingress FirewallRules for this application.
      */
-    ingressRules: Schema$FirewallRule[];
+    ingressRules?: Schema$FirewallRule[];
   }
   /**
    * Google Cloud Container Builder build information.
@@ -369,7 +372,7 @@ export namespace appengine_v1beta {
      * The Google Cloud Container Builder build id. Example:
      * &quot;f966068f-08b2-42c8-bdfe-74137dff2bf9&quot;
      */
-    cloudBuildId: string;
+    cloudBuildId?: string;
   }
   /**
    * An SSL certificate obtained from a certificate authority.
@@ -382,14 +385,14 @@ export namespace appengine_v1beta {
      * -----BEGIN RSA PRIVATE KEY----- &lt;unencrypted_key_value&gt; -----END
      * RSA PRIVATE KEY----- &lt;/pre&gt; @InputOnly
      */
-    privateKey: string;
+    privateKey?: string;
     /**
      * PEM encoded x.509 public key certificate. This field is set once on
      * certificate creation. Must include the header and footer. Example:
      * &lt;pre&gt; -----BEGIN CERTIFICATE----- &lt;certificate_value&gt;
      * -----END CERTIFICATE----- &lt;/pre&gt;
      */
-    publicCertificate: string;
+    publicCertificate?: string;
   }
   /**
    * Options for the build operations performed as a part of the version
@@ -403,12 +406,12 @@ export namespace appengine_v1beta {
      * https://cloud.google.com/appengine/docs/standard/python/config/appref for
      * more details.
      */
-    appYamlPath: string;
+    appYamlPath?: string;
     /**
      * The Cloud Build timeout used as part of any dependent builds performed by
      * version creation. Defaults to 10 minutes.
      */
-    cloudBuildTimeout: string;
+    cloudBuildTimeout?: string;
   }
   /**
    * Docker image that is used to create a container and start a VM instance for
@@ -422,7 +425,7 @@ export namespace appengine_v1beta {
      * &quot;gcr.io/my-project/image:tag&quot; or
      * &quot;gcr.io/my-project/image@digest&quot;
      */
-    image: string;
+    image?: string;
   }
   /**
    * Target scaling by CPU usage.
@@ -431,12 +434,12 @@ export namespace appengine_v1beta {
     /**
      * Period of time over which CPU utilization is calculated.
      */
-    aggregationWindowLength: string;
+    aggregationWindowLength?: string;
     /**
      * Target CPU utilization ratio to maintain when scaling. Must be between 0
      * and 1.
      */
-    targetUtilization: number;
+    targetUtilization?: number;
   }
   /**
    * Metadata for the given google.longrunning.Operation during a
@@ -447,7 +450,7 @@ export namespace appengine_v1beta {
      * The Cloud Build ID if one was created as part of the version create.
      * @OutputOnly
      */
-    cloudBuildId: string;
+    cloudBuildId?: string;
   }
   /**
    * Metadata for the given google.longrunning.Operation during a
@@ -458,7 +461,7 @@ export namespace appengine_v1beta {
      * The Cloud Build ID if one was created as part of the version create.
      * @OutputOnly
      */
-    cloudBuildId: string;
+    cloudBuildId?: string;
   }
   /**
    * Metadata for the given google.longrunning.Operation during a
@@ -469,7 +472,7 @@ export namespace appengine_v1beta {
      * The Cloud Build ID if one was created as part of the version create.
      * @OutputOnly
      */
-    cloudBuildId: string;
+    cloudBuildId?: string;
   }
   /**
    * Allows autoscaling based on Stackdriver metrics.
@@ -478,11 +481,11 @@ export namespace appengine_v1beta {
     /**
      * Allows filtering on the metric&#39;s fields.
      */
-    filter: string;
+    filter?: string;
     /**
      * The name of the metric.
      */
-    metricName: string;
+    metricName?: string;
     /**
      * May be used instead of target_utilization when an instance can handle a
      * specific amount of work/resources and the metric value is equal to the
@@ -490,16 +493,16 @@ export namespace appengine_v1beta {
      * number of instances equal to the metric value divided by
      * single_instance_assignment.
      */
-    singleInstanceAssignment: number;
+    singleInstanceAssignment?: number;
     /**
      * The type of the metric. Must be a string representing a Stackdriver
      * metric type e.g. GAGUE, DELTA_PER_SECOND, etc.
      */
-    targetType: string;
+    targetType?: string;
     /**
      * The target value for the metric.
      */
-    targetUtilization: number;
+    targetUtilization?: number;
   }
   /**
    * Request message for Instances.DebugInstance.
@@ -512,7 +515,7 @@ export namespace appengine_v1beta {
      * more information, see Adding and Removing SSH Keys
      * (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
      */
-    sshKey: string;
+    sshKey?: string;
   }
   /**
    * Code and application artifacts used to deploy a version to App Engine.
@@ -522,7 +525,7 @@ export namespace appengine_v1beta {
      * Google Cloud Container Builder build information. Only applicable for
      * instances running in the App Engine flexible environment.
      */
-    build: Schema$BuildInfo;
+    build?: Schema$BuildInfo;
     /**
      * Options for any Google Cloud Container Builder builds created as a part
      * of this deployment.Note that this is orthogonal to the build parameter,
@@ -530,22 +533,22 @@ export namespace appengine_v1beta {
      * options will only be used if a new build is created, such as when
      * deploying to the App Engine flexible environment using files or zip.
      */
-    cloudBuildOptions: Schema$CloudBuildOptions;
+    cloudBuildOptions?: Schema$CloudBuildOptions;
     /**
      * The Docker image for the container that runs the version. Only applicable
      * for instances running in the App Engine flexible environment.
      */
-    container: Schema$ContainerInfo;
+    container?: Schema$ContainerInfo;
     /**
      * Manifest of the files stored in Google Cloud Storage that are included as
      * part of this version. All files must be readable using the credentials
      * supplied with this call.
      */
-    files: any;
+    files?: any;
     /**
      * The zip file for this deployment, if this is a zip deployment.
      */
-    zip: Schema$ZipInfo;
+    zip?: Schema$ZipInfo;
   }
   /**
    * Target scaling by disk usage. Only applicable in the App Engine flexible
@@ -555,19 +558,19 @@ export namespace appengine_v1beta {
     /**
      * Target bytes read per second.
      */
-    targetReadBytesPerSecond: number;
+    targetReadBytesPerSecond?: number;
     /**
      * Target ops read per seconds.
      */
-    targetReadOpsPerSecond: number;
+    targetReadOpsPerSecond?: number;
     /**
      * Target bytes written per second.
      */
-    targetWriteBytesPerSecond: number;
+    targetWriteBytesPerSecond?: number;
     /**
      * Target ops written per second.
      */
-    targetWriteOpsPerSecond: number;
+    targetWriteOpsPerSecond?: number;
   }
   /**
    * A domain serving an App Engine application.
@@ -577,23 +580,23 @@ export namespace appengine_v1beta {
      * Relative name of the domain serving the application. Example:
      * example.com.
      */
-    id: string;
+    id?: string;
     /**
      * Full path to the DomainMapping resource in the API. Example:
      * apps/myapp/domainMapping/example.com.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * The resource records required to configure this domain mapping. These
      * records must be added to the domain&#39;s DNS configuration in order to
      * serve the application via this domain mapping.@OutputOnly
      */
-    resourceRecords: Schema$ResourceRecord[];
+    resourceRecords?: Schema$ResourceRecord[];
     /**
      * SSL configuration for this domain. If unconfigured, this domain will not
      * serve with SSL.
      */
-    sslSettings: Schema$SslSettings;
+    sslSettings?: Schema$SslSettings;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -619,18 +622,18 @@ export namespace appengine_v1beta {
      * keep the Endpoints service configuration id updated with each rollout,
      * specify RolloutStrategy.MANAGED and omit config_id.
      */
-    configId: string;
+    configId?: string;
     /**
      * Endpoints service name which is the name of the &quot;service&quot;
      * resource in the Service Management API. For example
      * &quot;myapi.endpoints.myproject.cloud.goog&quot;
      */
-    name: string;
+    name?: string;
     /**
      * Endpoints rollout strategy. If FIXED, config_id must be specified. If
      * MANAGED, config_id must be omitted.
      */
-    rolloutStrategy: string;
+    rolloutStrategy?: string;
   }
   /**
    * Custom static error page to be served when an error occurs.
@@ -639,15 +642,15 @@ export namespace appengine_v1beta {
     /**
      * Error condition this handler applies to.
      */
-    errorCode: string;
+    errorCode?: string;
     /**
      * MIME type of file. Defaults to text/html.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Static file content to be served for this error.
      */
-    staticFile: string;
+    staticFile?: string;
   }
   /**
    * The feature specific settings to be used in the application. These define
@@ -662,13 +665,13 @@ export namespace appengine_v1beta {
      * behavior is deprecated, and this value is always true, this setting can
      * be removed.
      */
-    splitHealthChecks: boolean;
+    splitHealthChecks?: boolean;
     /**
      * If true, use Container-Optimized OS
      * (https://cloud.google.com/container-optimized-os/) base image for VMs,
      * rather than a base Debian image.
      */
-    useContainerOptimizedOs: boolean;
+    useContainerOptimizedOs?: boolean;
   }
   /**
    * Single source file that is part of the version to be deployed. Each source
@@ -679,17 +682,17 @@ export namespace appengine_v1beta {
      * The MIME type of the file.Defaults to the value from Google Cloud
      * Storage.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * The SHA1 hash of the file, in hex.
      */
-    sha1Sum: string;
+    sha1Sum?: string;
     /**
      * URL source to use to fetch this file. Must be a URL to a resource in
      * Google Cloud Storage in the form
      * &#39;http(s)://storage.googleapis.com/&lt;bucket&gt;/&lt;object&gt;&#39;.
      */
-    sourceUrl: string;
+    sourceUrl?: string;
   }
   /**
    * A single firewall rule that is evaluated against incoming traffic and
@@ -699,12 +702,12 @@ export namespace appengine_v1beta {
     /**
      * The action to take on matched requests.
      */
-    action: string;
+    action?: string;
     /**
      * An optional string description of this rule. This field has a maximum
      * length of 100 characters.
      */
-    description: string;
+    description?: string;
     /**
      * A positive integer between 1, Int32.MaxValue-1 that defines the order of
      * rule evaluation. Rules with the lowest priority are evaluated first.A
@@ -712,7 +715,7 @@ export namespace appengine_v1beta {
      * when no previous rule matches. Only the action of this rule can be
      * modified by the user.
      */
-    priority: number;
+    priority?: number;
     /**
      * IP address or range, defined using CIDR notation, of requests that this
      * rule applies to. You can use the wildcard character &quot;*&quot; to
@@ -724,7 +727,7 @@ export namespace appengine_v1beta {
      * Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as
      * 2001:db8::/32.
      */
-    sourceRange: string;
+    sourceRange?: string;
   }
   /**
    * Health checking configuration for VM instances. Unhealthy instances are
@@ -735,35 +738,35 @@ export namespace appengine_v1beta {
     /**
      * Interval between health checks.
      */
-    checkInterval: string;
+    checkInterval?: string;
     /**
      * Whether to explicitly disable health checks for this instance.
      */
-    disableHealthCheck: boolean;
+    disableHealthCheck?: boolean;
     /**
      * Number of consecutive successful health checks required before receiving
      * traffic.
      */
-    healthyThreshold: number;
+    healthyThreshold?: number;
     /**
      * Host header to send when performing an HTTP health check. Example:
      * &quot;myapp.appspot.com&quot;
      */
-    host: string;
+    host?: string;
     /**
      * Number of consecutive failed health checks required before an instance is
      * restarted.
      */
-    restartThreshold: number;
+    restartThreshold?: number;
     /**
      * Time before the health check is considered failed.
      */
-    timeout: string;
+    timeout?: string;
     /**
      * Number of consecutive failed health checks required before removing
      * traffic.
      */
-    unhealthyThreshold: number;
+    unhealthyThreshold?: number;
   }
   /**
    * Identity-Aware Proxy
@@ -774,22 +777,22 @@ export namespace appengine_v1beta {
      * incoming requests.If true, the oauth2_client_id and oauth2_client_secret
      * fields must be non-empty.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * OAuth2 client ID to use for the authentication flow.
      */
-    oauth2ClientId: string;
+    oauth2ClientId?: string;
     /**
      * OAuth2 client secret to use for the authentication flow.For security
      * reasons, this value cannot be retrieved via the API. Instead, the SHA-256
      * hash of the value is returned in the oauth2_client_secret_sha256
      * field.@InputOnly
      */
-    oauth2ClientSecret: string;
+    oauth2ClientSecret?: string;
     /**
      * Hex-encoded SHA-256 hash of the client secret.@OutputOnly
      */
-    oauth2ClientSecretSha256: string;
+    oauth2ClientSecretSha256?: string;
   }
   /**
    * An Instance resource is the computing unit that App Engine uses to
@@ -799,75 +802,75 @@ export namespace appengine_v1beta {
     /**
      * App Engine release this instance is running on.@OutputOnly
      */
-    appEngineRelease: string;
+    appEngineRelease?: string;
     /**
      * Availability of the instance.@OutputOnly
      */
-    availability: string;
+    availability?: string;
     /**
      * Average latency (ms) over the last minute.@OutputOnly
      */
-    averageLatency: number;
+    averageLatency?: number;
     /**
      * Number of errors since this instance was started.@OutputOnly
      */
-    errors: number;
+    errors?: number;
     /**
      * Relative name of the instance within the version. Example:
      * instance-1.@OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * Total memory in use (bytes).@OutputOnly
      */
-    memoryUsage: string;
+    memoryUsage?: string;
     /**
      * Full path to the Instance resource in the API. Example:
      * apps/myapp/services/default/versions/v1/instances/instance-1.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Average queries per second (QPS) over the last minute.@OutputOnly
      */
-    qps: number;
+    qps?: number;
     /**
      * Number of requests since this instance was started.@OutputOnly
      */
-    requests: number;
+    requests?: number;
     /**
      * Time that this instance was started.@OutputOnly
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Whether this instance is in debug mode. Only applicable for instances in
      * App Engine flexible environment.@OutputOnly
      */
-    vmDebugEnabled: boolean;
+    vmDebugEnabled?: boolean;
     /**
      * Virtual machine ID of this instance. Only applicable for instances in App
      * Engine flexible environment.@OutputOnly
      */
-    vmId: string;
+    vmId?: string;
     /**
      * The IP address of this instance. Only applicable for instances in App
      * Engine flexible environment.@OutputOnly
      */
-    vmIp: string;
+    vmIp?: string;
     /**
      * Name of the virtual machine where this instance lives. Only applicable
      * for instances in App Engine flexible environment.@OutputOnly
      */
-    vmName: string;
+    vmName?: string;
     /**
      * Status of the virtual machine where this instance lives. Only applicable
      * for instances in App Engine flexible environment.@OutputOnly
      */
-    vmStatus: string;
+    vmStatus?: string;
     /**
      * Zone where the virtual machine is located. Only applicable for instances
      * in App Engine flexible environment.@OutputOnly
      */
-    vmZoneName: string;
+    vmZoneName?: string;
   }
   /**
    * Third-party Python runtime library that is required by the application.
@@ -876,11 +879,11 @@ export namespace appengine_v1beta {
     /**
      * Name of the library. Example: &quot;django&quot;.
      */
-    name: string;
+    name?: string;
     /**
      * Version of the library to select, or &quot;latest&quot;.
      */
-    version: string;
+    version?: string;
   }
   /**
    * Response message for AuthorizedCertificates.ListAuthorizedCertificates.
@@ -889,11 +892,11 @@ export namespace appengine_v1beta {
     /**
      * The SSL certificates the user is authorized to administer.
      */
-    certificates: Schema$AuthorizedCertificate[];
+    certificates?: Schema$AuthorizedCertificate[];
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for AuthorizedDomains.ListAuthorizedDomains.
@@ -902,11 +905,11 @@ export namespace appengine_v1beta {
     /**
      * The authorized domains belonging to the user.
      */
-    domains: Schema$AuthorizedDomain[];
+    domains?: Schema$AuthorizedDomain[];
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for DomainMappings.ListDomainMappings.
@@ -915,11 +918,11 @@ export namespace appengine_v1beta {
     /**
      * The domain mappings for the application.
      */
-    domainMappings: Schema$DomainMapping[];
+    domainMappings?: Schema$DomainMapping[];
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for Firewall.ListIngressRules.
@@ -928,11 +931,11 @@ export namespace appengine_v1beta {
     /**
      * The ingress FirewallRules for this application.
      */
-    ingressRules: Schema$FirewallRule[];
+    ingressRules?: Schema$FirewallRule[];
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for Instances.ListInstances.
@@ -941,11 +944,11 @@ export namespace appengine_v1beta {
     /**
      * The instances belonging to the requested version.
      */
-    instances: Schema$Instance[];
+    instances?: Schema$Instance[];
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -954,11 +957,11 @@ export namespace appengine_v1beta {
     /**
      * A list of locations that matches the specified filter in the request.
      */
-    locations: Schema$Location[];
+    locations?: Schema$Location[];
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -967,11 +970,11 @@ export namespace appengine_v1beta {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Response message for Services.ListServices.
@@ -980,11 +983,11 @@ export namespace appengine_v1beta {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The services belonging to the requested application.
      */
-    services: Schema$Service[];
+    services?: Schema$Service[];
   }
   /**
    * Response message for Versions.ListVersions.
@@ -993,11 +996,11 @@ export namespace appengine_v1beta {
     /**
      * Continuation token for fetching the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The versions belonging to the requested service.
      */
-    versions: Schema$Version[];
+    versions?: Schema$Version[];
   }
   /**
    * Health checking configuration for VM instances. Unhealthy instances are
@@ -1007,34 +1010,34 @@ export namespace appengine_v1beta {
     /**
      * Interval between health checks.
      */
-    checkInterval: string;
+    checkInterval?: string;
     /**
      * Number of consecutive failed checks required before considering the VM
      * unhealthy.
      */
-    failureThreshold: number;
+    failureThreshold?: number;
     /**
      * Host header to send when performing a HTTP Liveness check. Example:
      * &quot;myapp.appspot.com&quot;
      */
-    host: string;
+    host?: string;
     /**
      * The initial delay before starting to execute the checks.
      */
-    initialDelay: string;
+    initialDelay?: string;
     /**
      * The request path.
      */
-    path: string;
+    path?: string;
     /**
      * Number of consecutive successful checks required before considering the
      * VM healthy.
      */
-    successThreshold: number;
+    successThreshold?: number;
     /**
      * Time before the check is considered failed.
      */
-    timeout: string;
+    timeout?: string;
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -1044,26 +1047,26 @@ export namespace appengine_v1beta {
      * The friendly name for this location, typically a nearby city name. For
      * example, &quot;Tokyo&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels: any;
+    labels?: any;
     /**
      * The canonical id for this location. For example: &quot;us-east1&quot;.
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: &quot;projects/example-project/locations/us-east1&quot;
      */
-    name: string;
+    name?: string;
   }
   /**
    * Metadata for the given google.cloud.location.Location.
@@ -1073,12 +1076,12 @@ export namespace appengine_v1beta {
      * App Engine flexible environment is available in the given
      * location.@OutputOnly
      */
-    flexibleEnvironmentAvailable: boolean;
+    flexibleEnvironmentAvailable?: boolean;
     /**
      * App Engine standard environment is available in the given
      * location.@OutputOnly
      */
-    standardEnvironmentAvailable: boolean;
+    standardEnvironmentAvailable?: boolean;
   }
   /**
    * A certificate managed by App Engine.
@@ -1090,12 +1093,12 @@ export namespace appengine_v1beta {
      * certificate expires. Renewal errors can be tracked via
      * ManagementStatus.@OutputOnly
      */
-    lastRenewalTime: string;
+    lastRenewalTime?: string;
     /**
      * Status of certificate management. Refers to the most recent certificate
      * acquisition or renewal attempt.@OutputOnly
      */
-    status: string;
+    status?: string;
   }
   /**
    * A service with manual scaling runs continuously, allowing you to perform
@@ -1108,7 +1111,7 @@ export namespace appengine_v1beta {
      * (https://cloud.google.com/appengine/docs/python/modules/functions)
      * set_num_instances() function.
      */
-    instances: number;
+    instances?: number;
   }
   /**
    * Extra network settings. Only applicable in the App Engine flexible
@@ -1120,21 +1123,21 @@ export namespace appengine_v1beta {
      * application container. Only applicable in the App Engine flexible
      * environment.
      */
-    forwardedPorts: string[];
+    forwardedPorts?: string[];
     /**
      * Tag to apply to the instance during creation. Only applicable in the App
      * Engine flexible environment.
      */
-    instanceTag: string;
+    instanceTag?: string;
     /**
      * Google Compute Engine network where the virtual machines are created.
      * Specify the short name, not the resource path.Defaults to default.
      */
-    name: string;
+    name?: string;
     /**
      * Enable session affinity.
      */
-    sessionAffinity: boolean;
+    sessionAffinity?: boolean;
     /**
      * Google Cloud Platform sub-network where the virtual machines are created.
      * Specify the short name, not the resource path.If a subnetwork name is
@@ -1151,7 +1154,7 @@ export namespace appengine_v1beta {
      * exist in the same region as the App Engine flexible environment
      * application.
      */
-    subnetworkName: string;
+    subnetworkName?: string;
   }
   /**
    * Target scaling by network usage. Only applicable in the App Engine flexible
@@ -1161,19 +1164,19 @@ export namespace appengine_v1beta {
     /**
      * Target bytes received per second.
      */
-    targetReceivedBytesPerSecond: number;
+    targetReceivedBytesPerSecond?: number;
     /**
      * Target packets received per second.
      */
-    targetReceivedPacketsPerSecond: number;
+    targetReceivedPacketsPerSecond?: number;
     /**
      * Target bytes sent per second.
      */
-    targetSentBytesPerSecond: number;
+    targetSentBytesPerSecond?: number;
     /**
      * Target packets sent per second.
      */
-    targetSentPacketsPerSecond: number;
+    targetSentPacketsPerSecond?: number;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -1185,24 +1188,24 @@ export namespace appengine_v1beta {
      * true, the operation is completed, and either error or response is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation. It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
      * should have the format of operations/some/unique/name.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success. If the original
      * method returns no data on success, such as Delete, the response is
@@ -1212,7 +1215,7 @@ export namespace appengine_v1beta {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -1221,141 +1224,141 @@ export namespace appengine_v1beta {
     /**
      * Timestamp that this operation completed.@OutputOnly
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Timestamp that this operation was created.@OutputOnly
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * API method that initiated this operation. Example:
      * google.appengine.v1beta4.Version.CreateVersion.@OutputOnly
      */
-    method: string;
+    method?: string;
     /**
      * Type of this operation. Deprecated, use method field instead. Example:
      * &quot;create_version&quot;.@OutputOnly
      */
-    operationType: string;
+    operationType?: string;
     /**
      * Name of the resource that this operation is acting on. Example:
      * apps/myapp/modules/default.@OutputOnly
      */
-    target: string;
+    target?: string;
     /**
      * User who requested this operation.@OutputOnly
      */
-    user: string;
+    user?: string;
   }
   /**
    * Metadata for the given google.longrunning.Operation.
    */
   export interface Schema$OperationMetadataV1 {
-    createVersionMetadata: Schema$CreateVersionMetadataV1;
+    createVersionMetadata?: Schema$CreateVersionMetadataV1;
     /**
      * Time that this operation completed.@OutputOnly
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Ephemeral message that may change every time the operation is polled.
      * @OutputOnly
      */
-    ephemeralMessage: string;
+    ephemeralMessage?: string;
     /**
      * Time that this operation was created.@OutputOnly
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * API method that initiated this operation. Example:
      * google.appengine.v1.Versions.CreateVersion.@OutputOnly
      */
-    method: string;
+    method?: string;
     /**
      * Name of the resource that this operation is acting on. Example:
      * apps/myapp/services/default.@OutputOnly
      */
-    target: string;
+    target?: string;
     /**
      * User who requested this operation.@OutputOnly
      */
-    user: string;
+    user?: string;
     /**
      * Durable messages that persist on every operation poll. @OutputOnly
      */
-    warning: string[];
+    warning?: string[];
   }
   /**
    * Metadata for the given google.longrunning.Operation.
    */
   export interface Schema$OperationMetadataV1Alpha {
-    createVersionMetadata: Schema$CreateVersionMetadataV1Alpha;
+    createVersionMetadata?: Schema$CreateVersionMetadataV1Alpha;
     /**
      * Time that this operation completed.@OutputOnly
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Ephemeral message that may change every time the operation is polled.
      * @OutputOnly
      */
-    ephemeralMessage: string;
+    ephemeralMessage?: string;
     /**
      * Time that this operation was created.@OutputOnly
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * API method that initiated this operation. Example:
      * google.appengine.v1alpha.Versions.CreateVersion.@OutputOnly
      */
-    method: string;
+    method?: string;
     /**
      * Name of the resource that this operation is acting on. Example:
      * apps/myapp/services/default.@OutputOnly
      */
-    target: string;
+    target?: string;
     /**
      * User who requested this operation.@OutputOnly
      */
-    user: string;
+    user?: string;
     /**
      * Durable messages that persist on every operation poll. @OutputOnly
      */
-    warning: string[];
+    warning?: string[];
   }
   /**
    * Metadata for the given google.longrunning.Operation.
    */
   export interface Schema$OperationMetadataV1Beta {
-    createVersionMetadata: Schema$CreateVersionMetadataV1Beta;
+    createVersionMetadata?: Schema$CreateVersionMetadataV1Beta;
     /**
      * Time that this operation completed.@OutputOnly
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Ephemeral message that may change every time the operation is polled.
      * @OutputOnly
      */
-    ephemeralMessage: string;
+    ephemeralMessage?: string;
     /**
      * Time that this operation was created.@OutputOnly
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * API method that initiated this operation. Example:
      * google.appengine.v1beta.Versions.CreateVersion.@OutputOnly
      */
-    method: string;
+    method?: string;
     /**
      * Name of the resource that this operation is acting on. Example:
      * apps/myapp/services/default.@OutputOnly
      */
-    target: string;
+    target?: string;
     /**
      * User who requested this operation.@OutputOnly
      */
-    user: string;
+    user?: string;
     /**
      * Durable messages that persist on every operation poll. @OutputOnly
      */
-    warning: string[];
+    warning?: string[];
   }
   /**
    * Metadata for the given google.longrunning.Operation.
@@ -1364,25 +1367,25 @@ export namespace appengine_v1beta {
     /**
      * Timestamp that this operation completed.@OutputOnly
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Timestamp that this operation was created.@OutputOnly
      */
-    insertTime: string;
+    insertTime?: string;
     /**
      * API method name that initiated this operation. Example:
      * google.appengine.v1beta5.Version.CreateVersion.@OutputOnly
      */
-    method: string;
+    method?: string;
     /**
      * Name of the resource that this operation is acting on. Example:
      * apps/myapp/services/default.@OutputOnly
      */
-    target: string;
+    target?: string;
     /**
      * User who requested this operation.@OutputOnly
      */
-    user: string;
+    user?: string;
   }
   /**
    * Readiness checking configuration for VM instances. Unhealthy instances are
@@ -1394,33 +1397,33 @@ export namespace appengine_v1beta {
      * the application successfully replies to a healthcheck until it is ready
      * to serve traffic.
      */
-    appStartTimeout: string;
+    appStartTimeout?: string;
     /**
      * Interval between health checks.
      */
-    checkInterval: string;
+    checkInterval?: string;
     /**
      * Number of consecutive failed checks required before removing traffic.
      */
-    failureThreshold: number;
+    failureThreshold?: number;
     /**
      * Host header to send when performing a HTTP Readiness check. Example:
      * &quot;myapp.appspot.com&quot;
      */
-    host: string;
+    host?: string;
     /**
      * The request path.
      */
-    path: string;
+    path?: string;
     /**
      * Number of consecutive successful checks required before receiving
      * traffic.
      */
-    successThreshold: number;
+    successThreshold?: number;
     /**
      * Time before the check is considered failed.
      */
-    timeout: string;
+    timeout?: string;
   }
   /**
    * Request message for &#39;Applications.RepairApplication&#39;.
@@ -1434,11 +1437,11 @@ export namespace appengine_v1beta {
     /**
      * Target number of concurrent requests.
      */
-    targetConcurrentRequests: number;
+    targetConcurrentRequests?: number;
     /**
      * Target requests per second.
      */
-    targetRequestCountPerSecond: number;
+    targetRequestCountPerSecond?: number;
   }
   /**
    * A DNS resource record.
@@ -1448,16 +1451,16 @@ export namespace appengine_v1beta {
      * Relative name of the object affected by this record. Only applicable for
      * CNAME records. Example: &#39;www&#39;.
      */
-    name: string;
+    name?: string;
     /**
      * Data for this record. Values vary by record type, as defined in RFC 1035
      * (section 5) and RFC 1034 (section 3.6.1).
      */
-    rrdata: string;
+    rrdata?: string;
     /**
      * Resource record type. Example: AAAA.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Machine resources for a version.
@@ -1466,19 +1469,19 @@ export namespace appengine_v1beta {
     /**
      * Number of CPU cores needed.
      */
-    cpu: number;
+    cpu?: number;
     /**
      * Disk size (GB) needed.
      */
-    diskGb: number;
+    diskGb?: number;
     /**
      * Memory (GB) needed.
      */
-    memoryGb: number;
+    memoryGb?: number;
     /**
      * User specified volumes.
      */
-    volumes: Schema$Volume[];
+    volumes?: Schema$Volume[];
   }
   /**
    * Executes a script to handle the request that matches the URL pattern.
@@ -1487,7 +1490,7 @@ export namespace appengine_v1beta {
     /**
      * Path to the script from the application root directory.
      */
-    scriptPath: string;
+    scriptPath?: string;
   }
   /**
    * A Service resource is a logical component of an application that can share
@@ -1502,17 +1505,17 @@ export namespace appengine_v1beta {
      * Relative name of the service within the application. Example:
      * default.@OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * Full path to the Service resource in the API. Example:
      * apps/myapp/services/default.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Mapping that defines fractional HTTP traffic diversion to different
      * versions within the service.
      */
-    split: Schema$TrafficSplit;
+    split?: Schema$TrafficSplit;
   }
   /**
    * SSL configuration for a DomainMapping resource.
@@ -1527,7 +1530,7 @@ export namespace appengine_v1beta {
      * authorized to administer the AuthorizedCertificate resource to manually
      * map it to a DomainMapping resource. Example: 12345.
      */
-    certificateId: string;
+    certificateId?: string;
     /**
      * ID of the managed AuthorizedCertificate resource currently being
      * provisioned, if applicable. Until the new managed certificate has been
@@ -1537,13 +1540,13 @@ export namespace appengine_v1beta {
      * SSL support while there is still a pending managed certificate, clear the
      * certificate_id field with an UpdateDomainMappingRequest.@OutputOnly
      */
-    pendingManagedCertificateId: string;
+    pendingManagedCertificateId?: string;
     /**
      * SSL management type for this domain. If AUTOMATIC, a managed certificate
      * is automatically provisioned. If MANUAL, certificate_id must be manually
      * specified in order to configure SSL for this domain.
      */
-    sslManagementType: string;
+    sslManagementType?: string;
   }
   /**
    * Scheduler settings for standard environment.
@@ -1553,20 +1556,20 @@ export namespace appengine_v1beta {
      * Maximum number of instances to run for this version. Set to zero to
      * disable max_instances configuration.
      */
-    maxInstances: number;
+    maxInstances?: number;
     /**
      * Minimum number of instances to run for this version. Set to zero to
      * disable min_instances configuration.
      */
-    minInstances: number;
+    minInstances?: number;
     /**
      * Target CPU utilization ratio to maintain when scaling.
      */
-    targetCpuUtilization: number;
+    targetCpuUtilization?: number;
     /**
      * Target throughput utilization ratio to maintain when scaling
      */
-    targetThroughputUtilization: number;
+    targetThroughputUtilization?: number;
   }
   /**
    * Files served directly to the user for a given URL, such as images, CSS
@@ -1582,38 +1585,38 @@ export namespace appengine_v1beta {
      * uploads are charged against both your code and static data storage
      * resource quotas.
      */
-    applicationReadable: boolean;
+    applicationReadable?: boolean;
     /**
      * Time a static file served by this handler should be cached by web proxies
      * and browsers.
      */
-    expiration: string;
+    expiration?: string;
     /**
      * HTTP headers to use for all responses from these URLs.
      */
-    httpHeaders: any;
+    httpHeaders?: any;
     /**
      * MIME type used to serve all files served by this handler.Defaults to
      * file-specific MIME types, which are derived from each file&#39;s filename
      * extension.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Path to the static files matched by the URL pattern, from the application
      * root directory. The path can refer to text matched in groupings in the
      * URL pattern.
      */
-    path: string;
+    path?: string;
     /**
      * Whether this handler should match the request if the file referenced by
      * the handler does not exist.
      */
-    requireMatchingFile: boolean;
+    requireMatchingFile?: boolean;
     /**
      * Regular expression that matches the file paths for all files that should
      * be referenced by this handler.
      */
-    uploadPathRegex: string;
+    uploadPathRegex?: string;
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1654,18 +1657,18 @@ export namespace appengine_v1beta {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Traffic routing configuration for versions within a single service. Traffic
@@ -1682,13 +1685,13 @@ export namespace appengine_v1beta {
      * for IP-based splits and up to three decimal places is supported for
      * cookie-based splits.
      */
-    allocations: any;
+    allocations?: any;
     /**
      * Mechanism used to determine which version a request is sent to. The
      * traffic selection algorithm will be stable for either type until
      * allocations are changed.
      */
-    shardBy: string;
+    shardBy?: string;
   }
   /**
    * Rules to match an HTTP request and dispatch that request to a service.
@@ -1699,18 +1702,18 @@ export namespace appengine_v1beta {
      * specified before a period: &quot;*.&quot;.Defaults to matching all
      * domains: &quot;*&quot;.
      */
-    domain: string;
+    domain?: string;
     /**
      * Pathname within the host. Must start with a &quot;/&quot;. A single
      * &quot;*&quot; can be included at the end of the path.The sum of the
      * lengths of the domain and path may not exceed 100 characters.
      */
-    path: string;
+    path?: string;
     /**
      * Resource ID of a service in this application that should serve the
      * matched request. The service must already exist. Example: default.
      */
-    service: string;
+    service?: string;
   }
   /**
    * URL pattern and description of how the URL should be handled. App Engine
@@ -1721,40 +1724,40 @@ export namespace appengine_v1beta {
     /**
      * Uses API Endpoints to handle requests.
      */
-    apiEndpoint: Schema$ApiEndpointHandler;
+    apiEndpoint?: Schema$ApiEndpointHandler;
     /**
      * Action to take when users access resources that require authentication.
      * Defaults to redirect.
      */
-    authFailAction: string;
+    authFailAction?: string;
     /**
      * Level of login required to access this resource.
      */
-    login: string;
+    login?: string;
     /**
      * 30x code to use when performing redirects for the secure field. Defaults
      * to 302.
      */
-    redirectHttpResponseCode: string;
+    redirectHttpResponseCode?: string;
     /**
      * Executes a script to handle the request that matches this URL pattern.
      */
-    script: Schema$ScriptHandler;
+    script?: Schema$ScriptHandler;
     /**
      * Security (HTTPS) enforcement for this URL.
      */
-    securityLevel: string;
+    securityLevel?: string;
     /**
      * Returns the contents of a file, such as an image, as the response.
      */
-    staticFiles: Schema$StaticFilesHandler;
+    staticFiles?: Schema$StaticFilesHandler;
     /**
      * URL prefix. Uses regular expression syntax, which means regexp special
      * characters must be escaped, but should not contain groupings. All URLs
      * that begin with this prefix are handled by this handler, using the
      * portion of the URL after the prefix as part of the file path.
      */
-    urlRegex: string;
+    urlRegex?: string;
   }
   /**
    * A Version resource is a specific set of source code and configuration files
@@ -1766,32 +1769,32 @@ export namespace appengine_v1beta {
      * (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned
      * in GET requests if view=FULL is set.
      */
-    apiConfig: Schema$ApiConfigHandler;
+    apiConfig?: Schema$ApiConfigHandler;
     /**
      * Automatic scaling is based on request rate, response latencies, and other
      * application metrics.
      */
-    automaticScaling: Schema$AutomaticScaling;
+    automaticScaling?: Schema$AutomaticScaling;
     /**
      * A service with basic scaling will create an instance when the application
      * receives a request. The instance will be turned down when the app becomes
      * idle. Basic scaling is ideal for work that is intermittent or driven by
      * user activity.
      */
-    basicScaling: Schema$BasicScaling;
+    basicScaling?: Schema$BasicScaling;
     /**
      * Metadata settings that are supplied to this version to enable beta
      * runtime features.
      */
-    betaSettings: any;
+    betaSettings?: any;
     /**
      * Email address of the user who created this version.@OutputOnly
      */
-    createdBy: string;
+    createdBy?: string;
     /**
      * Time that this version was created.@OutputOnly
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Duration that static files should be cached by web proxies and browsers.
      * Only applicable if the corresponding StaticFilesHandler
@@ -1799,151 +1802,151 @@ export namespace appengine_v1beta {
      * does not specify its own expiration time.Only returned in GET requests if
      * view=FULL is set.
      */
-    defaultExpiration: string;
+    defaultExpiration?: string;
     /**
      * Code and application artifacts that make up this version.Only returned in
      * GET requests if view=FULL is set.
      */
-    deployment: Schema$Deployment;
+    deployment?: Schema$Deployment;
     /**
      * Total size in bytes of all the files that are included in this version
      * and currently hosted on the App Engine disk.@OutputOnly
      */
-    diskUsageBytes: string;
+    diskUsageBytes?: string;
     /**
      * Cloud Endpoints configuration.If endpoints_api_service is set, the Cloud
      * Endpoints Extensible Service Proxy will be provided to serve the API
      * implemented by the app.
      */
-    endpointsApiService: Schema$EndpointsApiService;
+    endpointsApiService?: Schema$EndpointsApiService;
     /**
      * App Engine execution environment for this version.Defaults to standard.
      */
-    env: string;
+    env?: string;
     /**
      * Environment variables available to the application.Only returned in GET
      * requests if view=FULL is set.
      */
-    envVariables: any;
+    envVariables?: any;
     /**
      * Custom static error pages. Limited to 10KB per page.Only returned in GET
      * requests if view=FULL is set.
      */
-    errorHandlers: Schema$ErrorHandler[];
+    errorHandlers?: Schema$ErrorHandler[];
     /**
      * An ordered list of URL-matching patterns that should be applied to
      * incoming requests. The first matching URL handles the request and other
      * request handlers are not attempted.Only returned in GET requests if
      * view=FULL is set.
      */
-    handlers: Schema$UrlMap[];
+    handlers?: Schema$UrlMap[];
     /**
      * Configures health checking for instances. Unhealthy instances are stopped
      * and replaced with new instances. Only applicable in the App Engine
      * flexible environment.Only returned in GET requests if view=FULL is set.
      */
-    healthCheck: Schema$HealthCheck;
+    healthCheck?: Schema$HealthCheck;
     /**
      * Relative name of the version within the service. Example: v1. Version
      * names can contain only lowercase letters, numbers, or hyphens. Reserved
      * names: &quot;default&quot;, &quot;latest&quot;, and any name with the
      * prefix &quot;ah-&quot;.
      */
-    id: string;
+    id?: string;
     /**
      * Before an application can receive email or XMPP messages, the application
      * must be configured to enable the service.
      */
-    inboundServices: string[];
+    inboundServices?: string[];
     /**
      * Instance class that is used to run this version. Valid values are:
      * AutomaticScaling: F1, F2, F4, F4_1G ManualScaling or BasicScaling: B1,
      * B2, B4, B8, B4_1GDefaults to F1 for AutomaticScaling and B1 for
      * ManualScaling or BasicScaling.
      */
-    instanceClass: string;
+    instanceClass?: string;
     /**
      * Configuration for third-party Python runtime libraries that are required
      * by the application.Only returned in GET requests if view=FULL is set.
      */
-    libraries: Schema$Library[];
+    libraries?: Schema$Library[];
     /**
      * Configures liveness health checking for instances. Unhealthy instances
      * are stopped and replaced with new instancesOnly returned in GET requests
      * if view=FULL is set.
      */
-    livenessCheck: Schema$LivenessCheck;
+    livenessCheck?: Schema$LivenessCheck;
     /**
      * A service with manual scaling runs continuously, allowing you to perform
      * complex initialization and rely on the state of its memory over time.
      */
-    manualScaling: Schema$ManualScaling;
+    manualScaling?: Schema$ManualScaling;
     /**
      * Full path to the Version resource in the API. Example:
      * apps/myapp/services/default/versions/v1.@OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Extra network settings. Only applicable in the App Engine flexible
      * environment.
      */
-    network: Schema$Network;
+    network?: Schema$Network;
     /**
      * Files that match this pattern will not be built into this version. Only
      * applicable for Go runtimes.Only returned in GET requests if view=FULL is
      * set.
      */
-    nobuildFilesRegex: string;
+    nobuildFilesRegex?: string;
     /**
      * Configures readiness health checking for instances. Unhealthy instances
      * are not put into the backend traffic rotation.Only returned in GET
      * requests if view=FULL is set.
      */
-    readinessCheck: Schema$ReadinessCheck;
+    readinessCheck?: Schema$ReadinessCheck;
     /**
      * Machine resources for this version. Only applicable in the App Engine
      * flexible environment.
      */
-    resources: Schema$Resources;
+    resources?: Schema$Resources;
     /**
      * Desired runtime. Example: python27.
      */
-    runtime: string;
+    runtime?: string;
     /**
      * The version of the API in the given runtime environment. Please see the
      * app.yaml reference for valid values at
      * https://cloud.google.com/appengine/docs/standard/&lt;language&gt;/config/appref
      */
-    runtimeApiVersion: string;
+    runtimeApiVersion?: string;
     /**
      * The channel of the runtime to use. Only available for some runtimes.
      * Defaults to the default channel.
      */
-    runtimeChannel: string;
+    runtimeChannel?: string;
     /**
      * Current serving status of this version. Only the versions with a SERVING
      * status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is
      * an invalid value. Defaults to SERVING.
      */
-    servingStatus: string;
+    servingStatus?: string;
     /**
      * Whether multiple requests can be dispatched to this version at once.
      */
-    threadsafe: boolean;
+    threadsafe?: boolean;
     /**
      * Serving URL for this version. Example:
      * &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly
      */
-    versionUrl: string;
+    versionUrl?: string;
     /**
      * Whether to deploy this version in a container on a virtual machine.
      */
-    vm: boolean;
+    vm?: boolean;
     /**
      * The Google Compute Engine zones that are supported by this version in the
      * App Engine flexible environment.
      */
-    zones: string[];
+    zones?: string[];
   }
   /**
    * Volumes mounted within the app container. Only applicable in the App Engine
@@ -1953,15 +1956,15 @@ export namespace appengine_v1beta {
     /**
      * Unique name for the volume.
      */
-    name: string;
+    name?: string;
     /**
      * Volume size in gigabytes.
      */
-    sizeGb: number;
+    sizeGb?: number;
     /**
      * Underlying volume type, e.g. &#39;tmpfs&#39;.
      */
-    volumeType: string;
+    volumeType?: string;
   }
   /**
    * The zip file information for a zip deployment.
@@ -1972,14 +1975,15 @@ export namespace appengine_v1beta {
      * must be greater than or equal to the actual number of files. Used for
      * optimizing performance; if not provided, deployment may be slow.
      */
-    filesCount: number;
+    filesCount?: number;
     /**
      * URL of the zip file to deploy from. Must be a URL to a resource in Google
      * Cloud Storage in the form
      * &#39;http(s)://storage.googleapis.com/&lt;bucket&gt;/&lt;object&gt;&#39;.
      */
-    sourceUrl: string;
+    sourceUrl?: string;
   }
+
 
   export class Resource$Apps {
     root: Appengine;
@@ -2026,26 +2030,37 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Apps$Create, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Apps$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Apps$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2079,24 +2094,34 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Apps$Get,
         options?: MethodOptions): AxiosPromise<Schema$Application>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Application>,
-        callback?: BodyResponseCallback<Schema$Application>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Application>,
+    get(params: Params$Resource$Apps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Application>,
+        callback: BodyResponseCallback<Schema$Application>): void;
+    get(params: Params$Resource$Apps$Get,
+        callback: BodyResponseCallback<Schema$Application>): void;
+    get(callback: BodyResponseCallback<Schema$Application>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Get|
+        BodyResponseCallback<Schema$Application>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Application>,
         callback?: BodyResponseCallback<Schema$Application>):
         void|AxiosPromise<Schema$Application> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2136,26 +2161,37 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Apps$Patch, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Apps$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2195,26 +2231,37 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    repair(params?: any, options?: MethodOptions):
+    repair(params?: Params$Resource$Apps$Repair, options?: MethodOptions):
         AxiosPromise<Schema$Operation>;
     repair(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params: Params$Resource$Apps$Repair,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
     repair(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Repair,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    repair(callback: BodyResponseCallback<Schema$Operation>): void;
+    repair(
+        paramsOrCallback?: Params$Resource$Apps$Repair|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Apps$Repair;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Repair;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2236,6 +2283,66 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Application;
+  }
+  export interface Params$Resource$Apps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Application resource to get. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+  }
+  export interface Params$Resource$Apps$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Application resource to update. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Application;
+  }
+  export interface Params$Resource$Apps$Repair {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the application to repair. Example: apps/myapp
+     */
+    appsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RepairApplicationRequest;
+  }
+
   export class Resource$Apps$Authorizedcertificates {
     root: Appengine;
     constructor(root: Appengine) {
@@ -2261,28 +2368,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AuthorizedCertificate>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Authorizedcertificates$Create,
+        options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
+    create(
+        params: Params$Resource$Apps$Authorizedcertificates$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizedcertificates$Create,
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    create(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Create|
+        BodyResponseCallback<Schema$AuthorizedCertificate>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
         void|AxiosPromise<Schema$AuthorizedCertificate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizedcertificates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizedcertificates$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2318,25 +2437,38 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Apps$Authorizedcertificates$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Apps$Authorizedcertificates$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Apps$Authorizedcertificates$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizedcertificates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizedcertificates$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2375,26 +2507,36 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Apps$Authorizedcertificates$Get,
         options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Apps$Authorizedcertificates$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    get(params: Params$Resource$Apps$Authorizedcertificates$Get,
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    get(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Get|
+        BodyResponseCallback<Schema$AuthorizedCertificate>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
         void|AxiosPromise<Schema$AuthorizedCertificate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizedcertificates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizedcertificates$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2434,31 +2576,48 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Apps$Authorizedcertificates$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAuthorizedCertificatesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizedcertificates$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizedcertificates$List,
+        callback:
+            BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$List|
+        BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>,
         callback?:
             BodyResponseCallback<Schema$ListAuthorizedCertificatesResponse>):
         void|AxiosPromise<Schema$ListAuthorizedCertificatesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizedcertificates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizedcertificates$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2502,28 +2661,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AuthorizedCertificate>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Authorizedcertificates$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$AuthorizedCertificate>;
+    patch(
+        params: Params$Resource$Apps$Authorizedcertificates$Patch,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
-        callback?: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizedcertificates$Patch,
+        callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    patch(callback: BodyResponseCallback<Schema$AuthorizedCertificate>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Authorizedcertificates$Patch|
+        BodyResponseCallback<Schema$AuthorizedCertificate>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AuthorizedCertificate>,
         callback?: BodyResponseCallback<Schema$AuthorizedCertificate>):
         void|AxiosPromise<Schema$AuthorizedCertificate> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizedcertificates$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizedcertificates$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2547,6 +2718,109 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Authorizedcertificates$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AuthorizedCertificate;
+  }
+  export interface Params$Resource$Apps$Authorizedcertificates$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to delete. Example:
+     * apps/myapp/authorizedCertificates/12345.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    authorizedCertificatesId?: string;
+  }
+  export interface Params$Resource$Apps$Authorizedcertificates$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/authorizedCertificates/12345.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    authorizedCertificatesId?: string;
+    /**
+     * Controls the set of fields returned in the GET response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Apps$Authorizedcertificates$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Controls the set of fields returned in the LIST response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Apps$Authorizedcertificates$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to update. Example:
+     * apps/myapp/authorizedCertificates/12345.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    authorizedCertificatesId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated. Updates are only
+     * supported on the certificate_raw_data and display_name fields.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AuthorizedCertificate;
+  }
+
 
   export class Resource$Apps$Authorizeddomains {
     root: Appengine;
@@ -2574,29 +2848,44 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Apps$Authorizeddomains$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListAuthorizedDomainsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizeddomains$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
-        callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
+        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Authorizeddomains$List,
+        callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Authorizeddomains$List|
+        BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>,
         callback?: BodyResponseCallback<Schema$ListAuthorizedDomainsResponse>):
         void|AxiosPromise<Schema$ListAuthorizedDomainsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Authorizeddomains$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Authorizeddomains$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2620,6 +2909,28 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Authorizeddomains$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Apps$Domainmappings {
     root: Appengine;
@@ -2650,26 +2961,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Domainmappings$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Domainmappings$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Apps$Domainmappings$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Domainmappings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Domainmappings$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2707,26 +3031,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Domainmappings$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Domainmappings$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Apps$Domainmappings$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Domainmappings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Domainmappings$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2763,24 +3100,35 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Apps$Domainmappings$Get,
         options?: MethodOptions): AxiosPromise<Schema$DomainMapping>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
-        callback?: BodyResponseCallback<Schema$DomainMapping>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
+    get(params: Params$Resource$Apps$Domainmappings$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DomainMapping>,
+        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(params: Params$Resource$Apps$Domainmappings$Get,
+        callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(callback: BodyResponseCallback<Schema$DomainMapping>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Domainmappings$Get|
+        BodyResponseCallback<Schema$DomainMapping>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DomainMapping>,
         callback?: BodyResponseCallback<Schema$DomainMapping>):
         void|AxiosPromise<Schema$DomainMapping> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Domainmappings$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2818,29 +3166,44 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Apps$Domainmappings$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListDomainMappingsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Domainmappings$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDomainMappingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
+        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Domainmappings$List,
+        callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Domainmappings$List|
+        BodyResponseCallback<Schema$ListDomainMappingsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDomainMappingsResponse>,
         callback?: BodyResponseCallback<Schema$ListDomainMappingsResponse>):
         void|AxiosPromise<Schema$ListDomainMappingsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Domainmappings$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2882,26 +3245,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Domainmappings$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Domainmappings$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Apps$Domainmappings$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Domainmappings$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Domainmappings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Domainmappings$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2925,6 +3301,105 @@ export namespace appengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Apps$Domainmappings$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Whether the domain creation should override any existing mappings for
+     * this domain. By default, overrides are rejected.
+     */
+    overrideStrategy?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DomainMapping;
+  }
+  export interface Params$Resource$Apps$Domainmappings$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to delete. Example:
+     * apps/myapp/domainMappings/example.com.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    domainMappingsId?: string;
+  }
+  export interface Params$Resource$Apps$Domainmappings$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/domainMappings/example.com.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    domainMappingsId?: string;
+  }
+  export interface Params$Resource$Apps$Domainmappings$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Apps$Domainmappings$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to update. Example:
+     * apps/myapp/domainMappings/example.com.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    domainMappingsId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DomainMapping;
+  }
+
+
   export class Resource$Apps$Firewall {
     root: Appengine;
     ingressRules: Resource$Apps$Firewall$Ingressrules;
@@ -2938,6 +3413,8 @@ export namespace appengine_v1beta {
       return this.root;
     }
   }
+
+
   export class Resource$Apps$Firewall$Ingressrules {
     root: Appengine;
     constructor(root: Appengine) {
@@ -2967,30 +3444,47 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchUpdate(params?: any, options?: MethodOptions):
+    batchUpdate(
+        params?: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchUpdateIngressRulesResponse>;
     batchUpdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
-        callback?:
-            BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>): void;
+        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
+        void;
     batchUpdate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
+        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
+        void;
+    batchUpdate(
+        callback: BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
+        void;
+    batchUpdate(
+        paramsOrCallback?:
+            Params$Resource$Apps$Firewall$Ingressrules$Batchupdate|
+        BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>,
         callback?:
             BodyResponseCallback<Schema$BatchUpdateIngressRulesResponse>):
         void|AxiosPromise<Schema$BatchUpdateIngressRulesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$Batchupdate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3029,26 +3523,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FirewallRule>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>): void;
+        params?: Params$Resource$Apps$Firewall$Ingressrules$Create,
+        options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+        params: Params$Resource$Apps$Firewall$Ingressrules$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    create(
+        params: Params$Resource$Apps$Firewall$Ingressrules$Create,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    create(callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Create|
+        BodyResponseCallback<Schema$FirewallRule>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
         void|AxiosPromise<Schema$FirewallRule> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3084,25 +3591,38 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3140,24 +3660,35 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Apps$Firewall$Ingressrules$Get,
         options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+    get(params: Params$Resource$Apps$Firewall$Ingressrules$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    get(params: Params$Resource$Apps$Firewall$Ingressrules$Get,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    get(callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Get|
+        BodyResponseCallback<Schema$FirewallRule>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
         void|AxiosPromise<Schema$FirewallRule> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3197,28 +3728,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListIngressRulesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Firewall$Ingressrules$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListIngressRulesResponse>;
+    list(
+        params: Params$Resource$Apps$Firewall$Ingressrules$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListIngressRulesResponse>,
-        callback?: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Firewall$Ingressrules$List,
+        callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListIngressRulesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$List|
+        BodyResponseCallback<Schema$ListIngressRulesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListIngressRulesResponse>,
         callback?: BodyResponseCallback<Schema$ListIngressRulesResponse>):
         void|AxiosPromise<Schema$ListIngressRulesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3256,26 +3799,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FirewallRule>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
-        callback?: BodyResponseCallback<Schema$FirewallRule>): void;
+        params?: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$FirewallRule>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+        params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$FirewallRule>,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    patch(
+        params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
+        callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    patch(callback: BodyResponseCallback<Schema$FirewallRule>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Firewall$Ingressrules$Patch|
+        BodyResponseCallback<Schema$FirewallRule>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FirewallRule>,
         callback?: BodyResponseCallback<Schema$FirewallRule>):
         void|AxiosPromise<Schema$FirewallRule> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Firewall$Ingressrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Firewall$Ingressrules$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3299,6 +3855,122 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Batchupdate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Firewall collection to set. Example:
+     * apps/myapp/firewall/ingressRules.
+     */
+    appsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchUpdateIngressRulesRequest;
+  }
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Firewall collection in which to
+     * create a new rule. Example: apps/myapp/firewall/ingressRules.
+     */
+    appsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FirewallRule;
+  }
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Firewall resource to delete. Example:
+     * apps/myapp/firewall/ingressRules/100.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    ingressRulesId?: string;
+  }
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Firewall resource to retrieve. Example:
+     * apps/myapp/firewall/ingressRules/100.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    ingressRulesId?: string;
+  }
+  export interface Params$Resource$Apps$Firewall$Ingressrules$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the Firewall collection to retrieve. Example:
+     * apps/myapp/firewall/ingressRules.
+     */
+    appsId?: string;
+    /**
+     * A valid IP Address. If set, only rules matching this address will be
+     * returned. The first returned rule will be the rule that fires on requests
+     * from this IP.
+     */
+    matchingAddress?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Apps$Firewall$Ingressrules$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the Firewall resource to update. Example:
+     * apps/myapp/firewall/ingressRules/100.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    ingressRulesId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FirewallRule;
+  }
+
 
 
   export class Resource$Apps$Locations {
@@ -3326,23 +3998,34 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+    get(params?: Params$Resource$Apps$Locations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Location>;
+    get(params: Params$Resource$Apps$Locations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Location>,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(params: Params$Resource$Apps$Locations$Get,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Locations$Get|
+        BodyResponseCallback<Schema$Location>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
         void|AxiosPromise<Schema$Location> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Locations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3380,28 +4063,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Apps$Locations$List, options?: MethodOptions):
         AxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Locations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Locations$List,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Locations$List|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
         void|AxiosPromise<Schema$ListLocationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Locations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3423,6 +4117,47 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Locations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Resource name for the location.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    locationsId?: string;
+  }
+  export interface Params$Resource$Apps$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. The resource that owns the locations collection, if
+     * applicable.
+     */
+    appsId?: string;
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Apps$Operations {
     root: Appengine;
@@ -3451,23 +4186,35 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Apps$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Apps$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Apps$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3513,28 +4260,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Apps$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3556,6 +4315,46 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. The name of the operation resource.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    operationsId?: string;
+  }
+  export interface Params$Resource$Apps$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. The name of the operation's parent resource.
+     */
+    appsId?: string;
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Apps$Services {
     root: Appengine;
@@ -3584,26 +4383,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Apps$Services$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Apps$Services$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3639,23 +4451,34 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Service>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
-        callback?: BodyResponseCallback<Schema$Service>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Service>,
+    get(params?: Params$Resource$Apps$Services$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Service>;
+    get(params: Params$Resource$Apps$Services$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Service>,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    get(params: Params$Resource$Apps$Services$Get,
+        callback: BodyResponseCallback<Schema$Service>): void;
+    get(callback: BodyResponseCallback<Schema$Service>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Services$Get|
+        BodyResponseCallback<Schema$Service>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Service>,
         callback?: BodyResponseCallback<Schema$Service>):
         void|AxiosPromise<Schema$Service> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3692,28 +4515,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Apps$Services$List, options?: MethodOptions):
         AxiosPromise<Schema$ListServicesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Services$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
-        callback?: BodyResponseCallback<Schema$ListServicesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Services$List,
+        callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListServicesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Services$List|
+        BodyResponseCallback<Schema$ListServicesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListServicesResponse>,
         callback?: BodyResponseCallback<Schema$ListServicesResponse>):
         void|AxiosPromise<Schema$ListServicesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Services$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3752,26 +4586,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Apps$Services$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Services$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Apps$Services$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3793,6 +4640,100 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Services$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+  }
+  export interface Params$Resource$Apps$Services$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+  }
+  export interface Params$Resource$Apps$Services$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Application resource. Example:
+     * apps/myapp.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Apps$Services$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to update. Example:
+     * apps/myapp/services/default.
+     */
+    appsId?: string;
+    /**
+     * Set to true to gradually shift traffic to one or more versions that you
+     * specify. By default, traffic is shifted immediately. For gradual traffic
+     * migration, the target versions must be located within instances that are
+     * configured for both warmup requests
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#inboundservicetype)
+     * and automatic scaling
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services.versions#automaticscaling).
+     * You must specify the shardBy
+     * (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1beta/apps.services#shardby)
+     * field in the Service resource. Gradual traffic migration is not supported
+     * in the App Engine flexible environment. For examples, see Migrating and
+     * Splitting Traffic
+     * (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
+     */
+    migrateTraffic?: boolean;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Service;
+  }
+
   export class Resource$Apps$Services$Versions {
     root: Appengine;
     instances: Resource$Apps$Services$Versions$Instances;
@@ -3821,26 +4762,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Versions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Versions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Apps$Services$Versions$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3878,26 +4832,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Versions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Versions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Apps$Services$Versions$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3939,23 +4906,34 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Version>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
-        callback?: BodyResponseCallback<Schema$Version>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Version>,
+    get(params?: Params$Resource$Apps$Services$Versions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Version>;
+    get(params: Params$Resource$Apps$Services$Versions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Version>,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    get(params: Params$Resource$Apps$Services$Versions$Get,
+        callback: BodyResponseCallback<Schema$Version>): void;
+    get(callback: BodyResponseCallback<Schema$Version>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Services$Versions$Get|
+        BodyResponseCallback<Schema$Version>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Version>,
         callback?: BodyResponseCallback<Schema$Version>):
         void|AxiosPromise<Schema$Version> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3996,28 +4974,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Services$Versions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListVersionsResponse>;
+    list(
+        params: Params$Resource$Apps$Services$Versions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Services$Versions$List,
+        callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVersionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Apps$Services$Versions$List|
+        BodyResponseCallback<Schema$ListVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListVersionsResponse>):
         void|AxiosPromise<Schema$ListVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4084,26 +5074,39 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Versions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Versions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Apps$Services$Versions$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Apps$Services$Versions$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4127,6 +5130,128 @@ export namespace appengine_v1beta {
       }
     }
   }
+
+  export interface Params$Resource$Apps$Services$Versions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent resource to create this version
+     * under. Example: apps/myapp/services/default.
+     */
+    appsId?: string;
+    /**
+     * Part of `parent`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Version;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default/versions/v1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default/versions/v1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+    /**
+     * Controls the set of fields returned in the Get response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Service resource. Example:
+     * apps/myapp/services/default.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Part of `parent`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Controls the set of fields returned in the List response.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource to update. Example:
+     * apps/myapp/services/default/versions/1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Version;
+  }
+
   export class Resource$Apps$Services$Versions$Instances {
     root: Appengine;
     constructor(root: Appengine) {
@@ -4160,26 +5285,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    debug(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     debug(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Versions$Instances$Debug,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     debug(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Versions$Instances$Debug,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    debug(
+        params: Params$Resource$Apps$Services$Versions$Instances$Debug,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    debug(callback: BodyResponseCallback<Schema$Operation>): void;
+    debug(
+        paramsOrCallback?:
+            Params$Resource$Apps$Services$Versions$Instances$Debug|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Instances$Debug;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Instances$Debug;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4219,26 +5358,40 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Apps$Services$Versions$Instances$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Apps$Services$Versions$Instances$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Apps$Services$Versions$Instances$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Apps$Services$Versions$Instances$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Instances$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Instances$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4278,23 +5431,34 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Instance>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
+    get(params?: Params$Resource$Apps$Services$Versions$Instances$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+    get(params: Params$Resource$Apps$Services$Versions$Instances$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(params: Params$Resource$Apps$Services$Versions$Instances$Get,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(callback: BodyResponseCallback<Schema$Instance>): void;
+    get(paramsOrCallback?: Params$Resource$Apps$Services$Versions$Instances$Get|
+        BodyResponseCallback<Schema$Instance>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
         void|AxiosPromise<Schema$Instance> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Instances$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Instances$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4337,28 +5501,41 @@ export namespace appengine_v1beta {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Apps$Services$Versions$Instances$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+    list(
+        params: Params$Resource$Apps$Services$Versions$Instances$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Apps$Services$Versions$Instances$List,
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Apps$Services$Versions$Instances$List|
+        BodyResponseCallback<Schema$ListInstancesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
         void|AxiosPromise<Schema$ListInstancesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Apps$Services$Versions$Instances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apps$Services$Versions$Instances$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4381,5 +5558,110 @@ export namespace appengine_v1beta {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Apps$Services$Versions$Instances$Debug {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default/versions/v1/instances/instance-1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    instancesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DebugInstanceRequest;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Instances$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default/versions/v1/instances/instance-1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    instancesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Instances$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `name`. Name of the resource requested. Example:
+     * apps/myapp/services/default/versions/v1/instances/instance-1.
+     */
+    appsId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    instancesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `appsId`.
+     */
+    versionsId?: string;
+  }
+  export interface Params$Resource$Apps$Services$Versions$Instances$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Part of `parent`. Name of the parent Version resource. Example:
+     * apps/myapp/services/default/versions/v1.
+     */
+    appsId?: string;
+    /**
+     * Maximum results to return per page.
+     */
+    pageSize?: number;
+    /**
+     * Continuation token for fetching the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Part of `parent`. See documentation of `appsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `parent`. See documentation of `appsId`.
+     */
+    versionsId?: string;
   }
 }

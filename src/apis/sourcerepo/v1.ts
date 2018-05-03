@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace sourcerepo_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Source Repositories API
    *
@@ -92,13 +95,13 @@ export namespace sourcerepo_v1 {
     /**
      * The configuration for logging of each type of permission. Next ID: 4
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -114,11 +117,11 @@ export namespace sourcerepo_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -140,12 +143,12 @@ export namespace sourcerepo_v1 {
      * that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -164,11 +167,11 @@ export namespace sourcerepo_v1 {
      * be retrieved by including this value in the next ListReposRequest&#39;s
      * page_token field.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The listed repos.
      */
-    repos: Schema$Repo[];
+    repos?: Schema$Repo[];
   }
   /**
    * Configuration to automatically mirror a repository from another hosting
@@ -180,18 +183,18 @@ export namespace sourcerepo_v1 {
      * from the other service would deauthorize Google Cloud Source Repositories
      * from mirroring.
      */
-    deployKeyId: string;
+    deployKeyId?: string;
     /**
      * URL of the main repository at the other hosting service.
      */
-    url: string;
+    url?: string;
     /**
      * ID of the webhook listening to updates to trigger mirroring. Removing
      * this webhook from the other hosting service will stop Google Cloud Source
      * Repositories from receiving notifications, and thereby disabling
      * mirroring.
      */
-    webhookId: string;
+    webhookId?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -213,12 +216,12 @@ export namespace sourcerepo_v1 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -230,11 +233,11 @@ export namespace sourcerepo_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A repository (or repo) is a Git repository storing versioned source
@@ -245,23 +248,23 @@ export namespace sourcerepo_v1 {
      * How this repository mirrors a repository managed by another service.
      * Read-only field.
      */
-    mirrorConfig: Schema$MirrorConfig;
+    mirrorConfig?: Schema$MirrorConfig;
     /**
      * Resource name of the repository, of the form
      * `projects/&lt;project&gt;/repos/&lt;repo&gt;`.  The repo name may contain
      * slashes. eg, `projects/myproject/repos/name/with/slash`
      */
-    name: string;
+    name?: string;
     /**
      * The disk usage of the repo, in bytes. Read-only field. Size is only
      * returned by GetRepo.
      */
-    size: string;
+    size?: string;
     /**
      * URL to clone the repository from Google Cloud Source Repositories.
      * Read-only field.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -273,14 +276,14 @@ export namespace sourcerepo_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -292,7 +295,7 @@ export namespace sourcerepo_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -302,8 +305,9 @@ export namespace sourcerepo_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
+
 
   export class Resource$Projects {
     root: Sourcerepo;
@@ -318,6 +322,8 @@ export namespace sourcerepo_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Repos {
     root: Sourcerepo;
     constructor(root: Sourcerepo) {
@@ -344,23 +350,38 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Repo>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback?: BodyResponseCallback<Schema$Repo>): void;
+        params?: Params$Resource$Projects$Repos$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Repo>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Repo>,
+        params: Params$Resource$Projects$Repos$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    create(
+        params: Params$Resource$Projects$Repos$Create,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    create(callback: BodyResponseCallback<Schema$Repo>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Create|
+        BodyResponseCallback<Schema$Repo>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback?: BodyResponseCallback<Schema$Repo>):
         void|AxiosPromise<Schema$Repo> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -395,25 +416,38 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Repos$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Repos$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Repos$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -447,21 +481,34 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Repo>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Repo>,
-        callback?: BodyResponseCallback<Schema$Repo>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Repo>,
+    get(params?: Params$Resource$Projects$Repos$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Repo>;
+    get(params: Params$Resource$Projects$Repos$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Repo>,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    get(params: Params$Resource$Projects$Repos$Get,
+        callback: BodyResponseCallback<Schema$Repo>): void;
+    get(callback: BodyResponseCallback<Schema$Repo>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Repos$Get|
+        BodyResponseCallback<Schema$Repo>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Repo>,
         callback?: BodyResponseCallback<Schema$Repo>):
         void|AxiosPromise<Schema$Repo> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -496,26 +543,38 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Repos$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Repos$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Repos$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Repos$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -553,26 +612,38 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Projects$Repos$List, options?: MethodOptions):
         AxiosPromise<Schema$ListReposResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListReposResponse>,
-        callback?: BodyResponseCallback<Schema$ListReposResponse>): void;
+        params: Params$Resource$Projects$Repos$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListReposResponse>,
+        callback: BodyResponseCallback<Schema$ListReposResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListReposResponse>,
+        params: Params$Resource$Projects$Repos$List,
+        callback: BodyResponseCallback<Schema$ListReposResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListReposResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Repos$List|
+        BodyResponseCallback<Schema$ListReposResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListReposResponse>,
         callback?: BodyResponseCallback<Schema$ListReposResponse>):
         void|AxiosPromise<Schema$ListReposResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Repos$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -609,26 +680,38 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Repos$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Repos$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Repos$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Repos$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -666,29 +749,45 @@ export namespace sourcerepo_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Repos$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Repos$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Repos$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Repos$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Repos$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Repos$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://sourcerepo.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -710,5 +809,113 @@ export namespace sourcerepo_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Repos$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project in which to create the repo. Values are of the form
+     * `projects/<project>`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Repo;
+  }
+  export interface Params$Resource$Projects$Repos$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the repo to delete. Values are of the form
+     * `projects/<project>/repos/<repo>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Repos$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the requested repository. Values are of the form
+     * `projects/<project>/repos/<repo>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Repos$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Repos$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The project ID whose repos should be listed. Values are of the form
+     * `projects/<project>`.
+     */
+    name?: string;
+    /**
+     * Maximum number of repositories to return; between 1 and 500. If not set
+     * or zero, defaults to 100 at the server.
+     */
+    pageSize?: number;
+    /**
+     * Resume listing repositories where a prior ListReposResponse left off.
+     * This is an opaque token that must be obtained from a recent, prior
+     * ListReposResponse's next_page_token field.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Repos$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Repos$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
   }
 }

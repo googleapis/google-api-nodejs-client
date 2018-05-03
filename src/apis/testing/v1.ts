@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace testing_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Testing API
    *
@@ -78,7 +81,7 @@ export namespace testing_v1 {
     /**
      * An automatic google login account
      */
-    googleAuto: Schema$GoogleAuto;
+    googleAuto?: Schema$GoogleAuto;
   }
   /**
    * A single Android device.
@@ -88,22 +91,22 @@ export namespace testing_v1 {
      * The id of the Android device to be used. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    androidModelId: string;
+    androidModelId?: string;
     /**
      * The id of the Android OS version to be used. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    androidVersionId: string;
+    androidVersionId?: string;
     /**
      * The locale the test device used for testing. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    locale: string;
+    locale?: string;
     /**
      * How the device is oriented during the test. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    orientation: string;
+    orientation?: string;
   }
   /**
    * The currently supported Android devices.
@@ -112,15 +115,15 @@ export namespace testing_v1 {
     /**
      * The set of supported Android device models. @OutputOnly
      */
-    models: Schema$AndroidModel[];
+    models?: Schema$AndroidModel[];
     /**
      * The set of supported runtime configurations. @OutputOnly
      */
-    runtimeConfiguration: Schema$AndroidRuntimeConfiguration;
+    runtimeConfiguration?: Schema$AndroidRuntimeConfiguration;
     /**
      * The set of supported Android OS versions. @OutputOnly
      */
-    versions: Schema$AndroidVersion[];
+    versions?: Schema$AndroidVersion[];
   }
   /**
    * A list of Android device configurations in which the test is to be
@@ -130,7 +133,7 @@ export namespace testing_v1 {
     /**
      * A list of Android devices Required
      */
-    androidDevices: Schema$AndroidDevice[];
+    androidDevices?: Schema$AndroidDevice[];
   }
   /**
    * A test of an Android application that can control an Android component
@@ -146,12 +149,12 @@ export namespace testing_v1 {
     /**
      * The APK for the application under test. Required
      */
-    appApk: Schema$FileReference;
+    appApk?: Schema$FileReference;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
      */
-    appPackageId: string;
+    appPackageId?: string;
     /**
      * The option of whether running each test within its own invocation of
      * instrumentation with Android Test Orchestrator or not. ** Orchestrator is
@@ -162,21 +165,21 @@ export namespace testing_v1 {
      * for more information about Android Test Orchestrator.  Optional, if
      * empty, test will be run without orchestrator.
      */
-    orchestratorOption: string;
+    orchestratorOption?: string;
     /**
      * The APK containing the test code to be executed. Required
      */
-    testApk: Schema$FileReference;
+    testApk?: Schema$FileReference;
     /**
      * The java package for the test to be executed. Optional, default is
      * determined by examining the application&#39;s manifest.
      */
-    testPackageId: string;
+    testPackageId?: string;
     /**
      * The InstrumentationTestRunner class. Optional, default is determined by
      * examining the application&#39;s manifest.
      */
-    testRunnerClass: string;
+    testRunnerClass?: string;
     /**
      * Each target must be fully qualified with the package name or class name,
      * in one of these formats:  - &quot;package package_name&quot;  -
@@ -184,7 +187,7 @@ export namespace testing_v1 {
      * package_name.class_name#method_name&quot;  Optional, if empty, all
      * targets in the module will be run.
      */
-    testTargets: string[];
+    testTargets?: string[];
   }
   /**
    * A set of Android device configuration permutations is defined by the the
@@ -198,22 +201,22 @@ export namespace testing_v1 {
      * The ids of the set of Android device to be used. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    androidModelIds: string[];
+    androidModelIds?: string[];
     /**
      * The ids of the set of Android OS version to be used. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    androidVersionIds: string[];
+    androidVersionIds?: string[];
     /**
      * The set of locales the test device will enable for testing. Use the
      * EnvironmentDiscoveryService to get supported options. Required
      */
-    locales: string[];
+    locales?: string[];
     /**
      * The set of orientations to test with. Use the EnvironmentDiscoveryService
      * to get supported options. Required
      */
-    orientations: string[];
+    orientations?: string[];
   }
   /**
    * A description of an Android device tests may be run on.
@@ -223,43 +226,43 @@ export namespace testing_v1 {
      * The company that this device is branded with. Example:
      * &quot;Google&quot;, &quot;Samsung&quot; @OutputOnly
      */
-    brand: string;
+    brand?: string;
     /**
      * The name of the industrial design. This corresponds to
      * android.os.Build.DEVICE @OutputOnly
      */
-    codename: string;
+    codename?: string;
     /**
      * Whether this device is virtual or physical. @OutputOnly
      */
-    form: string;
+    form?: string;
     /**
      * The unique opaque id for this model. Use this for invoking the
      * TestExecutionService. @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * The manufacturer of this device. @OutputOnly
      */
-    manufacturer: string;
+    manufacturer?: string;
     /**
      * The human-readable marketing name for this device model. Examples:
      * &quot;Nexus 5&quot;, &quot;Galaxy S5&quot; @OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Screen density in DPI. This corresponds to ro.sf.lcd_density @OutputOnly
      */
-    screenDensity: number;
+    screenDensity?: number;
     /**
      * Screen size in the horizontal (X) dimension measured in pixels.
      * @OutputOnly
      */
-    screenX: number;
+    screenX?: number;
     /**
      * Screen size in the vertical (Y) dimension measured in pixels. @OutputOnly
      */
-    screenY: number;
+    screenY?: number;
     /**
      * The list of supported ABIs for this device. This corresponds to either
      * android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or
@@ -269,21 +272,21 @@ export namespace testing_v1 {
      * AndroidVersion), denoting an ABI that is supported only on a particular
      * version. @OutputOnly
      */
-    supportedAbis: string[];
+    supportedAbis?: string[];
     /**
      * The set of Android versions this device supports. @OutputOnly
      */
-    supportedVersionIds: string[];
+    supportedVersionIds?: string[];
     /**
      * Tags for this dimension. Examples: &quot;default&quot;,
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
-    tags: string[];
+    tags?: string[];
     /**
      * True if and only if tests with this model DO NOT have video output. See
      * also TestSpecification.disable_video_recording @OutputOnly
      */
-    videoRecordingNotSupported: boolean;
+    videoRecordingNotSupported?: boolean;
   }
   /**
    * A test of an android application that explores the application on a virtual
@@ -293,44 +296,44 @@ export namespace testing_v1 {
     /**
      * The APK for the application under test. Required
      */
-    appApk: Schema$FileReference;
+    appApk?: Schema$FileReference;
     /**
      * The initial activity that should be used to start the app. Optional
      */
-    appInitialActivity: string;
+    appInitialActivity?: string;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
      */
-    appPackageId: string;
+    appPackageId?: string;
     /**
      * The max depth of the traversal stack Robo can explore. Needs to be at
      * least 2 to make Robo explore the app beyond the first activity. Default
      * is 50. Optional
      */
-    maxDepth: number;
+    maxDepth?: number;
     /**
      * The max number of steps Robo can execute. Default is no limit. Optional
      */
-    maxSteps: number;
+    maxSteps?: number;
     /**
      * A set of directives Robo should apply during the crawl. This allows users
      * to customize the crawl. For example, the username and password for a test
      * account can be provided. Optional
      */
-    roboDirectives: Schema$RoboDirective[];
+    roboDirectives?: Schema$RoboDirective[];
     /**
      * A JSON file with a sequence of actions Robo should perform as a prologue
      * for the crawl. Optional
      */
-    roboScript: Schema$FileReference;
+    roboScript?: Schema$FileReference;
     /**
      * The intents used to launch the app for the crawl. If none are provided,
      * then the main launcher activity is launched. If some are provided, then
      * only those provided are launched (the main launcher activity must be
      * provided explicitly).
      */
-    startingIntents: Schema$RoboStartingIntent[];
+    startingIntents?: Schema$RoboStartingIntent[];
   }
   /**
    * Configuration that can be selected at the time a test is run.
@@ -339,11 +342,11 @@ export namespace testing_v1 {
     /**
      * The set of available locales. @OutputOnly
      */
-    locales: Schema$Locale[];
+    locales?: Schema$Locale[];
     /**
      * The set of available orientations. @OutputOnly
      */
-    orientations: Schema$Orientation[];
+    orientations?: Schema$Orientation[];
   }
   /**
    * A test of an Android Application with a Test Loop. The intent
@@ -354,12 +357,12 @@ export namespace testing_v1 {
     /**
      * The APK for the application under test. Required
      */
-    appApk: Schema$FileReference;
+    appApk?: Schema$FileReference;
     /**
      * The java package for the application under test. Optional, default is
      * determined by examining the application&#39;s manifest.
      */
-    appPackageId: string;
+    appPackageId?: string;
     /**
      * The list of scenario labels that should be run during the test. The
      * scenario labels should map to labels defined in the application&#39;s
@@ -369,12 +372,12 @@ export namespace testing_v1 {
      * execution. Optional. Scenarios can also be specified in the scenarios
      * field.
      */
-    scenarioLabels: string[];
+    scenarioLabels?: string[];
     /**
      * The list of scenarios that should be run during the test. Optional,
      * default is all test loops, derived from the application&#39;s manifest.
      */
-    scenarios: number[];
+    scenarios?: number[];
   }
   /**
    * A version of the Android OS
@@ -383,35 +386,35 @@ export namespace testing_v1 {
     /**
      * The API level for this Android version. Examples: 18, 19 @OutputOnly
      */
-    apiLevel: number;
+    apiLevel?: number;
     /**
      * The code name for this Android version. Examples: &quot;JellyBean&quot;,
      * &quot;KitKat&quot; @OutputOnly
      */
-    codeName: string;
+    codeName?: string;
     /**
      * Market share for this version. @OutputOnly
      */
-    distribution: Schema$Distribution;
+    distribution?: Schema$Distribution;
     /**
      * An opaque id for this Android version. Use this id to invoke the
      * TestExecutionService. @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * The date this Android version became available in the market. @OutputOnly
      */
-    releaseDate: Schema$Date;
+    releaseDate?: Schema$Date;
     /**
      * Tags for this dimension. Examples: &quot;default&quot;,
      * &quot;preview&quot;, &quot;deprecated&quot;
      */
-    tags: string[];
+    tags?: string[];
     /**
      * A string representing this version of the Android OS. Examples:
      * &quot;4.3&quot;, &quot;4.4&quot; @OutputOnly
      */
-    versionString: string;
+    versionString?: string;
   }
   /**
    * An Android package file to install.
@@ -421,18 +424,18 @@ export namespace testing_v1 {
      * The path to an APK to be installed on the device before the test begins.
      * Optional
      */
-    location: Schema$FileReference;
+    location?: Schema$FileReference;
     /**
      * The java package for the APK to be installed. Optional, value is
      * determined by examining the application&#39;s manifest.
      */
-    packageName: string;
+    packageName?: string;
   }
   /**
    * Android application details based on application manifest and apk archive
    * contents
    */
-  export interface Schema$ApkDetail { apkManifest: Schema$ApkManifest; }
+  export interface Schema$ApkDetail { apkManifest?: Schema$ApkManifest; }
   /**
    * An Android app manifest. See
    * http://developer.android.com/guide/topics/manifest/manifest-intro.html
@@ -441,21 +444,21 @@ export namespace testing_v1 {
     /**
      * User-readable name for the application.
      */
-    applicationLabel: string;
-    intentFilters: Schema$IntentFilter[];
+    applicationLabel?: string;
+    intentFilters?: Schema$IntentFilter[];
     /**
      * Maximum API level on which the application is designed to run.
      */
-    maxSdkVersion: number;
+    maxSdkVersion?: number;
     /**
      * Minimum API level required for the application to run.
      */
-    minSdkVersion: number;
+    minSdkVersion?: number;
     /**
      * Full Java-style package name for this application, e.g.
      * &quot;com.example.foo&quot;.
      */
-    packageName: string;
+    packageName?: string;
   }
   /**
    * Response containing the current state of the specified test matrix.
@@ -465,7 +468,7 @@ export namespace testing_v1 {
      * The current rolled-up state of the test matrix. If this state is already
      * final, then the cancelation request will have no effect.
      */
-    testState: string;
+    testState?: string;
   }
   /**
    * Information about the client which invoked the test.
@@ -474,11 +477,11 @@ export namespace testing_v1 {
     /**
      * The list of detailed information about client.
      */
-    clientInfoDetails: Schema$ClientInfoDetail[];
+    clientInfoDetails?: Schema$ClientInfoDetail[];
     /**
      * Client name, such as gcloud. Required
      */
-    name: string;
+    name?: string;
   }
   /**
    * Key-value pair of detailed information about the client which invoked the
@@ -489,11 +492,11 @@ export namespace testing_v1 {
     /**
      * The key of detailed client information. Required
      */
-    key: string;
+    key?: string;
     /**
      * The value of detailed client information. Required
      */
-    value: string;
+    value?: string;
   }
   /**
    * Represents a whole calendar date, e.g. date of birth. The time of day and
@@ -509,17 +512,17 @@ export namespace testing_v1 {
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
      * if specifying a year/month where the day is not significant.
      */
-    day: number;
+    day?: number;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
      * month.
      */
-    month: number;
+    month?: number;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
      * year.
      */
-    year: number;
+    year?: number;
   }
   /**
    * A single device file description.
@@ -528,11 +531,11 @@ export namespace testing_v1 {
     /**
      * A reference to an opaque binary blob file
      */
-    obbFile: Schema$ObbFile;
+    obbFile?: Schema$ObbFile;
     /**
      * A reference to a regular file
      */
-    regularFile: Schema$RegularFile;
+    regularFile?: Schema$RegularFile;
   }
   /**
    * Data about the relative number of devices running a given configuration of
@@ -543,11 +546,11 @@ export namespace testing_v1 {
      * The estimated fraction (0-1) of the total market with this configuration.
      * @OutputOnly
      */
-    marketShare: number;
+    marketShare?: number;
     /**
      * The time this distribution was measured. @OutputOnly
      */
-    measurementTime: string;
+    measurementTime?: string;
   }
   /**
    * The environment in which the test is run.
@@ -556,7 +559,7 @@ export namespace testing_v1 {
     /**
      * An Android device which must be used with an Android test.
      */
-    androidDevice: Schema$AndroidDevice;
+    androidDevice?: Schema$AndroidDevice;
   }
   /**
    * The matrix of environments in which the test is to be executed.
@@ -566,11 +569,11 @@ export namespace testing_v1 {
      * A list of Android devices; the test will be run only on the specified
      * devices.
      */
-    androidDeviceList: Schema$AndroidDeviceList;
+    androidDeviceList?: Schema$AndroidDeviceList;
     /**
      * A matrix of Android devices.
      */
-    androidMatrix: Schema$AndroidMatrix;
+    androidMatrix?: Schema$AndroidMatrix;
   }
   /**
    * A key-value pair passed as an environment variable to the test
@@ -579,11 +582,11 @@ export namespace testing_v1 {
     /**
      * Key for the environment variable
      */
-    key: string;
+    key?: string;
     /**
      * Value for the environment variable
      */
-    value: string;
+    value?: string;
   }
   /**
    * A reference to a file, used for user inputs.
@@ -593,7 +596,7 @@ export namespace testing_v1 {
      * A path to a file in Google Cloud Storage. Example:
      * gs://build-app-1414623860166/app-debug-unaligned.apk
      */
-    gcsPath: string;
+    gcsPath?: string;
   }
   /**
    * Response containing the details of the specified Android application APK.
@@ -602,7 +605,7 @@ export namespace testing_v1 {
     /**
      * Details of the Android APK.
      */
-    apkDetail: Schema$ApkDetail;
+    apkDetail?: Schema$ApkDetail;
   }
   /**
    * Enables automatic Google account login. If set, the service will
@@ -622,7 +625,7 @@ export namespace testing_v1 {
      * for this test. The requesting user must have write access on the bucket
      * in the supplied path. Required
      */
-    gcsPath: string;
+    gcsPath?: string;
   }
   /**
    * The &lt;intent-filter&gt; section of an &lt;activity&gt; tag.
@@ -632,15 +635,15 @@ export namespace testing_v1 {
     /**
      * The android:name value of the &lt;action&gt; tag
      */
-    actionNames: string[];
+    actionNames?: string[];
     /**
      * The android:name value of the &lt;category&gt; tag
      */
-    categoryNames: string[];
+    categoryNames?: string[];
     /**
      * The android:mimeType value of the &lt;data&gt; tag
      */
-    mimeType: string;
+    mimeType?: string;
   }
   /**
    * Specifies an intent that starts the main launcher activity.
@@ -653,38 +656,38 @@ export namespace testing_v1 {
     /**
      * The id for this locale. Example: &quot;en_US&quot; @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * A human-friendly name for this language/locale. Example:
      * &quot;English&quot; @OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * A human-friendly string representing the region for this locale. Example:
      * &quot;United States&quot; Not present for every locale. @OutputOnly
      */
-    region: string;
+    region?: string;
     /**
      * Tags for this dimension. Examples: &quot;default&quot;
      */
-    tags: string[];
+    tags?: string[];
   }
   export interface Schema$NetworkConfiguration {
     /**
      * The emulation rule applying to the download traffic
      */
-    downRule: Schema$TrafficRule;
+    downRule?: Schema$TrafficRule;
     /**
      * The unique opaque id for this network traffic configuration @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * The emulation rule applying to the upload traffic
      */
-    upRule: Schema$TrafficRule;
+    upRule?: Schema$TrafficRule;
   }
   export interface Schema$NetworkConfigurationCatalog {
-    configurations: Schema$NetworkConfiguration[];
+    configurations?: Schema$NetworkConfiguration[];
   }
   /**
    * An opaque binary blob file to install on the device before the test starts
@@ -693,14 +696,14 @@ export namespace testing_v1 {
     /**
      * Opaque Binary Blob (OBB) file(s) to install on the device Required
      */
-    obb: Schema$FileReference;
+    obb?: Schema$FileReference;
     /**
      * OBB file name which must conform to the format as specified by Android
      * e.g. [main|patch].0300110.com.example.android.obb which will be installed
      * into   &lt;shared-storage&gt;/Android/obb/&lt;package-name&gt;/ on the
      * device Required
      */
-    obbFileName: string;
+    obbFileName?: string;
   }
   /**
    * Screen orientation of the device.
@@ -709,16 +712,16 @@ export namespace testing_v1 {
     /**
      * The id for this orientation. Example: &quot;portrait&quot; @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * A human-friendly name for this orientation. Example: &quot;portrait&quot;
      * @OutputOnly
      */
-    name: string;
+    name?: string;
     /**
      * Tags for this dimension. Examples: &quot;default&quot;
      */
-    tags: string[];
+    tags?: string[];
   }
   /**
    * A file or directory to install on the device before the test starts
@@ -727,7 +730,7 @@ export namespace testing_v1 {
     /**
      * Required
      */
-    content: Schema$FileReference;
+    content?: Schema$FileReference;
     /**
      * Where to put the content on the device. Must be an absolute, whitelisted
      * path. If the file exists, it will be replaced. The following device-side
@@ -744,7 +747,7 @@ export namespace testing_v1 {
      * Environment API&lt;/a&gt; in app and test code to access files on the
      * device in a portable way. Required
      */
-    devicePath: string;
+    devicePath?: string;
   }
   /**
    * Locations where the results of running the test are stored.
@@ -753,17 +756,17 @@ export namespace testing_v1 {
     /**
      * Required.
      */
-    googleCloudStorage: Schema$GoogleCloudStorage;
+    googleCloudStorage?: Schema$GoogleCloudStorage;
     /**
      * The tool results execution that results are written to. @OutputOnly
      */
-    toolResultsExecution: Schema$ToolResultsExecution;
+    toolResultsExecution?: Schema$ToolResultsExecution;
     /**
      * The tool results history that contains the tool results execution that
      * results are written to.  Optional, if not provided the service will
      * choose an appropriate value.
      */
-    toolResultsHistory: Schema$ToolResultsHistory;
+    toolResultsHistory?: Schema$ToolResultsHistory;
   }
   /**
    * Directs Robo to interact with a specific UI element if it is encountered
@@ -774,12 +777,12 @@ export namespace testing_v1 {
      * The type of action that Robo should perform on the specified element.
      * Required.
      */
-    actionType: string;
+    actionType?: string;
     /**
      * The text that Robo is directed to set. If left empty, the directive will
      * be treated as a CLICK on the element matching the resource_name. Optional
      */
-    inputText: string;
+    inputText?: string;
     /**
      * The android resource name of the target UI element For example,    in
      * Java: R.string.foo    in xml: @string/foo Only the “foo” part is needed.
@@ -787,14 +790,14 @@ export namespace testing_v1 {
      * https://developer.android.com/guide/topics/resources/accessing-resources.html
      * Required
      */
-    resourceName: string;
+    resourceName?: string;
   }
   /**
    * Message for specifying the start activities to crawl
    */
   export interface Schema$RoboStartingIntent {
-    launcherActivity: Schema$LauncherActivityIntent;
-    startActivity: Schema$StartActivityIntent;
+    launcherActivity?: Schema$LauncherActivityIntent;
+    startActivity?: Schema$StartActivityIntent;
   }
   /**
    * A starting intent specified by an action, uri, and categories.
@@ -803,15 +806,15 @@ export namespace testing_v1 {
     /**
      * Action name. Required for START_ACTIVITY.
      */
-    action: string;
+    action?: string;
     /**
      * Intent categories to set on the intent. Optional.
      */
-    categories: string[];
+    categories?: string[];
     /**
      * URI for the action. Optional.
      */
-    uri: string;
+    uri?: string;
   }
   /**
    * Additional details about the progress of the running test.
@@ -821,20 +824,20 @@ export namespace testing_v1 {
      * If the TestState is ERROR, then this string will contain human-readable
      * details about the error. @OutputOnly
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * Human-readable, detailed descriptions of the test&#39;s progress. For
      * example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;.
      * During the course of execution new data may be appended to the end of
      * progress_messages. @OutputOnly
      */
-    progressMessages: string[];
+    progressMessages?: string[];
     /**
      * Indicates that video will not be recorded for this execution either
      * because the user chose to disable it or the device does not support it.
      * See AndroidModel.video_recording_not_supported @OutputOnly
      */
-    videoRecordingDisabled: boolean;
+    videoRecordingDisabled?: boolean;
   }
   /**
    * A description of a test environment.
@@ -843,11 +846,11 @@ export namespace testing_v1 {
     /**
      * Android devices suitable for running Android Instrumentation Tests.
      */
-    androidDeviceCatalog: Schema$AndroidDeviceCatalog;
+    androidDeviceCatalog?: Schema$AndroidDeviceCatalog;
     /**
      * Supported network configurations
      */
-    networkConfigurationCatalog: Schema$NetworkConfigurationCatalog;
+    networkConfigurationCatalog?: Schema$NetworkConfigurationCatalog;
   }
   /**
    * Specifies a single test to be executed in a single environment.
@@ -856,40 +859,40 @@ export namespace testing_v1 {
     /**
      * How the host machine(s) are configured. @OutputOnly
      */
-    environment: Schema$Environment;
+    environment?: Schema$Environment;
     /**
      * Unique id set by the backend. @OutputOnly
      */
-    id: string;
+    id?: string;
     /**
      * Id of the containing TestMatrix. @OutputOnly
      */
-    matrixId: string;
+    matrixId?: string;
     /**
      * The cloud project that owns the test execution. @OutputOnly
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Indicates the current progress of the test execution (e.g., FINISHED).
      * @OutputOnly
      */
-    state: string;
+    state?: string;
     /**
      * Additional details about the running test. @OutputOnly
      */
-    testDetails: Schema$TestDetails;
+    testDetails?: Schema$TestDetails;
     /**
      * How to run the test. @OutputOnly
      */
-    testSpecification: Schema$TestSpecification;
+    testSpecification?: Schema$TestSpecification;
     /**
      * The time this test execution was initially created. @OutputOnly
      */
-    timestamp: string;
+    timestamp?: string;
     /**
      * Where the results for this execution are written. @OutputOnly
      */
-    toolResultsStep: Schema$ToolResultsStep;
+    toolResultsStep?: Schema$ToolResultsStep;
   }
   /**
    * A group of one or more TestExecutions, built by taking a product of values
@@ -899,46 +902,46 @@ export namespace testing_v1 {
     /**
      * Information about the client which invoked the test. Optional
      */
-    clientInfo: Schema$ClientInfo;
+    clientInfo?: Schema$ClientInfo;
     /**
      * How the host machine(s) are configured. Required
      */
-    environmentMatrix: Schema$EnvironmentMatrix;
+    environmentMatrix?: Schema$EnvironmentMatrix;
     /**
      * Describes why the matrix is considered invalid. Only useful for matrices
      * in the INVALID state. @OutputOnly
      */
-    invalidMatrixDetails: string;
+    invalidMatrixDetails?: string;
     /**
      * The cloud project that owns the test matrix. @OutputOnly
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Where the results for the matrix are written. Required
      */
-    resultStorage: Schema$ResultStorage;
+    resultStorage?: Schema$ResultStorage;
     /**
      * Indicates the current progress of the test matrix (e.g., FINISHED)
      * @OutputOnly
      */
-    state: string;
+    state?: string;
     /**
      * The list of test executions that the service creates for this matrix.
      * @OutputOnly
      */
-    testExecutions: Schema$TestExecution[];
+    testExecutions?: Schema$TestExecution[];
     /**
      * Unique id set by the service. @OutputOnly
      */
-    testMatrixId: string;
+    testMatrixId?: string;
     /**
      * How to run the test. Required
      */
-    testSpecification: Schema$TestSpecification;
+    testSpecification?: Schema$TestSpecification;
     /**
      * The time this test matrix was initially created. @OutputOnly
      */
-    timestamp: string;
+    timestamp?: string;
   }
   /**
    * A description of how to set up the Android device prior to running the
@@ -949,12 +952,12 @@ export namespace testing_v1 {
      * The device will be logged in on this account for the duration of the
      * test. Optional
      */
-    account: Schema$Account;
+    account?: Schema$Account;
     /**
      * APKs to install in addition to those being directly tested. Currently
      * capped at 100. Optional
      */
-    additionalApks: Schema$Apk[];
+    additionalApks?: Schema$Apk[];
     /**
      * List of directories on the device to upload to GCS at the end of the
      * test; they must be absolute paths under /sdcard or /data/local/tmp. Path
@@ -964,20 +967,20 @@ export namespace testing_v1 {
      * to external storage, the system will replace it with the external storage
      * path prefix for that device.  Optional
      */
-    directoriesToPull: string[];
+    directoriesToPull?: string[];
     /**
      * Environment variables to set for the test (only applicable for
      * instrumentation tests).
      */
-    environmentVariables: Schema$EnvironmentVariable[];
+    environmentVariables?: Schema$EnvironmentVariable[];
     /**
      * List of files to push to the device before starting the test.  Optional
      */
-    filesToPush: Schema$DeviceFile[];
+    filesToPush?: Schema$DeviceFile[];
     /**
      * The network traffic profile used for running the test. Optional
      */
-    networkProfile: string;
+    networkProfile?: string;
   }
   /**
    * A description of how to run the test.
@@ -986,15 +989,15 @@ export namespace testing_v1 {
     /**
      * An Android instrumentation test.
      */
-    androidInstrumentationTest: Schema$AndroidInstrumentationTest;
+    androidInstrumentationTest?: Schema$AndroidInstrumentationTest;
     /**
      * An Android robo test.
      */
-    androidRoboTest: Schema$AndroidRoboTest;
+    androidRoboTest?: Schema$AndroidRoboTest;
     /**
      * An Android Application with a Test Loop
      */
-    androidTestLoop: Schema$AndroidTestLoop;
+    androidTestLoop?: Schema$AndroidTestLoop;
     /**
      * Enables automatic Google account login. If set, the service will
      * automatically generate a Google test account and add it to the device,
@@ -1003,25 +1006,25 @@ export namespace testing_v1 {
      * present on the device. Logging into the device with these generated
      * accounts allows testing more functionalities. Default is false. Optional
      */
-    autoGoogleLogin: boolean;
+    autoGoogleLogin?: boolean;
     /**
      * Disables performance metrics recording; may reduce test latency.
      */
-    disablePerformanceMetrics: boolean;
+    disablePerformanceMetrics?: boolean;
     /**
      * Disables video recording; may reduce test latency.
      */
-    disableVideoRecording: boolean;
+    disableVideoRecording?: boolean;
     /**
      * Test setup requirements for Android e.g. files to install, bootstrap
      * scripts. Optional
      */
-    testSetup: Schema$TestSetup;
+    testSetup?: Schema$TestSetup;
     /**
      * Max time a test execution is allowed to run before it is automatically
      * cancelled. Optional, default is 5 min.
      */
-    testTimeout: string;
+    testTimeout?: string;
   }
   /**
    * Represents a tool results execution resource.  This has the results of a
@@ -1031,15 +1034,15 @@ export namespace testing_v1 {
     /**
      * A tool results execution ID. @OutputOnly
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID. @OutputOnly
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project that owns the tool results execution. @OutputOnly
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * Represents a tool results history resource.
@@ -1048,11 +1051,11 @@ export namespace testing_v1 {
     /**
      * A tool results history ID. Required
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project that owns the tool results history. Required
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * Represents a tool results step resource.  This has the results of a
@@ -1062,19 +1065,19 @@ export namespace testing_v1 {
     /**
      * A tool results execution ID. @OutputOnly
      */
-    executionId: string;
+    executionId?: string;
     /**
      * A tool results history ID. @OutputOnly
      */
-    historyId: string;
+    historyId?: string;
     /**
      * The cloud project that owns the tool results step. @OutputOnly
      */
-    projectId: string;
+    projectId?: string;
     /**
      * A tool results step ID. @OutputOnly
      */
-    stepId: string;
+    stepId?: string;
   }
   /**
    * Network emulation parameters
@@ -1083,24 +1086,25 @@ export namespace testing_v1 {
     /**
      * Bandwidth in kbits/second
      */
-    bandwidth: number;
+    bandwidth?: number;
     /**
      * Burst size in kbits
      */
-    burst: number;
+    burst?: number;
     /**
      * Packet delay, must be &gt;= 0
      */
-    delay: string;
+    delay?: string;
     /**
      * Packet duplication ratio (0.0 - 1.0)
      */
-    packetDuplicationRatio: number;
+    packetDuplicationRatio?: number;
     /**
      * Packet loss ratio (0.0 - 1.0)
      */
-    packetLossRatio: number;
+    packetLossRatio?: number;
   }
+
 
   export class Resource$Applicationdetailservice {
     root: Testing;
@@ -1126,28 +1130,42 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getApkDetails(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetApkDetailsResponse>;
     getApkDetails(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Applicationdetailservice$Getapkdetails,
+        options?: MethodOptions): AxiosPromise<Schema$GetApkDetailsResponse>;
+    getApkDetails(
+        params: Params$Resource$Applicationdetailservice$Getapkdetails,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetApkDetailsResponse>,
-        callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
+        callback: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
     getApkDetails(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Applicationdetailservice$Getapkdetails,
+        callback: BodyResponseCallback<Schema$GetApkDetailsResponse>): void;
+    getApkDetails(callback: BodyResponseCallback<Schema$GetApkDetailsResponse>):
+        void;
+    getApkDetails(
+        paramsOrCallback?:
+            Params$Resource$Applicationdetailservice$Getapkdetails|
+        BodyResponseCallback<Schema$GetApkDetailsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetApkDetailsResponse>,
         callback?: BodyResponseCallback<Schema$GetApkDetailsResponse>):
         void|AxiosPromise<Schema$GetApkDetailsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Applicationdetailservice$Getapkdetails;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applicationdetailservice$Getapkdetails;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1170,6 +1188,19 @@ export namespace testing_v1 {
     }
   }
 
+  export interface Params$Resource$Applicationdetailservice$Getapkdetails {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FileReference;
+  }
+
+
   export class Resource$Projects {
     root: Testing;
     testMatrices: Resource$Projects$Testmatrices;
@@ -1183,6 +1214,8 @@ export namespace testing_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Testmatrices {
     root: Testing;
     constructor(root: Testing) {
@@ -1213,28 +1246,41 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CancelTestMatrixResponse>;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Testmatrices$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$CancelTestMatrixResponse>;
+    cancel(
+        params: Params$Resource$Projects$Testmatrices$Cancel,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CancelTestMatrixResponse>,
-        callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
+        callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Testmatrices$Cancel,
+        callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>): void;
+    cancel(callback: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
+        void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Testmatrices$Cancel|
+        BodyResponseCallback<Schema$CancelTestMatrixResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CancelTestMatrixResponse>,
         callback?: BodyResponseCallback<Schema$CancelTestMatrixResponse>):
         void|AxiosPromise<Schema$CancelTestMatrixResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Testmatrices$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Testmatrices$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1279,26 +1325,39 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TestMatrix>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-        callback?: BodyResponseCallback<Schema$TestMatrix>): void;
+        params?: Params$Resource$Projects$Testmatrices$Create,
+        options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+        params: Params$Resource$Projects$Testmatrices$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    create(
+        params: Params$Resource$Projects$Testmatrices$Create,
+        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    create(callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Testmatrices$Create|
+        BodyResponseCallback<Schema$TestMatrix>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestMatrix>,
         callback?: BodyResponseCallback<Schema$TestMatrix>):
         void|AxiosPromise<Schema$TestMatrix> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Testmatrices$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Testmatrices$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1337,23 +1396,35 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
-        callback?: BodyResponseCallback<Schema$TestMatrix>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+    get(params?: Params$Resource$Projects$Testmatrices$Get,
+        options?: MethodOptions): AxiosPromise<Schema$TestMatrix>;
+    get(params: Params$Resource$Projects$Testmatrices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TestMatrix>,
+        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    get(params: Params$Resource$Projects$Testmatrices$Get,
+        callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    get(callback: BodyResponseCallback<Schema$TestMatrix>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Testmatrices$Get|
+        BodyResponseCallback<Schema$TestMatrix>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TestMatrix>,
         callback?: BodyResponseCallback<Schema$TestMatrix>):
         void|AxiosPromise<Schema$TestMatrix> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Testmatrices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Testmatrices$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1376,6 +1447,59 @@ export namespace testing_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Testmatrices$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud project that owns the test.
+     */
+    projectId?: string;
+    /**
+     * Test matrix that will be canceled.
+     */
+    testMatrixId?: string;
+  }
+  export interface Params$Resource$Projects$Testmatrices$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The GCE project under which this job will run.
+     */
+    projectId?: string;
+    /**
+     * A string id used to detect duplicated requests. Ids are automatically
+     * scoped to a project, so users should ensure the ID is unique per-project.
+     * A UUID is recommended.  Optional, but strongly recommended.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TestMatrix;
+  }
+  export interface Params$Resource$Projects$Testmatrices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Cloud project that owns the test matrix.
+     */
+    projectId?: string;
+    /**
+     * Unique test matrix id which was assigned by the service.
+     */
+    testMatrixId?: string;
+  }
+
 
 
   export class Resource$Testenvironmentcatalog {
@@ -1406,26 +1530,36 @@ export namespace testing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Testenvironmentcatalog$Get,
         options?: MethodOptions): AxiosPromise<Schema$TestEnvironmentCatalog>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Testenvironmentcatalog$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestEnvironmentCatalog>,
-        callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
+    get(params: Params$Resource$Testenvironmentcatalog$Get,
+        callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
+    get(callback: BodyResponseCallback<Schema$TestEnvironmentCatalog>): void;
+    get(paramsOrCallback?: Params$Resource$Testenvironmentcatalog$Get|
+        BodyResponseCallback<Schema$TestEnvironmentCatalog>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestEnvironmentCatalog>,
         callback?: BodyResponseCallback<Schema$TestEnvironmentCatalog>):
         void|AxiosPromise<Schema$TestEnvironmentCatalog> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Testenvironmentcatalog$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Testenvironmentcatalog$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://testing.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1446,5 +1580,22 @@ export namespace testing_v1 {
         return createAPIRequest<Schema$TestEnvironmentCatalog>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Testenvironmentcatalog$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The type of environment that should be listed. Required
+     */
+    environmentType?: string;
+    /**
+     * For authorization, the cloud project requesting the
+     * TestEnvironmentCatalog. Optional
+     */
+    projectId?: string;
   }
 }

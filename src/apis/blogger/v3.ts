@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace blogger_v3 {
+  export interface Options extends GlobalOptions { version: 'v3'; }
+
   /**
    * Blogger API
    *
@@ -83,446 +86,447 @@ export namespace blogger_v3 {
     /**
      * The JSON custom meta-data for the Blog
      */
-    customMetaData: string;
+    customMetaData?: string;
     /**
      * The description of this blog. This is displayed underneath the title.
      */
-    description: string;
+    description?: string;
     /**
      * The identifier for this resource.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of this entry. Always blogger#blog
      */
-    kind: string;
+    kind?: string;
     /**
      * The locale this Blog is set to.
      */
-    locale: any;
+    locale?: any;
     /**
      * The name of this blog. This is displayed as the title.
      */
-    name: string;
+    name?: string;
     /**
      * The container of pages in this blog.
      */
-    pages: any;
+    pages?: any;
     /**
      * The container of posts in this blog.
      */
-    posts: any;
+    posts?: any;
     /**
      * RFC 3339 date-time when this blog was published.
      */
-    published: string;
+    published?: string;
     /**
      * The API REST URL to fetch this resource from.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The status of the blog.
      */
-    status: string;
+    status?: string;
     /**
      * RFC 3339 date-time when this blog was last updated.
      */
-    updated: string;
+    updated?: string;
     /**
      * The URL where this blog is published.
      */
-    url: string;
+    url?: string;
   }
   export interface Schema$BlogList {
     /**
      * Admin level list of blog per-user information
      */
-    blogUserInfos: Schema$BlogUserInfo[];
+    blogUserInfos?: Schema$BlogUserInfo[];
     /**
      * The list of Blogs this user has Authorship or Admin rights over.
      */
-    items: Schema$Blog[];
+    items?: Schema$Blog[];
     /**
      * The kind of this entity. Always blogger#blogList
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$BlogPerUserInfo {
     /**
      * ID of the Blog resource
      */
-    blogId: string;
+    blogId?: string;
     /**
      * True if the user has Admin level access to the blog.
      */
-    hasAdminAccess: boolean;
+    hasAdminAccess?: boolean;
     /**
      * The kind of this entity. Always blogger#blogPerUserInfo
      */
-    kind: string;
+    kind?: string;
     /**
      * The Photo Album Key for the user when adding photos to the blog
      */
-    photosAlbumKey: string;
+    photosAlbumKey?: string;
     /**
      * Access permissions that the user has for the blog (ADMIN, AUTHOR, or
      * READER).
      */
-    role: string;
+    role?: string;
     /**
      * ID of the User
      */
-    userId: string;
+    userId?: string;
   }
   export interface Schema$BlogUserInfo {
     /**
      * The Blog resource.
      */
-    blog: Schema$Blog;
+    blog?: Schema$Blog;
     /**
      * Information about a User for the Blog.
      */
-    blog_user_info: Schema$BlogPerUserInfo;
+    blog_user_info?: Schema$BlogPerUserInfo;
     /**
      * The kind of this entity. Always blogger#blogUserInfo
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$Comment {
     /**
      * The author of this Comment.
      */
-    author: any;
+    author?: any;
     /**
      * Data about the blog containing this comment.
      */
-    blog: any;
+    blog?: any;
     /**
      * The actual content of the comment. May include HTML markup.
      */
-    content: string;
+    content?: string;
     /**
      * The identifier for this resource.
      */
-    id: string;
+    id?: string;
     /**
      * Data about the comment this is in reply to.
      */
-    inReplyTo: any;
+    inReplyTo?: any;
     /**
      * The kind of this entry. Always blogger#comment
      */
-    kind: string;
+    kind?: string;
     /**
      * Data about the post containing this comment.
      */
-    post: any;
+    post?: any;
     /**
      * RFC 3339 date-time when this comment was published.
      */
-    published: string;
+    published?: string;
     /**
      * The API REST URL to fetch this resource from.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The status of the comment (only populated for admin users)
      */
-    status: string;
+    status?: string;
     /**
      * RFC 3339 date-time when this comment was last updated.
      */
-    updated: string;
+    updated?: string;
   }
   export interface Schema$CommentList {
     /**
      * Etag of the response.
      */
-    etag: string;
+    etag?: string;
     /**
      * The List of Comments for a Post.
      */
-    items: Schema$Comment[];
+    items?: Schema$Comment[];
     /**
      * The kind of this entry. Always blogger#commentList
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to fetch the next page, if one exists.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Pagination token to fetch the previous page, if one exists.
      */
-    prevPageToken: string;
+    prevPageToken?: string;
   }
   export interface Schema$Page {
     /**
      * The author of this Page.
      */
-    author: any;
+    author?: any;
     /**
      * Data about the blog containing this Page.
      */
-    blog: any;
+    blog?: any;
     /**
      * The body content of this Page, in HTML.
      */
-    content: string;
+    content?: string;
     /**
      * Etag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The identifier for this resource.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of this entity. Always blogger#page
      */
-    kind: string;
+    kind?: string;
     /**
      * RFC 3339 date-time when this Page was published.
      */
-    published: string;
+    published?: string;
     /**
      * The API REST URL to fetch this resource from.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The status of the page for admin resources (either LIVE or DRAFT).
      */
-    status: string;
+    status?: string;
     /**
      * The title of this entity. This is the name displayed in the Admin user
      * interface.
      */
-    title: string;
+    title?: string;
     /**
      * RFC 3339 date-time when this Page was last updated.
      */
-    updated: string;
+    updated?: string;
     /**
      * The URL that this Page is displayed at.
      */
-    url: string;
+    url?: string;
   }
   export interface Schema$PageList {
     /**
      * Etag of the response.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of Pages for a Blog.
      */
-    items: Schema$Page[];
+    items?: Schema$Page[];
     /**
      * The kind of this entity. Always blogger#pageList
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to fetch the next page, if one exists.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$Pageviews {
     /**
      * Blog Id
      */
-    blogId: string;
+    blogId?: string;
     /**
      * The container of posts in this blog.
      */
-    counts: any[];
+    counts?: any[];
     /**
      * The kind of this entry. Always blogger#page_views
      */
-    kind: string;
+    kind?: string;
   }
   export interface Schema$Post {
     /**
      * The author of this Post.
      */
-    author: any;
+    author?: any;
     /**
      * Data about the blog containing this Post.
      */
-    blog: any;
+    blog?: any;
     /**
      * The content of the Post. May contain HTML markup.
      */
-    content: string;
+    content?: string;
     /**
      * The JSON meta-data for the Post.
      */
-    customMetaData: string;
+    customMetaData?: string;
     /**
      * Etag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The identifier of this Post.
      */
-    id: string;
+    id?: string;
     /**
      * Display image for the Post.
      */
-    images: any[];
+    images?: any[];
     /**
      * The kind of this entity. Always blogger#post
      */
-    kind: string;
+    kind?: string;
     /**
      * The list of labels this Post was tagged with.
      */
-    labels: string[];
+    labels?: string[];
     /**
      * The location for geotagged posts.
      */
-    location: any;
+    location?: any;
     /**
      * RFC 3339 date-time when this Post was published.
      */
-    published: string;
+    published?: string;
     /**
      * Comment control and display setting for readers of this post.
      */
-    readerComments: string;
+    readerComments?: string;
     /**
      * The container of comments on this Post.
      */
-    replies: any;
+    replies?: any;
     /**
      * The API REST URL to fetch this resource from.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Status of the post. Only set for admin-level requests
      */
-    status: string;
+    status?: string;
     /**
      * The title of the Post.
      */
-    title: string;
+    title?: string;
     /**
      * The title link URL, similar to atom&#39;s related link.
      */
-    titleLink: string;
+    titleLink?: string;
     /**
      * RFC 3339 date-time when this Post was last updated.
      */
-    updated: string;
+    updated?: string;
     /**
      * The URL where this Post is displayed.
      */
-    url: string;
+    url?: string;
   }
   export interface Schema$PostList {
     /**
      * Etag of the response.
      */
-    etag: string;
+    etag?: string;
     /**
      * The list of Posts for this Blog.
      */
-    items: Schema$Post[];
+    items?: Schema$Post[];
     /**
      * The kind of this entity. Always blogger#postList
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to fetch the next page, if one exists.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$PostPerUserInfo {
     /**
      * ID of the Blog that the post resource belongs to.
      */
-    blogId: string;
+    blogId?: string;
     /**
      * True if the user has Author level access to the post.
      */
-    hasEditAccess: boolean;
+    hasEditAccess?: boolean;
     /**
      * The kind of this entity. Always blogger#postPerUserInfo
      */
-    kind: string;
+    kind?: string;
     /**
      * ID of the Post resource.
      */
-    postId: string;
+    postId?: string;
     /**
      * ID of the User.
      */
-    userId: string;
+    userId?: string;
   }
   export interface Schema$PostUserInfo {
     /**
      * The kind of this entity. Always blogger#postUserInfo
      */
-    kind: string;
+    kind?: string;
     /**
      * The Post resource.
      */
-    post: Schema$Post;
+    post?: Schema$Post;
     /**
      * Information about a User for the Post.
      */
-    post_user_info: Schema$PostPerUserInfo;
+    post_user_info?: Schema$PostPerUserInfo;
   }
   export interface Schema$PostUserInfosList {
     /**
      * The list of Posts with User information for the post, for this Blog.
      */
-    items: Schema$PostUserInfo[];
+    items?: Schema$PostUserInfo[];
     /**
      * The kind of this entity. Always blogger#postList
      */
-    kind: string;
+    kind?: string;
     /**
      * Pagination token to fetch the next page, if one exists.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$User {
     /**
      * Profile summary information.
      */
-    about: string;
+    about?: string;
     /**
      * The container of blogs for this user.
      */
-    blogs: any;
+    blogs?: any;
     /**
      * The timestamp of when this profile was created, in seconds since epoch.
      */
-    created: string;
+    created?: string;
     /**
      * The display name.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The identifier for this User.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of this entity. Always blogger#user
      */
-    kind: string;
+    kind?: string;
     /**
      * This user&#39;s locale
      */
-    locale: any;
+    locale?: any;
     /**
      * The API REST URL to fetch this resource from.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The user&#39;s profile page.
      */
-    url: string;
+    url?: string;
   }
+
 
   export class Resource$Blogs {
     root: Blogger;
@@ -550,21 +554,33 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Blog>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Blog>,
-        callback?: BodyResponseCallback<Schema$Blog>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Blog>,
+    get(params?: Params$Resource$Blogs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Blog>;
+    get(params: Params$Resource$Blogs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Blog>,
+        callback: BodyResponseCallback<Schema$Blog>): void;
+    get(params: Params$Resource$Blogs$Get,
+        callback: BodyResponseCallback<Schema$Blog>): void;
+    get(callback: BodyResponseCallback<Schema$Blog>): void;
+    get(paramsOrCallback?: Params$Resource$Blogs$Get|
+        BodyResponseCallback<Schema$Blog>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Blog>,
         callback?: BodyResponseCallback<Schema$Blog>):
         void|AxiosPromise<Schema$Blog> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Blogs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -600,23 +616,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getByUrl(params?: any, options?: MethodOptions): AxiosPromise<Schema$Blog>;
+    getByUrl(params?: Params$Resource$Blogs$Getbyurl, options?: MethodOptions):
+        AxiosPromise<Schema$Blog>;
     getByUrl(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Blog>,
-        callback?: BodyResponseCallback<Schema$Blog>): void;
+        params: Params$Resource$Blogs$Getbyurl,
+        options: MethodOptions|BodyResponseCallback<Schema$Blog>,
+        callback: BodyResponseCallback<Schema$Blog>): void;
     getByUrl(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Blog>,
+        params: Params$Resource$Blogs$Getbyurl,
+        callback: BodyResponseCallback<Schema$Blog>): void;
+    getByUrl(callback: BodyResponseCallback<Schema$Blog>): void;
+    getByUrl(
+        paramsOrCallback?: Params$Resource$Blogs$Getbyurl|
+        BodyResponseCallback<Schema$Blog>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Blog>,
         callback?: BodyResponseCallback<Schema$Blog>):
         void|AxiosPromise<Schema$Blog> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Getbyurl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Blogs$Getbyurl;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -655,26 +684,37 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByUser(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BlogList>;
     listByUser(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
-        callback?: BodyResponseCallback<Schema$BlogList>): void;
+        params?: Params$Resource$Blogs$Listbyuser,
+        options?: MethodOptions): AxiosPromise<Schema$BlogList>;
     listByUser(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
+        params: Params$Resource$Blogs$Listbyuser,
+        options: MethodOptions|BodyResponseCallback<Schema$BlogList>,
+        callback: BodyResponseCallback<Schema$BlogList>): void;
+    listByUser(
+        params: Params$Resource$Blogs$Listbyuser,
+        callback: BodyResponseCallback<Schema$BlogList>): void;
+    listByUser(callback: BodyResponseCallback<Schema$BlogList>): void;
+    listByUser(
+        paramsOrCallback?: Params$Resource$Blogs$Listbyuser|
+        BodyResponseCallback<Schema$BlogList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$BlogList>,
         callback?: BodyResponseCallback<Schema$BlogList>):
         void|AxiosPromise<Schema$BlogList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Blogs$Listbyuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Blogs$Listbyuser;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -696,6 +736,77 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Blogs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog to get.
+     */
+    blogId?: string;
+    /**
+     * Maximum number of posts to pull back with the blog.
+     */
+    maxPosts?: number;
+    /**
+     * Access level with which to view the blog. Note that some fields require
+     * elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Blogs$Getbyurl {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The URL of the blog to retrieve.
+     */
+    url?: string;
+    /**
+     * Access level with which to view the blog. Note that some fields require
+     * elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Blogs$Listbyuser {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the response is a list of blogs with per-user information instead
+     * of just blogs.
+     */
+    fetchUserInfo?: boolean;
+    /**
+     * User access types for blogs to include in the results, e.g. AUTHOR will
+     * return blogs where the user has author level access. If no roles are
+     * specified, defaults to ADMIN and AUTHOR roles.
+     */
+    role?: string;
+    /**
+     * Blog statuses to include in the result (default: Live blogs only). Note
+     * that ADMIN access is required to view deleted blogs.
+     */
+    status?: string;
+    /**
+     * ID of the user whose blogs are to be fetched. Either the word 'self'
+     * (sans quote marks) or the user's profile identifier.
+     */
+    userId?: string;
+    /**
+     * Access level with which to view the blogs. Note that some fields require
+     * elevated access.
+     */
+    view?: string;
+  }
+
 
   export class Resource$Bloguserinfos {
     root: Blogger;
@@ -723,24 +834,35 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Bloguserinfos$Get,
         options?: MethodOptions): AxiosPromise<Schema$BlogUserInfo>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BlogUserInfo>,
-        callback?: BodyResponseCallback<Schema$BlogUserInfo>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$BlogUserInfo>,
+    get(params: Params$Resource$Bloguserinfos$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$BlogUserInfo>,
+        callback: BodyResponseCallback<Schema$BlogUserInfo>): void;
+    get(params: Params$Resource$Bloguserinfos$Get,
+        callback: BodyResponseCallback<Schema$BlogUserInfo>): void;
+    get(callback: BodyResponseCallback<Schema$BlogUserInfo>): void;
+    get(paramsOrCallback?: Params$Resource$Bloguserinfos$Get|
+        BodyResponseCallback<Schema$BlogUserInfo>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$BlogUserInfo>,
         callback?: BodyResponseCallback<Schema$BlogUserInfo>):
         void|AxiosPromise<Schema$BlogUserInfo> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bloguserinfos$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bloguserinfos$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -762,6 +884,28 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Bloguserinfos$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog to get.
+     */
+    blogId?: string;
+    /**
+     * Maximum number of posts to pull back with the blog.
+     */
+    maxPosts?: number;
+    /**
+     * ID of the user whose blogs are to be fetched. Either the word 'self'
+     * (sans quote marks) or the user's profile identifier.
+     */
+    userId?: string;
+  }
+
 
   export class Resource$Comments {
     root: Blogger;
@@ -789,26 +933,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    approve(params?: any, options?: MethodOptions):
+    approve(params?: Params$Resource$Comments$Approve, options?: MethodOptions):
         AxiosPromise<Schema$Comment>;
     approve(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params: Params$Resource$Comments$Approve,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
     approve(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Approve,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    approve(callback: BodyResponseCallback<Schema$Comment>): void;
+    approve(
+        paramsOrCallback?: Params$Resource$Comments$Approve|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Approve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Approve;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -847,22 +1001,35 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Comments$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Comments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Comments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Comments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -902,23 +1069,33 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Comment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+    get(params?: Params$Resource$Comments$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Comment>;
+    get(params: Params$Resource$Comments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(params: Params$Resource$Comments$Get,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    get(callback: BodyResponseCallback<Schema$Comment>): void;
+    get(paramsOrCallback?: Params$Resource$Comments$Get|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -963,26 +1140,37 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Comments$List, options?: MethodOptions):
         AxiosPromise<Schema$CommentList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-        callback?: BodyResponseCallback<Schema$CommentList>): void;
+        params: Params$Resource$Comments$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        params: Params$Resource$Comments$List,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
+    list(callback: BodyResponseCallback<Schema$CommentList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Comments$List|
+        BodyResponseCallback<Schema$CommentList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
         void|AxiosPromise<Schema$CommentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Comments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1025,26 +1213,39 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listByBlog(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CommentList>;
     listByBlog(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
-        callback?: BodyResponseCallback<Schema$CommentList>): void;
+        params?: Params$Resource$Comments$Listbyblog,
+        options?: MethodOptions): AxiosPromise<Schema$CommentList>;
     listByBlog(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        params: Params$Resource$Comments$Listbyblog,
+        options: MethodOptions|BodyResponseCallback<Schema$CommentList>,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
+    listByBlog(
+        params: Params$Resource$Comments$Listbyblog,
+        callback: BodyResponseCallback<Schema$CommentList>): void;
+    listByBlog(callback: BodyResponseCallback<Schema$CommentList>): void;
+    listByBlog(
+        paramsOrCallback?: Params$Resource$Comments$Listbyblog|
+        BodyResponseCallback<Schema$CommentList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommentList>,
         callback?: BodyResponseCallback<Schema$CommentList>):
         void|AxiosPromise<Schema$CommentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Comments$Listbyblog;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Listbyblog;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1081,26 +1282,38 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    markAsSpam(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
     markAsSpam(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params?: Params$Resource$Comments$Markasspam,
+        options?: MethodOptions): AxiosPromise<Schema$Comment>;
     markAsSpam(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Markasspam,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    markAsSpam(
+        params: Params$Resource$Comments$Markasspam,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    markAsSpam(callback: BodyResponseCallback<Schema$Comment>): void;
+    markAsSpam(
+        paramsOrCallback?: Params$Resource$Comments$Markasspam|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Comments$Markasspam;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Markasspam;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1139,26 +1352,38 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    removeContent(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Comment>;
     removeContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
-        callback?: BodyResponseCallback<Schema$Comment>): void;
+        params?: Params$Resource$Comments$Removecontent,
+        options?: MethodOptions): AxiosPromise<Schema$Comment>;
     removeContent(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        params: Params$Resource$Comments$Removecontent,
+        options: MethodOptions|BodyResponseCallback<Schema$Comment>,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    removeContent(
+        params: Params$Resource$Comments$Removecontent,
+        callback: BodyResponseCallback<Schema$Comment>): void;
+    removeContent(callback: BodyResponseCallback<Schema$Comment>): void;
+    removeContent(
+        paramsOrCallback?: Params$Resource$Comments$Removecontent|
+        BodyResponseCallback<Schema$Comment>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Comment>,
         callback?: BodyResponseCallback<Schema$Comment>):
         void|AxiosPromise<Schema$Comment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Comments$Removecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Comments$Removecontent;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1182,6 +1407,189 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Comments$Approve {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the comment to mark as not spam.
+     */
+    commentId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Comments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the comment to delete.
+     */
+    commentId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Comments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to containing the comment.
+     */
+    blogId?: string;
+    /**
+     * The ID of the comment to get.
+     */
+    commentId?: string;
+    /**
+     * ID of the post to fetch posts from.
+     */
+    postId?: string;
+    /**
+     * Access level for the requested comment (default: READER). Note that some
+     * comments will require elevated permissions, for example comments where
+     * the parent posts which is in a draft state, or comments that are pending
+     * moderation.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Comments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch comments from.
+     */
+    blogId?: string;
+    /**
+     * Latest date of comment to fetch, a date-time with RFC 3339 formatting.
+     */
+    endDate?: string;
+    /**
+     * Whether the body content of the comments is included.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Maximum number of comments to include in the result.
+     */
+    maxResults?: number;
+    /**
+     * Continuation token if request is paged.
+     */
+    pageToken?: string;
+    /**
+     * ID of the post to fetch posts from.
+     */
+    postId?: string;
+    /**
+     * Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     */
+    startDate?: string;
+    /**
+     *
+     */
+    status?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Comments$Listbyblog {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch comments from.
+     */
+    blogId?: string;
+    /**
+     * Latest date of comment to fetch, a date-time with RFC 3339 formatting.
+     */
+    endDate?: string;
+    /**
+     * Whether the body content of the comments is included.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Maximum number of comments to include in the result.
+     */
+    maxResults?: number;
+    /**
+     * Continuation token if request is paged.
+     */
+    pageToken?: string;
+    /**
+     * Earliest date of comment to fetch, a date-time with RFC 3339 formatting.
+     */
+    startDate?: string;
+    /**
+     *
+     */
+    status?: string;
+  }
+  export interface Params$Resource$Comments$Markasspam {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the comment to mark as spam.
+     */
+    commentId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Comments$Removecontent {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the comment to delete content from.
+     */
+    commentId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+
 
   export class Resource$Pages {
     root: Blogger;
@@ -1208,22 +1616,35 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Pages$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Pages$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Pages$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Pages$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1260,21 +1681,33 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+    get(params?: Params$Resource$Pages$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Page>;
+    get(params: Params$Resource$Pages$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    get(params: Params$Resource$Pages$Get,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    get(callback: BodyResponseCallback<Schema$Page>): void;
+    get(paramsOrCallback?: Params$Resource$Pages$Get|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1311,23 +1744,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+    insert(params?: Params$Resource$Pages$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Page>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
+        params: Params$Resource$Pages$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+        params: Params$Resource$Pages$Insert,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    insert(callback: BodyResponseCallback<Schema$Page>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Pages$Insert|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1368,25 +1814,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$PageList>;
+    list(params?: Params$Resource$Pages$List, options?: MethodOptions):
+        AxiosPromise<Schema$PageList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PageList>,
-        callback?: BodyResponseCallback<Schema$PageList>): void;
+        params: Params$Resource$Pages$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PageList>,
+        callback: BodyResponseCallback<Schema$PageList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PageList>,
+        params: Params$Resource$Pages$List,
+        callback: BodyResponseCallback<Schema$PageList>): void;
+    list(callback: BodyResponseCallback<Schema$PageList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Pages$List|
+        BodyResponseCallback<Schema$PageList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PageList>,
         callback?: BodyResponseCallback<Schema$PageList>):
         void|AxiosPromise<Schema$PageList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1425,23 +1882,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+    patch(params?: Params$Resource$Pages$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Page>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
+        params: Params$Resource$Pages$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+        params: Params$Resource$Pages$Patch,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    patch(callback: BodyResponseCallback<Schema$Page>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Pages$Patch|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1477,23 +1947,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+    publish(params?: Params$Resource$Pages$Publish, options?: MethodOptions):
+        AxiosPromise<Schema$Page>;
     publish(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
+        params: Params$Resource$Pages$Publish,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
     publish(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+        params: Params$Resource$Pages$Publish,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    publish(callback: BodyResponseCallback<Schema$Page>): void;
+    publish(
+        paramsOrCallback?: Params$Resource$Pages$Publish|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Publish;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1530,23 +2013,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    revert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+    revert(params?: Params$Resource$Pages$Revert, options?: MethodOptions):
+        AxiosPromise<Schema$Page>;
     revert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
+        params: Params$Resource$Pages$Revert,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
     revert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+        params: Params$Resource$Pages$Revert,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    revert(callback: BodyResponseCallback<Schema$Page>): void;
+    revert(
+        paramsOrCallback?: Params$Resource$Pages$Revert|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Revert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Revert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1586,23 +2082,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Page>;
+    update(params?: Params$Resource$Pages$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Page>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
-        callback?: BodyResponseCallback<Schema$Page>): void;
+        params: Params$Resource$Pages$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Page>,
+        callback: BodyResponseCallback<Schema$Page>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Page>,
+        params: Params$Resource$Pages$Update,
+        callback: BodyResponseCallback<Schema$Page>): void;
+    update(callback: BodyResponseCallback<Schema$Page>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Pages$Update|
+        BodyResponseCallback<Schema$Page>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Page>,
         callback?: BodyResponseCallback<Schema$Page>):
         void|AxiosPromise<Schema$Page> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pages$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pages$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1624,6 +2133,181 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Pages$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Page.
+     */
+    pageId?: string;
+  }
+  export interface Params$Resource$Pages$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog containing the page.
+     */
+    blogId?: string;
+    /**
+     * The ID of the page to get.
+     */
+    pageId?: string;
+    /**
+     *
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Pages$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to add the page to.
+     */
+    blogId?: string;
+    /**
+     * Whether to create the page as a draft (default: false).
+     */
+    isDraft?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Page;
+  }
+  export interface Params$Resource$Pages$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch Pages from.
+     */
+    blogId?: string;
+    /**
+     * Whether to retrieve the Page bodies.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Maximum number of Pages to fetch.
+     */
+    maxResults?: number;
+    /**
+     * Continuation token if the request is paged.
+     */
+    pageToken?: string;
+    /**
+     *
+     */
+    status?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Pages$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Page.
+     */
+    pageId?: string;
+    /**
+     * Whether a publish action should be performed when the page is updated
+     * (default: false).
+     */
+    publish?: boolean;
+    /**
+     * Whether a revert action should be performed when the page is updated
+     * (default: false).
+     */
+    revert?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Page;
+  }
+  export interface Params$Resource$Pages$Publish {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the page.
+     */
+    pageId?: string;
+  }
+  export interface Params$Resource$Pages$Revert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the page.
+     */
+    pageId?: string;
+  }
+  export interface Params$Resource$Pages$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Page.
+     */
+    pageId?: string;
+    /**
+     * Whether a publish action should be performed when the page is updated
+     * (default: false).
+     */
+    publish?: boolean;
+    /**
+     * Whether a revert action should be performed when the page is updated
+     * (default: false).
+     */
+    revert?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Page;
+  }
+
 
   export class Resource$Pageviews {
     root: Blogger;
@@ -1650,23 +2334,34 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Pageviews>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Pageviews>,
-        callback?: BodyResponseCallback<Schema$Pageviews>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Pageviews>,
+    get(params?: Params$Resource$Pageviews$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Pageviews>;
+    get(params: Params$Resource$Pageviews$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Pageviews>,
+        callback: BodyResponseCallback<Schema$Pageviews>): void;
+    get(params: Params$Resource$Pageviews$Get,
+        callback: BodyResponseCallback<Schema$Pageviews>): void;
+    get(callback: BodyResponseCallback<Schema$Pageviews>): void;
+    get(paramsOrCallback?: Params$Resource$Pageviews$Get|
+        BodyResponseCallback<Schema$Pageviews>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Pageviews>,
         callback?: BodyResponseCallback<Schema$Pageviews>):
         void|AxiosPromise<Schema$Pageviews> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Pageviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Pageviews$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1688,6 +2383,23 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Pageviews$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog to get.
+     */
+    blogId?: string;
+    /**
+     *
+     */
+    range?: string;
+  }
+
 
   export class Resource$Posts {
     root: Blogger;
@@ -1714,22 +2426,35 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Posts$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Posts$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Posts$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Posts$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1769,21 +2494,33 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+    get(params?: Params$Resource$Posts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Post>;
+    get(params: Params$Resource$Posts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    get(params: Params$Resource$Posts$Get,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    get(callback: BodyResponseCallback<Schema$Post>): void;
+    get(paramsOrCallback?: Params$Resource$Posts$Get|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1821,23 +2558,37 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getByPath(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
     getByPath(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params?: Params$Resource$Posts$Getbypath,
+        options?: MethodOptions): AxiosPromise<Schema$Post>;
     getByPath(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Getbypath,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    getByPath(
+        params: Params$Resource$Posts$Getbypath,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    getByPath(callback: BodyResponseCallback<Schema$Post>): void;
+    getByPath(
+        paramsOrCallback?: Params$Resource$Posts$Getbypath|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Getbypath;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Getbypath;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1876,23 +2627,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+    insert(params?: Params$Resource$Posts$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Post>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params: Params$Resource$Posts$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Insert,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    insert(callback: BodyResponseCallback<Schema$Post>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Posts$Insert|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1937,25 +2701,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$PostList>;
+    list(params?: Params$Resource$Posts$List, options?: MethodOptions):
+        AxiosPromise<Schema$PostList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostList>,
-        callback?: BodyResponseCallback<Schema$PostList>): void;
+        params: Params$Resource$Posts$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PostList>,
+        callback: BodyResponseCallback<Schema$PostList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostList>,
+        params: Params$Resource$Posts$List,
+        callback: BodyResponseCallback<Schema$PostList>): void;
+    list(callback: BodyResponseCallback<Schema$PostList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Posts$List|
+        BodyResponseCallback<Schema$PostList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PostList>,
         callback?: BodyResponseCallback<Schema$PostList>):
         void|AxiosPromise<Schema$PostList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1997,23 +2772,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+    patch(params?: Params$Resource$Posts$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Post>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params: Params$Resource$Posts$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Patch,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    patch(callback: BodyResponseCallback<Schema$Post>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Posts$Patch|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2051,23 +2839,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    publish(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+    publish(params?: Params$Resource$Posts$Publish, options?: MethodOptions):
+        AxiosPromise<Schema$Post>;
     publish(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params: Params$Resource$Posts$Publish,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
     publish(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Publish,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    publish(callback: BodyResponseCallback<Schema$Post>): void;
+    publish(
+        paramsOrCallback?: Params$Resource$Posts$Publish|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Publish;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2104,23 +2905,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    revert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+    revert(params?: Params$Resource$Posts$Revert, options?: MethodOptions):
+        AxiosPromise<Schema$Post>;
     revert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params: Params$Resource$Posts$Revert,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
     revert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Revert,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    revert(callback: BodyResponseCallback<Schema$Post>): void;
+    revert(
+        paramsOrCallback?: Params$Resource$Posts$Revert|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Revert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Revert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2159,26 +2973,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Posts$Search, options?: MethodOptions):
         AxiosPromise<Schema$PostList>;
     search(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostList>,
-        callback?: BodyResponseCallback<Schema$PostList>): void;
+        params: Params$Resource$Posts$Search,
+        options: MethodOptions|BodyResponseCallback<Schema$PostList>,
+        callback: BodyResponseCallback<Schema$PostList>): void;
     search(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostList>,
+        params: Params$Resource$Posts$Search,
+        callback: BodyResponseCallback<Schema$PostList>): void;
+    search(callback: BodyResponseCallback<Schema$PostList>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Posts$Search|
+        BodyResponseCallback<Schema$PostList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$PostList>,
         callback?: BodyResponseCallback<Schema$PostList>):
         void|AxiosPromise<Schema$PostList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2220,23 +3044,36 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Post>;
+    update(params?: Params$Resource$Posts$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Post>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
-        callback?: BodyResponseCallback<Schema$Post>): void;
+        params: Params$Resource$Posts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Post>,
+        callback: BodyResponseCallback<Schema$Post>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Post>,
+        params: Params$Resource$Posts$Update,
+        callback: BodyResponseCallback<Schema$Post>): void;
+    update(callback: BodyResponseCallback<Schema$Post>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Posts$Update|
+        BodyResponseCallback<Schema$Post>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Post>,
         callback?: BodyResponseCallback<Schema$Post>):
         void|AxiosPromise<Schema$Post> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Posts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Posts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2258,6 +3095,312 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Posts$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Posts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch the post from.
+     */
+    blogId?: string;
+    /**
+     * Whether the body content of the post is included (default: true). This
+     * should be set to false when the post bodies are not required, to help
+     * minimize traffic.
+     */
+    fetchBody?: boolean;
+    /**
+     * Whether image URL metadata for each post is included (default: false).
+     */
+    fetchImages?: boolean;
+    /**
+     * Maximum number of comments to pull back on a post.
+     */
+    maxComments?: number;
+    /**
+     * The ID of the post
+     */
+    postId?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Posts$Getbypath {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch the post from.
+     */
+    blogId?: string;
+    /**
+     * Maximum number of comments to pull back on a post.
+     */
+    maxComments?: number;
+    /**
+     * Path of the Post to retrieve.
+     */
+    path?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require elevated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Posts$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to add the post to.
+     */
+    blogId?: string;
+    /**
+     * Whether the body content of the post is included with the result
+     * (default: true).
+     */
+    fetchBody?: boolean;
+    /**
+     * Whether image URL metadata for each post is included in the returned
+     * result (default: false).
+     */
+    fetchImages?: boolean;
+    /**
+     * Whether to create the post as a draft (default: false).
+     */
+    isDraft?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Post;
+  }
+  export interface Params$Resource$Posts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch posts from.
+     */
+    blogId?: string;
+    /**
+     * Latest post date to fetch, a date-time with RFC 3339 formatting.
+     */
+    endDate?: string;
+    /**
+     * Whether the body content of posts is included (default: true). This
+     * should be set to false when the post bodies are not required, to help
+     * minimize traffic.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Whether image URL metadata for each post is included.
+     */
+    fetchImages?: boolean;
+    /**
+     * Comma-separated list of labels to search for.
+     */
+    labels?: string;
+    /**
+     * Maximum number of posts to fetch.
+     */
+    maxResults?: number;
+    /**
+     * Sort search results
+     */
+    orderBy?: string;
+    /**
+     * Continuation token if the request is paged.
+     */
+    pageToken?: string;
+    /**
+     * Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     */
+    startDate?: string;
+    /**
+     * Statuses to include in the results.
+     */
+    status?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require escalated access.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Posts$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * Whether the body content of the post is included with the result
+     * (default: true).
+     */
+    fetchBody?: boolean;
+    /**
+     * Whether image URL metadata for each post is included in the returned
+     * result (default: false).
+     */
+    fetchImages?: boolean;
+    /**
+     * Maximum number of comments to retrieve with the returned post.
+     */
+    maxComments?: number;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+    /**
+     * Whether a publish action should be performed when the post is updated
+     * (default: false).
+     */
+    publish?: boolean;
+    /**
+     * Whether a revert action should be performed when the post is updated
+     * (default: false).
+     */
+    revert?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Post;
+  }
+  export interface Params$Resource$Posts$Publish {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+    /**
+     * Optional date and time to schedule the publishing of the Blog. If no
+     * publishDate parameter is given, the post is either published at the a
+     * previously saved schedule date (if present), or the current time. If a
+     * future date is given, the post will be scheduled to be published.
+     */
+    publishDate?: string;
+  }
+  export interface Params$Resource$Posts$Revert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+  }
+  export interface Params$Resource$Posts$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch the post from.
+     */
+    blogId?: string;
+    /**
+     * Whether the body content of posts is included (default: true). This
+     * should be set to false when the post bodies are not required, to help
+     * minimize traffic.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Sort search results
+     */
+    orderBy?: string;
+    /**
+     * Query terms to search this blog for matching posts.
+     */
+    q?: string;
+  }
+  export interface Params$Resource$Posts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Blog.
+     */
+    blogId?: string;
+    /**
+     * Whether the body content of the post is included with the result
+     * (default: true).
+     */
+    fetchBody?: boolean;
+    /**
+     * Whether image URL metadata for each post is included in the returned
+     * result (default: false).
+     */
+    fetchImages?: boolean;
+    /**
+     * Maximum number of comments to retrieve with the returned post.
+     */
+    maxComments?: number;
+    /**
+     * The ID of the Post.
+     */
+    postId?: string;
+    /**
+     * Whether a publish action should be performed when the post is updated
+     * (default: false).
+     */
+    publish?: boolean;
+    /**
+     * Whether a revert action should be performed when the post is updated
+     * (default: false).
+     */
+    revert?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Post;
+  }
+
 
   export class Resource$Postuserinfos {
     root: Blogger;
@@ -2288,24 +3431,35 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Postuserinfos$Get,
         options?: MethodOptions): AxiosPromise<Schema$PostUserInfo>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostUserInfo>,
-        callback?: BodyResponseCallback<Schema$PostUserInfo>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostUserInfo>,
+    get(params: Params$Resource$Postuserinfos$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$PostUserInfo>,
+        callback: BodyResponseCallback<Schema$PostUserInfo>): void;
+    get(params: Params$Resource$Postuserinfos$Get,
+        callback: BodyResponseCallback<Schema$PostUserInfo>): void;
+    get(callback: BodyResponseCallback<Schema$PostUserInfo>): void;
+    get(paramsOrCallback?: Params$Resource$Postuserinfos$Get|
+        BodyResponseCallback<Schema$PostUserInfo>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PostUserInfo>,
         callback?: BodyResponseCallback<Schema$PostUserInfo>):
         void|AxiosPromise<Schema$PostUserInfo> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Postuserinfos$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Postuserinfos$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2353,26 +3507,38 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Postuserinfos$List, options?: MethodOptions):
         AxiosPromise<Schema$PostUserInfosList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostUserInfosList>,
-        callback?: BodyResponseCallback<Schema$PostUserInfosList>): void;
+        params: Params$Resource$Postuserinfos$List,
+        options: MethodOptions|BodyResponseCallback<Schema$PostUserInfosList>,
+        callback: BodyResponseCallback<Schema$PostUserInfosList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PostUserInfosList>,
+        params: Params$Resource$Postuserinfos$List,
+        callback: BodyResponseCallback<Schema$PostUserInfosList>): void;
+    list(callback: BodyResponseCallback<Schema$PostUserInfosList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Postuserinfos$List|
+        BodyResponseCallback<Schema$PostUserInfosList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PostUserInfosList>,
         callback?: BodyResponseCallback<Schema$PostUserInfosList>):
         void|AxiosPromise<Schema$PostUserInfosList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Postuserinfos$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Postuserinfos$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2394,6 +3560,85 @@ export namespace blogger_v3 {
       }
     }
   }
+
+  export interface Params$Resource$Postuserinfos$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the blog.
+     */
+    blogId?: string;
+    /**
+     * Maximum number of comments to pull back on a post.
+     */
+    maxComments?: number;
+    /**
+     * The ID of the post to get.
+     */
+    postId?: string;
+    /**
+     * ID of the user for the per-user information to be fetched. Either the
+     * word 'self' (sans quote marks) or the user's profile identifier.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Postuserinfos$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the blog to fetch posts from.
+     */
+    blogId?: string;
+    /**
+     * Latest post date to fetch, a date-time with RFC 3339 formatting.
+     */
+    endDate?: string;
+    /**
+     * Whether the body content of posts is included. Default is false.
+     */
+    fetchBodies?: boolean;
+    /**
+     * Comma-separated list of labels to search for.
+     */
+    labels?: string;
+    /**
+     * Maximum number of posts to fetch.
+     */
+    maxResults?: number;
+    /**
+     * Sort order applied to search results. Default is published.
+     */
+    orderBy?: string;
+    /**
+     * Continuation token if the request is paged.
+     */
+    pageToken?: string;
+    /**
+     * Earliest post date to fetch, a date-time with RFC 3339 formatting.
+     */
+    startDate?: string;
+    /**
+     *
+     */
+    status?: string;
+    /**
+     * ID of the user for the per-user information to be fetched. Either the
+     * word 'self' (sans quote marks) or the user's profile identifier.
+     */
+    userId?: string;
+    /**
+     * Access level with which to view the returned result. Note that some
+     * fields require elevated access.
+     */
+    view?: string;
+  }
+
 
   export class Resource$Users {
     root: Blogger;
@@ -2419,21 +3664,33 @@ export namespace blogger_v3 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$User>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+    get(params?: Params$Resource$Users$Get,
+        options?: MethodOptions): AxiosPromise<Schema$User>;
+    get(params: Params$Resource$Users$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$User>,
+        callback: BodyResponseCallback<Schema$User>): void;
+    get(params: Params$Resource$Users$Get,
+        callback: BodyResponseCallback<Schema$User>): void;
+    get(callback: BodyResponseCallback<Schema$User>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Get|
+        BodyResponseCallback<Schema$User>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
         void|AxiosPromise<Schema$User> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2454,5 +3711,17 @@ export namespace blogger_v3 {
         return createAPIRequest<Schema$User>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Users$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the user to get.
+     */
+    userId?: string;
   }
 }

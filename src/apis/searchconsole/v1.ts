@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace searchconsole_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google Search Console URL Testing Tools API
    *
@@ -72,7 +75,7 @@ export namespace searchconsole_v1 {
     /**
      * URL of the blocked resource.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Describe image data.
@@ -83,11 +86,11 @@ export namespace searchconsole_v1 {
      * will always be &quot;image/png&quot;, but this might change in the
      * future.
      */
-    data: string;
+    data?: string;
     /**
      * The mime-type of the image data.
      */
-    mimeType: string;
+    mimeType?: string;
   }
   /**
    * Mobile-friendly issue.
@@ -96,7 +99,7 @@ export namespace searchconsole_v1 {
     /**
      * Rule violated.
      */
-    rule: string;
+    rule?: string;
   }
   /**
    * Information about a resource with issue.
@@ -105,7 +108,7 @@ export namespace searchconsole_v1 {
     /**
      * Describes a blocked resource issue.
      */
-    blockedResource: Schema$BlockedResource;
+    blockedResource?: Schema$BlockedResource;
   }
   /**
    * Mobile-friendly test request.
@@ -114,11 +117,11 @@ export namespace searchconsole_v1 {
     /**
      * Whether or not screenshot is requested. Default is false.
      */
-    requestScreenshot: boolean;
+    requestScreenshot?: boolean;
     /**
      * URL for inspection.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Mobile-friendly test response, including mobile-friendly issues and
@@ -128,23 +131,23 @@ export namespace searchconsole_v1 {
     /**
      * Test verdict, whether the page is mobile friendly or not.
      */
-    mobileFriendliness: string;
+    mobileFriendliness?: string;
     /**
      * List of mobile-usability issues.
      */
-    mobileFriendlyIssues: Schema$MobileFriendlyIssue[];
+    mobileFriendlyIssues?: Schema$MobileFriendlyIssue[];
     /**
      * Information about embedded resources issues.
      */
-    resourceIssues: Schema$ResourceIssue[];
+    resourceIssues?: Schema$ResourceIssue[];
     /**
      * Screenshot of the requested URL.
      */
-    screenshot: Schema$Image;
+    screenshot?: Schema$Image;
     /**
      * Final state of the test, can be either complete or an error.
      */
-    testStatus: Schema$TestStatus;
+    testStatus?: Schema$TestStatus;
   }
   /**
    * Final state of the test, including error details if necessary.
@@ -153,12 +156,13 @@ export namespace searchconsole_v1 {
     /**
      * Error details if applicable.
      */
-    details: string;
+    details?: string;
     /**
      * Status of the test.
      */
-    status: string;
+    status?: string;
   }
+
 
   export class Resource$Urltestingtools {
     root: Searchconsole;
@@ -174,6 +178,8 @@ export namespace searchconsole_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Urltestingtools$Mobilefriendlytest {
     root: Searchconsole;
     constructor(root: Searchconsole) {
@@ -198,27 +204,41 @@ export namespace searchconsole_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions):
+    run(params?: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+        options?: MethodOptions):
         AxiosPromise<Schema$RunMobileFriendlyTestResponse>;
-    run(params?: any,
-        options?: MethodOptions|
+    run(params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+        options: MethodOptions|
         BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
-        callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
+        callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
         void;
-    run(params?: any,
-        options?: MethodOptions|
+    run(params: Params$Resource$Urltestingtools$Mobilefriendlytest$Run,
+        callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
+        void;
+    run(callback: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
+        void;
+    run(paramsOrCallback?:
+            Params$Resource$Urltestingtools$Mobilefriendlytest$Run|
+        BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>,
         callback?: BodyResponseCallback<Schema$RunMobileFriendlyTestResponse>):
         void|AxiosPromise<Schema$RunMobileFriendlyTestResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urltestingtools$Mobilefriendlytest$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://searchconsole.googleapis.com/';
       const parameters = {
@@ -242,5 +262,17 @@ export namespace searchconsole_v1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Urltestingtools$Mobilefriendlytest$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunMobileFriendlyTestRequest;
   }
 }

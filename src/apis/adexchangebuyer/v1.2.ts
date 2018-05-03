@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace adexchangebuyer_v1_2 {
+  export interface Options extends GlobalOptions { version: 'v1_2'; }
+
   /**
    * Ad Exchange Buyer API
    *
@@ -76,40 +79,40 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * Your bidder locations that have distinct URLs.
      */
-    bidderLocation: any[];
+    bidderLocation?: any[];
     /**
      * The nid parameter value used in cookie match requests. Please contact
      * your technical account manager if you need to change this.
      */
-    cookieMatchingNid: string;
+    cookieMatchingNid?: string;
     /**
      * The base URL used in cookie match requests.
      */
-    cookieMatchingUrl: string;
+    cookieMatchingUrl?: string;
     /**
      * Account id.
      */
-    id: number;
+    id?: number;
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * The maximum number of active creatives that an account can have, where a
      * creative is active if it was inserted or bid with in the last 30 days.
      * Please contact your technical account manager if you need to change this.
      */
-    maximumActiveCreatives: number;
+    maximumActiveCreatives?: number;
     /**
      * The sum of all bidderLocation.maximumQps values cannot exceed this.
      * Please contact your technical account manager if you need to change this.
      */
-    maximumTotalQps: number;
+    maximumTotalQps?: number;
     /**
      * The number of creatives that this account inserted or bid with in the
      * last 30 days.
      */
-    numberActiveCreatives: number;
+    numberActiveCreatives?: number;
   }
   /**
    * An account feed lists Ad Exchange buyer accounts that the user has access
@@ -119,11 +122,11 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * A list of accounts.
      */
-    items: Schema$Account[];
+    items?: Schema$Account[];
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A creative and its classification data.
@@ -132,43 +135,43 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * Account id.
      */
-    accountId: number;
+    accountId?: number;
     /**
      * Detected advertiser id, if any. Read-only. This field should not be set
      * in requests.
      */
-    advertiserId: string[];
+    advertiserId?: string[];
     /**
      * The name of the company being advertised in the creative.
      */
-    advertiserName: string;
+    advertiserName?: string;
     /**
      * The agency id for this creative.
      */
-    agencyId: string;
+    agencyId?: string;
     /**
      * The last upload timestamp of this creative if it was uploaded via API.
      * Read-only. The value of this field is generated, and will be ignored for
      * uploads. (formatted RFC 3339 timestamp).
      */
-    apiUploadTimestamp: string;
+    apiUploadTimestamp?: string;
     /**
      * All attributes for the ads that may be shown from this snippet.
      */
-    attribute: number[];
+    attribute?: number[];
     /**
      * A buyer-specific id identifying the creative in this ad.
      */
-    buyerCreativeId: string;
+    buyerCreativeId?: string;
     /**
      * The set of destination urls for the snippet.
      */
-    clickThroughUrl: string[];
+    clickThroughUrl?: string[];
     /**
      * Shows any corrections that were applied to this creative. Read-only. This
      * field should not be set in requests.
      */
-    corrections: any[];
+    corrections?: any[];
     /**
      * The reasons for disapproval, if any. Note that not all disapproval
      * reasons may be categorized, so it is possible for the creative to have a
@@ -176,66 +179,66 @@ export namespace adexchangebuyer_v1_2 {
      * case, please reach out to your TAM to help debug the issue. Read-only.
      * This field should not be set in requests.
      */
-    disapprovalReasons: any[];
+    disapprovalReasons?: any[];
     /**
      * The filtering reasons for the creative. Read-only. This field should not
      * be set in requests.
      */
-    filteringReasons: any;
+    filteringReasons?: any;
     /**
      * Ad height.
      */
-    height: number;
+    height?: number;
     /**
      * The HTML snippet that displays the ad when inserted in the web page. If
      * set, videoURL should not be set.
      */
-    HTMLSnippet: string;
+    HTMLSnippet?: string;
     /**
      * The set of urls to be called to record an impression.
      */
-    impressionTrackingUrl: string[];
+    impressionTrackingUrl?: string[];
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Detected product categories, if any. Read-only. This field should not be
      * set in requests.
      */
-    productCategories: number[];
+    productCategories?: number[];
     /**
      * All restricted categories for the ads that may be shown from this
      * snippet.
      */
-    restrictedCategories: number[];
+    restrictedCategories?: number[];
     /**
      * Detected sensitive categories, if any. Read-only. This field should not
      * be set in requests.
      */
-    sensitiveCategories: number[];
+    sensitiveCategories?: number[];
     /**
      * Creative serving status. Read-only. This field should not be set in
      * requests.
      */
-    status: string;
+    status?: string;
     /**
      * All vendor types for the ads that may be shown from this snippet.
      */
-    vendorType: number[];
+    vendorType?: number[];
     /**
      * The version for this creative. Read-only. This field should not be set in
      * requests.
      */
-    version: number;
+    version?: number;
     /**
      * The url to fetch a video ad. If set, HTMLSnippet should not be set.
      */
-    videoURL: string;
+    videoURL?: string;
     /**
      * Ad width.
      */
-    width: number;
+    width?: number;
   }
   /**
    * The creatives feed lists the active creatives for the Ad Exchange buyer
@@ -246,18 +249,19 @@ export namespace adexchangebuyer_v1_2 {
     /**
      * A list of creatives.
      */
-    items: Schema$Creative[];
+    items?: Schema$Creative[];
     /**
      * Resource type.
      */
-    kind: string;
+    kind?: string;
     /**
      * Continuation token used to page through creatives. To retrieve the next
      * page of results, set the next request&#39;s &quot;pageToken&quot; value
      * to this.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
+
 
   export class Resource$Accounts {
     root: Adexchangebuyer;
@@ -283,23 +287,33 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+    get(params?: Params$Resource$Accounts$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Account>;
+    get(params: Params$Resource$Accounts$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(params: Params$Resource$Accounts$Get,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    get(callback: BodyResponseCallback<Schema$Account>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Get|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -333,26 +347,37 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Accounts$List, options?: MethodOptions):
         AxiosPromise<Schema$AccountsList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountsList>,
-        callback?: BodyResponseCallback<Schema$AccountsList>): void;
+        params: Params$Resource$Accounts$List,
+        options: MethodOptions|BodyResponseCallback<Schema$AccountsList>,
+        callback: BodyResponseCallback<Schema$AccountsList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AccountsList>,
+        params: Params$Resource$Accounts$List,
+        callback: BodyResponseCallback<Schema$AccountsList>): void;
+    list(callback: BodyResponseCallback<Schema$AccountsList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$List|
+        BodyResponseCallback<Schema$AccountsList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AccountsList>,
         callback?: BodyResponseCallback<Schema$AccountsList>):
         void|AxiosPromise<Schema$AccountsList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -388,25 +413,36 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+    patch(params?: Params$Resource$Accounts$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Account>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
+        params: Params$Resource$Accounts$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+        params: Params$Resource$Accounts$Patch,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    patch(callback: BodyResponseCallback<Schema$Account>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Accounts$Patch|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -442,25 +478,36 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Account>;
+    update(params?: Params$Resource$Accounts$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Account>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
-        callback?: BodyResponseCallback<Schema$Account>): void;
+        params: Params$Resource$Accounts$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Account>,
+        callback: BodyResponseCallback<Schema$Account>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Account>,
+        params: Params$Resource$Accounts$Update,
+        callback: BodyResponseCallback<Schema$Account>): void;
+    update(callback: BodyResponseCallback<Schema$Account>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Update|
+        BodyResponseCallback<Schema$Account>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Account>,
         callback?: BodyResponseCallback<Schema$Account>):
         void|AxiosPromise<Schema$Account> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Accounts$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -482,6 +529,55 @@ export namespace adexchangebuyer_v1_2 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account id
+     */
+    id?: number;
+  }
+  export interface Params$Resource$Accounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Accounts$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account id
+     */
+    id?: number;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Account;
+  }
+  export interface Params$Resource$Accounts$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account id
+     */
+    id?: number;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Account;
+  }
+
 
   export class Resource$Creatives {
     root: Adexchangebuyer;
@@ -509,23 +605,33 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+    get(params?: Params$Resource$Creatives$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Creative>;
+    get(params: Params$Resource$Creatives$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(params: Params$Resource$Creatives$Get,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(callback: BodyResponseCallback<Schema$Creative>): void;
+    get(paramsOrCallback?: Params$Resource$Creatives$Get|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -562,26 +668,36 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Creatives$Insert, options?: MethodOptions):
         AxiosPromise<Schema$Creative>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params: Params$Resource$Creatives$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Creatives$Insert,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    insert(callback: BodyResponseCallback<Schema$Creative>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Creatives$Insert|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -619,26 +735,37 @@ export namespace adexchangebuyer_v1_2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Creatives$List, options?: MethodOptions):
         AxiosPromise<Schema$CreativesList>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativesList>,
-        callback?: BodyResponseCallback<Schema$CreativesList>): void;
+        params: Params$Resource$Creatives$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CreativesList>,
+        callback: BodyResponseCallback<Schema$CreativesList>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CreativesList>,
+        params: Params$Resource$Creatives$List,
+        callback: BodyResponseCallback<Schema$CreativesList>): void;
+    list(callback: BodyResponseCallback<Schema$CreativesList>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Creatives$List|
+        BodyResponseCallback<Schema$CreativesList>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CreativesList>,
         callback?: BodyResponseCallback<Schema$CreativesList>):
         void|AxiosPromise<Schema$CreativesList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Creatives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -659,5 +786,49 @@ export namespace adexchangebuyer_v1_2 {
         return createAPIRequest<Schema$CreativesList>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Creatives$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The id for the account that will serve this creative.
+     */
+    accountId?: number;
+    /**
+     * The buyer-specific id for this creative.
+     */
+    buyerCreativeId?: string;
+  }
+  export interface Params$Resource$Creatives$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Creatives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of entries returned on one result page. If not set, the
+     * default is 100. Optional.
+     */
+    maxResults?: number;
+    /**
+     * A continuation token, used to page through ad clients. To retrieve the
+     * next page, set this parameter to the value of "nextPageToken" from the
+     * previous response. Optional.
+     */
+    pageToken?: string;
+    /**
+     * When specified, only creatives having the given status are returned.
+     */
+    statusFilter?: string;
   }
 }

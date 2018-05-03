@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace spanner_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Spanner API
    *
@@ -73,7 +76,7 @@ export namespace spanner_v1 {
     /**
      * Required. Options for the new transaction.
      */
-    options: Schema$TransactionOptions;
+    options?: Schema$TransactionOptions;
   }
   /**
    * Associates `members` with a `role`.
@@ -95,12 +98,12 @@ export namespace spanner_v1 {
      * that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * Metadata associated with a parent-child relationship appearing in a
@@ -110,14 +113,14 @@ export namespace spanner_v1 {
     /**
      * The node to which the link points.
      */
-    childIndex: number;
+    childIndex?: number;
     /**
      * The type of the link. For example, in Hash Joins this could be used to
      * distinguish between the build child and the probe child, or in the case
      * of the child being an output variable, to represent the tag associated
      * with the output variable.
      */
-    type: string;
+    type?: string;
     /**
      * Only present if the child node is SCALAR and corresponds to an output
      * variable of the parent node. The field carries the name of the output
@@ -127,7 +130,7 @@ export namespace spanner_v1 {
      * corresponding `variable` fields will be set to the variable names
      * assigned to the columns.
      */
-    variable: string;
+    variable?: string;
   }
   /**
    * The request for Commit.
@@ -137,7 +140,7 @@ export namespace spanner_v1 {
      * The mutations to be executed when this transaction commits. All mutations
      * are applied atomically, in the order they appear in this list.
      */
-    mutations: Schema$Mutation[];
+    mutations?: Schema$Mutation[];
     /**
      * Execute mutations in a temporary transaction. Note that unlike commit of
      * a previously-started transaction, commit with a temporary transaction is
@@ -147,11 +150,11 @@ export namespace spanner_v1 {
      * more than once. If this is undesirable, use BeginTransaction and Commit
      * instead.
      */
-    singleUseTransaction: Schema$TransactionOptions;
+    singleUseTransaction?: Schema$TransactionOptions;
     /**
      * Commit a previously-started transaction.
      */
-    transactionId: string;
+    transactionId?: string;
   }
   /**
    * The response for Commit.
@@ -160,7 +163,7 @@ export namespace spanner_v1 {
     /**
      * The Cloud Spanner timestamp at which the transaction committed.
      */
-    commitTimestamp: string;
+    commitTimestamp?: string;
   }
   /**
    * Metadata type for the operation returned by CreateDatabase.
@@ -169,7 +172,7 @@ export namespace spanner_v1 {
     /**
      * The database being created.
      */
-    database: string;
+    database?: string;
   }
   /**
    * The request for CreateDatabase.
@@ -182,14 +185,14 @@ export namespace spanner_v1 {
      * database ID is a reserved word or if it contains a hyphen, the database
      * ID must be enclosed in backticks (`` ` ``).
      */
-    createStatement: string;
+    createStatement?: string;
     /**
      * An optional list of DDL statements to run inside the newly created
      * database. Statements can create tables, indexes, etc. These statements
      * execute atomically with the creation of the database: if there is an
      * error in any statement, the database is not created.
      */
-    extraStatements: string[];
+    extraStatements?: string[];
   }
   /**
    * Metadata type for the operation returned by CreateInstance.
@@ -200,19 +203,19 @@ export namespace spanner_v1 {
      * in the process of undoing itself (which is guaranteed to succeed) and
      * cannot be cancelled again.
      */
-    cancelTime: string;
+    cancelTime?: string;
     /**
      * The time at which this operation failed or was completed successfully.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The instance being created.
      */
-    instance: Schema$Instance;
+    instance?: Schema$Instance;
     /**
      * The time at which the CreateInstance request was received.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * The request for CreateInstance.
@@ -222,12 +225,12 @@ export namespace spanner_v1 {
      * Required. The instance to create.  The name may be omitted, but if
      * specified must be `&lt;parent&gt;/instances/&lt;instance_id&gt;`.
      */
-    instance: Schema$Instance;
+    instance?: Schema$Instance;
     /**
      * Required. The ID of the instance to create.  Valid identifiers are of the
      * form `a-z*[a-z0-9]` and must be between 6 and 30 characters in length.
      */
-    instanceId: string;
+    instanceId?: string;
   }
   /**
    * The request for CreateSession.
@@ -236,7 +239,7 @@ export namespace spanner_v1 {
     /**
      * The session to create.
      */
-    session: Schema$Session;
+    session?: Schema$Session;
   }
   /**
    * A Cloud Spanner database.
@@ -249,11 +252,11 @@ export namespace spanner_v1 {
      * statement. This name can be passed to other API methods to identify the
      * database.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The current database state.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Arguments to delete operations.
@@ -264,11 +267,11 @@ export namespace spanner_v1 {
      * idempotent. The transaction will succeed even if some or all rows do not
      * exist.
      */
-    keySet: Schema$KeySet;
+    keySet?: Schema$KeySet;
     /**
      * Required. The table whose rows will be deleted.
      */
-    table: string;
+    table?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -294,7 +297,7 @@ export namespace spanner_v1 {
      * whose keys are parameter names, and whose values are the corresponding
      * parameter values.
      */
-    params: any;
+    params?: any;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -303,20 +306,20 @@ export namespace spanner_v1 {
      * of the SQL statement parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes: any;
+    paramTypes?: any;
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionQuery().  There must be an exact match
      * for the values of fields common to this message and the
      * PartitionQueryRequest message used to create this partition_token.
      */
-    partitionToken: string;
+    partitionToken?: string;
     /**
      * Used to control the amount of debugging information returned in
      * ResultSetStats. If partition_token is set, query_mode can only be set to
      * QueryMode.NORMAL.
      */
-    queryMode: string;
+    queryMode?: string;
     /**
      * If this request is resuming a previously interrupted SQL statement
      * execution, `resume_token` should be copied from the last PartialResultSet
@@ -324,16 +327,16 @@ export namespace spanner_v1 {
      * execution to resume where the last one left off. The rest of the request
      * parameters must exactly match the request that yielded this token.
      */
-    resumeToken: string;
+    resumeToken?: string;
     /**
      * Required. The SQL string.
      */
-    sql: string;
+    sql?: string;
     /**
      * The transaction to use. If none is provided, the default is a temporary
      * read-only transaction with strong concurrency.
      */
-    transaction: Schema$TransactionSelector;
+    transaction?: Schema$TransactionSelector;
   }
   /**
    * Message representing a single field of a struct.
@@ -348,11 +351,11 @@ export namespace spanner_v1 {
      * UPPER(ColName)&quot;`). Note that a query result can contain multiple
      * fields with the same name.
      */
-    name: string;
+    name?: string;
     /**
      * The type of the field.
      */
-    type: Schema$Type;
+    type?: Schema$Type;
   }
   /**
    * The response for GetDatabaseDdl.
@@ -362,7 +365,7 @@ export namespace spanner_v1 {
      * A list of formatted DDL statements defining the schema of the database
      * specified in the request.
      */
-    statements: string[];
+    statements?: string[];
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -378,12 +381,12 @@ export namespace spanner_v1 {
      * form `projects/&lt;project&gt;/instanceConfigs/&lt;configuration&gt;`.
      * See also InstanceConfig and ListInstanceConfigs.
      */
-    config: string;
+    config?: string;
     /**
      * Required. The descriptive name for this instance as it appears in UIs.
      * Must be unique per project and between 4 and 30 characters in length.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Cloud Labels are a flexible and lightweight mechanism for organizing
      * cloud resources into groups that reflect a customer&#39;s organizational
@@ -404,14 +407,14 @@ export namespace spanner_v1 {
      * as the string:  name + &quot;_&quot; + value  would prove problematic if
      * we were to allow &quot;_&quot; in a future release.
      */
-    labels: any;
+    labels?: any;
     /**
      * Required. A unique identifier for the instance, which cannot be changed
      * after the instance is created. Values are of the form
      * `projects/&lt;project&gt;/instances/a-z*[a-z0-9]`. The final segment of
      * the name must be between 6 and 30 characters in length.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The number of nodes allocated to this instance. This may be
      * zero in API responses for instances that are not yet in state `READY`.
@@ -419,13 +422,13 @@ export namespace spanner_v1 {
      * documentation](https://cloud.google.com/spanner/docs/instances#node_count)
      * for more information about nodes.
      */
-    nodeCount: number;
+    nodeCount?: number;
     /**
      * Output only. The current instance state. For CreateInstance, the state
      * must be either omitted or set to `CREATING`. For UpdateInstance, the
      * state must be either omitted or set to `READY`.
      */
-    state: string;
+    state?: string;
   }
   /**
    * A possible configuration for a Cloud Spanner instance. Configurations
@@ -435,12 +438,12 @@ export namespace spanner_v1 {
     /**
      * The name of this instance configuration as it appears in UIs.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * A unique identifier for the instance configuration.  Values are of the
      * form `projects/&lt;project&gt;/instanceConfigs/a-z*`
      */
-    name: string;
+    name?: string;
   }
   /**
    * KeyRange represents a range of rows in a table or index.  A range has a
@@ -491,22 +494,22 @@ export namespace spanner_v1 {
      * If the end is closed, then the range includes all rows whose first
      * `len(end_closed)` key columns exactly match `end_closed`.
      */
-    endClosed: any[];
+    endClosed?: any[];
     /**
      * If the end is open, then the range excludes rows whose first
      * `len(end_open)` key columns exactly match `end_open`.
      */
-    endOpen: any[];
+    endOpen?: any[];
     /**
      * If the start is closed, then the range includes all rows whose first
      * `len(start_closed)` key columns exactly match `start_closed`.
      */
-    startClosed: any[];
+    startClosed?: any[];
     /**
      * If the start is open, then the range excludes rows whose first
      * `len(start_open)` key columns exactly match `start_open`.
      */
-    startOpen: any[];
+    startOpen?: any[];
   }
   /**
    * `KeySet` defines a collection of Cloud Spanner keys and/or key ranges. All
@@ -521,18 +524,18 @@ export namespace spanner_v1 {
      * matches all keys in the table or index. Note that any keys specified in
      * `keys` or `ranges` are only yielded once.
      */
-    all: boolean;
+    all?: boolean;
     /**
      * A list of specific keys. Entries in `keys` should have exactly as many
      * elements as there are columns in the primary or index key with which this
      * `KeySet` is used.  Individual key values are encoded as described here.
      */
-    keys: any[][];
+    keys?: any[][];
     /**
      * A list of key ranges. See KeyRange for more information about key range
      * specifications.
      */
-    ranges: Schema$KeyRange[];
+    ranges?: Schema$KeyRange[];
   }
   /**
    * The response for ListDatabases.
@@ -541,12 +544,12 @@ export namespace spanner_v1 {
     /**
      * Databases that matched the request.
      */
-    databases: Schema$Database[];
+    databases?: Schema$Database[];
     /**
      * `next_page_token` can be sent in a subsequent ListDatabases call to fetch
      * more of the matching databases.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response for ListInstanceConfigs.
@@ -555,12 +558,12 @@ export namespace spanner_v1 {
     /**
      * The list of requested instance configurations.
      */
-    instanceConfigs: Schema$InstanceConfig[];
+    instanceConfigs?: Schema$InstanceConfig[];
     /**
      * `next_page_token` can be sent in a subsequent ListInstanceConfigs call to
      * fetch more of the matching instance configurations.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response for ListInstances.
@@ -569,12 +572,12 @@ export namespace spanner_v1 {
     /**
      * The list of requested instances.
      */
-    instances: Schema$Instance[];
+    instances?: Schema$Instance[];
     /**
      * `next_page_token` can be sent in a subsequent ListInstances call to fetch
      * more of the matching instances.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -583,11 +586,11 @@ export namespace spanner_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * The response for ListSessions.
@@ -597,11 +600,11 @@ export namespace spanner_v1 {
      * `next_page_token` can be sent in a subsequent ListSessions call to fetch
      * more of the matching sessions.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of requested sessions.
      */
-    sessions: Schema$Session[];
+    sessions?: Schema$Session[];
   }
   /**
    * A modification to one or more Cloud Spanner rows.  Mutations can be applied
@@ -612,29 +615,29 @@ export namespace spanner_v1 {
      * Delete rows from a table. Succeeds whether or not the named rows were
      * present.
      */
-    delete: Schema$Delete;
+    delete?: Schema$Delete;
     /**
      * Insert new rows in a table. If any of the rows already exist, the write
      * or transaction fails with error `ALREADY_EXISTS`.
      */
-    insert: Schema$Write;
+    insert?: Schema$Write;
     /**
      * Like insert, except that if the row already exists, then its column
      * values are overwritten with the ones provided. Any column values not
      * explicitly written are preserved.
      */
-    insertOrUpdate: Schema$Write;
+    insertOrUpdate?: Schema$Write;
     /**
      * Like insert, except that if the row already exists, it is deleted, and
      * the column values provided are inserted instead. Unlike insert_or_update,
      * this means any values not explicitly written become `NULL`.
      */
-    replace: Schema$Write;
+    replace?: Schema$Write;
     /**
      * Update existing rows in a table. If any of the rows does not already
      * exist, the transaction fails with error `NOT_FOUND`.
      */
-    update: Schema$Write;
+    update?: Schema$Write;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -646,24 +649,24 @@ export namespace spanner_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -673,7 +676,7 @@ export namespace spanner_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Partial results from a streaming read or SQL query. Streaming reads and SQL
@@ -686,12 +689,12 @@ export namespace spanner_v1 {
      * with more values from subsequent `PartialResultSet`s to obtain a complete
      * field value.
      */
-    chunkedValue: boolean;
+    chunkedValue?: boolean;
     /**
      * Metadata about the result set, such as row type information. Only present
      * in the first response.
      */
-    metadata: Schema$ResultSetMetadata;
+    metadata?: Schema$ResultSetMetadata;
     /**
      * Streaming calls might be interrupted for a variety of reasons, such as
      * TCP connection loss. If this occurs, the stream of results can be resumed
@@ -699,14 +702,14 @@ export namespace spanner_v1 {
      * that executing any other transaction in the same session invalidates the
      * token.
      */
-    resumeToken: string;
+    resumeToken?: string;
     /**
      * Query plan and execution statistics for the statement that produced this
      * streaming result set. These can be requested by setting
      * ExecuteSqlRequest.query_mode and are sent only once with the last
      * response in the stream.
      */
-    stats: Schema$ResultSetStats;
+    stats?: Schema$ResultSetStats;
     /**
      * A streamed result set consists of a stream of values, which might be
      * split into many `PartialResultSet` messages to accommodate large rows
@@ -755,7 +758,7 @@ export namespace spanner_v1 {
      * second containing the field value `&quot;World&quot; = &quot;W&quot; +
      * &quot;orl&quot; + &quot;d&quot;`.
      */
-    values: any[];
+    values?: any[];
   }
   /**
    * Information returned for each partition returned in a PartitionResponse.
@@ -766,7 +769,7 @@ export namespace spanner_v1 {
      * ExecuteStreamingSql requests to restrict the results to those identified
      * by this partition token.
      */
-    partitionToken: string;
+    partitionToken?: string;
   }
   /**
    * Options for a PartitionQueryRequest and PartitionReadRequest.
@@ -780,7 +783,7 @@ export namespace spanner_v1 {
      * currently 200,000.  This is only a hint.  The actual number of partitions
      * returned may be smaller or larger than this maximum count request.
      */
-    maxPartitions: string;
+    maxPartitions?: string;
     /**
      * **Note:** This hint is currently ignored by PartitionQuery and
      * PartitionRead requests.  The desired data size for each partition
@@ -788,7 +791,7 @@ export namespace spanner_v1 {
      * a hint. The actual size of each partition may be smaller or larger than
      * this size request.
      */
-    partitionSizeBytes: string;
+    partitionSizeBytes?: string;
   }
   /**
    * The request for PartitionQuery
@@ -806,7 +809,7 @@ export namespace spanner_v1 {
      * are parameter names, and whose values are the corresponding parameter
      * values.
      */
-    params: any;
+    params?: any;
     /**
      * It is not always possible for Cloud Spanner to infer the right SQL type
      * from a JSON value.  For example, values of type `BYTES` and values of
@@ -815,11 +818,11 @@ export namespace spanner_v1 {
      * of the SQL query parameters. See the definition of Type for more
      * information about SQL types.
      */
-    paramTypes: any;
+    paramTypes?: any;
     /**
      * Additional options that affect how many partitions are created.
      */
-    partitionOptions: Schema$PartitionOptions;
+    partitionOptions?: Schema$PartitionOptions;
     /**
      * The query request to generate partitions for. The request will fail if
      * the query is not root partitionable. The query plan of a root
@@ -828,12 +831,12 @@ export namespace spanner_v1 {
      * multiple splits, remotely evaluates a subquery independently on each
      * split, and then unions all results.
      */
-    sql: string;
+    sql?: string;
     /**
      * Read only snapshot transactions are supported, read/write and single use
      * transactions are not.
      */
-    transaction: Schema$TransactionSelector;
+    transaction?: Schema$TransactionSelector;
   }
   /**
    * The request for PartitionRead
@@ -842,13 +845,13 @@ export namespace spanner_v1 {
     /**
      * The columns of table to be returned for each row matching this request.
      */
-    columns: string[];
+    columns?: string[];
     /**
      * If non-empty, the name of an index on table. This index is used instead
      * of the table primary key when interpreting key_set and sorting result
      * rows. See key_set for further information.
      */
-    index: string;
+    index?: string;
     /**
      * Required. `key_set` identifies the rows to be yielded. `key_set` names
      * the primary keys of the rows in table to be yielded, unless index is
@@ -856,20 +859,20 @@ export namespace spanner_v1 {
      * index.  It is not an error for the `key_set` to name rows that do not
      * exist in the database. Read yields nothing for nonexistent rows.
      */
-    keySet: Schema$KeySet;
+    keySet?: Schema$KeySet;
     /**
      * Additional options that affect how many partitions are created.
      */
-    partitionOptions: Schema$PartitionOptions;
+    partitionOptions?: Schema$PartitionOptions;
     /**
      * Required. The name of the table in the database to be read.
      */
-    table: string;
+    table?: string;
     /**
      * Read only snapshot transactions are supported, read/write and single use
      * transactions are not.
      */
-    transaction: Schema$TransactionSelector;
+    transaction?: Schema$TransactionSelector;
   }
   /**
    * The response for PartitionQuery or PartitionRead
@@ -878,11 +881,11 @@ export namespace spanner_v1 {
     /**
      * Partitions created by this request.
      */
-    partitions: Schema$Partition[];
+    partitions?: Schema$Partition[];
     /**
      * Transaction created by this request.
      */
-    transaction: Schema$Transaction;
+    transaction?: Schema$Transaction;
   }
   /**
    * Node information for nodes appearing in a QueryPlan.plan_nodes.
@@ -891,63 +894,67 @@ export namespace spanner_v1 {
     /**
      * List of child node `index`es and their relationship to this parent.
      */
-    childLinks: Schema$ChildLink[];
+    childLinks?: Schema$ChildLink[];
     /**
      * The display name for the node.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * The execution statistics associated with the node, contained in a group
      * of key-value pairs. Only present if the plan was returned as a result of
      * a profile query. For example, number of executions, number of rows/time
      * per execution etc.
      */
-    executionStats: any;
+    executionStats?: any;
     /**
      * The `PlanNode`&#39;s index in node list.
      */
-    index: number;
+    index?: number;
     /**
      * Used to determine the type of node. May be needed for visualizing
      * different kinds of nodes differently. For example, If the node is a
      * SCALAR node, it will have a condensed representation which can be used to
      * directly embed a description of the node in its parent.
      */
-    kind: string;
+    kind?: string;
     /**
      * Attributes relevant to the node contained in a group of key-value pairs.
      * For example, a Parameter Reference node could have the following
      * information in its metadata:      { &quot;parameter_reference&quot;:
      * &quot;param1&quot;,       &quot;parameter_type&quot;: &quot;array&quot; }
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Condensed representation for SCALAR nodes.
      */
-    shortRepresentation: Schema$ShortRepresentation;
+    shortRepresentation?: Schema$ShortRepresentation;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -959,11 +966,11 @@ export namespace spanner_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Contains an ordered list of nodes appearing in the query plan.
@@ -974,7 +981,7 @@ export namespace spanner_v1 {
      * starting with the plan root. Each PlanNode&#39;s `id` corresponds to its
      * index in `plan_nodes`.
      */
-    planNodes: Schema$PlanNode[];
+    planNodes?: Schema$PlanNode[];
   }
   /**
    * Message type to initiate a read-only transaction.
@@ -990,7 +997,7 @@ export namespace spanner_v1 {
      * without the distributed timestamp negotiation overhead of
      * `max_staleness`.
      */
-    exactStaleness: string;
+    exactStaleness?: string;
     /**
      * Read data at a timestamp &gt;= `NOW - max_staleness` seconds. Guarantees
      * that all writes that have committed more than the specified number of
@@ -1001,7 +1008,7 @@ export namespace spanner_v1 {
      * the possible staleness if the local replica has fallen behind.  Note that
      * this option can only be used in single-use transactions.
      */
-    maxStaleness: string;
+    maxStaleness?: string;
     /**
      * Executes all reads at a timestamp &gt;= `min_read_timestamp`.  This is
      * useful for requesting fresher data than some previous read, or data that
@@ -1011,7 +1018,7 @@ export namespace spanner_v1 {
      * \&quot;Zulu\&quot; format, accurate to nanoseconds. Example:
      * `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    minReadTimestamp: string;
+    minReadTimestamp?: string;
     /**
      * Executes all reads at the given timestamp. Unlike other modes, reads at a
      * specific timestamp are repeatable; the same read at the same timestamp
@@ -1022,17 +1029,17 @@ export namespace spanner_v1 {
      * timestamp in RFC3339 UTC \&quot;Zulu\&quot; format, accurate to
      * nanoseconds. Example: `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    readTimestamp: string;
+    readTimestamp?: string;
     /**
      * If true, the Cloud Spanner-selected read timestamp is included in the
      * Transaction message that describes the transaction.
      */
-    returnReadTimestamp: boolean;
+    returnReadTimestamp?: boolean;
     /**
      * Read at a timestamp where all previously committed transactions are
      * visible.
      */
-    strong: boolean;
+    strong?: boolean;
   }
   /**
    * The request for Read and StreamingRead.
@@ -1041,13 +1048,13 @@ export namespace spanner_v1 {
     /**
      * The columns of table to be returned for each row matching this request.
      */
-    columns: string[];
+    columns?: string[];
     /**
      * If non-empty, the name of an index on table. This index is used instead
      * of the table primary key when interpreting key_set and sorting result
      * rows. See key_set for further information.
      */
-    index: string;
+    index?: string;
     /**
      * Required. `key_set` identifies the rows to be yielded. `key_set` names
      * the primary keys of the rows in table to be yielded, unless index is
@@ -1059,20 +1066,20 @@ export namespace spanner_v1 {
      * name rows that do not exist in the database. Read yields nothing for
      * nonexistent rows.
      */
-    keySet: Schema$KeySet;
+    keySet?: Schema$KeySet;
     /**
      * If greater than zero, only the first `limit` rows are yielded. If `limit`
      * is zero, the default is no limit. A limit cannot be specified if
      * `partition_token` is set.
      */
-    limit: string;
+    limit?: string;
     /**
      * If present, results will be restricted to the specified partition
      * previously created using PartitionRead().    There must be an exact match
      * for the values of fields common to this message and the
      * PartitionReadRequest message used to create this partition_token.
      */
-    partitionToken: string;
+    partitionToken?: string;
     /**
      * If this request is resuming a previously interrupted read, `resume_token`
      * should be copied from the last PartialResultSet yielded before the
@@ -1080,16 +1087,16 @@ export namespace spanner_v1 {
      * read left off. The rest of the request parameters must exactly match the
      * request that yielded this token.
      */
-    resumeToken: string;
+    resumeToken?: string;
     /**
      * Required. The name of the table in the database to be read.
      */
-    table: string;
+    table?: string;
     /**
      * The transaction to use. If none is provided, the default is a temporary
      * read-only transaction with strong concurrency.
      */
-    transaction: Schema$TransactionSelector;
+    transaction?: Schema$TransactionSelector;
   }
   /**
    * Message type to initiate a read-write transaction. Currently this
@@ -1103,19 +1110,19 @@ export namespace spanner_v1 {
     /**
      * Metadata about the result set, such as row type information.
      */
-    metadata: Schema$ResultSetMetadata;
+    metadata?: Schema$ResultSetMetadata;
     /**
      * Each element in `rows` is a row whose format is defined by
      * metadata.row_type. The ith element in each row matches the ith field in
      * metadata.row_type. Elements are encoded based on type as described here.
      */
-    rows: any[][];
+    rows?: any[][];
     /**
      * Query plan and execution statistics for the SQL statement that produced
      * this result set. These can be requested by setting
      * ExecuteSqlRequest.query_mode.
      */
-    stats: Schema$ResultSetStats;
+    stats?: Schema$ResultSetStats;
   }
   /**
    * Metadata about a ResultSet or PartialResultSet.
@@ -1130,12 +1137,12 @@ export namespace spanner_v1 {
      * &quot;UserName&quot;, &quot;type&quot;: { &quot;code&quot;:
      * &quot;STRING&quot; } },     ]
      */
-    rowType: Schema$StructType;
+    rowType?: Schema$StructType;
     /**
      * If the read or SQL query began a transaction as a side-effect, the
      * information about the new transaction is yielded here.
      */
-    transaction: Schema$Transaction;
+    transaction?: Schema$Transaction;
   }
   /**
    * Additional statistics about a ResultSet or PartialResultSet.
@@ -1144,7 +1151,7 @@ export namespace spanner_v1 {
     /**
      * QueryPlan for the query associated with this result.
      */
-    queryPlan: Schema$QueryPlan;
+    queryPlan?: Schema$QueryPlan;
     /**
      * Aggregated statistics from the execution of the query. Only present when
      * the query is profiled. For example, a query could return the statistics
@@ -1152,7 +1159,7 @@ export namespace spanner_v1 {
      * &quot;elapsed_time&quot;: &quot;1.22 secs&quot;, &quot;cpu_time&quot;:
      * &quot;1.19 secs&quot;     }
      */
-    queryStats: any;
+    queryStats?: any;
   }
   /**
    * The request for Rollback.
@@ -1161,7 +1168,7 @@ export namespace spanner_v1 {
     /**
      * Required. The transaction to roll back.
      */
-    transactionId: string;
+    transactionId?: string;
   }
   /**
    * A session in the Cloud Spanner API.
@@ -1171,11 +1178,11 @@ export namespace spanner_v1 {
      * Output only. The approximate timestamp when the session is last used. It
      * is typically earlier than the actual last use time.
      */
-    approximateLastUseTime: string;
+    approximateLastUseTime?: string;
     /**
      * Output only. The timestamp when the session is created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The labels for the session.   * Label keys must be between 1 and 63
      * characters long and must conform to    the following regular expression:
@@ -1185,12 +1192,12 @@ export namespace spanner_v1 {
      * associated with a given session.  See https://goo.gl/xmQnxf for more
      * information on and examples of labels.
      */
-    labels: any;
+    labels?: any;
     /**
      * The name of the session. This is always system-assigned; values provided
      * when creating a session are ignored.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1202,7 +1209,7 @@ export namespace spanner_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * Condensed representation of a node and its subtree. Only present for
@@ -1212,7 +1219,7 @@ export namespace spanner_v1 {
     /**
      * A string representation of the expression subtree rooted at this node.
      */
-    description: string;
+    description?: string;
     /**
      * A mapping of (subquery variable name) -&gt; (subquery node id) for cases
      * where the `description` string of this node references a `SCALAR`
@@ -1220,7 +1227,7 @@ export namespace spanner_v1 {
      * referenced `SCALAR` subquery may not necessarily be a direct child of
      * this node.
      */
-    subqueries: any;
+    subqueries?: any;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1262,18 +1269,18 @@ export namespace spanner_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * `StructType` defines the fields of a STRUCT type.
@@ -1286,7 +1293,7 @@ export namespace spanner_v1 {
      * turn, the order of fields matches the order of columns in a read request,
      * or the order of fields in the `SELECT` clause of a query.
      */
-    fields: Schema$Field[];
+    fields?: Schema$Field[];
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1297,7 +1304,7 @@ export namespace spanner_v1 {
      * Permissions with wildcards (such as &#39;*&#39;, &#39;spanner.*&#39;,
      * &#39;spanner.instances.*&#39;) are not allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1307,7 +1314,7 @@ export namespace spanner_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * A transaction.
@@ -1319,7 +1326,7 @@ export namespace spanner_v1 {
      * do not have IDs, because single-use transactions do not support multiple
      * requests.
      */
-    id: string;
+    id?: string;
     /**
      * For snapshot read-only transactions, the read timestamp chosen for the
      * transaction. Not returned by default: see
@@ -1327,7 +1334,7 @@ export namespace spanner_v1 {
      * RFC3339 UTC \&quot;Zulu\&quot; format, accurate to nanoseconds. Example:
      * `&quot;2014-10-02T15:01:23.045123456Z&quot;`.
      */
-    readTimestamp: string;
+    readTimestamp?: string;
   }
   /**
    * # Transactions   Each session can have at most one active transaction at a
@@ -1463,13 +1470,13 @@ export namespace spanner_v1 {
      * transaction requires `spanner.databases.beginReadOnlyTransaction`
      * permission on the `session` resource.
      */
-    readOnly: Schema$ReadOnly;
+    readOnly?: Schema$ReadOnly;
     /**
      * Transaction may write.  Authorization to begin a read-write transaction
      * requires `spanner.databases.beginOrRollbackReadWriteTransaction`
      * permission on the `session` resource.
      */
-    readWrite: Schema$ReadWrite;
+    readWrite?: Schema$ReadWrite;
   }
   /**
    * This message is used to select the transaction in which a Read or
@@ -1482,17 +1489,17 @@ export namespace spanner_v1 {
      * transaction ID of the new transaction is returned in
      * ResultSetMetadata.transaction, which is a Transaction.
      */
-    begin: Schema$TransactionOptions;
+    begin?: Schema$TransactionOptions;
     /**
      * Execute the read or SQL query in a previously-started transaction.
      */
-    id: string;
+    id?: string;
     /**
      * Execute the read or SQL query in a temporary transaction. This is the
      * most efficient way to execute a transaction that consists of a single SQL
      * query.
      */
-    singleUse: Schema$TransactionOptions;
+    singleUse?: Schema$TransactionOptions;
   }
   /**
    * `Type` indicates the type of a Cloud Spanner value, as might be stored in a
@@ -1503,16 +1510,16 @@ export namespace spanner_v1 {
      * If code == ARRAY, then `array_element_type` is the type of the array
      * elements.
      */
-    arrayElementType: Schema$Type;
+    arrayElementType?: Schema$Type;
     /**
      * Required. The TypeCode for this type.
      */
-    code: string;
+    code?: string;
     /**
      * If code == STRUCT, then `struct_type` provides type information for the
      * struct&#39;s fields.
      */
-    structType: Schema$StructType;
+    structType?: Schema$StructType;
   }
   /**
    * Metadata type for the operation returned by UpdateDatabaseDdl.
@@ -1523,16 +1530,16 @@ export namespace spanner_v1 {
      * far, where `commit_timestamps[i]` is the commit timestamp for the
      * statement `statements[i]`.
      */
-    commitTimestamps: string[];
+    commitTimestamps?: string[];
     /**
      * The database being modified.
      */
-    database: string;
+    database?: string;
     /**
      * For an update this list contains all the statements. For an individual
      * statement, this list contains only that statement.
      */
-    statements: string[];
+    statements?: string[];
   }
   /**
    * Enqueues the given DDL statements to be applied, in order but not
@@ -1562,11 +1569,11 @@ export namespace spanner_v1 {
      * an underscore. If the named operation already exists, UpdateDatabaseDdl
      * returns `ALREADY_EXISTS`.
      */
-    operationId: string;
+    operationId?: string;
     /**
      * DDL statements to be applied to the database.
      */
-    statements: string[];
+    statements?: string[];
   }
   /**
    * Metadata type for the operation returned by UpdateInstance.
@@ -1577,19 +1584,19 @@ export namespace spanner_v1 {
      * in the process of undoing itself (which is guaranteed to succeed) and
      * cannot be cancelled again.
      */
-    cancelTime: string;
+    cancelTime?: string;
     /**
      * The time at which this operation failed or was completed successfully.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The desired end state of the update.
      */
-    instance: Schema$Instance;
+    instance?: Schema$Instance;
     /**
      * The time at which UpdateInstance request was received.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * The request for UpdateInstance.
@@ -1602,14 +1609,14 @@ export namespace spanner_v1 {
      * any future fields in [][google.spanner.admin.instance.v1.Instance] from
      * being erased accidentally by clients that do not know about them.
      */
-    fieldMask: string;
+    fieldMask?: string;
     /**
      * Required. The instance to update, which must always include the instance
      * name.  Otherwise, only fields mentioned in
      * [][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask]
      * need be included.
      */
-    instance: Schema$Instance;
+    instance?: Schema$Instance;
   }
   /**
    * Arguments to insert, update, insert_or_update, and replace operations.
@@ -1620,11 +1627,11 @@ export namespace spanner_v1 {
      * must contain enough columns to allow Cloud Spanner to derive values for
      * all primary key columns in the row(s) to be modified.
      */
-    columns: string[];
+    columns?: string[];
     /**
      * Required. The table whose rows will be written.
      */
-    table: string;
+    table?: string;
     /**
      * The values to be written. `values` can contain more than one list of
      * values. If it does, then multiple rows are written, one for each entry in
@@ -1634,8 +1641,9 @@ export namespace spanner_v1 {
      * repeating table and columns. Individual values in each list are encoded
      * as described here.
      */
-    values: any[][];
+    values?: any[][];
   }
+
 
   export class Resource$Projects {
     root: Spanner;
@@ -1652,6 +1660,8 @@ export namespace spanner_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Instanceconfigs {
     root: Spanner;
     constructor(root: Spanner) {
@@ -1676,24 +1686,35 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Instanceconfigs$Get,
         options?: MethodOptions): AxiosPromise<Schema$InstanceConfig>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
-        callback?: BodyResponseCallback<Schema$InstanceConfig>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
+    get(params: Params$Resource$Projects$Instanceconfigs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$InstanceConfig>,
+        callback: BodyResponseCallback<Schema$InstanceConfig>): void;
+    get(params: Params$Resource$Projects$Instanceconfigs$Get,
+        callback: BodyResponseCallback<Schema$InstanceConfig>): void;
+    get(callback: BodyResponseCallback<Schema$InstanceConfig>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Instanceconfigs$Get|
+        BodyResponseCallback<Schema$InstanceConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$InstanceConfig>,
         callback?: BodyResponseCallback<Schema$InstanceConfig>):
         void|AxiosPromise<Schema$InstanceConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instanceconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instanceconfigs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1729,29 +1750,44 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Projects$Instanceconfigs$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListInstanceConfigsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instanceconfigs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
+        callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instanceconfigs$List,
+        callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Instanceconfigs$List|
+        BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstanceConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListInstanceConfigsResponse>):
         void|AxiosPromise<Schema$ListInstanceConfigsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instanceconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instanceconfigs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1774,6 +1810,42 @@ export namespace spanner_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Instanceconfigs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the requested instance configuration. Values are of
+     * the form `projects/<project>/instanceConfigs/<config>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instanceconfigs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Number of instance configurations to be returned in the response. If 0 or
+     * less, defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a
+     * previous ListInstanceConfigsResponse.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project for which a list of supported instance
+     * configurations is requested. Values are of the form `projects/<project>`.
+     */
+    parent?: string;
+  }
+
 
   export class Resource$Projects$Instances {
     root: Spanner;
@@ -1823,26 +1895,39 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Instances$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Instances$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Instances$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1881,25 +1966,38 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Instances$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1933,23 +2031,34 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Instance>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
-        callback?: BodyResponseCallback<Schema$Instance>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Instance>,
+    get(params?: Params$Resource$Projects$Instances$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Instance>;
+    get(params: Params$Resource$Projects$Instances$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Instance>,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(params: Params$Resource$Projects$Instances$Get,
+        callback: BodyResponseCallback<Schema$Instance>): void;
+    get(callback: BodyResponseCallback<Schema$Instance>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Instances$Get|
+        BodyResponseCallback<Schema$Instance>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Instance>,
         callback?: BodyResponseCallback<Schema$Instance>):
         void|AxiosPromise<Schema$Instance> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1986,26 +2095,38 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Instances$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Instances$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Instances$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2043,28 +2164,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListInstancesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListInstancesResponse>;
+    list(
+        params: Params$Resource$Projects$Instances$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
-        callback?: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$List,
+        callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListInstancesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Instances$List|
+        BodyResponseCallback<Schema$ListInstancesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListInstancesResponse>,
         callback?: BodyResponseCallback<Schema$ListInstancesResponse>):
         void|AxiosPromise<Schema$ListInstancesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2122,26 +2255,39 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Instances$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Instances$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Projects$Instances$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Instances$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2178,26 +2324,38 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Instances$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Instances$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Instances$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2237,29 +2395,46 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Instances$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2282,6 +2457,156 @@ export namespace spanner_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Instances$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the project in which to create the instance. Values
+     * are of the form `projects/<project>`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the instance to be deleted. Values are of the form
+     * `projects/<project>/instances/<instance>`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the requested instance. Values are of the form
+     * `projects/<project>/instances/<instance>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which the policy is being
+     * retrieved. The format is `projects/<project ID>/instances/<instance ID>`
+     * for instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for database resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An expression for filtering the results of the request. Filter rules are
+     * case insensitive. The fields eligible for filtering are:    * `name`   *
+     * `display_name`   * `labels.key` where key is the name of a label  Some
+     * examples of using filters are:    * `name:*` --> The instance has a name.
+     * * `name:Howl` --> The instance's name contains the string "howl".   *
+     * `name:HOWL` --> Equivalent to above.   * `NAME:howl` --> Equivalent to
+     * above.   * `labels.env:*` --> The instance has the label "env".   *
+     * `labels.env:dev` --> The instance has the label "env" and the value of
+     * the label contains the string "dev".   * `name:howl labels.env:dev` -->
+     * The instance's name contains "howl" and it has the label "env" with its
+     * value                                  containing "dev".
+     */
+    filter?: string;
+    /**
+     * Number of instances to be returned in the response. If 0 or less,
+     * defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a
+     * previous ListInstancesResponse.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project for which a list of instances is
+     * requested. Values are of the form `projects/<project>`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. A unique identifier for the instance, which cannot be changed
+     * after the instance is created. Values are of the form
+     * `projects/<project>/instances/a-z*[a-z0-9]`. The final segment of the
+     * name must be between 6 and 30 characters in length.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which the policy is being set.
+     * The format is `projects/<project ID>/instances/<instance ID>` for
+     * instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for databases resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which permissions are being
+     * tested. The format is `projects/<project ID>/instances/<instance ID>` for
+     * instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for database resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Instances$Databases {
     root: Spanner;
     operations: Resource$Projects$Instances$Databases$Operations;
@@ -2317,26 +2642,39 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Instances$Databases$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Instances$Databases$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2371,26 +2709,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    dropDatabase(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     dropDatabase(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     dropDatabase(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    dropDatabase(
+        params: Params$Resource$Projects$Instances$Databases$Dropdatabase,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    dropDatabase(callback: BodyResponseCallback<Schema$Empty>): void;
+    dropDatabase(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Dropdatabase|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Dropdatabase;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Dropdatabase;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2424,23 +2776,34 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Database>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Database>,
-        callback?: BodyResponseCallback<Schema$Database>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Database>,
+    get(params?: Params$Resource$Projects$Instances$Databases$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Database>;
+    get(params: Params$Resource$Projects$Instances$Databases$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Database>,
+        callback: BodyResponseCallback<Schema$Database>): void;
+    get(params: Params$Resource$Projects$Instances$Databases$Get,
+        callback: BodyResponseCallback<Schema$Database>): void;
+    get(callback: BodyResponseCallback<Schema$Database>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Get|
+        BodyResponseCallback<Schema$Database>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Database>,
         callback?: BodyResponseCallback<Schema$Database>):
         void|AxiosPromise<Schema$Database> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2476,28 +2839,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getDdl(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetDatabaseDdlResponse>;
     getDdl(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$Databases$Getddl,
+        options?: MethodOptions): AxiosPromise<Schema$GetDatabaseDdlResponse>;
+    getDdl(
+        params: Params$Resource$Projects$Instances$Databases$Getddl,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
-        callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+        callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
     getDdl(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$Getddl,
+        callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+    getDdl(callback: BodyResponseCallback<Schema$GetDatabaseDdlResponse>): void;
+    getDdl(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$Getddl|
+        BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetDatabaseDdlResponse>,
         callback?: BodyResponseCallback<Schema$GetDatabaseDdlResponse>):
         void|AxiosPromise<Schema$GetDatabaseDdlResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Getddl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Getddl;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2536,26 +2911,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Instances$Databases$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2592,28 +2981,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDatabasesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$Databases$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDatabasesResponse>;
+    list(
+        params: Params$Resource$Projects$Instances$Databases$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDatabasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$List,
+        callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDatabasesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Databases$List|
+        BodyResponseCallback<Schema$ListDatabasesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDatabasesResponse>,
         callback?: BodyResponseCallback<Schema$ListDatabasesResponse>):
         void|AxiosPromise<Schema$ListDatabasesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2651,26 +3052,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Instances$Databases$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2710,29 +3125,48 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Instances$Databases$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2774,26 +3208,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updateDdl(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     updateDdl(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Updateddl,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     updateDdl(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Instances$Databases$Updateddl,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateDdl(
+        params: Params$Resource$Projects$Instances$Databases$Updateddl,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    updateDdl(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateDdl(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Updateddl|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Updateddl;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Updateddl;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2815,6 +3263,149 @@ export namespace spanner_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Instances$Databases$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the instance that will serve the new database.
+     * Values are of the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateDatabaseRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Dropdatabase {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The database to be dropped.
+     */
+    database?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the requested database. Values are of the form
+     * `projects/<project>/instances/<instance>/databases/<database>`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Getddl {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The database whose schema we wish to get.
+     */
+    database?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which the policy is being
+     * retrieved. The format is `projects/<project ID>/instances/<instance ID>`
+     * for instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for database resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Number of databases to be returned in the response. If 0 or less,
+     * defaults to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a
+     * previous ListDatabasesResponse.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance whose databases should be listed. Values are of
+     * the form `projects/<project>/instances/<instance>`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which the policy is being set.
+     * The format is `projects/<project ID>/instances/<instance ID>` for
+     * instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for databases resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The Cloud Spanner resource for which permissions are being
+     * tested. The format is `projects/<project ID>/instances/<instance ID>` for
+     * instance resources and `projects/<project ID>/instances/<instance
+     * ID>/databases/<database ID>` for database resources.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Updateddl {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The database to update.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateDatabaseDdlRequest;
+  }
+
   export class Resource$Projects$Instances$Databases$Operations {
     root: Spanner;
     constructor(root: Spanner) {
@@ -2847,25 +3438,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Instances$Databases$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2903,25 +3509,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Instances$Databases$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2957,23 +3578,37 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Instances$Databases$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Instances$Databases$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3018,28 +3653,42 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$Databases$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Instances$Databases$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3060,6 +3709,64 @@ export namespace spanner_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Projects$Instances$Databases$Sessions {
     root: Spanner;
@@ -3087,26 +3794,44 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Transaction>;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Transaction>,
-        callback?: BodyResponseCallback<Schema$Transaction>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+        options?: MethodOptions): AxiosPromise<Schema$Transaction>;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Transaction>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+        options: MethodOptions|BodyResponseCallback<Schema$Transaction>,
+        callback: BodyResponseCallback<Schema$Transaction>): void;
+    beginTransaction(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction,
+        callback: BodyResponseCallback<Schema$Transaction>): void;
+    beginTransaction(callback: BodyResponseCallback<Schema$Transaction>): void;
+    beginTransaction(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction|
+        BodyResponseCallback<Schema$Transaction>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Transaction>,
         callback?: BodyResponseCallback<Schema$Transaction>):
         void|AxiosPromise<Schema$Transaction> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3147,26 +3872,41 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CommitResponse>;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-        callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+        options?: MethodOptions): AxiosPromise<Schema$CommitResponse>;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+        options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Commit,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Commit|
+        BodyResponseCallback<Schema$CommitResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
         void|AxiosPromise<Schema$CommitResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Commit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3214,25 +3954,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Session>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Session>,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    create(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Create,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    create(callback: BodyResponseCallback<Schema$Session>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Create|
+        BodyResponseCallback<Schema$Session>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
         void|AxiosPromise<Schema$Session> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3267,25 +4022,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3327,26 +4097,44 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    executeSql(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ResultSet>;
     executeSql(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-        callback?: BodyResponseCallback<Schema$ResultSet>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+        options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
     executeSql(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+        options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+        callback: BodyResponseCallback<Schema$ResultSet>): void;
+    executeSql(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executesql,
+        callback: BodyResponseCallback<Schema$ResultSet>): void;
+    executeSql(callback: BodyResponseCallback<Schema$ResultSet>): void;
+    executeSql(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executesql|
+        BodyResponseCallback<Schema$ResultSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResultSet>,
         callback?: BodyResponseCallback<Schema$ResultSet>):
         void|AxiosPromise<Schema$ResultSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Executesql;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3385,26 +4173,45 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    executeStreamingSql(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PartialResultSet>;
     executeStreamingSql(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-        callback?: BodyResponseCallback<Schema$PartialResultSet>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+        options?: MethodOptions): AxiosPromise<Schema$PartialResultSet>;
     executeStreamingSql(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+        options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+    executeStreamingSql(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql,
+        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+    executeStreamingSql(
+        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+    executeStreamingSql(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql|
+        BodyResponseCallback<Schema$PartialResultSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PartialResultSet>,
         callback?: BodyResponseCallback<Schema$PartialResultSet>):
         void|AxiosPromise<Schema$PartialResultSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3440,23 +4247,36 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+    get(params?: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Session>;
+    get(params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Session>,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    get(params: Params$Resource$Projects$Instances$Databases$Sessions$Get,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    get(callback: BodyResponseCallback<Schema$Session>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Get|
+        BodyResponseCallback<Schema$Session>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
         void|AxiosPromise<Schema$Session> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3493,28 +4313,42 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListSessionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListSessionsResponse>;
+    list(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Databases$Sessions$List,
+        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$List|
+        BodyResponseCallback<Schema$ListSessionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
         void|AxiosPromise<Schema$ListSessionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3557,26 +4391,45 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    partitionQuery(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PartitionResponse>;
     partitionQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-        callback?: BodyResponseCallback<Schema$PartitionResponse>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+        options?: MethodOptions): AxiosPromise<Schema$PartitionResponse>;
     partitionQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+        options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+    partitionQuery(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery,
+        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+    partitionQuery(callback: BodyResponseCallback<Schema$PartitionResponse>):
+        void;
+    partitionQuery(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery|
+        BodyResponseCallback<Schema$PartitionResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PartitionResponse>,
         callback?: BodyResponseCallback<Schema$PartitionResponse>):
         void|AxiosPromise<Schema$PartitionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3619,26 +4472,45 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    partitionRead(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PartitionResponse>;
     partitionRead(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
-        callback?: BodyResponseCallback<Schema$PartitionResponse>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+        options?: MethodOptions): AxiosPromise<Schema$PartitionResponse>;
     partitionRead(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+        options: MethodOptions|BodyResponseCallback<Schema$PartitionResponse>,
+        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+    partitionRead(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread,
+        callback: BodyResponseCallback<Schema$PartitionResponse>): void;
+    partitionRead(callback: BodyResponseCallback<Schema$PartitionResponse>):
+        void;
+    partitionRead(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread|
+        BodyResponseCallback<Schema$PartitionResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PartitionResponse>,
         callback?: BodyResponseCallback<Schema$PartitionResponse>):
         void|AxiosPromise<Schema$PartitionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Partitionread;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3681,25 +4553,41 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    read(params?: any, options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
     read(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
-        callback?: BodyResponseCallback<Schema$ResultSet>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+        options?: MethodOptions): AxiosPromise<Schema$ResultSet>;
     read(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+        options: MethodOptions|BodyResponseCallback<Schema$ResultSet>,
+        callback: BodyResponseCallback<Schema$ResultSet>): void;
+    read(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Read,
+        callback: BodyResponseCallback<Schema$ResultSet>): void;
+    read(callback: BodyResponseCallback<Schema$ResultSet>): void;
+    read(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Read|
+        BodyResponseCallback<Schema$ResultSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ResultSet>,
         callback?: BodyResponseCallback<Schema$ResultSet>):
         void|AxiosPromise<Schema$ResultSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Read;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Read;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3740,25 +4628,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(
+        params: Params$Resource$Projects$Instances$Databases$Sessions$Rollback,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Rollback|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Rollback;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3797,26 +4700,45 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    streamingRead(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$PartialResultSet>;
     streamingRead(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
-        callback?: BodyResponseCallback<Schema$PartialResultSet>): void;
+        params?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+        options?: MethodOptions): AxiosPromise<Schema$PartialResultSet>;
     streamingRead(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+        options: MethodOptions|BodyResponseCallback<Schema$PartialResultSet>,
+        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+    streamingRead(
+        params:
+            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread,
+        callback: BodyResponseCallback<Schema$PartialResultSet>): void;
+    streamingRead(callback: BodyResponseCallback<Schema$PartialResultSet>):
+        void;
+    streamingRead(
+        paramsOrCallback?:
+            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread|
+        BodyResponseCallback<Schema$PartialResultSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$PartialResultSet>,
         callback?: BodyResponseCallback<Schema$PartialResultSet>):
         void|AxiosPromise<Schema$PartialResultSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Instances$Databases$Sessions$Streamingread;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3838,6 +4760,211 @@ export namespace spanner_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Begintransaction {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the transaction runs.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BeginTransactionRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Commit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the transaction to be committed is
+     * running.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommitRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The database in which the new session is created.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateSessionRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the session to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executesql {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the SQL query should be performed.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ExecuteSqlRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Executestreamingsql {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the SQL query should be performed.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ExecuteSqlRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the session to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The database in which to list sessions.
+     */
+    database?: string;
+    /**
+     * An expression for filtering the results of the request. Filter rules are
+     * case insensitive. The fields eligible for filtering are:    *
+     * `labels.key` where key is the name of a label  Some examples of using
+     * filters are:    * `labels.env:*` --> The session has the label "env".   *
+     * `labels.env:dev` --> The session has the label "env" and the value of the
+     * label contains the string "dev".
+     */
+    filter?: string;
+    /**
+     * Number of sessions to be returned in the response. If 0 or less, defaults
+     * to the server's maximum allowed page size.
+     */
+    pageSize?: number;
+    /**
+     * If non-empty, `page_token` should contain a next_page_token from a
+     * previous ListSessionsResponse.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session used to create the partitions.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PartitionQueryRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Partitionread {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session used to create the partitions.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PartitionReadRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Read {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the read should be performed.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReadRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Rollback {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the transaction to roll back is running.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Sessions$Streamingread {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The session in which the read should be performed.
+     */
+    session?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReadRequest;
+  }
+
 
 
   export class Resource$Projects$Instances$Operations {
@@ -3872,25 +4999,38 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Instances$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3928,25 +5068,38 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Instances$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Instances$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Instances$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3982,23 +5135,35 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Instances$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Instances$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Instances$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Instances$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4043,28 +5208,40 @@ export namespace spanner_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Instances$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Instances$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Instances$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Instances$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Instances$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4084,5 +5261,62 @@ export namespace spanner_v1 {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Instances$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

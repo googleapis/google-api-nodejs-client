@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace appsactivity_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * G Suite Activity API
    *
@@ -74,11 +77,11 @@ export namespace appsactivity_v1 {
     /**
      * The fields common to all of the singleEvents that make up the Activity.
      */
-    combinedEvent: Schema$Event;
+    combinedEvent?: Schema$Event;
     /**
      * A list of all the Events that make up the Activity.
      */
-    singleEvents: Schema$Event[];
+    singleEvents?: Schema$Event[];
   }
   /**
    * Represents the changes associated with an action taken by a user.
@@ -89,42 +92,42 @@ export namespace appsactivity_v1 {
      * actions are part of a single event. For example, creating a document,
      * renaming it, and sharing it may be part of a single file-creation event.
      */
-    additionalEventTypes: string[];
+    additionalEventTypes?: string[];
     /**
      * The time at which the event occurred formatted as Unix time in
      * milliseconds.
      */
-    eventTimeMillis: string;
+    eventTimeMillis?: string;
     /**
      * Whether this event is caused by a user being deleted.
      */
-    fromUserDeletion: boolean;
+    fromUserDeletion?: boolean;
     /**
      * Extra information for move type events, such as changes in an
      * object&#39;s parents.
      */
-    move: Schema$Move;
+    move?: Schema$Move;
     /**
      * Extra information for permissionChange type events, such as the user or
      * group the new permission applies to.
      */
-    permissionChanges: Schema$PermissionChange[];
+    permissionChanges?: Schema$PermissionChange[];
     /**
      * The main type of event that occurred.
      */
-    primaryEventType: string;
+    primaryEventType?: string;
     /**
      * Extra information for rename type events, such as the old and new names.
      */
-    rename: Schema$Rename;
+    rename?: Schema$Rename;
     /**
      * Information specific to the Target object modified by the event.
      */
-    target: Schema$Target;
+    target?: Schema$Target;
     /**
      * Represents the user responsible for the event.
      */
-    user: Schema$User;
+    user?: Schema$User;
   }
   /**
    * The response from the list request. Contains a list of activities and a
@@ -134,11 +137,11 @@ export namespace appsactivity_v1 {
     /**
      * List of activities.
      */
-    activities: Schema$Activity[];
+    activities?: Schema$Activity[];
     /**
      * Token for the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Contains information about changes in an object&#39;s parents as a result
@@ -148,11 +151,11 @@ export namespace appsactivity_v1 {
     /**
      * The added parent(s).
      */
-    addedParents: Schema$Parent[];
+    addedParents?: Schema$Parent[];
     /**
      * The removed parent(s).
      */
-    removedParents: Schema$Parent[];
+    removedParents?: Schema$Parent[];
   }
   /**
    * Contains information about a parent object. For example, a folder in Drive
@@ -162,15 +165,15 @@ export namespace appsactivity_v1 {
     /**
      * The parent&#39;s ID.
      */
-    id: string;
+    id?: string;
     /**
      * Whether this is the root folder.
      */
-    isRoot: boolean;
+    isRoot?: boolean;
     /**
      * The parent&#39;s title.
      */
-    title: string;
+    title?: string;
   }
   /**
    * Contains information about the permissions and type of access allowed with
@@ -181,29 +184,29 @@ export namespace appsactivity_v1 {
     /**
      * The name of the user or group the permission applies to.
      */
-    name: string;
+    name?: string;
     /**
      * The ID for this permission. Corresponds to the Drive API&#39;s permission
      * ID returned as part of the Drive Permissions resource.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * Indicates the Google Drive permissions role. The role determines a
      * user&#39;s ability to read, write, or comment on the file.
      */
-    role: string;
+    role?: string;
     /**
      * Indicates how widely permissions are granted.
      */
-    type: string;
+    type?: string;
     /**
      * The user&#39;s information if the type is USER.
      */
-    user: Schema$User;
+    user?: Schema$User;
     /**
      * Whether the permission requires a link to the file.
      */
-    withLink: boolean;
+    withLink?: boolean;
   }
   /**
    * Contains information about a Drive object&#39;s permissions that changed as
@@ -213,11 +216,11 @@ export namespace appsactivity_v1 {
     /**
      * Lists all Permission objects added.
      */
-    addedPermissions: Schema$Permission[];
+    addedPermissions?: Schema$Permission[];
     /**
      * Lists all Permission objects removed.
      */
-    removedPermissions: Schema$Permission[];
+    removedPermissions?: Schema$Permission[];
   }
   /**
    * Photo information for a user.
@@ -226,7 +229,7 @@ export namespace appsactivity_v1 {
     /**
      * The URL of the photo.
      */
-    url: string;
+    url?: string;
   }
   /**
    * Contains information about a renametype event.
@@ -235,11 +238,11 @@ export namespace appsactivity_v1 {
     /**
      * The new title.
      */
-    newTitle: string;
+    newTitle?: string;
     /**
      * The old title.
      */
-    oldTitle: string;
+    oldTitle?: string;
   }
   /**
    * Information about the object modified by the event.
@@ -249,16 +252,16 @@ export namespace appsactivity_v1 {
      * The ID of the target. For example, in Google Drive, this is the file or
      * folder ID.
      */
-    id: string;
+    id?: string;
     /**
      * The MIME type of the target.
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * The name of the target. For example, in Google Drive, this is the title
      * of the file.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A representation of a user.
@@ -268,27 +271,28 @@ export namespace appsactivity_v1 {
      * A boolean which indicates whether the specified User was deleted. If
      * true, name, photo and permission_id will be omitted.
      */
-    isDeleted: boolean;
+    isDeleted?: boolean;
     /**
      * Whether the user is the authenticated user.
      */
-    isMe: boolean;
+    isMe?: boolean;
     /**
      * The displayable name of the user.
      */
-    name: string;
+    name?: string;
     /**
      * The permission ID associated with this user. Equivalent to the Drive
      * API&#39;s permission ID for this user, returned as part of the Drive
      * Permissions resource.
      */
-    permissionId: string;
+    permissionId?: string;
     /**
      * The profile photo of the user. Not present if the user has no profile
      * photo.
      */
-    photo: Schema$Photo;
+    photo?: Schema$Photo;
   }
+
 
   export class Resource$Activities {
     root: Appsactivity;
@@ -325,28 +329,38 @@ export namespace appsactivity_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Activities$List, options?: MethodOptions):
         AxiosPromise<Schema$ListActivitiesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Activities$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListActivitiesResponse>,
-        callback?: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Activities$List,
+        callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListActivitiesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Activities$List|
+        BodyResponseCallback<Schema$ListActivitiesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListActivitiesResponse>,
         callback?: BodyResponseCallback<Schema$ListActivitiesResponse>):
         void|AxiosPromise<Schema$ListActivitiesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Activities$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Activities$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -367,5 +381,46 @@ export namespace appsactivity_v1 {
         return createAPIRequest<Schema$ListActivitiesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Activities$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the Drive folder containing the items for which to return
+     * activities.
+     */
+    'drive.ancestorId'?: string;
+    /**
+     * Identifies the Drive item to return activities for.
+     */
+    'drive.fileId'?: string;
+    /**
+     * Indicates the strategy to use when grouping singleEvents items in the
+     * associated combinedEvent object.
+     */
+    groupingStrategy?: string;
+    /**
+     * The maximum number of events to return on a page. The response includes a
+     * continuation token if there are more events.
+     */
+    pageSize?: number;
+    /**
+     * A token to retrieve a specific page of results.
+     */
+    pageToken?: string;
+    /**
+     * The Google service from which to return activities. Possible values of
+     * source are:  - drive.google.com
+     */
+    source?: string;
+    /**
+     * Indicates the user to return activity for. Use the special value me to
+     * indicate the currently authenticated user.
+     */
+    userId?: string;
   }
 }

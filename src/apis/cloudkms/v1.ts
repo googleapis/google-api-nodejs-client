@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudkms_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Key Management Service (KMS) API
    *
@@ -93,13 +96,13 @@ export namespace cloudkms_v1 {
     /**
      * The configuration for logging of each type of permission.
      */
-    auditLogConfigs: Schema$AuditLogConfig[];
+    auditLogConfigs?: Schema$AuditLogConfig[];
     /**
      * Specifies a service that will be enabled for audit logging. For example,
      * `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a
      * special value that covers all services.
      */
-    service: string;
+    service?: string;
   }
   /**
    * Provides the configuration for logging a type of permissions. Example: {
@@ -115,11 +118,11 @@ export namespace cloudkms_v1 {
      * Specifies the identities that do not cause logging for this type of
      * permission. Follows the same format of Binding.members.
      */
-    exemptedMembers: string[];
+    exemptedMembers?: string[];
     /**
      * The log type that this config enables.
      */
-    logType: string;
+    logType?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -132,21 +135,20 @@ export namespace cloudkms_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A CryptoKey represents a logical key that can be used for cryptographic
@@ -157,42 +159,42 @@ export namespace cloudkms_v1 {
     /**
      * Output only. The time at which this CryptoKey was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Labels with user-defined metadata. For more information, see [Labeling
      * Keys](/kms/docs/labeling-keys).
      */
-    labels: any;
+    labels?: any;
     /**
      * Output only. The resource name for this CryptoKey in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x.
      */
-    name: string;
+    name?: string;
     /**
      * At next_rotation_time, the Key Management Service will automatically:  1.
      * Create a new version of this CryptoKey. 2. Mark the new version as
      * primary.  Key rotations performed manually via CreateCryptoKeyVersion and
      * UpdateCryptoKeyPrimaryVersion do not affect next_rotation_time.
      */
-    nextRotationTime: string;
+    nextRotationTime?: string;
     /**
      * Output only. A copy of the &quot;primary&quot; CryptoKeyVersion that will
      * be used by Encrypt when this CryptoKey is given in EncryptRequest.name.
      * The CryptoKey&#39;s primary version can be updated via
      * UpdateCryptoKeyPrimaryVersion.
      */
-    primary: Schema$CryptoKeyVersion;
+    primary?: Schema$CryptoKeyVersion;
     /**
      * The immutable purpose of this CryptoKey. Currently, the only acceptable
      * purpose is ENCRYPT_DECRYPT.
      */
-    purpose: string;
+    purpose?: string;
     /**
      * next_rotation_time will be advanced by this period when the service
      * automatically rotates a key. Must be at least one day.  If
      * rotation_period is set, next_rotation_time must also be set.
      */
-    rotationPeriod: string;
+    rotationPeriod?: string;
   }
   /**
    * A CryptoKeyVersion represents an individual cryptographic key, and the
@@ -207,26 +209,26 @@ export namespace cloudkms_v1 {
     /**
      * Output only. The time at which this CryptoKeyVersion was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Output only. The time this CryptoKeyVersion&#39;s key material was
      * destroyed. Only present if state is DESTROYED.
      */
-    destroyEventTime: string;
+    destroyEventTime?: string;
     /**
      * Output only. The time this CryptoKeyVersion&#39;s key material is
      * scheduled for destruction. Only present if state is DESTROY_SCHEDULED.
      */
-    destroyTime: string;
+    destroyTime?: string;
     /**
      * Output only. The resource name for this CryptoKeyVersion in the format
      * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x.
      */
-    name: string;
+    name?: string;
     /**
      * The current state of the CryptoKeyVersion.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Request message for KeyManagementService.Decrypt.
@@ -236,12 +238,12 @@ export namespace cloudkms_v1 {
      * Optional data that must match the data originally supplied in
      * EncryptRequest.additional_authenticated_data.
      */
-    additionalAuthenticatedData: string;
+    additionalAuthenticatedData?: string;
     /**
      * Required. The encrypted data originally returned in
      * EncryptResponse.ciphertext.
      */
-    ciphertext: string;
+    ciphertext?: string;
   }
   /**
    * Response message for KeyManagementService.Decrypt.
@@ -250,7 +252,7 @@ export namespace cloudkms_v1 {
     /**
      * The decrypted data originally supplied in EncryptRequest.plaintext.
      */
-    plaintext: string;
+    plaintext?: string;
   }
   /**
    * Request message for KeyManagementService.DestroyCryptoKeyVersion.
@@ -265,11 +267,11 @@ export namespace cloudkms_v1 {
      * through DecryptRequest.additional_authenticated_data.  Must be no larger
      * than 64KiB.
      */
-    additionalAuthenticatedData: string;
+    additionalAuthenticatedData?: string;
     /**
      * Required. The data to encrypt. Must be no larger than 64KiB.
      */
-    plaintext: string;
+    plaintext?: string;
   }
   /**
    * Response message for KeyManagementService.Encrypt.
@@ -278,11 +280,11 @@ export namespace cloudkms_v1 {
     /**
      * The encrypted data.
      */
-    ciphertext: string;
+    ciphertext?: string;
     /**
      * The resource name of the CryptoKeyVersion used in encryption.
      */
-    name: string;
+    name?: string;
   }
   /**
    * A KeyRing is a toplevel logical grouping of CryptoKeys.
@@ -291,12 +293,12 @@ export namespace cloudkms_v1 {
     /**
      * Output only. The time at which this KeyRing was created.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Output only. The resource name for the KeyRing in the format
      * `projects/x/locations/x/keyRings/x.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Response message for KeyManagementService.ListCryptoKeys.
@@ -305,16 +307,16 @@ export namespace cloudkms_v1 {
     /**
      * The list of CryptoKeys.
      */
-    cryptoKeys: Schema$CryptoKey[];
+    cryptoKeys?: Schema$CryptoKey[];
     /**
      * A token to retrieve next page of results. Pass this value in
      * ListCryptoKeysRequest.page_token to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of CryptoKeys that matched the query.
      */
-    totalSize: number;
+    totalSize?: number;
   }
   /**
    * Response message for KeyManagementService.ListCryptoKeyVersions.
@@ -323,17 +325,17 @@ export namespace cloudkms_v1 {
     /**
      * The list of CryptoKeyVersions.
      */
-    cryptoKeyVersions: Schema$CryptoKeyVersion[];
+    cryptoKeyVersions?: Schema$CryptoKeyVersion[];
     /**
      * A token to retrieve next page of results. Pass this value in
      * ListCryptoKeyVersionsRequest.page_token to retrieve the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of CryptoKeyVersions that matched the query.
      */
-    totalSize: number;
+    totalSize?: number;
   }
   /**
    * Response message for KeyManagementService.ListKeyRings.
@@ -342,16 +344,16 @@ export namespace cloudkms_v1 {
     /**
      * The list of KeyRings.
      */
-    keyRings: Schema$KeyRing[];
+    keyRings?: Schema$KeyRing[];
     /**
      * A token to retrieve next page of results. Pass this value in
      * ListKeyRingsRequest.page_token to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The total number of KeyRings that matched the query.
      */
-    totalSize: number;
+    totalSize?: number;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -360,11 +362,11 @@ export namespace cloudkms_v1 {
     /**
      * A list of locations that matches the specified filter in the request.
      */
-    locations: Schema$Location[];
+    locations?: Schema$Location[];
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -374,26 +376,26 @@ export namespace cloudkms_v1 {
      * The friendly name for this location, typically a nearby city name. For
      * example, &quot;Tokyo&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels: any;
+    labels?: any;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name: string;
+    name?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -419,12 +421,12 @@ export namespace cloudkms_v1 {
     /**
      * Specifies cloud audit logging configuration for this policy.
      */
-    auditConfigs: Schema$AuditConfig[];
+    auditConfigs?: Schema$AuditConfig[];
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -436,11 +438,11 @@ export namespace cloudkms_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
@@ -456,14 +458,14 @@ export namespace cloudkms_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
     /**
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify.
      * Only the fields in the mask will be modified. If no mask is provided, the
      * following default mask is used: paths: &quot;bindings, etag&quot; This
      * field is only used by Cloud IAM.
      */
-    updateMask: string;
+    updateMask?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -475,7 +477,7 @@ export namespace cloudkms_v1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -485,7 +487,7 @@ export namespace cloudkms_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Request message for KeyManagementService.UpdateCryptoKeyPrimaryVersion.
@@ -494,8 +496,9 @@ export namespace cloudkms_v1 {
     /**
      * The id of the child CryptoKeyVersion to use as primary.
      */
-    cryptoKeyVersionId: string;
+    cryptoKeyVersionId?: string;
   }
+
 
   export class Resource$Projects {
     root: Cloudkms;
@@ -510,6 +513,8 @@ export namespace cloudkms_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations {
     root: Cloudkms;
     keyRings: Resource$Projects$Locations$Keyrings;
@@ -536,23 +541,34 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+    get(params?: Params$Resource$Projects$Locations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Location>;
+    get(params: Params$Resource$Projects$Locations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Location>,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(params: Params$Resource$Projects$Locations$Get,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
+        BodyResponseCallback<Schema$Location>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
         void|AxiosPromise<Schema$Location> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -589,28 +605,40 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$List,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$List|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
         void|AxiosPromise<Schema$ListLocationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -632,6 +660,42 @@ export namespace cloudkms_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Projects$Locations$Keyrings {
     root: Cloudkms;
     cryptoKeys: Resource$Projects$Locations$Keyrings$Cryptokeys;
@@ -661,25 +725,38 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
-        callback?: BodyResponseCallback<Schema$KeyRing>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Create,
+        options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+        params: Params$Resource$Projects$Locations$Keyrings$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+        callback: BodyResponseCallback<Schema$KeyRing>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Keyrings$Create,
+        callback: BodyResponseCallback<Schema$KeyRing>): void;
+    create(callback: BodyResponseCallback<Schema$KeyRing>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Keyrings$Create|
+        BodyResponseCallback<Schema$KeyRing>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
         callback?: BodyResponseCallback<Schema$KeyRing>):
         void|AxiosPromise<Schema$KeyRing> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -714,23 +791,34 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
-        callback?: BodyResponseCallback<Schema$KeyRing>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+    get(params?: Params$Resource$Projects$Locations$Keyrings$Get,
+        options?: MethodOptions): AxiosPromise<Schema$KeyRing>;
+    get(params: Params$Resource$Projects$Locations$Keyrings$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
+        callback: BodyResponseCallback<Schema$KeyRing>): void;
+    get(params: Params$Resource$Projects$Locations$Keyrings$Get,
+        callback: BodyResponseCallback<Schema$KeyRing>): void;
+    get(callback: BodyResponseCallback<Schema$KeyRing>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Keyrings$Get|
+        BodyResponseCallback<Schema$KeyRing>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$KeyRing>,
         callback?: BodyResponseCallback<Schema$KeyRing>):
         void|AxiosPromise<Schema$KeyRing> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -765,26 +853,39 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Locations$Keyrings$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -821,28 +922,40 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListKeyRingsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Keyrings$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListKeyRingsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Keyrings$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListKeyRingsResponse>,
-        callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Keyrings$List,
+        callback: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListKeyRingsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Keyrings$List|
+        BodyResponseCallback<Schema$ListKeyRingsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListKeyRingsResponse>,
         callback?: BodyResponseCallback<Schema$ListKeyRingsResponse>):
         void|AxiosPromise<Schema$ListKeyRingsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -879,26 +992,39 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Locations$Keyrings$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Keyrings$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -938,29 +1064,47 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Keyrings$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -983,6 +1127,108 @@ export namespace cloudkms_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Keyrings$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. It must be unique within a location and match the regular
+     * expression `[a-zA-Z0-9_-]{1,63}`
+     */
+    keyRingId?: string;
+    /**
+     * Required. The resource name of the location associated with the KeyRings,
+     * in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$KeyRing;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the KeyRing to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of KeyRings to include in the response.
+     * Further KeyRings can subsequently be obtained by including the
+     * ListKeyRingsResponse.next_page_token in a subsequent request.  If
+     * unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token, returned earlier via
+     * ListKeyRingsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location associated with the KeyRings,
+     * in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Locations$Keyrings$Cryptokeys {
     root: Cloudkms;
     cryptoKeyVersions:
@@ -1015,26 +1261,41 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-        callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    create(callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create|
+        BodyResponseCallback<Schema$CryptoKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
         void|AxiosPromise<Schema$CryptoKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1070,26 +1331,41 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    decrypt(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DecryptResponse>;
     decrypt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
-        callback?: BodyResponseCallback<Schema$DecryptResponse>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
+        options?: MethodOptions): AxiosPromise<Schema$DecryptResponse>;
     decrypt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
+        options: MethodOptions|BodyResponseCallback<Schema$DecryptResponse>,
+        callback: BodyResponseCallback<Schema$DecryptResponse>): void;
+    decrypt(
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt,
+        callback: BodyResponseCallback<Schema$DecryptResponse>): void;
+    decrypt(callback: BodyResponseCallback<Schema$DecryptResponse>): void;
+    decrypt(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt|
+        BodyResponseCallback<Schema$DecryptResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DecryptResponse>,
         callback?: BodyResponseCallback<Schema$DecryptResponse>):
         void|AxiosPromise<Schema$DecryptResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1126,26 +1402,41 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    encrypt(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$EncryptResponse>;
     encrypt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
-        callback?: BodyResponseCallback<Schema$EncryptResponse>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
+        options?: MethodOptions): AxiosPromise<Schema$EncryptResponse>;
     encrypt(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
+        options: MethodOptions|BodyResponseCallback<Schema$EncryptResponse>,
+        callback: BodyResponseCallback<Schema$EncryptResponse>): void;
+    encrypt(
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt,
+        callback: BodyResponseCallback<Schema$EncryptResponse>): void;
+    encrypt(callback: BodyResponseCallback<Schema$EncryptResponse>): void;
+    encrypt(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt|
+        BodyResponseCallback<Schema$EncryptResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$EncryptResponse>,
         callback?: BodyResponseCallback<Schema$EncryptResponse>):
         void|AxiosPromise<Schema$EncryptResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1181,23 +1472,37 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-        callback?: BodyResponseCallback<Schema$CryptoKey>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+    get(params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
+    get(params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    get(params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    get(callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get|
+        BodyResponseCallback<Schema$CryptoKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
         void|AxiosPromise<Schema$CryptoKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1232,26 +1537,43 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1288,28 +1610,42 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListCryptoKeysResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListCryptoKeysResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeysResponse>,
-        callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
+        callback: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List,
+        callback: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListCryptoKeysResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List|
+        BodyResponseCallback<Schema$ListCryptoKeysResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeysResponse>,
         callback?: BodyResponseCallback<Schema$ListCryptoKeysResponse>):
         void|AxiosPromise<Schema$ListCryptoKeysResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1346,26 +1682,41 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKey>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-        callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+        params?: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    patch(callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch|
+        BodyResponseCallback<Schema$CryptoKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
         void|AxiosPromise<Schema$CryptoKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1401,26 +1752,43 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1460,29 +1828,50 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1520,26 +1909,45 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    updatePrimaryVersion(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKey>;
     updatePrimaryVersion(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
-        callback?: BodyResponseCallback<Schema$CryptoKey>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKey>;
     updatePrimaryVersion(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKey>,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    updatePrimaryVersion(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion,
+        callback: BodyResponseCallback<Schema$CryptoKey>): void;
+    updatePrimaryVersion(callback: BodyResponseCallback<Schema$CryptoKey>):
+        void;
+    updatePrimaryVersion(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion|
+        BodyResponseCallback<Schema$CryptoKey>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKey>,
         callback?: BodyResponseCallback<Schema$CryptoKey>):
         void|AxiosPromise<Schema$CryptoKey> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1561,6 +1969,175 @@ export namespace cloudkms_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. It must be unique within a KeyRing and match the regular
+     * expression `[a-zA-Z0-9_-]{1,63}`
+     */
+    cryptoKeyId?: string;
+    /**
+     * Required. The name of the KeyRing associated with the CryptoKeys.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CryptoKey;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the CryptoKey to use for decryption. The
+     * server will choose the appropriate version.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DecryptRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The resource name of the CryptoKey or CryptoKeyVersion to use
+     * for encryption.  If a CryptoKey is specified, the server will use its
+     * primary version.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$EncryptRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the CryptoKey to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of CryptoKeys to include in the response.
+     * Further CryptoKeys can subsequently be obtained by including the
+     * ListCryptoKeysResponse.next_page_token in a subsequent request.  If
+     * unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token, returned earlier via
+     * ListCryptoKeysResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the KeyRing to list, in the format
+     * `projects/x/locations/x/keyRings/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The resource name for this CryptoKey in the format
+     * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    name?: string;
+    /**
+     * Required list of fields to be updated in this request.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CryptoKey;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the CryptoKey to update.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateCryptoKeyPrimaryVersionRequest;
+  }
+
   export class
       Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions {
     root: Cloudkms;
@@ -1589,26 +2166,44 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKeyVersion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-        callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    create(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    create(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
         void|AxiosPromise<Schema$CryptoKeyVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1650,26 +2245,44 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    destroy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKeyVersion>;
     destroy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-        callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
     destroy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    destroy(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    destroy(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    destroy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
         void|AxiosPromise<Schema$CryptoKeyVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1705,24 +2318,40 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
         options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-        callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+    get(params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    get(params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    get(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    get(paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
         void|AxiosPromise<Schema$CryptoKeyVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1759,29 +2388,49 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCryptoKeyVersionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
+        callback: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List,
+        callback: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List|
+        BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>,
         callback?: BodyResponseCallback<Schema$ListCryptoKeyVersionsResponse>):
         void|AxiosPromise<Schema$ListCryptoKeyVersionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1823,26 +2472,44 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKeyVersion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-        callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    patch(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    patch(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    patch(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
         void|AxiosPromise<Schema$CryptoKeyVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1880,26 +2547,44 @@ export namespace cloudkms_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    restore(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CryptoKeyVersion>;
     restore(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
-        callback?: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+        params?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
+        options?: MethodOptions): AxiosPromise<Schema$CryptoKeyVersion>;
     restore(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
+        options: MethodOptions|BodyResponseCallback<Schema$CryptoKeyVersion>,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    restore(
+        params:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore,
+        callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    restore(callback: BodyResponseCallback<Schema$CryptoKeyVersion>): void;
+    restore(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CryptoKeyVersion>,
         callback?: BodyResponseCallback<Schema$CryptoKeyVersion>):
         void|AxiosPromise<Schema$CryptoKeyVersion> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1920,5 +2605,108 @@ export namespace cloudkms_v1 {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The name of the CryptoKey associated with the
+     * CryptoKeyVersions.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CryptoKeyVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the CryptoKeyVersion to destroy.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DestroyCryptoKeyVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the CryptoKeyVersion to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional limit on the number of CryptoKeyVersions to include in the
+     * response. Further CryptoKeyVersions can subsequently be obtained by
+     * including the ListCryptoKeyVersionsResponse.next_page_token in a
+     * subsequent request. If unspecified, the server will pick an appropriate
+     * default.
+     */
+    pageSize?: number;
+    /**
+     * Optional pagination token, returned earlier via
+     * ListCryptoKeyVersionsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the CryptoKey to list, in the format
+     * `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Output only. The resource name for this CryptoKeyVersion in the format
+     * `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     */
+    name?: string;
+    /**
+     * Required list of fields to be updated in this request.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CryptoKeyVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The resource name of the CryptoKeyVersion to restore.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RestoreCryptoKeyVersionRequest;
   }
 }

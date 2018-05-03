@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace digitalassetlinks_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Digital Asset Links API
    *
@@ -85,13 +88,13 @@ export namespace digitalassetlinks_v1 {
      * statements contain syntactic sugar to easily let you specify apps that
      * are known by multiple certificates.) REQUIRED
      */
-    certificate: Schema$CertificateInfo;
+    certificate?: Schema$CertificateInfo;
     /**
      * Android App assets are naturally identified by their Java package name.
      * For example, the Google Maps app uses the package name
      * `com.google.android.apps.maps`. REQUIRED
      */
-    packageName: string;
+    packageName?: string;
   }
   /**
    * Uniquely identifies an asset.  A digital asset is an identifiable and
@@ -103,11 +106,11 @@ export namespace digitalassetlinks_v1 {
     /**
      * Set if this is an Android App asset.
      */
-    androidApp: Schema$AndroidAppAsset;
+    androidApp?: Schema$AndroidAppAsset;
     /**
      * Set if this is a web asset.
      */
-    web: Schema$WebAsset;
+    web?: Schema$WebAsset;
   }
   /**
    * Describes an X509 certificate.
@@ -129,7 +132,7 @@ export namespace digitalassetlinks_v1 {
      * and represent the result as a hexstring (that is, uppercase hexadecimal
      * representations of each octet, separated by colons).
      */
-    sha256Fingerprint: string;
+    sha256Fingerprint?: string;
   }
   /**
    * Response message for the CheckAssetLinks call.
@@ -144,21 +147,21 @@ export namespace digitalassetlinks_v1 {
      * You should not attempt to programmatically parse this data.  For
      * programmatic access, use the error_code field below.
      */
-    debugString: string;
+    debugString?: string;
     /**
      * Error codes that describe the result of the Check operation.
      */
-    errorCode: string[];
+    errorCode?: string[];
     /**
      * Set to true if the assets specified in the request are linked by the
      * relation specified in the request.
      */
-    linked: boolean;
+    linked?: boolean;
     /**
      * From serving time, how much longer the response should be considered
      * valid barring further updates. REQUIRED
      */
-    maxAge: string;
+    maxAge?: string;
   }
   /**
    * Response message for the List call.
@@ -173,20 +176,20 @@ export namespace digitalassetlinks_v1 {
      * You should not attempt to programmatically parse this data.  For
      * programmatic access, use the error_code field below.
      */
-    debugString: string;
+    debugString?: string;
     /**
      * Error codes that describe the result of the List operation.
      */
-    errorCode: string[];
+    errorCode?: string[];
     /**
      * From serving time, how much longer the response should be considered
      * valid barring further updates. REQUIRED
      */
-    maxAge: string;
+    maxAge?: string;
     /**
      * A list of all the matching statements that have been found.
      */
-    statements: Schema$Statement[];
+    statements?: Schema$Statement[];
   }
   /**
    * Describes a reliable statement that has been made about the relationship
@@ -209,15 +212,15 @@ export namespace digitalassetlinks_v1 {
      * list of supported relations.  Example:
      * `delegate_permission/common.handle_all_urls` REQUIRED
      */
-    relation: string;
+    relation?: string;
     /**
      * Every statement has a source asset. REQUIRED
      */
-    source: Schema$Asset;
+    source?: Schema$Asset;
     /**
      * Every statement has a target asset. REQUIRED
      */
-    target: Schema$Asset;
+    target?: Schema$Asset;
   }
   /**
    * Describes a web asset.
@@ -243,8 +246,9 @@ export namespace digitalassetlinks_v1 {
      * `https://google.com/`          (hostname does not match)   *
      * `https://www.google.com:444/`  (port does not match) REQUIRED
      */
-    site: string;
+    site?: string;
   }
+
 
   export class Resource$Assetlinks {
     root: Digitalassetlinks;
@@ -294,26 +298,37 @@ export namespace digitalassetlinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    check(params?: any, options?: MethodOptions):
+    check(params?: Params$Resource$Assetlinks$Check, options?: MethodOptions):
         AxiosPromise<Schema$CheckResponse>;
     check(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
-        callback?: BodyResponseCallback<Schema$CheckResponse>): void;
+        params: Params$Resource$Assetlinks$Check,
+        options: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+        callback: BodyResponseCallback<Schema$CheckResponse>): void;
     check(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CheckResponse>,
+        params: Params$Resource$Assetlinks$Check,
+        callback: BodyResponseCallback<Schema$CheckResponse>): void;
+    check(callback: BodyResponseCallback<Schema$CheckResponse>): void;
+    check(
+        paramsOrCallback?: Params$Resource$Assetlinks$Check|
+        BodyResponseCallback<Schema$CheckResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CheckResponse>,
         callback?: BodyResponseCallback<Schema$CheckResponse>):
         void|AxiosPromise<Schema$CheckResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Assetlinks$Check;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Assetlinks$Check;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
       const parameters = {
@@ -336,6 +351,115 @@ export namespace digitalassetlinks_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Assetlinks$Check {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Query string for the relation.  We identify relations with strings of the
+     * format `<kind>/<detail>`, where `<kind>` must be one of a set of
+     * pre-defined purpose categories, and `<detail>` is a free-form lowercase
+     * alphanumeric string that describes the specific use case of the
+     * statement.  Refer to [our API
+     * documentation](/digital-asset-links/v1/relation-strings) for the current
+     * list of supported relations.  For a query to match an asset link, both
+     * the query's and the asset link's relation strings must match exactly.
+     * Example: A query with relation
+     * `delegate_permission/common.handle_all_urls` matches an asset link with
+     * relation `delegate_permission/common.handle_all_urls`.
+     */
+    relation?: string;
+    /**
+     * The uppercase SHA-265 fingerprint of the certificate.  From the PEM
+     * certificate, it can be acquired like this:      $ keytool -printcert
+     * -file $CERTFILE | grep SHA256:     SHA256:
+     * 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \
+     * 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  or like this:      $ openssl x509
+     * -in $CERTFILE -noout -fingerprint -sha256     SHA256
+     * Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \
+     * 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  In this example, the
+     * contents of this field would be `14:6D:E9:83:C5:73:
+     * 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:
+     * 44:E5`.  If these tools are not available to you, you can convert the PEM
+     * certificate into the DER format, compute the SHA-256 hash of that string
+     * and represent the result as a hexstring (that is, uppercase hexadecimal
+     * representations of each octet, separated by colons).
+     */
+    'source.androidApp.certificate.sha256Fingerprint'?: string;
+    /**
+     * Android App assets are naturally identified by their Java package name.
+     * For example, the Google Maps app uses the package name
+     * `com.google.android.apps.maps`. REQUIRED
+     */
+    'source.androidApp.packageName'?: string;
+    /**
+     * Web assets are identified by a URL that contains only the scheme,
+     * hostname and port parts.  The format is http[s]://<hostname>[:<port>]
+     * Hostnames must be fully qualified: they must end in a single period
+     * ("`.`").  Only the schemes "http" and "https" are currently allowed. Port
+     * numbers are given as a decimal number, and they must be omitted if the
+     * standard port numbers are used: 80 for http and 443 for https.  We call
+     * this limited URL the "site".  All URLs that share the same scheme,
+     * hostname and port are considered to be a part of the site and thus belong
+     * to the web asset.  Example: the asset with the site
+     * `https://www.google.com` contains all these URLs:    *
+     * `https://www.google.com/`   *   `https://www.google.com:443/`   *
+     * `https://www.google.com/foo`   *   `https://www.google.com/foo?bar`   *
+     * `https://www.google.com/foo#bar`   *
+     * `https://user@password:www.google.com/`  But it does not contain these
+     * URLs:    *   `http://www.google.com/`       (wrong scheme)   *
+     * `https://google.com/`          (hostname does not match)   *
+     * `https://www.google.com:444/`  (port does not match) REQUIRED
+     */
+    'source.web.site'?: string;
+    /**
+     * The uppercase SHA-265 fingerprint of the certificate.  From the PEM
+     * certificate, it can be acquired like this:      $ keytool -printcert
+     * -file $CERTFILE | grep SHA256:     SHA256:
+     * 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \
+     * 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  or like this:      $ openssl x509
+     * -in $CERTFILE -noout -fingerprint -sha256     SHA256
+     * Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \
+     * 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  In this example, the
+     * contents of this field would be `14:6D:E9:83:C5:73:
+     * 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:
+     * 44:E5`.  If these tools are not available to you, you can convert the PEM
+     * certificate into the DER format, compute the SHA-256 hash of that string
+     * and represent the result as a hexstring (that is, uppercase hexadecimal
+     * representations of each octet, separated by colons).
+     */
+    'target.androidApp.certificate.sha256Fingerprint'?: string;
+    /**
+     * Android App assets are naturally identified by their Java package name.
+     * For example, the Google Maps app uses the package name
+     * `com.google.android.apps.maps`. REQUIRED
+     */
+    'target.androidApp.packageName'?: string;
+    /**
+     * Web assets are identified by a URL that contains only the scheme,
+     * hostname and port parts.  The format is http[s]://<hostname>[:<port>]
+     * Hostnames must be fully qualified: they must end in a single period
+     * ("`.`").  Only the schemes "http" and "https" are currently allowed. Port
+     * numbers are given as a decimal number, and they must be omitted if the
+     * standard port numbers are used: 80 for http and 443 for https.  We call
+     * this limited URL the "site".  All URLs that share the same scheme,
+     * hostname and port are considered to be a part of the site and thus belong
+     * to the web asset.  Example: the asset with the site
+     * `https://www.google.com` contains all these URLs:    *
+     * `https://www.google.com/`   *   `https://www.google.com:443/`   *
+     * `https://www.google.com/foo`   *   `https://www.google.com/foo?bar`   *
+     * `https://www.google.com/foo#bar`   *
+     * `https://user@password:www.google.com/`  But it does not contain these
+     * URLs:    *   `http://www.google.com/`       (wrong scheme)   *
+     * `https://google.com/`          (hostname does not match)   *
+     * `https://www.google.com:444/`  (port does not match) REQUIRED
+     */
+    'target.web.site'?: string;
+  }
+
 
   export class Resource$Statements {
     root: Digitalassetlinks;
@@ -377,26 +501,37 @@ export namespace digitalassetlinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Statements$List, options?: MethodOptions):
         AxiosPromise<Schema$ListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
-        callback?: BodyResponseCallback<Schema$ListResponse>): void;
+        params: Params$Resource$Statements$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+        callback: BodyResponseCallback<Schema$ListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+        params: Params$Resource$Statements$List,
+        callback: BodyResponseCallback<Schema$ListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Statements$List|
+        BodyResponseCallback<Schema$ListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListResponse>,
         callback?: BodyResponseCallback<Schema$ListResponse>):
         void|AxiosPromise<Schema$ListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Statements$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Statements$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://digitalassetlinks.googleapis.com/';
       const parameters = {
@@ -418,5 +553,67 @@ export namespace digitalassetlinks_v1 {
         return createAPIRequest<Schema$ListResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Statements$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Use only associations that match the specified relation.  See the
+     * [`Statement`](#Statement) message for a detailed definition of relation
+     * strings.  For a query to match a statement, one of the following must be
+     * true:  *    both the query's and the statement's relation strings match
+     * exactly,      or *    the query's relation string is empty or missing.
+     * Example: A query with relation
+     * `delegate_permission/common.handle_all_urls` matches an asset link with
+     * relation `delegate_permission/common.handle_all_urls`.
+     */
+    relation?: string;
+    /**
+     * The uppercase SHA-265 fingerprint of the certificate.  From the PEM
+     * certificate, it can be acquired like this:      $ keytool -printcert
+     * -file $CERTFILE | grep SHA256:     SHA256:
+     * 14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83: \
+     * 42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  or like this:      $ openssl x509
+     * -in $CERTFILE -noout -fingerprint -sha256     SHA256
+     * Fingerprint=14:6D:E9:83:C5:73:06:50:D8:EE:B9:95:2F:34:FC:64: \
+     * 16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:44:E5  In this example, the
+     * contents of this field would be `14:6D:E9:83:C5:73:
+     * 06:50:D8:EE:B9:95:2F:34:FC:64:16:A0:83:42:E6:1D:BE:A8:8A:04:96:B2:3F:CF:
+     * 44:E5`.  If these tools are not available to you, you can convert the PEM
+     * certificate into the DER format, compute the SHA-256 hash of that string
+     * and represent the result as a hexstring (that is, uppercase hexadecimal
+     * representations of each octet, separated by colons).
+     */
+    'source.androidApp.certificate.sha256Fingerprint'?: string;
+    /**
+     * Android App assets are naturally identified by their Java package name.
+     * For example, the Google Maps app uses the package name
+     * `com.google.android.apps.maps`. REQUIRED
+     */
+    'source.androidApp.packageName'?: string;
+    /**
+     * Web assets are identified by a URL that contains only the scheme,
+     * hostname and port parts.  The format is http[s]://<hostname>[:<port>]
+     * Hostnames must be fully qualified: they must end in a single period
+     * ("`.`").  Only the schemes "http" and "https" are currently allowed. Port
+     * numbers are given as a decimal number, and they must be omitted if the
+     * standard port numbers are used: 80 for http and 443 for https.  We call
+     * this limited URL the "site".  All URLs that share the same scheme,
+     * hostname and port are considered to be a part of the site and thus belong
+     * to the web asset.  Example: the asset with the site
+     * `https://www.google.com` contains all these URLs:    *
+     * `https://www.google.com/`   *   `https://www.google.com:443/`   *
+     * `https://www.google.com/foo`   *   `https://www.google.com/foo?bar`   *
+     * `https://www.google.com/foo#bar`   *
+     * `https://user@password:www.google.com/`  But it does not contain these
+     * URLs:    *   `http://www.google.com/`       (wrong scheme)   *
+     * `https://google.com/`          (hostname does not match)   *
+     * `https://www.google.com:444/`  (port does not match) REQUIRED
+     */
+    'source.web.site'?: string;
   }
 }

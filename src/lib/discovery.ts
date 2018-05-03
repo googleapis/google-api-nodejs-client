@@ -20,7 +20,7 @@ import * as util from 'util';
 import {GoogleApis} from '..';
 import {GeneratedAPIs} from '../apis/index';
 
-import {APIRequestMethodParams, GlobalOptions, ServiceOptions} from './api';
+import {GlobalOptions, ServiceOptions} from './api';
 import {createAPIRequest} from './apirequest';
 import {Endpoint} from './endpoint';
 import {Schema, Schemas} from './schema';
@@ -129,7 +129,7 @@ export class Discovery {
    * @returns A promise that resolves with a function that creates the endpoint
    */
   async discoverAPI(apiDiscoveryUrl: string|
-                    APIRequestMethodParams): Promise<EndpointCreator> {
+                    {url: string}): Promise<EndpointCreator> {
     if (typeof apiDiscoveryUrl === 'string') {
       const parts = url.parse(apiDiscoveryUrl);
       if (apiDiscoveryUrl && !parts.protocol) {

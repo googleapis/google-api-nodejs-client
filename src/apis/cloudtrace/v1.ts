@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudtrace_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Stackdriver Trace API
    *
@@ -84,11 +87,11 @@ export namespace cloudtrace_v1 {
      * and that this value should be passed to the next request to continue
      * retrieving additional traces.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of trace records returned.
      */
-    traces: Schema$Trace[];
+    traces?: Schema$Trace[];
   }
   /**
    * A trace describes how long it takes for an application to perform an
@@ -99,16 +102,16 @@ export namespace cloudtrace_v1 {
     /**
      * Project ID of the Cloud project where the trace data is stored.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Collection of spans in the trace.
      */
-    spans: Schema$TraceSpan[];
+    spans?: Schema$TraceSpan[];
     /**
      * Globally unique identifier for the trace. This identifier is a 128-bit
      * numeric value formatted as a 32-byte hex string.
      */
-    traceId: string;
+    traceId?: string;
   }
   /**
    * List of new or updated traces.
@@ -117,7 +120,7 @@ export namespace cloudtrace_v1 {
     /**
      * List of traces.
      */
-    traces: Schema$Trace[];
+    traces?: Schema$Trace[];
   }
   /**
    * A span represents a single timed event within a trace. Spans can be nested
@@ -130,14 +133,14 @@ export namespace cloudtrace_v1 {
     /**
      * End time of the span in nanoseconds from the UNIX epoch.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Distinguishes between spans generated in a particular context. For
      * example, two spans with the same name may be distinguished using
      * `RPC_CLIENT` and `RPC_SERVER` to identify queueing latency associated
      * with the span.
      */
-    kind: string;
+    kind?: string;
     /**
      * Collection of labels associated with the span. Label keys must be less
      * than 128 bytes. Label values must be less than 16 kilobytes (10MB for
@@ -154,7 +157,7 @@ export namespace cloudtrace_v1 {
      * `/http/status_code` *   `/http/url` *   `/http/user_agent` *   `/pid` *
      * `/stacktrace` *   `/tid`
      */
-    labels: any;
+    labels?: any;
     /**
      * Name of the span. Must be less than 128 bytes. The span name is sanitized
      * and displayed in the Stackdriver Trace tool in the {% dynamic print
@@ -163,21 +166,22 @@ export namespace cloudtrace_v1 {
      * best practice is to use a consistent name, which makes it easier to
      * correlate cross-trace spans.
      */
-    name: string;
+    name?: string;
     /**
      * ID of the parent span, if any. Optional.
      */
-    parentSpanId: string;
+    parentSpanId?: string;
     /**
      * Identifier for the span. Must be a 64-bit integer other than 0 and unique
      * within a trace.
      */
-    spanId: string;
+    spanId?: string;
     /**
      * Start time of the span in nanoseconds from the UNIX epoch.
      */
-    startTime: string;
+    startTime?: string;
   }
+
 
   export class Resource$Projects {
     root: Cloudtrace;
@@ -266,26 +270,38 @@ export namespace cloudtrace_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patchTraces(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     patchTraces(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Patchtraces,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     patchTraces(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Patchtraces,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    patchTraces(
+        params: Params$Resource$Projects$Patchtraces,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    patchTraces(callback: BodyResponseCallback<Schema$Empty>): void;
+    patchTraces(
+        paramsOrCallback?: Params$Resource$Projects$Patchtraces|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Patchtraces;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Patchtraces;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -307,6 +323,23 @@ export namespace cloudtrace_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Patchtraces {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the Cloud project where the trace data is stored.
+     */
+    projectId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Traces;
+  }
+
   export class Resource$Projects$Traces {
     root: Cloudtrace;
     constructor(root: Cloudtrace) {
@@ -388,23 +421,34 @@ export namespace cloudtrace_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Trace>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trace>,
-        callback?: BodyResponseCallback<Schema$Trace>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Trace>,
+    get(params?: Params$Resource$Projects$Traces$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Trace>;
+    get(params: Params$Resource$Projects$Traces$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Trace>,
+        callback: BodyResponseCallback<Schema$Trace>): void;
+    get(params: Params$Resource$Projects$Traces$Get,
+        callback: BodyResponseCallback<Schema$Trace>): void;
+    get(callback: BodyResponseCallback<Schema$Trace>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Traces$Get|
+        BodyResponseCallback<Schema$Trace>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Trace>,
         callback?: BodyResponseCallback<Schema$Trace>):
         void|AxiosPromise<Schema$Trace> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Traces$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Traces$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -513,26 +557,39 @@ export namespace cloudtrace_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTracesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
-        callback?: BodyResponseCallback<Schema$ListTracesResponse>): void;
+        params?: Params$Resource$Projects$Traces$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTracesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
+        params: Params$Resource$Projects$Traces$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListTracesResponse>,
+        callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Traces$List,
+        callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTracesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Traces$List|
+        BodyResponseCallback<Schema$ListTracesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTracesResponse>,
         callback?: BodyResponseCallback<Schema$ListTracesResponse>):
         void|AxiosPromise<Schema$ListTracesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Traces$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Traces$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtrace.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -553,5 +610,92 @@ export namespace cloudtrace_v1 {
         return createAPIRequest<Schema$ListTracesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Traces$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * ID of the Cloud project where the trace data is stored.
+     */
+    projectId?: string;
+    /**
+     * ID of the trace to return.
+     */
+    traceId?: string;
+  }
+  export interface Params$Resource$Projects$Traces$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * End of the time interval (inclusive) during which the trace data was
+     * collected from the application.
+     */
+    endTime?: string;
+    /**
+     * An optional filter against labels for the request.  By default, searches
+     * use prefix matching. To specify exact match, prepend a plus symbol (`+`)
+     * to the search term. Multiple terms are ANDed. Syntax:  *
+     * `root:NAME_PREFIX` or `NAME_PREFIX`: Return traces where any root span
+     * starts with `NAME_PREFIX`. *   `+root:NAME` or `+NAME`: Return traces
+     * where any root span's name is     exactly `NAME`. *   `span:NAME_PREFIX`:
+     * Return traces where any span starts with     `NAME_PREFIX`. *
+     * `+span:NAME`: Return traces where any span's name is exactly     `NAME`.
+     * *   `latency:DURATION`: Return traces whose overall latency is greater or
+     * equal to than `DURATION`. Accepted units are nanoseconds     (`ns`),
+     * milliseconds (`ms`), and seconds (`s`). Default is `ms`. For     example,
+     * `latency:24ms` returns traces whose overall latency     is greater than
+     * or equal to 24 milliseconds. *   `label:LABEL_KEY`: Return all traces
+     * containing the specified     label key (exact match, case-sensitive)
+     * regardless of the key:value     pair's value (including empty values). *
+     * `LABEL_KEY:VALUE_PREFIX`: Return all traces containing the specified
+     * label key (exact match, case-sensitive) whose value starts with
+     * `VALUE_PREFIX`. Both a key and a value must be specified. *
+     * `+LABEL_KEY:VALUE`: Return all traces containing a key:value pair exactly
+     * matching the specified text. Both a key and a value must be specified. *
+     * `method:VALUE`: Equivalent to `/http/method:VALUE`. *   `url:VALUE`:
+     * Equivalent to `/http/url:VALUE`.
+     */
+    filter?: string;
+    /**
+     * Field used to sort the returned traces. Optional. Can be one of the
+     * following:  *   `trace_id` *   `name` (`name` field of root span in the
+     * trace) *   `duration` (difference between `end_time` and `start_time`
+     * fields of      the root span) *   `start` (`start_time` field of the root
+     * span)  Descending order can be specified by appending `desc` to the sort
+     * field (for example, `name desc`).  Only one sort field is permitted.
+     */
+    orderBy?: string;
+    /**
+     * Maximum number of traces to return. If not specified or <= 0, the
+     * implementation selects a reasonable value.  The implementation may return
+     * fewer traces than the requested page size. Optional.
+     */
+    pageSize?: number;
+    /**
+     * Token identifying the page of results to return. If provided, use the
+     * value of the `next_page_token` field from a previous request. Optional.
+     */
+    pageToken?: string;
+    /**
+     * ID of the Cloud project where the trace data is stored.
+     */
+    projectId?: string;
+    /**
+     * Start of the time interval (inclusive) during which the trace data was
+     * collected from the application.
+     */
+    startTime?: string;
+    /**
+     * Type of data returned for traces in the list. Optional. Default is
+     * `MINIMAL`.
+     */
+    view?: string;
   }
 }

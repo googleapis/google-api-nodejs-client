@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace tasks_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Tasks API
    *
@@ -72,47 +75,47 @@ export namespace tasks_v1 {
      * Completion date of the task (as a RFC 3339 timestamp). This field is
      * omitted if the task has not been completed.
      */
-    completed: string;
+    completed?: string;
     /**
      * Flag indicating whether the task has been deleted. The default if False.
      */
-    deleted: boolean;
+    deleted?: boolean;
     /**
      * Due date of the task (as a RFC 3339 timestamp). Optional.
      */
-    due: string;
+    due?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Flag indicating whether the task is hidden. This is the case if the task
      * had been marked completed when the task list was last cleared. The
      * default is False. This field is read-only.
      */
-    hidden: boolean;
+    hidden?: boolean;
     /**
      * Task identifier.
      */
-    id: string;
+    id?: string;
     /**
      * Type of the resource. This is always &quot;tasks#task&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Collection of links. This collection is read-only.
      */
-    links: any[];
+    links?: any[];
     /**
      * Notes describing the task. Optional.
      */
-    notes: string;
+    notes?: string;
     /**
      * Parent task identifier. This field is omitted if it is a top-level task.
      * This field is read-only. Use the &quot;move&quot; method to move the task
      * under a different parent or to the top level.
      */
-    parent: string;
+    parent?: string;
     /**
      * String indicating the position of the task among its sibling tasks under
      * the same parent task or at the top level. If this string is greater than
@@ -122,88 +125,89 @@ export namespace tasks_v1 {
      * read-only. Use the &quot;move&quot; method to move the task to another
      * position.
      */
-    position: string;
+    position?: string;
     /**
      * URL pointing to this task. Used to retrieve, update, or delete this task.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Status of the task. This is either &quot;needsAction&quot; or
      * &quot;completed&quot;.
      */
-    status: string;
+    status?: string;
     /**
      * Title of the task.
      */
-    title: string;
+    title?: string;
     /**
      * Last modification time of the task (as a RFC 3339 timestamp).
      */
-    updated: string;
+    updated?: string;
   }
   export interface Schema$TaskList {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Task list identifier.
      */
-    id: string;
+    id?: string;
     /**
      * Type of the resource. This is always &quot;tasks#taskList&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * URL pointing to this task list. Used to retrieve, update, or delete this
      * task list.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Title of the task list.
      */
-    title: string;
+    title?: string;
     /**
      * Last modification time of the task list (as a RFC 3339 timestamp).
      */
-    updated: string;
+    updated?: string;
   }
   export interface Schema$TaskLists {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Collection of task lists.
      */
-    items: Schema$TaskList[];
+    items?: Schema$TaskList[];
     /**
      * Type of the resource. This is always &quot;tasks#taskLists&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token that can be used to request the next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$Tasks {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Collection of tasks.
      */
-    items: Schema$Task[];
+    items?: Schema$Task[];
     /**
      * Type of the resource. This is always &quot;tasks#tasks&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token used to access the next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
+
 
   export class Resource$Tasklists {
     root: Tasks;
@@ -229,22 +233,35 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Tasklists$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Tasklists$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Tasklists$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Tasklists$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -279,23 +296,33 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+    get(params?: Params$Resource$Tasklists$Get,
+        options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+    get(params: Params$Resource$Tasklists$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
+    get(params: Params$Resource$Tasklists$Get,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
+    get(callback: BodyResponseCallback<Schema$TaskList>): void;
+    get(paramsOrCallback?: Params$Resource$Tasklists$Get|
+        BodyResponseCallback<Schema$TaskList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
         void|AxiosPromise<Schema$TaskList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -331,26 +358,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
+    insert(params?: Params$Resource$Tasklists$Insert, options?: MethodOptions):
         AxiosPromise<Schema$TaskList>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>): void;
+        params: Params$Resource$Tasklists$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        params: Params$Resource$Tasklists$Insert,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
+    insert(callback: BodyResponseCallback<Schema$TaskList>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Tasklists$Insert|
+        BodyResponseCallback<Schema$TaskList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
         void|AxiosPromise<Schema$TaskList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -386,25 +423,37 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$TaskLists>;
+    list(params?: Params$Resource$Tasklists$List, options?: MethodOptions):
+        AxiosPromise<Schema$TaskLists>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
-        callback?: BodyResponseCallback<Schema$TaskLists>): void;
+        params: Params$Resource$Tasklists$List,
+        options: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
+        callback: BodyResponseCallback<Schema$TaskLists>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskLists>,
+        params: Params$Resource$Tasklists$List,
+        callback: BodyResponseCallback<Schema$TaskLists>): void;
+    list(callback: BodyResponseCallback<Schema$TaskLists>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Tasklists$List|
+        BodyResponseCallback<Schema$TaskLists>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TaskLists>,
         callback?: BodyResponseCallback<Schema$TaskLists>):
         void|AxiosPromise<Schema$TaskLists> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -441,25 +490,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$TaskList>;
+    patch(params?: Params$Resource$Tasklists$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$TaskList>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>): void;
+        params: Params$Resource$Tasklists$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        params: Params$Resource$Tasklists$Patch,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
+    patch(callback: BodyResponseCallback<Schema$TaskList>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Tasklists$Patch|
+        BodyResponseCallback<Schema$TaskList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
         void|AxiosPromise<Schema$TaskList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -495,26 +555,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Tasklists$Update, options?: MethodOptions):
         AxiosPromise<Schema$TaskList>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
-        callback?: BodyResponseCallback<Schema$TaskList>): void;
+        params: Params$Resource$Tasklists$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
+        params: Params$Resource$Tasklists$Update,
+        callback: BodyResponseCallback<Schema$TaskList>): void;
+    update(callback: BodyResponseCallback<Schema$TaskList>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Tasklists$Update|
+        BodyResponseCallback<Schema$TaskList>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$TaskList>,
         callback?: BodyResponseCallback<Schema$TaskList>):
         void|AxiosPromise<Schema$TaskList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasklists$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasklists$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -536,6 +606,82 @@ export namespace tasks_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Tasklists$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasklists$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasklists$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Tasklists$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of task lists returned on one page. Optional. The default
+     * is 100.
+     */
+    maxResults?: string;
+    /**
+     * Token specifying the result page to return. Optional.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Tasklists$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TaskList;
+  }
+  export interface Params$Resource$Tasklists$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TaskList;
+  }
+
 
   export class Resource$Tasks {
     root: Tasks;
@@ -563,22 +709,35 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    clear(params?: Params$Resource$Tasks$Clear, options?: MethodOptions):
+        AxiosPromise<void>;
     clear(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Tasks$Clear,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     clear(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Tasks$Clear,
+        callback: BodyResponseCallback<void>): void;
+    clear(callback: BodyResponseCallback<void>): void;
+    clear(
+        paramsOrCallback?: Params$Resource$Tasks$Clear|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Clear;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Clear;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -614,22 +773,35 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Tasks$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Tasks$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Tasks$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Tasks$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -665,21 +837,33 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+    get(params?: Params$Resource$Tasks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
+    get(params: Params$Resource$Tasks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    get(params: Params$Resource$Tasks$Get,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    get(callback: BodyResponseCallback<Schema$Task>): void;
+    get(paramsOrCallback?: Params$Resource$Tasks$Get|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -717,23 +901,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+    insert(params?: Params$Resource$Tasks$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Task>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params: Params$Resource$Tasks$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Tasks$Insert,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    insert(callback: BodyResponseCallback<Schema$Task>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Tasks$Insert|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -778,25 +975,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tasks>;
+    list(params?: Params$Resource$Tasks$List, options?: MethodOptions):
+        AxiosPromise<Schema$Tasks>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
-        callback?: BodyResponseCallback<Schema$Tasks>): void;
+        params: Params$Resource$Tasks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+        callback: BodyResponseCallback<Schema$Tasks>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
+        params: Params$Resource$Tasks$List,
+        callback: BodyResponseCallback<Schema$Tasks>): void;
+    list(callback: BodyResponseCallback<Schema$Tasks>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Tasks$List|
+        BodyResponseCallback<Schema$Tasks>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tasks>,
         callback?: BodyResponseCallback<Schema$Tasks>):
         void|AxiosPromise<Schema$Tasks> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -836,23 +1044,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    move(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+    move(params?: Params$Resource$Tasks$Move, options?: MethodOptions):
+        AxiosPromise<Schema$Task>;
     move(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params: Params$Resource$Tasks$Move,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
     move(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Tasks$Move,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    move(callback: BodyResponseCallback<Schema$Task>): void;
+    move(
+        paramsOrCallback?: Params$Resource$Tasks$Move|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Move;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -889,23 +1110,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+    patch(params?: Params$Resource$Tasks$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Task>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params: Params$Resource$Tasks$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Tasks$Patch,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    patch(callback: BodyResponseCallback<Schema$Task>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Tasks$Patch|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -942,23 +1176,36 @@ export namespace tasks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
+    update(params?: Params$Resource$Tasks$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Task>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params: Params$Resource$Tasks$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Tasks$Update,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    update(callback: BodyResponseCallback<Schema$Task>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Tasks$Update|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tasks$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tasks$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -979,5 +1226,196 @@ export namespace tasks_v1 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Tasks$Clear {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasks$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Parent task identifier. If the task is created at the top level, this
+     * parameter is omitted. Optional.
+     */
+    parent?: string;
+    /**
+     * Previous sibling task identifier. If the task is created at the first
+     * position among its siblings, this parameter is omitted. Optional.
+     */
+    previous?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Task;
+  }
+  export interface Params$Resource$Tasks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Upper bound for a task's completion date (as a RFC 3339 timestamp) to
+     * filter by. Optional. The default is not to filter by completion date.
+     */
+    completedMax?: string;
+    /**
+     * Lower bound for a task's completion date (as a RFC 3339 timestamp) to
+     * filter by. Optional. The default is not to filter by completion date.
+     */
+    completedMin?: string;
+    /**
+     * Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     * Optional. The default is not to filter by due date.
+     */
+    dueMax?: string;
+    /**
+     * Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by.
+     * Optional. The default is not to filter by due date.
+     */
+    dueMin?: string;
+    /**
+     * Maximum number of task lists returned on one page. Optional. The default
+     * is 100.
+     */
+    maxResults?: string;
+    /**
+     * Token specifying the result page to return. Optional.
+     */
+    pageToken?: string;
+    /**
+     * Flag indicating whether completed tasks are returned in the result.
+     * Optional. The default is True.
+     */
+    showCompleted?: boolean;
+    /**
+     * Flag indicating whether deleted tasks are returned in the result.
+     * Optional. The default is False.
+     */
+    showDeleted?: boolean;
+    /**
+     * Flag indicating whether hidden tasks are returned in the result.
+     * Optional. The default is False.
+     */
+    showHidden?: boolean;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Lower bound for a task's last modification time (as a RFC 3339 timestamp)
+     * to filter by. Optional. The default is not to filter by last modification
+     * time.
+     */
+    updatedMin?: string;
+  }
+  export interface Params$Resource$Tasks$Move {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * New parent task identifier. If the task is moved to the top level, this
+     * parameter is omitted. Optional.
+     */
+    parent?: string;
+    /**
+     * New previous sibling task identifier. If the task is moved to the first
+     * position among its siblings, this parameter is omitted. Optional.
+     */
+    previous?: string;
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+  }
+  export interface Params$Resource$Tasks$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Task;
+  }
+  export interface Params$Resource$Tasks$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Task identifier.
+     */
+    task?: string;
+    /**
+     * Task list identifier.
+     */
+    tasklist?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Task;
   }
 }

@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace licensing_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Enterprise License Manager API
    *
@@ -72,35 +75,35 @@ export namespace licensing_v1 {
     /**
      * ETag of the resource.
      */
-    etags: string;
+    etags?: string;
     /**
      * Identifies the resource as a LicenseAssignment.
      */
-    kind: string;
+    kind?: string;
     /**
      * Id of the product.
      */
-    productId: string;
+    productId?: string;
     /**
      * Display Name of the product.
      */
-    productName: string;
+    productName?: string;
     /**
      * Link to this page.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Id of the sku of the product.
      */
-    skuId: string;
+    skuId?: string;
     /**
      * Display Name of the sku of the product.
      */
-    skuName: string;
+    skuName?: string;
     /**
      * Email id of the user.
      */
-    userId: string;
+    userId?: string;
   }
   /**
    * Template for LicenseAssignment Insert request
@@ -109,7 +112,7 @@ export namespace licensing_v1 {
     /**
      * Email id of the user
      */
-    userId: string;
+    userId?: string;
   }
   /**
    * LicesnseAssignment List for a given product/sku for a customer.
@@ -118,21 +121,22 @@ export namespace licensing_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The LicenseAssignments in this page of results.
      */
-    items: Schema$LicenseAssignment[];
+    items?: Schema$LicenseAssignment[];
     /**
      * Identifies the resource as a collection of LicenseAssignments.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
+
 
   export class Resource$Licenseassignments {
     root: Licensing;
@@ -160,22 +164,37 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Licenseassignments$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Licenseassignments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Licenseassignments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Licenseassignments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -214,24 +233,35 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Licenseassignments$Get,
         options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+    get(params: Params$Resource$Licenseassignments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    get(params: Params$Resource$Licenseassignments$Get,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    get(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    get(paramsOrCallback?: Params$Resource$Licenseassignments$Get|
+        BodyResponseCallback<Schema$LicenseAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
         void|AxiosPromise<Schema$LicenseAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -270,26 +300,39 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LicenseAssignment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+        params?: Params$Resource$Licenseassignments$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        params: Params$Resource$Licenseassignments$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    insert(
+        params: Params$Resource$Licenseassignments$Insert,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    insert(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Licenseassignments$Insert|
+        BodyResponseCallback<Schema$LicenseAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
         void|AxiosPromise<Schema$LicenseAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -328,28 +371,41 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listForProduct(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LicenseAssignmentList>;
     listForProduct(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Licenseassignments$Listforproduct,
+        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignmentList>;
+    listForProduct(
+        params: Params$Resource$Licenseassignments$Listforproduct,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
     listForProduct(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Licenseassignments$Listforproduct,
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+    listForProduct(
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+    listForProduct(
+        paramsOrCallback?: Params$Resource$Licenseassignments$Listforproduct|
+        BodyResponseCallback<Schema$LicenseAssignmentList>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
         callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
         void|AxiosPromise<Schema$LicenseAssignmentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Licenseassignments$Listforproduct;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Listforproduct;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -388,28 +444,42 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listForProductAndSku(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LicenseAssignmentList>;
     listForProductAndSku(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Licenseassignments$Listforproductandsku,
+        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignmentList>;
+    listForProductAndSku(
+        params: Params$Resource$Licenseassignments$Listforproductandsku,
+        options: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
     listForProductAndSku(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Licenseassignments$Listforproductandsku,
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+    listForProductAndSku(
+        callback: BodyResponseCallback<Schema$LicenseAssignmentList>): void;
+    listForProductAndSku(
+        paramsOrCallback?:
+            Params$Resource$Licenseassignments$Listforproductandsku|
+        BodyResponseCallback<Schema$LicenseAssignmentList>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$LicenseAssignmentList>,
         callback?: BodyResponseCallback<Schema$LicenseAssignmentList>):
         void|AxiosPromise<Schema$LicenseAssignmentList> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Licenseassignments$Listforproductandsku;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Listforproductandsku;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -448,26 +518,39 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LicenseAssignment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+        params?: Params$Resource$Licenseassignments$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        params: Params$Resource$Licenseassignments$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    patch(
+        params: Params$Resource$Licenseassignments$Patch,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    patch(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Licenseassignments$Patch|
+        BodyResponseCallback<Schema$LicenseAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
         void|AxiosPromise<Schema$LicenseAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -507,26 +590,39 @@ export namespace licensing_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LicenseAssignment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
-        callback?: BodyResponseCallback<Schema$LicenseAssignment>): void;
+        params?: Params$Resource$Licenseassignments$Update,
+        options?: MethodOptions): AxiosPromise<Schema$LicenseAssignment>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        params: Params$Resource$Licenseassignments$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$LicenseAssignment>,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    update(
+        params: Params$Resource$Licenseassignments$Update,
+        callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    update(callback: BodyResponseCallback<Schema$LicenseAssignment>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Licenseassignments$Update|
+        BodyResponseCallback<Schema$LicenseAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LicenseAssignment>,
         callback?: BodyResponseCallback<Schema$LicenseAssignment>):
         void|AxiosPromise<Schema$LicenseAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Licenseassignments$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Licenseassignments$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -549,5 +645,165 @@ export namespace licensing_v1 {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Licenseassignments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku
+     */
+    skuId?: string;
+    /**
+     * email id or unique Id of the user
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Licenseassignments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku
+     */
+    skuId?: string;
+    /**
+     * email id or unique Id of the user
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Licenseassignments$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku
+     */
+    skuId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LicenseAssignmentInsert;
+  }
+  export interface Params$Resource$Licenseassignments$Listforproduct {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * CustomerId represents the customer for whom licenseassignments are
+     * queried
+     */
+    customerId?: string;
+    /**
+     * Maximum number of campaigns to return at one time. Must be positive.
+     * Optional. Default value is 100.
+     */
+    maxResults?: number;
+    /**
+     * Token to fetch the next page.Optional. By default server will return
+     * first page
+     */
+    pageToken?: string;
+    /**
+     * Name for product
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Licenseassignments$Listforproductandsku {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * CustomerId represents the customer for whom licenseassignments are
+     * queried
+     */
+    customerId?: string;
+    /**
+     * Maximum number of campaigns to return at one time. Must be positive.
+     * Optional. Default value is 100.
+     */
+    maxResults?: number;
+    /**
+     * Token to fetch the next page.Optional. By default server will return
+     * first page
+     */
+    pageToken?: string;
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku
+     */
+    skuId?: string;
+  }
+  export interface Params$Resource$Licenseassignments$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku for which license would be revoked
+     */
+    skuId?: string;
+    /**
+     * email id or unique Id of the user
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LicenseAssignment;
+  }
+  export interface Params$Resource$Licenseassignments$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name for product
+     */
+    productId?: string;
+    /**
+     * Name for sku for which license would be revoked
+     */
+    skuId?: string;
+    /**
+     * email id or unique Id of the user
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LicenseAssignment;
   }
 }

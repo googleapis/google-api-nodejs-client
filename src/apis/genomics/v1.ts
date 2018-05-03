@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace genomics_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Genomics API
    *
@@ -96,63 +99,63 @@ export namespace genomics_v1 {
     /**
      * The annotation set to which this annotation belongs.
      */
-    annotationSetId: string;
+    annotationSetId?: string;
     /**
      * The end position of the range on the reference, 0-based exclusive.
      */
-    end: string;
+    end?: string;
     /**
      * The server-generated annotation ID, unique across all annotations.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional read alignment information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The display name of this annotation.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the Google Genomics reference associated with this range.
      */
-    referenceId: string;
+    referenceId?: string;
     /**
      * The display name corresponding to the reference specified by
      * `referenceId`, for example `chr1`, `1`, or `chrX`.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * Whether this range refers to the reverse strand, as opposed to the
      * forward strand. Note that regardless of this field, the start/end
      * position of the range always refer to the forward strand.
      */
-    reverseStrand: boolean;
+    reverseStrand?: boolean;
     /**
      * The start position of the range on the reference, 0-based inclusive.
      */
-    start: string;
+    start?: string;
     /**
      * A transcript value represents the assertion that a particular region of
      * the reference genome may be transcribed as RNA. An alternative splicing
      * pattern would be represented as a separate transcript object. This field
      * is only set for annotations of type `TRANSCRIPT`.
      */
-    transcript: Schema$Transcript;
+    transcript?: Schema$Transcript;
     /**
      * The data type for this annotation. Must match the containing annotation
      * set&#39;s type.
      */
-    type: string;
+    type?: string;
     /**
      * A variant annotation, which describes the effect of a variant on the
      * genome, the coding sequence, and/or higher level consequences at the
      * organism level e.g. pathogenicity. This field is only set for annotations
      * of type `VARIANT`.
      */
-    variant: Schema$VariantAnnotation;
+    variant?: Schema$VariantAnnotation;
   }
   /**
    * An annotation set is a logical grouping of annotations that share
@@ -164,43 +167,43 @@ export namespace genomics_v1 {
     /**
      * The dataset to which this annotation set belongs.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The server-generated annotation set ID, unique across all annotation
      * sets.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional read alignment information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The display name for this annotation set.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the reference set that defines the coordinate space for this
      * set&#39;s annotations.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
     /**
      * The source URI describing the file from which this annotation set was
      * generated, if any.
      */
-    sourceUri: string;
+    sourceUri?: string;
     /**
      * The type of annotations contained within this set.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$BatchCreateAnnotationsRequest {
     /**
      * The annotations to be created. At most 4096 can be specified in a single
      * request.
      */
-    annotations: Schema$Annotation[];
+    annotations?: Schema$Annotation[];
     /**
      * A unique request ID which enables the server to detect duplicated
      * requests. If provided, duplicated requests will result in the same
@@ -211,14 +214,14 @@ export namespace genomics_v1 {
      * worker crashes are a possibility, consider using some unique variant of a
      * worker or run ID.
      */
-    requestId: string;
+    requestId?: string;
   }
   export interface Schema$BatchCreateAnnotationsResponse {
     /**
      * The resulting per-annotation entries, ordered consistently with the
      * original request.
      */
-    entries: Schema$Entry[];
+    entries?: Schema$Entry[];
   }
   /**
    * Associates `members` with a `role`.
@@ -231,21 +234,20 @@ export namespace genomics_v1 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A call set is a collection of variant calls, typically for one sample. It
@@ -255,32 +257,32 @@ export namespace genomics_v1 {
     /**
      * The date this call set was created in milliseconds from the epoch.
      */
-    created: string;
+    created?: string;
     /**
      * The server-generated call set ID, unique across all call sets.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional call set information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The call set name.
      */
-    name: string;
+    name?: string;
     /**
      * The sample ID this call set corresponds to.
      */
-    sampleId: string;
+    sampleId?: string;
     /**
      * The IDs of the variant sets this call set belongs to. This field must
      * have exactly length one, as a call set belongs to a single variant set.
      * This field is repeated for compatibility with the [GA4GH 0.5.1
      * API](https://github.com/ga4gh/schemas/blob/v0.5.1/src/main/resources/avro/variants.avdl#L76).
      */
-    variantSetIds: string[];
+    variantSetIds?: string[];
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -290,36 +292,36 @@ export namespace genomics_v1 {
    * A single CIGAR operation.
    */
   export interface Schema$CigarUnit {
-    operation: string;
+    operation?: string;
     /**
      * The number of genomic bases that the operation runs for. Required.
      */
-    operationLength: string;
+    operationLength?: string;
     /**
      * `referenceSequence` is only used at mismatches (`SEQUENCE_MISMATCH`) and
      * deletions (`DELETE`). Filling this field replaces SAM&#39;s MD tag. If
      * the relevant information is not available, this field is unset.
      */
-    referenceSequence: string;
+    referenceSequence?: string;
   }
   export interface Schema$ClinicalCondition {
     /**
      * The MedGen concept id associated with this gene. Search for these IDs at
      * http://www.ncbi.nlm.nih.gov/medgen/
      */
-    conceptId: string;
+    conceptId?: string;
     /**
      * The set of external IDs for this condition.
      */
-    externalIds: Schema$ExternalId[];
+    externalIds?: Schema$ExternalId[];
     /**
      * A set of names for the condition.
      */
-    names: string[];
+    names?: string[];
     /**
      * The OMIM id for this condition. Search for these IDs at http://omim.org/
      */
-    omimId: string;
+    omimId?: string;
   }
   export interface Schema$CodingSequence {
     /**
@@ -327,13 +329,13 @@ export namespace genomics_v1 {
      * sequence, 0-based exclusive. Note that this position is relative to the
      * reference start, and *not* the containing annotation start.
      */
-    end: string;
+    end?: string;
     /**
      * The start of the coding sequence on this annotation&#39;s reference
      * sequence, 0-based inclusive. Note that this position is relative to the
      * reference start, and *not* the containing annotation start.
      */
-    start: string;
+    start?: string;
   }
   /**
    * Describes a Compute Engine resource that is being managed by a running
@@ -343,19 +345,19 @@ export namespace genomics_v1 {
     /**
      * The names of the disks that were created for this pipeline.
      */
-    diskNames: string[];
+    diskNames?: string[];
     /**
      * The instance on which the operation is running.
      */
-    instanceName: string;
+    instanceName?: string;
     /**
      * The machine type of the instance.
      */
-    machineType: string;
+    machineType?: string;
     /**
      * The availability zone in which the instance resides.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * This event is generated when a container starts.
@@ -364,20 +366,20 @@ export namespace genomics_v1 {
     /**
      * The numeric ID of the action that started this container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The public IP address that can be used to connect to the container.  This
      * field is only populated when at least one port mapping is present.  If
      * the instance was created with a private address this field will be empty
      * even if port mappings exist.
      */
-    ipAddress: string;
+    ipAddress?: string;
     /**
      * The container to host port mappings installed for this container.  This
      * set will contain any ports exposed using the PUBLISH_EXPOSED_PORTS flag
      * as well as any specified in the Action definition.
      */
-    portMappings: any;
+    portMappings?: any;
   }
   /**
    * This event is generated when a container exits.
@@ -386,11 +388,21 @@ export namespace genomics_v1 {
     /**
      * The numeric ID of the action that started this container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The exit status of the container.
      */
-    exitStatus: number;
+    exitStatus?: number;
+    /**
+     * The tail end of any content written to standard error by the container.
+     * To prevent this from being recorded if the action is known to emit large
+     * amounts of debugging noise or sensitive information, set the
+     * DISABLE_STANDARD_ERROR_CAPTURE flag.  Note that only a small amount of
+     * the end of the stream is captured here. The entire stream is stored in
+     * the /google/logs directory mounted into each action, and may be copied
+     * off the machine as described elsewhere.
+     */
+    stderr?: string;
   }
   /**
    * A bucket over which read coverage has been precomputed. A bucket
@@ -401,11 +413,11 @@ export namespace genomics_v1 {
      * The average number of reads which are aligned to each individual
      * reference base in this bucket.
      */
-    meanCoverage: number;
+    meanCoverage?: number;
     /**
      * The genomic coordinate range spanned by this bucket.
      */
-    range: Schema$Range;
+    range?: Schema$Range;
   }
   /**
    * A Dataset is a collection of genomic data.
@@ -414,19 +426,19 @@ export namespace genomics_v1 {
     /**
      * The time this dataset was created, in seconds from the epoch.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The server-generated dataset ID, unique across all datasets.
      */
-    id: string;
+    id?: string;
     /**
      * The dataset name.
      */
-    name: string;
+    name?: string;
     /**
      * The Google Cloud project ID that this dataset belongs to.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * This event is generated whenever a resource limitation or transient error
@@ -438,14 +450,14 @@ export namespace genomics_v1 {
      * without notice since it is often generated by another service (such as
      * Compute Engine).
      */
-    cause: string;
+    cause?: string;
     /**
      * If the delay was caused by a resource shortage, this field lists the
      * Compute Engine metrics that are preventing this operation from running
      * (for example, CPUS or INSTANCES).  If the particular metric is not known,
      * a single UNKNOWN metric will be present.
      */
-    metrics: string[];
+    metrics?: string[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -459,11 +471,11 @@ export namespace genomics_v1 {
     /**
      * The created annotation, if creation was successful.
      */
-    annotation: Schema$Annotation;
+    annotation?: Schema$Annotation;
     /**
      * The creation status.
      */
-    status: Schema$Status;
+    status?: Schema$Status;
   }
   /**
    * Event carries information about events that occur during pipeline
@@ -475,15 +487,15 @@ export namespace genomics_v1 {
      * change at any time without notice.  Any application logic must use the
      * information in the details field.
      */
-    description: string;
+    description?: string;
     /**
      * Machine readable details about the event.
      */
-    details: any;
+    details?: any;
     /**
      * The time that the event occurred.
      */
-    timestamp: string;
+    timestamp?: string;
   }
   export interface Schema$Exon {
     /**
@@ -491,7 +503,7 @@ export namespace genomics_v1 {
      * 0-based exclusive. Note that this is relative to the reference start, and
      * *not* the containing annotation start.
      */
-    end: string;
+    end?: string;
     /**
      * The frame of this exon. Contains a value of 0, 1, or 2, which indicates
      * the offset of the first coding base of the exon within the reading frame
@@ -503,37 +515,37 @@ export namespace genomics_v1 {
      * creation of a transcript, the frame must be populated for all or none of
      * the coding exons.
      */
-    frame: number;
+    frame?: number;
     /**
      * The start position of the exon on this annotation&#39;s reference
      * sequence, 0-based inclusive. Note that this is relative to the reference
      * start, and **not** the containing annotation start.
      */
-    start: string;
+    start?: string;
   }
   export interface Schema$Experiment {
     /**
      * The instrument model used as part of this experiment. This maps to
      * sequencing technology in the SAM spec.
      */
-    instrumentModel: string;
+    instrumentModel?: string;
     /**
      * A client-supplied library identifier; a library is a collection of DNA
      * fragments which have been prepared for sequencing from a sample. This
      * field is important for quality control as error or bias can be introduced
      * during sample preparation.
      */
-    libraryId: string;
+    libraryId?: string;
     /**
      * The platform unit used as part of this experiment, for example
      * flowcell-barcode.lane for Illumina or slide for SOLiD. Corresponds to the
      * @RG PU field in the SAM spec.
      */
-    platformUnit: string;
+    platformUnit?: string;
     /**
      * The sequencing center used as part of this experiment.
      */
-    sequencingCenter: string;
+    sequencingCenter?: string;
   }
   /**
    * The read group set export request.
@@ -544,18 +556,18 @@ export namespace genomics_v1 {
      * currently authenticated user must have write access to the new file. An
      * error will be returned if the URI already contains data.
      */
-    exportUri: string;
+    exportUri?: string;
     /**
      * Required. The Google Cloud project ID that owns this export. The caller
      * must have WRITE access to this project.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The reference names to export. If this is not specified, all reference
      * sequences, including unmapped reads, are exported. Use `*` to export only
      * unmapped reads.
      */
-    referenceNames: string[];
+    referenceNames?: string[];
   }
   /**
    * The variant data export request.
@@ -566,37 +578,37 @@ export namespace genomics_v1 {
      * already exist. Note that this is distinct from the Genomics concept of
      * &quot;dataset&quot;.
      */
-    bigqueryDataset: string;
+    bigqueryDataset?: string;
     /**
      * Required. The BigQuery table to export data to. If the table doesn&#39;t
      * exist, it will be created. If it already exists, it will be overwritten.
      */
-    bigqueryTable: string;
+    bigqueryTable?: string;
     /**
      * If provided, only variant call information from the specified call sets
      * will be exported. By default all variant calls are exported.
      */
-    callSetIds: string[];
+    callSetIds?: string[];
     /**
      * The format for the exported data.
      */
-    format: string;
+    format?: string;
     /**
      * Required. The Google Cloud project ID that owns the destination BigQuery
      * dataset. The caller must have WRITE access to this project.  This project
      * will also own the resulting export job.
      */
-    projectId: string;
+    projectId?: string;
   }
   export interface Schema$ExternalId {
     /**
      * The id used by the source of this data.
      */
-    id: string;
+    id?: string;
     /**
      * The name of the source of this data.
      */
-    sourceName: string;
+    sourceName?: string;
   }
   /**
    * This event is generated when the execution of a pipeline has failed.  Note
@@ -606,11 +618,11 @@ export namespace genomics_v1 {
     /**
      * The human readable description of the cause of the failure.
      */
-    cause: string;
+    cause?: string;
     /**
      * The Google standard error code that best describes this failure.
      */
-    code: string;
+    code?: string;
   }
   /**
    * Request message for `GetIamPolicy` method.
@@ -624,12 +636,12 @@ export namespace genomics_v1 {
      * Required. The ID of the dataset these read group sets will belong to. The
      * caller must have WRITE permissions to this dataset.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The partition strategy describes how read groups are partitioned into
      * read group sets.
      */
-    partitionStrategy: string;
+    partitionStrategy?: string;
     /**
      * The reference set to which the imported read group sets are aligned to,
      * if any. The reference names of this reference set must be a superset of
@@ -637,7 +649,7 @@ export namespace genomics_v1 {
      * provided, a best effort is made to associate with a matching reference
      * set.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
     /**
      * A list of URIs pointing at [BAM
      * files](https://samtools.github.io/hts-specs/SAMv1.pdf) in Google Cloud
@@ -648,7 +660,7 @@ export namespace genomics_v1 {
      * preferable not to start the import immediately after the files are
      * created.
      */
-    sourceUris: string[];
+    sourceUris?: string[];
   }
   /**
    * The read group set import response.
@@ -657,7 +669,7 @@ export namespace genomics_v1 {
     /**
      * IDs of the read group sets that were created.
      */
-    readGroupSetIds: string[];
+    readGroupSetIds?: string[];
   }
   /**
    * The variant data import request.
@@ -667,13 +679,13 @@ export namespace genomics_v1 {
      * The format of the variant data being imported. If unspecified, defaults
      * to to `VCF`.
      */
-    format: string;
+    format?: string;
     /**
      * A mapping between info field keys and the InfoMergeOperations to be
      * performed on them. This is plumbed down to the MergeVariantRequests
      * generated by the resulting import job.
      */
-    infoMergeConfig: any;
+    infoMergeConfig?: any;
     /**
      * Convert reference names to the canonical representation. hg19 haploytypes
      * (those reference names containing &quot;_hap&quot;) are not modified in
@@ -684,18 +696,18 @@ export namespace genomics_v1 {
      * &quot;X&quot;. All mitochondrial chromosomes (&quot;chrM&quot;,
      * &quot;chrMT&quot;, etc) become &quot;MT&quot;.
      */
-    normalizeReferenceNames: boolean;
+    normalizeReferenceNames?: boolean;
     /**
      * A list of URIs referencing variant files in Google Cloud Storage. URIs
      * can include wildcards [as described
      * here](https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames).
      * Note that recursive wildcards (&#39;**&#39;) are not supported.
      */
-    sourceUris: string[];
+    sourceUris?: string[];
     /**
      * Required. The variant set to which variant data should be imported.
      */
-    variantSetId: string;
+    variantSetId?: string;
   }
   /**
    * The variant data import response.
@@ -704,7 +716,7 @@ export namespace genomics_v1 {
     /**
      * IDs of the call sets created during the import.
      */
-    callSetIds: string[];
+    callSetIds?: string[];
   }
   /**
    * A linear alignment can be represented by one CIGAR string. Describes the
@@ -715,18 +727,18 @@ export namespace genomics_v1 {
      * Represents the local alignment of this sequence (alignment matches,
      * indels, etc) against the reference.
      */
-    cigar: Schema$CigarUnit[];
+    cigar?: Schema$CigarUnit[];
     /**
      * The mapping quality of this alignment. Represents how likely the read
      * maps to this position as opposed to other locations.  Specifically, this
      * is -10 log10 Pr(mapping position is wrong), rounded to the nearest
      * integer.
      */
-    mappingQuality: number;
+    mappingQuality?: number;
     /**
      * The position of this alignment.
      */
-    position: Schema$Position;
+    position?: Schema$Position;
   }
   export interface Schema$ListBasesResponse {
     /**
@@ -735,17 +747,17 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The offset position (0-based) of the given `sequence` from the start of
      * this `Reference`. This value will differ for each page in a paginated
      * request.
      */
-    offset: string;
+    offset?: string;
     /**
      * A substring of the bases that make up this reference.
      */
-    sequence: string;
+    sequence?: string;
   }
   export interface Schema$ListCoverageBucketsResponse {
     /**
@@ -754,21 +766,21 @@ export namespace genomics_v1 {
      * the bucket width is infinity (the default behaviour, with no range or
      * `targetBucketWidth`).
      */
-    bucketWidth: string;
+    bucketWidth?: string;
     /**
      * The coverage buckets. The list of buckets is sparse; a bucket with 0
      * overlapping reads is not returned. A bucket never crosses more than one
      * reference sequence. Each bucket has width `bucketWidth`, unless its end
      * is the end of the reference sequence.
      */
-    coverageBuckets: Schema$CoverageBucket[];
+    coverageBuckets?: Schema$CoverageBucket[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The dataset list response.
@@ -777,14 +789,14 @@ export namespace genomics_v1 {
     /**
      * The list of matching Datasets.
      */
-    datasets: Schema$Dataset[];
+    datasets?: Schema$Dataset[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -793,26 +805,26 @@ export namespace genomics_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   export interface Schema$MergeVariantsRequest {
     /**
      * A mapping between info field keys and the InfoMergeOperations to be
      * performed on them.
      */
-    infoMergeConfig: any;
+    infoMergeConfig?: any;
     /**
      * The variants to be merged with existing variants.
      */
-    variants: Schema$Variant[];
+    variants?: Schema$Variant[];
     /**
      * The destination variant set.
      */
-    variantSetId: string;
+    variantSetId?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -824,28 +836,28 @@ export namespace genomics_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * An OperationMetadata or Metadata object. This will always be returned
      * with the Operation.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. For example&amp;#58;
      * `operations/CJHU7Oi_ChDrveSpBRjfuL-qzoWAgEw`
      */
-    name: string;
+    name?: string;
     /**
      * If importing ReadGroupSets, an ImportReadGroupSetsResponse is returned.
      * If importing Variants, an ImportVariantsResponse is returned. For
      * pipelines and exports, an Empty response is returned.
      */
-    response: any;
+    response?: any;
   }
   /**
    * An event that occurred during an Operation.
@@ -854,17 +866,17 @@ export namespace genomics_v1 {
     /**
      * Required description of event.
      */
-    description: string;
+    description?: string;
     /**
      * Optional time of when event finished. An event can have a start time and
      * no finish time. If an event has a finish time, there must be a start
      * time.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional time of when event started.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Metadata describing an Operation.
@@ -874,68 +886,72 @@ export namespace genomics_v1 {
      * This field is deprecated. Use `labels` instead. Optionally provided by
      * the caller when submitting the request that creates the operation.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * The time at which the job was submitted to the Genomics service.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The time at which the job stopped running.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Optional event messages that were generated during the job&#39;s
      * execution. This also contains any warnings that were generated during
      * import or export.
      */
-    events: Schema$OperationEvent[];
+    events?: Schema$OperationEvent[];
     /**
      * Optionally provided by the caller when submitting the request that
      * creates the operation.
      */
-    labels: any;
+    labels?: any;
     /**
      * The Google Cloud Project in which the job is scoped.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The original request that started the operation. Note that this will be
      * in current version of the API. If the operation was started with v1beta2
      * API and a GetOperation is performed on v1 API, a v1 request will be
      * returned.
      */
-    request: any;
+    request?: any;
     /**
      * Runtime metadata on this Operation.
      */
-    runtimeMetadata: any;
+    runtimeMetadata?: any;
     /**
      * The time at which the job began to run.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
    * specify access control policies for Cloud Platform resources.   A `Policy`
-   * consists of a list of `bindings`. A `Binding` binds a list of `members` to
+   * consists of a list of `bindings`. A `binding` binds a list of `members` to
    * a `role`, where the members can be user accounts, Google groups, Google
    * domains, and service accounts. A `role` is a named list of permissions
-   * defined by IAM.  **Example**      {       &quot;bindings&quot;: [         {
+   * defined by IAM.  **JSON Example**      {       &quot;bindings&quot;: [ {
    * &quot;role&quot;: &quot;roles/owner&quot;,           &quot;members&quot;: [
    * &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;,
    * &quot;domain:google.com&quot;,
-   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot;, ] },
-   * {           &quot;role&quot;: &quot;roles/viewer&quot;,
-   * &quot;members&quot;: [&quot;user:sean@example.com&quot;]         }       ]
-   * }  For a description of IAM and its features, see the [IAM developer&#39;s
-   * guide](https://cloud.google.com/iam/docs).
+   * &quot;serviceAccount:my-other-app@appspot.gserviceaccount.com&quot; ] }, {
+   * &quot;role&quot;: &quot;roles/viewer&quot;,           &quot;members&quot;:
+   * [&quot;user:sean@example.com&quot;]         }       ]     }  **YAML
+   * Example**      bindings:     - members:       - user:mike@example.com -
+   * group:admins@example.com       - domain:google.com       -
+   * serviceAccount:my-other-app@appspot.gserviceaccount.com       role:
+   * roles/owner     - members:       - user:sean@example.com       role:
+   * roles/viewer   For a description of IAM and its features, see the [IAM
+   * developer&#39;s guide](https://cloud.google.com/iam/docs).
    */
   export interface Schema$Policy {
     /**
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -947,11 +963,11 @@ export namespace genomics_v1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * An abstraction for referring to a genomic position, in relation to some
@@ -964,40 +980,40 @@ export namespace genomics_v1 {
      * The 0-based offset from the start of the forward strand for that
      * reference.
      */
-    position: string;
+    position?: string;
     /**
      * The name of the reference in whatever reference set is being used.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * Whether this position is on the reverse strand, as opposed to the forward
      * strand.
      */
-    reverseStrand: boolean;
+    reverseStrand?: boolean;
   }
   export interface Schema$Program {
     /**
      * The command line used to run this program.
      */
-    commandLine: string;
+    commandLine?: string;
     /**
      * The user specified locally unique ID of the program. Used along with
      * `prevProgramId` to define an ordering between programs.
      */
-    id: string;
+    id?: string;
     /**
      * The display name of the program. This is typically the colloquial name of
      * the tool used, for example &#39;bwa&#39; or &#39;picard&#39;.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the program run before this one.
      */
-    prevProgramId: string;
+    prevProgramId?: string;
     /**
      * The version of the program run.
      */
-    version: string;
+    version?: string;
   }
   /**
    * This event is generated when the worker starts pulling an image.
@@ -1006,7 +1022,7 @@ export namespace genomics_v1 {
     /**
      * The URI of the image that was pulled.
      */
-    imageUri: string;
+    imageUri?: string;
   }
   /**
    * This event is generated when the worker stops pulling an image.
@@ -1015,7 +1031,7 @@ export namespace genomics_v1 {
     /**
      * The URI of the image that was pulled.
      */
-    imageUri: string;
+    imageUri?: string;
   }
   /**
    * A 0-based half-open genomic coordinate range for search requests.
@@ -1024,15 +1040,15 @@ export namespace genomics_v1 {
     /**
      * The end position of the range on the reference, 0-based exclusive.
      */
-    end: string;
+    end?: string;
     /**
      * The reference sequence name, for example `chr1`, `1`, or `chrX`.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * The start position of the range on the reference, 0-based inclusive.
      */
-    start: string;
+    start?: string;
   }
   /**
    * A read alignment describes a linear alignment of a string of DNA to a
@@ -1090,7 +1106,7 @@ export namespace genomics_v1 {
      * trimmed. When this occurs, the CIGAR for this read will begin/end with a
      * hard clip operator that will indicate the length of the excised sequence.
      */
-    alignedQuality: number[];
+    alignedQuality?: number[];
     /**
      * The bases of the read sequence contained in this alignment record,
      * **without CIGAR operations applied** (equivalent to SEQ in SAM).
@@ -1100,70 +1116,70 @@ export namespace genomics_v1 {
      * CIGAR for this read will begin/end with a hard clip operator that will
      * indicate the length of the excised sequence.
      */
-    alignedSequence: string;
+    alignedSequence?: string;
     /**
      * The linear alignment for this alignment record. This field is null for
      * unmapped reads.
      */
-    alignment: Schema$LinearAlignment;
+    alignment?: Schema$LinearAlignment;
     /**
      * The fragment is a PCR or optical duplicate (SAM flag 0x400).
      */
-    duplicateFragment: boolean;
+    duplicateFragment?: boolean;
     /**
      * Whether this read did not pass filters, such as platform or vendor
      * quality controls (SAM flag 0x200).
      */
-    failedVendorQualityChecks: boolean;
+    failedVendorQualityChecks?: boolean;
     /**
      * The observed length of the fragment, equivalent to TLEN in SAM.
      */
-    fragmentLength: number;
+    fragmentLength?: number;
     /**
      * The fragment name. Equivalent to QNAME (query template name) in SAM.
      */
-    fragmentName: string;
+    fragmentName?: string;
     /**
      * The server-generated read ID, unique across all reads. This is different
      * from the `fragmentName`.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional read alignment information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The mapping of the primary alignment of the `(readNumber+1)%numberReads`
      * read in the fragment. It replaces mate position and mate strand in SAM.
      */
-    nextMatePosition: Schema$Position;
+    nextMatePosition?: Schema$Position;
     /**
      * The number of reads in the fragment (extension to SAM flag 0x1).
      */
-    numberReads: number;
+    numberReads?: number;
     /**
      * The orientation and the distance between reads from the fragment are
      * consistent with the sequencing protocol (SAM flag 0x2).
      */
-    properPlacement: boolean;
+    properPlacement?: boolean;
     /**
      * The ID of the read group this read belongs to. A read belongs to exactly
      * one read group. This is a server-generated ID which is distinct from
      * SAM&#39;s RG tag (for that value, see ReadGroup.name).
      */
-    readGroupId: string;
+    readGroupId?: string;
     /**
      * The ID of the read group set this read belongs to. A read belongs to
      * exactly one read group set.
      */
-    readGroupSetId: string;
+    readGroupSetId?: string;
     /**
      * The read number in sequencing. 0-based and less than numberReads. This
      * field replaces SAM flag 0x40 and 0x80.
      */
-    readNumber: number;
+    readNumber?: number;
     /**
      * Whether this alignment is secondary. Equivalent to SAM flag 0x100. A
      * secondary alignment represents an alternative to the primary alignment
@@ -1172,7 +1188,7 @@ export namespace genomics_v1 {
      * read has one and only one alignment where both `secondaryAlignment` and
      * `supplementaryAlignment` are false.
      */
-    secondaryAlignment: boolean;
+    secondaryAlignment?: boolean;
     /**
      * Whether this alignment is supplementary. Equivalent to SAM flag 0x800.
      * Supplementary alignments are used in the representation of a chimeric
@@ -1186,7 +1202,7 @@ export namespace genomics_v1 {
      * alignment record will only represent the bases for its respective linear
      * alignment.
      */
-    supplementaryAlignment: boolean;
+    supplementaryAlignment?: boolean;
   }
   /**
    * A read group is all the data that&#39;s processed the same way by the
@@ -1196,53 +1212,53 @@ export namespace genomics_v1 {
     /**
      * The dataset to which this read group belongs.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * A free-form text description of this read group.
      */
-    description: string;
+    description?: string;
     /**
      * The experiment used to generate this read group.
      */
-    experiment: Schema$Experiment;
+    experiment?: Schema$Experiment;
     /**
      * The server-generated read group ID, unique for all read groups. Note:
      * This is different than the @RG ID field in the SAM spec. For that value,
      * see name.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional read group information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The read group name. This corresponds to the @RG ID field in the SAM
      * spec.
      */
-    name: string;
+    name?: string;
     /**
      * The predicted insert size of this read group. The insert size is the
      * length the sequenced DNA fragment from end-to-end, not including the
      * adapters.
      */
-    predictedInsertSize: number;
+    predictedInsertSize?: number;
     /**
      * The programs used to generate this read group. Programs are always
      * identical for all read groups within a read group set. For this reason,
      * only the first read group in a returned set will have this field
      * populated.
      */
-    programs: Schema$Program[];
+    programs?: Schema$Program[];
     /**
      * The reference set the reads in this read group are aligned to.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
     /**
      * A client-supplied sample identifier for the reads in this read group.
      */
-    sampleId: string;
+    sampleId?: string;
   }
   /**
    * A read group set is a logical collection of read groups, which are
@@ -1255,33 +1271,33 @@ export namespace genomics_v1 {
     /**
      * The dataset to which this read group set belongs.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * The filename of the original source file for this read group set, if any.
      */
-    filename: string;
+    filename?: string;
     /**
      * The server-generated read group set ID, unique for all read group sets.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional read group set information.
      */
-    info: any;
+    info?: any;
     /**
      * The read group set name. By default this will be initialized to the
      * sample name of the sequenced data contained in this set.
      */
-    name: string;
+    name?: string;
     /**
      * The read groups in this set. There are typically 1-10 read groups in a
      * read group set.
      */
-    readGroups: Schema$ReadGroup[];
+    readGroups?: Schema$ReadGroup[];
     /**
      * The reference set to which the reads in this read group set are aligned.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
   }
   /**
    * A reference is a canonical assembled DNA sequence, intended to act as a
@@ -1293,36 +1309,36 @@ export namespace genomics_v1 {
     /**
      * The server-generated reference ID, unique across all references.
      */
-    id: string;
+    id?: string;
     /**
      * The length of this reference&#39;s sequence.
      */
-    length: string;
+    length?: string;
     /**
      * MD5 of the upper-case sequence excluding all whitespace characters (this
      * is equivalent to SQ:M5 in SAM). This value is represented in lower case
      * hexadecimal format.
      */
-    md5checksum: string;
+    md5checksum?: string;
     /**
      * The name of this reference, for example `22`.
      */
-    name: string;
+    name?: string;
     /**
      * ID from http://www.ncbi.nlm.nih.gov/taxonomy. For example, 9606 for
      * human.
      */
-    ncbiTaxonId: number;
+    ncbiTaxonId?: number;
     /**
      * All known corresponding accession IDs in INSDC (GenBank/ENA/DDBJ) ideally
      * with a version number, for example `GCF_000001405.26`.
      */
-    sourceAccessions: string[];
+    sourceAccessions?: string[];
     /**
      * The URI from which the sequence was obtained. Typically specifies a FASTA
      * format file.
      */
-    sourceUri: string;
+    sourceUri?: string;
   }
   /**
    * ReferenceBound records an upper bound for the starting coordinate of
@@ -1332,12 +1348,12 @@ export namespace genomics_v1 {
     /**
      * The name of the reference associated with this reference bound.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * An upper bound (inclusive) on the starting coordinate of any variant in
      * the reference sequence.
      */
-    upperBound: string;
+    upperBound?: string;
   }
   /**
    * A reference set is a set of references which typically comprise a reference
@@ -1350,15 +1366,15 @@ export namespace genomics_v1 {
     /**
      * Public id of this reference set, such as `GRCh37`.
      */
-    assemblyId: string;
+    assemblyId?: string;
     /**
      * Free text description of this reference set.
      */
-    description: string;
+    description?: string;
     /**
      * The server-generated reference set ID, unique across all reference sets.
      */
-    id: string;
+    id?: string;
     /**
      * Order-independent MD5 checksum which identifies this reference set. The
      * checksum is computed by sorting all lower case hexidecimal string
@@ -1366,7 +1382,7 @@ export namespace genomics_v1 {
      * lexicographic order, concatenating, and taking the MD5 of that value. The
      * resulting value is represented in lower case hexadecimal format.
      */
-    md5checksum: string;
+    md5checksum?: string;
     /**
      * ID from http://www.ncbi.nlm.nih.gov/taxonomy (for example, 9606 for
      * human) indicating the species which this reference set is intended to
@@ -1375,21 +1391,21 @@ export namespace genomics_v1 {
      * belong to the modeled species, for example EBV in a human reference
      * genome.
      */
-    ncbiTaxonId: number;
+    ncbiTaxonId?: number;
     /**
      * The IDs of the reference objects that are part of this set.
      * `Reference.md5checksum` must be unique within this set.
      */
-    referenceIds: string[];
+    referenceIds?: string[];
     /**
      * All known corresponding accession IDs in INSDC (GenBank/ENA/DDBJ) ideally
      * with a version number, for example `NC_000001.11`.
      */
-    sourceAccessions: string[];
+    sourceAccessions?: string[];
     /**
      * The URI from which the references were obtained.
      */
-    sourceUri: string;
+    sourceUri?: string;
   }
   /**
    * Runtime metadata that will be populated in the runtimeMetadata field of the
@@ -1399,53 +1415,53 @@ export namespace genomics_v1 {
     /**
      * Execution information specific to Google Compute Engine.
      */
-    computeEngine: Schema$ComputeEngine;
+    computeEngine?: Schema$ComputeEngine;
   }
   export interface Schema$SearchAnnotationSetsRequest {
     /**
      * Required. The dataset IDs to search within. Caller must have `READ`
      * access to these datasets.
      */
-    datasetIds: string[];
+    datasetIds?: string[];
     /**
      * Only return annotations sets for which a substring of the name matches
      * this string (case insensitive).
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 128. The maximum value is 1024.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * If specified, only annotation sets associated with the given reference
      * set are returned.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
     /**
      * If specified, only annotation sets that have any of these types are
      * returned.
      */
-    types: string[];
+    types?: string[];
   }
   export interface Schema$SearchAnnotationSetsResponse {
     /**
      * The matching annotation sets.
      */
-    annotationSets: Schema$AnnotationSet[];
+    annotationSets?: Schema$AnnotationSet[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$SearchAnnotationsRequest {
     /**
@@ -1453,51 +1469,51 @@ export namespace genomics_v1 {
      * `READ` access to these annotation sets. All queried annotation sets must
      * have the same type.
      */
-    annotationSetIds: string[];
+    annotationSetIds?: string[];
     /**
      * The end position of the range on the reference, 0-based exclusive. If
      * referenceId or referenceName must be specified, Defaults to the length of
      * the reference.
      */
-    end: string;
+    end?: string;
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 256. The maximum value is 2048.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * The ID of the reference to query.
      */
-    referenceId: string;
+    referenceId?: string;
     /**
      * The name of the reference to query, within the reference set associated
      * with this query.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * The start position of the range on the reference, 0-based inclusive. If
      * specified, referenceId or referenceName must be specified. Defaults to 0.
      */
-    start: string;
+    start?: string;
   }
   export interface Schema$SearchAnnotationsResponse {
     /**
      * The matching annotations.
      */
-    annotations: Schema$Annotation[];
+    annotations?: Schema$Annotation[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The call set search request.
@@ -1507,23 +1523,23 @@ export namespace genomics_v1 {
      * Only return call sets for which a substring of the name matches this
      * string.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 1024.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * Restrict the query to call sets within the given variant sets. At least
      * one ID must be provided.
      */
-    variantSetIds: string[];
+    variantSetIds?: string[];
   }
   /**
    * The call set search response.
@@ -1532,14 +1548,14 @@ export namespace genomics_v1 {
     /**
      * The list of matching call sets.
      */
-    callSets: Schema$CallSet[];
+    callSets?: Schema$CallSet[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The read group set search request.
@@ -1549,23 +1565,23 @@ export namespace genomics_v1 {
      * Restricts this query to read group sets within the given datasets. At
      * least one ID must be provided.
      */
-    datasetIds: string[];
+    datasetIds?: string[];
     /**
      * Only return read group sets for which a substring of the name matches
      * this string.
      */
-    name: string;
+    name?: string;
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 256. The maximum value is 1024.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The read group set search response.
@@ -1577,11 +1593,11 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of matching read group sets.
      */
-    readGroupSets: Schema$ReadGroupSet[];
+    readGroupSets?: Schema$ReadGroupSet[];
   }
   /**
    * The read search request.
@@ -1591,42 +1607,42 @@ export namespace genomics_v1 {
      * The end position of the range on the reference, 0-based exclusive. If
      * specified, `referenceName` must also be specified.
      */
-    end: string;
+    end?: string;
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 256. The maximum value is 2048.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * The IDs of the read groups within which to search for reads. All
      * specified read groups must belong to the same read group sets. Must
      * specify one of `readGroupSetIds` or `readGroupIds`.
      */
-    readGroupIds: string[];
+    readGroupIds?: string[];
     /**
      * The IDs of the read groups sets within which to search for reads. All
      * specified read group sets must be aligned against a common set of
      * reference sequences; this defines the genomic coordinates for the query.
      * Must specify one of `readGroupSetIds` or `readGroupIds`.
      */
-    readGroupSetIds: string[];
+    readGroupSetIds?: string[];
     /**
      * The reference sequence name, for example `chr1`, `1`, or `chrX`. If set
      * to `*`, only unmapped reads are returned. If unspecified, all reads
      * (mapped and unmapped) are returned.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * The start position of the range on the reference, 0-based inclusive. If
      * specified, `referenceName` must also be specified.
      */
-    start: string;
+    start?: string;
   }
   /**
    * The read search response.
@@ -1638,14 +1654,14 @@ export namespace genomics_v1 {
      * which have no position, are returned contiguously and are sorted in
      * ascending lexicographic order by fragment name.
      */
-    alignments: Schema$Read[];
+    alignments?: Schema$Read[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$SearchReferenceSetsRequest {
     /**
@@ -1653,28 +1669,28 @@ export namespace genomics_v1 {
      * sourceAccessions match any of these strings. Accession numbers typically
      * have a main number and a version, for example `NC_000001.11`.
      */
-    accessions: string[];
+    accessions?: string[];
     /**
      * If present, return reference sets for which a substring of their
      * `assemblyId` matches this string (case insensitive).
      */
-    assemblyId: string;
+    assemblyId?: string;
     /**
      * If present, return reference sets for which the md5checksum matches
      * exactly.
      */
-    md5checksums: string[];
+    md5checksums?: string[];
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 1024. The maximum value is 4096.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   export interface Schema$SearchReferenceSetsResponse {
     /**
@@ -1683,11 +1699,11 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The matching references sets.
      */
-    referenceSets: Schema$ReferenceSet[];
+    referenceSets?: Schema$ReferenceSet[];
   }
   export interface Schema$SearchReferencesRequest {
     /**
@@ -1695,26 +1711,26 @@ export namespace genomics_v1 {
      * sourceAccessions match any of these strings. Accession numbers typically
      * have a main number and a version, for example `GCF_000001405.26`.
      */
-    accessions: string[];
+    accessions?: string[];
     /**
      * If present, return references for which the md5checksum matches exactly.
      */
-    md5checksums: string[];
+    md5checksums?: string[];
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 1024. The maximum value is 4096.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * If present, return only references which belong to this reference set.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
   }
   export interface Schema$SearchReferencesResponse {
     /**
@@ -1723,11 +1739,11 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The matching references.
      */
-    references: Schema$Reference[];
+    references?: Schema$Reference[];
   }
   /**
    * The search variant sets request.
@@ -1737,18 +1753,18 @@ export namespace genomics_v1 {
      * Exactly one dataset ID must be provided here. Only variant sets which
      * belong to this dataset will be returned.
      */
-    datasetIds: string[];
+    datasetIds?: string[];
     /**
      * The maximum number of results to return in a single page. If unspecified,
      * defaults to 1024.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The search variant sets response.
@@ -1760,11 +1776,11 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The variant sets belonging to the requested dataset.
      */
-    variantSets: Schema$VariantSet[];
+    variantSets?: Schema$VariantSet[];
   }
   /**
    * The variant search request.
@@ -1775,49 +1791,49 @@ export namespace genomics_v1 {
      * Leaving this blank returns all variant calls. If a variant has no calls
      * belonging to any of these call sets, it won&#39;t be returned at all.
      */
-    callSetIds: string[];
+    callSetIds?: string[];
     /**
      * The end of the window, 0-based exclusive. If unspecified or 0, defaults
      * to the length of the reference.
      */
-    end: string;
+    end?: string;
     /**
      * The maximum number of calls to return in a single page. Note that this
      * limit may be exceeded in the event that a matching variant contains more
      * calls than the requested maximum. If unspecified, defaults to 5000. The
      * maximum value is 10000.
      */
-    maxCalls: number;
+    maxCalls?: number;
     /**
      * The maximum number of variants to return in a single page. If
      * unspecified, defaults to 5000. The maximum value is 10000.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * The continuation token, which is used to page through large result sets.
      * To get the next page of results, set this parameter to the value of
      * `nextPageToken` from the previous response.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * Required. Only return variants in this reference sequence.
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * The beginning of the window (0-based, inclusive) for which overlapping
      * variants should be returned. If unspecified, defaults to 0.
      */
-    start: string;
+    start?: string;
     /**
      * Only return variants which have exactly this name.
      */
-    variantName: string;
+    variantName?: string;
     /**
      * At most one variant set ID must be provided. Only variants from this
      * variant set will be returned. If omitted, a call set id must be included
      * in the request.
      */
-    variantSetIds: string[];
+    variantSetIds?: string[];
   }
   /**
    * The variant search response.
@@ -1829,11 +1845,11 @@ export namespace genomics_v1 {
      * results. This field will be empty if there aren&#39;t any additional
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of matching Variants.
      */
-    variants: Schema$Variant[];
+    variants?: Schema$Variant[];
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1845,7 +1861,7 @@ export namespace genomics_v1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -1887,18 +1903,18 @@ export namespace genomics_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -1913,7 +1929,7 @@ export namespace genomics_v1 {
      * `genomics.datasets.update` * `genomics.datasets.getIamPolicy` *
      * `genomics.datasets.setIamPolicy`
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1923,7 +1939,7 @@ export namespace genomics_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * A transcript represents the assertion that a particular region of the
@@ -1941,7 +1957,7 @@ export namespace genomics_v1 {
      * coding exon reference bases cannot necessarily be concatenated to produce
      * the original transcript mRNA.
      */
-    codingSequence: Schema$CodingSequence;
+    codingSequence?: Schema$CodingSequence;
     /**
      * The &lt;a
      * href=&quot;http://en.wikipedia.org/wiki/Exon&quot;&gt;exons&lt;/a&gt;
@@ -1955,11 +1971,11 @@ export namespace genomics_v1 {
      * codingSequence correspond to coding DNA sequence.  Exons are ordered by
      * start position and may not overlap.
      */
-    exons: Schema$Exon[];
+    exons?: Schema$Exon[];
     /**
      * The annotation ID of the gene from which this transcript is transcribed.
      */
-    geneId: string;
+    geneId?: string;
   }
   export interface Schema$UndeleteDatasetRequest {}
   /**
@@ -1972,11 +1988,11 @@ export namespace genomics_v1 {
     /**
      * The numeric ID of the action that started the container.
      */
-    actionId: number;
+    actionId?: number;
     /**
      * The exit status of the container.
      */
-    exitStatus: number;
+    exitStatus?: number;
   }
   /**
    * A variant represents a change in DNA sequence relative to a reference
@@ -1991,64 +2007,64 @@ export namespace genomics_v1 {
     /**
      * The bases that appear instead of the reference bases.
      */
-    alternateBases: string[];
+    alternateBases?: string[];
     /**
      * The variant calls for this particular variant. Each one represents the
      * determination of genotype with respect to this variant.
      */
-    calls: Schema$VariantCall[];
+    calls?: Schema$VariantCall[];
     /**
      * The date this variant was created, in milliseconds from the epoch.
      */
-    created: string;
+    created?: string;
     /**
      * The end position (0-based) of this variant. This corresponds to the first
      * base after the last base in the reference allele. So, the length of the
      * reference allele is (end - start). This is useful for variants that
      * don&#39;t explicitly give alternate bases, for example large deletions.
      */
-    end: string;
+    end?: string;
     /**
      * A list of filters (normally quality filters) this variant has failed.
      * `PASS` indicates this variant has passed all filters.
      */
-    filter: string[];
+    filter?: string[];
     /**
      * The server-generated variant ID, unique across all variants.
      */
-    id: string;
+    id?: string;
     /**
      * A map of additional variant information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * Names for the variant, for example a RefSNP ID.
      */
-    names: string[];
+    names?: string[];
     /**
      * A measure of how likely this variant is to be real. A higher value is
      * better.
      */
-    quality: number;
+    quality?: number;
     /**
      * The reference bases for this variant. They start at the given position.
      */
-    referenceBases: string;
+    referenceBases?: string;
     /**
      * The reference on which this variant occurs. (such as `chr20` or `X`)
      */
-    referenceName: string;
+    referenceName?: string;
     /**
      * The position at which this variant occurs (0-based). This corresponds to
      * the first base of the string of reference bases.
      */
-    start: string;
+    start?: string;
     /**
      * The ID of the variant set this variant belongs to.
      */
-    variantSetId: string;
+    variantSetId?: string;
   }
   export interface Schema$VariantAnnotation {
     /**
@@ -2056,36 +2072,36 @@ export namespace genomics_v1 {
      * exist at this location, create a separate variant for each one, as they
      * may represent distinct conditions.
      */
-    alternateBases: string;
+    alternateBases?: string;
     /**
      * Describes the clinical significance of a variant. It is adapted from the
      * ClinVar controlled vocabulary for clinical significance described at:
      * http://www.ncbi.nlm.nih.gov/clinvar/docs/clinsig/
      */
-    clinicalSignificance: string;
+    clinicalSignificance?: string;
     /**
      * The set of conditions associated with this variant. A condition describes
      * the way a variant influences human health.
      */
-    conditions: Schema$ClinicalCondition[];
+    conditions?: Schema$ClinicalCondition[];
     /**
      * Effect of the variant on the coding sequence.
      */
-    effect: string;
+    effect?: string;
     /**
      * Google annotation ID of the gene affected by this variant. This should be
      * provided when the variant is created.
      */
-    geneId: string;
+    geneId?: string;
     /**
      * Google annotation IDs of the transcripts affected by this variant. These
      * should be provided when the variant is created.
      */
-    transcriptIds: string[];
+    transcriptIds?: string[];
     /**
      * Type has been adapted from ClinVar&#39;s list of variant types.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A call represents the determination of genotype with respect to a
@@ -2097,11 +2113,11 @@ export namespace genomics_v1 {
     /**
      * The ID of the call set this variant call belongs to.
      */
-    callSetId: string;
+    callSetId?: string;
     /**
      * The name of the call set this variant call belongs to.
      */
-    callSetName: string;
+    callSetName?: string;
     /**
      * The genotype of this variant call. Each value represents either the value
      * of the `referenceBases` field or a 1-based index into `alternateBases`.
@@ -2113,7 +2129,7 @@ export namespace genomics_v1 {
      * `phaseset` is present. If a genotype is not called (that is, a `.` is
      * present in the GT string) -1 is returned.
      */
-    genotype: number[];
+    genotype?: number[];
     /**
      * The genotype likelihoods for this variant call. Each array entry
      * represents how likely a specific genotype is for this call. The value
@@ -2122,13 +2138,13 @@ export namespace genomics_v1 {
      * likelihood scores (GL) are not, PL scores are converted to GL scores.  If
      * both are available, PL scores are stored in `info`.
      */
-    genotypeLikelihood: number[];
+    genotypeLikelihood?: number[];
     /**
      * A map of additional variant call information. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * If this field is present, this variant call&#39;s genotype ordering
      * implies the phase of the bases and is consistent with any other variant
@@ -2136,7 +2152,7 @@ export namespace genomics_v1 {
      * When importing data from VCF, if the genotype data was phased but no
      * phase set was specified this field will be set to `*`.
      */
-    phaseset: string;
+    phaseset?: string;
   }
   /**
    * A variant set is a collection of call sets and variants. It contains
@@ -2146,28 +2162,28 @@ export namespace genomics_v1 {
     /**
      * The dataset to which this variant set belongs.
      */
-    datasetId: string;
+    datasetId?: string;
     /**
      * A textual description of this variant set.
      */
-    description: string;
+    description?: string;
     /**
      * The server-generated variant set ID, unique across all variant sets.
      */
-    id: string;
+    id?: string;
     /**
      * The metadata associated with this variant set.
      */
-    metadata: Schema$VariantSetMetadata[];
+    metadata?: Schema$VariantSetMetadata[];
     /**
      * User-specified, mutable name.
      */
-    name: string;
+    name?: string;
     /**
      * A list of all references used by the variants in a variant set with
      * associated coordinate upper bounds for each one.
      */
-    referenceBounds: Schema$ReferenceBound[];
+    referenceBounds?: Schema$ReferenceBound[];
     /**
      * The reference set to which the variant set is mapped. The reference set
      * describes the alignment provenance of the variant set, while the
@@ -2180,7 +2196,7 @@ export namespace genomics_v1 {
      * references: &#39;1&#39;, &#39;2&#39;, &#39;X&#39;, &#39;Y&#39;,
      * &#39;MT&#39;, etc.
      */
-    referenceSetId: string;
+    referenceSetId?: string;
   }
   /**
    * Metadata describes a single piece of variant call metadata. These data
@@ -2191,37 +2207,37 @@ export namespace genomics_v1 {
     /**
      * A textual description of this metadata.
      */
-    description: string;
+    description?: string;
     /**
      * User-provided ID field, not enforced by this API. Two or more pieces of
      * structured metadata with identical id and key fields are considered
      * equivalent.
      */
-    id: string;
+    id?: string;
     /**
      * Remaining structured metadata key-value pairs. This must be of the form
      * map&lt;string, string[]&gt; (string key mapping to a list of string
      * values).
      */
-    info: any;
+    info?: any;
     /**
      * The top-level key.
      */
-    key: string;
+    key?: string;
     /**
      * The number of values that can be included in a field described by this
      * metadata.
      */
-    number: string;
+    number?: string;
     /**
      * The type of data. Possible types include: Integer, Float, Flag,
      * Character, and String.
      */
-    type: string;
+    type?: string;
     /**
      * The value field for simple metadata
      */
-    value: string;
+    value?: string;
   }
   /**
    * This event is generated once a worker VM has been assigned to run the
@@ -2231,11 +2247,11 @@ export namespace genomics_v1 {
     /**
      * The worker&#39;s instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * The zone the worker is running in.
      */
-    zone: string;
+    zone?: string;
   }
   /**
    * This event is generated when the worker VM that was assigned to the
@@ -2245,12 +2261,13 @@ export namespace genomics_v1 {
     /**
      * The worker&#39;s instance name.
      */
-    instance: string;
+    instance?: string;
     /**
      * The zone the worker was running in.
      */
-    zone: string;
+    zone?: string;
   }
+
 
   export class Resource$Annotations {
     root: Genomics;
@@ -2339,29 +2356,45 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchCreate(params?: any, options?: MethodOptions):
+    batchCreate(
+        params?: Params$Resource$Annotations$Batchcreate,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchCreateAnnotationsResponse>;
     batchCreate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Annotations$Batchcreate,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
+        callback: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
         void;
     batchCreate(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Annotations$Batchcreate,
+        callback: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
+        void;
+    batchCreate(
+        callback: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
+        void;
+    batchCreate(
+        paramsOrCallback?: Params$Resource$Annotations$Batchcreate|
+        BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>,
         callback?: BodyResponseCallback<Schema$BatchCreateAnnotationsResponse>):
         void|AxiosPromise<Schema$BatchCreateAnnotationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotations$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Batchcreate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2460,26 +2493,39 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Annotation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>): void;
+        params?: Params$Resource$Annotations$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+        params: Params$Resource$Annotations$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    create(
+        params: Params$Resource$Annotations$Create,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    create(callback: BodyResponseCallback<Schema$Annotation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Annotations$Create|
+        BodyResponseCallback<Schema$Annotation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
         void|AxiosPromise<Schema$Annotation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2564,25 +2610,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Annotations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Annotations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Annotations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Annotations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2671,23 +2730,34 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Annotation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+    get(params?: Params$Resource$Annotations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
+    get(params: Params$Resource$Annotations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    get(params: Params$Resource$Annotations$Get,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    get(callback: BodyResponseCallback<Schema$Annotation>): void;
+    get(paramsOrCallback?: Params$Resource$Annotations$Get|
+        BodyResponseCallback<Schema$Annotation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
         void|AxiosPromise<Schema$Annotation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Annotations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2796,29 +2866,41 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Annotations$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchAnnotationsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Annotations$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>):
+        callback: BodyResponseCallback<Schema$SearchAnnotationsResponse>): void;
+    search(
+        params: Params$Resource$Annotations$Search,
+        callback: BodyResponseCallback<Schema$SearchAnnotationsResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchAnnotationsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Annotations$Search|
+        BodyResponseCallback<Schema$SearchAnnotationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationsResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnnotationsResponse>):
         void|AxiosPromise<Schema$SearchAnnotationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotations$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2916,26 +2998,39 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Annotation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
-        callback?: BodyResponseCallback<Schema$Annotation>): void;
+        params?: Params$Resource$Annotations$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Annotation>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+        params: Params$Resource$Annotations$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Annotation>,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    update(
+        params: Params$Resource$Annotations$Update,
+        callback: BodyResponseCallback<Schema$Annotation>): void;
+    update(callback: BodyResponseCallback<Schema$Annotation>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Annotations$Update|
+        BodyResponseCallback<Schema$Annotation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Annotation>,
         callback?: BodyResponseCallback<Schema$Annotation>):
         void|AxiosPromise<Schema$Annotation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotations$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotations$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2957,6 +3052,84 @@ export namespace genomics_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Annotations$Batchcreate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchCreateAnnotationsRequest;
+  }
+  export interface Params$Resource$Annotations$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Annotation;
+  }
+  export interface Params$Resource$Annotations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation to be deleted.
+     */
+    annotationId?: string;
+  }
+  export interface Params$Resource$Annotations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation to be retrieved.
+     */
+    annotationId?: string;
+  }
+  export interface Params$Resource$Annotations$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchAnnotationsRequest;
+  }
+  export interface Params$Resource$Annotations$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation to be updated.
+     */
+    annotationId?: string;
+    /**
+     * An optional mask specifying which fields to update. Mutable fields are
+     * name, variant, transcript, and info. If unspecified, all mutable fields
+     * will be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Annotation;
+  }
+
 
   export class Resource$Annotationsets {
     root: Genomics;
@@ -3040,26 +3213,39 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnnotationSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-        callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
+        params?: Params$Resource$Annotationsets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+        params: Params$Resource$Annotationsets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    create(
+        params: Params$Resource$Annotationsets$Create,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    create(callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Annotationsets$Create|
+        BodyResponseCallback<Schema$AnnotationSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
         void|AxiosPromise<Schema$AnnotationSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotationsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotationsets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3146,25 +3332,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Annotationsets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Annotationsets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Annotationsets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Annotationsets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotationsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotationsets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3254,24 +3453,35 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Annotationsets$Get,
         options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-        callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+    get(params: Params$Resource$Annotationsets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    get(params: Params$Resource$Annotationsets$Get,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    get(callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    get(paramsOrCallback?: Params$Resource$Annotationsets$Get|
+        BodyResponseCallback<Schema$AnnotationSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
         void|AxiosPromise<Schema$AnnotationSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotationsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotationsets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3379,29 +3589,44 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Annotationsets$Search,
+        options?: MethodOptions):
         AxiosPromise<Schema$SearchAnnotationSetsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Annotationsets$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
+        callback: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Annotationsets$Search,
+        callback: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Annotationsets$Search|
+        BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchAnnotationSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchAnnotationSetsResponse>):
         void|AxiosPromise<Schema$SearchAnnotationSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotationsets$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotationsets$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3502,26 +3727,39 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AnnotationSet>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
-        callback?: BodyResponseCallback<Schema$AnnotationSet>): void;
+        params?: Params$Resource$Annotationsets$Update,
+        options?: MethodOptions): AxiosPromise<Schema$AnnotationSet>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+        params: Params$Resource$Annotationsets$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$AnnotationSet>,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    update(
+        params: Params$Resource$Annotationsets$Update,
+        callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    update(callback: BodyResponseCallback<Schema$AnnotationSet>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Annotationsets$Update|
+        BodyResponseCallback<Schema$AnnotationSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AnnotationSet>,
         callback?: BodyResponseCallback<Schema$AnnotationSet>):
         void|AxiosPromise<Schema$AnnotationSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Annotationsets$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Annotationsets$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3543,6 +3781,73 @@ export namespace genomics_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Annotationsets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnnotationSet;
+  }
+  export interface Params$Resource$Annotationsets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation set to be deleted.
+     */
+    annotationSetId?: string;
+  }
+  export interface Params$Resource$Annotationsets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation set to be retrieved.
+     */
+    annotationSetId?: string;
+  }
+  export interface Params$Resource$Annotationsets$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchAnnotationSetsRequest;
+  }
+  export interface Params$Resource$Annotationsets$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the annotation set to be updated.
+     */
+    annotationSetId?: string;
+    /**
+     * An optional mask specifying which fields to update. Mutable fields are
+     * name, source_uri, and info. If unspecified, all mutable fields will be
+     * updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AnnotationSet;
+  }
+
 
   export class Resource$Callsets {
     root: Genomics;
@@ -3622,25 +3927,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+    create(params?: Params$Resource$Callsets$Create, options?: MethodOptions):
+        AxiosPromise<Schema$CallSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-        callback?: BodyResponseCallback<Schema$CallSet>): void;
+        params: Params$Resource$Callsets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+        params: Params$Resource$Callsets$Create,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
+    create(callback: BodyResponseCallback<Schema$CallSet>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Callsets$Create|
+        BodyResponseCallback<Schema$CallSet>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
         void|AxiosPromise<Schema$CallSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Callsets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3724,25 +4040,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Callsets$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Callsets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Callsets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Callsets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Callsets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3830,23 +4157,33 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-        callback?: BodyResponseCallback<Schema$CallSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+    get(params?: Params$Resource$Callsets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+    get(params: Params$Resource$Callsets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
+    get(params: Params$Resource$Callsets$Get,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
+    get(callback: BodyResponseCallback<Schema$CallSet>): void;
+    get(paramsOrCallback?: Params$Resource$Callsets$Get|
+        BodyResponseCallback<Schema$CallSet>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
         void|AxiosPromise<Schema$CallSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Callsets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3942,25 +4279,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$CallSet>;
+    patch(params?: Params$Resource$Callsets$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$CallSet>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
-        callback?: BodyResponseCallback<Schema$CallSet>): void;
+        params: Params$Resource$Callsets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
+        params: Params$Resource$Callsets$Patch,
+        callback: BodyResponseCallback<Schema$CallSet>): void;
+    patch(callback: BodyResponseCallback<Schema$CallSet>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Callsets$Patch|
+        BodyResponseCallback<Schema$CallSet>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$CallSet>,
         callback?: BodyResponseCallback<Schema$CallSet>):
         void|AxiosPromise<Schema$CallSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Callsets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4063,28 +4411,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Callsets$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchCallSetsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Callsets$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchCallSetsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>): void;
+        callback: BodyResponseCallback<Schema$SearchCallSetsResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Callsets$Search,
+        callback: BodyResponseCallback<Schema$SearchCallSetsResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchCallSetsResponse>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Callsets$Search|
+        BodyResponseCallback<Schema$SearchCallSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchCallSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchCallSetsResponse>):
         void|AxiosPromise<Schema$SearchCallSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Callsets$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Callsets$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4106,6 +4464,73 @@ export namespace genomics_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Callsets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CallSet;
+  }
+  export interface Params$Resource$Callsets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the call set to be deleted.
+     */
+    callSetId?: string;
+  }
+  export interface Params$Resource$Callsets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the call set.
+     */
+    callSetId?: string;
+  }
+  export interface Params$Resource$Callsets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the call set to be updated.
+     */
+    callSetId?: string;
+    /**
+     * An optional mask specifying which fields to update. At this time, the
+     * only mutable field is name. The only acceptable value is "name". If
+     * unspecified, all mutable fields will be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CallSet;
+  }
+  export interface Params$Resource$Callsets$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchCallSetsRequest;
+  }
+
 
   export class Resource$Datasets {
     root: Genomics;
@@ -4185,25 +4610,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    create(params?: Params$Resource$Datasets$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Dataset>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params: Params$Resource$Datasets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Create,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    create(callback: BodyResponseCallback<Schema$Dataset>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Datasets$Create|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4290,25 +4726,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Datasets$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Datasets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Datasets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Datasets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4396,23 +4843,33 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+    get(params?: Params$Resource$Datasets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    get(params: Params$Resource$Datasets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(params: Params$Resource$Datasets$Get,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(paramsOrCallback?: Params$Resource$Datasets$Get|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4510,26 +4967,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Datasets$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Datasets$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Datasets$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Datasets$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Datasets$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4629,28 +5098,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Datasets$List, options?: MethodOptions):
         AxiosPromise<Schema$ListDatasetsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Datasets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDatasetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Datasets$List,
+        callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDatasetsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Datasets$List|
+        BodyResponseCallback<Schema$ListDatasetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDatasetsResponse>,
         callback?: BodyResponseCallback<Schema$ListDatasetsResponse>):
         void|AxiosPromise<Schema$ListDatasetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4745,25 +5224,36 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    patch(params?: Params$Resource$Datasets$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Dataset>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params: Params$Resource$Datasets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Patch,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Datasets$Patch|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4861,26 +5351,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Datasets$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Datasets$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Datasets$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Datasets$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Datasets$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4977,29 +5479,45 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Datasets$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Datasets$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Datasets$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Datasets$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Datasets$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5095,26 +5613,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Dataset>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params?: Params$Resource$Datasets$Undelete,
+        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
     undelete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Datasets$Undelete,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    undelete(
+        params: Params$Resource$Datasets$Undelete,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    undelete(callback: BodyResponseCallback<Schema$Dataset>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Datasets$Undelete|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Datasets$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5136,6 +5666,147 @@ export namespace genomics_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Datasets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+  export interface Params$Resource$Datasets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the dataset to be deleted.
+     */
+    datasetId?: string;
+  }
+  export interface Params$Resource$Datasets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the dataset.
+     */
+    datasetId?: string;
+  }
+  export interface Params$Resource$Datasets$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which policy is being specified. Format is
+     * `datasets/<dataset ID>`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Datasets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of results to return in a single page. If unspecified,
+     * defaults to 50. The maximum value is 1024.
+     */
+    pageSize?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * `nextPageToken` from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Google Cloud project ID to list datasets for.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Datasets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the dataset to be updated.
+     */
+    datasetId?: string;
+    /**
+     * An optional mask specifying which fields to update. At this time, the
+     * only mutable field is name. The only acceptable value is "name". If
+     * unspecified, all mutable fields will be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+  export interface Params$Resource$Datasets$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which policy is being specified. Format is
+     * `datasets/<dataset ID>`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Datasets$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which policy is being specified. Format is
+     * `datasets/<dataset ID>`.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Datasets$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the dataset to be undeleted.
+     */
+    datasetId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UndeleteDatasetRequest;
+  }
+
 
   export class Resource$Operations {
     root: Genomics;
@@ -5220,25 +5891,37 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    cancel(params?: Params$Resource$Operations$Cancel, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5328,23 +6011,34 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5448,28 +6142,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Operations$List, options?: MethodOptions):
         AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5490,6 +6194,75 @@ export namespace genomics_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A string for filtering Operations. In v2alpha1, the following filter
+     * fields are supported&#58;  * createTime&#58; The time this job was
+     * created * events&#58; The set of event (names) that have occurred while
+     * running   the pipeline.  The &#58; operator can be used to determine if a
+     * particular event has occurred. * error&#58; If the pipeline is running,
+     * this value is NULL.  Once the   pipeline finishes, the value is the
+     * standard Google error code. * labels.key or labels."key with space" where
+     * key is a label key.  In v1 and v1alpha2, the following filter fields are
+     * supported&#58;  * projectId&#58; Required. Corresponds to
+     * OperationMetadata.projectId. * createTime&#58; The time this job was
+     * created, in seconds from the
+     * [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=`
+     * operators. * status&#58; Can be `RUNNING`, `SUCCESS`, `FAILURE`, or
+     * `CANCELED`. Only   one status may be specified. * labels.key where key is
+     * a label key.  Examples&#58;  * `projectId = my-project AND createTime >=
+     * 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND
+     * createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project
+     * AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If unspecified, defaults to 256.
+     * The maximum value is 2048.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Readgroupsets {
     root: Genomics;
@@ -5570,25 +6343,38 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Readgroupsets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Readgroupsets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Readgroupsets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Readgroupsets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5687,26 +6473,39 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     export(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Readgroupsets$Export,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     export(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Readgroupsets$Export,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+        params: Params$Resource$Readgroupsets$Export,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+        paramsOrCallback?: Params$Resource$Readgroupsets$Export|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Export;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5795,24 +6594,35 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Readgroupsets$Get,
         options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
-        callback?: BodyResponseCallback<Schema$ReadGroupSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+    get(params: Params$Resource$Readgroupsets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+        callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
+    get(params: Params$Resource$Readgroupsets$Get,
+        callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
+    get(callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
+    get(paramsOrCallback?: Params$Resource$Readgroupsets$Get|
+        BodyResponseCallback<Schema$ReadGroupSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReadGroupSet>,
         callback?: BodyResponseCallback<Schema$ReadGroupSet>):
         void|AxiosPromise<Schema$ReadGroupSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5910,18 +6720,28 @@ export namespace genomics_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-import(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {if(typeof options === 'function') {
-    callback = options;
+import(params?: Params$Resource$Readgroupsets$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params: Params$Resource$Readgroupsets$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
+import(params: Params$Resource$Readgroupsets$Import, callback: BodyResponseCallback<Schema$Operation>): void;
+import(callback: BodyResponseCallback<Schema$Operation>): void;
+import(paramsOrCallback?: Params$Resource$Readgroupsets$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+
+                                                                                                                                                                                                                                                                              if(typeof paramsOrCallback === 'function') {
+    callback = paramsOrCallback;
+    params = {} as Params$Resource$Readgroupsets$Import;
     options = {};
-    } if(typeof params === 'function') {
-    callback = params;
-    params = {};
-    } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                                                                              if(typeof optionsOrCallback === 'function') {
+    callback = optionsOrCallback;
+    options = {};
+                                                                                                                                                                                                                                                                              }
+
+                                                                                                                                                                                                                                                                              const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/readgroupsets:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-    } else { return createAPIRequest<Schema$Operation>(parameters);
-    }}
+                                                                                                                                                                                                                                                                              } else {
+    return createAPIRequest<Schema$Operation>(parameters);
+                                                                                                                                                                                                                                                                              }}
 
 
     /**
@@ -5989,30 +6809,42 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
  * @param {object} params Parameters for request
  * @param {string} params.readGroupSetId The ID of the read group set to be updated. The caller must have WRITE permissions to the dataset associated with this read group set.
  * @param {string=} params.updateMask An optional mask specifying which fields to update. Supported fields:  * name. * referenceSetId.  Leaving `updateMask` unset is equivalent to specifying all mutable fields.
- * @param {().ReadGroupSet} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+      * @param {().ReadGroupSet} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
+    patch(params?: Params$Resource$Readgroupsets$Patch, options?: MethodOptions): AxiosPromise<Schema$ReadGroupSet>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
-        callback?: BodyResponseCallback<Schema$ReadGroupSet>): void;
+        params: Params$Resource$Readgroupsets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+        callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReadGroupSet>,
+        params: Params$Resource$Readgroupsets$Patch,
+        callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
+    patch(callback: BodyResponseCallback<Schema$ReadGroupSet>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Readgroupsets$Patch|
+        BodyResponseCallback<Schema$ReadGroupSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReadGroupSet>,
         callback?: BodyResponseCallback<Schema$ReadGroupSet>):
         void|AxiosPromise<Schema$ReadGroupSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6116,29 +6948,43 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Readgroupsets$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchReadGroupSetsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Readgroupsets$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
+        callback: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Readgroupsets$Search,
+        callback: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Readgroupsets$Search|
+        BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReadGroupSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReadGroupSetsResponse>):
         void|AxiosPromise<Schema$SearchReadGroupSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Readgroupsets$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6161,6 +7007,91 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$Readgroupsets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the read group set to be deleted. The caller must have WRITE
+     * permissions to the dataset associated with this read group set.
+     */
+    readGroupSetId?: string;
+  }
+  export interface Params$Resource$Readgroupsets$Export {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the read group set to export. The caller must have
+     * READ access to this read group set.
+     */
+    readGroupSetId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ExportReadGroupSetRequest;
+  }
+  export interface Params$Resource$Readgroupsets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the read group set.
+     */
+    readGroupSetId?: string;
+  }
+  export interface Params$Resource$Readgroupsets$Import {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ImportReadGroupSetsRequest;
+  }
+  export interface Params$Resource$Readgroupsets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the read group set to be updated. The caller must have WRITE
+     * permissions to the dataset associated with this read group set.
+     */
+    readGroupSetId?: string;
+    /**
+     * An optional mask specifying which fields to update. Supported fields:  *
+     * name. * referenceSetId.  Leaving `updateMask` unset is equivalent to
+     * specifying all mutable fields.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ReadGroupSet;
+  }
+  export interface Params$Resource$Readgroupsets$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchReadGroupSetsRequest;
+  }
+
   export class Resource$Readgroupsets$Coveragebuckets {
     root: Genomics;
     constructor(root: Genomics) {
@@ -6266,29 +7197,44 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Readgroupsets$Coveragebuckets$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCoverageBucketsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Readgroupsets$Coveragebuckets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
-        callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
+        callback: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Readgroupsets$Coveragebuckets$List,
+        callback: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Readgroupsets$Coveragebuckets$List|
+        BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCoverageBucketsResponse>,
         callback?: BodyResponseCallback<Schema$ListCoverageBucketsResponse>):
         void|AxiosPromise<Schema$ListCoverageBucketsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Readgroupsets$Coveragebuckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Readgroupsets$Coveragebuckets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6312,6 +7258,55 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$Readgroupsets$Coveragebuckets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The end position of the range on the reference, 0-based exclusive. If
+     * specified, `referenceName` must also be specified. If unset or 0,
+     * defaults to the length of the reference.
+     */
+    end?: string;
+    /**
+     * The maximum number of results to return in a single page. If unspecified,
+     * defaults to 1024. The maximum value is 2048.
+     */
+    pageSize?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * `nextPageToken` from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the read group set over which coverage is requested.
+     */
+    readGroupSetId?: string;
+    /**
+     * The name of the reference to query, within the reference set associated
+     * with this query. Optional.
+     */
+    referenceName?: string;
+    /**
+     * The start position of the range on the reference, 0-based inclusive. If
+     * specified, `referenceName` must also be specified. Defaults to 0.
+     */
+    start?: string;
+    /**
+     * The desired width of each reported coverage bucket in base pairs. This
+     * will be rounded down to the nearest precomputed bucket width; the value
+     * of which is returned as `bucketWidth` in the response. Defaults to
+     * infinity (each bucket spans an entire reference sequence) or the length
+     * of the target range, if specified. The smallest precomputed `bucketWidth`
+     * is currently 2048 base pairs; this is subject to change.
+     */
+    targetBucketWidth?: string;
+  }
+
 
 
   export class Resource$Reads {
@@ -6419,28 +7414,37 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Reads$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchReadsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$SearchReadsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchReadsResponse>): void;
+        params: Params$Resource$Reads$Search,
+        options: MethodOptions|BodyResponseCallback<Schema$SearchReadsResponse>,
+        callback: BodyResponseCallback<Schema$SearchReadsResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Reads$Search,
+        callback: BodyResponseCallback<Schema$SearchReadsResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchReadsResponse>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Reads$Search|
+        BodyResponseCallback<Schema$SearchReadsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReadsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReadsResponse>):
         void|AxiosPromise<Schema$SearchReadsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reads$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reads$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6461,6 +7465,19 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$Reads$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchReadsRequest;
+  }
+
 
   export class Resource$References {
     root: Genomics;
@@ -6542,23 +7559,34 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Reference>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Reference>,
-        callback?: BodyResponseCallback<Schema$Reference>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Reference>,
+    get(params?: Params$Resource$References$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Reference>;
+    get(params: Params$Resource$References$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Reference>,
+        callback: BodyResponseCallback<Schema$Reference>): void;
+    get(params: Params$Resource$References$Get,
+        callback: BodyResponseCallback<Schema$Reference>): void;
+    get(callback: BodyResponseCallback<Schema$Reference>): void;
+    get(paramsOrCallback?: Params$Resource$References$Get|
+        BodyResponseCallback<Schema$Reference>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Reference>,
         callback?: BodyResponseCallback<Schema$Reference>):
         void|AxiosPromise<Schema$Reference> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$References$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$References$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6662,28 +7690,40 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$References$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchReferencesResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$References$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchReferencesResponse>,
-        callback?: BodyResponseCallback<Schema$SearchReferencesResponse>): void;
+        callback: BodyResponseCallback<Schema$SearchReferencesResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$References$Search,
+        callback: BodyResponseCallback<Schema$SearchReferencesResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchReferencesResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$References$Search|
+        BodyResponseCallback<Schema$SearchReferencesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReferencesResponse>,
         callback?: BodyResponseCallback<Schema$SearchReferencesResponse>):
         void|AxiosPromise<Schema$SearchReferencesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$References$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$References$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6705,6 +7745,30 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$References$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the reference.
+     */
+    referenceId?: string;
+  }
+  export interface Params$Resource$References$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchReferencesRequest;
+  }
+
   export class Resource$References$Bases {
     root: Genomics;
     constructor(root: Genomics) {
@@ -6799,26 +7863,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListBasesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListBasesResponse>): void;
+        params?: Params$Resource$References$Bases$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListBasesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
+        params: Params$Resource$References$Bases$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListBasesResponse>,
+        callback: BodyResponseCallback<Schema$ListBasesResponse>): void;
+    list(
+        params: Params$Resource$References$Bases$List,
+        callback: BodyResponseCallback<Schema$ListBasesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBasesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$References$Bases$List|
+        BodyResponseCallback<Schema$ListBasesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListBasesResponse>,
         callback?: BodyResponseCallback<Schema$ListBasesResponse>):
         void|AxiosPromise<Schema$ListBasesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$References$Bases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$References$Bases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6840,6 +7917,40 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$References$Bases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The end position (0-based, exclusive) of this query. Defaults to the
+     * length of this reference.
+     */
+    end?: string;
+    /**
+     * The maximum number of bases to return in a single page. If unspecified,
+     * defaults to 200Kbp (kilo base pairs). The maximum value is 10Mbp (mega
+     * base pairs).
+     */
+    pageSize?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * `nextPageToken` from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * The ID of the reference.
+     */
+    referenceId?: string;
+    /**
+     * The start position (0-based) of this query. Defaults to 0.
+     */
+    start?: string;
+  }
+
 
 
   export class Resource$Referencesets {
@@ -6921,24 +8032,35 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Referencesets$Get,
         options?: MethodOptions): AxiosPromise<Schema$ReferenceSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
-        callback?: BodyResponseCallback<Schema$ReferenceSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
+    get(params: Params$Resource$Referencesets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ReferenceSet>,
+        callback: BodyResponseCallback<Schema$ReferenceSet>): void;
+    get(params: Params$Resource$Referencesets$Get,
+        callback: BodyResponseCallback<Schema$ReferenceSet>): void;
+    get(callback: BodyResponseCallback<Schema$ReferenceSet>): void;
+    get(paramsOrCallback?: Params$Resource$Referencesets$Get|
+        BodyResponseCallback<Schema$ReferenceSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ReferenceSet>,
         callback?: BodyResponseCallback<Schema$ReferenceSet>):
         void|AxiosPromise<Schema$ReferenceSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Referencesets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Referencesets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7043,29 +8165,43 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Referencesets$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchReferenceSetsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Referencesets$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
+        callback: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Referencesets$Search,
+        callback: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
+        void;
+    search(callback: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
+        void;
+    search(
+        paramsOrCallback?: Params$Resource$Referencesets$Search|
+        BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchReferenceSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchReferenceSetsResponse>):
         void|AxiosPromise<Schema$SearchReferenceSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Referencesets$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Referencesets$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7088,6 +8224,30 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$Referencesets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the reference set.
+     */
+    referenceSetId?: string;
+  }
+  export interface Params$Resource$Referencesets$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchReferenceSetsRequest;
+  }
+
 
   export class Resource$Variants {
     root: Genomics;
@@ -7167,25 +8327,36 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
+    create(params?: Params$Resource$Variants$Create, options?: MethodOptions):
+        AxiosPromise<Schema$Variant>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
-        callback?: BodyResponseCallback<Schema$Variant>): void;
+        params: Params$Resource$Variants$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+        callback: BodyResponseCallback<Schema$Variant>): void;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+        params: Params$Resource$Variants$Create,
+        callback: BodyResponseCallback<Schema$Variant>): void;
+    create(callback: BodyResponseCallback<Schema$Variant>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Variants$Create|
+        BodyResponseCallback<Schema$Variant>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
         void|AxiosPromise<Schema$Variant> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7269,25 +8440,36 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    delete(params?: Params$Resource$Variants$Delete, options?: MethodOptions):
+        AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Variants$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Variants$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Variants$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7375,23 +8557,33 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
-        callback?: BodyResponseCallback<Schema$Variant>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+    get(params?: Params$Resource$Variants$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Variant>;
+    get(params: Params$Resource$Variants$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+        callback: BodyResponseCallback<Schema$Variant>): void;
+    get(params: Params$Resource$Variants$Get,
+        callback: BodyResponseCallback<Schema$Variant>): void;
+    get(callback: BodyResponseCallback<Schema$Variant>): void;
+    get(paramsOrCallback?: Params$Resource$Variants$Get|
+        BodyResponseCallback<Schema$Variant>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
         void|AxiosPromise<Schema$Variant> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7490,18 +8682,28 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-import(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void;
-import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {if(typeof options === 'function') {
-    callback = options;
+import(params?: Params$Resource$Variants$Import, options?: MethodOptions): AxiosPromise<Schema$Operation>;
+import(params: Params$Resource$Variants$Import, options: MethodOptions|BodyResponseCallback<Schema$Operation>, callback: BodyResponseCallback<Schema$Operation>): void;
+import(params: Params$Resource$Variants$Import, callback: BodyResponseCallback<Schema$Operation>): void;
+import(callback: BodyResponseCallback<Schema$Operation>): void;
+import(paramsOrCallback?: Params$Resource$Variants$Import|BodyResponseCallback<Schema$Operation>, optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Operation>, callback?: BodyResponseCallback<Schema$Operation>): void|AxiosPromise<Schema$Operation> {let params = (paramsOrCallback || {}) as Params$Resource$Variants$Import; let options = (optionsOrCallback || {}) as MethodOptions;
+
+                                                                                                                                                                                                                                                                         if(typeof paramsOrCallback === 'function') {
+    callback = paramsOrCallback;
+    params = {} as Params$Resource$Variants$Import;
     options = {};
-    } if(typeof params === 'function') {
-    callback = params;
-    params = {};
-    } options = options || {}; const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
+                                                                                                                                                                                                                                                                         }
+
+                                                                                                                                                                                                                                                                         if(typeof optionsOrCallback === 'function') {
+    callback = optionsOrCallback;
+    options = {};
+                                                                                                                                                                                                                                                                         }
+
+                                                                                                                                                                                                                                                                         const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/'; const parameters = {options: Object.assign({url: (rootUrl + '/v1/variants:import').replace(/([^:]\/)\/+/g, '$1'), method: 'POST'}, options), params, requiredParams: [], pathParams: [], context: this.getRoot()}; if(callback) {
     createAPIRequest<Schema$Operation>(parameters, callback);
-    } else { return createAPIRequest<Schema$Operation>(parameters);
-    }}
+                                                                                                                                                                                                                                                                         } else {
+    return createAPIRequest<Schema$Operation>(parameters);
+                                                                                                                                                                                                                                                                         }}
 
 
     /**
@@ -7559,30 +8761,40 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
  * @memberOf! ()
  *
  * @param {object} params Parameters for request
- * @param {().MergeVariantsRequest} params.resource Request body data
- * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
+      * @param {().MergeVariantsRequest} params.resource Request body data
+   * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
  * @param {callback} callback The callback that handles the response.
  * @return {object} Request object
  */
-    merge(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    merge(params?: Params$Resource$Variants$Merge, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     merge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params: Params$Resource$Variants$Merge,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
     merge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Variants$Merge,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    merge(callback: BodyResponseCallback<Schema$Empty>): void;
+    merge(
+        paramsOrCallback?: Params$Resource$Variants$Merge|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Merge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Merge;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7679,25 +8891,36 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variant>;
+    patch(params?: Params$Resource$Variants$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Variant>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
-        callback?: BodyResponseCallback<Schema$Variant>): void;
+        params: Params$Resource$Variants$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Variant>,
+        callback: BodyResponseCallback<Schema$Variant>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variant>,
+        params: Params$Resource$Variants$Patch,
+        callback: BodyResponseCallback<Schema$Variant>): void;
+    patch(callback: BodyResponseCallback<Schema$Variant>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Variants$Patch|
+        BodyResponseCallback<Schema$Variant>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variant>,
         callback?: BodyResponseCallback<Schema$Variant>):
         void|AxiosPromise<Schema$Variant> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7800,28 +9023,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(params?: Params$Resource$Variants$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchVariantsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Variants$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchVariantsResponse>): void;
+        callback: BodyResponseCallback<Schema$SearchVariantsResponse>): void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Variants$Search,
+        callback: BodyResponseCallback<Schema$SearchVariantsResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchVariantsResponse>): void;
+    search(
+        paramsOrCallback?: Params$Resource$Variants$Search|
+        BodyResponseCallback<Schema$SearchVariantsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantsResponse>,
         callback?: BodyResponseCallback<Schema$SearchVariantsResponse>):
         void|AxiosPromise<Schema$SearchVariantsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variants$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variants$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7843,6 +9076,95 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
       }
     }
   }
+
+  export interface Params$Resource$Variants$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variant;
+  }
+  export interface Params$Resource$Variants$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the variant to be deleted.
+     */
+    variantId?: string;
+  }
+  export interface Params$Resource$Variants$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the variant.
+     */
+    variantId?: string;
+  }
+  export interface Params$Resource$Variants$Import {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ImportVariantsRequest;
+  }
+  export interface Params$Resource$Variants$Merge {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$MergeVariantsRequest;
+  }
+  export interface Params$Resource$Variants$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional mask specifying which fields to update. At this time, mutable
+     * fields are names and info. Acceptable values are "names" and "info". If
+     * unspecified, all mutable fields will be updated.
+     */
+    updateMask?: string;
+    /**
+     * The ID of the variant to be updated.
+     */
+    variantId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variant;
+  }
+  export interface Params$Resource$Variants$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchVariantsRequest;
+  }
+
 
   export class Resource$Variantsets {
     root: Genomics;
@@ -7924,26 +9246,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$VariantSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-        callback?: BodyResponseCallback<Schema$VariantSet>): void;
+        params?: Params$Resource$Variantsets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+        params: Params$Resource$Variantsets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
+    create(
+        params: Params$Resource$Variantsets$Create,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
+    create(callback: BodyResponseCallback<Schema$VariantSet>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Variantsets$Create|
+        BodyResponseCallback<Schema$VariantSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
         void|AxiosPromise<Schema$VariantSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Variantsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8029,25 +9364,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Variantsets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Variantsets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Variantsets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Variantsets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Variantsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8143,26 +9491,39 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    export(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     export(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Variantsets$Export,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     export(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Variantsets$Export,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+        params: Params$Resource$Variantsets$Export,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+        paramsOrCallback?: Params$Resource$Variantsets$Export|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Variantsets$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Export;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8251,23 +9612,34 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-        callback?: BodyResponseCallback<Schema$VariantSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+    get(params?: Params$Resource$Variantsets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$VariantSet>;
+    get(params: Params$Resource$Variantsets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
+    get(params: Params$Resource$Variantsets$Get,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
+    get(callback: BodyResponseCallback<Schema$VariantSet>): void;
+    get(paramsOrCallback?: Params$Resource$Variantsets$Get|
+        BodyResponseCallback<Schema$VariantSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
         void|AxiosPromise<Schema$VariantSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Variantsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8364,26 +9736,38 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Variantsets$Patch, options?: MethodOptions):
         AxiosPromise<Schema$VariantSet>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
-        callback?: BodyResponseCallback<Schema$VariantSet>): void;
+        params: Params$Resource$Variantsets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VariantSet>,
+        params: Params$Resource$Variantsets$Patch,
+        callback: BodyResponseCallback<Schema$VariantSet>): void;
+    patch(callback: BodyResponseCallback<Schema$VariantSet>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Variantsets$Patch|
+        BodyResponseCallback<Schema$VariantSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VariantSet>,
         callback?: BodyResponseCallback<Schema$VariantSet>):
         void|AxiosPromise<Schema$VariantSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Variantsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8488,29 +9872,41 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    search(params?: any, options?: MethodOptions):
+    search(
+        params?: Params$Resource$Variantsets$Search, options?: MethodOptions):
         AxiosPromise<Schema$SearchVariantSetsResponse>;
     search(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Variantsets$Search,
+        options: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantSetsResponse>,
-        callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>):
+        callback: BodyResponseCallback<Schema$SearchVariantSetsResponse>): void;
+    search(
+        params: Params$Resource$Variantsets$Search,
+        callback: BodyResponseCallback<Schema$SearchVariantSetsResponse>): void;
+    search(callback: BodyResponseCallback<Schema$SearchVariantSetsResponse>):
         void;
     search(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?: Params$Resource$Variantsets$Search|
+        BodyResponseCallback<Schema$SearchVariantSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$SearchVariantSetsResponse>,
         callback?: BodyResponseCallback<Schema$SearchVariantSetsResponse>):
         void|AxiosPromise<Schema$SearchVariantSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Variantsets$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Variantsets$Search;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://genomics.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8532,5 +9928,87 @@ import(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Operati
         return createAPIRequest<Schema$SearchVariantSetsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Variantsets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$VariantSet;
+  }
+  export interface Params$Resource$Variantsets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the variant set to be deleted.
+     */
+    variantSetId?: string;
+  }
+  export interface Params$Resource$Variantsets$Export {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the variant set that contains variant data which
+     * should be exported. The caller must have READ access to this variant set.
+     */
+    variantSetId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ExportVariantSetRequest;
+  }
+  export interface Params$Resource$Variantsets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the variant set.
+     */
+    variantSetId?: string;
+  }
+  export interface Params$Resource$Variantsets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An optional mask specifying which fields to update. Supported fields:  *
+     * metadata. * name. * description.  Leaving `updateMask` unset is
+     * equivalent to specifying all mutable fields.
+     */
+    updateMask?: string;
+    /**
+     * The ID of the variant to be updated (must already exist).
+     */
+    variantSetId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$VariantSet;
+  }
+  export interface Params$Resource$Variantsets$Search {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SearchVariantSetsRequest;
   }
 }

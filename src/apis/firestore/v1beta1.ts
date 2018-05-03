@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace firestore_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Cloud Firestore API
    *
@@ -72,7 +75,7 @@ export namespace firestore_v1beta1 {
     /**
      * Values in the array.
      */
-    values: Schema$Value[];
+    values?: Schema$Value[];
   }
   /**
    * The request for Firestore.BatchGetDocuments.
@@ -84,28 +87,28 @@ export namespace firestore_v1beta1 {
      * The request will fail if any of the document is not a child resource of
      * the given `database`. Duplicate names will be elided.
      */
-    documents: string[];
+    documents?: string[];
     /**
      * The fields to return. If not set, returns all fields.  If a document has
      * a field that is not present in this mask, that field will not be returned
      * in the response.
      */
-    mask: Schema$DocumentMask;
+    mask?: Schema$DocumentMask;
     /**
      * Starts a new transaction and reads the documents. Defaults to a read-only
      * transaction. The new transaction ID will be returned as the first
      * response in the stream.
      */
-    newTransaction: Schema$TransactionOptions;
+    newTransaction?: Schema$TransactionOptions;
     /**
      * Reads documents as they were at the given time. This may not be older
      * than 60 seconds.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * Reads documents in a transaction.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The streamed response for Firestore.BatchGetDocuments.
@@ -114,24 +117,24 @@ export namespace firestore_v1beta1 {
     /**
      * A document that was requested.
      */
-    found: Schema$Document;
+    found?: Schema$Document;
     /**
      * A document name that was requested but does not exist. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    missing: string;
+    missing?: string;
     /**
      * The time at which the document was read. This may be monotically
      * increasing, in this case the previous documents in the result stream are
      * guaranteed not to have changed between their read_time and this one.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * The transaction that was started as part of this request. Will only be
      * set in the first response, and only if
      * BatchGetDocumentsRequest.new_transaction was set in the request.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The request for Firestore.BeginTransaction.
@@ -140,7 +143,7 @@ export namespace firestore_v1beta1 {
     /**
      * The options for the transaction. Defaults to a read-write transaction.
      */
-    options: Schema$TransactionOptions;
+    options?: Schema$TransactionOptions;
   }
   /**
    * The response for Firestore.BeginTransaction.
@@ -149,7 +152,7 @@ export namespace firestore_v1beta1 {
     /**
      * The transaction that was started.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * A selection of a collection, such as `messages as m1`.
@@ -160,11 +163,11 @@ export namespace firestore_v1beta1 {
      * `parent` specified in the containing `RunQueryRequest`. When true,
      * selects all descendant collections.
      */
-    allDescendants: boolean;
+    allDescendants?: boolean;
     /**
      * The collection ID. When set, selects only collections with this ID.
      */
-    collectionId: string;
+    collectionId?: string;
   }
   /**
    * The request for Firestore.Commit.
@@ -173,11 +176,11 @@ export namespace firestore_v1beta1 {
     /**
      * If set, applies all writes in this transaction, and commits it.
      */
-    transaction: string;
+    transaction?: string;
     /**
      * The writes to apply.  Always executed atomically and in order.
      */
-    writes: Schema$Write[];
+    writes?: Schema$Write[];
   }
   /**
    * The response for Firestore.Commit.
@@ -186,12 +189,12 @@ export namespace firestore_v1beta1 {
     /**
      * The time at which the commit occurred.
      */
-    commitTime: string;
+    commitTime?: string;
     /**
      * The result of applying the writes.  This i-th write result corresponds to
      * the i-th write in the request.
      */
-    writeResults: Schema$WriteResult[];
+    writeResults?: Schema$WriteResult[];
   }
   /**
    * A filter that merges multiple other filters using the given operator.
@@ -200,11 +203,11 @@ export namespace firestore_v1beta1 {
     /**
      * The list of filters to combine. Must contain at least one filter.
      */
-    filters: Schema$Filter[];
+    filters?: Schema$Filter[];
     /**
      * The operator for combining multiple filters.
      */
-    op: string;
+    op?: string;
   }
   /**
    * A position in a query result set.
@@ -214,13 +217,13 @@ export namespace firestore_v1beta1 {
      * If the position is just before or just after the given values, relative
      * to the sort order defined by the query.
      */
-    before: boolean;
+    before?: boolean;
     /**
      * The values that represent a position, in the order they appear in the
      * order by clause of a query.  Can contain fewer values than specified in
      * the order by clause.
      */
-    values: Schema$Value[];
+    values?: Schema$Value[];
   }
   /**
    * A Firestore document.  Must not exceed 1 MiB - 4 bytes.
@@ -232,7 +235,7 @@ export namespace firestore_v1beta1 {
      * also be compared to values from other documents and the `read_time` of a
      * query.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The document&#39;s fields.  The map keys represent field names.  A simple
      * field name contains only characters `a` to `z`, `A` to `Z`, `0` to `9`,
@@ -251,19 +254,19 @@ export namespace firestore_v1beta1 {
      * a `\`. For example, `` `x&amp;y` `` represents `x&amp;y` and ``
      * `bak\`tik` `` represents `` bak`tik ``.
      */
-    fields: any;
+    fields?: any;
     /**
      * The resource name of the document, for example
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    name: string;
+    name?: string;
     /**
      * Output only. The time at which the document was last changed.  This value
      * is initially set to the `create_time` then increases monotonically with
      * each change to the document. It can also be compared to values from other
      * documents and the `read_time` of a query.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * A Document has changed.  May be the result of multiple writes, including
@@ -276,15 +279,15 @@ export namespace firestore_v1beta1 {
      * The new state of the Document.  If `mask` is set, contains only fields
      * that were updated or added.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * A set of target IDs for targets that no longer match this document.
      */
-    removedTargetIds: number[];
+    removedTargetIds?: number[];
     /**
      * A set of target IDs of targets that match this document.
      */
-    targetIds: number[];
+    targetIds?: number[];
   }
   /**
    * A Document has been deleted.  May be the result of multiple writes,
@@ -296,16 +299,16 @@ export namespace firestore_v1beta1 {
     /**
      * The resource name of the Document that was deleted.
      */
-    document: string;
+    document?: string;
     /**
      * The read timestamp at which the delete was observed.  Greater or equal to
      * the `commit_time` of the delete.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * A set of target IDs for targets that previously matched this entity.
      */
-    removedTargetIds: number[];
+    removedTargetIds?: number[];
   }
   /**
    * A set of field paths on a document. Used to restrict a get or update
@@ -318,7 +321,7 @@ export namespace firestore_v1beta1 {
      * The list of field paths in the mask. See Document.fields for a field path
      * syntax reference.
      */
-    fieldPaths: string[];
+    fieldPaths?: string[];
   }
   /**
    * A Document has been removed from the view of the targets.  Sent if the
@@ -332,16 +335,16 @@ export namespace firestore_v1beta1 {
     /**
      * The resource name of the Document that has gone out of view.
      */
-    document: string;
+    document?: string;
     /**
      * The read timestamp at which the remove was observed.  Greater or equal to
      * the `commit_time` of the change/delete/remove.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * A set of target IDs for targets that previously matched this document.
      */
-    removedTargetIds: number[];
+    removedTargetIds?: number[];
   }
   /**
    * A target specified by a set of documents names.
@@ -353,7 +356,7 @@ export namespace firestore_v1beta1 {
      * The request will fail if any of the document is not a child resource of
      * the given `database`. Duplicate names will be elided.
      */
-    documents: string[];
+    documents?: string[];
   }
   /**
    * A transformation of a document.
@@ -362,12 +365,12 @@ export namespace firestore_v1beta1 {
     /**
      * The name of the document to transform.
      */
-    document: string;
+    document?: string;
     /**
      * The list of transformations to apply to the fields of the document, in
      * order. This must not be empty.
      */
-    fieldTransforms: Schema$FieldTransform[];
+    fieldTransforms?: Schema$FieldTransform[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -386,11 +389,11 @@ export namespace firestore_v1beta1 {
      * count of documents in the client that match, the client must manually
      * determine which documents no longer match the target.
      */
-    count: number;
+    count?: number;
     /**
      * The target ID to which this filter applies.
      */
-    targetId: number;
+    targetId?: number;
   }
   /**
    * A filter on a specific field.
@@ -399,20 +402,20 @@ export namespace firestore_v1beta1 {
     /**
      * The field to filter by.
      */
-    field: Schema$FieldReference;
+    field?: Schema$FieldReference;
     /**
      * The operator to filter by.
      */
-    op: string;
+    op?: string;
     /**
      * The value to compare to.
      */
-    value: Schema$Value;
+    value?: Schema$Value;
   }
   /**
    * A reference to a field, such as `max(messages.time) as max_time`.
    */
-  export interface Schema$FieldReference { fieldPath: string; }
+  export interface Schema$FieldReference { fieldPath?: string; }
   /**
    * A transformation of a field of the document.
    */
@@ -421,11 +424,11 @@ export namespace firestore_v1beta1 {
      * The path of the field. See Document.fields for the field path syntax
      * reference.
      */
-    fieldPath: string;
+    fieldPath?: string;
     /**
      * Sets the field to the given server value.
      */
-    setToServerValue: string;
+    setToServerValue?: string;
   }
   /**
    * A filter.
@@ -434,15 +437,15 @@ export namespace firestore_v1beta1 {
     /**
      * A composite filter.
      */
-    compositeFilter: Schema$CompositeFilter;
+    compositeFilter?: Schema$CompositeFilter;
     /**
      * A filter on a document field.
      */
-    fieldFilter: Schema$FieldFilter;
+    fieldFilter?: Schema$FieldFilter;
     /**
      * A filter that takes exactly one argument.
      */
-    unaryFilter: Schema$UnaryFilter;
+    unaryFilter?: Schema$UnaryFilter;
   }
   /**
    * An index definition.
@@ -451,19 +454,19 @@ export namespace firestore_v1beta1 {
     /**
      * The collection ID to which this index applies. Required.
      */
-    collectionId: string;
+    collectionId?: string;
     /**
      * The fields to index.
      */
-    fields: Schema$IndexField[];
+    fields?: Schema$IndexField[];
     /**
      * The resource name of the index. Output only.
      */
-    name: string;
+    name?: string;
     /**
      * The state of the index. Output only.
      */
-    state: string;
+    state?: string;
   }
   /**
    * A field of an index.
@@ -475,11 +478,11 @@ export namespace firestore_v1beta1 {
      * `__name__` may be used by itself or at the end of a path. `__type__` may
      * be used only at the end of path.
      */
-    fieldPath: string;
+    fieldPath?: string;
     /**
      * The field&#39;s mode.
      */
-    mode: string;
+    mode?: string;
   }
   /**
    * An object representing a latitude/longitude pair. This is expressed as a
@@ -492,11 +495,11 @@ export namespace firestore_v1beta1 {
     /**
      * The latitude in degrees. It must be in the range [-90.0, +90.0].
      */
-    latitude: number;
+    latitude?: number;
     /**
      * The longitude in degrees. It must be in the range [-180.0, +180.0].
      */
-    longitude: number;
+    longitude?: number;
   }
   /**
    * The request for Firestore.ListCollectionIds.
@@ -505,11 +508,11 @@ export namespace firestore_v1beta1 {
     /**
      * The maximum number of results to return.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * A page token. Must be a value from ListCollectionIdsResponse.
      */
-    pageToken: string;
+    pageToken?: string;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -518,11 +521,11 @@ export namespace firestore_v1beta1 {
     /**
      * The collection ids.
      */
-    collectionIds: string[];
+    collectionIds?: string[];
     /**
      * A page token that may be used to continue the list.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response for Firestore.ListDocuments.
@@ -531,11 +534,11 @@ export namespace firestore_v1beta1 {
     /**
      * The Documents found.
      */
-    documents: Schema$Document[];
+    documents?: Schema$Document[];
     /**
      * The next page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A request for Firestore.Listen
@@ -544,15 +547,15 @@ export namespace firestore_v1beta1 {
     /**
      * A target to add to this stream.
      */
-    addTarget: Schema$Target;
+    addTarget?: Schema$Target;
     /**
      * Labels associated with this target change.
      */
-    labels: any;
+    labels?: any;
     /**
      * The ID of a target to remove from this stream.
      */
-    removeTarget: number;
+    removeTarget?: number;
   }
   /**
    * The response for Firestore.Listen.
@@ -561,26 +564,26 @@ export namespace firestore_v1beta1 {
     /**
      * A Document has changed.
      */
-    documentChange: Schema$DocumentChange;
+    documentChange?: Schema$DocumentChange;
     /**
      * A Document has been deleted.
      */
-    documentDelete: Schema$DocumentDelete;
+    documentDelete?: Schema$DocumentDelete;
     /**
      * A Document has been removed from a target (because it is no longer
      * relevant to that target).
      */
-    documentRemove: Schema$DocumentRemove;
+    documentRemove?: Schema$DocumentRemove;
     /**
      * A filter to apply to the set of documents previously returned for the
      * given target.  Returned when documents may have been removed from the
      * given target, but the exact documents are unknown.
      */
-    filter: Schema$ExistenceFilter;
+    filter?: Schema$ExistenceFilter;
     /**
      * Targets have changed.
      */
-    targetChange: Schema$TargetChange;
+    targetChange?: Schema$TargetChange;
   }
   /**
    * The response for FirestoreAdmin.ListIndexes.
@@ -589,11 +592,11 @@ export namespace firestore_v1beta1 {
     /**
      * The indexes.
      */
-    indexes: Schema$Index[];
+    indexes?: Schema$Index[];
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A map value.
@@ -605,7 +608,7 @@ export namespace firestore_v1beta1 {
      * names are forbidden except in certain documented contexts. The map keys,
      * represented as UTF-8, must not exceed 1,500 bytes and cannot be empty.
      */
-    fields: any;
+    fields?: any;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -617,24 +620,24 @@ export namespace firestore_v1beta1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -644,7 +647,7 @@ export namespace firestore_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * An order on a field.
@@ -653,11 +656,11 @@ export namespace firestore_v1beta1 {
     /**
      * The direction to order by. Defaults to `ASCENDING`.
      */
-    direction: string;
+    direction?: string;
     /**
      * The field to order by.
      */
-    field: Schema$FieldReference;
+    field?: Schema$FieldReference;
   }
   /**
    * A precondition on a document, used for conditional operations.
@@ -667,12 +670,12 @@ export namespace firestore_v1beta1 {
      * When set to `true`, the target document must exist. When set to `false`,
      * the target document must not exist.
      */
-    exists: boolean;
+    exists?: boolean;
     /**
      * When set, the target document must exist and have been last updated at
      * that time.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * The projection of document&#39;s fields to return.
@@ -682,7 +685,7 @@ export namespace firestore_v1beta1 {
      * The fields to return.  If empty, all fields are returned. To only return
      * the name of the document, use `[&#39;__name__&#39;]`.
      */
-    fields: Schema$FieldReference[];
+    fields?: Schema$FieldReference[];
   }
   /**
    * A target specified by a query.
@@ -695,11 +698,11 @@ export namespace firestore_v1beta1 {
      * For example: `projects/my-project/databases/my-database/documents` or
      * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
      */
-    parent: string;
+    parent?: string;
     /**
      * A structured query.
      */
-    structuredQuery: Schema$StructuredQuery;
+    structuredQuery?: Schema$StructuredQuery;
   }
   /**
    * Options for a transaction that can only be used to read documents.
@@ -708,7 +711,7 @@ export namespace firestore_v1beta1 {
     /**
      * Reads documents at the given time. This may not be older than 60 seconds.
      */
-    readTime: string;
+    readTime?: string;
   }
   /**
    * Options for a transaction that can be used to read and write documents.
@@ -717,7 +720,7 @@ export namespace firestore_v1beta1 {
     /**
      * An optional transaction to retry.
      */
-    retryTransaction: string;
+    retryTransaction?: string;
   }
   /**
    * The request for Firestore.Rollback.
@@ -726,7 +729,7 @@ export namespace firestore_v1beta1 {
     /**
      * The transaction to roll back.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The request for Firestore.RunQuery.
@@ -737,20 +740,20 @@ export namespace firestore_v1beta1 {
      * transaction. The new transaction ID will be returned as the first
      * response in the stream.
      */
-    newTransaction: Schema$TransactionOptions;
+    newTransaction?: Schema$TransactionOptions;
     /**
      * Reads documents as they were at the given time. This may not be older
      * than 60 seconds.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * A structured query.
      */
-    structuredQuery: Schema$StructuredQuery;
+    structuredQuery?: Schema$StructuredQuery;
     /**
      * Reads documents in a transaction.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The response for Firestore.RunQuery.
@@ -759,7 +762,7 @@ export namespace firestore_v1beta1 {
     /**
      * A query result. Not set when reporting partial progress.
      */
-    document: Schema$Document;
+    document?: Schema$Document;
     /**
      * The time at which the document was read. This may be monotonically
      * increasing; in this case, the previous documents in the result stream are
@@ -768,18 +771,18 @@ export namespace firestore_v1beta1 {
      * `document` will be sent, and this represents the time at which the query
      * was run.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * The number of results that have been skipped due to an offset between the
      * last response and the current response.
      */
-    skippedResults: number;
+    skippedResults?: number;
     /**
      * The transaction that was started as part of this request. Can only be set
      * in the first response, and only if RunQueryRequest.new_transaction was
      * set in the request. If set, no other fields will be set in this response.
      */
-    transaction: string;
+    transaction?: string;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -821,18 +824,18 @@ export namespace firestore_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A Firestore query.
@@ -841,21 +844,21 @@ export namespace firestore_v1beta1 {
     /**
      * A end point for the query results.
      */
-    endAt: Schema$Cursor;
+    endAt?: Schema$Cursor;
     /**
      * The collections to query.
      */
-    from: Schema$CollectionSelector[];
+    from?: Schema$CollectionSelector[];
     /**
      * The maximum number of results to return.  Applies after all other
      * constraints. Must be &gt;= 0 if specified.
      */
-    limit: number;
+    limit?: number;
     /**
      * The number of results to skip.  Applies before limit, but after all other
      * constraints. Must be &gt;= 0 if specified.
      */
-    offset: number;
+    offset?: number;
     /**
      * The order to apply to the query results.  Firestore guarantees a stable
      * ordering through the following rules:   * Any field required to appear in
@@ -869,19 +872,19 @@ export namespace firestore_v1beta1 {
      * BY A DESC, __name__ DESC`  * `SELECT * FROM Foo WHERE A &gt; 1` becomes
      * `SELECT * FROM Foo WHERE A &gt; 1 ORDER BY A, __name__`
      */
-    orderBy: Schema$Order[];
+    orderBy?: Schema$Order[];
     /**
      * The projection to return.
      */
-    select: Schema$Projection;
+    select?: Schema$Projection;
     /**
      * A starting point for the query results.
      */
-    startAt: Schema$Cursor;
+    startAt?: Schema$Cursor;
     /**
      * The filter to apply.
      */
-    where: Schema$Filter;
+    where?: Schema$Filter;
   }
   /**
    * A specification of a set of documents to listen to.
@@ -890,25 +893,25 @@ export namespace firestore_v1beta1 {
     /**
      * A target specified by a set of document names.
      */
-    documents: Schema$DocumentsTarget;
+    documents?: Schema$DocumentsTarget;
     /**
      * If the target should be removed once it is current and consistent.
      */
-    once: boolean;
+    once?: boolean;
     /**
      * A target specified by a query.
      */
-    query: Schema$QueryTarget;
+    query?: Schema$QueryTarget;
     /**
      * Start listening after a specific `read_time`.  The client must know the
      * state of matching documents at this time.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * A resume token from a prior TargetChange for an identical target.  Using
      * a resume token with a different target is unsupported and may fail.
      */
-    resumeToken: string;
+    resumeToken?: string;
     /**
      * A client provided target ID.  If not set, the server will assign an ID
      * for the target.  Used for resuming a target without changing IDs. The IDs
@@ -916,7 +919,7 @@ export namespace firestore_v1beta1 {
      * All targets with client provided IDs must be added before adding a target
      * that needs a server-assigned id.
      */
-    targetId: number;
+    targetId?: number;
   }
   /**
    * Targets being watched have changed.
@@ -925,7 +928,7 @@ export namespace firestore_v1beta1 {
     /**
      * The error that resulted in this change, if applicable.
      */
-    cause: Schema$Status;
+    cause?: Schema$Status;
     /**
      * The consistent `read_time` for the given `target_ids` (omitted when the
      * target_ids are not at a consistent snapshot).  The stream is guaranteed
@@ -935,16 +938,16 @@ export namespace firestore_v1beta1 {
      * NO_CHANGE and REMOVE messages are not).  For a given stream, `read_time`
      * is guaranteed to be monotonically increasing.
      */
-    readTime: string;
+    readTime?: string;
     /**
      * A token that can be used to resume the stream for the given `target_ids`,
      * or all targets if `target_ids` is empty.  Not set on every target change.
      */
-    resumeToken: string;
+    resumeToken?: string;
     /**
      * The type of change that occurred.
      */
-    targetChangeType: string;
+    targetChangeType?: string;
     /**
      * The target IDs of targets that have changed.  If empty, the change
      * applies to all targets.  For `target_change_type=ADD`, the order of the
@@ -953,7 +956,7 @@ export namespace firestore_v1beta1 {
      * added targets.  For other states, the order of the target IDs is not
      * defined.
      */
-    targetIds: number[];
+    targetIds?: number[];
   }
   /**
    * Options for creating a new transaction.
@@ -962,11 +965,11 @@ export namespace firestore_v1beta1 {
     /**
      * The transaction can only be used for read operations.
      */
-    readOnly: Schema$ReadOnly;
+    readOnly?: Schema$ReadOnly;
     /**
      * The transaction can be used for both read and write operations.
      */
-    readWrite: Schema$ReadWrite;
+    readWrite?: Schema$ReadWrite;
   }
   /**
    * A filter with a single operand.
@@ -975,11 +978,11 @@ export namespace firestore_v1beta1 {
     /**
      * The field to which to apply the operator.
      */
-    field: Schema$FieldReference;
+    field?: Schema$FieldReference;
     /**
      * The unary operator to apply.
      */
-    op: string;
+    op?: string;
   }
   /**
    * A message that can hold any of the supported value types.
@@ -989,52 +992,52 @@ export namespace firestore_v1beta1 {
      * An array value.  Cannot directly contain another array value, though can
      * contain an map which contains another array.
      */
-    arrayValue: Schema$ArrayValue;
+    arrayValue?: Schema$ArrayValue;
     /**
      * A boolean value.
      */
-    booleanValue: boolean;
+    booleanValue?: boolean;
     /**
      * A bytes value.  Must not exceed 1 MiB - 89 bytes. Only the first 1,500
      * bytes are considered by queries.
      */
-    bytesValue: string;
+    bytesValue?: string;
     /**
      * A double value.
      */
-    doubleValue: number;
+    doubleValue?: number;
     /**
      * A geo point value representing a point on the surface of Earth.
      */
-    geoPointValue: Schema$LatLng;
+    geoPointValue?: Schema$LatLng;
     /**
      * An integer value.
      */
-    integerValue: string;
+    integerValue?: string;
     /**
      * A map value.
      */
-    mapValue: Schema$MapValue;
+    mapValue?: Schema$MapValue;
     /**
      * A null value.
      */
-    nullValue: string;
+    nullValue?: string;
     /**
      * A reference to a document. For example:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    referenceValue: string;
+    referenceValue?: string;
     /**
      * A string value.  The string, represented as UTF-8, must not exceed 1 MiB
      * - 89 bytes. Only the first 1,500 bytes of the UTF-8 representation are
      * considered by queries.
      */
-    stringValue: string;
+    stringValue?: string;
     /**
      * A timestamp value.  Precise only to microseconds. When stored, any
      * additional precision is rounded down.
      */
-    timestampValue: string;
+    timestampValue?: string;
   }
   /**
    * A write on a document.
@@ -1044,22 +1047,22 @@ export namespace firestore_v1beta1 {
      * An optional precondition on the document.  The write will fail if this is
      * set and not met by the target document.
      */
-    currentDocument: Schema$Precondition;
+    currentDocument?: Schema$Precondition;
     /**
      * A document name to delete. In the format:
      * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
      */
-    delete: string;
+    delete?: string;
     /**
      * Applies a tranformation to a document. At most one `transform` per
      * document is allowed in a given request. An `update` cannot follow a
      * `transform` on the same document in a given request.
      */
-    transform: Schema$DocumentTransform;
+    transform?: Schema$DocumentTransform;
     /**
      * A document to write.
      */
-    update: Schema$Document;
+    update?: Schema$Document;
     /**
      * The fields to update in this write.  This field can be set only when the
      * operation is `update`. If the mask is not set for an `update` and the
@@ -1069,7 +1072,7 @@ export namespace firestore_v1beta1 {
      * in the input document, are deleted from the document on the server. The
      * field paths in this mask must not contain a reserved field name.
      */
-    updateMask: Schema$DocumentMask;
+    updateMask?: Schema$DocumentMask;
   }
   /**
    * The request for Firestore.Write.  The first request creates a stream, or
@@ -1083,12 +1086,12 @@ export namespace firestore_v1beta1 {
     /**
      * Labels associated with this write request.
      */
-    labels: any;
+    labels?: any;
     /**
      * The ID of the write stream to resume. This may only be set in the first
      * message. When left empty, a new write stream will be created.
      */
-    streamId: string;
+    streamId?: string;
     /**
      * A stream token that was previously sent by the server.  The client should
      * set this field to the token from the most recent WriteResponse it has
@@ -1099,13 +1102,13 @@ export namespace firestore_v1beta1 {
      * stream. To resume a stream at a specific point, set this field and the
      * `stream_id` field.  Leave this field unset when creating a new stream.
      */
-    streamToken: string;
+    streamToken?: string;
     /**
      * The writes to apply.  Always executed atomically and in order. This must
      * be empty on the first request. This may be empty on the last request.
      * This must not be empty on all other requests.
      */
-    writes: Schema$Write[];
+    writes?: Schema$Write[];
   }
   /**
    * The response for Firestore.Write.
@@ -1114,23 +1117,23 @@ export namespace firestore_v1beta1 {
     /**
      * The time at which the commit occurred.
      */
-    commitTime: string;
+    commitTime?: string;
     /**
      * The ID of the stream. Only set on the first message, when a new stream
      * was created.
      */
-    streamId: string;
+    streamId?: string;
     /**
      * A token that represents the position of this response in the stream. This
      * can be used by a client to resume the stream at this point.  This field
      * is always set.
      */
-    streamToken: string;
+    streamToken?: string;
     /**
      * The result of applying the writes.  This i-th write result corresponds to
      * the i-th write in the request.
      */
-    writeResults: Schema$WriteResult[];
+    writeResults?: Schema$WriteResult[];
   }
   /**
    * The result of applying a write.
@@ -1140,14 +1143,15 @@ export namespace firestore_v1beta1 {
      * The results of applying each DocumentTransform.FieldTransform, in the
      * same order.
      */
-    transformResults: Schema$Value[];
+    transformResults?: Schema$Value[];
     /**
      * The last update time of the document after applying the write. Not set
      * after a `delete`.  If the write did not actually change the document,
      * this will be the previous update_time.
      */
-    updateTime: string;
+    updateTime?: string;
   }
+
 
   export class Resource$Projects {
     root: Firestore;
@@ -1162,6 +1166,8 @@ export namespace firestore_v1beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Databases {
     root: Firestore;
     documents: Resource$Projects$Databases$Documents;
@@ -1177,6 +1183,8 @@ export namespace firestore_v1beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Databases$Documents {
     root: Firestore;
     constructor(root: Firestore) {
@@ -1203,29 +1211,43 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params?: any, options?: MethodOptions):
+    batchGet(
+        params?: Params$Resource$Projects$Databases$Documents$Batchget,
+        options?: MethodOptions):
         AxiosPromise<Schema$BatchGetDocumentsResponse>;
     batchGet(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Databases$Documents$Batchget,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
-        callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>):
+        callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>): void;
+    batchGet(
+        params: Params$Resource$Projects$Databases$Documents$Batchget,
+        callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>): void;
+    batchGet(callback: BodyResponseCallback<Schema$BatchGetDocumentsResponse>):
         void;
     batchGet(
-        params?: any,
-        options?: MethodOptions|
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Batchget|
+        BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BatchGetDocumentsResponse>,
         callback?: BodyResponseCallback<Schema$BatchGetDocumentsResponse>):
         void|AxiosPromise<Schema$BatchGetDocumentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Batchget;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1262,28 +1284,43 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    beginTransaction(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BeginTransactionResponse>;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Databases$Documents$Begintransaction,
+        options?: MethodOptions): AxiosPromise<Schema$BeginTransactionResponse>;
+    beginTransaction(
+        params: Params$Resource$Projects$Databases$Documents$Begintransaction,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
-        callback?: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
     beginTransaction(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Databases$Documents$Begintransaction,
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+    beginTransaction(
+        callback: BodyResponseCallback<Schema$BeginTransactionResponse>): void;
+    beginTransaction(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Begintransaction|
+        BodyResponseCallback<Schema$BeginTransactionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BeginTransactionResponse>,
         callback?: BodyResponseCallback<Schema$BeginTransactionResponse>):
         void|AxiosPromise<Schema$BeginTransactionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Begintransaction;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Documents$Begintransaction;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1319,26 +1356,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    commit(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CommitResponse>;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
-        callback?: BodyResponseCallback<Schema$CommitResponse>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Commit,
+        options?: MethodOptions): AxiosPromise<Schema$CommitResponse>;
     commit(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        params: Params$Resource$Projects$Databases$Documents$Commit,
+        options: MethodOptions|BodyResponseCallback<Schema$CommitResponse>,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(
+        params: Params$Resource$Projects$Databases$Documents$Commit,
+        callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(callback: BodyResponseCallback<Schema$CommitResponse>): void;
+    commit(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Commit|
+        BodyResponseCallback<Schema$CommitResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CommitResponse>,
         callback?: BodyResponseCallback<Schema$CommitResponse>):
         void|AxiosPromise<Schema$CommitResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Commit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Commit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1377,26 +1427,40 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    createDocument(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Document>;
     createDocument(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback?: BodyResponseCallback<Schema$Document>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Createdocument,
+        options?: MethodOptions): AxiosPromise<Schema$Document>;
     createDocument(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+        params: Params$Resource$Projects$Databases$Documents$Createdocument,
+        options: MethodOptions|BodyResponseCallback<Schema$Document>,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    createDocument(
+        params: Params$Resource$Projects$Databases$Documents$Createdocument,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    createDocument(callback: BodyResponseCallback<Schema$Document>): void;
+    createDocument(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Createdocument|
+        BodyResponseCallback<Schema$Document>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
         void|AxiosPromise<Schema$Document> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Createdocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Documents$Createdocument;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1433,25 +1497,38 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Databases$Documents$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Databases$Documents$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1488,23 +1565,34 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Document>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback?: BodyResponseCallback<Schema$Document>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+    get(params?: Params$Resource$Projects$Databases$Documents$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Document>;
+    get(params: Params$Resource$Projects$Databases$Documents$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Document>,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    get(params: Params$Resource$Projects$Databases$Documents$Get,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    get(callback: BodyResponseCallback<Schema$Document>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Get|
+        BodyResponseCallback<Schema$Document>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
         void|AxiosPromise<Schema$Document> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1546,28 +1634,40 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDocumentsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Databases$Documents$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDocumentsResponse>;
+    list(
+        params: Params$Resource$Projects$Databases$Documents$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDocumentsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDocumentsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDocumentsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Databases$Documents$List,
+        callback: BodyResponseCallback<Schema$ListDocumentsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDocumentsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$List|
+        BodyResponseCallback<Schema$ListDocumentsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDocumentsResponse>,
         callback?: BodyResponseCallback<Schema$ListDocumentsResponse>):
         void|AxiosPromise<Schema$ListDocumentsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1603,29 +1703,44 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listCollectionIds(params?: any, options?: MethodOptions):
+    listCollectionIds(
+        params?: Params$Resource$Projects$Databases$Documents$Listcollectionids,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCollectionIdsResponse>;
     listCollectionIds(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListCollectionIdsResponse>,
-        callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>):
-        void;
+        callback: BodyResponseCallback<Schema$ListCollectionIdsResponse>): void;
     listCollectionIds(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Databases$Documents$Listcollectionids,
+        callback: BodyResponseCallback<Schema$ListCollectionIdsResponse>): void;
+    listCollectionIds(
+        callback: BodyResponseCallback<Schema$ListCollectionIdsResponse>): void;
+    listCollectionIds(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Listcollectionids|
+        BodyResponseCallback<Schema$ListCollectionIdsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCollectionIdsResponse>,
         callback?: BodyResponseCallback<Schema$ListCollectionIdsResponse>):
         void|AxiosPromise<Schema$ListCollectionIdsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Listcollectionids;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Databases$Documents$Listcollectionids;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1662,26 +1777,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    listen(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListenResponse>;
     listen(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
-        callback?: BodyResponseCallback<Schema$ListenResponse>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Listen,
+        options?: MethodOptions): AxiosPromise<Schema$ListenResponse>;
     listen(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
+        params: Params$Resource$Projects$Databases$Documents$Listen,
+        options: MethodOptions|BodyResponseCallback<Schema$ListenResponse>,
+        callback: BodyResponseCallback<Schema$ListenResponse>): void;
+    listen(
+        params: Params$Resource$Projects$Databases$Documents$Listen,
+        callback: BodyResponseCallback<Schema$ListenResponse>): void;
+    listen(callback: BodyResponseCallback<Schema$ListenResponse>): void;
+    listen(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Listen|
+        BodyResponseCallback<Schema$ListenResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListenResponse>,
         callback?: BodyResponseCallback<Schema$ListenResponse>):
         void|AxiosPromise<Schema$ListenResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Listen;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Listen;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1721,25 +1849,38 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Document>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
-        callback?: BodyResponseCallback<Schema$Document>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Document>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Document>,
+        params: Params$Resource$Projects$Databases$Documents$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Document>,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    patch(
+        params: Params$Resource$Projects$Databases$Documents$Patch,
+        callback: BodyResponseCallback<Schema$Document>): void;
+    patch(callback: BodyResponseCallback<Schema$Document>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Patch|
+        BodyResponseCallback<Schema$Document>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Document>,
         callback?: BodyResponseCallback<Schema$Document>):
         void|AxiosPromise<Schema$Document> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1774,25 +1915,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rollback(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Rollback,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     rollback(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Databases$Documents$Rollback,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(
+        params: Params$Resource$Projects$Databases$Documents$Rollback,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(callback: BodyResponseCallback<Schema$Empty>): void;
+    rollback(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Rollback|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Rollback;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1828,26 +1983,40 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    runQuery(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RunQueryResponse>;
     runQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
-        callback?: BodyResponseCallback<Schema$RunQueryResponse>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Runquery,
+        options?: MethodOptions): AxiosPromise<Schema$RunQueryResponse>;
     runQuery(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+        params: Params$Resource$Projects$Databases$Documents$Runquery,
+        options: MethodOptions|BodyResponseCallback<Schema$RunQueryResponse>,
+        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(
+        params: Params$Resource$Projects$Databases$Documents$Runquery,
+        callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(callback: BodyResponseCallback<Schema$RunQueryResponse>): void;
+    runQuery(
+        paramsOrCallback?:
+            Params$Resource$Projects$Databases$Documents$Runquery|
+        BodyResponseCallback<Schema$RunQueryResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RunQueryResponse>,
         callback?: BodyResponseCallback<Schema$RunQueryResponse>):
         void|AxiosPromise<Schema$RunQueryResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Runquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Runquery;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1883,26 +2052,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    write(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$WriteResponse>;
     write(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
-        callback?: BodyResponseCallback<Schema$WriteResponse>): void;
+        params?: Params$Resource$Projects$Databases$Documents$Write,
+        options?: MethodOptions): AxiosPromise<Schema$WriteResponse>;
     write(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
+        params: Params$Resource$Projects$Databases$Documents$Write,
+        options: MethodOptions|BodyResponseCallback<Schema$WriteResponse>,
+        callback: BodyResponseCallback<Schema$WriteResponse>): void;
+    write(
+        params: Params$Resource$Projects$Databases$Documents$Write,
+        callback: BodyResponseCallback<Schema$WriteResponse>): void;
+    write(callback: BodyResponseCallback<Schema$WriteResponse>): void;
+    write(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Documents$Write|
+        BodyResponseCallback<Schema$WriteResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WriteResponse>,
         callback?: BodyResponseCallback<Schema$WriteResponse>):
         void|AxiosPromise<Schema$WriteResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Documents$Write;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Documents$Write;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1924,6 +2106,313 @@ export namespace firestore_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Databases$Documents$Batchget {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BatchGetDocumentsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Begintransaction {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BeginTransactionRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Commit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CommitRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Createdocument {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The collection ID, relative to `parent`, to list. For example:
+     * `chatrooms`.
+     */
+    collectionId?: string;
+    /**
+     * The client-assigned document ID to use for this document.  Optional. If
+     * not specified, an ID will be assigned by the service.
+     */
+    documentId?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path
+     * syntax reference.
+     */
+    'mask.fieldPaths'?: string;
+    /**
+     * The parent resource. For example:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/chatrooms/{chatroom_id}`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Document;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * When set to `true`, the target document must exist. When set to `false`,
+     * the target document must not exist.
+     */
+    'currentDocument.exists'?: boolean;
+    /**
+     * When set, the target document must exist and have been last updated at
+     * that time.
+     */
+    'currentDocument.updateTime'?: string;
+    /**
+     * The resource name of the Document to delete. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path
+     * syntax reference.
+     */
+    'mask.fieldPaths'?: string;
+    /**
+     * The resource name of the Document to get. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     */
+    name?: string;
+    /**
+     * Reads the version of the document at the given time. This may not be
+     * older than 60 seconds.
+     */
+    readTime?: string;
+    /**
+     * Reads the document in a transaction.
+     */
+    transaction?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The collection ID, relative to `parent`, to list. For example:
+     * `chatrooms` or `messages`.
+     */
+    collectionId?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path
+     * syntax reference.
+     */
+    'mask.fieldPaths'?: string;
+    /**
+     * The order to sort results by. For example: `priority desc, name`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of documents to return.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous List request, if
+     * any.
+     */
+    pageToken?: string;
+    /**
+     * The parent resource name. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example: `projects/my-project/databases/my-database/documents` or
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+    /**
+     * Reads documents as they were at the given time. This may not be older
+     * than 60 seconds.
+     */
+    readTime?: string;
+    /**
+     * If the list should show missing documents. A missing document is a
+     * document that does not exist but has sub-documents. These documents will
+     * be returned with a key but will not have fields, Document.create_time, or
+     * Document.update_time set.  Requests with `show_missing` may not specify
+     * `where` or `order_by`.
+     */
+    showMissing?: boolean;
+    /**
+     * Reads documents in a transaction.
+     */
+    transaction?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Listcollectionids {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent document. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example:
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ListCollectionIdsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Listen {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ListenRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * When set to `true`, the target document must exist. When set to `false`,
+     * the target document must not exist.
+     */
+    'currentDocument.exists'?: boolean;
+    /**
+     * When set, the target document must exist and have been last updated at
+     * that time.
+     */
+    'currentDocument.updateTime'?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path
+     * syntax reference.
+     */
+    'mask.fieldPaths'?: string;
+    /**
+     * The resource name of the document, for example
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     */
+    name?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path
+     * syntax reference.
+     */
+    'updateMask.fieldPaths'?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Document;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Rollback {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Runquery {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent resource name. In the format:
+     * `projects/{project_id}/databases/{database_id}/documents` or
+     * `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     * For example: `projects/my-project/databases/my-database/documents` or
+     * `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunQueryRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Write {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The database name. In the format:
+     * `projects/{project_id}/databases/{database_id}`. This is only required in
+     * the first message.
+     */
+    database?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WriteRequest;
+  }
+
 
   export class Resource$Projects$Databases$Indexes {
     root: Firestore;
@@ -1958,26 +2447,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Databases$Indexes$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Databases$Indexes$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Databases$Indexes$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Indexes$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Indexes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Indexes$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2012,25 +2514,38 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Databases$Indexes$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Databases$Indexes$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Databases$Indexes$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Indexes$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Indexes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Indexes$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2064,23 +2579,34 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Index>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Index>,
-        callback?: BodyResponseCallback<Schema$Index>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Index>,
+    get(params?: Params$Resource$Projects$Databases$Indexes$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Index>;
+    get(params: Params$Resource$Projects$Databases$Indexes$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Index>,
+        callback: BodyResponseCallback<Schema$Index>): void;
+    get(params: Params$Resource$Projects$Databases$Indexes$Get,
+        callback: BodyResponseCallback<Schema$Index>): void;
+    get(callback: BodyResponseCallback<Schema$Index>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Databases$Indexes$Get|
+        BodyResponseCallback<Schema$Index>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Index>,
         callback?: BodyResponseCallback<Schema$Index>):
         void|AxiosPromise<Schema$Index> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Indexes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Indexes$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2117,28 +2643,39 @@ export namespace firestore_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListIndexesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Databases$Indexes$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListIndexesResponse>;
+    list(
+        params: Params$Resource$Projects$Databases$Indexes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListIndexesResponse>,
+        callback: BodyResponseCallback<Schema$ListIndexesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Databases$Indexes$List,
+        callback: BodyResponseCallback<Schema$ListIndexesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListIndexesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Databases$Indexes$List|
         BodyResponseCallback<Schema$ListIndexesResponse>,
-        callback?: BodyResponseCallback<Schema$ListIndexesResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListIndexesResponse>,
         callback?: BodyResponseCallback<Schema$ListIndexesResponse>):
         void|AxiosPromise<Schema$ListIndexesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Databases$Indexes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Indexes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2159,5 +2696,70 @@ export namespace firestore_v1beta1 {
         return createAPIRequest<Schema$ListIndexesResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Databases$Indexes$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the database this index will apply to. For example:
+     * `projects/{project_id}/databases/{database_id}`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Index;
+  }
+  export interface Params$Resource$Projects$Databases$Indexes$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The index name. For example:
+     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Indexes$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the index. For example:
+     * `projects/{project_id}/databases/{database_id}/indexes/{index_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Databases$Indexes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     *
+     */
+    filter?: string;
+    /**
+     * The standard List page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard List page token.
+     */
+    pageToken?: string;
+    /**
+     * The database name. For example:
+     * `projects/{project_id}/databases/{database_id}`
+     */
+    parent?: string;
   }
 }

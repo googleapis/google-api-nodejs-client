@@ -15,7 +15,7 @@ import * as assert from 'assert';
 import {OAuth2Client} from 'google-auth-library';
 import * as nock from 'nock';
 
-import {GoogleApis} from '../src';
+import {drive_v2, GoogleApis, urlshortener_v1} from '../src';
 import {google} from '../src';
 import {APIEndpoint} from '../src/lib/api';
 
@@ -49,9 +49,9 @@ async function testAuthKey(urlshortener: APIEndpoint) {
 }
 
 describe('API key', () => {
-  let localDrive: APIEndpoint;
+  let localDrive: drive_v2.Drive;
   let remoteDrive: APIEndpoint;
-  let localUrlshortener: APIEndpoint;
+  let localUrlshortener: urlshortener_v1.Urlshortener;
   let remoteUrlshortener: APIEndpoint;
   let authClient: OAuth2Client;
 

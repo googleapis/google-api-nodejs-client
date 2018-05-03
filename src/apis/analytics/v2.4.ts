@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace analytics_v2_4 {
+  export interface Options extends GlobalOptions { version: 'v2_4'; }
+
   /**
    * Google Analytics API
    *
@@ -68,6 +71,7 @@ export namespace analytics_v2_4 {
   }
 
 
+
   export class Resource$Data {
     root: Analytics;
     constructor(root: Analytics) {
@@ -101,20 +105,31 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<void>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+    get(params?: Params$Resource$Data$Get,
+        options?: MethodOptions): AxiosPromise<void>;
+    get(params: Params$Resource$Data$Get,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    get(params: Params$Resource$Data$Get,
+        callback: BodyResponseCallback<void>): void;
+    get(callback: BodyResponseCallback<void>): void;
+    get(paramsOrCallback?: Params$Resource$Data$Get|BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Data$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Data$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -137,6 +152,64 @@ export namespace analytics_v2_4 {
     }
   }
 
+  export interface Params$Resource$Data$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A comma-separated list of Analytics dimensions. E.g.,
+     * 'ga:browser,ga:city'.
+     */
+    dimensions?: string;
+    /**
+     * End date for fetching report data. All requests should specify an end
+     * date formatted as YYYY-MM-DD.
+     */
+    'end-date'?: string;
+    /**
+     * A comma-separated list of dimension or metric filters to be applied to
+     * the report data.
+     */
+    filters?: string;
+    /**
+     * Unique table ID for retrieving report data. Table ID is of the form
+     * ga:XXXX, where XXXX is the Analytics view (profile) ID.
+     */
+    ids?: string;
+    /**
+     * The maximum number of entries to include in this feed.
+     */
+    'max-results'?: number;
+    /**
+     * A comma-separated list of Analytics metrics. E.g.,
+     * 'ga:sessions,ga:pageviews'. At least one metric must be specified to
+     * retrieve a valid Analytics report.
+     */
+    metrics?: string;
+    /**
+     * An Analytics advanced segment to be applied to the report data.
+     */
+    segment?: string;
+    /**
+     * A comma-separated list of dimensions or metrics that determine the sort
+     * order for the report data.
+     */
+    sort?: string;
+    /**
+     * Start date for fetching report data. All requests should specify a start
+     * date formatted as YYYY-MM-DD.
+     */
+    'start-date'?: string;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
+
   export class Resource$Management {
     root: Analytics;
     accounts: Resource$Management$Accounts;
@@ -158,6 +231,8 @@ export namespace analytics_v2_4 {
       return this.root;
     }
   }
+
+
   export class Resource$Management$Accounts {
     root: Analytics;
     constructor(root: Analytics) {
@@ -183,22 +258,37 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Accounts$List,
+        options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Accounts$List,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    list(
+        params: Params$Resource$Management$Accounts$List,
+        callback: BodyResponseCallback<void>): void;
+    list(callback: BodyResponseCallback<void>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Accounts$List|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Accounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Accounts$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -220,6 +310,24 @@ export namespace analytics_v2_4 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Accounts$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of accounts to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first account to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Management$Goals {
     root: Analytics;
@@ -249,22 +357,37 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Goals$List,
+        options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Goals$List,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    list(
+        params: Params$Resource$Management$Goals$List,
+        callback: BodyResponseCallback<void>): void;
+    list(callback: BodyResponseCallback<void>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Goals$List|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Goals$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Goals$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -288,6 +411,41 @@ export namespace analytics_v2_4 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Goals$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve goals for. Can either be a specific account ID or
+     * '~all', which refers to all the accounts that user has access to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of goals to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * View (Profile) ID to retrieve goals for. Can either be a specific view
+     * (profile) ID or '~all', which refers to all the views (profiles) that
+     * user has access to.
+     */
+    profileId?: string;
+    /**
+     * An index of the first goal to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID to retrieve goals for. Can either be a specific web
+     * property ID or '~all', which refers to all the web properties that user
+     * has access to.
+     */
+    webPropertyId?: string;
+  }
+
 
   export class Resource$Management$Profiles {
     root: Analytics;
@@ -316,22 +474,37 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Profiles$List,
+        options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Profiles$List,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    list(
+        params: Params$Resource$Management$Profiles$List,
+        callback: BodyResponseCallback<void>): void;
+    list(callback: BodyResponseCallback<void>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Profiles$List|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Profiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Profiles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -355,6 +528,36 @@ export namespace analytics_v2_4 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Profiles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID for the views (profiles) to retrieve. Can either be a specific
+     * account ID or '~all', which refers to all the accounts to which the user
+     * has access.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of views (profiles) to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+    /**
+     * Web property ID for the views (profiles) to retrieve. Can either be a
+     * specific web property ID or '~all', which refers to all the web
+     * properties to which the user has access.
+     */
+    webPropertyId?: string;
+  }
+
 
   export class Resource$Management$Segments {
     root: Analytics;
@@ -381,22 +584,37 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Segments$List,
+        options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Segments$List,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    list(
+        params: Params$Resource$Management$Segments$List,
+        callback: BodyResponseCallback<void>): void;
+    list(callback: BodyResponseCallback<void>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Segments$List|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Management$Segments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Segments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -418,6 +636,24 @@ export namespace analytics_v2_4 {
       }
     }
   }
+
+  export interface Params$Resource$Management$Segments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The maximum number of advanced segments to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first advanced segment to retrieve. Use this parameter as
+     * a pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
+  }
+
 
   export class Resource$Management$Webproperties {
     root: Analytics;
@@ -445,22 +681,37 @@ export namespace analytics_v2_4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Management$Webproperties$List,
+        options?: MethodOptions): AxiosPromise<void>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Management$Webproperties$List,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    list(
+        params: Params$Resource$Management$Webproperties$List,
+        callback: BodyResponseCallback<void>): void;
+    list(callback: BodyResponseCallback<void>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Management$Webproperties$List|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Management$Webproperties$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Management$Webproperties$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -483,5 +734,28 @@ export namespace analytics_v2_4 {
         return createAPIRequest<void>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Management$Webproperties$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID to retrieve web properties for. Can either be a specific
+     * account ID or '~all', which refers to all the accounts that user has
+     * access to.
+     */
+    accountId?: string;
+    /**
+     * The maximum number of web properties to include in this response.
+     */
+    'max-results'?: number;
+    /**
+     * An index of the first entity to retrieve. Use this parameter as a
+     * pagination mechanism along with the max-results parameter.
+     */
+    'start-index'?: number;
   }
 }

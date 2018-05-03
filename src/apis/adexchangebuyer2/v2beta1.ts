@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace adexchangebuyer2_v2beta1 {
+  export interface Options extends GlobalOptions { version: 'v2beta1'; }
+
   /**
    * Ad Exchange Buyer API II
    *
@@ -81,12 +84,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * The end date of the range (inclusive). Must be within the 30 days leading
      * up to current date, and must be equal to or after start_date.
      */
-    endDate: Schema$Date;
+    endDate?: Schema$Date;
     /**
      * The start date of the range (inclusive). Must be within the 30 days
      * leading up to current date, and must be equal to or before end_date.
      */
-    startDate: Schema$Date;
+    startDate?: Schema$Date;
   }
   /**
    * A request for associating a deal and a creative.
@@ -95,7 +98,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The association between a creative and a deal that should be added.
      */
-    association: Schema$CreativeDealAssociation;
+    association?: Schema$CreativeDealAssociation;
   }
   /**
    * @OutputOnly The app type the restriction applies to for mobile device.
@@ -104,7 +107,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The app types this restriction applies to.
      */
-    appTypes: string[];
+    appTypes?: string[];
   }
   /**
    * @OutputOnly The auction type the restriction applies to.
@@ -113,7 +116,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The auction types this restriction applies to.
      */
-    auctionTypes: string[];
+    auctionTypes?: string[];
   }
   /**
    * The set of metrics that are measured in numbers of bids, representing how
@@ -124,33 +127,33 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of bids that Ad Exchange received from the buyer.
      */
-    bids: Schema$MetricValue;
+    bids?: Schema$MetricValue;
     /**
      * The number of bids that were permitted to compete in the auction.
      */
-    bidsInAuction: Schema$MetricValue;
+    bidsInAuction?: Schema$MetricValue;
     /**
      * The number of bids for which the buyer was billed.
      */
-    billedImpressions: Schema$MetricValue;
+    billedImpressions?: Schema$MetricValue;
     /**
      * The number of bids that won an impression.
      */
-    impressionsWon: Schema$MetricValue;
+    impressionsWon?: Schema$MetricValue;
     /**
      * The number of bids for which the corresponding impression was measurable
      * for viewability (as defined by Active View).
      */
-    measurableImpressions: Schema$MetricValue;
+    measurableImpressions?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
     /**
      * The number of bids for which the corresponding impression was viewable
      * (as defined by Active View).
      */
-    viewableImpressions: Schema$MetricValue;
+    viewableImpressions?: Schema$MetricValue;
   }
   /**
    * The number of impressions with the specified dimension values that were
@@ -162,16 +165,16 @@ export namespace adexchangebuyer2_v2beta1 {
      * The number of impressions for which there was a bid response with the
      * specified status.
      */
-    impressionCount: Schema$MetricValue;
+    impressionCount?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
     /**
      * The status specifying why the bid responses were considered to have no
      * applicable bids.
      */
-    status: string;
+    status?: string;
   }
   /**
    * The number of impressions with the specified dimension values where the
@@ -183,16 +186,16 @@ export namespace adexchangebuyer2_v2beta1 {
      * The ID of the callout status. See
      * [callout-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/callout-status-codes).
      */
-    calloutStatusId: number;
+    calloutStatusId?: number;
     /**
      * The number of impressions for which there was a bid request or bid
      * response with the specified callout status.
      */
-    impressionCount: Schema$MetricValue;
+    impressionCount?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
   }
   /**
    * A client resource represents a client buyer&amp;mdash;an agency, a brand,
@@ -207,14 +210,14 @@ export namespace adexchangebuyer2_v2beta1 {
      * The globally-unique numerical ID of the client. The value of this field
      * is ignored in create and update operations.
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * Name used to represent this client to publishers. You may have multiple
      * clients that map to the same entity, but for each client the combination
      * of `clientName` and entity must be unique. You can specify this field as
      * empty.
      */
-    clientName: string;
+    clientName?: string;
     /**
      * Numerical identifier of the client entity. The entity can be an
      * advertiser, a brand, or an agency. This identifier is unique among all
@@ -229,17 +232,17 @@ export namespace adexchangebuyer2_v2beta1 {
      * [agencies.txt](https://storage.googleapis.com/adx-rtb-dictionaries/agencies.txt)
      * file.
      */
-    entityId: string;
+    entityId?: string;
     /**
      * The name of the entity. This field is automatically fetched based on the
      * type and ID. The value of this field is ignored in create and update
      * operations.
      */
-    entityName: string;
+    entityName?: string;
     /**
      * The type of the client entity: `ADVERTISER`, `BRAND`, or `AGENCY`.
      */
-    entityType: string;
+    entityType?: string;
     /**
      * Optional arbitrary unique identifier of this client buyer from the
      * standpoint of its Ad Exchange sponsor buyer.  This field can be used to
@@ -249,21 +252,21 @@ export namespace adexchangebuyer2_v2beta1 {
      * present, must be unique among all the client buyers for its Ad Exchange
      * sponsor buyer.
      */
-    partnerClientId: string;
+    partnerClientId?: string;
     /**
      * The role which is assigned to the client buyer. Each role implies a set
      * of permissions granted to the client. Must be one of
      * `CLIENT_DEAL_VIEWER`, `CLIENT_DEAL_NEGOTIATOR` or `CLIENT_DEAL_APPROVER`.
      */
-    role: string;
+    role?: string;
     /**
      * The status of the client buyer.
      */
-    status: string;
+    status?: string;
     /**
      * Whether the client buyer will be visible to sellers.
      */
-    visibleToSeller: boolean;
+    visibleToSeller?: boolean;
   }
   /**
    * A client user is created under a client buyer and has restricted access to
@@ -279,21 +282,21 @@ export namespace adexchangebuyer2_v2beta1 {
      * associated; the buyer must be a client of the current sponsor buyer. The
      * value of this field is ignored in an update operation.
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * User&#39;s email address. The value of this field is ignored in an update
      * operation.
      */
-    email: string;
+    email?: string;
     /**
      * The status of the client user.
      */
-    status: string;
+    status?: string;
     /**
      * The unique numerical ID of the client user that has accepted an
      * invitation. The value of this field is ignored in an update operation.
      */
-    userId: string;
+    userId?: string;
   }
   /**
    * An invitation for a new client user to get access to the Ad Exchange Buyer
@@ -304,17 +307,17 @@ export namespace adexchangebuyer2_v2beta1 {
      * Numerical account ID of the client buyer that the invited user is
      * associated with. The value of this field is ignored in create operations.
      */
-    clientAccountId: string;
+    clientAccountId?: string;
     /**
      * The email address to which the invitation is sent. Email addresses should
      * be unique among all client users under each sponsor buyer.
      */
-    email: string;
+    email?: string;
     /**
      * The unique numerical ID of the invitation that is sent to the user. The
      * value of this field is ignored in create operations.
      */
-    invitationId: string;
+    invitationId?: string;
   }
   /**
    * @OutputOnly Shows any corrections that were applied to this creative.
@@ -323,15 +326,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The contexts for the correction.
      */
-    contexts: Schema$ServingContext[];
+    contexts?: Schema$ServingContext[];
     /**
      * Additional details about what was corrected.
      */
-    details: string[];
+    details?: string[];
     /**
      * The type of correction that was applied to the creative.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A creative and its classification data.  Next ID: 35
@@ -341,41 +344,41 @@ export namespace adexchangebuyer2_v2beta1 {
      * The account that this creative belongs to. Can be used to filter the
      * response of the creatives.list method.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The link to AdChoices destination page.
      */
-    adChoicesDestinationUrl: string;
+    adChoicesDestinationUrl?: string;
     /**
      * The name of the company being advertised in the creative.
      */
-    advertiserName: string;
+    advertiserName?: string;
     /**
      * The agency ID for this creative.
      */
-    agencyId: string;
+    agencyId?: string;
     /**
      * @OutputOnly The last update timestamp of the creative via API.
      */
-    apiUpdateTime: string;
+    apiUpdateTime?: string;
     /**
      * All attributes for the ads that may be shown from this creative. Can be
      * used to filter the response of the creatives.list method.
      */
-    attributes: string[];
+    attributes?: string[];
     /**
      * The set of destination URLs for the creative.
      */
-    clickThroughUrls: string[];
+    clickThroughUrls?: string[];
     /**
      * @OutputOnly Shows any corrections that were applied to this creative.
      */
-    corrections: Schema$Correction[];
+    corrections?: Schema$Correction[];
     /**
      * The buyer-defined creative ID of this creative. Can be used to filter the
      * response of the creatives.list method.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * @OutputOnly The top-level deals status of this creative. If disapproved,
      * an entry for &#39;auctionType=DIRECT_DEALS&#39; (or &#39;ALL&#39;) in
@@ -384,50 +387,50 @@ export namespace adexchangebuyer2_v2beta1 {
      * read from serving_restrictions directly. Can be used to filter the
      * response of the creatives.list method.
      */
-    dealsStatus: string;
+    dealsStatus?: string;
     /**
      * @OutputOnly Detected advertiser IDs, if any.
      */
-    detectedAdvertiserIds: string[];
+    detectedAdvertiserIds?: string[];
     /**
      * @OutputOnly The detected domains for this creative.
      */
-    detectedDomains: string[];
+    detectedDomains?: string[];
     /**
      * @OutputOnly The detected languages for this creative. The order is
      * arbitrary. The codes are 2 or 5 characters and are documented at
      * https://developers.google.com/adwords/api/docs/appendix/languagecodes.
      */
-    detectedLanguages: string[];
+    detectedLanguages?: string[];
     /**
      * @OutputOnly Detected product categories, if any. See the
      * ad-product-categories.txt file in the technical documentation for a list
      * of IDs.
      */
-    detectedProductCategories: number[];
+    detectedProductCategories?: number[];
     /**
      * @OutputOnly Detected sensitive categories, if any. See the
      * ad-sensitive-categories.txt file in the technical documentation for a
      * list of IDs. You should use these IDs along with the
      * excluded-sensitive-category field in the bid request to filter your bids.
      */
-    detectedSensitiveCategories: number[];
+    detectedSensitiveCategories?: number[];
     /**
      * @OutputOnly The filtering stats for this creative.
      */
-    filteringStats: Schema$FilteringStats;
+    filteringStats?: Schema$FilteringStats;
     /**
      * An HTML creative.
      */
-    html: Schema$HtmlContent;
+    html?: Schema$HtmlContent;
     /**
      * The set of URLs to be called to record an impression.
      */
-    impressionTrackingUrls: string[];
+    impressionTrackingUrls?: string[];
     /**
      * A native creative.
      */
-    native: Schema$NativeContent;
+    native?: Schema$NativeContent;
     /**
      * @OutputOnly The top-level open auction status of this creative. If
      * disapproved, an entry for &#39;auctionType = OPEN_AUCTION&#39; (or
@@ -436,33 +439,33 @@ export namespace adexchangebuyer2_v2beta1 {
      * be preferable to read from serving_restrictions directly. Can be used to
      * filter the response of the creatives.list method.
      */
-    openAuctionStatus: string;
+    openAuctionStatus?: string;
     /**
      * All restricted categories for the ads that may be shown from this
      * creative.
      */
-    restrictedCategories: string[];
+    restrictedCategories?: string[];
     /**
      * @OutputOnly The granular status of this ad in specific contexts. A
      * context here relates to where something ultimately serves (for example, a
      * physical location, a platform, an HTTPS vs HTTP request, or the type of
      * auction).
      */
-    servingRestrictions: Schema$ServingRestriction[];
+    servingRestrictions?: Schema$ServingRestriction[];
     /**
      * All vendor IDs for the ads that may be shown from this creative. See
      * https://storage.googleapis.com/adx-rtb-dictionaries/vendors.txt for
      * possible values.
      */
-    vendorIds: number[];
+    vendorIds?: number[];
     /**
      * @OutputOnly The version of this creative.
      */
-    version: number;
+    version?: number;
     /**
      * A video creative.
      */
-    video: Schema$VideoContent;
+    video?: Schema$VideoContent;
   }
   /**
    * The association between a creative and a deal.
@@ -471,15 +474,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The account the creative belongs to.
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The ID of the creative associated with the deal.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * The externalDealId for the deal associated with the creative.
      */
-    dealsId: string;
+    dealsId?: string;
   }
   /**
    * The number of bids with the specified dimension values that did not win the
@@ -490,16 +493,16 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of bids with the specified status.
      */
-    bidCount: Schema$MetricValue;
+    bidCount?: Schema$MetricValue;
     /**
      * The ID of the creative status. See
      * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
      */
-    creativeStatusId: number;
+    creativeStatusId?: number;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
   }
   /**
    * Represents a whole calendar date, e.g. date of birth. The time of day and
@@ -515,17 +518,17 @@ export namespace adexchangebuyer2_v2beta1 {
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
      * if specifying a year/month where the day is not significant.
      */
-    day: number;
+    day?: number;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
      * month.
      */
-    month: number;
+    month?: number;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
      * year.
      */
-    year: number;
+    year?: number;
   }
   /**
    * @OutputOnly The reason and details for a disapproval.
@@ -534,11 +537,11 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Additional details about the reason for disapproval.
      */
-    details: string[];
+    details?: string[];
     /**
      * The categorized reason for disapproval.
      */
-    reason: string;
+    reason?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -556,15 +559,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of bids with the specified creative.
      */
-    bidCount: Schema$MetricValue;
+    bidCount?: Schema$MetricValue;
     /**
      * The ID of the creative.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
   }
   /**
    * The number of filtered bids with the specified dimension values, among
@@ -575,16 +578,16 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of bids with the specified detail.
      */
-    bidCount: Schema$MetricValue;
+    bidCount?: Schema$MetricValue;
     /**
      * The ID of the detail. The associated value can be looked up in the
      * dictionary file corresponding to the DetailType in the response message.
      */
-    detailId: number;
+    detailId?: number;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
   }
   /**
    * @OutputOnly Filtering reasons for this creative during a period of a single
@@ -596,11 +599,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * 00:00:00 to 23:59:59 PT. During switches from PST to PDT and back, the
      * day may contain 23 or 25 hours of data instead of the usual 24.
      */
-    date: Schema$Date;
+    date?: Schema$Date;
     /**
      * The set of filtering reasons for this date.
      */
-    reasons: Schema$Reason[];
+    reasons?: Schema$Reason[];
   }
   /**
    * A set of filters that is applied to a request for data. Within a filter
@@ -614,31 +617,31 @@ export namespace adexchangebuyer2_v2beta1 {
      * An absolute date range, defined by a start date and an end date.
      * Interpreted relative to Pacific time zone.
      */
-    absoluteDateRange: Schema$AbsoluteDateRange;
+    absoluteDateRange?: Schema$AbsoluteDateRange;
     /**
      * The ID of the creative on which to filter; optional. This field may be
      * set only for a filter set that accesses account-level troubleshooting
      * data, i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x
      * pattern.
      */
-    creativeId: string;
+    creativeId?: string;
     /**
      * The ID of the deal on which to filter; optional. This field may be set
      * only for a filter set that accesses account-level troubleshooting data,
      * i.e. one whose name matches the `bidders/x/accounts/x/filterSets/x
      * pattern.
      */
-    dealId: string;
+    dealId?: string;
     /**
      * The environment on which to filter; optional.
      */
-    environment: string;
+    environment?: string;
     /**
      * The list of formats on which to filter; may be empty. The filters
      * represented by multiple formats are ORed together (i.e. if non-empty,
      * results must match any one of the formats).
      */
-    formats: string[];
+    formats?: string[];
     /**
      * A user-defined name of the filter set. Filter set names must be unique
      * globally and match one of the patterns:  - `bidders/x/filterSets/x (for
@@ -646,29 +649,29 @@ export namespace adexchangebuyer2_v2beta1 {
      * `bidders/x/accounts/x/filterSets/x (for accessing account-level
      * troubleshooting data)  This field is required in create operations.
      */
-    name: string;
+    name?: string;
     /**
      * The list of platforms on which to filter; may be empty. The filters
      * represented by multiple platforms are ORed together (i.e. if non-empty,
      * results must match any one of the platforms).
      */
-    platforms: string[];
+    platforms?: string[];
     /**
      * For Exchange Bidding buyers only. The list of publisher identifiers on
      * which to filter; may be empty. The filters represented by multiple
      * publisher identifiers are ORed together.
      */
-    publisherIdentifiers: string[];
+    publisherIdentifiers?: string[];
     /**
      * An open-ended realtime time range, defined by the aggregation start
      * timestamp.
      */
-    realtimeTimeRange: Schema$RealtimeTimeRange;
+    realtimeTimeRange?: Schema$RealtimeTimeRange;
     /**
      * A relative date range, defined by an offset from today and a duration.
      * Interpreted relative to Pacific time zone.
      */
-    relativeDateRange: Schema$RelativeDateRange;
+    relativeDateRange?: Schema$RelativeDateRange;
     /**
      * For Ad Exchange buyers only. The list of IDs of the seller (publisher)
      * networks on which to filter; may be empty. The filters represented by
@@ -677,12 +680,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * [seller-network-ids](https://developers.google.com/ad-exchange/rtb/downloads/seller-network-ids)
      * file for the set of existing seller network IDs.
      */
-    sellerNetworkIds: number[];
+    sellerNetworkIds?: number[];
     /**
      * The granularity of time intervals if a time series breakdown is desired;
      * optional.
      */
-    timeSeriesGranularity: string;
+    timeSeriesGranularity?: string;
   }
   /**
    * HTML content for a creative.
@@ -691,15 +694,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The height of the HTML snippet in pixels.
      */
-    height: number;
+    height?: number;
     /**
      * The HTML snippet that displays the ad when inserted in the web page.
      */
-    snippet: string;
+    snippet?: string;
     /**
      * The width of the HTML snippet in pixels.
      */
-    width: number;
+    width?: number;
   }
   /**
    * An image resource. You may provide a larger image than was requested, so
@@ -709,15 +712,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Image height in pixels.
      */
-    height: number;
+    height?: number;
     /**
      * The URL of the image.
      */
-    url: string;
+    url?: string;
     /**
      * Image width in pixels.
      */
-    width: number;
+    width?: number;
   }
   /**
    * The set of metrics that are measured in numbers of impressions,
@@ -729,31 +732,31 @@ export namespace adexchangebuyer2_v2beta1 {
      * The number of impressions available to the buyer on Ad Exchange. In some
      * cases this value may be unavailable.
      */
-    availableImpressions: Schema$MetricValue;
+    availableImpressions?: Schema$MetricValue;
     /**
      * The number of impressions for which Ad Exchange sent the buyer a bid
      * request.
      */
-    bidRequests: Schema$MetricValue;
+    bidRequests?: Schema$MetricValue;
     /**
      * The number of impressions that match the buyer&#39;s inventory
      * pretargeting.
      */
-    inventoryMatches: Schema$MetricValue;
+    inventoryMatches?: Schema$MetricValue;
     /**
      * The number of impressions for which Ad Exchange received a response from
      * the buyer that contained at least one applicable bid.
      */
-    responsesWithBids: Schema$MetricValue;
+    responsesWithBids?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
     /**
      * The number of impressions for which the buyer successfully sent a
      * response to Ad Exchange.
      */
-    successfulResponses: Schema$MetricValue;
+    successfulResponses?: Schema$MetricValue;
   }
   /**
    * Response message for listing the metrics that are measured in number of
@@ -763,13 +766,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List of rows, each containing a set of bid metrics.
      */
-    bidMetricsRows: Schema$BidMetricsRow[];
+    bidMetricsRows?: Schema$BidMetricsRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListBidMetricsRequest.pageToken field in the subsequent call to the
      * bidMetrics.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons that bid responses resulted in an
@@ -779,13 +782,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List of rows, with counts of bid responses aggregated by callout status.
      */
-    calloutStatusRows: Schema$CalloutStatusRow[];
+    calloutStatusRows?: Schema$CalloutStatusRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListBidResponseErrorsRequest.pageToken field in the subsequent call to
      * the bidResponseErrors.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons that bid responses were considered
@@ -796,39 +799,39 @@ export namespace adexchangebuyer2_v2beta1 {
      * List of rows, with counts of bid responses without bids aggregated by
      * status.
      */
-    bidResponseWithoutBidsStatusRows: Schema$BidResponseWithoutBidsStatusRow[];
+    bidResponseWithoutBidsStatusRows?: Schema$BidResponseWithoutBidsStatusRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListBidResponsesWithoutBidsRequest.pageToken field in the subsequent call
      * to the bidResponsesWithoutBids.list method to retrieve the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$ListClientsResponse {
     /**
      * The returned list of clients.
      */
-    clients: Schema$Client[];
+    clients?: Schema$Client[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListClientsRequest.pageToken field in the subsequent call to the
      * accounts.clients.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$ListClientUserInvitationsResponse {
     /**
      * The returned list of client users.
      */
-    invitations: Schema$ClientUserInvitation[];
+    invitations?: Schema$ClientUserInvitation[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListClientUserInvitationsRequest.pageToken field in the subsequent call
      * to the clients.invitations.list method to retrieve the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$ListClientUsersResponse {
     /**
@@ -836,11 +839,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * ListClientUsersRequest.pageToken field in the subsequent call to the
      * clients.invitations.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The returned list of client users.
      */
-    users: Schema$ClientUser[];
+    users?: Schema$ClientUser[];
   }
   /**
    * A response for listing creatives.
@@ -849,13 +852,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The list of creatives.
      */
-    creatives: Schema$Creative[];
+    creatives?: Schema$Creative[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListCreativesRequest.page_token field in the subsequent call to
      * `ListCreatives` method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all creatives associated with a given filtered
@@ -866,14 +869,14 @@ export namespace adexchangebuyer2_v2beta1 {
      * List of rows, with counts of bids with a given creative status aggregated
      * by creative.
      */
-    filteredBidCreativeRows: Schema$FilteredBidCreativeRow[];
+    filteredBidCreativeRows?: Schema$FilteredBidCreativeRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListCreativeStatusBreakdownByCreativeRequest.pageToken field in the
      * subsequent call to the filteredBids.creatives.list method to retrieve the
      * next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all details associated with a given filtered
@@ -883,19 +886,19 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The type of detail that the detail IDs represent.
      */
-    detailType: string;
+    detailType?: string;
     /**
      * List of rows, with counts of bids with a given creative status aggregated
      * by detail.
      */
-    filteredBidDetailRows: Schema$FilteredBidDetailRow[];
+    filteredBidDetailRows?: Schema$FilteredBidDetailRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListCreativeStatusBreakdownByDetailRequest.pageToken field in the
      * subsequent call to the filteredBids.details.list method to retrieve the
      * next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A response for listing creative and deal associations
@@ -904,14 +907,14 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The list of associations.
      */
-    associations: Schema$CreativeDealAssociation[];
+    associations?: Schema$CreativeDealAssociation[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListDealAssociationsRequest.page_token field in the subsequent call to
      * &#39;ListDealAssociation&#39; method to retrieve the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons that bid requests were filtered
@@ -922,13 +925,13 @@ export namespace adexchangebuyer2_v2beta1 {
      * List of rows, with counts of filtered bid requests aggregated by callout
      * status.
      */
-    calloutStatusRows: Schema$CalloutStatusRow[];
+    calloutStatusRows?: Schema$CalloutStatusRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListFilteredBidRequestsRequest.pageToken field in the subsequent call to
      * the filteredBidRequests.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons that bids were filtered from the
@@ -939,13 +942,13 @@ export namespace adexchangebuyer2_v2beta1 {
      * List of rows, with counts of filtered bids aggregated by filtering reason
      * (i.e. creative status).
      */
-    creativeStatusRows: Schema$CreativeStatusRow[];
+    creativeStatusRows?: Schema$CreativeStatusRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListFilteredBidsRequest.pageToken field in the subsequent call to the
      * filteredBids.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing filter sets.
@@ -954,13 +957,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The filter sets belonging to the buyer.
      */
-    filterSets: Schema$FilterSet[];
+    filterSets?: Schema$FilterSet[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListFilterSetsRequest.pageToken field in the subsequent call to the
      * accounts.filterSets.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing the metrics that are measured in number of
@@ -970,13 +973,13 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List of rows, each containing a set of impression metrics.
      */
-    impressionMetricsRows: Schema$ImpressionMetricsRow[];
+    impressionMetricsRows?: Schema$ImpressionMetricsRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListImpressionMetricsRequest.pageToken field in the subsequent call to
      * the impressionMetrics.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons that bids lost in the auction.
@@ -986,13 +989,13 @@ export namespace adexchangebuyer2_v2beta1 {
      * List of rows, with counts of losing bids aggregated by loss reason (i.e.
      * creative status).
      */
-    creativeStatusRows: Schema$CreativeStatusRow[];
+    creativeStatusRows?: Schema$CreativeStatusRow[];
     /**
      * A token to retrieve the next page of results. Pass this value in the
      * ListLosingBidsRequest.pageToken field in the subsequent call to the
      * losingBids.list method to retrieve the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for listing all reasons for which a buyer was not billed
@@ -1005,11 +1008,11 @@ export namespace adexchangebuyer2_v2beta1 {
      * to the nonBillableWinningBids.list method to retrieve the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of rows, with counts of bids not billed aggregated by reason.
      */
-    nonBillableWinningBidStatusRows: Schema$NonBillableWinningBidStatusRow[];
+    nonBillableWinningBidStatusRows?: Schema$NonBillableWinningBidStatusRow[];
   }
   /**
    * Response message for listing publishers that had recent inventory matches
@@ -1019,7 +1022,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * List of publishers.
      */
-    publisher: Schema$Publisher[];
+    publisher?: Schema$Publisher[];
   }
   /**
    * @OutputOnly The Geo criteria the restriction applies to.
@@ -1030,7 +1033,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * [geo-table.csv](https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv)
      * file for different geo criteria IDs.
      */
-    geoCriteriaIds: number[];
+    geoCriteriaIds?: number[];
   }
   /**
    * A metric value, with an expected value and a variance; represents a count
@@ -1040,7 +1043,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The expected value of the metric.
      */
-    value: string;
+    value?: string;
     /**
      * The variance (i.e. square of the standard deviation) of the metric value.
      * If value is exact, variance is 0. Can be used to calculate margin of
@@ -1049,7 +1052,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * interval (e.g. for 90% confidence interval, use Z = 1.645): marginOfError
      * = 100 * Z * sqrt(variance) / value
      */
-    variance: string;
+    variance?: string;
   }
   /**
    * Native content for a creative.
@@ -1059,55 +1062,55 @@ export namespace adexchangebuyer2_v2beta1 {
      * The name of the advertiser or sponsor, to be displayed in the ad
      * creative.
      */
-    advertiserName: string;
+    advertiserName?: string;
     /**
      * The app icon, for app download ads.
      */
-    appIcon: Schema$Image;
+    appIcon?: Schema$Image;
     /**
      * A long description of the ad.
      */
-    body: string;
+    body?: string;
     /**
      * A label for the button that the user is supposed to click.
      */
-    callToAction: string;
+    callToAction?: string;
     /**
      * The URL that the browser/SDK will load when the user clicks the ad.
      */
-    clickLinkUrl: string;
+    clickLinkUrl?: string;
     /**
      * The URL to use for click tracking.
      */
-    clickTrackingUrl: string;
+    clickTrackingUrl?: string;
     /**
      * A short title for the ad.
      */
-    headline: string;
+    headline?: string;
     /**
      * A large image.
      */
-    image: Schema$Image;
+    image?: Schema$Image;
     /**
      * A smaller image, for the advertiser&#39;s logo.
      */
-    logo: Schema$Image;
+    logo?: Schema$Image;
     /**
      * The price of the promoted app including currency info.
      */
-    priceDisplayText: string;
+    priceDisplayText?: string;
     /**
      * The app rating in the app store. Must be in the range [0-5].
      */
-    starRating: number;
+    starRating?: number;
     /**
      * The URL to the app store to purchase/download the promoted app.
      */
-    storeUrl: string;
+    storeUrl?: string;
     /**
      * The URL to fetch a native video ad.
      */
-    videoUrl: string;
+    videoUrl?: string;
   }
   /**
    * The number of winning bids with the specified dimension values for which
@@ -1117,15 +1120,15 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The number of bids with the specified status.
      */
-    bidCount: Schema$MetricValue;
+    bidCount?: Schema$MetricValue;
     /**
      * The values of all dimensions associated with metric values in this row.
      */
-    rowDimensions: Schema$RowDimensions;
+    rowDimensions?: Schema$RowDimensions;
     /**
      * The status specifying why the winning bids were not billed.
      */
-    status: string;
+    status?: string;
   }
   /**
    * @OutputOnly The type of platform the restriction applies to.
@@ -1134,7 +1137,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The platforms this restriction applies to.
      */
-    platforms: string[];
+    platforms?: string[];
   }
   /**
    * The publisher ID and name contain values relevant to the requesting buyer
@@ -1146,7 +1149,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * is an Ad Exchange buyer. - DFP network name or AdMob publisher code when
      * the requesting buyer is an   Exchange Bidding buyer.
      */
-    publisherDisplayName: string;
+    publisherDisplayName?: string;
     /**
      * Publisher ID contains: - Seller network ID when the requesting buyer is
      * an Ad Exchange buyer.   See
@@ -1154,7 +1157,7 @@ export namespace adexchangebuyer2_v2beta1 {
      * - DFP network code or AdMob publisher code when the requesting buyer is
      * an   Exchange Bidding buyer.
      */
-    publisherId: string;
+    publisherId?: string;
   }
   /**
    * An open-ended realtime time range specified by the start timestamp. For
@@ -1165,7 +1168,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The start timestamp of the real-time RTB metrics aggregation.
      */
-    startTimestamp: string;
+    startTimestamp?: string;
   }
   /**
    * A specific filtering status and how many times it occurred.
@@ -1175,13 +1178,13 @@ export namespace adexchangebuyer2_v2beta1 {
      * The number of times the creative was filtered for the status. The count
      * is aggregated across all publishers on the exchange.
      */
-    count: string;
+    count?: string;
     /**
      * The filtering status code. Please refer to the
      * [creative-status-codes.txt](https://storage.googleapis.com/adx-rtb-dictionaries/creative-status-codes.txt)
      * file for different statuses.
      */
-    status: number;
+    status?: number;
   }
   /**
    * A relative date range, specified by an offset and a duration. The supported
@@ -1194,12 +1197,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * The number of days in the requested date range. E.g. for a range spanning
      * today, 1. For a range spanning the last 7 days, 7.
      */
-    durationDays: number;
+    durationDays?: number;
     /**
      * The end date of the filter set, specified as the number of days before
      * today. E.g. for a range where the last date is today, 0.
      */
-    offsetDays: number;
+    offsetDays?: number;
   }
   /**
    * A request for removing the association between a deal and a creative.
@@ -1208,7 +1211,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The association between a creative and a deal that should be removed.
      */
-    association: Schema$CreativeDealAssociation;
+    association?: Schema$CreativeDealAssociation;
   }
   /**
    * A response may include multiple rows, breaking down along various
@@ -1218,7 +1221,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The time interval that this row represents.
      */
-    timeInterval: Schema$TimeInterval;
+    timeInterval?: Schema$TimeInterval;
   }
   /**
    * @OutputOnly A security context.
@@ -1227,7 +1230,7 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The security types in this context.
      */
-    securities: string[];
+    securities?: string[];
   }
   /**
    * The serving context for this restriction.
@@ -1236,28 +1239,28 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * Matches all contexts.
      */
-    all: string;
+    all?: string;
     /**
      * Matches impressions for a particular app type.
      */
-    appType: Schema$AppContext;
+    appType?: Schema$AppContext;
     /**
      * Matches impressions for a particular auction type.
      */
-    auctionType: Schema$AuctionContext;
+    auctionType?: Schema$AuctionContext;
     /**
      * Matches impressions coming from users *or* publishers in a specific
      * location.
      */
-    location: Schema$LocationContext;
+    location?: Schema$LocationContext;
     /**
      * Matches impressions coming from a particular platform.
      */
-    platform: Schema$PlatformContext;
+    platform?: Schema$PlatformContext;
     /**
      * Matches impressions for a particular security type.
      */
-    securityType: Schema$SecurityContext;
+    securityType?: Schema$SecurityContext;
   }
   /**
    * @OutputOnly A representation of the status of an ad in a specific context.
@@ -1269,18 +1272,18 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The contexts for the restriction.
      */
-    contexts: Schema$ServingContext[];
+    contexts?: Schema$ServingContext[];
     /**
      * Any disapprovals bound to this restriction. Only present if
      * status=DISAPPROVED. Can be used to filter the response of the
      * creatives.list method.
      */
-    disapprovalReasons: Schema$Disapproval[];
+    disapprovalReasons?: Schema$Disapproval[];
     /**
      * The status of the creative in this context (for example, it has been
      * explicitly disapproved or is pending review).
      */
-    status: string;
+    status?: string;
   }
   /**
    * A request for stopping notifications for changes to creative Status.
@@ -1294,12 +1297,12 @@ export namespace adexchangebuyer2_v2beta1 {
      * The timestamp marking the end of the range (exclusive) for which data is
      * included.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * The timestamp marking the start of the range (inclusive) for which data
      * is included.
      */
-    startTime: string;
+    startTime?: string;
   }
   /**
    * Video content for a creative.
@@ -1308,12 +1311,12 @@ export namespace adexchangebuyer2_v2beta1 {
     /**
      * The URL to fetch a video ad.
      */
-    videoUrl: string;
+    videoUrl?: string;
     /**
      * The contents of a VAST document for a video ad. This document should
      * conform to the VAST 2.0 or 3.0 standard.
      */
-    videoVastXml: string;
+    videoVastXml?: string;
   }
   /**
    * A request for watching changes to creative Status.
@@ -1325,8 +1328,9 @@ export namespace adexchangebuyer2_v2beta1 {
      * to write to the topic. This should be the full resource name in
      * &quot;projects/{project_id}/topics/{topic_id}&quot; format.
      */
-    topic: string;
+    topic?: string;
   }
+
 
   export class Resource$Accounts {
     root: Adexchangebuyer2;
@@ -1345,6 +1349,8 @@ export namespace adexchangebuyer2_v2beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Accounts$Clients {
     root: Adexchangebuyer2;
     invitations: Resource$Accounts$Clients$Invitations;
@@ -1374,25 +1380,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Client>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
-        callback?: BodyResponseCallback<Schema$Client>): void;
+        params?: Params$Resource$Accounts$Clients$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Client>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
+        params: Params$Resource$Accounts$Clients$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Client>,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    create(
+        params: Params$Resource$Accounts$Clients$Create,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    create(callback: BodyResponseCallback<Schema$Client>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Create|
+        BodyResponseCallback<Schema$Client>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Client>,
         callback?: BodyResponseCallback<Schema$Client>):
         void|AxiosPromise<Schema$Client> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Clients$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1429,23 +1448,34 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Client>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
-        callback?: BodyResponseCallback<Schema$Client>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
+    get(params?: Params$Resource$Accounts$Clients$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Client>;
+    get(params: Params$Resource$Accounts$Clients$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Client>,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    get(params: Params$Resource$Accounts$Clients$Get,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    get(callback: BodyResponseCallback<Schema$Client>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Clients$Get|
+        BodyResponseCallback<Schema$Client>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Client>,
         callback?: BodyResponseCallback<Schema$Client>):
         void|AxiosPromise<Schema$Client> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Clients$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1485,28 +1515,39 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListClientsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Clients$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListClientsResponse>;
+    list(
+        params: Params$Resource$Accounts$Clients$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListClientsResponse>,
+        callback: BodyResponseCallback<Schema$ListClientsResponse>): void;
+    list(
+        params: Params$Resource$Accounts$Clients$List,
+        callback: BodyResponseCallback<Schema$ListClientsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListClientsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$List|
         BodyResponseCallback<Schema$ListClientsResponse>,
-        callback?: BodyResponseCallback<Schema$ListClientsResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClientsResponse>,
         callback?: BodyResponseCallback<Schema$ListClientsResponse>):
         void|AxiosPromise<Schema$ListClientsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Clients$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1544,25 +1585,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Client>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
-        callback?: BodyResponseCallback<Schema$Client>): void;
+        params?: Params$Resource$Accounts$Clients$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Client>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Client>,
+        params: Params$Resource$Accounts$Clients$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Client>,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    update(
+        params: Params$Resource$Accounts$Clients$Update,
+        callback: BodyResponseCallback<Schema$Client>): void;
+    update(callback: BodyResponseCallback<Schema$Client>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Update|
+        BodyResponseCallback<Schema$Client>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Client>,
         callback?: BodyResponseCallback<Schema$Client>):
         void|AxiosPromise<Schema$Client> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Clients$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1586,6 +1640,87 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Clients$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Unique numerical account ID for the buyer of which the client buyer is a
+     * customer; the sponsor buyer to create a client for. (required)
+     */
+    accountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Client;
+  }
+  export interface Params$Resource$Accounts$Clients$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer to retrieve. (required)
+     */
+    clientAccountId?: string;
+  }
+  export interface Params$Resource$Accounts$Clients$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Unique numerical account ID of the sponsor buyer to list the clients for.
+     */
+    accountId?: string;
+    /**
+     * Requested page size. The server may return fewer clients than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListClientsResponse.nextPageToken
+     * returned from the previous call to the accounts.clients.list method.
+     */
+    pageToken?: string;
+    /**
+     * Optional unique identifier (from the standpoint of an Ad Exchange sponsor
+     * buyer partner) of the client to return. If specified, at most one client
+     * will be returned in the response.
+     */
+    partnerClientId?: string;
+  }
+  export interface Params$Resource$Accounts$Clients$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Unique numerical account ID for the buyer of which the client buyer is a
+     * customer; the sponsor buyer to update a client for. (required)
+     */
+    accountId?: string;
+    /**
+     * Unique numerical account ID of the client to update. (required)
+     */
+    clientAccountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Client;
+  }
+
   export class Resource$Accounts$Clients$Invitations {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -1613,28 +1748,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ClientUserInvitation>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Clients$Invitations$Create,
+        options?: MethodOptions): AxiosPromise<Schema$ClientUserInvitation>;
+    create(
+        params: Params$Resource$Accounts$Clients$Invitations$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ClientUserInvitation>,
-        callback?: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+        callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Clients$Invitations$Create,
+        callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+    create(callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Invitations$Create|
+        BodyResponseCallback<Schema$ClientUserInvitation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ClientUserInvitation>,
         callback?: BodyResponseCallback<Schema$ClientUserInvitation>):
         void|AxiosPromise<Schema$ClientUserInvitation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Invitations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Invitations$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1674,26 +1821,36 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Accounts$Clients$Invitations$Get,
         options?: MethodOptions): AxiosPromise<Schema$ClientUserInvitation>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Accounts$Clients$Invitations$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ClientUserInvitation>,
-        callback?: BodyResponseCallback<Schema$ClientUserInvitation>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+    get(params: Params$Resource$Accounts$Clients$Invitations$Get,
+        callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+    get(callback: BodyResponseCallback<Schema$ClientUserInvitation>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Clients$Invitations$Get|
+        BodyResponseCallback<Schema$ClientUserInvitation>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ClientUserInvitation>,
         callback?: BodyResponseCallback<Schema$ClientUserInvitation>):
         void|AxiosPromise<Schema$ClientUserInvitation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Invitations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Invitations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1735,31 +1892,48 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accounts$Clients$Invitations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListClientUserInvitationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Clients$Invitations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListClientUserInvitationsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListClientUserInvitationsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Clients$Invitations$List,
+        callback:
+            BodyResponseCallback<Schema$ListClientUserInvitationsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListClientUserInvitationsResponse>):
+        void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Invitations$List|
+        BodyResponseCallback<Schema$ListClientUserInvitationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClientUserInvitationsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListClientUserInvitationsResponse>):
         void|AxiosPromise<Schema$ListClientUserInvitationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Invitations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Invitations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1787,6 +1961,78 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
+  export interface Params$Resource$Accounts$Clients$Invitations$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer that the user should be
+     * associated with. (required)
+     */
+    clientAccountId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ClientUserInvitation;
+  }
+  export interface Params$Resource$Accounts$Clients$Invitations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer that the user invitation to be
+     * retrieved is associated with. (required)
+     */
+    clientAccountId?: string;
+    /**
+     * Numerical identifier of the user invitation to retrieve. (required)
+     */
+    invitationId?: string;
+  }
+  export interface Params$Resource$Accounts$Clients$Invitations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer to list invitations for.
+     * (required) You must either specify a string representation of a numerical
+     * account identifier or the `-` character to list all the invitations for
+     * all the clients of a given sponsor buyer.
+     */
+    clientAccountId?: string;
+    /**
+     * Requested page size. Server may return fewer clients than requested. If
+     * unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListClientUserInvitationsResponse.nextPageToken returned from the
+     * previous call to the clients.invitations.list method.
+     */
+    pageToken?: string;
+  }
+
+
   export class Resource$Accounts$Clients$Users {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -1813,23 +2059,35 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$ClientUser>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
-        callback?: BodyResponseCallback<Schema$ClientUser>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
+    get(params?: Params$Resource$Accounts$Clients$Users$Get,
+        options?: MethodOptions): AxiosPromise<Schema$ClientUser>;
+    get(params: Params$Resource$Accounts$Clients$Users$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
+        callback: BodyResponseCallback<Schema$ClientUser>): void;
+    get(params: Params$Resource$Accounts$Clients$Users$Get,
+        callback: BodyResponseCallback<Schema$ClientUser>): void;
+    get(callback: BodyResponseCallback<Schema$ClientUser>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Clients$Users$Get|
+        BodyResponseCallback<Schema$ClientUser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ClientUser>,
         callback?: BodyResponseCallback<Schema$ClientUser>):
         void|AxiosPromise<Schema$ClientUser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Users$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1871,28 +2129,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListClientUsersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Clients$Users$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListClientUsersResponse>;
+    list(
+        params: Params$Resource$Accounts$Clients$Users$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListClientUsersResponse>,
-        callback?: BodyResponseCallback<Schema$ListClientUsersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListClientUsersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Clients$Users$List,
+        callback: BodyResponseCallback<Schema$ListClientUsersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListClientUsersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Users$List|
+        BodyResponseCallback<Schema$ListClientUsersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClientUsersResponse>,
         callback?: BodyResponseCallback<Schema$ListClientUsersResponse>):
         void|AxiosPromise<Schema$ListClientUsersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Users$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1934,26 +2204,39 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ClientUser>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
-        callback?: BodyResponseCallback<Schema$ClientUser>): void;
+        params?: Params$Resource$Accounts$Clients$Users$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ClientUser>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
+        params: Params$Resource$Accounts$Clients$Users$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ClientUser>,
+        callback: BodyResponseCallback<Schema$ClientUser>): void;
+    update(
+        params: Params$Resource$Accounts$Clients$Users$Update,
+        callback: BodyResponseCallback<Schema$ClientUser>): void;
+    update(callback: BodyResponseCallback<Schema$ClientUser>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Clients$Users$Update|
+        BodyResponseCallback<Schema$ClientUser>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ClientUser>,
         callback?: BodyResponseCallback<Schema$ClientUser>):
         void|AxiosPromise<Schema$ClientUser> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Clients$Users$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Clients$Users$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -1978,6 +2261,83 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Clients$Users$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer that the user to be retrieved is
+     * associated with. (required)
+     */
+    clientAccountId?: string;
+    /**
+     * Numerical identifier of the user to retrieve. (required)
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Accounts$Clients$Users$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the sponsor buyer of the client to list users
+     * for. (required)
+     */
+    accountId?: string;
+    /**
+     * The account ID of the client buyer to list users for. (required) You must
+     * specify either a string representation of a numerical account identifier
+     * or the `-` character to list all the client users for all the clients of
+     * a given sponsor buyer.
+     */
+    clientAccountId?: string;
+    /**
+     * Requested page size. The server may return fewer clients than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListClientUsersResponse.nextPageToken
+     * returned from the previous call to the accounts.clients.users.list
+     * method.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Accounts$Clients$Users$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Numerical account ID of the client's sponsor buyer. (required)
+     */
+    accountId?: string;
+    /**
+     * Numerical account ID of the client buyer that the user to be retrieved is
+     * associated with. (required)
+     */
+    clientAccountId?: string;
+    /**
+     * Numerical identifier of the user to retrieve. (required)
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ClientUser;
+  }
+
 
 
   export class Resource$Accounts$Creatives {
@@ -2009,26 +2369,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params?: Params$Resource$Accounts$Creatives$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Creative>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Accounts$Creatives$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    create(
+        params: Params$Resource$Accounts$Creatives$Create,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    create(callback: BodyResponseCallback<Schema$Creative>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Accounts$Creatives$Create|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Creatives$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2065,23 +2437,34 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Creative>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+    get(params?: Params$Resource$Accounts$Creatives$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Creative>;
+    get(params: Params$Resource$Accounts$Creatives$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(params: Params$Resource$Accounts$Creatives$Get,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    get(callback: BodyResponseCallback<Schema$Creative>): void;
+    get(paramsOrCallback?: Params$Resource$Accounts$Creatives$Get|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Creatives$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2121,28 +2504,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListCreativesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Creatives$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListCreativesResponse>;
+    list(
+        params: Params$Resource$Accounts$Creatives$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListCreativesResponse>,
-        callback?: BodyResponseCallback<Schema$ListCreativesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListCreativesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Creatives$List,
+        callback: BodyResponseCallback<Schema$ListCreativesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListCreativesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Creatives$List|
+        BodyResponseCallback<Schema$ListCreativesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListCreativesResponse>,
         callback?: BodyResponseCallback<Schema$ListCreativesResponse>):
         void|AxiosPromise<Schema$ListCreativesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2181,26 +2576,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stopWatching(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     stopWatching(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Accounts$Creatives$Stopwatching,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     stopWatching(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Accounts$Creatives$Stopwatching,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    stopWatching(
+        params: Params$Resource$Accounts$Creatives$Stopwatching,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    stopWatching(callback: BodyResponseCallback<Schema$Empty>): void;
+    stopWatching(
+        paramsOrCallback?: Params$Resource$Accounts$Creatives$Stopwatching|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Creatives$Stopwatching;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Stopwatching;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2240,26 +2647,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Creative>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
-        callback?: BodyResponseCallback<Schema$Creative>): void;
+        params?: Params$Resource$Accounts$Creatives$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Creative>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        params: Params$Resource$Accounts$Creatives$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Creative>,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    update(
+        params: Params$Resource$Accounts$Creatives$Update,
+        callback: BodyResponseCallback<Schema$Creative>): void;
+    update(callback: BodyResponseCallback<Schema$Creative>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Accounts$Creatives$Update|
+        BodyResponseCallback<Schema$Creative>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Creative>,
         callback?: BodyResponseCallback<Schema$Creative>):
         void|AxiosPromise<Schema$Creative> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Creatives$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2299,25 +2718,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Accounts$Creatives$Watch,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Accounts$Creatives$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    watch(
+        params: Params$Resource$Accounts$Creatives$Watch,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    watch(callback: BodyResponseCallback<Schema$Empty>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Accounts$Creatives$Watch|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Creatives$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2342,6 +2774,145 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Creatives$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account that this creative belongs to. Can be used to filter the
+     * response of the creatives.list method.
+     */
+    accountId?: string;
+    /**
+     * Indicates if multiple creatives can share an ID or not. Default is
+     * NO_DUPLICATES (one ID per creative).
+     */
+    duplicateIdMode?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Creative;
+  }
+  export interface Params$Resource$Accounts$Creatives$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account the creative belongs to.
+     */
+    accountId?: string;
+    /**
+     * The ID of the creative to retrieve.
+     */
+    creativeId?: string;
+  }
+  export interface Params$Resource$Accounts$Creatives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account to list the creatives from. Specify "-" to list all creatives
+     * the current user has access to.
+     */
+    accountId?: string;
+    /**
+     * Requested page size. The server may return fewer creatives than requested
+     * (due to timeout constraint) even if more are available via another call.
+     * If unspecified, server will pick an appropriate default. Acceptable
+     * values are 1 to 1000, inclusive.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListCreativesResponse.next_page_token
+     * returned from the previous call to 'ListCreatives' method.
+     */
+    pageToken?: string;
+    /**
+     * An optional query string to filter creatives. If no filter is specified,
+     * all active creatives will be returned. Supported queries are: <ul>
+     * <li>accountId=<i>account_id_string</i>
+     * <li>creativeId=<i>creative_id_string</i> <li>dealsStatus: {approved,
+     * conditionally_approved, disapproved,                    not_checked}
+     * <li>openAuctionStatus: {approved, conditionally_approved, disapproved,
+     * not_checked} <li>attribute: {a numeric attribute from the list of
+     * attributes} <li>disapprovalReason: {a reason from DisapprovalReason}
+     * </ul> Example: 'accountId=12345 AND (dealsStatus:disapproved AND
+     * disapprovalReason:unacceptable_content) OR attribute:47'
+     */
+    query?: string;
+  }
+  export interface Params$Resource$Accounts$Creatives$Stopwatching {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account of the creative to stop notifications for.
+     */
+    accountId?: string;
+    /**
+     * The creative ID of the creative to stop notifications for. Specify "-" to
+     * specify stopping account level notifications.
+     */
+    creativeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$StopWatchingCreativeRequest;
+  }
+  export interface Params$Resource$Accounts$Creatives$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account that this creative belongs to. Can be used to filter the
+     * response of the creatives.list method.
+     */
+    accountId?: string;
+    /**
+     * The buyer-defined creative ID of this creative. Can be used to filter the
+     * response of the creatives.list method.
+     */
+    creativeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Creative;
+  }
+  export interface Params$Resource$Accounts$Creatives$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account of the creative to watch.
+     */
+    accountId?: string;
+    /**
+     * The creative ID to watch for status changes. Specify "-" to watch all
+     * creatives under the above account. If both creative-level and
+     * account-level notifications are sent, only a single notification will be
+     * sent to the creative-level notification topic.
+     */
+    creativeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WatchCreativeRequest;
+  }
+
   export class Resource$Accounts$Creatives$Dealassociations {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -2368,23 +2939,35 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    add(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
-    add(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
-    add(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+    add(params?: Params$Resource$Accounts$Creatives$Dealassociations$Add,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
+    add(params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    add(params: Params$Resource$Accounts$Creatives$Dealassociations$Add,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    add(callback: BodyResponseCallback<Schema$Empty>): void;
+    add(paramsOrCallback?:
+            Params$Resource$Accounts$Creatives$Dealassociations$Add|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Creatives$Dealassociations$Add;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Dealassociations$Add;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2426,29 +3009,45 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Accounts$Creatives$Dealassociations$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListDealAssociationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Creatives$Dealassociations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDealAssociationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListDealAssociationsResponse>):
+        callback: BodyResponseCallback<Schema$ListDealAssociationsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Creatives$Dealassociations$List,
+        callback: BodyResponseCallback<Schema$ListDealAssociationsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListDealAssociationsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Creatives$Dealassociations$List|
+        BodyResponseCallback<Schema$ListDealAssociationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDealAssociationsResponse>,
         callback?: BodyResponseCallback<Schema$ListDealAssociationsResponse>):
         void|AxiosPromise<Schema$ListDealAssociationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Creatives$Dealassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Creatives$Dealassociations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2490,25 +3089,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    remove(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     remove(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     remove(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    remove(
+        params: Params$Resource$Accounts$Creatives$Dealassociations$Remove,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    remove(callback: BodyResponseCallback<Schema$Empty>): void;
+    remove(
+        paramsOrCallback?:
+            Params$Resource$Accounts$Creatives$Dealassociations$Remove|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Accounts$Creatives$Dealassociations$Remove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Accounts$Creatives$Dealassociations$Remove;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2533,6 +3147,86 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Add {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account the creative belongs to.
+     */
+    accountId?: string;
+    /**
+     * The ID of the creative associated with the deal.
+     */
+    creativeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AddDealAssociationRequest;
+  }
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account to list the associations from. Specify "-" to list all
+     * creatives the current user has access to.
+     */
+    accountId?: string;
+    /**
+     * The creative ID to list the associations from. Specify "-" to list all
+     * creatives under the above account.
+     */
+    creativeId?: string;
+    /**
+     * Requested page size. Server may return fewer associations than requested.
+     * If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListDealAssociationsResponse.next_page_token returned from the previous
+     * call to 'ListDealAssociations' method.
+     */
+    pageToken?: string;
+    /**
+     * An optional query string to filter deal associations. If no filter is
+     * specified, all associations will be returned. Supported queries are: <ul>
+     * <li>accountId=<i>account_id_string</i>
+     * <li>creativeId=<i>creative_id_string</i>
+     * <li>dealsId=<i>deals_id_string</i> <li>dealsStatus:{approved,
+     * conditionally_approved, disapproved,                   not_checked}
+     * <li>openAuctionStatus:{approved, conditionally_approved, disapproved,
+     * not_checked} </ul> Example: 'dealsId=12345 AND dealsStatus:disapproved'
+     */
+    query?: string;
+  }
+  export interface Params$Resource$Accounts$Creatives$Dealassociations$Remove {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The account the creative belongs to.
+     */
+    accountId?: string;
+    /**
+     * The ID of the creative associated with the deal.
+     */
+    creativeId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RemoveDealAssociationRequest;
+  }
+
 
 
   export class Resource$Accounts$Publishers {
@@ -2561,28 +3255,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListPublishersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Accounts$Publishers$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListPublishersResponse>;
+    list(
+        params: Params$Resource$Accounts$Publishers$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListPublishersResponse>,
-        callback?: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Accounts$Publishers$List,
+        callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListPublishersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Accounts$Publishers$List|
+        BodyResponseCallback<Schema$ListPublishersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListPublishersResponse>,
         callback?: BodyResponseCallback<Schema$ListPublishersResponse>):
         void|AxiosPromise<Schema$ListPublishersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Accounts$Publishers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Publishers$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2606,6 +3312,25 @@ export namespace adexchangebuyer2_v2beta1 {
     }
   }
 
+  export interface Params$Resource$Accounts$Publishers$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Account ID of the requesting buyer.
+     */
+    accountId?: string;
+    /**
+     * Optional environment (WEB, APP) for which to return publishers. If
+     * specified, response will only include publishers that had recent
+     * inventory matches with the requesting buyer on the specified platform.
+     */
+    environment?: string;
+  }
+
+
 
   export class Resource$Bidders {
     root: Adexchangebuyer2;
@@ -2622,6 +3347,8 @@ export namespace adexchangebuyer2_v2beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Bidders$Accounts {
     root: Adexchangebuyer2;
     filterSets: Resource$Bidders$Accounts$Filtersets;
@@ -2635,6 +3362,8 @@ export namespace adexchangebuyer2_v2beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Bidders$Accounts$Filtersets {
     root: Adexchangebuyer2;
     bidMetrics: Resource$Bidders$Accounts$Filtersets$Bidmetrics;
@@ -2690,26 +3419,39 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FilterSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
-        callback?: BodyResponseCallback<Schema$FilterSet>): void;
+        params?: Params$Resource$Bidders$Accounts$Filtersets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        params: Params$Resource$Bidders$Accounts$Filtersets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(
+        params: Params$Resource$Bidders$Accounts$Filtersets$Create,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Bidders$Accounts$Filtersets$Create|
+        BodyResponseCallback<Schema$FilterSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FilterSet>,
         callback?: BodyResponseCallback<Schema$FilterSet>):
         void|AxiosPromise<Schema$FilterSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Accounts$Filtersets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2746,25 +3488,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Bidders$Accounts$Filtersets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Bidders$Accounts$Filtersets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Bidders$Accounts$Filtersets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Accounts$Filtersets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2800,23 +3555,35 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
-        callback?: BodyResponseCallback<Schema$FilterSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+    get(params?: Params$Resource$Bidders$Accounts$Filtersets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
+    get(params: Params$Resource$Bidders$Accounts$Filtersets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(params: Params$Resource$Bidders$Accounts$Filtersets$Get,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(paramsOrCallback?: Params$Resource$Bidders$Accounts$Filtersets$Get|
+        BodyResponseCallback<Schema$FilterSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FilterSet>,
         callback?: BodyResponseCallback<Schema$FilterSet>):
         void|AxiosPromise<Schema$FilterSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Accounts$Filtersets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2853,28 +3620,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListFilterSetsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Accounts$Filtersets$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListFilterSetsResponse>;
+    list(
+        params: Params$Resource$Bidders$Accounts$Filtersets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilterSetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Accounts$Filtersets$List,
+        callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bidders$Accounts$Filtersets$List|
+        BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilterSetsResponse>,
         callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>):
         void|AxiosPromise<Schema$ListFilterSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Accounts$Filtersets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2897,6 +3676,93 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the filter set is transient, or should be persisted indefinitely.
+     * By default, filter sets are not transient. If transient, it will be
+     * available for at least 1 hour after creation.
+     */
+    isTransient?: boolean;
+    /**
+     * Name of the owner (bidder or account) of the filter set to be created.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123`  - For an account-level filter set for the buyer account
+     * representing bidder   123: `bidders/123/accounts/123`  - For an
+     * account-level filter set for the child seat buyer account 456   whose
+     * bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FilterSet;
+  }
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Full name of the resource to delete. For example:  - For a bidder-level
+     * filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an
+     * account-level filter set for the buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Full name of the resource being requested. For example:  - For a
+     * bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  -
+     * For an account-level filter set for the buyer account representing bidder
+     * 123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level
+     * filter set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Accounts$Filtersets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the owner (bidder or account) of the filter sets to be listed.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123`  - For an account-level filter set for the buyer account
+     * representing bidder   123: `bidders/123/accounts/123`  - For an
+     * account-level filter set for the child seat buyer account 456   whose
+     * bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListFilterSetsResponse.nextPageToken
+     * returned from the previous call to the accounts.filterSets.list method.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Bidders$Accounts$Filtersets$Bidmetrics {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -2923,28 +3789,42 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListBidMetricsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListBidMetricsResponse>;
+    list(
+        params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List,
+        callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List|
+        BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>):
         void|AxiosPromise<Schema$ListBidMetricsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -2967,6 +3847,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidmetrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListBidMetricsResponse.nextPageToken
+     * returned from the previous call to the bidMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Bidresponseerrors {
     root: Adexchangebuyer2;
@@ -2996,29 +3906,49 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBidResponseErrorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List,
+        callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List|
+        BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
         callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
         void|AxiosPromise<Schema$ListBidResponseErrorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3043,6 +3973,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseerrors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListBidResponseErrorsResponse.nextPageToken returned from the previous
+     * call to the bidResponseErrors.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids {
     root: Adexchangebuyer2;
@@ -3073,31 +4034,53 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List,
+        callback:
+            BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List|
+        BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
         void|AxiosPromise<Schema$ListBidResponsesWithoutBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3123,6 +4106,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Bidresponseswithoutbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListBidResponsesWithoutBidsResponse.nextPageToken returned from the
+     * previous call to the bidResponsesWithoutBids.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbidrequests {
     root: Adexchangebuyer2;
@@ -3152,30 +4166,51 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListFilteredBidRequestsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List,
+        callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List|
+        BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
         void|AxiosPromise<Schema$ListFilteredBidRequestsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3200,6 +4235,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbidrequests$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListFilteredBidRequestsResponse.nextPageToken returned from the previous
+     * call to the filteredBidRequests.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids {
     root: Adexchangebuyer2;
@@ -3234,28 +4300,42 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListFilteredBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListFilteredBidsResponse>;
+    list(
+        params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List,
+        callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List|
+        BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidsResponse>,
         callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>):
         void|AxiosPromise<Schema$ListFilteredBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3278,6 +4358,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListFilteredBidsResponse.nextPageToken
+     * returned from the previous call to the filteredBids.list method.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -3307,30 +4417,51 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
+        options: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
+        callback: BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List|
+        BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>,
         callback?: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>): void|
         AxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3357,6 +4488,43 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by
+     * creative. See
+     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from
+     * the previous call to the filteredBids.creatives.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Filteredbids$Details {
     root: Adexchangebuyer2;
@@ -3387,30 +4555,51 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
+        options: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
+        callback: BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List|
+        BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>,
         callback?: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>):
         void|AxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3437,6 +4626,45 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by
+     * detail. See
+     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
+     * and 87.
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from
+     * the previous call to the filteredBids.details.list method.
+     */
+    pageToken?: string;
+  }
+
 
 
   export class Resource$Bidders$Accounts$Filtersets$Impressionmetrics {
@@ -3467,29 +4695,49 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListImpressionMetricsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List,
+        callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List|
+        BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
         void|AxiosPromise<Schema$ListImpressionMetricsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3514,6 +4762,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Impressionmetrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListImpressionMetricsResponse.nextPageToken returned from the previous
+     * call to the impressionMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Losingbids {
     root: Adexchangebuyer2;
@@ -3542,28 +4821,42 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLosingBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLosingBidsResponse>;
+    list(
+        params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLosingBidsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List,
+        callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List|
+        BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLosingBidsResponse>,
         callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>):
         void|AxiosPromise<Schema$ListLosingBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3586,6 +4879,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Losingbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListLosingBidsResponse.nextPageToken
+     * returned from the previous call to the losingBids.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids {
     root: Adexchangebuyer2;
@@ -3615,31 +4938,53 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params:
+            Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List,
+        callback:
+            BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List|
+        BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
         void|AxiosPromise<Schema$ListNonBillableWinningBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3664,6 +5009,36 @@ export namespace adexchangebuyer2_v2beta1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Bidders$Accounts$Filtersets$Nonbillablewinningbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListNonBillableWinningBidsResponse.nextPageToken returned from the
+     * previous call to the nonBillableWinningBids.list method.
+     */
+    pageToken?: string;
   }
 
 
@@ -3717,26 +5092,39 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$FilterSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
-        callback?: BodyResponseCallback<Schema$FilterSet>): void;
+        params?: Params$Resource$Bidders$Filtersets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        params: Params$Resource$Bidders$Filtersets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(
+        params: Params$Resource$Bidders$Filtersets$Create,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$Create|
+        BodyResponseCallback<Schema$FilterSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FilterSet>,
         callback?: BodyResponseCallback<Schema$FilterSet>):
         void|AxiosPromise<Schema$FilterSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bidders$Filtersets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3773,25 +5161,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Bidders$Filtersets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Bidders$Filtersets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Bidders$Filtersets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bidders$Filtersets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3827,23 +5228,35 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
-        callback?: BodyResponseCallback<Schema$FilterSet>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+    get(params?: Params$Resource$Bidders$Filtersets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$FilterSet>;
+    get(params: Params$Resource$Bidders$Filtersets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$FilterSet>,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(params: Params$Resource$Bidders$Filtersets$Get,
+        callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(callback: BodyResponseCallback<Schema$FilterSet>): void;
+    get(paramsOrCallback?: Params$Resource$Bidders$Filtersets$Get|
+        BodyResponseCallback<Schema$FilterSet>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$FilterSet>,
         callback?: BodyResponseCallback<Schema$FilterSet>):
         void|AxiosPromise<Schema$FilterSet> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bidders$Filtersets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3880,28 +5293,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListFilterSetsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Filtersets$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListFilterSetsResponse>;
+    list(
+        params: Params$Resource$Bidders$Filtersets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilterSetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$List,
+        callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFilterSetsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$List|
+        BodyResponseCallback<Schema$ListFilterSetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilterSetsResponse>,
         callback?: BodyResponseCallback<Schema$ListFilterSetsResponse>):
         void|AxiosPromise<Schema$ListFilterSetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bidders$Filtersets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3924,6 +5349,93 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether the filter set is transient, or should be persisted indefinitely.
+     * By default, filter sets are not transient. If transient, it will be
+     * available for at least 1 hour after creation.
+     */
+    isTransient?: boolean;
+    /**
+     * Name of the owner (bidder or account) of the filter set to be created.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123`  - For an account-level filter set for the buyer account
+     * representing bidder   123: `bidders/123/accounts/123`  - For an
+     * account-level filter set for the child seat buyer account 456   whose
+     * bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FilterSet;
+  }
+  export interface Params$Resource$Bidders$Filtersets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Full name of the resource to delete. For example:  - For a bidder-level
+     * filter set for bidder 123:   `bidders/123/filterSets/abc`  - For an
+     * account-level filter set for the buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Filtersets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Full name of the resource being requested. For example:  - For a
+     * bidder-level filter set for bidder 123:   `bidders/123/filterSets/abc`  -
+     * For an account-level filter set for the buyer account representing bidder
+     * 123: `bidders/123/accounts/123/filterSets/abc`  - For an account-level
+     * filter set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Filtersets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the owner (bidder or account) of the filter sets to be listed.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123`  - For an account-level filter set for the buyer account
+     * representing bidder   123: `bidders/123/accounts/123`  - For an
+     * account-level filter set for the child seat buyer account 456   whose
+     * bidder is 123: `bidders/123/accounts/456`
+     */
+    ownerName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListFilterSetsResponse.nextPageToken
+     * returned from the previous call to the accounts.filterSets.list method.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Bidders$Filtersets$Bidmetrics {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -3950,28 +5462,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListBidMetricsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListBidMetricsResponse>;
+    list(
+        params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Bidmetrics$List,
+        callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListBidMetricsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$Bidmetrics$List|
+        BodyResponseCallback<Schema$ListBidMetricsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListBidMetricsResponse>):
         void|AxiosPromise<Schema$ListBidMetricsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Bidmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Bidmetrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -3994,6 +5518,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Bidmetrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListBidMetricsResponse.nextPageToken
+     * returned from the previous call to the bidMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Bidresponseerrors {
     root: Adexchangebuyer2;
@@ -4022,29 +5576,46 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBidResponseErrorsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
-        callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Bidresponseerrors$List,
+        callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Bidresponseerrors$List|
+        BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponseErrorsResponse>,
         callback?: BodyResponseCallback<Schema$ListBidResponseErrorsResponse>):
         void|AxiosPromise<Schema$ListBidResponseErrorsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Bidresponseerrors$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Bidresponseerrors$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4069,6 +5640,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseerrors$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListBidResponseErrorsResponse.nextPageToken returned from the previous
+     * call to the bidResponseErrors.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Bidresponseswithoutbids {
     root: Adexchangebuyer2;
@@ -4098,31 +5700,51 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?:
+            Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListBidResponsesWithoutBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List,
+        callback:
+            BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List|
+        BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListBidResponsesWithoutBidsResponse>):
         void|AxiosPromise<Schema$ListBidResponsesWithoutBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4148,6 +5770,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Bidresponseswithoutbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListBidResponsesWithoutBidsResponse.nextPageToken returned from the
+     * previous call to the bidResponsesWithoutBids.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Filteredbidrequests {
     root: Adexchangebuyer2;
@@ -4176,30 +5829,48 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListFilteredBidRequestsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
-        callback?:
-            BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Filteredbidrequests$List,
+        callback: BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Filteredbidrequests$List|
+        BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListFilteredBidRequestsResponse>):
         void|AxiosPromise<Schema$ListFilteredBidRequestsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Filteredbidrequests$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Filteredbidrequests$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4224,6 +5895,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Filteredbidrequests$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListFilteredBidRequestsResponse.nextPageToken returned from the previous
+     * call to the filteredBidRequests.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Filteredbids {
     root: Adexchangebuyer2;
@@ -4257,28 +5959,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListFilteredBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Filtersets$Filteredbids$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListFilteredBidsResponse>;
+    list(
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidsResponse>,
-        callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$List,
+        callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListFilteredBidsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$Filteredbids$List|
+        BodyResponseCallback<Schema$ListFilteredBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListFilteredBidsResponse>,
         callback?: BodyResponseCallback<Schema$ListFilteredBidsResponse>):
         void|AxiosPromise<Schema$ListFilteredBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Filteredbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Filteredbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4301,6 +6015,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListFilteredBidsResponse.nextPageToken
+     * returned from the previous call to the filteredBids.list method.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Bidders$Filtersets$Filteredbids$Creatives {
     root: Adexchangebuyer2;
     constructor(root: Adexchangebuyer2) {
@@ -4329,30 +6073,48 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
+        options: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
+        callback: BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListCreativeStatusBreakdownByCreativeResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List|
+        BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByCreativeResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>,
         callback?: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByCreativeResponse>): void|
         AxiosPromise<Schema$ListCreativeStatusBreakdownByCreativeResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4379,6 +6141,43 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by
+     * creative. See
+     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListCreativeStatusBreakdownByCreativeResponse.nextPageToken returned from
+     * the previous call to the filteredBids.creatives.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Filteredbids$Details {
     root: Adexchangebuyer2;
@@ -4408,30 +6207,48 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
+        options: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>,
-        callback?: BodyResponseCallback<
+        callback: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<
+        params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
+        callback: BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
+    list(callback: BodyResponseCallback<
+         Schema$ListCreativeStatusBreakdownByDetailResponse>): void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Filteredbids$Details$List|
+        BodyResponseCallback<
+            Schema$ListCreativeStatusBreakdownByDetailResponse>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>,
         callback?: BodyResponseCallback<
             Schema$ListCreativeStatusBreakdownByDetailResponse>):
         void|AxiosPromise<Schema$ListCreativeStatusBreakdownByDetailResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Filteredbids$Details$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Filteredbids$Details$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4458,6 +6275,45 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Filteredbids$Details$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the creative status for which to retrieve a breakdown by
+     * detail. See
+     * [creative-status-codes](https://developers.google.com/ad-exchange/rtb/downloads/creative-status-codes).
+     * Details are only available for statuses 10, 14, 15, 17, 18, 19, 86,
+     * and 87.
+     */
+    creativeStatusId?: number;
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListCreativeStatusBreakdownByDetailResponse.nextPageToken returned from
+     * the previous call to the filteredBids.details.list method.
+     */
+    pageToken?: string;
+  }
+
 
 
   export class Resource$Bidders$Filtersets$Impressionmetrics {
@@ -4487,29 +6343,46 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListImpressionMetricsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
-        callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Impressionmetrics$List,
+        callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Impressionmetrics$List|
+        BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListImpressionMetricsResponse>,
         callback?: BodyResponseCallback<Schema$ListImpressionMetricsResponse>):
         void|AxiosPromise<Schema$ListImpressionMetricsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Impressionmetrics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Impressionmetrics$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4534,6 +6407,37 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Impressionmetrics$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListImpressionMetricsResponse.nextPageToken returned from the previous
+     * call to the impressionMetrics.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Losingbids {
     root: Adexchangebuyer2;
@@ -4562,28 +6466,40 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLosingBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bidders$Filtersets$Losingbids$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLosingBidsResponse>;
+    list(
+        params: Params$Resource$Bidders$Filtersets$Losingbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLosingBidsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Losingbids$List,
+        callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLosingBidsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bidders$Filtersets$Losingbids$List|
+        BodyResponseCallback<Schema$ListLosingBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLosingBidsResponse>,
         callback?: BodyResponseCallback<Schema$ListLosingBidsResponse>):
         void|AxiosPromise<Schema$ListLosingBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Losingbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Filtersets$Losingbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4606,6 +6522,36 @@ export namespace adexchangebuyer2_v2beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Bidders$Filtersets$Losingbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of ListLosingBidsResponse.nextPageToken
+     * returned from the previous call to the losingBids.list method.
+     */
+    pageToken?: string;
+  }
+
 
   export class Resource$Bidders$Filtersets$Nonbillablewinningbids {
     root: Adexchangebuyer2;
@@ -4634,31 +6580,50 @@ export namespace adexchangebuyer2_v2beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListNonBillableWinningBidsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List,
+        callback:
+            BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
+        void;
+    list(callback:
+             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List|
+        BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>,
         callback?:
             BodyResponseCallback<Schema$ListNonBillableWinningBidsResponse>):
         void|AxiosPromise<Schema$ListNonBillableWinningBidsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
       const parameters = {
@@ -4683,5 +6648,35 @@ export namespace adexchangebuyer2_v2beta1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Bidders$Filtersets$Nonbillablewinningbids$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the filter set that should be applied to the requested metrics.
+     * For example:  - For a bidder-level filter set for bidder 123:
+     * `bidders/123/filterSets/abc`  - For an account-level filter set for the
+     * buyer account representing bidder   123:
+     * `bidders/123/accounts/123/filterSets/abc`  - For an account-level filter
+     * set for the child seat buyer account 456   whose bidder is 123:
+     * `bidders/123/accounts/456/filterSets/abc`
+     */
+    filterSetName?: string;
+    /**
+     * Requested page size. The server may return fewer results than requested.
+     * If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     * Typically, this is the value of
+     * ListNonBillableWinningBidsResponse.nextPageToken returned from the
+     * previous call to the nonBillableWinningBids.list method.
+     */
+    pageToken?: string;
   }
 }

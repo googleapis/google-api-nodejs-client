@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace storage_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Storage JSON API
    *
@@ -87,15 +90,15 @@ export namespace storage_v1 {
     /**
      * Access controls on the bucket.
      */
-    acl: Schema$BucketAccessControl[];
+    acl?: Schema$BucketAccessControl[];
     /**
      * The bucket&#39;s billing configuration.
      */
-    billing: any;
+    billing?: any;
     /**
      * The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
      */
-    cors: any[];
+    cors?: any[];
     /**
      * Defines the default value for Event-Based hold on newly created objects
      * in this bucket. Event-Based hold is a way to retain objects indefinitely
@@ -109,66 +112,66 @@ export namespace storage_v1 {
      * years after that. Objects under Event-Based hold cannot be deleted,
      * overwritten or archived until the hold is removed.
      */
-    defaultEventBasedHold: boolean;
+    defaultEventBasedHold?: boolean;
     /**
      * Default access controls to apply to new objects when no ACL is provided.
      */
-    defaultObjectAcl: Schema$ObjectAccessControl[];
+    defaultObjectAcl?: Schema$ObjectAccessControl[];
     /**
      * Encryption configuration used by default for newly inserted objects, when
      * no encryption config is specified.
      */
-    encryption: any;
+    encryption?: any;
     /**
      * HTTP 1.1 Entity tag for the bucket.
      */
-    etag: string;
+    etag?: string;
     /**
      * The ID of the bucket. For buckets, the id and name properties are the
      * same.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of item this is. For buckets, this is always storage#bucket.
      */
-    kind: string;
+    kind?: string;
     /**
      * User-provided labels, in key/value pairs.
      */
-    labels: any;
+    labels?: any;
     /**
      * The bucket&#39;s lifecycle configuration. See lifecycle management for
      * more information.
      */
-    lifecycle: any;
+    lifecycle?: any;
     /**
      * The location of the bucket. Object data for objects in the bucket resides
      * in physical storage within this region. Defaults to US. See the
      * developer&#39;s guide for the authoritative list.
      */
-    location: string;
+    location?: string;
     /**
      * The bucket&#39;s logging configuration, which defines the destination
      * bucket and optional name prefix for the current bucket&#39;s logs.
      */
-    logging: any;
+    logging?: any;
     /**
      * The metadata generation of this bucket.
      */
-    metageneration: string;
+    metageneration?: string;
     /**
      * The name of the bucket.
      */
-    name: string;
+    name?: string;
     /**
      * The owner of the bucket. This is always the project team&#39;s owner
      * group.
      */
-    owner: any;
+    owner?: any;
     /**
      * The project number of the project the bucket belongs to.
      */
-    projectNumber: string;
+    projectNumber?: string;
     /**
      * Defines the retention policy for a bucket. The Retention policy enforces
      * a minimum retention time for all objects contained in the bucket, based
@@ -180,11 +183,11 @@ export namespace storage_v1 {
      * Attempting to remove or decrease period of a locked retention policy will
      * result in a PERMISSION_DENIED error.
      */
-    retentionPolicy: any;
+    retentionPolicy?: any;
     /**
      * The URI of this bucket.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The bucket&#39;s default storage class, used whenever no storageClass is
      * specified for a newly-created object. This defines how objects in the
@@ -194,25 +197,25 @@ export namespace storage_v1 {
      * bucket is created, it will default to STANDARD. For more information, see
      * storage classes.
      */
-    storageClass: string;
+    storageClass?: string;
     /**
      * The creation time of the bucket in RFC 3339 format.
      */
-    timeCreated: string;
+    timeCreated?: string;
     /**
      * The modification time of the bucket in RFC 3339 format.
      */
-    updated: string;
+    updated?: string;
     /**
      * The bucket&#39;s versioning configuration.
      */
-    versioning: any;
+    versioning?: any;
     /**
      * The bucket&#39;s website configuration, controlling how the service
      * behaves when accessing bucket contents as a web site. See the Static
      * Website Examples for more information.
      */
-    website: any;
+    website?: any;
   }
   /**
    * An access-control entry.
@@ -221,15 +224,15 @@ export namespace storage_v1 {
     /**
      * The name of the bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The domain associated with the entity, if any.
      */
-    domain: string;
+    domain?: string;
     /**
      * The email address associated with the entity, if any.
      */
-    email: string;
+    email?: string;
     /**
      * The entity holding the permission, in one of the following forms:  -
      * user-userId  - user-email  - group-groupId  - group-email  -
@@ -240,36 +243,36 @@ export namespace storage_v1 {
      * Apps for Business domain example.com, the entity would be
      * domain-example.com.
      */
-    entity: string;
+    entity?: string;
     /**
      * The ID for the entity, if any.
      */
-    entityId: string;
+    entityId?: string;
     /**
      * HTTP 1.1 Entity tag for the access-control entry.
      */
-    etag: string;
+    etag?: string;
     /**
      * The ID of the access-control entry.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of item this is. For bucket access control entries, this is
      * always storage#bucketAccessControl.
      */
-    kind: string;
+    kind?: string;
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam: any;
+    projectTeam?: any;
     /**
      * The access permission for the entity.
      */
-    role: string;
+    role?: string;
     /**
      * The link to this access-control entry.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * An access-control list.
@@ -278,12 +281,12 @@ export namespace storage_v1 {
     /**
      * The list of items.
      */
-    items: Schema$BucketAccessControl[];
+    items?: Schema$BucketAccessControl[];
     /**
      * The kind of item this is. For lists of bucket access control entries,
      * this is always storage#bucketAccessControls.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A list of buckets.
@@ -292,17 +295,17 @@ export namespace storage_v1 {
     /**
      * The list of items.
      */
-    items: Schema$Bucket[];
+    items?: Schema$Bucket[];
     /**
      * The kind of item this is. For lists of buckets, this is always
      * storage#buckets.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -311,47 +314,47 @@ export namespace storage_v1 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address: string;
+    address?: string;
     /**
      * Date and time of notification channel expiration, expressed as a Unix
      * timestamp, in milliseconds. Optional.
      */
-    expiration: string;
+    expiration?: string;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies this as a notification channel used to watch for changes to a
      * resource. Value: the fixed string &quot;api#channel&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params: any;
+    params?: any;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload: boolean;
+    payload?: boolean;
     /**
      * An opaque ID that identifies the resource being watched on this channel.
      * Stable across different API versions.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri: string;
+    resourceUri?: string;
     /**
      * An arbitrary string delivered to the target address with each
      * notification delivered over this channel. Optional.
      */
-    token: string;
+    token?: string;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type: string;
+    type?: string;
   }
   /**
    * A Compose request.
@@ -360,16 +363,16 @@ export namespace storage_v1 {
     /**
      * Properties of the resulting object.
      */
-    destination: Schema$Object;
+    destination?: Schema$Object;
     /**
      * The kind of item this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The list of source objects that will be concatenated into a single
      * object.
      */
-    sourceObjects: any[];
+    sourceObjects?: any[];
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -379,44 +382,44 @@ export namespace storage_v1 {
      * An optional list of additional attributes to attach to each Cloud PubSub
      * message published for this notification subscription.
      */
-    custom_attributes: any;
+    custom_attributes?: any;
     /**
      * HTTP 1.1 Entity tag for this subscription notification.
      */
-    etag: string;
+    etag?: string;
     /**
      * If present, only send notifications about listed event types. If empty,
      * sent notifications for all event types.
      */
-    event_types: string[];
+    event_types?: string[];
     /**
      * The ID of the notification.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of item this is. For notifications, this is always
      * storage#notification.
      */
-    kind: string;
+    kind?: string;
     /**
      * If present, only apply this notification configuration to object names
      * that begin with this prefix.
      */
-    object_name_prefix: string;
+    object_name_prefix?: string;
     /**
      * The desired content of the Payload.
      */
-    payload_format: string;
+    payload_format?: string;
     /**
      * The canonical URL of this notification.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * The Cloud PubSub topic to which this subscription publishes. Formatted
      * as:
      * &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
      */
-    topic: string;
+    topic?: string;
   }
   /**
    * A list of notification subscriptions.
@@ -425,12 +428,12 @@ export namespace storage_v1 {
     /**
      * The list of items.
      */
-    items: Schema$Notification[];
+    items?: Schema$Notification[];
     /**
      * The kind of item this is. For lists of notifications, this is always
      * storage#notifications.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * An object.
@@ -439,54 +442,54 @@ export namespace storage_v1 {
     /**
      * Access controls on the object.
      */
-    acl: Schema$ObjectAccessControl[];
+    acl?: Schema$ObjectAccessControl[];
     /**
      * The name of the bucket containing this object.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * Cache-Control directive for the object data. If omitted, and the object
      * is accessible to all anonymous users, the default will be public,
      * max-age=3600.
      */
-    cacheControl: string;
+    cacheControl?: string;
     /**
      * Number of underlying components that make up this object. Components are
      * accumulated by compose operations.
      */
-    componentCount: number;
+    componentCount?: number;
     /**
      * Content-Disposition of the object data.
      */
-    contentDisposition: string;
+    contentDisposition?: string;
     /**
      * Content-Encoding of the object data.
      */
-    contentEncoding: string;
+    contentEncoding?: string;
     /**
      * Content-Language of the object data.
      */
-    contentLanguage: string;
+    contentLanguage?: string;
     /**
      * Content-Type of the object data. If an object is stored without a
      * Content-Type, it is served as application/octet-stream.
      */
-    contentType: string;
+    contentType?: string;
     /**
      * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using
      * base64 in big-endian byte order. For more information about using the
      * CRC32c checksum, see Hashes and ETags: Best Practices.
      */
-    crc32c: string;
+    crc32c?: string;
     /**
      * Metadata of customer-supplied encryption key, if the object is encrypted
      * by such a key.
      */
-    customerEncryption: any;
+    customerEncryption?: any;
     /**
      * HTTP 1.1 Entity tag for the object.
      */
-    etag: string;
+    etag?: string;
     /**
      * Defines the Event-Based hold for an object. Event-Based hold is a way to
      * retain objects indefinitely until an event occurs, signified by the
@@ -498,53 +501,53 @@ export namespace storage_v1 {
      * number of years until the event has occurred (hold is released) and then
      * 3 more years after that.
      */
-    eventBasedHold: boolean;
+    eventBasedHold?: boolean;
     /**
      * The content generation of this object. Used for object versioning.
      */
-    generation: string;
+    generation?: string;
     /**
      * The ID of the object, including the bucket name, object name, and
      * generation number.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of item this is. For objects, this is always storage#object.
      */
-    kind: string;
+    kind?: string;
     /**
      * Cloud KMS Key used to encrypt this object, if the object is encrypted by
      * such a key. Limited availability; usable only by enabled projects.
      */
-    kmsKeyName: string;
+    kmsKeyName?: string;
     /**
      * MD5 hash of the data; encoded using base64. For more information about
      * using the MD5 hash, see Hashes and ETags: Best Practices.
      */
-    md5Hash: string;
+    md5Hash?: string;
     /**
      * Media download link.
      */
-    mediaLink: string;
+    mediaLink?: string;
     /**
      * User-provided metadata, in key/value pairs.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The version of the metadata for this object at this generation. Used for
      * preconditions and for detecting changes in metadata. A metageneration
      * number is only meaningful in the context of a particular generation of a
      * particular object.
      */
-    metageneration: string;
+    metageneration?: string;
     /**
      * The name of the object. Required if not specified by URL parameter.
      */
-    name: string;
+    name?: string;
     /**
      * The owner of the object. This will always be the uploader of the object.
      */
-    owner: any;
+    owner?: any;
     /**
      * Specifies the earliest time that the object&#39;s retention period
      * expires. This value is server-determined and is in RFC 3339 format. Note
@@ -554,19 +557,19 @@ export namespace storage_v1 {
      * that the user can reason about policy without having to first unset the
      * TemporaryHold).
      */
-    retentionExpirationTime: string;
+    retentionExpirationTime?: string;
     /**
      * The link to this object.
      */
-    selfLink: string;
+    selfLink?: string;
     /**
      * Content-Length of the data in bytes.
      */
-    size: string;
+    size?: string;
     /**
      * Storage class of the object.
      */
-    storageClass: string;
+    storageClass?: string;
     /**
      * Defines the temporary hold for an object. This flag is used to enforce a
      * temporary hold on an object. While it is set to true, the object is
@@ -574,25 +577,25 @@ export namespace storage_v1 {
      * is regulatory investigations where objects need to be retained while the
      * investigation is ongoing.
      */
-    temporaryHold: boolean;
+    temporaryHold?: boolean;
     /**
      * The creation time of the object in RFC 3339 format.
      */
-    timeCreated: string;
+    timeCreated?: string;
     /**
      * The deletion time of the object in RFC 3339 format. Will be returned if
      * and only if this version of the object has been deleted.
      */
-    timeDeleted: string;
+    timeDeleted?: string;
     /**
      * The time at which the object&#39;s storage class was last changed. When
      * the object is initially created, it will be set to timeCreated.
      */
-    timeStorageClassUpdated: string;
+    timeStorageClassUpdated?: string;
     /**
      * The modification time of the object metadata in RFC 3339 format.
      */
-    updated: string;
+    updated?: string;
   }
   /**
    * An access-control entry.
@@ -601,15 +604,15 @@ export namespace storage_v1 {
     /**
      * The name of the bucket.
      */
-    bucket: string;
+    bucket?: string;
     /**
      * The domain associated with the entity, if any.
      */
-    domain: string;
+    domain?: string;
     /**
      * The email address associated with the entity, if any.
      */
-    email: string;
+    email?: string;
     /**
      * The entity holding the permission, in one of the following forms:  -
      * user-userId  - user-email  - group-groupId  - group-email  -
@@ -620,44 +623,44 @@ export namespace storage_v1 {
      * Apps for Business domain example.com, the entity would be
      * domain-example.com.
      */
-    entity: string;
+    entity?: string;
     /**
      * The ID for the entity, if any.
      */
-    entityId: string;
+    entityId?: string;
     /**
      * HTTP 1.1 Entity tag for the access-control entry.
      */
-    etag: string;
+    etag?: string;
     /**
      * The content generation of the object, if applied to an object.
      */
-    generation: string;
+    generation?: string;
     /**
      * The ID of the access-control entry.
      */
-    id: string;
+    id?: string;
     /**
      * The kind of item this is. For object access control entries, this is
      * always storage#objectAccessControl.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the object, if applied to an object.
      */
-    object: string;
+    object?: string;
     /**
      * The project team associated with the entity, if any.
      */
-    projectTeam: any;
+    projectTeam?: any;
     /**
      * The access permission for the entity.
      */
-    role: string;
+    role?: string;
     /**
      * The link to this access-control entry.
      */
-    selfLink: string;
+    selfLink?: string;
   }
   /**
    * An access-control list.
@@ -666,12 +669,12 @@ export namespace storage_v1 {
     /**
      * The list of items.
      */
-    items: Schema$ObjectAccessControl[];
+    items?: Schema$ObjectAccessControl[];
     /**
      * The kind of item this is. For lists of object access control entries,
      * this is always storage#objectAccessControls.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A list of objects.
@@ -680,22 +683,22 @@ export namespace storage_v1 {
     /**
      * The list of items.
      */
-    items: Schema$Object[];
+    items?: Schema$Object[];
     /**
      * The kind of item this is. For lists of objects, this is always
      * storage#objects.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of prefixes of objects matching-but-not-listed up to and
      * including the requested delimiter.
      */
-    prefixes: string[];
+    prefixes?: string[];
   }
   /**
    * A bucket/object IAM policy.
@@ -705,16 +708,16 @@ export namespace storage_v1 {
      * An association between a role, which comes with a set of permissions, and
      * members who may assume that role.
      */
-    bindings: any[];
+    bindings?: any[];
     /**
      * HTTP 1.1  Entity tag for the policy.
      */
-    etag: string;
+    etag?: string;
     /**
      * The kind of item this is. For policies, this is always storage#policy.
      * This field is ignored on input.
      */
-    kind: string;
+    kind?: string;
     /**
      * The ID of the resource to which this policy belongs. Will be of the form
      * projects/_/buckets/bucket for buckets, and
@@ -724,7 +727,7 @@ export namespace storage_v1 {
      * The current generation can be denoted with #0. This field is ignored on
      * input.
      */
-    resourceId: string;
+    resourceId?: string;
   }
   /**
    * A rewrite response.
@@ -734,32 +737,32 @@ export namespace storage_v1 {
      * true if the copy is finished; otherwise, false if the copy is in
      * progress. This property is always present in the response.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The kind of item this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The total size of the object being copied in bytes. This property is
      * always present in the response.
      */
-    objectSize: string;
+    objectSize?: string;
     /**
      * A resource containing the metadata for the copied-to object. This
      * property is present in the response only when copying completes.
      */
-    resource: Schema$Object;
+    resource?: Schema$Object;
     /**
      * A token to use in subsequent requests to continue copying data. This
      * token is present in the response only when there is more data to copy.
      */
-    rewriteToken: string;
+    rewriteToken?: string;
     /**
      * The total bytes written so far, which can be used to provide a waiting
      * user with a progress indicator. This property is always present in the
      * response.
      */
-    totalBytesRewritten: string;
+    totalBytesRewritten?: string;
   }
   /**
    * A subscription to receive Google PubSub notifications.
@@ -768,12 +771,12 @@ export namespace storage_v1 {
     /**
      * The ID of the notification.
      */
-    email_address: string;
+    email_address?: string;
     /**
      * The kind of item this is. For notifications, this is always
      * storage#notification.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * A storage.(buckets|objects).testIamPermissions response.
@@ -782,7 +785,7 @@ export namespace storage_v1 {
     /**
      * The kind of item this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The permissions held by the caller. Permissions are always of the format
      * storage.resource.capability, where resource is one of buckets or objects.
@@ -799,8 +802,9 @@ export namespace storage_v1 {
      * Update object IAM policy.   - storage.objects.update — Update object
      * metadata.
      */
-    permissions: string[];
+    permissions?: string[];
   }
+
 
   export class Resource$Bucketaccesscontrols {
     root: Storage;
@@ -884,22 +888,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Bucketaccesscontrols$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Bucketaccesscontrols$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Bucketaccesscontrols$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bucketaccesscontrols$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -995,26 +1014,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Bucketaccesscontrols$Get,
         options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Bucketaccesscontrols$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    get(params: Params$Resource$Bucketaccesscontrols$Get,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    get(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    get(paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Get|
         BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
         void|AxiosPromise<Schema$BucketAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1108,28 +1136,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BucketAccessControl>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bucketaccesscontrols$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+    insert(
+        params: Params$Resource$Bucketaccesscontrols$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    insert(
+        params: Params$Resource$Bucketaccesscontrols$Insert,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    insert(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Insert|
         BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    insert(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
         void|AxiosPromise<Schema$BucketAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bucketaccesscontrols$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1218,28 +1257,40 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BucketAccessControls>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bucketaccesscontrols$List,
+        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControls>;
+    list(
+        params: Params$Resource$Bucketaccesscontrols$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControls>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControls>): void;
+        callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Bucketaccesscontrols$List,
+        callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
+    list(callback: BodyResponseCallback<Schema$BucketAccessControls>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$List|
+        BodyResponseCallback<Schema$BucketAccessControls>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControls>,
         callback?: BodyResponseCallback<Schema$BucketAccessControls>):
         void|AxiosPromise<Schema$BucketAccessControls> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Bucketaccesscontrols$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1341,28 +1392,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BucketAccessControl>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bucketaccesscontrols$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+    patch(
+        params: Params$Resource$Bucketaccesscontrols$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    patch(
+        params: Params$Resource$Bucketaccesscontrols$Patch,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    patch(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Patch|
         BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    patch(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
         void|AxiosPromise<Schema$BucketAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bucketaccesscontrols$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1464,28 +1526,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$BucketAccessControl>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Bucketaccesscontrols$Update,
+        options?: MethodOptions): AxiosPromise<Schema$BucketAccessControl>;
+    update(
+        params: Params$Resource$Bucketaccesscontrols$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$BucketAccessControl>,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    update(
+        params: Params$Resource$Bucketaccesscontrols$Update,
+        callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    update(callback: BodyResponseCallback<Schema$BucketAccessControl>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Bucketaccesscontrols$Update|
         BodyResponseCallback<Schema$BucketAccessControl>,
-        callback?: BodyResponseCallback<Schema$BucketAccessControl>): void;
-    update(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$BucketAccessControl>,
         callback?: BodyResponseCallback<Schema$BucketAccessControl>):
         void|AxiosPromise<Schema$BucketAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Bucketaccesscontrols$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bucketaccesscontrols$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1507,6 +1580,136 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Bucketaccesscontrols$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Bucketaccesscontrols$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Bucketaccesscontrols$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BucketAccessControl;
+  }
+  export interface Params$Resource$Bucketaccesscontrols$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Bucketaccesscontrols$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BucketAccessControl;
+  }
+  export interface Params$Resource$Bucketaccesscontrols$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$BucketAccessControl;
+  }
+
 
   export class Resource$Buckets {
     root: Storage;
@@ -1585,22 +1788,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Buckets$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Buckets$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Buckets$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Buckets$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1692,23 +1908,33 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+    get(params?: Params$Resource$Buckets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+    get(params: Params$Resource$Buckets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    get(params: Params$Resource$Buckets$Get,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    get(callback: BodyResponseCallback<Schema$Bucket>): void;
+    get(paramsOrCallback?: Params$Resource$Buckets$Get|
+        BodyResponseCallback<Schema$Bucket>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
         void|AxiosPromise<Schema$Bucket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1797,26 +2023,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Buckets$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Buckets$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Buckets$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Buckets$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Buckets$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1913,25 +2151,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+    insert(params?: Params$Resource$Buckets$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Bucket>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>): void;
+        params: Params$Resource$Buckets$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        params: Params$Resource$Buckets$Insert,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    insert(callback: BodyResponseCallback<Schema$Bucket>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Buckets$Insert|
+        BodyResponseCallback<Schema$Bucket>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
         void|AxiosPromise<Schema$Bucket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2036,25 +2285,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Buckets>;
+    list(params?: Params$Resource$Buckets$List, options?: MethodOptions):
+        AxiosPromise<Schema$Buckets>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
-        callback?: BodyResponseCallback<Schema$Buckets>): void;
+        params: Params$Resource$Buckets$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Buckets>,
+        callback: BodyResponseCallback<Schema$Buckets>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
+        params: Params$Resource$Buckets$List,
+        callback: BodyResponseCallback<Schema$Buckets>): void;
+    list(callback: BodyResponseCallback<Schema$Buckets>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Buckets$List|
+        BodyResponseCallback<Schema$Buckets>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Buckets>,
         callback?: BodyResponseCallback<Schema$Buckets>):
         void|AxiosPromise<Schema$Buckets> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2090,26 +2350,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lockRetentionPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Bucket>;
     lockRetentionPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>): void;
+        params?: Params$Resource$Buckets$Lockretentionpolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Bucket>;
     lockRetentionPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        params: Params$Resource$Buckets$Lockretentionpolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    lockRetentionPolicy(
+        params: Params$Resource$Buckets$Lockretentionpolicy,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    lockRetentionPolicy(callback: BodyResponseCallback<Schema$Bucket>): void;
+    lockRetentionPolicy(
+        paramsOrCallback?: Params$Resource$Buckets$Lockretentionpolicy|
+        BodyResponseCallback<Schema$Bucket>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
         void|AxiosPromise<Schema$Bucket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Buckets$Lockretentionpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Lockretentionpolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2212,25 +2484,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+    patch(params?: Params$Resource$Buckets$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Bucket>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>): void;
+        params: Params$Resource$Buckets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        params: Params$Resource$Buckets$Patch,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    patch(callback: BodyResponseCallback<Schema$Bucket>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Buckets$Patch|
+        BodyResponseCallback<Schema$Bucket>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
         void|AxiosPromise<Schema$Bucket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2326,26 +2609,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Buckets$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Buckets$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Buckets$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Buckets$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Buckets$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2439,29 +2734,45 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Buckets$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Buckets$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Buckets$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Buckets$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Buckets$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2565,25 +2876,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Bucket>;
+    update(params?: Params$Resource$Buckets$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Bucket>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
-        callback?: BodyResponseCallback<Schema$Bucket>): void;
+        params: Params$Resource$Buckets$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
+        params: Params$Resource$Buckets$Update,
+        callback: BodyResponseCallback<Schema$Bucket>): void;
+    update(callback: BodyResponseCallback<Schema$Bucket>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Buckets$Update|
+        BodyResponseCallback<Schema$Bucket>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Bucket>,
         callback?: BodyResponseCallback<Schema$Bucket>):
         void|AxiosPromise<Schema$Bucket> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2605,6 +2927,290 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Buckets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * If set, only deletes the bucket if its metageneration matches this value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * If set, only deletes the bucket if its metageneration does not match this
+     * value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Apply a predefined set of access controls to this bucket.
+     */
+    predefinedAcl?: string;
+    /**
+     * Apply a predefined set of default object access controls to this bucket.
+     */
+    predefinedDefaultObjectAcl?: string;
+    /**
+     * A valid API project identifier.
+     */
+    project?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl, unless the bucket
+     * resource specifies acl or defaultObjectAcl properties, when it defaults
+     * to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Bucket;
+  }
+  export interface Params$Resource$Buckets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Maximum number of buckets to return in a single response. The service
+     * will use this parameter or 1,000 items, whichever is smaller.
+     */
+    maxResults?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of
+     * results to view.
+     */
+    pageToken?: string;
+    /**
+     * Filter results to buckets whose names begin with this prefix.
+     */
+    prefix?: string;
+    /**
+     * A valid API project identifier.
+     */
+    project?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Lockretentionpolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Makes the operation conditional on whether bucket's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Apply a predefined set of access controls to this bucket.
+     */
+    predefinedAcl?: string;
+    /**
+     * Apply a predefined set of default object access controls to this bucket.
+     */
+    predefinedDefaultObjectAcl?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Bucket;
+  }
+  export interface Params$Resource$Buckets$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Policy;
+  }
+  export interface Params$Resource$Buckets$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Permissions to test.
+     */
+    permissions?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Buckets$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the return of the bucket metadata conditional on whether the
+     * bucket's current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Apply a predefined set of access controls to this bucket.
+     */
+    predefinedAcl?: string;
+    /**
+     * Apply a predefined set of default object access controls to this bucket.
+     */
+    predefinedDefaultObjectAcl?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Bucket;
+  }
+
 
   export class Resource$Channels {
     root: Storage;
@@ -2681,22 +3287,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
+        AxiosPromise<void>;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Channels$Stop,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Channels$Stop,
+        callback: BodyResponseCallback<void>): void;
+    stop(callback: BodyResponseCallback<void>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Channels$Stop|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Channels$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2718,6 +3337,14 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Channels$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Defaultobjectaccesscontrols {
     root: Storage;
@@ -2801,22 +3428,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Defaultobjectaccesscontrols$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Defaultobjectaccesscontrols$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Defaultobjectaccesscontrols$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2911,26 +3553,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Defaultobjectaccesscontrols$Get,
         options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Defaultobjectaccesscontrols$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(params: Params$Resource$Defaultobjectaccesscontrols$Get,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Get|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3023,28 +3674,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Defaultobjectaccesscontrols$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    insert(
+        params: Params$Resource$Defaultobjectaccesscontrols$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(
+        params: Params$Resource$Defaultobjectaccesscontrols$Insert,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Insert|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    insert(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3133,28 +3795,40 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControls>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Defaultobjectaccesscontrols$List,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControls>;
+    list(
+        params: Params$Resource$Defaultobjectaccesscontrols$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Defaultobjectaccesscontrols$List,
+        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+    list(callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$List|
+        BodyResponseCallback<Schema$ObjectAccessControls>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
         void|AxiosPromise<Schema$ObjectAccessControls> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3254,28 +3928,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Defaultobjectaccesscontrols$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    patch(
+        params: Params$Resource$Defaultobjectaccesscontrols$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(
+        params: Params$Resource$Defaultobjectaccesscontrols$Patch,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Patch|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    patch(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3376,28 +4061,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Defaultobjectaccesscontrols$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    update(
+        params: Params$Resource$Defaultobjectaccesscontrols$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(
+        params: Params$Resource$Defaultobjectaccesscontrols$Update,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Defaultobjectaccesscontrols$Update|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    update(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Defaultobjectaccesscontrols$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Defaultobjectaccesscontrols$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3420,6 +4116,146 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Defaultobjectaccesscontrols$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Defaultobjectaccesscontrols$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Defaultobjectaccesscontrols$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+  export interface Params$Resource$Defaultobjectaccesscontrols$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * If present, only return default ACL listing if the bucket's current
+     * metageneration matches this value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * If present, only return default ACL listing if the bucket's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Defaultobjectaccesscontrols$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+  export interface Params$Resource$Defaultobjectaccesscontrols$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+
 
   export class Resource$Notifications {
     root: Storage;
@@ -3500,22 +4336,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Notifications$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Notifications$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Notifications$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Notifications$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3609,24 +4460,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Notifications$Get,
         options?: MethodOptions): AxiosPromise<Schema$Notification>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+    get(params: Params$Resource$Notifications$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    get(params: Params$Resource$Notifications$Get,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    get(callback: BodyResponseCallback<Schema$Notification>): void;
+    get(paramsOrCallback?: Params$Resource$Notifications$Get|
+        BodyResponseCallback<Schema$Notification>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
         void|AxiosPromise<Schema$Notification> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3721,26 +4583,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Notification>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>): void;
+        params?: Params$Resource$Notifications$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Notification>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        params: Params$Resource$Notifications$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    insert(
+        params: Params$Resource$Notifications$Insert,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    insert(callback: BodyResponseCallback<Schema$Notification>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Notifications$Insert|
+        BodyResponseCallback<Schema$Notification>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
         void|AxiosPromise<Schema$Notification> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3829,26 +4704,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Notifications$List, options?: MethodOptions):
         AxiosPromise<Schema$Notifications>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notifications>,
-        callback?: BodyResponseCallback<Schema$Notifications>): void;
+        params: Params$Resource$Notifications$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Notifications>,
+        callback: BodyResponseCallback<Schema$Notifications>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notifications>,
+        params: Params$Resource$Notifications$List,
+        callback: BodyResponseCallback<Schema$Notifications>): void;
+    list(callback: BodyResponseCallback<Schema$Notifications>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Notifications$List|
+        BodyResponseCallback<Schema$Notifications>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notifications>,
         callback?: BodyResponseCallback<Schema$Notifications>):
         void|AxiosPromise<Schema$Notifications> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3870,6 +4757,84 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Notifications$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent bucket of the notification.
+     */
+    bucket?: string;
+    /**
+     * ID of the notification to delete.
+     */
+    notification?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Notifications$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent bucket of the notification.
+     */
+    bucket?: string;
+    /**
+     * Notification ID
+     */
+    notification?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Notifications$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The parent bucket of the notification.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Notification;
+  }
+  export interface Params$Resource$Notifications$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a Google Cloud Storage bucket.
+     */
+    bucket?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+
 
   export class Resource$Objectaccesscontrols {
     root: Storage;
@@ -3960,22 +4925,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Objectaccesscontrols$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Objectaccesscontrols$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Objectaccesscontrols$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Objectaccesscontrols$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4078,26 +5058,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Objectaccesscontrols$Get,
         options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Objectaccesscontrols$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(params: Params$Resource$Objectaccesscontrols$Get,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    get(paramsOrCallback?: Params$Resource$Objectaccesscontrols$Get|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4198,28 +5187,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     insert(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Objectaccesscontrols$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    insert(
+        params: Params$Resource$Objectaccesscontrols$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(
+        params: Params$Resource$Objectaccesscontrols$Insert,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Insert|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    insert(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Objectaccesscontrols$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4315,28 +5315,40 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControls>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Objectaccesscontrols$List,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControls>;
+    list(
+        params: Params$Resource$Objectaccesscontrols$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Objectaccesscontrols$List,
+        callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+    list(callback: BodyResponseCallback<Schema$ObjectAccessControls>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Objectaccesscontrols$List|
+        BodyResponseCallback<Schema$ObjectAccessControls>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControls>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControls>):
         void|AxiosPromise<Schema$ObjectAccessControls> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Objectaccesscontrols$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4445,28 +5457,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     patch(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Objectaccesscontrols$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    patch(
+        params: Params$Resource$Objectaccesscontrols$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(
+        params: Params$Resource$Objectaccesscontrols$Patch,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Patch|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    patch(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Objectaccesscontrols$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4575,28 +5598,39 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ObjectAccessControl>;
     update(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Objectaccesscontrols$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ObjectAccessControl>;
+    update(
+        params: Params$Resource$Objectaccesscontrols$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ObjectAccessControl>,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(
+        params: Params$Resource$Objectaccesscontrols$Update,
+        callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(callback: BodyResponseCallback<Schema$ObjectAccessControl>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Objectaccesscontrols$Update|
         BodyResponseCallback<Schema$ObjectAccessControl>,
-        callback?: BodyResponseCallback<Schema$ObjectAccessControl>): void;
-    update(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ObjectAccessControl>,
         callback?: BodyResponseCallback<Schema$ObjectAccessControl>):
         void|AxiosPromise<Schema$ObjectAccessControl> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Objectaccesscontrols$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objectaccesscontrols$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4618,6 +5652,196 @@ export namespace storage_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Objectaccesscontrols$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objectaccesscontrols$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objectaccesscontrols$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+  export interface Params$Resource$Objectaccesscontrols$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objectaccesscontrols$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+  export interface Params$Resource$Objectaccesscontrols$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * The entity holding the permission. Can be user-userId, user-emailAddress,
+     * group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
+     */
+    entity?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ObjectAccessControl;
+  }
+
 
   export class Resource$Objects {
     root: Storage;
@@ -4715,25 +5939,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    compose(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+    compose(params?: Params$Resource$Objects$Compose, options?: MethodOptions):
+        AxiosPromise<Schema$Object>;
     compose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
+        params: Params$Resource$Objects$Compose,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
     compose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+        params: Params$Resource$Objects$Compose,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    compose(callback: BodyResponseCallback<Schema$Object>): void;
+    compose(
+        paramsOrCallback?: Params$Resource$Objects$Compose|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Compose;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Compose;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4863,25 +6098,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    copy(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+    copy(params?: Params$Resource$Objects$Copy, options?: MethodOptions):
+        AxiosPromise<Schema$Object>;
     copy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
+        params: Params$Resource$Objects$Copy,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
     copy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+        params: Params$Resource$Objects$Copy,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    copy(callback: BodyResponseCallback<Schema$Object>): void;
+    copy(
+        paramsOrCallback?: Params$Resource$Objects$Copy|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Copy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Copy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4988,22 +6234,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Objects$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Objects$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Objects$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Objects$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5108,23 +6367,33 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+    get(params?: Params$Resource$Objects$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Object>;
+    get(params: Params$Resource$Objects$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    get(params: Params$Resource$Objects$Get,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    get(callback: BodyResponseCallback<Schema$Object>): void;
+    get(paramsOrCallback?: Params$Resource$Objects$Get|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5220,26 +6489,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Objects$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Objects$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Objects$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Objects$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Objects$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5354,25 +6635,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+    insert(params?: Params$Resource$Objects$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Object>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
+        params: Params$Resource$Objects$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+        params: Params$Resource$Objects$Insert,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    insert(callback: BodyResponseCallback<Schema$Object>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Objects$Insert|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5482,25 +6774,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Objects>;
+    list(params?: Params$Resource$Objects$List, options?: MethodOptions):
+        AxiosPromise<Schema$Objects>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Objects>,
-        callback?: BodyResponseCallback<Schema$Objects>): void;
+        params: Params$Resource$Objects$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Objects>,
+        callback: BodyResponseCallback<Schema$Objects>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Objects>,
+        params: Params$Resource$Objects$List,
+        callback: BodyResponseCallback<Schema$Objects>): void;
+    list(callback: BodyResponseCallback<Schema$Objects>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Objects$List|
+        BodyResponseCallback<Schema$Objects>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Objects>,
         callback?: BodyResponseCallback<Schema$Objects>):
         void|AxiosPromise<Schema$Objects> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5609,25 +6912,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+    patch(params?: Params$Resource$Objects$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Object>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
+        params: Params$Resource$Objects$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+        params: Params$Resource$Objects$Patch,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    patch(callback: BodyResponseCallback<Schema$Object>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Objects$Patch|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5758,26 +7072,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rewrite(params?: any, options?: MethodOptions):
+    rewrite(params?: Params$Resource$Objects$Rewrite, options?: MethodOptions):
         AxiosPromise<Schema$RewriteResponse>;
     rewrite(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RewriteResponse>,
-        callback?: BodyResponseCallback<Schema$RewriteResponse>): void;
+        params: Params$Resource$Objects$Rewrite,
+        options: MethodOptions|BodyResponseCallback<Schema$RewriteResponse>,
+        callback: BodyResponseCallback<Schema$RewriteResponse>): void;
     rewrite(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RewriteResponse>,
+        params: Params$Resource$Objects$Rewrite,
+        callback: BodyResponseCallback<Schema$RewriteResponse>): void;
+    rewrite(callback: BodyResponseCallback<Schema$RewriteResponse>): void;
+    rewrite(
+        paramsOrCallback?: Params$Resource$Objects$Rewrite|
+        BodyResponseCallback<Schema$RewriteResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RewriteResponse>,
         callback?: BodyResponseCallback<Schema$RewriteResponse>):
         void|AxiosPromise<Schema$RewriteResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Rewrite;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Rewrite;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5888,26 +7213,38 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Objects$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Objects$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Objects$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Objects$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Objects$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6008,29 +7345,45 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Objects$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Objects$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Objects$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Objects$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Objects$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6141,25 +7494,36 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Object>;
+    update(params?: Params$Resource$Objects$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Object>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
-        callback?: BodyResponseCallback<Schema$Object>): void;
+        params: Params$Resource$Objects$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Object>,
+        callback: BodyResponseCallback<Schema$Object>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Object>,
+        params: Params$Resource$Objects$Update,
+        callback: BodyResponseCallback<Schema$Object>): void;
+    update(callback: BodyResponseCallback<Schema$Object>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Objects$Update|
+        BodyResponseCallback<Schema$Object>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Object>,
         callback?: BodyResponseCallback<Schema$Object>):
         void|AxiosPromise<Schema$Object> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6259,26 +7623,37 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watchAll(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Channel>;
     watchAll(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>): void;
+        params?: Params$Resource$Objects$Watchall,
+        options?: MethodOptions): AxiosPromise<Schema$Channel>;
     watchAll(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        params: Params$Resource$Objects$Watchall,
+        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watchAll(
+        params: Params$Resource$Objects$Watchall,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watchAll(callback: BodyResponseCallback<Schema$Channel>): void;
+    watchAll(
+        paramsOrCallback?: Params$Resource$Objects$Watchall|
+        BodyResponseCallback<Schema$Channel>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
         void|AxiosPromise<Schema$Channel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Watchall;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Watchall;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6301,6 +7676,768 @@ export namespace storage_v1 {
     }
   }
 
+  export interface Params$Resource$Objects$Compose {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to store the new object.
+     */
+    destinationBucket?: string;
+    /**
+     * Name of the new object. For information about how to URL encode object
+     * names to be path safe, see Encoding URI Path Parts.
+     */
+    destinationObject?: string;
+    /**
+     * Apply a predefined set of access controls to the destination object.
+     */
+    destinationPredefinedAcl?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Resource name of the Cloud KMS key, of the form
+     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     * that will be used to encrypt the object. Overrides the object metadata's
+     * kms_key_name value, if any.
+     */
+    kmsKeyName?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ComposeRequest;
+  }
+  export interface Params$Resource$Objects$Copy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to store the new object. Overrides the
+     * provided object metadata's bucket value, if any.For information about how
+     * to URL encode object names to be path safe, see Encoding URI Path Parts.
+     */
+    destinationBucket?: string;
+    /**
+     * Name of the new object. Required when the object metadata is not
+     * otherwise provided. Overrides the object metadata's name value, if any.
+     */
+    destinationObject?: string;
+    /**
+     * Apply a predefined set of access controls to the destination object.
+     */
+    destinationPredefinedAcl?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current generation matches the given value. Setting to 0 makes the
+     * operation succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current generation does not match the given value. If no live object
+     * exists, the precondition fails. Setting to 0 makes the operation succeed
+     * only if there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * generation matches the given value.
+     */
+    ifSourceGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * generation does not match the given value.
+     */
+    ifSourceGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * metageneration matches the given value.
+     */
+    ifSourceMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * metageneration does not match the given value.
+     */
+    ifSourceMetagenerationNotMatch?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl, unless the object
+     * resource specifies the acl property, when it defaults to full.
+     */
+    projection?: string;
+    /**
+     * Name of the bucket in which to find the source object.
+     */
+    sourceBucket?: string;
+    /**
+     * If present, selects a specific revision of the source object (as opposed
+     * to the latest version, the default).
+     */
+    sourceGeneration?: string;
+    /**
+     * Name of the source object. For information about how to URL encode object
+     * names to be path safe, see Encoding URI Path Parts.
+     */
+    sourceObject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, permanently deletes a specific revision of this object (as
+     * opposed to the latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objects$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objects$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objects$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to store the new object. Overrides the
+     * provided object metadata's bucket value, if any.
+     */
+    bucket?: string;
+    /**
+     * If set, sets the contentEncoding property of the final object to this
+     * value. Setting this parameter is equivalent to setting the
+     * contentEncoding metadata property. This can be useful when uploading an
+     * object with uploadType=media to indicate the encoding of the content
+     * being uploaded.
+     */
+    contentEncoding?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Resource name of the Cloud KMS key, of the form
+     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     * that will be used to encrypt the object. Overrides the object metadata's
+     * kms_key_name value, if any. Limited availability; usable only by enabled
+     * projects.
+     */
+    kmsKeyName?: string;
+    /**
+     * Name of the object. Required when the object metadata is not otherwise
+     * provided. Overrides the object metadata's name value, if any. For
+     * information about how to URL encode object names to be path safe, see
+     * Encoding URI Path Parts.
+     */
+    name?: string;
+    /**
+     * Apply a predefined set of access controls to this object.
+     */
+    predefinedAcl?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl, unless the object
+     * resource specifies the acl property, when it defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Object;
+    /**
+     * Media metadata
+     */
+    media: {
+      /**
+       * Media mime-type
+       */
+      mediaType?: string;
+
+      /**
+       * Media body contents
+       */
+      body: any;
+    };
+  }
+  export interface Params$Resource$Objects$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to look for objects.
+     */
+    bucket?: string;
+    /**
+     * Returns results in a directory-like mode. items will contain only objects
+     * whose names, aside from the prefix, do not contain delimiter. Objects
+     * whose names, aside from the prefix, contain delimiter will have their
+     * name, truncated after the delimiter, returned in prefixes. Duplicate
+     * prefixes are omitted.
+     */
+    delimiter?: string;
+    /**
+     * Maximum number of items plus prefixes to return in a single page of
+     * responses. As duplicate prefixes are omitted, fewer total results may be
+     * returned than requested. The service will use this parameter or 1,000
+     * items, whichever is smaller.
+     */
+    maxResults?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of
+     * results to view.
+     */
+    pageToken?: string;
+    /**
+     * Filter results to objects whose names begin with this prefix.
+     */
+    prefix?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * If true, lists all versions of an object as distinct results. The default
+     * is false. For more information, see Object Versioning.
+     */
+    versions?: boolean;
+  }
+  export interface Params$Resource$Objects$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * Apply a predefined set of access controls to this object.
+     */
+    predefinedAcl?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request, for Requester Pays buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Rewrite {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to store the new object. Overrides the
+     * provided object metadata's bucket value, if any.
+     */
+    destinationBucket?: string;
+    /**
+     * Resource name of the Cloud KMS key, of the form
+     * projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key,
+     * that will be used to encrypt the object. Overrides the object metadata's
+     * kms_key_name value, if any.
+     */
+    destinationKmsKeyName?: string;
+    /**
+     * Name of the new object. Required when the object metadata is not
+     * otherwise provided. Overrides the object metadata's name value, if any.
+     * For information about how to URL encode object names to be path safe, see
+     * Encoding URI Path Parts.
+     */
+    destinationObject?: string;
+    /**
+     * Apply a predefined set of access controls to the destination object.
+     */
+    destinationPredefinedAcl?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's
+     * current metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * generation matches the given value.
+     */
+    ifSourceGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * generation does not match the given value.
+     */
+    ifSourceGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * metageneration matches the given value.
+     */
+    ifSourceMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current
+     * metageneration does not match the given value.
+     */
+    ifSourceMetagenerationNotMatch?: string;
+    /**
+     * The maximum number of bytes that will be rewritten per rewrite request.
+     * Most callers shouldn't need to specify this parameter - it is primarily
+     * in place to support testing. If specified the value must be an integral
+     * multiple of 1 MiB (1048576). Also, this only applies to requests where
+     * the source and destination span locations and/or storage classes.
+     * Finally, this value must not change across rewrite calls else you'll get
+     * an error that the rewriteToken is invalid.
+     */
+    maxBytesRewrittenPerCall?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl, unless the object
+     * resource specifies the acl property, when it defaults to full.
+     */
+    projection?: string;
+    /**
+     * Include this field (from the previous rewrite response) on each rewrite
+     * request after the first one, until the rewrite response 'done' flag is
+     * true. Calls that provide a rewriteToken can omit all other request
+     * fields, but if included those fields must match the values provided in
+     * the first rewrite request.
+     */
+    rewriteToken?: string;
+    /**
+     * Name of the bucket in which to find the source object.
+     */
+    sourceBucket?: string;
+    /**
+     * If present, selects a specific revision of the source object (as opposed
+     * to the latest version, the default).
+     */
+    sourceGeneration?: string;
+    /**
+     * Name of the source object. For information about how to URL encode object
+     * names to be path safe, see Encoding URI Path Parts.
+     */
+    sourceObject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Policy;
+  }
+  export interface Params$Resource$Objects$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * Permissions to test.
+     */
+    permissions?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+  }
+  export interface Params$Resource$Objects$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * If present, selects a specific revision of this object (as opposed to the
+     * latest version, the default).
+     */
+    generation?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation matches the given value. Setting to 0 makes the operation
+     * succeed only if there are no live versions of the object.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * generation does not match the given value. If no live object exists, the
+     * precondition fails. Setting to 0 makes the operation succeed only if
+     * there is a live version of the object.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration matches the given value.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the object's current
+     * metageneration does not match the given value.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Name of the object. For information about how to URL encode object names
+     * to be path safe, see Encoding URI Path Parts.
+     */
+    object?: string;
+    /**
+     * Apply a predefined set of access controls to this object.
+     */
+    predefinedAcl?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Object;
+  }
+  export interface Params$Resource$Objects$Watchall {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Name of the bucket in which to look for objects.
+     */
+    bucket?: string;
+    /**
+     * Returns results in a directory-like mode. items will contain only objects
+     * whose names, aside from the prefix, do not contain delimiter. Objects
+     * whose names, aside from the prefix, contain delimiter will have their
+     * name, truncated after the delimiter, returned in prefixes. Duplicate
+     * prefixes are omitted.
+     */
+    delimiter?: string;
+    /**
+     * Maximum number of items plus prefixes to return in a single page of
+     * responses. As duplicate prefixes are omitted, fewer total results may be
+     * returned than requested. The service will use this parameter or 1,000
+     * items, whichever is smaller.
+     */
+    maxResults?: number;
+    /**
+     * A previously-returned page token representing part of the larger set of
+     * results to view.
+     */
+    pageToken?: string;
+    /**
+     * Filter results to objects whose names begin with this prefix.
+     */
+    prefix?: string;
+    /**
+     * Set of properties to return. Defaults to noAcl.
+     */
+    projection?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays
+     * buckets.
+     */
+    userProject?: string;
+    /**
+     * If true, lists all versions of an object as distinct results. The default
+     * is false. For more information, see Object Versioning.
+     */
+    versions?: boolean;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Channel;
+  }
+
+
   export class Resource$Projects {
     root: Storage;
     serviceAccount: Resource$Projects$Serviceaccount;
@@ -6314,6 +8451,8 @@ export namespace storage_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Serviceaccount {
     root: Storage;
     constructor(root: Storage) {
@@ -6393,24 +8532,35 @@ export namespace storage_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Serviceaccount$Get,
         options?: MethodOptions): AxiosPromise<Schema$ServiceAccount>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
-        callback?: BodyResponseCallback<Schema$ServiceAccount>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+    get(params: Params$Resource$Projects$Serviceaccount$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ServiceAccount>,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(params: Params$Resource$Projects$Serviceaccount$Get,
+        callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(callback: BodyResponseCallback<Schema$ServiceAccount>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Serviceaccount$Get|
+        BodyResponseCallback<Schema$ServiceAccount>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ServiceAccount>,
         callback?: BodyResponseCallback<Schema$ServiceAccount>):
         void|AxiosPromise<Schema$ServiceAccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Serviceaccount$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccount$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6431,5 +8581,21 @@ export namespace storage_v1 {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Serviceaccount$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Project ID
+     */
+    projectId?: string;
+    /**
+     * The project to be billed for this request.
+     */
+    userProject?: string;
   }
 }

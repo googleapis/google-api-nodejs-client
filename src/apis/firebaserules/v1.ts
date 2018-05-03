@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace firebaserules_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Firebase Rules API
    *
@@ -73,11 +76,11 @@ export namespace firebaserules_v1 {
     /**
      * Argument matches any value provided.
      */
-    anyValue: Schema$Empty;
+    anyValue?: Schema$Empty;
     /**
      * Argument exactly matches value provided.
      */
-    exactValue: any;
+    exactValue?: any;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -94,15 +97,15 @@ export namespace firebaserules_v1 {
     /**
      * Textual Content.
      */
-    content: string;
+    content?: string;
     /**
      * Fingerprint (e.g. github sha) associated with the `File`.
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * File name.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Represents a service-defined function call that was invoked during test
@@ -112,11 +115,11 @@ export namespace firebaserules_v1 {
     /**
      * The arguments that were provided to the function.
      */
-    args: any[];
+    args?: any[];
     /**
      * Name of the function invoked.
      */
-    function: string;
+    function?: string;
   }
   /**
    * Mock function definition.  Mocks must refer to a function declared by the
@@ -133,16 +136,16 @@ export namespace firebaserules_v1 {
      * provided is the order in which they must appear in the function
      * invocation.
      */
-    args: Schema$Arg[];
+    args?: Schema$Arg[];
     /**
      * The name of the function.  The function name must match one provided by a
      * service declaration.
      */
-    function: string;
+    function?: string;
     /**
      * The mock result of the function call.
      */
-    result: Schema$Result;
+    result?: Schema$Result;
   }
   /**
    * The response for FirebaseRulesService.GetReleaseExecutable
@@ -151,23 +154,23 @@ export namespace firebaserules_v1 {
     /**
      * Executable view of the `Ruleset` referenced by the `Release`.
      */
-    executable: string;
+    executable?: string;
     /**
      * The Rules runtime version of the executable.
      */
-    executableVersion: string;
+    executableVersion?: string;
     /**
      * `Language` used to generate the executable bytes.
      */
-    language: string;
+    language?: string;
     /**
      * `Ruleset` name associated with the `Release` executable.
      */
-    rulesetName: string;
+    rulesetName?: string;
     /**
      * Timestamp for the most recent `Release.update_time`.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Issues include warnings, errors, and deprecation notices.
@@ -176,15 +179,15 @@ export namespace firebaserules_v1 {
     /**
      * Short error description.
      */
-    description: string;
+    description?: string;
     /**
      * The severity of the issue.
      */
-    severity: string;
+    severity?: string;
     /**
      * Position of the issue in the `Source`.
      */
-    sourcePosition: Schema$SourcePosition;
+    sourcePosition?: Schema$SourcePosition;
   }
   /**
    * The response for FirebaseRulesService.ListReleases.
@@ -194,11 +197,11 @@ export namespace firebaserules_v1 {
      * The pagination token to retrieve the next page of results. If the value
      * is empty, no further results remain.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of `Release` instances.
      */
-    releases: Schema$Release[];
+    releases?: Schema$Release[];
   }
   /**
    * The response for FirebaseRulesService.ListRulesets.
@@ -208,11 +211,11 @@ export namespace firebaserules_v1 {
      * The pagination token to retrieve the next page of results. If the value
      * is empty, no further results remain.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * List of `Ruleset` instances.
      */
-    rulesets: Schema$Ruleset[];
+    rulesets?: Schema$Ruleset[];
   }
   /**
    * `Release` is a named reference to a `Ruleset`. Once a `Release` refers to a
@@ -222,7 +225,7 @@ export namespace firebaserules_v1 {
     /**
      * Time the release was created. Output only.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Resource name for the `Release`.  `Release` names may be structured
      * `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great
@@ -241,16 +244,16 @@ export namespace firebaserules_v1 {
      * clearer picture of the relationship between `Release` instances.  Format:
      * `projects/{project_id}/releases/{release_id}`
      */
-    name: string;
+    name?: string;
     /**
      * Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must
      * exist the `Release` to be created.
      */
-    rulesetName: string;
+    rulesetName?: string;
     /**
      * Time the release was updated. Output only.
      */
-    updateTime: string;
+    updateTime?: string;
   }
   /**
    * Possible result values from the function mock invocation.
@@ -259,12 +262,12 @@ export namespace firebaserules_v1 {
     /**
      * The result is undefined, meaning the result could not be computed.
      */
-    undefined: Schema$Empty;
+    undefined?: Schema$Empty;
     /**
      * The result is an actual value. The type of the value must match that of
      * the type declared by the service.
      */
-    value: any;
+    value?: any;
   }
   /**
    * `Ruleset` is an immutable copy of `Source` with a globally unique
@@ -274,16 +277,16 @@ export namespace firebaserules_v1 {
     /**
      * Time the `Ruleset` was created. Output only.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Name of the `Ruleset`. The ruleset_id is auto generated by the service.
      * Format: `projects/{project_id}/rulesets/{ruleset_id}` Output only.
      */
-    name: string;
+    name?: string;
     /**
      * `Source` for the `Ruleset`.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
   }
   /**
    * `Source` is one or more `File` messages comprising a logical set of rules.
@@ -292,7 +295,7 @@ export namespace firebaserules_v1 {
     /**
      * `File` set constituting the `Source` bundle.
      */
-    files: Schema$File[];
+    files?: Schema$File[];
   }
   /**
    * Position in the `Source` content including its line, column number, and an
@@ -302,15 +305,15 @@ export namespace firebaserules_v1 {
     /**
      * First column on the source line associated with the source fragment.
      */
-    column: number;
+    column?: number;
     /**
      * Name of the `File`.
      */
-    fileName: string;
+    fileName?: string;
     /**
      * Line number of the source fragment. 1-based.
      */
-    line: number;
+    line?: number;
   }
   /**
    * `TestCase` messages provide the request context and an expectation as to
@@ -325,13 +328,13 @@ export namespace firebaserules_v1 {
     /**
      * Test expectation.
      */
-    expectation: string;
+    expectation?: string;
     /**
      * Optional function mocks for service-defined functions. If not set, any
      * service defined function is expected to return an error, which may or may
      * not influence the test outcome.
      */
-    functionMocks: Schema$FunctionMock[];
+    functionMocks?: Schema$FunctionMock[];
     /**
      * Request context.  The exact format of the request context is
      * service-dependent. See the appropriate service documentation for
@@ -344,13 +347,13 @@ export namespace firebaserules_v1 {
      * `google.protobuf.Timestamp`  If the request value is not well-formed for
      * the service, the request will be rejected as an invalid argument.
      */
-    request: any;
+    request?: any;
     /**
      * Optional resource value as it appears in persistent storage before the
      * request is fulfilled.  The resource type depends on the `request.path`
      * value.
      */
-    resource: any;
+    resource?: any;
   }
   /**
    * Test result message containing the state of the test as well as a
@@ -364,7 +367,7 @@ export namespace firebaserules_v1 {
      * evaluation.  For example: ```Unable to read variable [name:
      * &quot;resource&quot;]```
      */
-    debugMessages: string[];
+    debugMessages?: string[];
     /**
      * Position in the `Source` or `Ruleset` where the principle runtime error
      * occurs.  Evaluation of an expression may result in an error. Rules are
@@ -372,18 +375,18 @@ export namespace firebaserules_v1 {
      * valid. When there is a `DENY` with an error, the `SourcePosition` is
      * returned.  E.g. `error_position { line: 19 column: 37 }`
      */
-    errorPosition: Schema$SourcePosition;
+    errorPosition?: Schema$SourcePosition;
     /**
      * The set of function calls made to service-defined methods.  Function
      * calls are included in the order in which they are encountered during
      * evaluation, are provided for both mocked and unmocked functions, and
      * included on the response regardless of the test `state`.
      */
-    functionCalls: Schema$FunctionCall[];
+    functionCalls?: Schema$FunctionCall[];
     /**
      * State of the test.
      */
-    state: string;
+    state?: string;
   }
   /**
    * The request for FirebaseRulesService.TestRuleset.
@@ -393,11 +396,11 @@ export namespace firebaserules_v1 {
      * Optional `Source` to be checked for correctness.  This field must not be
      * set when the resource name refers to a `Ruleset`.
      */
-    source: Schema$Source;
+    source?: Schema$Source;
     /**
      * Inline `TestSuite` to run.
      */
-    testSuite: Schema$TestSuite;
+    testSuite?: Schema$TestSuite;
   }
   /**
    * The response for FirebaseRulesService.TestRuleset.
@@ -407,13 +410,13 @@ export namespace firebaserules_v1 {
      * Syntactic and semantic `Source` issues of varying severity. Issues of
      * `ERROR` severity will prevent tests from executing.
      */
-    issues: Schema$Issue[];
+    issues?: Schema$Issue[];
     /**
      * The set of test results given the test cases in the `TestSuite`. The
      * results will appear in the same order as the test cases appear in the
      * `TestSuite`.
      */
-    testResults: Schema$TestResult[];
+    testResults?: Schema$TestResult[];
   }
   /**
    * `TestSuite` is a collection of `TestCase` instances that validate the
@@ -425,7 +428,7 @@ export namespace firebaserules_v1 {
     /**
      * Collection of test cases associated with the `TestSuite`.
      */
-    testCases: Schema$TestCase[];
+    testCases?: Schema$TestCase[];
   }
   /**
    * The request for FirebaseRulesService.UpdateReleasePatch.
@@ -434,12 +437,13 @@ export namespace firebaserules_v1 {
     /**
      * `Release` to update.
      */
-    release: Schema$Release;
+    release?: Schema$Release;
     /**
      * Specifies which fields to update.
      */
-    updateMask: string;
+    updateMask?: string;
   }
+
 
   export class Resource$Projects {
     root: Firebaserules;
@@ -482,28 +486,37 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    test(params?: any, options?: MethodOptions):
+    test(params?: Params$Resource$Projects$Test, options?: MethodOptions):
         AxiosPromise<Schema$TestRulesetResponse>;
     test(
-        params?: any,
-        options?: MethodOptions|
-        BodyResponseCallback<Schema$TestRulesetResponse>,
-        callback?: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+        params: Params$Resource$Projects$Test,
+        options: MethodOptions|BodyResponseCallback<Schema$TestRulesetResponse>,
+        callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
     test(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Test,
+        callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+    test(callback: BodyResponseCallback<Schema$TestRulesetResponse>): void;
+    test(
+        paramsOrCallback?: Params$Resource$Projects$Test|
+        BodyResponseCallback<Schema$TestRulesetResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestRulesetResponse>,
         callback?: BodyResponseCallback<Schema$TestRulesetResponse>):
         void|AxiosPromise<Schema$TestRulesetResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Test;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Test;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -525,6 +538,27 @@ export namespace firebaserules_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Test {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Tests may either provide `source` or a `Ruleset` resource name.  For
+     * tests against `source`, the resource name must refer to the project:
+     * Format: `projects/{project_id}`  For tests against a `Ruleset`, this must
+     * be the `Ruleset` resource name: Format:
+     * `projects/{project_id}/rulesets/{ruleset_id}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TestRulesetRequest;
+  }
+
   export class Resource$Projects$Releases {
     root: Firebaserules;
     constructor(root: Firebaserules) {
@@ -564,25 +598,38 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>): void;
+        params?: Params$Resource$Projects$Releases$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Release>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+        params: Params$Resource$Projects$Releases$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Release>,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    create(
+        params: Params$Resource$Projects$Releases$Create,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    create(callback: BodyResponseCallback<Schema$Release>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Releases$Create|
+        BodyResponseCallback<Schema$Release>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
         void|AxiosPromise<Schema$Release> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -618,25 +665,38 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Releases$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Releases$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Releases$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Releases$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -671,23 +731,34 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+    get(params?: Params$Resource$Projects$Releases$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Release>;
+    get(params: Params$Resource$Projects$Releases$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Release>,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    get(params: Params$Resource$Projects$Releases$Get,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    get(callback: BodyResponseCallback<Schema$Release>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Releases$Get|
+        BodyResponseCallback<Schema$Release>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
         void|AxiosPromise<Schema$Release> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -723,29 +794,45 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getExecutable(params?: any, options?: MethodOptions):
+    getExecutable(
+        params?: Params$Resource$Projects$Releases$Getexecutable,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetReleaseExecutableResponse>;
     getExecutable(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Releases$Getexecutable,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
-        callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
+        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
         void;
     getExecutable(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Releases$Getexecutable,
+        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
+        void;
+    getExecutable(
+        callback: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
+        void;
+    getExecutable(
+        paramsOrCallback?: Params$Resource$Projects$Releases$Getexecutable|
+        BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetReleaseExecutableResponse>,
         callback?: BodyResponseCallback<Schema$GetReleaseExecutableResponse>):
         void|AxiosPromise<Schema$GetReleaseExecutableResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Releases$Getexecutable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$Getexecutable;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -788,28 +875,40 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListReleasesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Releases$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListReleasesResponse>;
+    list(
+        params: Params$Resource$Projects$Releases$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListReleasesResponse>,
-        callback?: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Releases$List,
+        callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListReleasesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Releases$List|
+        BodyResponseCallback<Schema$ListReleasesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListReleasesResponse>,
         callback?: BodyResponseCallback<Schema$ListReleasesResponse>):
         void|AxiosPromise<Schema$ListReleasesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -848,25 +947,38 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Release>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
-        callback?: BodyResponseCallback<Schema$Release>): void;
+        params?: Params$Resource$Projects$Releases$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Release>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Release>,
+        params: Params$Resource$Projects$Releases$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Release>,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    patch(
+        params: Params$Resource$Projects$Releases$Patch,
+        callback: BodyResponseCallback<Schema$Release>): void;
+    patch(callback: BodyResponseCallback<Schema$Release>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Releases$Patch|
+        BodyResponseCallback<Schema$Release>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Release>,
         callback?: BodyResponseCallback<Schema$Release>):
         void|AxiosPromise<Schema$Release> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Releases$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Releases$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -888,6 +1000,125 @@ export namespace firebaserules_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Releases$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the project which owns this `Release`.  Format:
+     * `projects/{project_id}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Release;
+  }
+  export interface Params$Resource$Projects$Releases$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the `Release` to delete.  Format:
+     * `projects/{project_id}/releases/{release_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Releases$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name of the `Release`.  Format:
+     * `projects/{project_id}/releases/{release_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Releases$Getexecutable {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The requested runtime executable version. Defaults to
+     * FIREBASE_RULES_EXECUTABLE_V1
+     */
+    executableVersion?: string;
+    /**
+     * Resource name of the `Release`.  Format:
+     * `projects/{project_id}/releases/{release_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Releases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * `Release` filter. The list method supports filters with restrictions on
+     * the `Release.name`, `Release.ruleset_name`, and
+     * `Release.test_suite_name`.  Example 1: A filter of 'name=prod*' might
+     * return `Release`s with names within 'projects/foo' prefixed with 'prod':
+     * Name                          | Ruleset Name
+     * ------------------------------|------------- projects/foo/releases/prod
+     * | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 |
+     * projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 |
+     * projects/foo/rulesets/uuid8888  Example 2: A filter of `name=prod*
+     * ruleset_name=uuid1234` would return only `Release` instances for
+     * 'projects/foo' with names prefixed with 'prod' referring to the same
+     * `Ruleset` name of 'uuid1234':  Name                          | Ruleset
+     * Name ------------------------------|-------------
+     * projects/foo/releases/prod    | projects/foo/rulesets/1234
+     * projects/foo/releases/prod/v1 | projects/foo/rulesets/1234  In the
+     * examples, the filter parameters refer to the search filters are relative
+     * to the project. Fully qualified prefixed may also be used. e.g.
+     * `test_suite_name=projects/foo/testsuites/uuid1`
+     */
+    filter?: string;
+    /**
+     * Resource name for the project.  Format: `projects/{project_id}`
+     */
+    name?: string;
+    /**
+     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
+     * just a hint and the service may choose to load fewer than `page_size`
+     * results due to the size of the output. To traverse all of the releases,
+     * the caller should iterate until the `page_token` on the response is
+     * empty.
+     */
+    pageSize?: number;
+    /**
+     * Next page token for the next batch of `Release` instances.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Releases$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the project which owns this `Release`.  Format:
+     * `projects/{project_id}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateReleaseRequest;
+  }
+
 
   export class Resource$Projects$Rulesets {
     root: Firebaserules;
@@ -918,25 +1149,38 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback?: BodyResponseCallback<Schema$Ruleset>): void;
+        params?: Params$Resource$Projects$Rulesets$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+        params: Params$Resource$Projects$Rulesets$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+        callback: BodyResponseCallback<Schema$Ruleset>): void;
+    create(
+        params: Params$Resource$Projects$Rulesets$Create,
+        callback: BodyResponseCallback<Schema$Ruleset>): void;
+    create(callback: BodyResponseCallback<Schema$Ruleset>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Rulesets$Create|
+        BodyResponseCallback<Schema$Ruleset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
         callback?: BodyResponseCallback<Schema$Ruleset>):
         void|AxiosPromise<Schema$Ruleset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Rulesets$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -973,25 +1217,38 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Rulesets$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Rulesets$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Rulesets$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Rulesets$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Rulesets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -1026,23 +1283,34 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
-        callback?: BodyResponseCallback<Schema$Ruleset>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+    get(params?: Params$Resource$Projects$Rulesets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Ruleset>;
+    get(params: Params$Resource$Projects$Rulesets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
+        callback: BodyResponseCallback<Schema$Ruleset>): void;
+    get(params: Params$Resource$Projects$Rulesets$Get,
+        callback: BodyResponseCallback<Schema$Ruleset>): void;
+    get(callback: BodyResponseCallback<Schema$Ruleset>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Rulesets$Get|
+        BodyResponseCallback<Schema$Ruleset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Ruleset>,
         callback?: BodyResponseCallback<Schema$Ruleset>):
         void|AxiosPromise<Schema$Ruleset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Rulesets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -1082,28 +1350,40 @@ export namespace firebaserules_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListRulesetsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Rulesets$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListRulesetsResponse>;
+    list(
+        params: Params$Resource$Projects$Rulesets$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListRulesetsResponse>,
-        callback?: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Rulesets$List,
+        callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListRulesetsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Rulesets$List|
+        BodyResponseCallback<Schema$ListRulesetsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListRulesetsResponse>,
         callback?: BodyResponseCallback<Schema$ListRulesetsResponse>):
         void|AxiosPromise<Schema$ListRulesetsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Rulesets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Rulesets$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://firebaserules.googleapis.com/';
       const parameters = {
@@ -1125,5 +1405,76 @@ export namespace firebaserules_v1 {
         return createAPIRequest<Schema$ListRulesetsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Rulesets$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for Project which owns this `Ruleset`.  Format:
+     * `projects/{project_id}`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Ruleset;
+  }
+  export interface Params$Resource$Projects$Rulesets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the ruleset to delete.  Format:
+     * `projects/{project_id}/rulesets/{ruleset_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Rulesets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the ruleset to get.  Format:
+     * `projects/{project_id}/rulesets/{ruleset_id}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Rulesets$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * `Ruleset` filter. The list method supports filters with restrictions on
+     * `Ruleset.name`.  Filters on `Ruleset.create_time` should use the `date`
+     * function which parses strings that conform to the RFC 3339 date/time
+     * specifications.  Example: `create_time > date("2017-01-01") AND
+     * name=UUID-*`
+     */
+    filter?: string;
+    /**
+     * Resource name for the project.  Format: `projects/{project_id}`
+     */
+    name?: string;
+    /**
+     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is
+     * just a hint and the service may choose to load less than `page_size` due
+     * to the size of the output. To traverse all of the releases, caller should
+     * iterate until the `page_token` is empty.
+     */
+    pageSize?: number;
+    /**
+     * Next page token for loading the next batch of `Ruleset` instances.
+     */
+    pageToken?: string;
   }
 }

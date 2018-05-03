@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace runtimeconfig_v1beta1 {
+  export interface Options extends GlobalOptions { version: 'v1beta1'; }
+
   /**
    * Cloud Runtime Configuration API
    *
@@ -88,12 +91,12 @@ export namespace runtimeconfig_v1beta1 {
      * that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * A Cardinality condition for the Waiter resource. A cardinality condition is
@@ -113,11 +116,11 @@ export namespace runtimeconfig_v1beta1 {
      * The number variables under the `path` that must exist to meet this
      * condition. Defaults to 1 if not specified.
      */
-    number: number;
+    number?: number;
     /**
      * The root of the variable subtree to monitor. For example, `/foo`.
      */
-    path: string;
+    path?: string;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -134,7 +137,7 @@ export namespace runtimeconfig_v1beta1 {
     /**
      * The cardinality of the `EndCondition`.
      */
-    cardinality: Schema$Cardinality;
+    cardinality?: Schema$Cardinality;
   }
   /**
    * `ListConfigs()` returns the following response. The order of returned
@@ -145,7 +148,7 @@ export namespace runtimeconfig_v1beta1 {
      * A list of the configurations in the project. The order of returned
      * objects is arbitrary; that is, it is not ordered in any particular way.
      */
-    configs: Schema$RuntimeConfig[];
+    configs?: Schema$RuntimeConfig[];
     /**
      * This token allows you to get the next page of results for list requests.
      * If the number of results is larger than `pageSize`, use the
@@ -153,7 +156,7 @@ export namespace runtimeconfig_v1beta1 {
      * next list request. Subsequent list requests will have their own
      * `nextPageToken` to continue paging through the results
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response for the `ListVariables()` method.
@@ -166,12 +169,12 @@ export namespace runtimeconfig_v1beta1 {
      * next list request. Subsequent list requests will have their own
      * `nextPageToken` to continue paging through the results
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of variables and their values. The order of returned variable
      * objects is arbitrary.
      */
-    variables: Schema$Variable[];
+    variables?: Schema$Variable[];
   }
   /**
    * Response for the `ListWaiters()` method. Order of returned waiter objects
@@ -185,11 +188,11 @@ export namespace runtimeconfig_v1beta1 {
      * next list request. Subsequent list requests will have their own
      * `nextPageToken` to continue paging through the results
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Found waiters in the project.
      */
-    waiters: Schema$Waiter[];
+    waiters?: Schema$Waiter[];
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -201,24 +204,24 @@ export namespace runtimeconfig_v1beta1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation.  It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata.  Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `operations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -228,7 +231,7 @@ export namespace runtimeconfig_v1beta1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Defines an Identity and Access Management (IAM) policy. It is used to
@@ -255,7 +258,7 @@ export namespace runtimeconfig_v1beta1 {
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -267,11 +270,11 @@ export namespace runtimeconfig_v1beta1 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * A RuntimeConfig resource is the primary resource in the Cloud RuntimeConfig
@@ -282,7 +285,7 @@ export namespace runtimeconfig_v1beta1 {
     /**
      * An optional description of the RuntimeConfig object.
      */
-    description: string;
+    description?: string;
     /**
      * The resource name of a runtime config. The name must have the format:
      * projects/[PROJECT_ID]/configs/[CONFIG_NAME]  The `[PROJECT_ID]` must be a
@@ -293,7 +296,7 @@ export namespace runtimeconfig_v1beta1 {
      * will validate that the name adheres to this format. After you create the
      * resource, you cannot change the resource&#39;s name.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -305,7 +308,7 @@ export namespace runtimeconfig_v1beta1 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -347,18 +350,18 @@ export namespace runtimeconfig_v1beta1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -370,7 +373,7 @@ export namespace runtimeconfig_v1beta1 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -380,7 +383,7 @@ export namespace runtimeconfig_v1beta1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Describes a single variable within a RuntimeConfig resource. The name
@@ -405,29 +408,29 @@ export namespace runtimeconfig_v1beta1 {
      * characters.  Once you create a variable, you cannot change the variable
      * name.
      */
-    name: string;
+    name?: string;
     /**
      * [Ouput only] The current state of the variable. The variable state
      * indicates the outcome of the `variables().watch` call and is visible
      * through the `get` and `list` calls.
      */
-    state: string;
+    state?: string;
     /**
      * The string value of the variable. The length of the value must be less
      * than 4096 bytes. Empty values are also accepted. For example, `text:
      * &quot;my text value&quot;`. The string must be valid UTF-8.
      */
-    text: string;
+    text?: string;
     /**
      * Output only. The time of the last variable update.
      */
-    updateTime: string;
+    updateTime?: string;
     /**
      * The binary value of the variable. The length of the value must be less
      * than 4096 bytes. Empty values are also accepted. The value must be base64
      * encoded. Only one of `value` or `text` can be set.
      */
-    value: string;
+    value?: string;
   }
   /**
    * A Waiter resource waits for some end condition within a RuntimeConfig
@@ -448,19 +451,19 @@ export namespace runtimeconfig_v1beta1 {
      * Adding the value of `timeout` to this instant yields the timeout deadline
      * for the waiter.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * Output only. If the value is `false`, it means the waiter is still
      * waiting for one of its conditions to be met.  If true, the waiter has
      * finished. If the waiter finished due to a timeout or failure, `error`
      * will be set.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * Output only. If the waiter ended due to a failure or timeout, this value
      * will be set.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * [Optional] The failure condition of this waiter. If this condition is
      * met, `done` will be set to `true` and the `error` code will be set to
@@ -469,7 +472,7 @@ export namespace runtimeconfig_v1beta1 {
      * value is optional; if no failure condition is set, the only failure
      * scenario will be a timeout.
      */
-    failure: Schema$EndCondition;
+    failure?: Schema$EndCondition;
     /**
      * The name of the Waiter resource, in the format:
      * projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]  The
@@ -479,21 +482,21 @@ export namespace runtimeconfig_v1beta1 {
      * of `[WAITER_NAME]` must be less than 64 bytes.  After you create a Waiter
      * resource, you cannot change the resource name.
      */
-    name: string;
+    name?: string;
     /**
      * [Required] The success condition. If this condition is met, `done` will
      * be set to `true` and the `error` value will remain unset. The failure
      * condition takes precedence over the success condition. If both conditions
      * are met, a failure will be indicated.
      */
-    success: Schema$EndCondition;
+    success?: Schema$EndCondition;
     /**
      * [Required] Specifies the timeout of the waiter in seconds, beginning from
      * the instant that `waiters().create` method is called. If this time
      * elapses before the success or failure conditions are met, the waiter
      * fails and sets the `error` code to `DEADLINE_EXCEEDED`.
      */
-    timeout: string;
+    timeout?: string;
   }
   /**
    * Request for the `WatchVariable()` method.
@@ -505,8 +508,9 @@ export namespace runtimeconfig_v1beta1 {
      * immediately.  If not specified or the variable has an older timestamp,
      * the watcher waits for a the value to change before returning.
      */
-    newerThan: string;
+    newerThan?: string;
   }
+
 
   export class Resource$Projects {
     root: Runtimeconfig;
@@ -521,6 +525,8 @@ export namespace runtimeconfig_v1beta1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Configs {
     root: Runtimeconfig;
     operations: Resource$Projects$Configs$Operations;
@@ -554,26 +560,39 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RuntimeConfig>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-        callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
+        params?: Params$Resource$Projects$Configs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+        params: Params$Resource$Projects$Configs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    create(
+        params: Params$Resource$Projects$Configs$Create,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    create(callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Create|
+        BodyResponseCallback<Schema$RuntimeConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
         void|AxiosPromise<Schema$RuntimeConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -609,25 +628,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Configs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Configs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Configs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -662,24 +694,35 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Projects$Configs$Get,
         options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-        callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+    get(params: Params$Resource$Projects$Configs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    get(params: Params$Resource$Projects$Configs$Get,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    get(callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Configs$Get|
+        BodyResponseCallback<Schema$RuntimeConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
         void|AxiosPromise<Schema$RuntimeConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -715,26 +758,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Configs$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Configs$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Configs$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -772,28 +827,39 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListConfigsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Configs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListConfigsResponse>;
+    list(
+        params: Params$Resource$Projects$Configs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListConfigsResponse>,
+        callback: BodyResponseCallback<Schema$ListConfigsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Configs$List,
+        callback: BodyResponseCallback<Schema$ListConfigsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListConfigsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Configs$List|
         BodyResponseCallback<Schema$ListConfigsResponse>,
-        callback?: BodyResponseCallback<Schema$ListConfigsResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListConfigsResponse>,
         callback?: BodyResponseCallback<Schema$ListConfigsResponse>):
         void|AxiosPromise<Schema$ListConfigsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Configs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -831,26 +897,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Configs$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Configs$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Configs$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -891,29 +969,45 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Configs$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -952,26 +1046,39 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RuntimeConfig>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
-        callback?: BodyResponseCallback<Schema$RuntimeConfig>): void;
+        params?: Params$Resource$Projects$Configs$Update,
+        options?: MethodOptions): AxiosPromise<Schema$RuntimeConfig>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+        params: Params$Resource$Projects$Configs$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$RuntimeConfig>,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    update(
+        params: Params$Resource$Projects$Configs$Update,
+        callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    update(callback: BodyResponseCallback<Schema$RuntimeConfig>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Update|
+        BodyResponseCallback<Schema$RuntimeConfig>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RuntimeConfig>,
         callback?: BodyResponseCallback<Schema$RuntimeConfig>):
         void|AxiosPromise<Schema$RuntimeConfig> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Configs$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -993,6 +1100,141 @@ export namespace runtimeconfig_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Configs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The [project
+     * ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848)
+     * for this request, in the format `projects/[PROJECT_ID]`.
+     */
+    parent?: string;
+    /**
+     * An optional but recommended unique `request_id`. If the server receives
+     * two `create()` requests  with the same `request_id`, then the second
+     * request will be ignored and the first resource created and stored in the
+     * backend is returned. Empty `request_id` fields are ignored.  It is
+     * responsibility of the client to ensure uniqueness of the `request_id`
+     * strings.  `request_id` strings are limited to 64 characters.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RuntimeConfig;
+  }
+  export interface Params$Resource$Projects$Configs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The RuntimeConfig resource to delete, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the RuntimeConfig resource to retrieve, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Configs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Specifies the number of results to return per page. If there are fewer
+     * elements than the specified number, returns all elements.
+     */
+    pageSize?: number;
+    /**
+     * Specifies a page token to use. Set `pageToken` to a `nextPageToken`
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The [project
+     * ID](https://support.google.com/cloud/answer/6158840?hl=en&ref_topic=6158848)
+     * for this request, in the format `projects/[PROJECT_ID]`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Configs$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Configs$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the RuntimeConfig resource to update, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RuntimeConfig;
+  }
+
   export class Resource$Projects$Configs$Operations {
     root: Runtimeconfig;
     constructor(root: Runtimeconfig) {
@@ -1019,23 +1261,35 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Configs$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Configs$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Configs$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Configs$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1075,29 +1329,47 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Configs$Operations$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Operations$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Configs$Operations$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Operations$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Configs$Operations$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1121,6 +1393,35 @@ export namespace runtimeconfig_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Configs$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Operations$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
 
   export class Resource$Projects$Configs$Variables {
     root: Runtimeconfig;
@@ -1153,26 +1454,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Variable>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
+        params?: Params$Resource$Projects$Configs$Variables$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        params: Params$Resource$Projects$Configs$Variables$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    create(
+        params: Params$Resource$Projects$Configs$Variables$Create,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    create(callback: BodyResponseCallback<Schema$Variable>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Variables$Create|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1212,25 +1525,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Configs$Variables$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Configs$Variables$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Configs$Variables$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Variables$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1265,23 +1591,34 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+    get(params?: Params$Resource$Projects$Configs$Variables$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
+    get(params: Params$Resource$Projects$Configs$Variables$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    get(params: Params$Resource$Projects$Configs$Variables$Get,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    get(callback: BodyResponseCallback<Schema$Variable>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Configs$Variables$Get|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1323,28 +1660,40 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListVariablesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Configs$Variables$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListVariablesResponse>;
+    list(
+        params: Params$Resource$Projects$Configs$Variables$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
-        callback?: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Variables$List,
+        callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListVariablesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Variables$List|
+        BodyResponseCallback<Schema$ListVariablesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListVariablesResponse>,
         callback?: BodyResponseCallback<Schema$ListVariablesResponse>):
         void|AxiosPromise<Schema$ListVariablesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1385,29 +1734,47 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Configs$Variables$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Variables$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Configs$Variables$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Configs$Variables$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1445,26 +1812,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Variable>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
+        params?: Params$Resource$Projects$Configs$Variables$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        params: Params$Resource$Projects$Configs$Variables$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    update(
+        params: Params$Resource$Projects$Configs$Variables$Update,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    update(callback: BodyResponseCallback<Schema$Variable>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Variables$Update|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1509,25 +1888,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Variable>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
-        callback?: BodyResponseCallback<Schema$Variable>): void;
+        params?: Params$Resource$Projects$Configs$Variables$Watch,
+        options?: MethodOptions): AxiosPromise<Schema$Variable>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        params: Params$Resource$Projects$Configs$Variables$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Variable>,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    watch(
+        params: Params$Resource$Projects$Configs$Variables$Watch,
+        callback: BodyResponseCallback<Schema$Variable>): void;
+    watch(callback: BodyResponseCallback<Schema$Variable>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Variables$Watch|
+        BodyResponseCallback<Schema$Variable>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Variable>,
         callback?: BodyResponseCallback<Schema$Variable>):
         void|AxiosPromise<Schema$Variable> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Variables$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Variables$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1550,6 +1942,145 @@ export namespace runtimeconfig_v1beta1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Configs$Variables$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The path to the RutimeConfig resource that this variable should belong
+     * to. The configuration must exist beforehand; the path must be in the
+     * format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    parent?: string;
+    /**
+     * An optional but recommended unique `request_id`. If the server receives
+     * two `create()` requests  with the same `request_id`, then the second
+     * request will be ignored and the first resource created and stored in the
+     * backend is returned. Empty `request_id` fields are ignored.  It is
+     * responsibility of the client to ensure uniqueness of the `request_id`
+     * strings.  `request_id` strings are limited to 64 characters.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variable;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the variable to delete, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
+     */
+    name?: string;
+    /**
+     * Set to `true` to recursively delete multiple variables with the same
+     * prefix.
+     */
+    recursive?: boolean;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the variable to return, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIBLE_NAME]`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Filters variables by matching the specified filter. For example:
+     * `projects/example-project/config/[CONFIG_NAME]/variables/example-variable`.
+     */
+    filter?: string;
+    /**
+     * Specifies the number of results to return per page. If there are fewer
+     * elements than the specified number, returns all elements.
+     */
+    pageSize?: number;
+    /**
+     * Specifies a page token to use. Set `pageToken` to a `nextPageToken`
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The path to the RuntimeConfig resource for which you want to list
+     * variables. The configuration must exist beforehand; the path must be in
+     * the format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    parent?: string;
+    /**
+     * The flag indicates whether the user wants to return values of variables.
+     * If true, then only those variables that user has IAM GetVariable
+     * permission will be returned along with their values.
+     */
+    returnValues?: boolean;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the variable to update, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/variables/[VARIABLE_NAME]`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Variable;
+  }
+  export interface Params$Resource$Projects$Configs$Variables$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the variable to watch, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$WatchVariableRequest;
+  }
+
 
   export class Resource$Projects$Configs$Waiters {
     root: Runtimeconfig;
@@ -1582,26 +2113,39 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Configs$Waiters$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Configs$Waiters$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Configs$Waiters$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Waiters$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Waiters$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Waiters$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1637,25 +2181,38 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Configs$Waiters$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Configs$Waiters$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Configs$Waiters$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Waiters$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Waiters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Waiters$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1690,23 +2247,34 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Waiter>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Waiter>,
-        callback?: BodyResponseCallback<Schema$Waiter>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Waiter>,
+    get(params?: Params$Resource$Projects$Configs$Waiters$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Waiter>;
+    get(params: Params$Resource$Projects$Configs$Waiters$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Waiter>,
+        callback: BodyResponseCallback<Schema$Waiter>): void;
+    get(params: Params$Resource$Projects$Configs$Waiters$Get,
+        callback: BodyResponseCallback<Schema$Waiter>): void;
+    get(callback: BodyResponseCallback<Schema$Waiter>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Configs$Waiters$Get|
+        BodyResponseCallback<Schema$Waiter>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Waiter>,
         callback?: BodyResponseCallback<Schema$Waiter>):
         void|AxiosPromise<Schema$Waiter> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Waiters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Waiters$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1743,28 +2311,39 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListWaitersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Configs$Waiters$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListWaitersResponse>;
+    list(
+        params: Params$Resource$Projects$Configs$Waiters$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListWaitersResponse>,
+        callback: BodyResponseCallback<Schema$ListWaitersResponse>): void;
+    list(
+        params: Params$Resource$Projects$Configs$Waiters$List,
+        callback: BodyResponseCallback<Schema$ListWaitersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListWaitersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Configs$Waiters$List|
         BodyResponseCallback<Schema$ListWaitersResponse>,
-        callback?: BodyResponseCallback<Schema$ListWaitersResponse>): void;
-    list(
-        params?: any,
-        options?: MethodOptions|
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListWaitersResponse>,
         callback?: BodyResponseCallback<Schema$ListWaitersResponse>):
         void|AxiosPromise<Schema$ListWaitersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Waiters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Configs$Waiters$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1805,29 +2384,47 @@ export namespace runtimeconfig_v1beta1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Configs$Waiters$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Configs$Waiters$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Configs$Waiters$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Configs$Waiters$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://runtimeconfig.googleapis.com/';
       const parameters = {
@@ -1850,5 +2447,96 @@ export namespace runtimeconfig_v1beta1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Configs$Waiters$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The path to the configuration that will own the waiter. The configuration
+     * must exist beforehand; the path must be in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`.
+     */
+    parent?: string;
+    /**
+     * An optional but recommended unique `request_id`. If the server receives
+     * two `create()` requests  with the same `request_id`, then the second
+     * request will be ignored and the first resource created and stored in the
+     * backend is returned. Empty `request_id` fields are ignored.  It is
+     * responsibility of the client to ensure uniqueness of the `request_id`
+     * strings.  `request_id` strings are limited to 64 characters.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Waiter;
+  }
+  export interface Params$Resource$Projects$Configs$Waiters$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Waiter resource to delete, in the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Waiters$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The fully-qualified name of the Waiter resource object to retrieve, in
+     * the format:
+     * `projects/[PROJECT_ID]/configs/[CONFIG_NAME]/waiters/[WAITER_NAME]`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Waiters$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Specifies the number of results to return per page. If there are fewer
+     * elements than the specified number, returns all elements.
+     */
+    pageSize?: number;
+    /**
+     * Specifies a page token to use. Set `pageToken` to a `nextPageToken`
+     * returned by a previous list request to get the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * The path to the configuration for which you want to get a list of
+     * waiters. The configuration must exist beforehand; the path must be in the
+     * format:  `projects/[PROJECT_ID]/configs/[CONFIG_NAME]`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Configs$Waiters$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
   }
 }

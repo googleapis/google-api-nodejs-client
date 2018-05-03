@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace appstate_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Google App State API
    *
@@ -72,20 +75,20 @@ export namespace appstate_v1 {
     /**
      * The current app state version.
      */
-    currentStateVersion: string;
+    currentStateVersion?: string;
     /**
      * The requested data.
      */
-    data: string;
+    data?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string appstate#getResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The key for the data.
      */
-    stateKey: number;
+    stateKey?: number;
   }
   /**
    * This is a JSON template to convert a list-response for app state.
@@ -94,16 +97,16 @@ export namespace appstate_v1 {
     /**
      * The app state data.
      */
-    items: Schema$GetResponse[];
+    items?: Schema$GetResponse[];
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string appstate#listResponse.
      */
-    kind: string;
+    kind?: string;
     /**
      * The maximum number of keys allowed for this user.
      */
-    maximumKeyCount: number;
+    maximumKeyCount?: number;
   }
   /**
    * This is a JSON template for a requests which update app state
@@ -112,12 +115,12 @@ export namespace appstate_v1 {
     /**
      * The new app state data that your application is trying to update with.
      */
-    data: string;
+    data?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string appstate#updateRequest.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * This is a JSON template for an app state write result.
@@ -126,17 +129,18 @@ export namespace appstate_v1 {
     /**
      * The version of the data for this key on the server.
      */
-    currentStateVersion: string;
+    currentStateVersion?: string;
     /**
      * Uniquely identifies the type of this resource. Value is always the fixed
      * string appstate#writeResult.
      */
-    kind: string;
+    kind?: string;
     /**
      * The written key.
      */
-    stateKey: number;
+    stateKey?: number;
   }
+
 
   export class Resource$States {
     root: Appstate;
@@ -165,26 +169,37 @@ export namespace appstate_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    clear(params?: any, options?: MethodOptions):
+    clear(params?: Params$Resource$States$Clear, options?: MethodOptions):
         AxiosPromise<Schema$WriteResult>;
     clear(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
-        callback?: BodyResponseCallback<Schema$WriteResult>): void;
+        params: Params$Resource$States$Clear,
+        options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+        callback: BodyResponseCallback<Schema$WriteResult>): void;
     clear(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+        params: Params$Resource$States$Clear,
+        callback: BodyResponseCallback<Schema$WriteResult>): void;
+    clear(callback: BodyResponseCallback<Schema$WriteResult>): void;
+    clear(
+        paramsOrCallback?: Params$Resource$States$Clear|
+        BodyResponseCallback<Schema$WriteResult>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WriteResult>,
         callback?: BodyResponseCallback<Schema$WriteResult>):
         void|AxiosPromise<Schema$WriteResult> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$States$Clear;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$States$Clear;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -223,22 +238,35 @@ export namespace appstate_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$States$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$States$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$States$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$States$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$States$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$States$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -274,24 +302,34 @@ export namespace appstate_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$States$Get,
         options?: MethodOptions): AxiosPromise<Schema$GetResponse>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
-        callback?: BodyResponseCallback<Schema$GetResponse>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
+    get(params: Params$Resource$States$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$GetResponse>,
+        callback: BodyResponseCallback<Schema$GetResponse>): void;
+    get(params: Params$Resource$States$Get,
+        callback: BodyResponseCallback<Schema$GetResponse>): void;
+    get(callback: BodyResponseCallback<Schema$GetResponse>): void;
+    get(paramsOrCallback?: Params$Resource$States$Get|
+        BodyResponseCallback<Schema$GetResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetResponse>,
         callback?: BodyResponseCallback<Schema$GetResponse>):
         void|AxiosPromise<Schema$GetResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$States$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$States$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -326,26 +364,37 @@ export namespace appstate_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$States$List, options?: MethodOptions):
         AxiosPromise<Schema$ListResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
-        callback?: BodyResponseCallback<Schema$ListResponse>): void;
+        params: Params$Resource$States$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+        callback: BodyResponseCallback<Schema$ListResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListResponse>,
+        params: Params$Resource$States$List,
+        callback: BodyResponseCallback<Schema$ListResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$States$List|
+        BodyResponseCallback<Schema$ListResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListResponse>,
         callback?: BodyResponseCallback<Schema$ListResponse>):
         void|AxiosPromise<Schema$ListResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$States$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$States$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -384,26 +433,37 @@ export namespace appstate_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$States$Update, options?: MethodOptions):
         AxiosPromise<Schema$WriteResult>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
-        callback?: BodyResponseCallback<Schema$WriteResult>): void;
+        params: Params$Resource$States$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+        callback: BodyResponseCallback<Schema$WriteResult>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$WriteResult>,
+        params: Params$Resource$States$Update,
+        callback: BodyResponseCallback<Schema$WriteResult>): void;
+    update(callback: BodyResponseCallback<Schema$WriteResult>): void;
+    update(
+        paramsOrCallback?: Params$Resource$States$Update|
+        BodyResponseCallback<Schema$WriteResult>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$WriteResult>,
         callback?: BodyResponseCallback<Schema$WriteResult>):
         void|AxiosPromise<Schema$WriteResult> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$States$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$States$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -424,5 +484,77 @@ export namespace appstate_v1 {
         return createAPIRequest<Schema$WriteResult>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$States$Clear {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The version of the data to be cleared. Version strings are returned by
+     * the server.
+     */
+    currentDataVersion?: string;
+    /**
+     * The key for the data to be retrieved.
+     */
+    stateKey?: number;
+  }
+  export interface Params$Resource$States$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The key for the data to be retrieved.
+     */
+    stateKey?: number;
+  }
+  export interface Params$Resource$States$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The key for the data to be retrieved.
+     */
+    stateKey?: number;
+  }
+  export interface Params$Resource$States$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Whether to include the full data in addition to the version number
+     */
+    includeData?: boolean;
+  }
+  export interface Params$Resource$States$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The version of the app state your application is attempting to update. If
+     * this does not match the current version, this method will return a
+     * conflict error. If there is no data stored on the server for this key,
+     * the update will succeed irrespective of the value of this parameter.
+     */
+    currentStateVersion?: string;
+    /**
+     * The key for the data to be retrieved.
+     */
+    stateKey?: number;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateRequest;
   }
 }

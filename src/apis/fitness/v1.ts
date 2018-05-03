@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace fitness_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Fitness
    *
@@ -70,30 +73,30 @@ export namespace fitness_v1 {
     /**
      * Available for Bucket.Type.ACTIVITY_TYPE, Bucket.Type.ACTIVITY_SEGMENT
      */
-    activity: number;
+    activity?: number;
     /**
      * There will be one dataset per AggregateBy in the request.
      */
-    dataset: Schema$Dataset[];
+    dataset?: Schema$Dataset[];
     /**
      * The end time for the aggregated data, in milliseconds since epoch,
      * inclusive.
      */
-    endTimeMillis: string;
+    endTimeMillis?: string;
     /**
      * Available for Bucket.Type.SESSION
      */
-    session: Schema$Session;
+    session?: Schema$Session;
     /**
      * The start time for the aggregated data, in milliseconds since epoch,
      * inclusive.
      */
-    startTimeMillis: string;
+    startTimeMillis?: string;
     /**
      * The type of a bucket signifies how the data aggregation is performed in
      * the bucket.
      */
-    type: string;
+    type?: string;
   }
   /**
    * The specification of which data to aggregate.
@@ -105,14 +108,14 @@ export namespace fitness_v1 {
      * aggregation. The dataset in the response will have the same data source
      * ID.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * The data type to aggregate. All data sources providing this data type
      * will contribute data to the aggregation. The response will contain a
      * single dataset for this data type name. The dataset will have a data
      * source ID of derived:com.google.:com.google.android.gms:aggregated
      */
-    dataTypeName: string;
+    dataTypeName?: string;
   }
   /**
    * Next id: 10
@@ -124,14 +127,14 @@ export namespace fitness_v1 {
      * same bucketing criteria. There will be one dataset in the response for
      * every aggregateBy spec.
      */
-    aggregateBy: Schema$AggregateBy[];
+    aggregateBy?: Schema$AggregateBy[];
     /**
      * Specifies that data be aggregated each activity segment recored for a
      * user. Similar to bucketByActivitySegment, but bucketing is done for each
      * activity segment rather than all segments of the same type. Mutually
      * exclusive of other bucketing specifications.
      */
-    bucketByActivitySegment: Schema$BucketByActivity;
+    bucketByActivitySegment?: Schema$BucketByActivity;
     /**
      * Specifies that data be aggregated by the type of activity being performed
      * when the data was recorded. All data that was recorded during a certain
@@ -140,85 +143,85 @@ export namespace fitness_v1 {
      * included in the response. Mutually exclusive of other bucketing
      * specifications.
      */
-    bucketByActivityType: Schema$BucketByActivity;
+    bucketByActivityType?: Schema$BucketByActivity;
     /**
      * Specifies that data be aggregated by user sessions. Data that does not
      * fall within the time range of a session will not be included in the
      * response. Mutually exclusive of other bucketing specifications.
      */
-    bucketBySession: Schema$BucketBySession;
+    bucketBySession?: Schema$BucketBySession;
     /**
      * Specifies that data be aggregated by a single time interval. Mutually
      * exclusive of other bucketing specifications.
      */
-    bucketByTime: Schema$BucketByTime;
+    bucketByTime?: Schema$BucketByTime;
     /**
      * The end of a window of time. Data that intersects with this time window
      * will be aggregated. The time is in milliseconds since epoch, inclusive.
      */
-    endTimeMillis: string;
+    endTimeMillis?: string;
     /**
      * A list of acceptable data quality standards. Only data points which
      * conform to at least one of the specified data quality standards will be
      * returned. If the list is empty, all data points are returned.
      */
-    filteredDataQualityStandard: string[];
+    filteredDataQualityStandard?: string[];
     /**
      * The start of a window of time. Data that intersects with this time window
      * will be aggregated. The time is in milliseconds since epoch, inclusive.
      */
-    startTimeMillis: string;
+    startTimeMillis?: string;
   }
   export interface Schema$AggregateResponse {
     /**
      * A list of buckets containing the aggregated data.
      */
-    bucket: Schema$AggregateBucket[];
+    bucket?: Schema$AggregateBucket[];
   }
   export interface Schema$Application {
     /**
      * An optional URI that can be used to link back to the application.
      */
-    detailsUrl: string;
+    detailsUrl?: string;
     /**
      * The name of this application. This is required for REST clients, but we
      * do not enforce uniqueness of this name. It is provided as a matter of
      * convenience for other developers who would like to identify which REST
      * created an Application or Data Source.
      */
-    name: string;
+    name?: string;
     /**
      * Package name for this application. This is used as a unique identifier
      * when created by Android applications, but cannot be specified by REST
      * clients. REST clients will have their developer project number reflected
      * into the Data Source data stream IDs, instead of the packageName.
      */
-    packageName: string;
+    packageName?: string;
     /**
      * Version of the application. You should update this field whenever the
      * application changes in a way that affects the computation of the data.
      */
-    version: string;
+    version?: string;
   }
   export interface Schema$BucketByActivity {
     /**
      * The default activity stream will be used if a specific
      * activityDataSourceId is not specified.
      */
-    activityDataSourceId: string;
+    activityDataSourceId?: string;
     /**
      * Specifies that only activity segments of duration longer than
      * minDurationMillis are considered and used as a container for aggregated
      * data.
      */
-    minDurationMillis: string;
+    minDurationMillis?: string;
   }
   export interface Schema$BucketBySession {
     /**
      * Specifies that only sessions of duration longer than minDurationMillis
      * are considered and used as a container for aggregated data.
      */
-    minDurationMillis: string;
+    minDurationMillis?: string;
   }
   export interface Schema$BucketByTime {
     /**
@@ -226,16 +229,16 @@ export namespace fitness_v1 {
      * time frames. Time frames that contain no data will be included in the
      * response with an empty dataset.
      */
-    durationMillis: string;
-    period: Schema$BucketByTimePeriod;
+    durationMillis?: string;
+    period?: Schema$BucketByTimePeriod;
   }
   export interface Schema$BucketByTimePeriod {
     /**
      * org.joda.timezone.DateTimeZone
      */
-    timeZoneId: string;
-    type: string;
-    value: number;
+    timeZoneId?: string;
+    type?: string;
+    value?: number;
   }
   /**
    * Represents a single data point, generated by a particular data source. A
@@ -252,37 +255,37 @@ export namespace fitness_v1 {
      * Used for version checking during transformation; that is, a datapoint can
      * only replace another datapoint that has an older computation time stamp.
      */
-    computationTimeMillis: string;
+    computationTimeMillis?: string;
     /**
      * The data type defining the format of the values in this data point.
      */
-    dataTypeName: string;
+    dataTypeName?: string;
     /**
      * The end time of the interval represented by this data point, in
      * nanoseconds since epoch.
      */
-    endTimeNanos: string;
+    endTimeNanos?: string;
     /**
      * Indicates the last time this data point was modified. Useful only in
      * contexts where we are listing the data changes, rather than representing
      * the current state of the data.
      */
-    modifiedTimeMillis: string;
+    modifiedTimeMillis?: string;
     /**
      * If the data point is contained in a dataset for a derived data source,
      * this field will be populated with the data source stream ID that created
      * the data point originally.
      */
-    originDataSourceId: string;
+    originDataSourceId?: string;
     /**
      * The raw timestamp from the original SensorEvent.
      */
-    rawTimestampNanos: string;
+    rawTimestampNanos?: string;
     /**
      * The start time of the interval represented by this data point, in
      * nanoseconds since epoch.
      */
-    startTimeNanos: string;
+    startTimeNanos?: string;
     /**
      * Values of each data type field for the data point. It is expected that
      * each value corresponding to a data type field will occur in the same
@@ -290,7 +293,7 @@ export namespace fitness_v1 {
      * source.  Only one of integer and floating point fields will be populated,
      * depending on the format enum value within data source&#39;s type field.
      */
-    value: Schema$Value[];
+    value?: Schema$Value[];
   }
   /**
    * A dataset represents a projection container for data points. They do not
@@ -302,33 +305,33 @@ export namespace fitness_v1 {
      * The data stream ID of the data source that created the points in this
      * dataset.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * The largest end time of all data points in this possibly partial
      * representation of the dataset. Time is in nanoseconds from epoch. This
      * should also match the first part of the dataset identifier.
      */
-    maxEndTimeNs: string;
+    maxEndTimeNs?: string;
     /**
      * The smallest start time of all data points in this possibly partial
      * representation of the dataset. Time is in nanoseconds from epoch. This
      * should also match the first part of the dataset identifier.
      */
-    minStartTimeNs: string;
+    minStartTimeNs?: string;
     /**
      * This token will be set when a dataset is received in response to a GET
      * request and the dataset is too large to be included in a single response.
      * Provide this value in a subsequent GET request to return the next page of
      * data points within this dataset.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A partial list of data points contained in the dataset, ordered by
      * largest endTimeNanos first. This list is considered complete when
      * retrieving a small dataset and partial when patching a dataset or
      * retrieving a dataset that is too large to include in a single response.
      */
-    point: Schema$DataPoint[];
+    point?: Schema$DataPoint[];
   }
   /**
    * Definition of a unique source of sensor data. Data sources can expose raw
@@ -350,8 +353,8 @@ export namespace fitness_v1 {
      * Information about an application which feeds sensor data into the
      * platform.
      */
-    application: Schema$Application;
-    dataQualityStandard: string[];
+    application?: Schema$Application;
+    dataQualityStandard?: string[];
     /**
      * A unique identifier for the data stream produced by this data source. The
      * identifier includes:    - The physical device&#39;s manufacturer, model,
@@ -377,7 +380,7 @@ export namespace fitness_v1 {
      * Android client that did not create the data source. Only the data source
      * creator will see the developer project number in clear and normal form.
      */
-    dataStreamId: string;
+    dataStreamId?: string;
     /**
      * The stream name uniquely identifies this particular data source among
      * other data sources of the same type from the same underlying producer.
@@ -385,37 +388,37 @@ export namespace fitness_v1 {
      * application exposes two streams for the same data type, or when a device
      * has two equivalent sensors.
      */
-    dataStreamName: string;
+    dataStreamName?: string;
     /**
      * The data type defines the schema for a stream of data being collected by,
      * inserted into, or queried from the Fitness API.
      */
-    dataType: Schema$DataType;
+    dataType?: Schema$DataType;
     /**
      * Representation of an integrated device (such as a phone or a wearable)
      * that can hold sensors.
      */
-    device: Schema$Device;
+    device?: Schema$Device;
     /**
      * An end-user visible name for this data source.
      */
-    name: string;
+    name?: string;
     /**
      * A constant describing the type of this data source. Indicates whether
      * this data source produces raw or derived data.
      */
-    type: string;
+    type?: string;
   }
   export interface Schema$DataType {
     /**
      * A field represents one dimension of a data type.
      */
-    field: Schema$DataTypeField[];
+    field?: Schema$DataTypeField[];
     /**
      * Each data type has a unique, namespaced, name. All data types in the
      * com.google namespace are shared as part of the platform.
      */
-    name: string;
+    name?: string;
   }
   /**
    * In case of multi-dimensional data (such as an accelerometer with x, y, and
@@ -428,13 +431,13 @@ export namespace fitness_v1 {
     /**
      * The different supported formats for each field in a data type.
      */
-    format: string;
+    format?: string;
     /**
      * Defines the name and format of data. Unlike data type names, field names
      * are not namespaced, and only need to be unique within the data type.
      */
-    name: string;
-    optional: boolean;
+    name?: string;
+    optional?: boolean;
   }
   /**
    * Representation of an integrated device (such as a phone or a wearable) that
@@ -452,53 +455,53 @@ export namespace fitness_v1 {
     /**
      * Manufacturer of the product/hardware.
      */
-    manufacturer: string;
+    manufacturer?: string;
     /**
      * End-user visible model name for the device.
      */
-    model: string;
+    model?: string;
     /**
      * A constant representing the type of the device.
      */
-    type: string;
+    type?: string;
     /**
      * The serial number or other unique ID for the hardware. This field is
      * obfuscated when read by any REST or Android client that did not create
      * the data source. Only the data source creator will see the uid field in
      * clear and normal form.
      */
-    uid: string;
+    uid?: string;
     /**
      * Version string for the device hardware/software.
      */
-    version: string;
+    version?: string;
   }
   export interface Schema$ListDataPointChangesResponse {
     /**
      * The data stream ID of the data source with data point changes.
      */
-    dataSourceId: string;
+    dataSourceId?: string;
     /**
      * Deleted data points for the user. Note, for modifications this should be
      * parsed before handling insertions.
      */
-    deletedDataPoint: Schema$DataPoint[];
+    deletedDataPoint?: Schema$DataPoint[];
     /**
      * Inserted data points for the user.
      */
-    insertedDataPoint: Schema$DataPoint[];
+    insertedDataPoint?: Schema$DataPoint[];
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   export interface Schema$ListDataSourcesResponse {
     /**
      * A previously created data source.
      */
-    dataSource: Schema$DataSource[];
+    dataSource?: Schema$DataSource[];
   }
   export interface Schema$ListSessionsResponse {
     /**
@@ -506,22 +509,22 @@ export namespace fitness_v1 {
      * sessions deleted with original end times that are within the startTime
      * and endTime frame.
      */
-    deletedSession: Schema$Session[];
+    deletedSession?: Schema$Session[];
     /**
      * Flag to indicate server has more data to transfer
      */
-    hasMoreData: boolean;
+    hasMoreData?: boolean;
     /**
      * The continuation token, which is used to page through large result sets.
      * Provide this value in a subsequent request to return the next page of
      * results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Sessions with an end time that is between startTime and endTime of the
      * request.
      */
-    session: Schema$Session[];
+    session?: Schema$Session[];
   }
   /**
    * Holder object for the value of an entry in a map field of a data point.  A
@@ -531,7 +534,7 @@ export namespace fitness_v1 {
     /**
      * Floating point value.
      */
-    fpVal: number;
+    fpVal?: number;
   }
   /**
    * Sessions contain metadata, such as a user-friendly name and time interval
@@ -545,40 +548,40 @@ export namespace fitness_v1 {
      * should also be inserted via a com.google.activity.segment data point with
      * a STILL activity value
      */
-    activeTimeMillis: string;
+    activeTimeMillis?: string;
     /**
      * The type of activity this session represents.
      */
-    activityType: number;
+    activityType?: number;
     /**
      * The application that created the session.
      */
-    application: Schema$Application;
+    application?: Schema$Application;
     /**
      * A description for this session.
      */
-    description: string;
+    description?: string;
     /**
      * An end time, in milliseconds since epoch, inclusive.
      */
-    endTimeMillis: string;
+    endTimeMillis?: string;
     /**
      * A client-generated identifier that is unique across all sessions owned by
      * this particular user.
      */
-    id: string;
+    id?: string;
     /**
      * A timestamp that indicates when the session was last modified.
      */
-    modifiedTimeMillis: string;
+    modifiedTimeMillis?: string;
     /**
      * A human readable name of the session.
      */
-    name: string;
+    name?: string;
     /**
      * A start time, in milliseconds since epoch, inclusive.
      */
-    startTimeMillis: string;
+    startTimeMillis?: string;
   }
   /**
    * Holder object for the value of a single field in a data point.  A field
@@ -589,29 +592,30 @@ export namespace fitness_v1 {
     /**
      * Floating point value. When this is set, other values must not be set.
      */
-    fpVal: number;
+    fpVal?: number;
     /**
      * Integer value. When this is set, other values must not be set.
      */
-    intVal: number;
+    intVal?: number;
     /**
      * Map value. The valid key space and units for the corresponding value of
      * each entry should be documented as part of the data type definition. Keys
      * should be kept small whenever possible. Data streams with large keys and
      * high data frequency may be down sampled.
      */
-    mapVal: Schema$ValueMapValEntry[];
+    mapVal?: Schema$ValueMapValEntry[];
     /**
      * String value. When this is set, other values must not be set. Strings
      * should be kept small whenever possible. Data streams with large string
      * values and high data frequency may be down sampled.
      */
-    stringVal: string;
+    stringVal?: string;
   }
   export interface Schema$ValueMapValEntry {
-    key: string;
-    value: Schema$MapValue;
+    key?: string;
+    value?: Schema$MapValue;
   }
+
 
   export class Resource$Users {
     root: Fitness;
@@ -630,6 +634,8 @@ export namespace fitness_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Users$Dataset {
     root: Fitness;
     constructor(root: Fitness) {
@@ -658,26 +664,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    aggregate(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AggregateResponse>;
     aggregate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
-        callback?: BodyResponseCallback<Schema$AggregateResponse>): void;
+        params?: Params$Resource$Users$Dataset$Aggregate,
+        options?: MethodOptions): AxiosPromise<Schema$AggregateResponse>;
     aggregate(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
+        params: Params$Resource$Users$Dataset$Aggregate,
+        options: MethodOptions|BodyResponseCallback<Schema$AggregateResponse>,
+        callback: BodyResponseCallback<Schema$AggregateResponse>): void;
+    aggregate(
+        params: Params$Resource$Users$Dataset$Aggregate,
+        callback: BodyResponseCallback<Schema$AggregateResponse>): void;
+    aggregate(callback: BodyResponseCallback<Schema$AggregateResponse>): void;
+    aggregate(
+        paramsOrCallback?: Params$Resource$Users$Dataset$Aggregate|
+        BodyResponseCallback<Schema$AggregateResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$AggregateResponse>,
         callback?: BodyResponseCallback<Schema$AggregateResponse>):
         void|AxiosPromise<Schema$AggregateResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Dataset$Aggregate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Dataset$Aggregate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -699,6 +718,24 @@ export namespace fitness_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Dataset$Aggregate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Aggregate data for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AggregateRequest;
+  }
+
 
   export class Resource$Users$Datasources {
     root: Fitness;
@@ -737,26 +774,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DataSource>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>): void;
+        params?: Params$Resource$Users$Datasources$Create,
+        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        params: Params$Resource$Users$Datasources$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    create(
+        params: Params$Resource$Users$Datasources$Create,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    create(callback: BodyResponseCallback<Schema$DataSource>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Create|
+        BodyResponseCallback<Schema$DataSource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
         void|AxiosPromise<Schema$DataSource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -793,26 +843,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DataSource>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>): void;
+        params?: Params$Resource$Users$Datasources$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        params: Params$Resource$Users$Datasources$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    delete(
+        params: Params$Resource$Users$Datasources$Delete,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    delete(callback: BodyResponseCallback<Schema$DataSource>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Delete|
+        BodyResponseCallback<Schema$DataSource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
         void|AxiosPromise<Schema$DataSource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -849,23 +912,35 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$DataSource>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+    get(params?: Params$Resource$Users$Datasources$Get,
+        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
+    get(params: Params$Resource$Users$Datasources$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(params: Params$Resource$Users$Datasources$Get,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(callback: BodyResponseCallback<Schema$DataSource>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Datasources$Get|
+        BodyResponseCallback<Schema$DataSource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
         void|AxiosPromise<Schema$DataSource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -905,28 +980,40 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListDataSourcesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Users$Datasources$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListDataSourcesResponse>;
+    list(
+        params: Params$Resource$Users$Datasources$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDataSourcesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Datasources$List,
+        callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListDataSourcesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Users$Datasources$List|
+        BodyResponseCallback<Schema$ListDataSourcesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDataSourcesResponse>,
         callback?: BodyResponseCallback<Schema$ListDataSourcesResponse>):
         void|AxiosPromise<Schema$ListDataSourcesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -966,26 +1053,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DataSource>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>): void;
+        params?: Params$Resource$Users$Datasources$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        params: Params$Resource$Users$Datasources$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    patch(
+        params: Params$Resource$Users$Datasources$Patch,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    patch(callback: BodyResponseCallback<Schema$DataSource>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Patch|
+        BodyResponseCallback<Schema$DataSource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
         void|AxiosPromise<Schema$DataSource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1026,26 +1126,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DataSource>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
-        callback?: BodyResponseCallback<Schema$DataSource>): void;
+        params?: Params$Resource$Users$Datasources$Update,
+        options?: MethodOptions): AxiosPromise<Schema$DataSource>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        params: Params$Resource$Users$Datasources$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$DataSource>,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    update(
+        params: Params$Resource$Users$Datasources$Update,
+        callback: BodyResponseCallback<Schema$DataSource>): void;
+    update(callback: BodyResponseCallback<Schema$DataSource>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Update|
+        BodyResponseCallback<Schema$DataSource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DataSource>,
         callback?: BodyResponseCallback<Schema$DataSource>):
         void|AxiosPromise<Schema$DataSource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Datasources$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1068,6 +1181,113 @@ export namespace fitness_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Datasources$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Create the data source for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DataSource;
+  }
+  export interface Params$Resource$Users$Datasources$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The data stream ID of the data source to delete.
+     */
+    dataSourceId?: string;
+    /**
+     * Retrieve a data source for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Datasources$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The data stream ID of the data source to retrieve.
+     */
+    dataSourceId?: string;
+    /**
+     * Retrieve a data source for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Datasources$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The names of data types to include in the list. If not specified, all
+     * data sources will be returned.
+     */
+    dataTypeName?: string;
+    /**
+     * List data sources for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Datasources$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The data stream ID of the data source to update.
+     */
+    dataSourceId?: string;
+    /**
+     * Update the data source for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DataSource;
+  }
+  export interface Params$Resource$Users$Datasources$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The data stream ID of the data source to update.
+     */
+    dataSourceId?: string;
+    /**
+     * Update the data source for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DataSource;
+  }
+
   export class Resource$Users$Datasources$Datapointchanges {
     root: Fitness;
     constructor(root: Fitness) {
@@ -1095,29 +1315,45 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(
+        params?: Params$Resource$Users$Datasources$Datapointchanges$List,
+        options?: MethodOptions):
         AxiosPromise<Schema$ListDataPointChangesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Datasources$Datapointchanges$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListDataPointChangesResponse>,
-        callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
+        callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
         void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Datasources$Datapointchanges$List,
+        callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
+        void;
+    list(callback: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
+        void;
+    list(
+        paramsOrCallback?:
+            Params$Resource$Users$Datasources$Datapointchanges$List|
+        BodyResponseCallback<Schema$ListDataPointChangesResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListDataPointChangesResponse>,
         callback?: BodyResponseCallback<Schema$ListDataPointChangesResponse>):
         void|AxiosPromise<Schema$ListDataPointChangesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Datasources$Datapointchanges$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Datapointchanges$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1143,6 +1379,35 @@ export namespace fitness_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Datasources$Datapointchanges$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The data stream ID of the data source that created the dataset.
+     */
+    dataSourceId?: string;
+    /**
+     * If specified, no more than this many data point changes will be included
+     * in the response.
+     */
+    limit?: number;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * nextPageToken from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * List data points for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+
 
   export class Resource$Users$Datasources$Datasets {
     root: Fitness;
@@ -1178,22 +1443,37 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Users$Datasources$Datasets$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Datasources$Datasets$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Users$Datasources$Datasets$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Datasources$Datasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Datasets$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1238,23 +1518,34 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+    get(params?: Params$Resource$Users$Datasources$Datasets$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
+    get(params: Params$Resource$Users$Datasources$Datasets$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(params: Params$Resource$Users$Datasources$Datasets$Get,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(callback: BodyResponseCallback<Schema$Dataset>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Get|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Datasources$Datasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Datasets$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1298,25 +1589,38 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Dataset>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
-        callback?: BodyResponseCallback<Schema$Dataset>): void;
+        params?: Params$Resource$Users$Datasources$Datasets$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Dataset>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        params: Params$Resource$Users$Datasources$Datasets$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Dataset>,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(
+        params: Params$Resource$Users$Datasources$Datasets$Patch,
+        callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(callback: BodyResponseCallback<Schema$Dataset>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Datasources$Datasets$Patch|
+        BodyResponseCallback<Schema$Dataset>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Dataset>,
         callback?: BodyResponseCallback<Schema$Dataset>):
         void|AxiosPromise<Schema$Dataset> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Users$Datasources$Datasets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Datasources$Datasets$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1340,6 +1644,109 @@ export namespace fitness_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Datasources$Datasets$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client's current time in milliseconds since epoch.
+     */
+    currentTimeMillis?: string;
+    /**
+     * Dataset identifier that is a composite of the minimum data point start
+     * time and maximum data point end time represented as nanoseconds from the
+     * epoch. The ID is formatted like: "startTime-endTime" where startTime and
+     * endTime are 64 bit integers.
+     */
+    datasetId?: string;
+    /**
+     * The data stream ID of the data source that created the dataset.
+     */
+    dataSourceId?: string;
+    /**
+     * When the operation was performed on the client.
+     */
+    modifiedTimeMillis?: string;
+    /**
+     * Delete a dataset for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Datasources$Datasets$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Dataset identifier that is a composite of the minimum data point start
+     * time and maximum data point end time represented as nanoseconds from the
+     * epoch. The ID is formatted like: "startTime-endTime" where startTime and
+     * endTime are 64 bit integers.
+     */
+    datasetId?: string;
+    /**
+     * The data stream ID of the data source that created the dataset.
+     */
+    dataSourceId?: string;
+    /**
+     * If specified, no more than this many data points will be included in the
+     * dataset. If there are more data points in the dataset, nextPageToken will
+     * be set in the dataset response.
+     */
+    limit?: number;
+    /**
+     * The continuation token, which is used to page through large datasets. To
+     * get the next page of a dataset, set this parameter to the value of
+     * nextPageToken from the previous response. Each subsequent call will yield
+     * a partial dataset with data point end timestamps that are strictly
+     * smaller than those in the previous partial response.
+     */
+    pageToken?: string;
+    /**
+     * Retrieve a dataset for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Datasources$Datasets$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client's current time in milliseconds since epoch. Note that the
+     * minStartTimeNs and maxEndTimeNs properties in the request body are in
+     * nanoseconds instead of milliseconds.
+     */
+    currentTimeMillis?: string;
+    /**
+     * Dataset identifier that is a composite of the minimum data point start
+     * time and maximum data point end time represented as nanoseconds from the
+     * epoch. The ID is formatted like: "startTime-endTime" where startTime and
+     * endTime are 64 bit integers.
+     */
+    datasetId?: string;
+    /**
+     * The data stream ID of the data source that created the dataset.
+     */
+    dataSourceId?: string;
+    /**
+     * Patch a dataset for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Dataset;
+  }
+
 
 
   export class Resource$Users$Sessions {
@@ -1368,22 +1775,37 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Users$Sessions$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Sessions$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Users$Sessions$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Sessions$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sessions$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1422,28 +1844,39 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Users$Sessions$List, options?: MethodOptions):
         AxiosPromise<Schema$ListSessionsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Sessions$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
-        callback?: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Users$Sessions$List,
+        callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListSessionsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Users$Sessions$List|
+        BodyResponseCallback<Schema$ListSessionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListSessionsResponse>,
         callback?: BodyResponseCallback<Schema$ListSessionsResponse>):
         void|AxiosPromise<Schema$ListSessionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sessions$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1481,25 +1914,38 @@ export namespace fitness_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Session>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
-        callback?: BodyResponseCallback<Schema$Session>): void;
+        params?: Params$Resource$Users$Sessions$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Session>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Session>,
+        params: Params$Resource$Users$Sessions$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Session>,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    update(
+        params: Params$Resource$Users$Sessions$Update,
+        callback: BodyResponseCallback<Schema$Session>): void;
+    update(callback: BodyResponseCallback<Schema$Session>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Users$Sessions$Update|
+        BodyResponseCallback<Schema$Session>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Session>,
         callback?: BodyResponseCallback<Schema$Session>):
         void|AxiosPromise<Schema$Session> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Sessions$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sessions$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1520,5 +1966,84 @@ export namespace fitness_v1 {
         return createAPIRequest<Schema$Session>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Users$Sessions$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client's current time in milliseconds since epoch.
+     */
+    currentTimeMillis?: string;
+    /**
+     * The ID of the session to be deleted.
+     */
+    sessionId?: string;
+    /**
+     * Delete a session for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Sessions$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * An RFC3339 timestamp. Only sessions ending between the start and end
+     * times will be included in the response.
+     */
+    endTime?: string;
+    /**
+     * If true, deleted sessions will be returned. When set to true, sessions
+     * returned in this response will only have an ID and will not have any
+     * other fields.
+     */
+    includeDeleted?: boolean;
+    /**
+     * The continuation token, which is used to page through large result sets.
+     * To get the next page of results, set this parameter to the value of
+     * nextPageToken from the previous response.
+     */
+    pageToken?: string;
+    /**
+     * An RFC3339 timestamp. Only sessions ending between the start and end
+     * times will be included in the response.
+     */
+    startTime?: string;
+    /**
+     * List sessions for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+  }
+  export interface Params$Resource$Users$Sessions$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The client's current time in milliseconds since epoch.
+     */
+    currentTimeMillis?: string;
+    /**
+     * The ID of the session to be created.
+     */
+    sessionId?: string;
+    /**
+     * Create sessions for the person identified. Use me to indicate the
+     * authenticated user. Only me is supported at this time.
+     */
+    userId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Session;
   }
 }

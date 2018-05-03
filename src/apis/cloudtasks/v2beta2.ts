@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace cloudtasks_v2beta2 {
+  export interface Options extends GlobalOptions { version: 'v2beta2'; }
+
   /**
    * Cloud Tasks API
    *
@@ -75,7 +78,7 @@ export namespace cloudtasks_v2beta2 {
      * schedule_time returned by LeaseTasks response or RenewLease response.
      * This restriction is to ensure that your worker currently holds the lease.
      */
-    scheduleTime: string;
+    scheduleTime?: string;
   }
   /**
    * App Engine HTTP request.  The message defines the HTTP request that is sent
@@ -108,7 +111,7 @@ export namespace cloudtasks_v2beta2 {
      * app_engine_routing_override is used for all tasks in the queue, no matter
      * what the setting is for the task-level app_engine_routing.
      */
-    appEngineRouting: Schema$AppEngineRouting;
+    appEngineRouting?: Schema$AppEngineRouting;
     /**
      * HTTP request headers.  This map contains the header field names and
      * values. Headers can be set when the [task is
@@ -138,7 +141,7 @@ export namespace cloudtasks_v2beta2 {
      * there is a limit on the maximum size of the Task. For more information,
      * see the CreateTask documentation.
      */
-    headers: any;
+    headers?: any;
     /**
      * The HTTP method to use for the request. The default is POST.  The
      * app&#39;s request handler for the task&#39;s target URL must be able to
@@ -150,14 +153,14 @@ export namespace cloudtasks_v2beta2 {
      * is written in e.g. [Python Request
      * Handler](/appengine/docs/python/tools/webapp/requesthandlerclass).
      */
-    httpMethod: string;
+    httpMethod?: string;
     /**
      * Payload.  The payload will be sent as the HTTP message body. A message
      * body, and thus a payload, is allowed only if the HTTP method is POST or
      * PUT. It is an error to set a data payload on a task with an incompatible
      * HttpMethod.
      */
-    payload: string;
+    payload?: string;
     /**
      * The relative URL.  The relative URL must begin with &quot;/&quot; and
      * must be a valid HTTP relative URL. It can contain a path and query string
@@ -165,7 +168,7 @@ export namespace cloudtasks_v2beta2 {
      * will be used. No spaces are allowed, and the maximum length allowed is
      * 2083 characters.
      */
-    relativeUrl: string;
+    relativeUrl?: string;
   }
   /**
    * App Engine HTTP target.  The task will be delivered to the App Engine
@@ -183,7 +186,7 @@ export namespace cloudtasks_v2beta2 {
      * `app_engine_routing_override` is used for all tasks in the queue, no
      * matter what the setting is for the task-level app_engine_routing.
      */
-    appEngineRoutingOverride: Schema$AppEngineRouting;
+    appEngineRoutingOverride?: Schema$AppEngineRouting;
   }
   /**
    * App Engine Routing.  For more information about services, versions, and
@@ -231,7 +234,7 @@ export namespace cloudtasks_v2beta2 {
      * then the task will be sent to the default version of the default service
      * when the task is attempted.
      */
-    host: string;
+    host?: string;
     /**
      * App instance.  By default, the task is sent to an instance which is
      * available when the task is attempted.  Requests can only be sent to a
@@ -243,7 +246,7 @@ export namespace cloudtasks_v2beta2 {
      * [App Engine Flex request
      * routing](/appengine/docs/flexible/python/how-requests-are-routed).
      */
-    instance: string;
+    instance?: string;
     /**
      * App service.  By default, the task is sent to the service which is the
      * default service when the task is attempted (&quot;default&quot;).  For
@@ -254,7 +257,7 @@ export namespace cloudtasks_v2beta2 {
      * is not parsable, then service, version, and instance are the empty
      * string.
      */
-    service: string;
+    service?: string;
     /**
      * App version.  By default, the task is sent to the version which is the
      * default version when the task is attempted (&quot;default&quot;).  For
@@ -265,7 +268,7 @@ export namespace cloudtasks_v2beta2 {
      * is not parsable, then service, version, and instance are the empty
      * string.
      */
-    version: string;
+    version?: string;
   }
   /**
    * The status of a task attempt.
@@ -275,23 +278,23 @@ export namespace cloudtasks_v2beta2 {
      * Output only. The time that this attempt was dispatched.  `dispatch_time`
      * will be truncated to the nearest microsecond.
      */
-    dispatchTime: string;
+    dispatchTime?: string;
     /**
      * Output only. The response from the target for this attempt.  If the task
      * has not been attempted or the task is currently running then the response
      * status is unset.
      */
-    responseStatus: Schema$Status;
+    responseStatus?: Schema$Status;
     /**
      * Output only. The time that this attempt response was received.
      * `response_time` will be truncated to the nearest microsecond.
      */
-    responseTime: string;
+    responseTime?: string;
     /**
      * Output only. The time that this attempt was scheduled.  `schedule_time`
      * will be truncated to the nearest microsecond.
      */
-    scheduleTime: string;
+    scheduleTime?: string;
   }
   /**
    * Associates `members` with a `role`.
@@ -304,21 +307,20 @@ export namespace cloudtasks_v2beta2 {
      * without a Google account.  * `allAuthenticatedUsers`: A special
      * identifier that represents anyone    who is authenticated with a Google
      * account or a service account.  * `user:{emailid}`: An email address that
-     * represents a specific Google    account. For example, `alice@gmail.com`
-     * or `joe@example.com`.   * `serviceAccount:{emailid}`: An email address
-     * that represents a service    account. For example,
-     * `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An
-     * email address that represents a Google group.    For example,
-     * `admins@example.com`.   * `domain:{domain}`: A Google Apps domain name
-     * that represents all the    users of that domain. For example,
+     * represents a specific Google    account. For example, `alice@gmail.com` .
+     * * `serviceAccount:{emailid}`: An email address that represents a service
+     * account. For example, `my-other-app@appspot.gserviceaccount.com`.  *
+     * `group:{emailid}`: An email address that represents a Google group. For
+     * example, `admins@example.com`.   * `domain:{domain}`: A Google Apps
+     * domain name that represents all the    users of that domain. For example,
      * `google.com` or `example.com`.
      */
-    members: string[];
+    members?: string[];
     /**
      * Role that is assigned to `members`. For example, `roles/viewer`,
      * `roles/editor`, or `roles/owner`. Required
      */
-    role: string;
+    role?: string;
   }
   /**
    * Request message for canceling a lease using CancelLease.
@@ -333,13 +335,13 @@ export namespace cloudtasks_v2beta2 {
      * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
      * resource.
      */
-    responseView: string;
+    responseView?: string;
     /**
      * Required.  The task&#39;s current schedule time, available in the
      * schedule_time returned by LeaseTasks response or RenewLease response.
      * This restriction is to ensure that your worker currently holds the lease.
      */
-    scheduleTime: string;
+    scheduleTime?: string;
   }
   /**
    * Request message for CreateTask.
@@ -354,7 +356,7 @@ export namespace cloudtasks_v2beta2 {
      * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
      * resource.
      */
-    responseView: string;
+    responseView?: string;
     /**
      * Required.  The task to add.  Task names have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`.
@@ -379,7 +381,7 @@ export namespace cloudtasks_v2beta2 {
      * infrastructure relies on an approximately uniform distribution of task
      * ids to store and serve tasks efficiently.
      */
-    task: Schema$Task;
+    task?: Schema$Task;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -414,7 +416,7 @@ export namespace cloudtasks_v2beta2 {
      * UTF-8 encoded can&#39;t be used in the filter and the task&#39;s tag will
      * be displayed as empty in Cloud Tasks.
      */
-    filter: string;
+    filter?: string;
     /**
      *  After the worker has successfully finished the work associated with the
      * task, the worker must call via AcknowledgeTask before the schedule_time.
@@ -422,12 +424,12 @@ export namespace cloudtasks_v2beta2 {
      * another worker can retry it.  The maximum lease duration is 1 week.
      * `lease_duration` will be truncated to the nearest second.
      */
-    leaseDuration: string;
+    leaseDuration?: string;
     /**
      * The maximum number of tasks to lease. The maximum that can be requested
      * is 1000.
      */
-    maxTasks: number;
+    maxTasks?: number;
     /**
      * The response_view specifies which subset of the Task will be returned. By
      * default response_view is BASIC; not all information is retrieved by
@@ -437,7 +439,7 @@ export namespace cloudtasks_v2beta2 {
      * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
      * resource.
      */
-    responseView: string;
+    responseView?: string;
   }
   /**
    * Response message for leasing tasks using LeaseTasks.
@@ -446,7 +448,7 @@ export namespace cloudtasks_v2beta2 {
     /**
      * The leased tasks.
      */
-    tasks: Schema$Task[];
+    tasks?: Schema$Task[];
   }
   /**
    * The response message for Locations.ListLocations.
@@ -455,11 +457,11 @@ export namespace cloudtasks_v2beta2 {
     /**
      * A list of locations that matches the specified filter in the request.
      */
-    locations: Schema$Location[];
+    locations?: Schema$Location[];
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Response message for ListQueues.
@@ -471,11 +473,11 @@ export namespace cloudtasks_v2beta2 {
      * next_page_token is empty, there are no more results.  The page token is
      * valid for only 2 hours.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of queues.
      */
-    queues: Schema$Queue[];
+    queues?: Schema$Queue[];
   }
   /**
    * Response message for listing tasks using ListTasks.
@@ -486,11 +488,11 @@ export namespace cloudtasks_v2beta2 {
      * results, call ListTasks with this value as the page_token.  If the
      * next_page_token is empty, there are no more results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * The list of tasks.
      */
-    tasks: Schema$Task[];
+    tasks?: Schema$Task[];
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -500,26 +502,26 @@ export namespace cloudtasks_v2beta2 {
      * The friendly name for this location, typically a nearby city name. For
      * example, &quot;Tokyo&quot;.
      */
-    displayName: string;
+    displayName?: string;
     /**
      * Cross-service attributes for the location. For example
      * {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
      */
-    labels: any;
+    labels?: any;
     /**
      * The canonical id for this location. For example: `&quot;us-east1&quot;`.
      */
-    locationId: string;
+    locationId?: string;
     /**
      * Service-specific metadata. For example the available capacity at the
      * given location.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Resource name for the location, which may vary between implementations.
      * For example: `&quot;projects/example-project/locations/us-east1&quot;`
      */
-    name: string;
+    name?: string;
   }
   /**
    * Request message for PauseQueue.
@@ -550,7 +552,7 @@ export namespace cloudtasks_v2beta2 {
      * Associates a list of `members` to a `role`. `bindings` with no members
      * will result in an error.
      */
-    bindings: Schema$Binding[];
+    bindings?: Schema$Binding[];
     /**
      * `etag` is used for optimistic concurrency control as a way to help
      * prevent simultaneous updates of a policy from overwriting each other. It
@@ -562,11 +564,11 @@ export namespace cloudtasks_v2beta2 {
      * policy.  If no `etag` is provided in the call to `setIamPolicy`, then the
      * existing policy is overwritten blindly.
      */
-    etag: string;
+    etag?: string;
     /**
      * Deprecated.
      */
-    version: number;
+    version?: number;
   }
   /**
    * The pull message contains data that can be used by the caller of LeaseTasks
@@ -577,7 +579,7 @@ export namespace cloudtasks_v2beta2 {
     /**
      * A data payload consumed by the worker to execute the task.
      */
-    payload: string;
+    payload?: string;
     /**
      * The task&#39;s tag.  Tags allow similar tasks to be processed in a batch.
      * If you label tasks with a tag, your worker can lease tasks with the same
@@ -591,7 +593,7 @@ export namespace cloudtasks_v2beta2 {
      * UTF-8 encoded, the tag will be empty when the task is returned by Cloud
      * Tasks.
      */
-    tag: string;
+    tag?: string;
   }
   /**
    * Pull target.
@@ -611,7 +613,7 @@ export namespace cloudtasks_v2beta2 {
      * App Engine HTTP target.  An App Engine queue is a queue that has an
      * AppEngineHttpTarget.
      */
-    appEngineHttpTarget: Schema$AppEngineHttpTarget;
+    appEngineHttpTarget?: Schema$AppEngineHttpTarget;
     /**
      * The queue name.  The queue name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
@@ -626,11 +628,11 @@ export namespace cloudtasks_v2beta2 {
      * (-). The maximum length is 100 characters.  Caller-specified and required
      * in CreateQueue, after which it becomes output only.
      */
-    name: string;
+    name?: string;
     /**
      * Pull target.  A pull queue is a queue that has a PullTarget.
      */
-    pullTarget: Schema$PullTarget;
+    pullTarget?: Schema$PullTarget;
     /**
      * Output only. The last time this queue was purged.  All tasks that were
      * created before this time were purged.  A queue can be purged using
@@ -639,7 +641,7 @@ export namespace cloudtasks_v2beta2 {
      * Purge time will be truncated to the nearest microsecond. Purge time will
      * be unset if the queue has never been purged.
      */
-    purgeTime: string;
+    purgeTime?: string;
     /**
      * Rate limits for task dispatches.  rate_limits and retry_config are
      * related because they both control task attempts however they control how
@@ -650,7 +652,7 @@ export namespace cloudtasks_v2beta2 {
      * its first attempt fails. That is,   retry_config controls task retries
      * (the   second attempt, third attempt, etc).
      */
-    rateLimits: Schema$RateLimits;
+    rateLimits?: Schema$RateLimits;
     /**
      * Settings that determine the retry behavior.  * For tasks created using
      * Cloud Tasks: the queue-level retry settings   apply to all tasks in the
@@ -661,14 +663,14 @@ export namespace cloudtasks_v2beta2 {
      * App Engine SDK. See   [App Engine
      * documentation](/appengine/docs/standard/python/taskqueue/push/retrying-tasks).
      */
-    retryConfig: Schema$RetryConfig;
+    retryConfig?: Schema$RetryConfig;
     /**
      * Output only. The state of the queue.  `state` can only be changed by
      * called PauseQueue, ResumeQueue, or uploading
      * [queue.yaml/xml](/appengine/docs/python/config/queueref). UpdateQueue
      * cannot be used to change `state`.
      */
-    state: string;
+    state?: string;
   }
   /**
    * Rate limits.  This message determines the maximum rate that tasks can be
@@ -698,7 +700,7 @@ export namespace cloudtasks_v2beta2 {
      * on the value of max_tasks_dispatched_per_second, regardless of whether
      * max_tasks_dispatched_per_second is updated.
      */
-    maxBurstSize: number;
+    maxBurstSize?: number;
     /**
      * The maximum number of concurrent tasks that Cloud Tasks allows to be
      * dispatched for this queue. After this threshold has been reached, Cloud
@@ -710,7 +712,7 @@ export namespace cloudtasks_v2beta2 {
      * meaning as [max_concurrent_requests in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#max_concurrent_requests).
      */
-    maxConcurrentTasks: number;
+    maxConcurrentTasks?: number;
     /**
      * The maximum rate at which tasks are dispatched from this queue.  If
      * unspecified when the queue is created, Cloud Tasks will pick the default.
@@ -722,7 +724,7 @@ export namespace cloudtasks_v2beta2 {
      * same meaning as [rate in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#rate).
      */
-    maxTasksDispatchedPerSecond: number;
+    maxTasksDispatchedPerSecond?: number;
   }
   /**
    * Request message for renewing a lease using RenewLease.
@@ -733,7 +735,7 @@ export namespace cloudtasks_v2beta2 {
      * maximum lease duration is 1 week. `lease_duration` will be truncated to
      * the nearest second.
      */
-    leaseDuration: string;
+    leaseDuration?: string;
     /**
      * The response_view specifies which subset of the Task will be returned. By
      * default response_view is BASIC; not all information is retrieved by
@@ -743,13 +745,13 @@ export namespace cloudtasks_v2beta2 {
      * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
      * resource.
      */
-    responseView: string;
+    responseView?: string;
     /**
      * Required.  The task&#39;s current schedule time, available in the
      * schedule_time returned by LeaseTasks response or RenewLease response.
      * This restriction is to ensure that your worker currently holds the lease.
      */
-    scheduleTime: string;
+    scheduleTime?: string;
   }
   /**
    * Request message for ResumeQueue.
@@ -765,7 +767,7 @@ export namespace cloudtasks_v2beta2 {
      * task `max_attempts` times (that is, if the first attempt fails, then
      * there will be `max_attempts - 1` retries).  Must be &gt; 0.
      */
-    maxAttempts: number;
+    maxAttempts?: number;
     /**
      * A task will be [scheduled](Task.schedule_time) for retry between
      * min_backoff and max_backoff duration after it fails, if the queue&#39;s
@@ -776,7 +778,7 @@ export namespace cloudtasks_v2beta2 {
      * the same meaning as [max_backoff_seconds in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
-    maxBackoff: string;
+    maxBackoff?: string;
     /**
      * The time between retries will double `max_doublings` times.  A task&#39;s
      * retry interval starts at min_backoff, then doubles `max_doublings` times,
@@ -793,7 +795,7 @@ export namespace cloudtasks_v2beta2 {
      * meaning as [max_doublings in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
-    maxDoublings: number;
+    maxDoublings?: number;
     /**
      * If positive, `max_retry_duration` specifies the time limit for retrying a
      * failed task, measured from when the task was first attempted. Once
@@ -806,7 +808,7 @@ export namespace cloudtasks_v2beta2 {
      * has the same meaning as [task_age_limit in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
-    maxRetryDuration: string;
+    maxRetryDuration?: string;
     /**
      * A task will be [scheduled](Task.schedule_time) for retry between
      * min_backoff and max_backoff duration after it fails, if the queue&#39;s
@@ -817,11 +819,11 @@ export namespace cloudtasks_v2beta2 {
      * the same meaning as [min_backoff_seconds in
      * queue.yaml/xml](/appengine/docs/standard/python/config/queueref#retry_parameters).
      */
-    minBackoff: string;
+    minBackoff?: string;
     /**
      * If true, then the number of attempts is unlimited.
      */
-    unlimitedAttempts: boolean;
+    unlimitedAttempts?: boolean;
   }
   /**
    * Request message for forcing a task to run now using RunTask.
@@ -836,7 +838,7 @@ export namespace cloudtasks_v2beta2 {
      * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
      * resource.
      */
-    responseView: string;
+    responseView?: string;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -848,7 +850,7 @@ export namespace cloudtasks_v2beta2 {
      * policy but certain Cloud Platform services (such as Projects) might
      * reject them.
      */
-    policy: Schema$Policy;
+    policy?: Schema$Policy;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -890,18 +892,18 @@ export namespace cloudtasks_v2beta2 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A unit of scheduled work.
@@ -912,12 +914,12 @@ export namespace cloudtasks_v2beta2 {
      * only if app_engine_http_target is set on the queue.  An App Engine task
      * is a task that has AppEngineHttpRequest set.
      */
-    appEngineHttpRequest: Schema$AppEngineHttpRequest;
+    appEngineHttpRequest?: Schema$AppEngineHttpRequest;
     /**
      * Output only. The time that the task was created.  `create_time` will be
      * truncated to the nearest second.
      */
-    createTime: string;
+    createTime?: string;
     /**
      * The task name.  The task name must have the following format:
      * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
@@ -934,12 +936,12 @@ export namespace cloudtasks_v2beta2 {
      * The maximum length is 500 characters.  Optionally caller-specified in
      * CreateTask.
      */
-    name: string;
+    name?: string;
     /**
      * LeaseTasks to process the task. Can be set only if pull_target is set on
      * the queue.  A pull task is a task that has PullMessage set.
      */
-    pullMessage: Schema$PullMessage;
+    pullMessage?: Schema$PullMessage;
     /**
      * The time when the task is scheduled to be attempted.  For App Engine
      * queues, this is when the task will be attempted or retried.  For pull
@@ -949,16 +951,16 @@ export namespace cloudtasks_v2beta2 {
      * lease_duration.  `schedule_time` will be truncated to the nearest
      * microsecond.
      */
-    scheduleTime: string;
+    scheduleTime?: string;
     /**
      * Output only. The task status.
      */
-    status: Schema$TaskStatus;
+    status?: Schema$TaskStatus;
     /**
      * Output only. The view specifies which subset of the Task has been
      * returned.
      */
-    view: string;
+    view?: string;
   }
   /**
    * Status of the task.
@@ -968,26 +970,26 @@ export namespace cloudtasks_v2beta2 {
      * Output only. The number of attempts dispatched.  This count includes
      * tasks which have been dispatched but haven&#39;t received a response.
      */
-    attemptDispatchCount: number;
+    attemptDispatchCount?: number;
     /**
      * Output only. The number of attempts which have received a response.  This
      * field is not calculated for [pull
      * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
      */
-    attemptResponseCount: number;
+    attemptResponseCount?: number;
     /**
      * Output only. The status of the task&#39;s first attempt.  Only
      * dispatch_time will be set. The other AttemptStatus information is not
      * retained by Cloud Tasks.  This field is not calculated for [pull
      * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
      */
-    firstAttemptStatus: Schema$AttemptStatus;
+    firstAttemptStatus?: Schema$AttemptStatus;
     /**
      * Output only. The status of the task&#39;s last attempt.  This field is
      * not calculated for [pull
      * tasks](google.cloud.tasks.v2beta2.PullTaskTarget).
      */
-    lastAttemptStatus: Schema$AttemptStatus;
+    lastAttemptStatus?: Schema$AttemptStatus;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -999,7 +1001,7 @@ export namespace cloudtasks_v2beta2 {
      * For more information see [IAM
      * Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
-    permissions: string[];
+    permissions?: string[];
   }
   /**
    * Response message for `TestIamPermissions` method.
@@ -1009,8 +1011,9 @@ export namespace cloudtasks_v2beta2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is
      * allowed.
      */
-    permissions: string[];
+    permissions?: string[];
   }
+
 
   export class Resource$Projects {
     root: Cloudtasks;
@@ -1025,6 +1028,8 @@ export namespace cloudtasks_v2beta2 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Locations {
     root: Cloudtasks;
     queues: Resource$Projects$Locations$Queues;
@@ -1105,23 +1110,34 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Location>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
-        callback?: BodyResponseCallback<Schema$Location>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Location>,
+    get(params?: Params$Resource$Projects$Locations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Location>;
+    get(params: Params$Resource$Projects$Locations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Location>,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(params: Params$Resource$Projects$Locations$Get,
+        callback: BodyResponseCallback<Schema$Location>): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Get|
+        BodyResponseCallback<Schema$Location>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Location>,
         callback?: BodyResponseCallback<Schema$Location>):
         void|AxiosPromise<Schema$Location> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1224,28 +1240,40 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListLocationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Locations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListLocationsResponse>;
+    list(
+        params: Params$Resource$Projects$Locations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$List,
+        callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$List|
+        BodyResponseCallback<Schema$ListLocationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListLocationsResponse>,
         callback?: BodyResponseCallback<Schema$ListLocationsResponse>):
         void|AxiosPromise<Schema$ListLocationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1267,6 +1295,42 @@ export namespace cloudtasks_v2beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Projects$Locations$Queues {
     root: Cloudtasks;
     tasks: Resource$Projects$Locations$Queues$Tasks;
@@ -1361,25 +1425,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        params: Params$Resource$Projects$Locations$Queues$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Queues$Create,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    create(callback: BodyResponseCallback<Schema$Queue>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Create|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1473,25 +1550,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Queues$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Queues$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1579,23 +1669,34 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+    get(params?: Params$Resource$Projects$Locations$Queues$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
+    get(params: Params$Resource$Projects$Locations$Queues$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    get(params: Params$Resource$Projects$Locations$Queues$Get,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    get(callback: BodyResponseCallback<Schema$Queue>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Get|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1691,26 +1792,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     getIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        params: Params$Resource$Projects$Locations$Queues$Getiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Getiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Getiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1817,26 +1931,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListQueuesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListQueuesResponse>,
-        callback?: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+        params?: Params$Resource$Projects$Locations$Queues$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListQueuesResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListQueuesResponse>,
+        params: Params$Resource$Projects$Locations$Queues$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListQueuesResponse>,
+        callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Queues$List,
+        callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListQueuesResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$List|
+        BodyResponseCallback<Schema$ListQueuesResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListQueuesResponse>,
         callback?: BodyResponseCallback<Schema$ListQueuesResponse>):
         void|AxiosPromise<Schema$ListQueuesResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1949,25 +2076,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        params: Params$Resource$Projects$Locations$Queues$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    patch(
+        params: Params$Resource$Projects$Locations$Queues$Patch,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    patch(callback: BodyResponseCallback<Schema$Queue>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Patch|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2063,25 +2203,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Pause,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        params: Params$Resource$Projects$Locations$Queues$Pause,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    pause(
+        params: Params$Resource$Projects$Locations$Queues$Pause,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    pause(callback: BodyResponseCallback<Schema$Queue>): void;
+    pause(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Pause|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Pause;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2178,25 +2331,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    purge(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
     purge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Purge,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
     purge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        params: Params$Resource$Projects$Locations$Queues$Purge,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    purge(
+        params: Params$Resource$Projects$Locations$Queues$Purge,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    purge(callback: BodyResponseCallback<Schema$Queue>): void;
+    purge(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Purge|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Purge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Purge;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2296,25 +2462,38 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume(params?: any, options?: MethodOptions): AxiosPromise<Schema$Queue>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
-        callback?: BodyResponseCallback<Schema$Queue>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Resume,
+        options?: MethodOptions): AxiosPromise<Schema$Queue>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        params: Params$Resource$Projects$Locations$Queues$Resume,
+        options: MethodOptions|BodyResponseCallback<Schema$Queue>,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    resume(
+        params: Params$Resource$Projects$Locations$Queues$Resume,
+        callback: BodyResponseCallback<Schema$Queue>): void;
+    resume(callback: BodyResponseCallback<Schema$Queue>): void;
+    resume(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Resume|
+        BodyResponseCallback<Schema$Queue>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Queue>,
         callback?: BodyResponseCallback<Schema$Queue>):
         void|AxiosPromise<Schema$Queue> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Resume;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2413,26 +2592,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    setIamPolicy(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
-        callback?: BodyResponseCallback<Schema$Policy>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+        options?: MethodOptions): AxiosPromise<Schema$Policy>;
     setIamPolicy(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+        options: MethodOptions|BodyResponseCallback<Schema$Policy>,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        params: Params$Resource$Projects$Locations$Queues$Setiampolicy,
+        callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Setiampolicy|
+        BodyResponseCallback<Schema$Policy>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Policy>,
         callback?: BodyResponseCallback<Schema$Policy>):
         void|AxiosPromise<Schema$Policy> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Setiampolicy;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2531,29 +2723,47 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    testIamPermissions(params?: any, options?: MethodOptions):
+    testIamPermissions(
+        params?: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+        options?: MethodOptions):
         AxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+        options: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-        callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void;
     testIamPermissions(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Locations$Queues$Testiampermissions,
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
+        void;
+    testIamPermissions(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Testiampermissions|
+        BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$TestIamPermissionsResponse>,
         callback?: BodyResponseCallback<Schema$TestIamPermissionsResponse>):
         void|AxiosPromise<Schema$TestIamPermissionsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Queues$Testiampermissions;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2576,6 +2786,214 @@ export namespace cloudtasks_v2beta2 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Locations$Queues$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The location name in which the queue will be created. For
+     * example: `projects/PROJECT_ID/locations/LOCATION_ID`  The list of allowed
+     * locations can be obtained by calling Cloud Tasks' implementation of
+     * ListLocations.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Queue;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The resource name of the queue. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Getiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * `filter` can be used to specify a subset of queues. Any Queue field can
+     * be used as a filter and several operators as supported. For example: `<=,
+     * <, >=, >, !=, =, :`. The filter syntax is the same as described in
+     * [Stackdriver's Advanced Logs
+     * Filters](/logging/docs/view/advanced_filters).  Sample filter
+     * "app_engine_http_target: *".  Note that using filters might cause fewer
+     * queues than the requested_page size to be returned.
+     */
+    filter?: string;
+    /**
+     * Requested page size.  The maximum page size is 9800. If unspecified, the
+     * page size will be the maximum. Fewer queues than requested might be
+     * returned, even if more queues exist; use the next_page_token in the
+     * response to determine if more queues exist.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying the page of results to return.  To request the first
+     * page results, page_token must be empty. To request the next page of
+     * results, page_token must be the value of next_page_token returned from
+     * the previous call to ListQueues method. It is an error to switch the
+     * value of the filter while iterating through pages.
+     */
+    pageToken?: string;
+    /**
+     * Required.  The location name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The queue name.  The queue name must have the following format:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  *
+     * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]),    hyphens
+     * (-), colons (:), or periods (.).    For more information, see
+     * [Identifying
+     * projects](/resource-manager/docs/creating-managing-projects#identifying_projects)
+     * * `LOCATION_ID` is the canonical ID for the queue's location.    The list
+     * of available locations can be obtained by calling    ListLocations. For
+     * more information, see https://cloud.google.com/about/locations/. *
+     * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or   hyphens
+     * (-). The maximum length is 100 characters.  Caller-specified and required
+     * in CreateQueue, after which it becomes output only.
+     */
+    name?: string;
+    /**
+     * A mask used to specify which fields of the queue are being updated.  If
+     * empty, then all fields will be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Queue;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Pause {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PauseQueueRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Purge {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PurgeQueueRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Resume {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/location/LOCATION_ID/queues/QUEUE_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResumeQueueRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Setiampolicy {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the
+     * operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Testiampermissions {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested.
+     * See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+    /**
+     * Request body metadata
+     */
+    resource_?: Schema$TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects$Locations$Queues$Tasks {
     root: Cloudtasks;
     constructor(root: Cloudtasks) {
@@ -2667,26 +3085,40 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    acknowledge(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Empty>;
     acknowledge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     acknowledge(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(callback: BodyResponseCallback<Schema$Empty>): void;
+    acknowledge(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2784,24 +3216,40 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancelLease(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
     cancelLease(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
     cancelLease(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    cancelLease(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Cancellease,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    cancelLease(callback: BodyResponseCallback<Schema$Task>): void;
+    cancelLease(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Cancellease|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Cancellease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Queues$Tasks$Cancellease;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2906,23 +3354,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
     create(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    create(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Create,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    create(callback: BodyResponseCallback<Schema$Task>): void;
+    create(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Create|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3012,25 +3476,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3121,21 +3599,34 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+    get(params?: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
+    get(params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    get(params: Params$Resource$Projects$Locations$Queues$Tasks$Get,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    get(callback: BodyResponseCallback<Schema$Task>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$Get|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3178,26 +3669,40 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    lease(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$LeaseTasksResponse>;
     lease(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaseTasksResponse>,
-        callback?: BodyResponseCallback<Schema$LeaseTasksResponse>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
+        options?: MethodOptions): AxiosPromise<Schema$LeaseTasksResponse>;
     lease(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$LeaseTasksResponse>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
+        options: MethodOptions|BodyResponseCallback<Schema$LeaseTasksResponse>,
+        callback: BodyResponseCallback<Schema$LeaseTasksResponse>): void;
+    lease(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Lease,
+        callback: BodyResponseCallback<Schema$LeaseTasksResponse>): void;
+    lease(callback: BodyResponseCallback<Schema$LeaseTasksResponse>): void;
+    lease(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Lease|
+        BodyResponseCallback<Schema$LeaseTasksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$LeaseTasksResponse>,
         callback?: BodyResponseCallback<Schema$LeaseTasksResponse>):
         void|AxiosPromise<Schema$LeaseTasksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Lease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Lease;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3308,26 +3813,39 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListTasksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTasksResponse>,
-        callback?: BodyResponseCallback<Schema$ListTasksResponse>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListTasksResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListTasksResponse>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListTasksResponse>,
+        callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
+    list(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$List,
+        callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTasksResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$List|
+        BodyResponseCallback<Schema$ListTasksResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListTasksResponse>,
         callback?: BodyResponseCallback<Schema$ListTasksResponse>):
         void|AxiosPromise<Schema$ListTasksResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3425,24 +3943,40 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    renewLease(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Task>;
     renewLease(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
+        params?: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
     renewLease(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    renewLease(
+        params: Params$Resource$Projects$Locations$Queues$Tasks$Renewlease,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    renewLease(callback: BodyResponseCallback<Schema$Task>): void;
+    renewLease(
+        paramsOrCallback?:
+            Params$Resource$Projects$Locations$Queues$Tasks$Renewlease|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Renewlease;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Projects$Locations$Queues$Tasks$Renewlease;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3551,21 +4085,34 @@ export namespace cloudtasks_v2beta2 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    run(params?: any, options?: MethodOptions): AxiosPromise<Schema$Task>;
-    run(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
-        callback?: BodyResponseCallback<Schema$Task>): void;
-    run(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Task>,
+    run(params?: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+        options?: MethodOptions): AxiosPromise<Schema$Task>;
+    run(params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+        options: MethodOptions|BodyResponseCallback<Schema$Task>,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    run(params: Params$Resource$Projects$Locations$Queues$Tasks$Run,
+        callback: BodyResponseCallback<Schema$Task>): void;
+    run(callback: BodyResponseCallback<Schema$Task>): void;
+    run(paramsOrCallback?: Params$Resource$Projects$Locations$Queues$Tasks$Run|
+        BodyResponseCallback<Schema$Task>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Task>,
         callback?: BodyResponseCallback<Schema$Task>):
         void|AxiosPromise<Schema$Task> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Locations$Queues$Tasks$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Queues$Tasks$Run;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://cloudtasks.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3586,5 +4133,182 @@ export namespace cloudtasks_v2beta2 {
         return createAPIRequest<Schema$Task>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Acknowledge {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$AcknowledgeTaskRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Cancellease {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelLeaseRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`  The queue
+     * must already exist.
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateTaskRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+    /**
+     * The response_view specifies which subset of the Task will be returned. By
+     * default response_view is BASIC; not all information is retrieved by
+     * default because some data, such as payloads, might be desirable to return
+     * only when needed because of its large size or because of the sensitivity
+     * of data that it contains.  Authorization for FULL requires
+     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
+     * resource.
+     */
+    responseView?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Lease {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     */
+    parent?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$LeaseTasksRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Sort order used for the query. The only fields supported for sorting are
+     * `schedule_time` and `pull_message.tag`. All results will be returned in
+     * approximately ascending order. The default ordering is by
+     * `schedule_time`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Fewer tasks than requested might be returned.  The
+     * maximum page size is 1000. If unspecified, the page size will be the
+     * maximum. Fewer tasks than requested might be returned, even if more tasks
+     * exist; use next_page_token in the response to determine if more tasks
+     * exist.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying the page of results to return.  To request the first
+     * page results, page_token must be empty. To request the next page of
+     * results, page_token must be the value of next_page_token returned from
+     * the previous call to ListTasks method.  The page token is valid for only
+     * 2 hours.
+     */
+    pageToken?: string;
+    /**
+     * Required.  The queue name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
+     */
+    parent?: string;
+    /**
+     * The response_view specifies which subset of the Task will be returned. By
+     * default response_view is BASIC; not all information is retrieved by
+     * default because some data, such as payloads, might be desirable to return
+     * only when needed because of its large size or because of the sensitivity
+     * of data that it contains.  Authorization for FULL requires
+     * `cloudtasks.tasks.fullView` [Google IAM](/iam/) permission on the Task
+     * resource.
+     */
+    responseView?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Renewlease {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RenewLeaseRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Queues$Tasks$Run {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required.  The task name. For example:
+     * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RunTaskRequest;
   }
 }

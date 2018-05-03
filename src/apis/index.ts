@@ -75,6 +75,7 @@ import {cloudshell_v1alpha1} from './cloudshell/v1alpha1';
 import {cloudtasks_v2beta2} from './cloudtasks/v2beta2';
 import {cloudtrace_v1} from './cloudtrace/v1';
 import {cloudtrace_v2} from './cloudtrace/v2';
+import {composer_v1beta1} from './composer/v1beta1';
 import {compute_alpha} from './compute/alpha';
 import {compute_beta} from './compute/beta';
 import {compute_v1} from './compute/v1';
@@ -99,8 +100,6 @@ import {dialogflow_v2beta1} from './dialogflow/v2beta1';
 import {digitalassetlinks_v1} from './digitalassetlinks/v1';
 import {discovery_v1} from './discovery/v1';
 import {dlp_v2} from './dlp/v2';
-import {dlp_v2beta1} from './dlp/v2beta1';
-import {dlp_v2beta2} from './dlp/v2beta2';
 import {dns_v1} from './dns/v1';
 import {dns_v1beta2} from './dns/v1beta2';
 import {dns_v2beta1} from './dns/v2beta1';
@@ -150,11 +149,6 @@ import {playcustomapp_v1} from './playcustomapp/v1';
 import {plus_v1} from './plus/v1';
 import {plusDomains_v1} from './plusDomains/v1';
 import {poly_v1} from './poly/v1';
-import {prediction_v1_2} from './prediction/v1.2';
-import {prediction_v1_3} from './prediction/v1.3';
-import {prediction_v1_4} from './prediction/v1.4';
-import {prediction_v1_5} from './prediction/v1.5';
-import {prediction_v1_6} from './prediction/v1.6';
 import {proximitybeacon_v1beta1} from './proximitybeacon/v1beta1';
 import {pubsub_v1} from './pubsub/v1';
 import {pubsub_v1beta1a} from './pubsub/v1beta1a';
@@ -170,6 +164,9 @@ import {runtimeconfig_v1beta1} from './runtimeconfig/v1beta1';
 import {safebrowsing_v4} from './safebrowsing/v4';
 import {script_v1} from './script/v1';
 import {searchconsole_v1} from './searchconsole/v1';
+import {servicebroker_v1} from './servicebroker/v1';
+import {servicebroker_v1alpha1} from './servicebroker/v1alpha1';
+import {servicebroker_v1beta1} from './servicebroker/v1beta1';
 import {serviceconsumermanagement_v1} from './serviceconsumermanagement/v1';
 import {servicecontrol_v1} from './servicecontrol/v1';
 import {servicemanagement_v1} from './servicemanagement/v1';
@@ -193,8 +190,6 @@ import {streetviewpublish_v1} from './streetviewpublish/v1';
 import {surveys_v2} from './surveys/v2';
 import {tagmanager_v1} from './tagmanager/v1';
 import {tagmanager_v2} from './tagmanager/v2';
-import {taskqueue_v1beta1} from './taskqueue/v1beta1';
-import {taskqueue_v1beta2} from './taskqueue/v1beta2';
 import {tasks_v1} from './tasks/v1';
 import {testing_v1} from './testing/v1';
 import {texttospeech_v1beta1} from './texttospeech/v1beta1';
@@ -355,6 +350,9 @@ export const APIS: APIList = {
     'v1': cloudtrace_v1.Cloudtrace,
     'v2': cloudtrace_v2.Cloudtrace,
   },
+  composer: {
+    'v1beta1': composer_v1beta1.Composer,
+  },
   compute: {
     'alpha': compute_alpha.Compute,
     'beta': compute_beta.Compute,
@@ -404,8 +402,6 @@ export const APIS: APIList = {
   },
   dlp: {
     'v2': dlp_v2.Dlp,
-    'v2beta1': dlp_v2beta1.Dlp,
-    'v2beta2': dlp_v2beta2.Dlp,
   },
   dns: {
     'v1': dns_v1.Dns,
@@ -526,13 +522,6 @@ export const APIS: APIList = {
   poly: {
     'v1': poly_v1.Poly,
   },
-  prediction: {
-    'v1.2': prediction_v1_2.Prediction,
-    'v1.3': prediction_v1_3.Prediction,
-    'v1.4': prediction_v1_4.Prediction,
-    'v1.5': prediction_v1_5.Prediction,
-    'v1.6': prediction_v1_6.Prediction,
-  },
   proximitybeacon: {
     'v1beta1': proximitybeacon_v1beta1.Proximitybeacon,
   },
@@ -567,6 +556,11 @@ export const APIS: APIList = {
   },
   searchconsole: {
     'v1': searchconsole_v1.Searchconsole,
+  },
+  servicebroker: {
+    'v1': servicebroker_v1.Servicebroker,
+    'v1alpha1': servicebroker_v1alpha1.Servicebroker,
+    'v1beta1': servicebroker_v1beta1.Servicebroker,
   },
   serviceconsumermanagement: {
     'v1': serviceconsumermanagement_v1.Serviceconsumermanagement,
@@ -626,10 +620,6 @@ export const APIS: APIList = {
   tagmanager: {
     'v1': tagmanager_v1.Tagmanager,
     'v2': tagmanager_v2.Tagmanager,
-  },
-  taskqueue: {
-    'v1beta1': taskqueue_v1beta1.Taskqueue,
-    'v1beta2': taskqueue_v1beta2.Taskqueue,
   },
   tasks: {
     'v1': tasks_v1.Tasks,
@@ -710,537 +700,1101 @@ export class GeneratedAPIs {
     }
   }
 
+  abusiveexperiencereport(version: 'v1'):
+      abusiveexperiencereport_v1.Abusiveexperiencereport;
+  abusiveexperiencereport(options: abusiveexperiencereport_v1.Options):
+      abusiveexperiencereport_v1.Abusiveexperiencereport;
   abusiveexperiencereport<
       T = abusiveexperiencereport_v1.Abusiveexperiencereport>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('abusiveexperiencereport', options);
+      versionOrOptions: 'v1'|abusiveexperiencereport_v1.Options) {
+    return this.getAPI<T>('abusiveexperiencereport', versionOrOptions);
   }
+  acceleratedmobilepageurl(version: 'v1'):
+      acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
+  acceleratedmobilepageurl(options: acceleratedmobilepageurl_v1.Options):
+      acceleratedmobilepageurl_v1.Acceleratedmobilepageurl;
   acceleratedmobilepageurl<
       T = acceleratedmobilepageurl_v1.Acceleratedmobilepageurl>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('acceleratedmobilepageurl', options);
+      versionOrOptions: 'v1'|acceleratedmobilepageurl_v1.Options) {
+    return this.getAPI<T>('acceleratedmobilepageurl', versionOrOptions);
   }
+  adexchangebuyer(version: 'v1_2'): adexchangebuyer_v1_2.Adexchangebuyer;
+  adexchangebuyer(options: adexchangebuyer_v1_2.Options):
+      adexchangebuyer_v1_2.Adexchangebuyer;
+  adexchangebuyer(version: 'v1_3'): adexchangebuyer_v1_3.Adexchangebuyer;
+  adexchangebuyer(options: adexchangebuyer_v1_3.Options):
+      adexchangebuyer_v1_3.Adexchangebuyer;
+  adexchangebuyer(version: 'v1_4'): adexchangebuyer_v1_4.Adexchangebuyer;
+  adexchangebuyer(options: adexchangebuyer_v1_4.Options):
+      adexchangebuyer_v1_4.Adexchangebuyer;
   adexchangebuyer<
       T = adexchangebuyer_v1_2.Adexchangebuyer |
           adexchangebuyer_v1_3.Adexchangebuyer |
-          adexchangebuyer_v1_4.Adexchangebuyer>(options: ServiceOptions|
-                                                string) {
-    return this.getAPI<T>('adexchangebuyer', options);
+          adexchangebuyer_v1_4.Adexchangebuyer>(
+      versionOrOptions: 'v1_2'|
+      adexchangebuyer_v1_2.Options|'v1_3'|
+      adexchangebuyer_v1_3.Options|'v1_4'|adexchangebuyer_v1_4.Options) {
+    return this.getAPI<T>('adexchangebuyer', versionOrOptions);
   }
+  adexchangebuyer2(version: 'v2beta1'):
+      adexchangebuyer2_v2beta1.Adexchangebuyer2;
+  adexchangebuyer2(options: adexchangebuyer2_v2beta1.Options):
+      adexchangebuyer2_v2beta1.Adexchangebuyer2;
   adexchangebuyer2<T = adexchangebuyer2_v2beta1.Adexchangebuyer2>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('adexchangebuyer2', options);
+      versionOrOptions: 'v2beta1'|adexchangebuyer2_v2beta1.Options) {
+    return this.getAPI<T>('adexchangebuyer2', versionOrOptions);
   }
+  adexchangeseller(version: 'v1_1'): adexchangeseller_v1_1.Adexchangeseller;
+  adexchangeseller(options: adexchangeseller_v1_1.Options):
+      adexchangeseller_v1_1.Adexchangeseller;
+  adexchangeseller(version: 'v1'): adexchangeseller_v1.Adexchangeseller;
+  adexchangeseller(options: adexchangeseller_v1.Options):
+      adexchangeseller_v1.Adexchangeseller;
+  adexchangeseller(version: 'v2_0'): adexchangeseller_v2_0.Adexchangeseller;
+  adexchangeseller(options: adexchangeseller_v2_0.Options):
+      adexchangeseller_v2_0.Adexchangeseller;
   adexchangeseller<
       T = adexchangeseller_v1_1.Adexchangeseller |
           adexchangeseller_v1.Adexchangeseller |
-          adexchangeseller_v2_0.Adexchangeseller>(options: ServiceOptions|
-                                                  string) {
-    return this.getAPI<T>('adexchangeseller', options);
+          adexchangeseller_v2_0.Adexchangeseller>(
+      versionOrOptions: 'v1_1'|
+      adexchangeseller_v1_1.Options|'v1'|
+      adexchangeseller_v1.Options|'v2_0'|adexchangeseller_v2_0.Options) {
+    return this.getAPI<T>('adexchangeseller', versionOrOptions);
   }
+  adexperiencereport(version: 'v1'): adexperiencereport_v1.Adexperiencereport;
+  adexperiencereport(options: adexperiencereport_v1.Options):
+      adexperiencereport_v1.Adexperiencereport;
   adexperiencereport<T = adexperiencereport_v1.Adexperiencereport>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('adexperiencereport', options);
+      versionOrOptions: 'v1'|adexperiencereport_v1.Options) {
+    return this.getAPI<T>('adexperiencereport', versionOrOptions);
   }
+  admin(version: 'datatransfer_v1'): admin_datatransfer_v1.Admin;
+  admin(options: admin_datatransfer_v1.Options): admin_datatransfer_v1.Admin;
+  admin(version: 'directory_v1'): admin_directory_v1.Admin;
+  admin(options: admin_directory_v1.Options): admin_directory_v1.Admin;
+  admin(version: 'reports_v1'): admin_reports_v1.Admin;
+  admin(options: admin_reports_v1.Options): admin_reports_v1.Admin;
   admin<
       T = admin_datatransfer_v1.Admin | admin_directory_v1.Admin |
-          admin_reports_v1.Admin>(options: ServiceOptions|string) {
-    return this.getAPI<T>('admin', options);
+          admin_reports_v1.Admin>(
+      versionOrOptions: 'datatransfer_v1'|
+      admin_datatransfer_v1.Options|'directory_v1'|
+      admin_directory_v1.Options|'reports_v1'|admin_reports_v1.Options) {
+    return this.getAPI<T>('admin', versionOrOptions);
   }
-  adsense<T = adsense_v1_4.Adsense>(options: ServiceOptions|string) {
-    return this.getAPI<T>('adsense', options);
+  adsense(version: 'v1_4'): adsense_v1_4.Adsense;
+  adsense(options: adsense_v1_4.Options): adsense_v1_4.Adsense;
+  adsense<T = adsense_v1_4.Adsense>(versionOrOptions: 'v1_4'|
+                                    adsense_v1_4.Options) {
+    return this.getAPI<T>('adsense', versionOrOptions);
   }
-  adsensehost<T = adsensehost_v4_1.Adsensehost>(options: ServiceOptions|
-                                                string) {
-    return this.getAPI<T>('adsensehost', options);
+  adsensehost(version: 'v4_1'): adsensehost_v4_1.Adsensehost;
+  adsensehost(options: adsensehost_v4_1.Options): adsensehost_v4_1.Adsensehost;
+  adsensehost<T = adsensehost_v4_1.Adsensehost>(versionOrOptions: 'v4_1'|
+                                                adsensehost_v4_1.Options) {
+    return this.getAPI<T>('adsensehost', versionOrOptions);
   }
+  analytics(version: 'v2_4'): analytics_v2_4.Analytics;
+  analytics(options: analytics_v2_4.Options): analytics_v2_4.Analytics;
+  analytics(version: 'v3'): analytics_v3.Analytics;
+  analytics(options: analytics_v3.Options): analytics_v3.Analytics;
   analytics<T = analytics_v2_4.Analytics | analytics_v3.Analytics>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('analytics', options);
+      versionOrOptions: 'v2_4'|analytics_v2_4.Options|'v3'|
+      analytics_v3.Options) {
+    return this.getAPI<T>('analytics', versionOrOptions);
   }
+  analyticsreporting(version: 'v4'): analyticsreporting_v4.Analyticsreporting;
+  analyticsreporting(options: analyticsreporting_v4.Options):
+      analyticsreporting_v4.Analyticsreporting;
   analyticsreporting<T = analyticsreporting_v4.Analyticsreporting>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('analyticsreporting', options);
+      versionOrOptions: 'v4'|analyticsreporting_v4.Options) {
+    return this.getAPI<T>('analyticsreporting', versionOrOptions);
   }
+  androiddeviceprovisioning(version: 'v1'):
+      androiddeviceprovisioning_v1.Androiddeviceprovisioning;
+  androiddeviceprovisioning(options: androiddeviceprovisioning_v1.Options):
+      androiddeviceprovisioning_v1.Androiddeviceprovisioning;
   androiddeviceprovisioning<
       T = androiddeviceprovisioning_v1.Androiddeviceprovisioning>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('androiddeviceprovisioning', options);
+      versionOrOptions: 'v1'|androiddeviceprovisioning_v1.Options) {
+    return this.getAPI<T>('androiddeviceprovisioning', versionOrOptions);
   }
+  androidenterprise(version: 'v1'): androidenterprise_v1.Androidenterprise;
+  androidenterprise(options: androidenterprise_v1.Options):
+      androidenterprise_v1.Androidenterprise;
   androidenterprise<T = androidenterprise_v1.Androidenterprise>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('androidenterprise', options);
+      versionOrOptions: 'v1'|androidenterprise_v1.Options) {
+    return this.getAPI<T>('androidenterprise', versionOrOptions);
   }
+  androidmanagement(version: 'v1'): androidmanagement_v1.Androidmanagement;
+  androidmanagement(options: androidmanagement_v1.Options):
+      androidmanagement_v1.Androidmanagement;
   androidmanagement<T = androidmanagement_v1.Androidmanagement>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('androidmanagement', options);
+      versionOrOptions: 'v1'|androidmanagement_v1.Options) {
+    return this.getAPI<T>('androidmanagement', versionOrOptions);
   }
+  androidpublisher(version: 'v1_1'): androidpublisher_v1_1.Androidpublisher;
+  androidpublisher(options: androidpublisher_v1_1.Options):
+      androidpublisher_v1_1.Androidpublisher;
+  androidpublisher(version: 'v1'): androidpublisher_v1.Androidpublisher;
+  androidpublisher(options: androidpublisher_v1.Options):
+      androidpublisher_v1.Androidpublisher;
+  androidpublisher(version: 'v2'): androidpublisher_v2.Androidpublisher;
+  androidpublisher(options: androidpublisher_v2.Options):
+      androidpublisher_v2.Androidpublisher;
   androidpublisher<
       T = androidpublisher_v1_1.Androidpublisher |
           androidpublisher_v1.Androidpublisher |
-          androidpublisher_v2.Androidpublisher>(options: ServiceOptions|
-                                                string) {
-    return this.getAPI<T>('androidpublisher', options);
+          androidpublisher_v2.Androidpublisher>(
+      versionOrOptions: 'v1_1'|
+      androidpublisher_v1_1.Options|'v1'|
+      androidpublisher_v1.Options|'v2'|androidpublisher_v2.Options) {
+    return this.getAPI<T>('androidpublisher', versionOrOptions);
   }
+  appengine(version: 'v1'): appengine_v1.Appengine;
+  appengine(options: appengine_v1.Options): appengine_v1.Appengine;
+  appengine(version: 'v1alpha'): appengine_v1alpha.Appengine;
+  appengine(options: appengine_v1alpha.Options): appengine_v1alpha.Appengine;
+  appengine(version: 'v1beta'): appengine_v1beta.Appengine;
+  appengine(options: appengine_v1beta.Options): appengine_v1beta.Appengine;
+  appengine(version: 'v1beta4'): appengine_v1beta4.Appengine;
+  appengine(options: appengine_v1beta4.Options): appengine_v1beta4.Appengine;
+  appengine(version: 'v1beta5'): appengine_v1beta5.Appengine;
+  appengine(options: appengine_v1beta5.Options): appengine_v1beta5.Appengine;
   appengine<
       T = appengine_v1.Appengine | appengine_v1alpha.Appengine |
           appengine_v1beta.Appengine | appengine_v1beta4.Appengine |
-          appengine_v1beta5.Appengine>(options: ServiceOptions|string) {
-    return this.getAPI<T>('appengine', options);
+          appengine_v1beta5.Appengine>(
+      versionOrOptions: 'v1'|appengine_v1.Options|'v1alpha'|
+      appengine_v1alpha.Options|'v1beta'|
+      appengine_v1beta.Options|'v1beta4'|
+      appengine_v1beta4.Options|'v1beta5'|appengine_v1beta5.Options) {
+    return this.getAPI<T>('appengine', versionOrOptions);
   }
-  appsactivity<T = appsactivity_v1.Appsactivity>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('appsactivity', options);
+  appsactivity(version: 'v1'): appsactivity_v1.Appsactivity;
+  appsactivity(options: appsactivity_v1.Options): appsactivity_v1.Appsactivity;
+  appsactivity<T = appsactivity_v1.Appsactivity>(versionOrOptions: 'v1'|
+                                                 appsactivity_v1.Options) {
+    return this.getAPI<T>('appsactivity', versionOrOptions);
   }
-  appstate<T = appstate_v1.Appstate>(options: ServiceOptions|string) {
-    return this.getAPI<T>('appstate', options);
+  appstate(version: 'v1'): appstate_v1.Appstate;
+  appstate(options: appstate_v1.Options): appstate_v1.Appstate;
+  appstate<T = appstate_v1.Appstate>(versionOrOptions: 'v1'|
+                                     appstate_v1.Options) {
+    return this.getAPI<T>('appstate', versionOrOptions);
   }
-  bigquery<T = bigquery_v2.Bigquery>(options: ServiceOptions|string) {
-    return this.getAPI<T>('bigquery', options);
+  bigquery(version: 'v2'): bigquery_v2.Bigquery;
+  bigquery(options: bigquery_v2.Options): bigquery_v2.Bigquery;
+  bigquery<T = bigquery_v2.Bigquery>(versionOrOptions: 'v2'|
+                                     bigquery_v2.Options) {
+    return this.getAPI<T>('bigquery', versionOrOptions);
   }
+  bigquerydatatransfer(version: 'v1'):
+      bigquerydatatransfer_v1.Bigquerydatatransfer;
+  bigquerydatatransfer(options: bigquerydatatransfer_v1.Options):
+      bigquerydatatransfer_v1.Bigquerydatatransfer;
   bigquerydatatransfer<T = bigquerydatatransfer_v1.Bigquerydatatransfer>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('bigquerydatatransfer', options);
+      versionOrOptions: 'v1'|bigquerydatatransfer_v1.Options) {
+    return this.getAPI<T>('bigquerydatatransfer', versionOrOptions);
   }
-  blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(options: ServiceOptions|
-                                                       string) {
-    return this.getAPI<T>('blogger', options);
+  blogger(version: 'v2'): blogger_v2.Blogger;
+  blogger(options: blogger_v2.Options): blogger_v2.Blogger;
+  blogger(version: 'v3'): blogger_v3.Blogger;
+  blogger(options: blogger_v3.Options): blogger_v3.Blogger;
+  blogger<T = blogger_v2.Blogger | blogger_v3.Blogger>(
+      versionOrOptions: 'v2'|blogger_v2.Options|'v3'|blogger_v3.Options) {
+    return this.getAPI<T>('blogger', versionOrOptions);
   }
-  books<T = books_v1.Books>(options: ServiceOptions|string) {
-    return this.getAPI<T>('books', options);
+  books(version: 'v1'): books_v1.Books;
+  books(options: books_v1.Options): books_v1.Books;
+  books<T = books_v1.Books>(versionOrOptions: 'v1'|books_v1.Options) {
+    return this.getAPI<T>('books', versionOrOptions);
   }
-  calendar<T = calendar_v3.Calendar>(options: ServiceOptions|string) {
-    return this.getAPI<T>('calendar', options);
+  calendar(version: 'v3'): calendar_v3.Calendar;
+  calendar(options: calendar_v3.Options): calendar_v3.Calendar;
+  calendar<T = calendar_v3.Calendar>(versionOrOptions: 'v3'|
+                                     calendar_v3.Options) {
+    return this.getAPI<T>('calendar', versionOrOptions);
   }
-  chat<T = chat_v1.Chat>(options: ServiceOptions|string) {
-    return this.getAPI<T>('chat', options);
+  chat(version: 'v1'): chat_v1.Chat;
+  chat(options: chat_v1.Options): chat_v1.Chat;
+  chat<T = chat_v1.Chat>(versionOrOptions: 'v1'|chat_v1.Options) {
+    return this.getAPI<T>('chat', versionOrOptions);
   }
-  civicinfo<T = civicinfo_v2.Civicinfo>(options: ServiceOptions|string) {
-    return this.getAPI<T>('civicinfo', options);
+  civicinfo(version: 'v2'): civicinfo_v2.Civicinfo;
+  civicinfo(options: civicinfo_v2.Options): civicinfo_v2.Civicinfo;
+  civicinfo<T = civicinfo_v2.Civicinfo>(versionOrOptions: 'v2'|
+                                        civicinfo_v2.Options) {
+    return this.getAPI<T>('civicinfo', versionOrOptions);
   }
-  classroom<T = classroom_v1.Classroom>(options: ServiceOptions|string) {
-    return this.getAPI<T>('classroom', options);
+  classroom(version: 'v1'): classroom_v1.Classroom;
+  classroom(options: classroom_v1.Options): classroom_v1.Classroom;
+  classroom<T = classroom_v1.Classroom>(versionOrOptions: 'v1'|
+                                        classroom_v1.Options) {
+    return this.getAPI<T>('classroom', versionOrOptions);
   }
-  cloudbilling<T = cloudbilling_v1.Cloudbilling>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('cloudbilling', options);
+  cloudbilling(version: 'v1'): cloudbilling_v1.Cloudbilling;
+  cloudbilling(options: cloudbilling_v1.Options): cloudbilling_v1.Cloudbilling;
+  cloudbilling<T = cloudbilling_v1.Cloudbilling>(versionOrOptions: 'v1'|
+                                                 cloudbilling_v1.Options) {
+    return this.getAPI<T>('cloudbilling', versionOrOptions);
   }
-  cloudbuild<T = cloudbuild_v1.Cloudbuild>(options: ServiceOptions|string) {
-    return this.getAPI<T>('cloudbuild', options);
+  cloudbuild(version: 'v1'): cloudbuild_v1.Cloudbuild;
+  cloudbuild(options: cloudbuild_v1.Options): cloudbuild_v1.Cloudbuild;
+  cloudbuild<T = cloudbuild_v1.Cloudbuild>(versionOrOptions: 'v1'|
+                                           cloudbuild_v1.Options) {
+    return this.getAPI<T>('cloudbuild', versionOrOptions);
   }
-  clouddebugger<T = clouddebugger_v2.Clouddebugger>(options: ServiceOptions|
-                                                    string) {
-    return this.getAPI<T>('clouddebugger', options);
+  clouddebugger(version: 'v2'): clouddebugger_v2.Clouddebugger;
+  clouddebugger(options: clouddebugger_v2.Options):
+      clouddebugger_v2.Clouddebugger;
+  clouddebugger<T = clouddebugger_v2.Clouddebugger>(versionOrOptions: 'v2'|
+                                                    clouddebugger_v2.Options) {
+    return this.getAPI<T>('clouddebugger', versionOrOptions);
   }
+  clouderrorreporting(version: 'v1beta1'):
+      clouderrorreporting_v1beta1.Clouderrorreporting;
+  clouderrorreporting(options: clouderrorreporting_v1beta1.Options):
+      clouderrorreporting_v1beta1.Clouderrorreporting;
   clouderrorreporting<T = clouderrorreporting_v1beta1.Clouderrorreporting>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('clouderrorreporting', options);
+      versionOrOptions: 'v1beta1'|clouderrorreporting_v1beta1.Options) {
+    return this.getAPI<T>('clouderrorreporting', versionOrOptions);
   }
+  cloudfunctions(version: 'v1'): cloudfunctions_v1.Cloudfunctions;
+  cloudfunctions(options: cloudfunctions_v1.Options):
+      cloudfunctions_v1.Cloudfunctions;
+  cloudfunctions(version: 'v1beta2'): cloudfunctions_v1beta2.Cloudfunctions;
+  cloudfunctions(options: cloudfunctions_v1beta2.Options):
+      cloudfunctions_v1beta2.Cloudfunctions;
   cloudfunctions<
       T = cloudfunctions_v1.Cloudfunctions |
-          cloudfunctions_v1beta2.Cloudfunctions>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('cloudfunctions', options);
+          cloudfunctions_v1beta2.Cloudfunctions>(
+      versionOrOptions: 'v1'|
+      cloudfunctions_v1.Options|'v1beta2'|cloudfunctions_v1beta2.Options) {
+    return this.getAPI<T>('cloudfunctions', versionOrOptions);
   }
-  cloudiot<T = cloudiot_v1.Cloudiot>(options: ServiceOptions|string) {
-    return this.getAPI<T>('cloudiot', options);
+  cloudiot(version: 'v1'): cloudiot_v1.Cloudiot;
+  cloudiot(options: cloudiot_v1.Options): cloudiot_v1.Cloudiot;
+  cloudiot<T = cloudiot_v1.Cloudiot>(versionOrOptions: 'v1'|
+                                     cloudiot_v1.Options) {
+    return this.getAPI<T>('cloudiot', versionOrOptions);
   }
-  cloudkms<T = cloudkms_v1.Cloudkms>(options: ServiceOptions|string) {
-    return this.getAPI<T>('cloudkms', options);
+  cloudkms(version: 'v1'): cloudkms_v1.Cloudkms;
+  cloudkms(options: cloudkms_v1.Options): cloudkms_v1.Cloudkms;
+  cloudkms<T = cloudkms_v1.Cloudkms>(versionOrOptions: 'v1'|
+                                     cloudkms_v1.Options) {
+    return this.getAPI<T>('cloudkms', versionOrOptions);
   }
+  cloudresourcemanager(version: 'v1'):
+      cloudresourcemanager_v1.Cloudresourcemanager;
+  cloudresourcemanager(options: cloudresourcemanager_v1.Options):
+      cloudresourcemanager_v1.Cloudresourcemanager;
+  cloudresourcemanager(version: 'v1beta1'):
+      cloudresourcemanager_v1beta1.Cloudresourcemanager;
+  cloudresourcemanager(options: cloudresourcemanager_v1beta1.Options):
+      cloudresourcemanager_v1beta1.Cloudresourcemanager;
+  cloudresourcemanager(version: 'v2'):
+      cloudresourcemanager_v2.Cloudresourcemanager;
+  cloudresourcemanager(options: cloudresourcemanager_v2.Options):
+      cloudresourcemanager_v2.Cloudresourcemanager;
+  cloudresourcemanager(version: 'v2beta1'):
+      cloudresourcemanager_v2beta1.Cloudresourcemanager;
+  cloudresourcemanager(options: cloudresourcemanager_v2beta1.Options):
+      cloudresourcemanager_v2beta1.Cloudresourcemanager;
   cloudresourcemanager<
       T = cloudresourcemanager_v1.Cloudresourcemanager |
           cloudresourcemanager_v1beta1.Cloudresourcemanager |
           cloudresourcemanager_v2.Cloudresourcemanager |
-          cloudresourcemanager_v2beta1.Cloudresourcemanager>(options:
-                                                                 ServiceOptions|
-                                                             string) {
-    return this.getAPI<T>('cloudresourcemanager', options);
+          cloudresourcemanager_v2beta1.Cloudresourcemanager>(
+      versionOrOptions: 'v1'|
+      cloudresourcemanager_v1.Options|'v1beta1'|
+      cloudresourcemanager_v1beta1.Options|'v2'|
+      cloudresourcemanager_v2.Options|'v2beta1'|
+      cloudresourcemanager_v2beta1.Options) {
+    return this.getAPI<T>('cloudresourcemanager', versionOrOptions);
   }
+  cloudshell(version: 'v1'): cloudshell_v1.Cloudshell;
+  cloudshell(options: cloudshell_v1.Options): cloudshell_v1.Cloudshell;
+  cloudshell(version: 'v1alpha1'): cloudshell_v1alpha1.Cloudshell;
+  cloudshell(options: cloudshell_v1alpha1.Options):
+      cloudshell_v1alpha1.Cloudshell;
   cloudshell<T = cloudshell_v1.Cloudshell | cloudshell_v1alpha1.Cloudshell>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('cloudshell', options);
+      versionOrOptions: 'v1'|
+      cloudshell_v1.Options|'v1alpha1'|cloudshell_v1alpha1.Options) {
+    return this.getAPI<T>('cloudshell', versionOrOptions);
   }
-  cloudtasks<T = cloudtasks_v2beta2.Cloudtasks>(options: ServiceOptions|
-                                                string) {
-    return this.getAPI<T>('cloudtasks', options);
+  cloudtasks(version: 'v2beta2'): cloudtasks_v2beta2.Cloudtasks;
+  cloudtasks(options: cloudtasks_v2beta2.Options):
+      cloudtasks_v2beta2.Cloudtasks;
+  cloudtasks<T = cloudtasks_v2beta2.Cloudtasks>(versionOrOptions: 'v2beta2'|
+                                                cloudtasks_v2beta2.Options) {
+    return this.getAPI<T>('cloudtasks', versionOrOptions);
   }
+  cloudtrace(version: 'v1'): cloudtrace_v1.Cloudtrace;
+  cloudtrace(options: cloudtrace_v1.Options): cloudtrace_v1.Cloudtrace;
+  cloudtrace(version: 'v2'): cloudtrace_v2.Cloudtrace;
+  cloudtrace(options: cloudtrace_v2.Options): cloudtrace_v2.Cloudtrace;
   cloudtrace<T = cloudtrace_v1.Cloudtrace | cloudtrace_v2.Cloudtrace>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('cloudtrace', options);
+      versionOrOptions: 'v1'|cloudtrace_v1.Options|'v2'|cloudtrace_v2.Options) {
+    return this.getAPI<T>('cloudtrace', versionOrOptions);
   }
+  composer(version: 'v1beta1'): composer_v1beta1.Composer;
+  composer(options: composer_v1beta1.Options): composer_v1beta1.Composer;
+  composer<T = composer_v1beta1.Composer>(versionOrOptions: 'v1beta1'|
+                                          composer_v1beta1.Options) {
+    return this.getAPI<T>('composer', versionOrOptions);
+  }
+  compute(version: 'alpha'): compute_alpha.Compute;
+  compute(options: compute_alpha.Options): compute_alpha.Compute;
+  compute(version: 'beta'): compute_beta.Compute;
+  compute(options: compute_beta.Options): compute_beta.Compute;
+  compute(version: 'v1'): compute_v1.Compute;
+  compute(options: compute_v1.Options): compute_v1.Compute;
   compute<
       T = compute_alpha.Compute | compute_beta.Compute | compute_v1.Compute>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('compute', options);
+      versionOrOptions: 'alpha'|compute_alpha.Options|'beta'|
+      compute_beta.Options|'v1'|compute_v1.Options) {
+    return this.getAPI<T>('compute', versionOrOptions);
   }
+  container(version: 'v1'): container_v1.Container;
+  container(options: container_v1.Options): container_v1.Container;
+  container(version: 'v1beta1'): container_v1beta1.Container;
+  container(options: container_v1beta1.Options): container_v1beta1.Container;
   container<T = container_v1.Container | container_v1beta1.Container>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('container', options);
+      versionOrOptions: 'v1'|container_v1.Options|'v1beta1'|
+      container_v1beta1.Options) {
+    return this.getAPI<T>('container', versionOrOptions);
   }
+  content(version: 'v2'): content_v2.Content;
+  content(options: content_v2.Options): content_v2.Content;
+  content(version: 'v2sandbox'): content_v2sandbox.Content;
+  content(options: content_v2sandbox.Options): content_v2sandbox.Content;
   content<T = content_v2.Content | content_v2sandbox.Content>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('content', options);
+      versionOrOptions: 'v2'|content_v2.Options|'v2sandbox'|
+      content_v2sandbox.Options) {
+    return this.getAPI<T>('content', versionOrOptions);
   }
-  customsearch<T = customsearch_v1.Customsearch>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('customsearch', options);
+  customsearch(version: 'v1'): customsearch_v1.Customsearch;
+  customsearch(options: customsearch_v1.Options): customsearch_v1.Customsearch;
+  customsearch<T = customsearch_v1.Customsearch>(versionOrOptions: 'v1'|
+                                                 customsearch_v1.Options) {
+    return this.getAPI<T>('customsearch', versionOrOptions);
   }
-  dataflow<T = dataflow_v1b3.Dataflow>(options: ServiceOptions|string) {
-    return this.getAPI<T>('dataflow', options);
+  dataflow(version: 'v1b3'): dataflow_v1b3.Dataflow;
+  dataflow(options: dataflow_v1b3.Options): dataflow_v1b3.Dataflow;
+  dataflow<T = dataflow_v1b3.Dataflow>(versionOrOptions: 'v1b3'|
+                                       dataflow_v1b3.Options) {
+    return this.getAPI<T>('dataflow', versionOrOptions);
   }
+  dataproc(version: 'v1'): dataproc_v1.Dataproc;
+  dataproc(options: dataproc_v1.Options): dataproc_v1.Dataproc;
+  dataproc(version: 'v1beta2'): dataproc_v1beta2.Dataproc;
+  dataproc(options: dataproc_v1beta2.Options): dataproc_v1beta2.Dataproc;
   dataproc<T = dataproc_v1.Dataproc | dataproc_v1beta2.Dataproc>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('dataproc', options);
+      versionOrOptions: 'v1'|dataproc_v1.Options|'v1beta2'|
+      dataproc_v1beta2.Options) {
+    return this.getAPI<T>('dataproc', versionOrOptions);
   }
+  datastore(version: 'v1'): datastore_v1.Datastore;
+  datastore(options: datastore_v1.Options): datastore_v1.Datastore;
+  datastore(version: 'v1beta1'): datastore_v1beta1.Datastore;
+  datastore(options: datastore_v1beta1.Options): datastore_v1beta1.Datastore;
+  datastore(version: 'v1beta3'): datastore_v1beta3.Datastore;
+  datastore(options: datastore_v1beta3.Options): datastore_v1beta3.Datastore;
   datastore<
       T = datastore_v1.Datastore | datastore_v1beta1.Datastore |
-          datastore_v1beta3.Datastore>(options: ServiceOptions|string) {
-    return this.getAPI<T>('datastore', options);
+          datastore_v1beta3.Datastore>(
+      versionOrOptions: 'v1'|datastore_v1.Options|'v1beta1'|
+      datastore_v1beta1.Options|'v1beta3'|datastore_v1beta3.Options) {
+    return this.getAPI<T>('datastore', versionOrOptions);
   }
+  deploymentmanager(version: 'alpha'):
+      deploymentmanager_alpha.Deploymentmanager;
+  deploymentmanager(options: deploymentmanager_alpha.Options):
+      deploymentmanager_alpha.Deploymentmanager;
+  deploymentmanager(version: 'v2'): deploymentmanager_v2.Deploymentmanager;
+  deploymentmanager(options: deploymentmanager_v2.Options):
+      deploymentmanager_v2.Deploymentmanager;
+  deploymentmanager(version: 'v2beta'):
+      deploymentmanager_v2beta.Deploymentmanager;
+  deploymentmanager(options: deploymentmanager_v2beta.Options):
+      deploymentmanager_v2beta.Deploymentmanager;
   deploymentmanager<
       T = deploymentmanager_alpha.Deploymentmanager |
           deploymentmanager_v2.Deploymentmanager |
-          deploymentmanager_v2beta.Deploymentmanager>(options: ServiceOptions|
-                                                      string) {
-    return this.getAPI<T>('deploymentmanager', options);
+          deploymentmanager_v2beta.Deploymentmanager>(
+      versionOrOptions: 'alpha'|
+      deploymentmanager_alpha.Options|'v2'|
+      deploymentmanager_v2.Options|'v2beta'|deploymentmanager_v2beta.Options) {
+    return this.getAPI<T>('deploymentmanager', versionOrOptions);
   }
+  dfareporting(version: 'v2_8'): dfareporting_v2_8.Dfareporting;
+  dfareporting(options: dfareporting_v2_8.Options):
+      dfareporting_v2_8.Dfareporting;
+  dfareporting(version: 'v3_0'): dfareporting_v3_0.Dfareporting;
+  dfareporting(options: dfareporting_v3_0.Options):
+      dfareporting_v3_0.Dfareporting;
   dfareporting<
       T = dfareporting_v2_8.Dfareporting | dfareporting_v3_0.Dfareporting>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('dfareporting', options);
+      versionOrOptions: 'v2_8'|
+      dfareporting_v2_8.Options|'v3_0'|dfareporting_v3_0.Options) {
+    return this.getAPI<T>('dfareporting', versionOrOptions);
   }
+  dialogflow(version: 'v2'): dialogflow_v2.Dialogflow;
+  dialogflow(options: dialogflow_v2.Options): dialogflow_v2.Dialogflow;
+  dialogflow(version: 'v2beta1'): dialogflow_v2beta1.Dialogflow;
+  dialogflow(options: dialogflow_v2beta1.Options):
+      dialogflow_v2beta1.Dialogflow;
   dialogflow<T = dialogflow_v2.Dialogflow | dialogflow_v2beta1.Dialogflow>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('dialogflow', options);
+      versionOrOptions: 'v2'|dialogflow_v2.Options|'v2beta1'|
+      dialogflow_v2beta1.Options) {
+    return this.getAPI<T>('dialogflow', versionOrOptions);
   }
+  digitalassetlinks(version: 'v1'): digitalassetlinks_v1.Digitalassetlinks;
+  digitalassetlinks(options: digitalassetlinks_v1.Options):
+      digitalassetlinks_v1.Digitalassetlinks;
   digitalassetlinks<T = digitalassetlinks_v1.Digitalassetlinks>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('digitalassetlinks', options);
+      versionOrOptions: 'v1'|digitalassetlinks_v1.Options) {
+    return this.getAPI<T>('digitalassetlinks', versionOrOptions);
   }
-  discovery<T = discovery_v1.Discovery>(options: ServiceOptions|string) {
-    return this.getAPI<T>('discovery', options);
+  discovery(version: 'v1'): discovery_v1.Discovery;
+  discovery(options: discovery_v1.Options): discovery_v1.Discovery;
+  discovery<T = discovery_v1.Discovery>(versionOrOptions: 'v1'|
+                                        discovery_v1.Options) {
+    return this.getAPI<T>('discovery', versionOrOptions);
   }
-  dlp<T = dlp_v2.Dlp | dlp_v2beta1.Dlp | dlp_v2beta2.Dlp>(options:
-                                                              ServiceOptions|
-                                                          string) {
-    return this.getAPI<T>('dlp', options);
+  dlp(version: 'v2'): dlp_v2.Dlp;
+  dlp(options: dlp_v2.Options): dlp_v2.Dlp;
+  dlp<T = dlp_v2.Dlp>(versionOrOptions: 'v2'|dlp_v2.Options) {
+    return this.getAPI<T>('dlp', versionOrOptions);
   }
-  dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(options:
-                                                              ServiceOptions|
-                                                          string) {
-    return this.getAPI<T>('dns', options);
+  dns(version: 'v1'): dns_v1.Dns;
+  dns(options: dns_v1.Options): dns_v1.Dns;
+  dns(version: 'v1beta2'): dns_v1beta2.Dns;
+  dns(options: dns_v1beta2.Options): dns_v1beta2.Dns;
+  dns(version: 'v2beta1'): dns_v2beta1.Dns;
+  dns(options: dns_v2beta1.Options): dns_v2beta1.Dns;
+  dns<T = dns_v1.Dns | dns_v1beta2.Dns | dns_v2beta1.Dns>(
+      versionOrOptions: 'v1'|dns_v1.Options|'v1beta2'|
+      dns_v1beta2.Options|'v2beta1'|dns_v2beta1.Options) {
+    return this.getAPI<T>('dns', versionOrOptions);
   }
+  doubleclickbidmanager(version: 'v1'):
+      doubleclickbidmanager_v1.Doubleclickbidmanager;
+  doubleclickbidmanager(options: doubleclickbidmanager_v1.Options):
+      doubleclickbidmanager_v1.Doubleclickbidmanager;
   doubleclickbidmanager<T = doubleclickbidmanager_v1.Doubleclickbidmanager>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('doubleclickbidmanager', options);
+      versionOrOptions: 'v1'|doubleclickbidmanager_v1.Options) {
+    return this.getAPI<T>('doubleclickbidmanager', versionOrOptions);
   }
+  doubleclicksearch(version: 'v2'): doubleclicksearch_v2.Doubleclicksearch;
+  doubleclicksearch(options: doubleclicksearch_v2.Options):
+      doubleclicksearch_v2.Doubleclicksearch;
   doubleclicksearch<T = doubleclicksearch_v2.Doubleclicksearch>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('doubleclicksearch', options);
+      versionOrOptions: 'v2'|doubleclicksearch_v2.Options) {
+    return this.getAPI<T>('doubleclicksearch', versionOrOptions);
   }
-  drive<T = drive_v2.Drive | drive_v3.Drive>(options: ServiceOptions|string) {
-    return this.getAPI<T>('drive', options);
+  drive(version: 'v2'): drive_v2.Drive;
+  drive(options: drive_v2.Options): drive_v2.Drive;
+  drive(version: 'v3'): drive_v3.Drive;
+  drive(options: drive_v3.Options): drive_v3.Drive;
+  drive<T = drive_v2.Drive | drive_v3.Drive>(versionOrOptions: 'v2'|
+                                             drive_v2.Options|'v3'|
+                                             drive_v3.Options) {
+    return this.getAPI<T>('drive', versionOrOptions);
   }
+  firebasedynamiclinks(version: 'v1'):
+      firebasedynamiclinks_v1.Firebasedynamiclinks;
+  firebasedynamiclinks(options: firebasedynamiclinks_v1.Options):
+      firebasedynamiclinks_v1.Firebasedynamiclinks;
   firebasedynamiclinks<T = firebasedynamiclinks_v1.Firebasedynamiclinks>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('firebasedynamiclinks', options);
+      versionOrOptions: 'v1'|firebasedynamiclinks_v1.Options) {
+    return this.getAPI<T>('firebasedynamiclinks', versionOrOptions);
   }
-  firebaserules<T = firebaserules_v1.Firebaserules>(options: ServiceOptions|
-                                                    string) {
-    return this.getAPI<T>('firebaserules', options);
+  firebaserules(version: 'v1'): firebaserules_v1.Firebaserules;
+  firebaserules(options: firebaserules_v1.Options):
+      firebaserules_v1.Firebaserules;
+  firebaserules<T = firebaserules_v1.Firebaserules>(versionOrOptions: 'v1'|
+                                                    firebaserules_v1.Options) {
+    return this.getAPI<T>('firebaserules', versionOrOptions);
   }
-  firestore<T = firestore_v1beta1.Firestore>(options: ServiceOptions|string) {
-    return this.getAPI<T>('firestore', options);
+  firestore(version: 'v1beta1'): firestore_v1beta1.Firestore;
+  firestore(options: firestore_v1beta1.Options): firestore_v1beta1.Firestore;
+  firestore<T = firestore_v1beta1.Firestore>(versionOrOptions: 'v1beta1'|
+                                             firestore_v1beta1.Options) {
+    return this.getAPI<T>('firestore', versionOrOptions);
   }
-  fitness<T = fitness_v1.Fitness>(options: ServiceOptions|string) {
-    return this.getAPI<T>('fitness', options);
+  fitness(version: 'v1'): fitness_v1.Fitness;
+  fitness(options: fitness_v1.Options): fitness_v1.Fitness;
+  fitness<T = fitness_v1.Fitness>(versionOrOptions: 'v1'|fitness_v1.Options) {
+    return this.getAPI<T>('fitness', versionOrOptions);
   }
+  fusiontables(version: 'v1'): fusiontables_v1.Fusiontables;
+  fusiontables(options: fusiontables_v1.Options): fusiontables_v1.Fusiontables;
+  fusiontables(version: 'v2'): fusiontables_v2.Fusiontables;
+  fusiontables(options: fusiontables_v2.Options): fusiontables_v2.Fusiontables;
   fusiontables<T = fusiontables_v1.Fusiontables | fusiontables_v2.Fusiontables>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('fusiontables', options);
+      versionOrOptions: 'v1'|fusiontables_v1.Options|'v2'|
+      fusiontables_v2.Options) {
+    return this.getAPI<T>('fusiontables', versionOrOptions);
   }
-  games<T = games_v1.Games>(options: ServiceOptions|string) {
-    return this.getAPI<T>('games', options);
+  games(version: 'v1'): games_v1.Games;
+  games(options: games_v1.Options): games_v1.Games;
+  games<T = games_v1.Games>(versionOrOptions: 'v1'|games_v1.Options) {
+    return this.getAPI<T>('games', versionOrOptions);
   }
+  gamesConfiguration(version: 'v1configuration'):
+      gamesConfiguration_v1configuration.Gamesconfiguration;
+  gamesConfiguration(options: gamesConfiguration_v1configuration.Options):
+      gamesConfiguration_v1configuration.Gamesconfiguration;
   gamesConfiguration<T = gamesConfiguration_v1configuration.Gamesconfiguration>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('gamesConfiguration', options);
+      versionOrOptions: 'v1configuration'|
+      gamesConfiguration_v1configuration.Options) {
+    return this.getAPI<T>('gamesConfiguration', versionOrOptions);
   }
+  gamesManagement(version: 'v1management'):
+      gamesManagement_v1management.Gamesmanagement;
+  gamesManagement(options: gamesManagement_v1management.Options):
+      gamesManagement_v1management.Gamesmanagement;
   gamesManagement<T = gamesManagement_v1management.Gamesmanagement>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('gamesManagement', options);
+      versionOrOptions: 'v1management'|gamesManagement_v1management.Options) {
+    return this.getAPI<T>('gamesManagement', versionOrOptions);
   }
+  genomics(version: 'v1'): genomics_v1.Genomics;
+  genomics(options: genomics_v1.Options): genomics_v1.Genomics;
+  genomics(version: 'v1alpha2'): genomics_v1alpha2.Genomics;
+  genomics(options: genomics_v1alpha2.Options): genomics_v1alpha2.Genomics;
+  genomics(version: 'v2alpha1'): genomics_v2alpha1.Genomics;
+  genomics(options: genomics_v2alpha1.Options): genomics_v2alpha1.Genomics;
   genomics<
       T = genomics_v1.Genomics | genomics_v1alpha2.Genomics |
-          genomics_v2alpha1.Genomics>(options: ServiceOptions|string) {
-    return this.getAPI<T>('genomics', options);
+          genomics_v2alpha1.Genomics>(
+      versionOrOptions: 'v1'|genomics_v1.Options|'v1alpha2'|
+      genomics_v1alpha2.Options|'v2alpha1'|genomics_v2alpha1.Options) {
+    return this.getAPI<T>('genomics', versionOrOptions);
   }
-  gmail<T = gmail_v1.Gmail>(options: ServiceOptions|string) {
-    return this.getAPI<T>('gmail', options);
+  gmail(version: 'v1'): gmail_v1.Gmail;
+  gmail(options: gmail_v1.Options): gmail_v1.Gmail;
+  gmail<T = gmail_v1.Gmail>(versionOrOptions: 'v1'|gmail_v1.Options) {
+    return this.getAPI<T>('gmail', versionOrOptions);
   }
-  groupsmigration<T = groupsmigration_v1.Groupsmigration>(options:
-                                                              ServiceOptions|
-                                                          string) {
-    return this.getAPI<T>('groupsmigration', options);
+  groupsmigration(version: 'v1'): groupsmigration_v1.Groupsmigration;
+  groupsmigration(options: groupsmigration_v1.Options):
+      groupsmigration_v1.Groupsmigration;
+  groupsmigration<T = groupsmigration_v1.Groupsmigration>(
+      versionOrOptions: 'v1'|groupsmigration_v1.Options) {
+    return this.getAPI<T>('groupsmigration', versionOrOptions);
   }
-  groupssettings<T = groupssettings_v1.Groupssettings>(options: ServiceOptions|
-                                                       string) {
-    return this.getAPI<T>('groupssettings', options);
+  groupssettings(version: 'v1'): groupssettings_v1.Groupssettings;
+  groupssettings(options: groupssettings_v1.Options):
+      groupssettings_v1.Groupssettings;
+  groupssettings<T = groupssettings_v1.Groupssettings>(
+      versionOrOptions: 'v1'|groupssettings_v1.Options) {
+    return this.getAPI<T>('groupssettings', versionOrOptions);
   }
-  iam<T = iam_v1.Iam>(options: ServiceOptions|string) {
-    return this.getAPI<T>('iam', options);
+  iam(version: 'v1'): iam_v1.Iam;
+  iam(options: iam_v1.Options): iam_v1.Iam;
+  iam<T = iam_v1.Iam>(versionOrOptions: 'v1'|iam_v1.Options) {
+    return this.getAPI<T>('iam', versionOrOptions);
   }
-  identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(options:
-                                                              ServiceOptions|
-                                                          string) {
-    return this.getAPI<T>('identitytoolkit', options);
+  identitytoolkit(version: 'v3'): identitytoolkit_v3.Identitytoolkit;
+  identitytoolkit(options: identitytoolkit_v3.Options):
+      identitytoolkit_v3.Identitytoolkit;
+  identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(
+      versionOrOptions: 'v3'|identitytoolkit_v3.Options) {
+    return this.getAPI<T>('identitytoolkit', versionOrOptions);
   }
-  kgsearch<T = kgsearch_v1.Kgsearch>(options: ServiceOptions|string) {
-    return this.getAPI<T>('kgsearch', options);
+  kgsearch(version: 'v1'): kgsearch_v1.Kgsearch;
+  kgsearch(options: kgsearch_v1.Options): kgsearch_v1.Kgsearch;
+  kgsearch<T = kgsearch_v1.Kgsearch>(versionOrOptions: 'v1'|
+                                     kgsearch_v1.Options) {
+    return this.getAPI<T>('kgsearch', versionOrOptions);
   }
+  language(version: 'v1'): language_v1.Language;
+  language(options: language_v1.Options): language_v1.Language;
+  language(version: 'v1beta1'): language_v1beta1.Language;
+  language(options: language_v1beta1.Options): language_v1beta1.Language;
+  language(version: 'v1beta2'): language_v1beta2.Language;
+  language(options: language_v1beta2.Options): language_v1beta2.Language;
   language<
       T = language_v1.Language | language_v1beta1.Language |
-          language_v1beta2.Language>(options: ServiceOptions|string) {
-    return this.getAPI<T>('language', options);
+          language_v1beta2.Language>(
+      versionOrOptions: 'v1'|language_v1.Options|'v1beta1'|
+      language_v1beta1.Options|'v1beta2'|language_v1beta2.Options) {
+    return this.getAPI<T>('language', versionOrOptions);
   }
-  licensing<T = licensing_v1.Licensing>(options: ServiceOptions|string) {
-    return this.getAPI<T>('licensing', options);
+  licensing(version: 'v1'): licensing_v1.Licensing;
+  licensing(options: licensing_v1.Options): licensing_v1.Licensing;
+  licensing<T = licensing_v1.Licensing>(versionOrOptions: 'v1'|
+                                        licensing_v1.Options) {
+    return this.getAPI<T>('licensing', versionOrOptions);
   }
-  logging<T = logging_v2.Logging | logging_v2beta1.Logging>(options:
-                                                                ServiceOptions|
-                                                            string) {
-    return this.getAPI<T>('logging', options);
+  logging(version: 'v2'): logging_v2.Logging;
+  logging(options: logging_v2.Options): logging_v2.Logging;
+  logging(version: 'v2beta1'): logging_v2beta1.Logging;
+  logging(options: logging_v2beta1.Options): logging_v2beta1.Logging;
+  logging<T = logging_v2.Logging | logging_v2beta1.Logging>(
+      versionOrOptions: 'v2'|logging_v2.Options|'v2beta1'|
+      logging_v2beta1.Options) {
+    return this.getAPI<T>('logging', versionOrOptions);
   }
-  manufacturers<T = manufacturers_v1.Manufacturers>(options: ServiceOptions|
-                                                    string) {
-    return this.getAPI<T>('manufacturers', options);
+  manufacturers(version: 'v1'): manufacturers_v1.Manufacturers;
+  manufacturers(options: manufacturers_v1.Options):
+      manufacturers_v1.Manufacturers;
+  manufacturers<T = manufacturers_v1.Manufacturers>(versionOrOptions: 'v1'|
+                                                    manufacturers_v1.Options) {
+    return this.getAPI<T>('manufacturers', versionOrOptions);
   }
-  mirror<T = mirror_v1.Mirror>(options: ServiceOptions|string) {
-    return this.getAPI<T>('mirror', options);
+  mirror(version: 'v1'): mirror_v1.Mirror;
+  mirror(options: mirror_v1.Options): mirror_v1.Mirror;
+  mirror<T = mirror_v1.Mirror>(versionOrOptions: 'v1'|mirror_v1.Options) {
+    return this.getAPI<T>('mirror', versionOrOptions);
   }
-  ml<T = ml_v1.Ml>(options: ServiceOptions|string) {
-    return this.getAPI<T>('ml', options);
+  ml(version: 'v1'): ml_v1.Ml;
+  ml(options: ml_v1.Options): ml_v1.Ml;
+  ml<T = ml_v1.Ml>(versionOrOptions: 'v1'|ml_v1.Options) {
+    return this.getAPI<T>('ml', versionOrOptions);
   }
-  monitoring<T = monitoring_v3.Monitoring>(options: ServiceOptions|string) {
-    return this.getAPI<T>('monitoring', options);
+  monitoring(version: 'v3'): monitoring_v3.Monitoring;
+  monitoring(options: monitoring_v3.Options): monitoring_v3.Monitoring;
+  monitoring<T = monitoring_v3.Monitoring>(versionOrOptions: 'v3'|
+                                           monitoring_v3.Options) {
+    return this.getAPI<T>('monitoring', versionOrOptions);
   }
-  oauth2<T = oauth2_v1.Oauth2 | oauth2_v2.Oauth2>(options: ServiceOptions|
-                                                  string) {
-    return this.getAPI<T>('oauth2', options);
+  oauth2(version: 'v1'): oauth2_v1.Oauth2;
+  oauth2(options: oauth2_v1.Options): oauth2_v1.Oauth2;
+  oauth2(version: 'v2'): oauth2_v2.Oauth2;
+  oauth2(options: oauth2_v2.Options): oauth2_v2.Oauth2;
+  oauth2<T = oauth2_v1.Oauth2 | oauth2_v2.Oauth2>(
+      versionOrOptions: 'v1'|oauth2_v1.Options|'v2'|oauth2_v2.Options) {
+    return this.getAPI<T>('oauth2', versionOrOptions);
   }
+  oslogin(version: 'v1'): oslogin_v1.Oslogin;
+  oslogin(options: oslogin_v1.Options): oslogin_v1.Oslogin;
+  oslogin(version: 'v1alpha'): oslogin_v1alpha.Oslogin;
+  oslogin(options: oslogin_v1alpha.Options): oslogin_v1alpha.Oslogin;
+  oslogin(version: 'v1beta'): oslogin_v1beta.Oslogin;
+  oslogin(options: oslogin_v1beta.Options): oslogin_v1beta.Oslogin;
   oslogin<
       T = oslogin_v1.Oslogin | oslogin_v1alpha.Oslogin |
-          oslogin_v1beta.Oslogin>(options: ServiceOptions|string) {
-    return this.getAPI<T>('oslogin', options);
+          oslogin_v1beta.Oslogin>(
+      versionOrOptions: 'v1'|oslogin_v1.Options|'v1alpha'|
+      oslogin_v1alpha.Options|'v1beta'|oslogin_v1beta.Options) {
+    return this.getAPI<T>('oslogin', versionOrOptions);
   }
+  pagespeedonline(version: 'v1'): pagespeedonline_v1.Pagespeedonline;
+  pagespeedonline(options: pagespeedonline_v1.Options):
+      pagespeedonline_v1.Pagespeedonline;
+  pagespeedonline(version: 'v2'): pagespeedonline_v2.Pagespeedonline;
+  pagespeedonline(options: pagespeedonline_v2.Options):
+      pagespeedonline_v2.Pagespeedonline;
+  pagespeedonline(version: 'v4'): pagespeedonline_v4.Pagespeedonline;
+  pagespeedonline(options: pagespeedonline_v4.Options):
+      pagespeedonline_v4.Pagespeedonline;
   pagespeedonline<
       T = pagespeedonline_v1.Pagespeedonline |
           pagespeedonline_v2.Pagespeedonline |
-          pagespeedonline_v4.Pagespeedonline>(options: ServiceOptions|string) {
-    return this.getAPI<T>('pagespeedonline', options);
+          pagespeedonline_v4.Pagespeedonline>(
+      versionOrOptions: 'v1'|pagespeedonline_v1.Options|'v2'|
+      pagespeedonline_v2.Options|'v4'|pagespeedonline_v4.Options) {
+    return this.getAPI<T>('pagespeedonline', versionOrOptions);
   }
-  partners<T = partners_v2.Partners>(options: ServiceOptions|string) {
-    return this.getAPI<T>('partners', options);
+  partners(version: 'v2'): partners_v2.Partners;
+  partners(options: partners_v2.Options): partners_v2.Partners;
+  partners<T = partners_v2.Partners>(versionOrOptions: 'v2'|
+                                     partners_v2.Options) {
+    return this.getAPI<T>('partners', versionOrOptions);
   }
-  people<T = people_v1.People>(options: ServiceOptions|string) {
-    return this.getAPI<T>('people', options);
+  people(version: 'v1'): people_v1.People;
+  people(options: people_v1.Options): people_v1.People;
+  people<T = people_v1.People>(versionOrOptions: 'v1'|people_v1.Options) {
+    return this.getAPI<T>('people', versionOrOptions);
   }
-  playcustomapp<T = playcustomapp_v1.Playcustomapp>(options: ServiceOptions|
-                                                    string) {
-    return this.getAPI<T>('playcustomapp', options);
+  playcustomapp(version: 'v1'): playcustomapp_v1.Playcustomapp;
+  playcustomapp(options: playcustomapp_v1.Options):
+      playcustomapp_v1.Playcustomapp;
+  playcustomapp<T = playcustomapp_v1.Playcustomapp>(versionOrOptions: 'v1'|
+                                                    playcustomapp_v1.Options) {
+    return this.getAPI<T>('playcustomapp', versionOrOptions);
   }
-  plus<T = plus_v1.Plus>(options: ServiceOptions|string) {
-    return this.getAPI<T>('plus', options);
+  plus(version: 'v1'): plus_v1.Plus;
+  plus(options: plus_v1.Options): plus_v1.Plus;
+  plus<T = plus_v1.Plus>(versionOrOptions: 'v1'|plus_v1.Options) {
+    return this.getAPI<T>('plus', versionOrOptions);
   }
-  plusDomains<T = plusDomains_v1.Plusdomains>(options: ServiceOptions|string) {
-    return this.getAPI<T>('plusDomains', options);
+  plusDomains(version: 'v1'): plusDomains_v1.Plusdomains;
+  plusDomains(options: plusDomains_v1.Options): plusDomains_v1.Plusdomains;
+  plusDomains<T = plusDomains_v1.Plusdomains>(versionOrOptions: 'v1'|
+                                              plusDomains_v1.Options) {
+    return this.getAPI<T>('plusDomains', versionOrOptions);
   }
-  poly<T = poly_v1.Poly>(options: ServiceOptions|string) {
-    return this.getAPI<T>('poly', options);
+  poly(version: 'v1'): poly_v1.Poly;
+  poly(options: poly_v1.Options): poly_v1.Poly;
+  poly<T = poly_v1.Poly>(versionOrOptions: 'v1'|poly_v1.Options) {
+    return this.getAPI<T>('poly', versionOrOptions);
   }
-  prediction<
-      T = prediction_v1_2.Prediction | prediction_v1_3.Prediction |
-          prediction_v1_4.Prediction | prediction_v1_5.Prediction |
-          prediction_v1_6.Prediction>(options: ServiceOptions|string) {
-    return this.getAPI<T>('prediction', options);
-  }
+  proximitybeacon(version: 'v1beta1'): proximitybeacon_v1beta1.Proximitybeacon;
+  proximitybeacon(options: proximitybeacon_v1beta1.Options):
+      proximitybeacon_v1beta1.Proximitybeacon;
   proximitybeacon<T = proximitybeacon_v1beta1.Proximitybeacon>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('proximitybeacon', options);
+      versionOrOptions: 'v1beta1'|proximitybeacon_v1beta1.Options) {
+    return this.getAPI<T>('proximitybeacon', versionOrOptions);
   }
+  pubsub(version: 'v1'): pubsub_v1.Pubsub;
+  pubsub(options: pubsub_v1.Options): pubsub_v1.Pubsub;
+  pubsub(version: 'v1beta1a'): pubsub_v1beta1a.Pubsub;
+  pubsub(options: pubsub_v1beta1a.Options): pubsub_v1beta1a.Pubsub;
+  pubsub(version: 'v1beta2'): pubsub_v1beta2.Pubsub;
+  pubsub(options: pubsub_v1beta2.Options): pubsub_v1beta2.Pubsub;
   pubsub<T = pubsub_v1.Pubsub | pubsub_v1beta1a.Pubsub | pubsub_v1beta2.Pubsub>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('pubsub', options);
+      versionOrOptions: 'v1'|pubsub_v1.Options|'v1beta1a'|
+      pubsub_v1beta1a.Options|'v1beta2'|pubsub_v1beta2.Options) {
+    return this.getAPI<T>('pubsub', versionOrOptions);
   }
+  replicapool(version: 'v1beta1'): replicapool_v1beta1.Replicapool;
+  replicapool(options: replicapool_v1beta1.Options):
+      replicapool_v1beta1.Replicapool;
+  replicapool(version: 'v1beta2'): replicapool_v1beta2.Replicapool;
+  replicapool(options: replicapool_v1beta2.Options):
+      replicapool_v1beta2.Replicapool;
   replicapool<
       T = replicapool_v1beta1.Replicapool | replicapool_v1beta2.Replicapool>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('replicapool', options);
+      versionOrOptions: 'v1beta1'|
+      replicapool_v1beta1.Options|'v1beta2'|replicapool_v1beta2.Options) {
+    return this.getAPI<T>('replicapool', versionOrOptions);
   }
+  replicapoolupdater(version: 'v1beta1'):
+      replicapoolupdater_v1beta1.Replicapoolupdater;
+  replicapoolupdater(options: replicapoolupdater_v1beta1.Options):
+      replicapoolupdater_v1beta1.Replicapoolupdater;
   replicapoolupdater<T = replicapoolupdater_v1beta1.Replicapoolupdater>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('replicapoolupdater', options);
+      versionOrOptions: 'v1beta1'|replicapoolupdater_v1beta1.Options) {
+    return this.getAPI<T>('replicapoolupdater', versionOrOptions);
   }
-  reseller<T = reseller_v1.Reseller>(options: ServiceOptions|string) {
-    return this.getAPI<T>('reseller', options);
+  reseller(version: 'v1'): reseller_v1.Reseller;
+  reseller(options: reseller_v1.Options): reseller_v1.Reseller;
+  reseller<T = reseller_v1.Reseller>(versionOrOptions: 'v1'|
+                                     reseller_v1.Options) {
+    return this.getAPI<T>('reseller', versionOrOptions);
   }
+  resourceviews(version: 'v1beta1'): resourceviews_v1beta1.Resourceviews;
+  resourceviews(options: resourceviews_v1beta1.Options):
+      resourceviews_v1beta1.Resourceviews;
+  resourceviews(version: 'v1beta2'): resourceviews_v1beta2.Resourceviews;
+  resourceviews(options: resourceviews_v1beta2.Options):
+      resourceviews_v1beta2.Resourceviews;
   resourceviews<
       T = resourceviews_v1beta1.Resourceviews |
-          resourceviews_v1beta2.Resourceviews>(options: ServiceOptions|string) {
-    return this.getAPI<T>('resourceviews', options);
+          resourceviews_v1beta2.Resourceviews>(
+      versionOrOptions: 'v1beta1'|
+      resourceviews_v1beta1.Options|'v1beta2'|resourceviews_v1beta2.Options) {
+    return this.getAPI<T>('resourceviews', versionOrOptions);
   }
+  runtimeconfig(version: 'v1'): runtimeconfig_v1.Runtimeconfig;
+  runtimeconfig(options: runtimeconfig_v1.Options):
+      runtimeconfig_v1.Runtimeconfig;
+  runtimeconfig(version: 'v1beta1'): runtimeconfig_v1beta1.Runtimeconfig;
+  runtimeconfig(options: runtimeconfig_v1beta1.Options):
+      runtimeconfig_v1beta1.Runtimeconfig;
   runtimeconfig<
       T = runtimeconfig_v1.Runtimeconfig | runtimeconfig_v1beta1.Runtimeconfig>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('runtimeconfig', options);
+      versionOrOptions: 'v1'|
+      runtimeconfig_v1.Options|'v1beta1'|runtimeconfig_v1beta1.Options) {
+    return this.getAPI<T>('runtimeconfig', versionOrOptions);
   }
-  safebrowsing<T = safebrowsing_v4.Safebrowsing>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('safebrowsing', options);
+  safebrowsing(version: 'v4'): safebrowsing_v4.Safebrowsing;
+  safebrowsing(options: safebrowsing_v4.Options): safebrowsing_v4.Safebrowsing;
+  safebrowsing<T = safebrowsing_v4.Safebrowsing>(versionOrOptions: 'v4'|
+                                                 safebrowsing_v4.Options) {
+    return this.getAPI<T>('safebrowsing', versionOrOptions);
   }
-  script<T = script_v1.Script>(options: ServiceOptions|string) {
-    return this.getAPI<T>('script', options);
+  script(version: 'v1'): script_v1.Script;
+  script(options: script_v1.Options): script_v1.Script;
+  script<T = script_v1.Script>(versionOrOptions: 'v1'|script_v1.Options) {
+    return this.getAPI<T>('script', versionOrOptions);
   }
-  searchconsole<T = searchconsole_v1.Searchconsole>(options: ServiceOptions|
-                                                    string) {
-    return this.getAPI<T>('searchconsole', options);
+  searchconsole(version: 'v1'): searchconsole_v1.Searchconsole;
+  searchconsole(options: searchconsole_v1.Options):
+      searchconsole_v1.Searchconsole;
+  searchconsole<T = searchconsole_v1.Searchconsole>(versionOrOptions: 'v1'|
+                                                    searchconsole_v1.Options) {
+    return this.getAPI<T>('searchconsole', versionOrOptions);
   }
+  servicebroker(version: 'v1'): servicebroker_v1.Servicebroker;
+  servicebroker(options: servicebroker_v1.Options):
+      servicebroker_v1.Servicebroker;
+  servicebroker(version: 'v1alpha1'): servicebroker_v1alpha1.Servicebroker;
+  servicebroker(options: servicebroker_v1alpha1.Options):
+      servicebroker_v1alpha1.Servicebroker;
+  servicebroker(version: 'v1beta1'): servicebroker_v1beta1.Servicebroker;
+  servicebroker(options: servicebroker_v1beta1.Options):
+      servicebroker_v1beta1.Servicebroker;
+  servicebroker<
+      T = servicebroker_v1.Servicebroker |
+          servicebroker_v1alpha1.Servicebroker |
+          servicebroker_v1beta1.Servicebroker>(
+      versionOrOptions: 'v1'|
+      servicebroker_v1.Options|'v1alpha1'|
+      servicebroker_v1alpha1.Options|'v1beta1'|servicebroker_v1beta1.Options) {
+    return this.getAPI<T>('servicebroker', versionOrOptions);
+  }
+  serviceconsumermanagement(version: 'v1'):
+      serviceconsumermanagement_v1.Serviceconsumermanagement;
+  serviceconsumermanagement(options: serviceconsumermanagement_v1.Options):
+      serviceconsumermanagement_v1.Serviceconsumermanagement;
   serviceconsumermanagement<
       T = serviceconsumermanagement_v1.Serviceconsumermanagement>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('serviceconsumermanagement', options);
+      versionOrOptions: 'v1'|serviceconsumermanagement_v1.Options) {
+    return this.getAPI<T>('serviceconsumermanagement', versionOrOptions);
   }
-  servicecontrol<T = servicecontrol_v1.Servicecontrol>(options: ServiceOptions|
-                                                       string) {
-    return this.getAPI<T>('servicecontrol', options);
+  servicecontrol(version: 'v1'): servicecontrol_v1.Servicecontrol;
+  servicecontrol(options: servicecontrol_v1.Options):
+      servicecontrol_v1.Servicecontrol;
+  servicecontrol<T = servicecontrol_v1.Servicecontrol>(
+      versionOrOptions: 'v1'|servicecontrol_v1.Options) {
+    return this.getAPI<T>('servicecontrol', versionOrOptions);
   }
+  servicemanagement(version: 'v1'): servicemanagement_v1.Servicemanagement;
+  servicemanagement(options: servicemanagement_v1.Options):
+      servicemanagement_v1.Servicemanagement;
   servicemanagement<T = servicemanagement_v1.Servicemanagement>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('servicemanagement', options);
+      versionOrOptions: 'v1'|servicemanagement_v1.Options) {
+    return this.getAPI<T>('servicemanagement', versionOrOptions);
   }
-  serviceusage<T = serviceusage_v1beta1.Serviceusage>(options: ServiceOptions|
-                                                      string) {
-    return this.getAPI<T>('serviceusage', options);
+  serviceusage(version: 'v1beta1'): serviceusage_v1beta1.Serviceusage;
+  serviceusage(options: serviceusage_v1beta1.Options):
+      serviceusage_v1beta1.Serviceusage;
+  serviceusage<T = serviceusage_v1beta1.Serviceusage>(
+      versionOrOptions: 'v1beta1'|serviceusage_v1beta1.Options) {
+    return this.getAPI<T>('serviceusage', versionOrOptions);
   }
-  serviceuser<T = serviceuser_v1.Serviceuser>(options: ServiceOptions|string) {
-    return this.getAPI<T>('serviceuser', options);
+  serviceuser(version: 'v1'): serviceuser_v1.Serviceuser;
+  serviceuser(options: serviceuser_v1.Options): serviceuser_v1.Serviceuser;
+  serviceuser<T = serviceuser_v1.Serviceuser>(versionOrOptions: 'v1'|
+                                              serviceuser_v1.Options) {
+    return this.getAPI<T>('serviceuser', versionOrOptions);
   }
-  sheets<T = sheets_v4.Sheets>(options: ServiceOptions|string) {
-    return this.getAPI<T>('sheets', options);
+  sheets(version: 'v4'): sheets_v4.Sheets;
+  sheets(options: sheets_v4.Options): sheets_v4.Sheets;
+  sheets<T = sheets_v4.Sheets>(versionOrOptions: 'v4'|sheets_v4.Options) {
+    return this.getAPI<T>('sheets', versionOrOptions);
   }
-  siteVerification<T = siteVerification_v1.Siteverification>(options:
-                                                                 ServiceOptions|
-                                                             string) {
-    return this.getAPI<T>('siteVerification', options);
+  siteVerification(version: 'v1'): siteVerification_v1.Siteverification;
+  siteVerification(options: siteVerification_v1.Options):
+      siteVerification_v1.Siteverification;
+  siteVerification<T = siteVerification_v1.Siteverification>(
+      versionOrOptions: 'v1'|siteVerification_v1.Options) {
+    return this.getAPI<T>('siteVerification', versionOrOptions);
   }
-  slides<T = slides_v1.Slides>(options: ServiceOptions|string) {
-    return this.getAPI<T>('slides', options);
+  slides(version: 'v1'): slides_v1.Slides;
+  slides(options: slides_v1.Options): slides_v1.Slides;
+  slides<T = slides_v1.Slides>(versionOrOptions: 'v1'|slides_v1.Options) {
+    return this.getAPI<T>('slides', versionOrOptions);
   }
-  sourcerepo<T = sourcerepo_v1.Sourcerepo>(options: ServiceOptions|string) {
-    return this.getAPI<T>('sourcerepo', options);
+  sourcerepo(version: 'v1'): sourcerepo_v1.Sourcerepo;
+  sourcerepo(options: sourcerepo_v1.Options): sourcerepo_v1.Sourcerepo;
+  sourcerepo<T = sourcerepo_v1.Sourcerepo>(versionOrOptions: 'v1'|
+                                           sourcerepo_v1.Options) {
+    return this.getAPI<T>('sourcerepo', versionOrOptions);
   }
-  spanner<T = spanner_v1.Spanner>(options: ServiceOptions|string) {
-    return this.getAPI<T>('spanner', options);
+  spanner(version: 'v1'): spanner_v1.Spanner;
+  spanner(options: spanner_v1.Options): spanner_v1.Spanner;
+  spanner<T = spanner_v1.Spanner>(versionOrOptions: 'v1'|spanner_v1.Options) {
+    return this.getAPI<T>('spanner', versionOrOptions);
   }
-  spectrum<T = spectrum_v1explorer.Spectrum>(options: ServiceOptions|string) {
-    return this.getAPI<T>('spectrum', options);
+  spectrum(version: 'v1explorer'): spectrum_v1explorer.Spectrum;
+  spectrum(options: spectrum_v1explorer.Options): spectrum_v1explorer.Spectrum;
+  spectrum<T = spectrum_v1explorer.Spectrum>(versionOrOptions: 'v1explorer'|
+                                             spectrum_v1explorer.Options) {
+    return this.getAPI<T>('spectrum', versionOrOptions);
   }
-  speech<T = speech_v1.Speech | speech_v1beta1.Speech>(options: ServiceOptions|
-                                                       string) {
-    return this.getAPI<T>('speech', options);
+  speech(version: 'v1'): speech_v1.Speech;
+  speech(options: speech_v1.Options): speech_v1.Speech;
+  speech(version: 'v1beta1'): speech_v1beta1.Speech;
+  speech(options: speech_v1beta1.Options): speech_v1beta1.Speech;
+  speech<T = speech_v1.Speech | speech_v1beta1.Speech>(
+      versionOrOptions: 'v1'|speech_v1.Options|'v1beta1'|
+      speech_v1beta1.Options) {
+    return this.getAPI<T>('speech', versionOrOptions);
   }
+  sqladmin(version: 'v1beta3'): sqladmin_v1beta3.Sqladmin;
+  sqladmin(options: sqladmin_v1beta3.Options): sqladmin_v1beta3.Sqladmin;
+  sqladmin(version: 'v1beta4'): sqladmin_v1beta4.Sqladmin;
+  sqladmin(options: sqladmin_v1beta4.Options): sqladmin_v1beta4.Sqladmin;
   sqladmin<T = sqladmin_v1beta3.Sqladmin | sqladmin_v1beta4.Sqladmin>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('sqladmin', options);
+      versionOrOptions: 'v1beta3'|
+      sqladmin_v1beta3.Options|'v1beta4'|sqladmin_v1beta4.Options) {
+    return this.getAPI<T>('sqladmin', versionOrOptions);
   }
+  storage(version: 'v1'): storage_v1.Storage;
+  storage(options: storage_v1.Options): storage_v1.Storage;
+  storage(version: 'v1beta1'): storage_v1beta1.Storage;
+  storage(options: storage_v1beta1.Options): storage_v1beta1.Storage;
+  storage(version: 'v1beta2'): storage_v1beta2.Storage;
+  storage(options: storage_v1beta2.Options): storage_v1beta2.Storage;
   storage<
       T = storage_v1.Storage | storage_v1beta1.Storage |
-          storage_v1beta2.Storage>(options: ServiceOptions|string) {
-    return this.getAPI<T>('storage', options);
+          storage_v1beta2.Storage>(
+      versionOrOptions: 'v1'|storage_v1.Options|'v1beta1'|
+      storage_v1beta1.Options|'v1beta2'|storage_v1beta2.Options) {
+    return this.getAPI<T>('storage', versionOrOptions);
   }
-  storagetransfer<T = storagetransfer_v1.Storagetransfer>(options:
-                                                              ServiceOptions|
-                                                          string) {
-    return this.getAPI<T>('storagetransfer', options);
+  storagetransfer(version: 'v1'): storagetransfer_v1.Storagetransfer;
+  storagetransfer(options: storagetransfer_v1.Options):
+      storagetransfer_v1.Storagetransfer;
+  storagetransfer<T = storagetransfer_v1.Storagetransfer>(
+      versionOrOptions: 'v1'|storagetransfer_v1.Options) {
+    return this.getAPI<T>('storagetransfer', versionOrOptions);
   }
+  streetviewpublish(version: 'v1'): streetviewpublish_v1.Streetviewpublish;
+  streetviewpublish(options: streetviewpublish_v1.Options):
+      streetviewpublish_v1.Streetviewpublish;
   streetviewpublish<T = streetviewpublish_v1.Streetviewpublish>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('streetviewpublish', options);
+      versionOrOptions: 'v1'|streetviewpublish_v1.Options) {
+    return this.getAPI<T>('streetviewpublish', versionOrOptions);
   }
-  surveys<T = surveys_v2.Surveys>(options: ServiceOptions|string) {
-    return this.getAPI<T>('surveys', options);
+  surveys(version: 'v2'): surveys_v2.Surveys;
+  surveys(options: surveys_v2.Options): surveys_v2.Surveys;
+  surveys<T = surveys_v2.Surveys>(versionOrOptions: 'v2'|surveys_v2.Options) {
+    return this.getAPI<T>('surveys', versionOrOptions);
   }
+  tagmanager(version: 'v1'): tagmanager_v1.Tagmanager;
+  tagmanager(options: tagmanager_v1.Options): tagmanager_v1.Tagmanager;
+  tagmanager(version: 'v2'): tagmanager_v2.Tagmanager;
+  tagmanager(options: tagmanager_v2.Options): tagmanager_v2.Tagmanager;
   tagmanager<T = tagmanager_v1.Tagmanager | tagmanager_v2.Tagmanager>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('tagmanager', options);
+      versionOrOptions: 'v1'|tagmanager_v1.Options|'v2'|tagmanager_v2.Options) {
+    return this.getAPI<T>('tagmanager', versionOrOptions);
   }
-  taskqueue<T = taskqueue_v1beta1.Taskqueue | taskqueue_v1beta2.Taskqueue>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('taskqueue', options);
+  tasks(version: 'v1'): tasks_v1.Tasks;
+  tasks(options: tasks_v1.Options): tasks_v1.Tasks;
+  tasks<T = tasks_v1.Tasks>(versionOrOptions: 'v1'|tasks_v1.Options) {
+    return this.getAPI<T>('tasks', versionOrOptions);
   }
-  tasks<T = tasks_v1.Tasks>(options: ServiceOptions|string) {
-    return this.getAPI<T>('tasks', options);
+  testing(version: 'v1'): testing_v1.Testing;
+  testing(options: testing_v1.Options): testing_v1.Testing;
+  testing<T = testing_v1.Testing>(versionOrOptions: 'v1'|testing_v1.Options) {
+    return this.getAPI<T>('testing', versionOrOptions);
   }
-  testing<T = testing_v1.Testing>(options: ServiceOptions|string) {
-    return this.getAPI<T>('testing', options);
+  texttospeech(version: 'v1beta1'): texttospeech_v1beta1.Texttospeech;
+  texttospeech(options: texttospeech_v1beta1.Options):
+      texttospeech_v1beta1.Texttospeech;
+  texttospeech<T = texttospeech_v1beta1.Texttospeech>(
+      versionOrOptions: 'v1beta1'|texttospeech_v1beta1.Options) {
+    return this.getAPI<T>('texttospeech', versionOrOptions);
   }
-  texttospeech<T = texttospeech_v1beta1.Texttospeech>(options: ServiceOptions|
-                                                      string) {
-    return this.getAPI<T>('texttospeech', options);
+  toolresults(version: 'v1beta3'): toolresults_v1beta3.Toolresults;
+  toolresults(options: toolresults_v1beta3.Options):
+      toolresults_v1beta3.Toolresults;
+  toolresults<T = toolresults_v1beta3.Toolresults>(
+      versionOrOptions: 'v1beta3'|toolresults_v1beta3.Options) {
+    return this.getAPI<T>('toolresults', versionOrOptions);
   }
-  toolresults<T = toolresults_v1beta3.Toolresults>(options: ServiceOptions|
-                                                   string) {
-    return this.getAPI<T>('toolresults', options);
+  tpu(version: 'v1alpha1'): tpu_v1alpha1.Tpu;
+  tpu(options: tpu_v1alpha1.Options): tpu_v1alpha1.Tpu;
+  tpu<T = tpu_v1alpha1.Tpu>(versionOrOptions: 'v1alpha1'|tpu_v1alpha1.Options) {
+    return this.getAPI<T>('tpu', versionOrOptions);
   }
-  tpu<T = tpu_v1alpha1.Tpu>(options: ServiceOptions|string) {
-    return this.getAPI<T>('tpu', options);
+  translate(version: 'v2'): translate_v2.Translate;
+  translate(options: translate_v2.Options): translate_v2.Translate;
+  translate<T = translate_v2.Translate>(versionOrOptions: 'v2'|
+                                        translate_v2.Options) {
+    return this.getAPI<T>('translate', versionOrOptions);
   }
-  translate<T = translate_v2.Translate>(options: ServiceOptions|string) {
-    return this.getAPI<T>('translate', options);
+  urlshortener(version: 'v1'): urlshortener_v1.Urlshortener;
+  urlshortener(options: urlshortener_v1.Options): urlshortener_v1.Urlshortener;
+  urlshortener<T = urlshortener_v1.Urlshortener>(versionOrOptions: 'v1'|
+                                                 urlshortener_v1.Options) {
+    return this.getAPI<T>('urlshortener', versionOrOptions);
   }
-  urlshortener<T = urlshortener_v1.Urlshortener>(options: ServiceOptions|
-                                                 string) {
-    return this.getAPI<T>('urlshortener', options);
+  vault(version: 'v1'): vault_v1.Vault;
+  vault(options: vault_v1.Options): vault_v1.Vault;
+  vault<T = vault_v1.Vault>(versionOrOptions: 'v1'|vault_v1.Options) {
+    return this.getAPI<T>('vault', versionOrOptions);
   }
-  vault<T = vault_v1.Vault>(options: ServiceOptions|string) {
-    return this.getAPI<T>('vault', options);
-  }
+  videointelligence(version: 'v1'): videointelligence_v1.Videointelligence;
+  videointelligence(options: videointelligence_v1.Options):
+      videointelligence_v1.Videointelligence;
+  videointelligence(version: 'v1beta1'):
+      videointelligence_v1beta1.Videointelligence;
+  videointelligence(options: videointelligence_v1beta1.Options):
+      videointelligence_v1beta1.Videointelligence;
+  videointelligence(version: 'v1beta2'):
+      videointelligence_v1beta2.Videointelligence;
+  videointelligence(options: videointelligence_v1beta2.Options):
+      videointelligence_v1beta2.Videointelligence;
   videointelligence<
       T = videointelligence_v1.Videointelligence |
           videointelligence_v1beta1.Videointelligence |
-          videointelligence_v1beta2.Videointelligence>(options: ServiceOptions|
-                                                       string) {
-    return this.getAPI<T>('videointelligence', options);
+          videointelligence_v1beta2.Videointelligence>(
+      versionOrOptions: 'v1'|
+      videointelligence_v1.Options|'v1beta1'|
+      videointelligence_v1beta1.Options|'v1beta2'|
+      videointelligence_v1beta2.Options) {
+    return this.getAPI<T>('videointelligence', versionOrOptions);
   }
+  vision(version: 'v1'): vision_v1.Vision;
+  vision(options: vision_v1.Options): vision_v1.Vision;
+  vision(version: 'v1p1beta1'): vision_v1p1beta1.Vision;
+  vision(options: vision_v1p1beta1.Options): vision_v1p1beta1.Vision;
+  vision(version: 'v1p2beta1'): vision_v1p2beta1.Vision;
+  vision(options: vision_v1p2beta1.Options): vision_v1p2beta1.Vision;
   vision<
       T = vision_v1.Vision | vision_v1p1beta1.Vision | vision_v1p2beta1.Vision>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('vision', options);
+      versionOrOptions: 'v1'|vision_v1.Options|'v1p1beta1'|
+      vision_v1p1beta1.Options|'v1p2beta1'|vision_v1p2beta1.Options) {
+    return this.getAPI<T>('vision', versionOrOptions);
   }
-  webfonts<T = webfonts_v1.Webfonts>(options: ServiceOptions|string) {
-    return this.getAPI<T>('webfonts', options);
+  webfonts(version: 'v1'): webfonts_v1.Webfonts;
+  webfonts(options: webfonts_v1.Options): webfonts_v1.Webfonts;
+  webfonts<T = webfonts_v1.Webfonts>(versionOrOptions: 'v1'|
+                                     webfonts_v1.Options) {
+    return this.getAPI<T>('webfonts', versionOrOptions);
   }
-  webmasters<T = webmasters_v3.Webmasters>(options: ServiceOptions|string) {
-    return this.getAPI<T>('webmasters', options);
+  webmasters(version: 'v3'): webmasters_v3.Webmasters;
+  webmasters(options: webmasters_v3.Options): webmasters_v3.Webmasters;
+  webmasters<T = webmasters_v3.Webmasters>(versionOrOptions: 'v3'|
+                                           webmasters_v3.Options) {
+    return this.getAPI<T>('webmasters', versionOrOptions);
   }
+  websecurityscanner(version: 'v1alpha'):
+      websecurityscanner_v1alpha.Websecurityscanner;
+  websecurityscanner(options: websecurityscanner_v1alpha.Options):
+      websecurityscanner_v1alpha.Websecurityscanner;
   websecurityscanner<T = websecurityscanner_v1alpha.Websecurityscanner>(
-      options: ServiceOptions|string) {
-    return this.getAPI<T>('websecurityscanner', options);
+      versionOrOptions: 'v1alpha'|websecurityscanner_v1alpha.Options) {
+    return this.getAPI<T>('websecurityscanner', versionOrOptions);
   }
-  youtube<T = youtube_v3.Youtube>(options: ServiceOptions|string) {
-    return this.getAPI<T>('youtube', options);
+  youtube(version: 'v3'): youtube_v3.Youtube;
+  youtube(options: youtube_v3.Options): youtube_v3.Youtube;
+  youtube<T = youtube_v3.Youtube>(versionOrOptions: 'v3'|youtube_v3.Options) {
+    return this.getAPI<T>('youtube', versionOrOptions);
   }
+  youtubeAnalytics(version: 'v1'): youtubeAnalytics_v1.Youtubeanalytics;
+  youtubeAnalytics(options: youtubeAnalytics_v1.Options):
+      youtubeAnalytics_v1.Youtubeanalytics;
+  youtubeAnalytics(version: 'v1beta1'):
+      youtubeAnalytics_v1beta1.Youtubeanalytics;
+  youtubeAnalytics(options: youtubeAnalytics_v1beta1.Options):
+      youtubeAnalytics_v1beta1.Youtubeanalytics;
+  youtubeAnalytics(version: 'v2'): youtubeAnalytics_v2.Youtubeanalytics;
+  youtubeAnalytics(options: youtubeAnalytics_v2.Options):
+      youtubeAnalytics_v2.Youtubeanalytics;
   youtubeAnalytics<
       T = youtubeAnalytics_v1.Youtubeanalytics |
           youtubeAnalytics_v1beta1.Youtubeanalytics |
-          youtubeAnalytics_v2.Youtubeanalytics>(options: ServiceOptions|
-                                                string) {
-    return this.getAPI<T>('youtubeAnalytics', options);
+          youtubeAnalytics_v2.Youtubeanalytics>(
+      versionOrOptions: 'v1'|
+      youtubeAnalytics_v1.Options|'v1beta1'|
+      youtubeAnalytics_v1beta1.Options|'v2'|youtubeAnalytics_v2.Options) {
+    return this.getAPI<T>('youtubeAnalytics', versionOrOptions);
   }
-  youtubereporting<T = youtubereporting_v1.Youtubereporting>(options:
-                                                                 ServiceOptions|
-                                                             string) {
-    return this.getAPI<T>('youtubereporting', options);
+  youtubereporting(version: 'v1'): youtubereporting_v1.Youtubereporting;
+  youtubereporting(options: youtubereporting_v1.Options):
+      youtubereporting_v1.Youtubereporting;
+  youtubereporting<T = youtubereporting_v1.Youtubereporting>(
+      versionOrOptions: 'v1'|youtubereporting_v1.Options) {
+    return this.getAPI<T>('youtubereporting', versionOrOptions);
   }
 }

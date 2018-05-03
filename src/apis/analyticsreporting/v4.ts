@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace analyticsreporting_v4 {
+  export interface Options extends GlobalOptions { version: 'v4'; }
+
   /**
    * Google Analytics Reporting API
    *
@@ -83,18 +86,18 @@ export namespace analyticsreporting_v4 {
      * You do not need to supply a date range for the
      * `reportsRequest.dateRanges` field.
      */
-    dateRange: Schema$DateRange;
+    dateRange?: Schema$DateRange;
     /**
      * A unique name for the cohort. If not defined name will be auto-generated
      * with values cohort_[1234...].
      */
-    name: string;
+    name?: string;
     /**
      * Type of the cohort. The only supported type as of now is
      * `FIRST_VISIT_DATE`. If this field is unspecified the cohort is treated as
      * `FIRST_VISIT_DATE` type cohort.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Defines a cohort group. For example:      &quot;cohortGroup&quot;: {
@@ -110,7 +113,7 @@ export namespace analyticsreporting_v4 {
     /**
      * The definition for the cohort.
      */
-    cohorts: Schema$Cohort[];
+    cohorts?: Schema$Cohort[];
     /**
      * Enable Life Time Value (LTV).  LTV measures lifetime value for users
      * acquired through different channels. Please see: [Cohort
@@ -133,7 +136,7 @@ export namespace analyticsreporting_v4 {
      * The `viewId` must be an   [app view
      * ID](https://support.google.com/analytics/answer/2649553#WebVersusAppViews)
      */
-    lifetimeValue: boolean;
+    lifetimeValue?: boolean;
   }
   /**
    * Column headers.
@@ -142,11 +145,11 @@ export namespace analyticsreporting_v4 {
     /**
      * The dimension names in the response.
      */
-    dimensions: string[];
+    dimensions?: string[];
     /**
      * Metric headers for the metrics in the response.
      */
-    metricHeader: Schema$MetricHeader;
+    metricHeader?: Schema$MetricHeader;
   }
   /**
    * A contiguous set of days: startDate, startDate + 1 day, ..., endDate. The
@@ -157,11 +160,11 @@ export namespace analyticsreporting_v4 {
     /**
      * The end date for the query in the format `YYYY-MM-DD`.
      */
-    endDate: string;
+    endDate?: string;
     /**
      * The start date for the query in the format `YYYY-MM-DD`.
      */
-    startDate: string;
+    startDate?: string;
   }
   /**
    * Used to return a list of metrics for a single DateRange / dimension
@@ -171,11 +174,11 @@ export namespace analyticsreporting_v4 {
     /**
      * The values of each pivot region.
      */
-    pivotValueRegions: Schema$PivotValueRegion[];
+    pivotValueRegions?: Schema$PivotValueRegion[];
     /**
      * Each value corresponds to each Metric in the request.
      */
-    values: string[];
+    values?: string[];
   }
   /**
    * [Dimensions](https://support.google.com/analytics/answer/1033861) are
@@ -210,11 +213,11 @@ export namespace analyticsreporting_v4 {
      * has to explicitly request `&quot;orderType&quot;:
      * &quot;HISTOGRAM_BUCKET&quot;` for a histogram-mutated dimension.
      */
-    histogramBuckets: string[];
+    histogramBuckets?: string[];
     /**
      * Name of the dimension to fetch, for example `ga:browser`.
      */
-    name: string;
+    name?: string;
   }
   /**
    * Dimension filter specifies the filtering options on a dimension.
@@ -223,27 +226,27 @@ export namespace analyticsreporting_v4 {
     /**
      * Should the match be case sensitive? Default is false.
      */
-    caseSensitive: boolean;
+    caseSensitive?: boolean;
     /**
      * The dimension to filter on. A DimensionFilter must contain a dimension.
      */
-    dimensionName: string;
+    dimensionName?: string;
     /**
      * Strings or regular expression to match against. Only the first value of
      * the list is used for comparison unless the operator is `IN_LIST`. If
      * `IN_LIST` operator, then the entire list is used to filter the dimensions
      * as explained in the description of the `IN_LIST` operator.
      */
-    expressions: string[];
+    expressions?: string[];
     /**
      * Logical `NOT` operator. If this boolean is set to true, then the matching
      * dimension values will be excluded in the report. The default is false.
      */
-    not: boolean;
+    not?: boolean;
     /**
      * How to match the dimension to the expression. The default is REGEXP.
      */
-    operator: string;
+    operator?: string;
   }
   /**
    * A group of dimension filters. Set the operator value to specify how the
@@ -254,12 +257,12 @@ export namespace analyticsreporting_v4 {
      * The repeated set of filters. They are logically combined based on the
      * operator specified.
      */
-    filters: Schema$DimensionFilter[];
+    filters?: Schema$DimensionFilter[];
     /**
      * The operator for combining multiple dimension filters. If unspecified, it
      * is treated as an `OR`.
      */
-    operator: string;
+    operator?: string;
   }
   /**
    * Dynamic segment definition for defining the segment within the request. A
@@ -269,15 +272,15 @@ export namespace analyticsreporting_v4 {
     /**
      * The name of the dynamic segment.
      */
-    name: string;
+    name?: string;
     /**
      * Session Segment to select sessions to include in the segment.
      */
-    sessionSegment: Schema$SegmentDefinition;
+    sessionSegment?: Schema$SegmentDefinition;
     /**
      * User Segment to select users to include in the segment.
      */
-    userSegment: Schema$SegmentDefinition;
+    userSegment?: Schema$SegmentDefinition;
   }
   /**
    * The batch request containing multiple report request.
@@ -288,7 +291,7 @@ export namespace analyticsreporting_v4 {
      * maximum of 5 requests. All requests should have the same `dateRanges`,
      * `viewId`, `segments`, `samplingLevel`, and `cohortGroup`.
      */
-    reportRequests: Schema$ReportRequest[];
+    reportRequests?: Schema$ReportRequest[];
     /**
      * Enables [resource based
      * quotas](/analytics/devguides/reporting/core/v4/limits-quotas#analytics_reporting_api_v4),
@@ -299,7 +302,7 @@ export namespace analyticsreporting_v4 {
      * documentation](/analytics/devguides/reporting/core/v4/limits-quotas#analytics_reporting_api_v4)
      * for details.
      */
-    useResourceQuotas: boolean;
+    useResourceQuotas?: boolean;
   }
   /**
    * The main response class which holds the reports from the Reporting API
@@ -310,15 +313,15 @@ export namespace analyticsreporting_v4 {
      * The amount of resource quota tokens deducted to execute the query.
      * Includes all responses.
      */
-    queryCost: number;
+    queryCost?: number;
     /**
      * Responses corresponding to each of the request.
      */
-    reports: Schema$Report[];
+    reports?: Schema$Report[];
     /**
      * The amount of resource quota remaining for the property.
      */
-    resourceQuotasRemaining: Schema$ResourceQuotasRemaining;
+    resourceQuotasRemaining?: Schema$ResourceQuotasRemaining;
   }
   /**
    * [Metrics](https://support.google.com/analytics/answer/1033861) are the
@@ -333,7 +336,7 @@ export namespace analyticsreporting_v4 {
      * complex expression which cannot be used in filtering and sorting. The
      * alias is also used in the response column header.
      */
-    alias: string;
+    alias?: string;
     /**
      * A metric expression in the request. An expression is constructed from one
      * or more metrics and numbers. Accepted operators include: Plus (+), Minus
@@ -344,12 +347,12 @@ export namespace analyticsreporting_v4 {
      * mixed `MetricType` (E.g., `CURRENCY` + `PERCENTAGE`) metrics will result
      * in unexpected results.
      */
-    expression: string;
+    expression?: string;
     /**
      * Specifies how the metric expression should be formatted, for example
      * `INTEGER`.
      */
-    formattingType: string;
+    formattingType?: string;
   }
   /**
    * MetricFilter specifies the filter on a metric.
@@ -358,24 +361,24 @@ export namespace analyticsreporting_v4 {
     /**
      * The value to compare against.
      */
-    comparisonValue: string;
+    comparisonValue?: string;
     /**
      * The metric that will be filtered on. A metricFilter must contain a metric
      * name. A metric name can be an alias earlier defined as a metric or it can
      * also be a metric expression.
      */
-    metricName: string;
+    metricName?: string;
     /**
      * Logical `NOT` operator. If this boolean is set to true, then the matching
      * metric values will be excluded in the report. The default is false.
      */
-    not: boolean;
+    not?: boolean;
     /**
      * Is the metric `EQUAL`, `LESS_THAN` or `GREATER_THAN` the comparisonValue,
      * the default is `EQUAL`. If the operator is `IS_MISSING`, checks if the
      * metric is missing and would ignore the comparisonValue.
      */
-    operator: string;
+    operator?: string;
   }
   /**
    * Represents a group of metric filters. Set the operator value to specify how
@@ -386,12 +389,12 @@ export namespace analyticsreporting_v4 {
      * The repeated set of filters. They are logically combined based on the
      * operator specified.
      */
-    filters: Schema$MetricFilter[];
+    filters?: Schema$MetricFilter[];
     /**
      * The operator for combining multiple metric filters. If unspecified, it is
      * treated as an `OR`.
      */
-    operator: string;
+    operator?: string;
   }
   /**
    * The headers for the metrics.
@@ -400,11 +403,11 @@ export namespace analyticsreporting_v4 {
     /**
      * Headers for the metrics in the response.
      */
-    metricHeaderEntries: Schema$MetricHeaderEntry[];
+    metricHeaderEntries?: Schema$MetricHeaderEntry[];
     /**
      * Headers for the pivots in the response.
      */
-    pivotHeaders: Schema$PivotHeader[];
+    pivotHeaders?: Schema$PivotHeader[];
   }
   /**
    * Header for the metrics.
@@ -413,11 +416,11 @@ export namespace analyticsreporting_v4 {
     /**
      * The name of the header.
      */
-    name: string;
+    name?: string;
     /**
      * The type of the metric, for example `INTEGER`.
      */
-    type: string;
+    type?: string;
   }
   /**
    * Specifies the sorting options.
@@ -428,15 +431,15 @@ export namespace analyticsreporting_v4 {
      * `ga:browser`. Note, that you can only specify one field for sort here.
      * For example, `ga:browser, ga:city` is not valid.
      */
-    fieldName: string;
+    fieldName?: string;
     /**
      * The order type. The default orderType is `VALUE`.
      */
-    orderType: string;
+    orderType?: string;
     /**
      * The sorting order for the field.
      */
-    sortOrder: string;
+    sortOrder?: string;
   }
   /**
    * A list of segment filters in the `OR` group are combined with the logical
@@ -446,7 +449,7 @@ export namespace analyticsreporting_v4 {
     /**
      * List of segment filters to be combined with a `OR` operator.
      */
-    segmentFilterClauses: Schema$SegmentFilterClause[];
+    segmentFilterClauses?: Schema$SegmentFilterClause[];
   }
   /**
    * The Pivot describes the pivot section in the request. The Pivot helps
@@ -464,23 +467,23 @@ export namespace analyticsreporting_v4 {
      * or &quot;Firefox&quot;, then only those two browsers would show up as
      * columns.
      */
-    dimensionFilterClauses: Schema$DimensionFilterClause[];
+    dimensionFilterClauses?: Schema$DimensionFilterClause[];
     /**
      * A list of dimensions to show as pivot columns. A Pivot can have a maximum
      * of 4 dimensions. Pivot dimensions are part of the restriction on the
      * total number of dimensions allowed in the request.
      */
-    dimensions: Schema$Dimension[];
+    dimensions?: Schema$Dimension[];
     /**
      * Specifies the maximum number of groups to return. The default value is
      * 10, also the maximum value is 1,000.
      */
-    maxGroupCount: number;
+    maxGroupCount?: number;
     /**
      * The pivot metrics. Pivot metrics are part of the restriction on total
      * number of metrics allowed in the request.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * If k metrics were requested, then the response will contain some
      * data-dependent multiple of k columns in the report.  E.g., if you pivoted
@@ -495,7 +498,7 @@ export namespace analyticsreporting_v4 {
      * Firefox, IE.  The following let you choose which of the groups of k
      * columns are included in the response.
      */
-    startGroup: number;
+    startGroup?: number;
   }
   /**
    * The headers for each of the pivot sections defined in the request.
@@ -504,11 +507,11 @@ export namespace analyticsreporting_v4 {
     /**
      * A single pivot section header.
      */
-    pivotHeaderEntries: Schema$PivotHeaderEntry[];
+    pivotHeaderEntries?: Schema$PivotHeaderEntry[];
     /**
      * The total number of groups for this pivot.
      */
-    totalPivotGroupsCount: number;
+    totalPivotGroupsCount?: number;
   }
   /**
    * The headers for the each of the metric column corresponding to the metrics
@@ -518,15 +521,15 @@ export namespace analyticsreporting_v4 {
     /**
      * The name of the dimensions in the pivot response.
      */
-    dimensionNames: string[];
+    dimensionNames?: string[];
     /**
      * The values for the dimensions in the pivot.
      */
-    dimensionValues: string[];
+    dimensionValues?: string[];
     /**
      * The metric header for the metric in the pivot.
      */
-    metric: Schema$MetricHeaderEntry;
+    metric?: Schema$MetricHeaderEntry;
   }
   /**
    * The metric values in the pivot region.
@@ -535,7 +538,7 @@ export namespace analyticsreporting_v4 {
     /**
      * The values of the metrics in each of the pivot regions.
      */
-    values: string[];
+    values?: string[];
   }
   /**
    * The data response corresponding to the request.
@@ -544,15 +547,15 @@ export namespace analyticsreporting_v4 {
     /**
      * The column headers.
      */
-    columnHeader: Schema$ColumnHeader;
+    columnHeader?: Schema$ColumnHeader;
     /**
      * Response data.
      */
-    data: Schema$ReportData;
+    data?: Schema$ReportData;
     /**
      * Page token to retrieve the next page of results in the list.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The data part of the report.
@@ -562,33 +565,33 @@ export namespace analyticsreporting_v4 {
      * The last time the data in the report was refreshed. All the hits received
      * before this timestamp are included in the calculation of the report.
      */
-    dataLastRefreshed: string;
+    dataLastRefreshed?: string;
     /**
      * Indicates if response to this request is golden or not. Data is golden
      * when the exact same request will not produce any new results if asked at
      * a later point in time.
      */
-    isDataGolden: boolean;
+    isDataGolden?: boolean;
     /**
      * Minimum and maximum values seen over all matching rows. These are both
      * empty when `hideValueRanges` in the request is false, or when rowCount is
      * zero.
      */
-    maximums: Schema$DateRangeValues[];
+    maximums?: Schema$DateRangeValues[];
     /**
      * Minimum and maximum values seen over all matching rows. These are both
      * empty when `hideValueRanges` in the request is false, or when rowCount is
      * zero.
      */
-    minimums: Schema$DateRangeValues[];
+    minimums?: Schema$DateRangeValues[];
     /**
      * Total number of matching rows for this query.
      */
-    rowCount: number;
+    rowCount?: number;
     /**
      * There&#39;s one ReportRow for every unique combination of dimensions.
      */
-    rows: Schema$ReportRow[];
+    rows?: Schema$ReportRow[];
     /**
      * If the results are
      * [sampled](https://support.google.com/analytics/answer/2637192), this
@@ -597,7 +600,7 @@ export namespace analyticsreporting_v4 {
      * [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
      * for details.
      */
-    samplesReadCounts: string[];
+    samplesReadCounts?: string[];
     /**
      * If the results are
      * [sampled](https://support.google.com/analytics/answer/2637192), this
@@ -606,7 +609,7 @@ export namespace analyticsreporting_v4 {
      * [developer guide](/analytics/devguides/reporting/core/v4/basics#sampling)
      * for details.
      */
-    samplingSpaceSizes: string[];
+    samplingSpaceSizes?: string[];
     /**
      * For each requested date range, for the set of all rows that match the
      * query, every requested value format gets a total. The total for a value
@@ -616,7 +619,7 @@ export namespace analyticsreporting_v4 {
      * of all relevant ga:sessions) + 2)`. Totals are computed before
      * pagination.
      */
-    totals: Schema$DateRangeValues[];
+    totals?: Schema$DateRangeValues[];
   }
   /**
    * The main request class which specifies the Reporting API request.
@@ -628,7 +631,7 @@ export namespace analyticsreporting_v4 {
      * [ReportRequest](#ReportRequest) within a `batchGet` method must contain
      * the same `cohortGroup` definition.
      */
-    cohortGroup: Schema$CohortGroup;
+    cohortGroup?: Schema$CohortGroup;
     /**
      * Date ranges in the request. The request can have a maximum of 2 date
      * ranges. The response will contain a set of metric values for each
@@ -641,18 +644,18 @@ export namespace analyticsreporting_v4 {
      * 1 day). Every [ReportRequest](#ReportRequest) within a `batchGet` method
      * must contain the same `dateRanges` definition.
      */
-    dateRanges: Schema$DateRange[];
+    dateRanges?: Schema$DateRange[];
     /**
      * The dimension filter clauses for filtering Dimension Values. They are
      * logically combined with the `AND` operator. Note that filtering occurs
      * before any dimensions are aggregated, so that the returned metrics
      * represent the total for only the relevant dimensions.
      */
-    dimensionFilterClauses: Schema$DimensionFilterClause[];
+    dimensionFilterClauses?: Schema$DimensionFilterClause[];
     /**
      * The dimensions requested. Requests can have a total of 7 dimensions.
      */
-    dimensions: Schema$Dimension[];
+    dimensions?: Schema$Dimension[];
     /**
      * Dimension or metric filters that restrict the data returned for your
      * request. To use the `filtersExpression`, supply a dimension or metric on
@@ -662,41 +665,41 @@ export namespace analyticsreporting_v4 {
      * metric filters, see [Filters
      * reference](https://developers.google.com/analytics/devguides/reporting/core/v3/reference#filters).
      */
-    filtersExpression: string;
+    filtersExpression?: string;
     /**
      * If set to true, hides the total of all metrics for all the matching rows,
      * for every date range. The default false and will return the totals.
      */
-    hideTotals: boolean;
+    hideTotals?: boolean;
     /**
      * If set to true, hides the minimum and maximum across all matching rows.
      * The default is false and the value ranges are returned.
      */
-    hideValueRanges: boolean;
+    hideValueRanges?: boolean;
     /**
      * If set to false, the response does not include rows if all the retrieved
      * metrics are equal to zero. The default is false which will exclude these
      * rows.
      */
-    includeEmptyRows: boolean;
+    includeEmptyRows?: boolean;
     /**
      * The metric filter clauses. They are logically combined with the `AND`
      * operator.  Metric filters look at only the first date range and not the
      * comparing date range. Note that filtering on metrics occurs after the
      * metrics are aggregated.
      */
-    metricFilterClauses: Schema$MetricFilterClause[];
+    metricFilterClauses?: Schema$MetricFilterClause[];
     /**
      * The metrics requested. Requests must specify at least one metric.
      * Requests can have a total of 10 metrics.
      */
-    metrics: Schema$Metric[];
+    metrics?: Schema$Metric[];
     /**
      * Sort order on output rows. To compare two rows, the elements of the
      * following are applied in order until a difference is found.  All date
      * ranges in the output get the same row order.
      */
-    orderBys: Schema$OrderBy[];
+    orderBys?: Schema$OrderBy[];
     /**
      * Page size is for paging and specifies the maximum number of returned
      * rows. Page size should be &gt;= 0. A query returns the default of 1,000
@@ -707,18 +710,18 @@ export namespace analyticsreporting_v4 {
      * `ga:country`, so when segmenting only by country, you can&#39;t get more
      * than 300 rows, even if you set `pageSize` to a higher value.
      */
-    pageSize: number;
+    pageSize?: number;
     /**
      * A continuation token to get the next page of the results. Adding this to
      * the request will return the rows after the pageToken. The pageToken
      * should be the value returned in the nextPageToken parameter in the
      * response to the GetReports request.
      */
-    pageToken: string;
+    pageToken?: string;
     /**
      * The pivot definitions. Requests can have a maximum of 2 pivots.
      */
-    pivots: Schema$Pivot[];
+    pivots?: Schema$Pivot[];
     /**
      * The desired report
      * [sample](https://support.google.com/analytics/answer/2637192) size. If
@@ -728,7 +731,7 @@ export namespace analyticsreporting_v4 {
      * guide](/analytics/devguides/reporting/core/v4/basics#sampling)  for
      * details.
      */
-    samplingLevel: string;
+    samplingLevel?: string;
     /**
      * Segment the data returned for the request. A segment definition helps
      * look at a subset of the segment request. A request can contain up to four
@@ -736,14 +739,14 @@ export namespace analyticsreporting_v4 {
      * method must contain the same `segments` definition. Requests with
      * segments must have the `ga:segment` dimension.
      */
-    segments: Schema$Segment[];
+    segments?: Schema$Segment[];
     /**
      * The Analytics [view
      * ID](https://support.google.com/analytics/answer/1009618) from which to
      * retrieve data. Every [ReportRequest](#ReportRequest) within a `batchGet`
      * method must contain the same `viewId`.
      */
-    viewId: string;
+    viewId?: string;
   }
   /**
    * A row in the report.
@@ -752,11 +755,11 @@ export namespace analyticsreporting_v4 {
     /**
      * List of requested dimensions.
      */
-    dimensions: string[];
+    dimensions?: string[];
     /**
      * List of metrics for each requested DateRange.
      */
-    metrics: Schema$DateRangeValues[];
+    metrics?: Schema$DateRangeValues[];
   }
   /**
    * The resource quota tokens remaining for the property after the request is
@@ -766,11 +769,11 @@ export namespace analyticsreporting_v4 {
     /**
      * Daily resource quota remaining remaining.
      */
-    dailyQuotaTokensRemaining: number;
+    dailyQuotaTokensRemaining?: number;
     /**
      * Hourly resource quota tokens remaining.
      */
-    hourlyQuotaTokensRemaining: number;
+    hourlyQuotaTokensRemaining?: number;
   }
   /**
    * The segment definition, if the report needs to be segmented. A Segment is a
@@ -781,11 +784,11 @@ export namespace analyticsreporting_v4 {
     /**
      * A dynamic segment definition in the request.
      */
-    dynamicSegment: Schema$DynamicSegment;
+    dynamicSegment?: Schema$DynamicSegment;
     /**
      * The segment ID of a built-in or custom segment, for example `gaid::-3`.
      */
-    segmentId: string;
+    segmentId?: string;
   }
   /**
    * SegmentDefinition defines the segment to be a set of SegmentFilters which
@@ -796,7 +799,7 @@ export namespace analyticsreporting_v4 {
      * A segment is defined by a set of segment filters which are combined
      * together with a logical `AND` operation.
      */
-    segmentFilters: Schema$SegmentFilter[];
+    segmentFilters?: Schema$SegmentFilter[];
   }
   /**
    * Dimension filter specifies the filtering options on a dimension.
@@ -805,27 +808,27 @@ export namespace analyticsreporting_v4 {
     /**
      * Should the match be case sensitive, ignored for `IN_LIST` operator.
      */
-    caseSensitive: boolean;
+    caseSensitive?: boolean;
     /**
      * Name of the dimension for which the filter is being applied.
      */
-    dimensionName: string;
+    dimensionName?: string;
     /**
      * The list of expressions, only the first element is used for all operators
      */
-    expressions: string[];
+    expressions?: string[];
     /**
      * Maximum comparison values for `BETWEEN` match type.
      */
-    maxComparisonValue: string;
+    maxComparisonValue?: string;
     /**
      * Minimum comparison values for `BETWEEN` match type.
      */
-    minComparisonValue: string;
+    minComparisonValue?: string;
     /**
      * The operator to use to match the dimension with the expressions.
      */
-    operator: string;
+    operator?: string;
   }
   /**
    * SegmentFilter defines the segment to be either a simple or a sequence
@@ -845,18 +848,18 @@ export namespace analyticsreporting_v4 {
      * [&quot;New York&quot;]                 }               }]             }]
      * },           &quot;not&quot;: &quot;True&quot;         }]       },
      */
-    not: boolean;
+    not?: boolean;
     /**
      * Sequence conditions consist of one or more steps, where each step is
      * defined by one or more dimension/metric conditions. Multiple steps can be
      * combined with special sequence operators.
      */
-    sequenceSegment: Schema$SequenceSegment;
+    sequenceSegment?: Schema$SequenceSegment;
     /**
      * A Simple segment conditions consist of one or more dimension/metric
      * conditions that can be combined
      */
-    simpleSegment: Schema$SimpleSegment;
+    simpleSegment?: Schema$SimpleSegment;
   }
   /**
    * Filter Clause to be used in a segment definition, can be wither a metric or
@@ -866,15 +869,15 @@ export namespace analyticsreporting_v4 {
     /**
      * Dimension Filter for the segment definition.
      */
-    dimensionFilter: Schema$SegmentDimensionFilter;
+    dimensionFilter?: Schema$SegmentDimensionFilter;
     /**
      * Metric Filter for the segment definition.
      */
-    metricFilter: Schema$SegmentMetricFilter;
+    metricFilter?: Schema$SegmentMetricFilter;
     /**
      * Matches the complement (`!`) of the filter.
      */
-    not: boolean;
+    not?: boolean;
   }
   /**
    * Metric filter to be used in a segment filter clause.
@@ -884,28 +887,28 @@ export namespace analyticsreporting_v4 {
      * The value to compare against. If the operator is `BETWEEN`, this value is
      * treated as minimum comparison value.
      */
-    comparisonValue: string;
+    comparisonValue?: string;
     /**
      * Max comparison value is only used for `BETWEEN` operator.
      */
-    maxComparisonValue: string;
+    maxComparisonValue?: string;
     /**
      * The metric that will be filtered on. A `metricFilter` must contain a
      * metric name.
      */
-    metricName: string;
+    metricName?: string;
     /**
      * Specifies is the operation to perform to compare the metric. The default
      * is `EQUAL`.
      */
-    operator: string;
+    operator?: string;
     /**
      * Scope for a metric defines the level at which that metric is defined. The
      * specified metric scope must be equal to or greater than its primary scope
      * as defined in the data model. The primary scope is defined by if the
      * segment is selecting users or sessions.
      */
-    scope: string;
+    scope?: string;
   }
   /**
    * A segment sequence definition.
@@ -915,12 +918,12 @@ export namespace analyticsreporting_v4 {
      * Specifies if the step immediately precedes or can be any time before the
      * next step.
      */
-    matchType: string;
+    matchType?: string;
     /**
      * A sequence is specified with a list of Or grouped filters which are
      * combined with `AND` operator.
      */
-    orFiltersForSegment: Schema$OrFiltersForSegment[];
+    orFiltersForSegment?: Schema$OrFiltersForSegment[];
   }
   /**
    * Sequence conditions consist of one or more steps, where each step is
@@ -932,11 +935,11 @@ export namespace analyticsreporting_v4 {
      * If set, first step condition must match the first hit of the visitor (in
      * the date range).
      */
-    firstStepShouldMatchFirstHit: boolean;
+    firstStepShouldMatchFirstHit?: boolean;
     /**
      * The list of steps in the sequence.
      */
-    segmentSequenceSteps: Schema$SegmentSequenceStep[];
+    segmentSequenceSteps?: Schema$SegmentSequenceStep[];
   }
   /**
    * A Simple segment conditions consist of one or more dimension/metric
@@ -947,8 +950,9 @@ export namespace analyticsreporting_v4 {
      * A list of segment filters groups which are combined with logical `AND`
      * operator.
      */
-    orFiltersForSegment: Schema$OrFiltersForSegment[];
+    orFiltersForSegment?: Schema$OrFiltersForSegment[];
   }
+
 
   export class Resource$Reports {
     root: Analyticsreporting;
@@ -974,26 +978,38 @@ export namespace analyticsreporting_v4 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    batchGet(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$GetReportsResponse>;
     batchGet(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
-        callback?: BodyResponseCallback<Schema$GetReportsResponse>): void;
+        params?: Params$Resource$Reports$Batchget,
+        options?: MethodOptions): AxiosPromise<Schema$GetReportsResponse>;
     batchGet(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
+        params: Params$Resource$Reports$Batchget,
+        options: MethodOptions|BodyResponseCallback<Schema$GetReportsResponse>,
+        callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
+    batchGet(
+        params: Params$Resource$Reports$Batchget,
+        callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
+    batchGet(callback: BodyResponseCallback<Schema$GetReportsResponse>): void;
+    batchGet(
+        paramsOrCallback?: Params$Resource$Reports$Batchget|
+        BodyResponseCallback<Schema$GetReportsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$GetReportsResponse>,
         callback?: BodyResponseCallback<Schema$GetReportsResponse>):
         void|AxiosPromise<Schema$GetReportsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Batchget;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://analyticsreporting.googleapis.com/';
       const parameters = {
@@ -1015,5 +1031,17 @@ export namespace analyticsreporting_v4 {
         return createAPIRequest<Schema$GetReportsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Reports$Batchget {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetReportsRequest;
   }
 }

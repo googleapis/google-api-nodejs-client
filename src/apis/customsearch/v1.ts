@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace customsearch_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * CustomSearch API
    *
@@ -66,82 +69,83 @@ export namespace customsearch_v1 {
   }
 
   export interface Schema$Context {
-    facets: any[][];
-    title: string;
+    facets?: any[][];
+    title?: string;
   }
   export interface Schema$Promotion {
-    bodyLines: any[];
-    displayLink: string;
-    htmlTitle: string;
-    image: any;
-    link: string;
-    title: string;
+    bodyLines?: any[];
+    displayLink?: string;
+    htmlTitle?: string;
+    image?: any;
+    link?: string;
+    title?: string;
   }
   export interface Schema$Query {
-    count: number;
-    cr: string;
-    cx: string;
-    dateRestrict: string;
-    disableCnTwTranslation: string;
-    exactTerms: string;
-    excludeTerms: string;
-    fileType: string;
-    filter: string;
-    gl: string;
-    googleHost: string;
-    highRange: string;
-    hl: string;
-    hq: string;
-    imgColorType: string;
-    imgDominantColor: string;
-    imgSize: string;
-    imgType: string;
-    inputEncoding: string;
-    language: string;
-    linkSite: string;
-    lowRange: string;
-    orTerms: string;
-    outputEncoding: string;
-    relatedSite: string;
-    rights: string;
-    safe: string;
-    searchTerms: string;
-    searchType: string;
-    siteSearch: string;
-    siteSearchFilter: string;
-    sort: string;
-    startIndex: number;
-    startPage: number;
-    title: string;
-    totalResults: string;
+    count?: number;
+    cr?: string;
+    cx?: string;
+    dateRestrict?: string;
+    disableCnTwTranslation?: string;
+    exactTerms?: string;
+    excludeTerms?: string;
+    fileType?: string;
+    filter?: string;
+    gl?: string;
+    googleHost?: string;
+    highRange?: string;
+    hl?: string;
+    hq?: string;
+    imgColorType?: string;
+    imgDominantColor?: string;
+    imgSize?: string;
+    imgType?: string;
+    inputEncoding?: string;
+    language?: string;
+    linkSite?: string;
+    lowRange?: string;
+    orTerms?: string;
+    outputEncoding?: string;
+    relatedSite?: string;
+    rights?: string;
+    safe?: string;
+    searchTerms?: string;
+    searchType?: string;
+    siteSearch?: string;
+    siteSearchFilter?: string;
+    sort?: string;
+    startIndex?: number;
+    startPage?: number;
+    title?: string;
+    totalResults?: string;
   }
   export interface Schema$Result {
-    cacheId: string;
-    displayLink: string;
-    fileFormat: string;
-    formattedUrl: string;
-    htmlFormattedUrl: string;
-    htmlSnippet: string;
-    htmlTitle: string;
-    image: any;
-    kind: string;
-    labels: any[];
-    link: string;
-    mime: string;
-    pagemap: any;
-    snippet: string;
-    title: string;
+    cacheId?: string;
+    displayLink?: string;
+    fileFormat?: string;
+    formattedUrl?: string;
+    htmlFormattedUrl?: string;
+    htmlSnippet?: string;
+    htmlTitle?: string;
+    image?: any;
+    kind?: string;
+    labels?: any[];
+    link?: string;
+    mime?: string;
+    pagemap?: any;
+    snippet?: string;
+    title?: string;
   }
   export interface Schema$Search {
-    context: Schema$Context;
-    items: Schema$Result[];
-    kind: string;
-    promotions: Schema$Promotion[];
-    queries: any;
-    searchInformation: any;
-    spelling: any;
-    url: any;
+    context?: Schema$Context;
+    items?: Schema$Result[];
+    kind?: string;
+    promotions?: Schema$Promotion[];
+    queries?: any;
+    searchInformation?: any;
+    spelling?: any;
+    url?: any;
   }
+
 
   export class Resource$Cse {
     root: Customsearch;
@@ -200,25 +204,36 @@ export namespace customsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
+    list(params?: Params$Resource$Cse$List, options?: MethodOptions):
+        AxiosPromise<Schema$Search>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback?: BodyResponseCallback<Schema$Search>): void;
+        params: Params$Resource$Cse$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Search>,
+        callback: BodyResponseCallback<Schema$Search>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+        params: Params$Resource$Cse$List,
+        callback: BodyResponseCallback<Schema$Search>): void;
+    list(callback: BodyResponseCallback<Schema$Search>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Cse$List|
+        BodyResponseCallback<Schema$Search>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
         callback?: BodyResponseCallback<Schema$Search>):
         void|AxiosPromise<Schema$Search> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Cse$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Cse$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -239,6 +254,154 @@ export namespace customsearch_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Cse$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Turns off the translation between zh-CN and zh-TW.
+     */
+    c2coff?: string;
+    /**
+     * Country restrict(s).
+     */
+    cr?: string;
+    /**
+     * The custom search engine ID to scope this search query
+     */
+    cx?: string;
+    /**
+     * Specifies all search results are from a time period
+     */
+    dateRestrict?: string;
+    /**
+     * Identifies a phrase that all documents in the search results must contain
+     */
+    exactTerms?: string;
+    /**
+     * Identifies a word or phrase that should not appear in any documents in
+     * the search results
+     */
+    excludeTerms?: string;
+    /**
+     * Returns images of a specified type. Some of the allowed values are: bmp,
+     * gif, png, jpg, svg, pdf, ...
+     */
+    fileType?: string;
+    /**
+     * Controls turning on or off the duplicate content filter.
+     */
+    filter?: string;
+    /**
+     * Geolocation of end user.
+     */
+    gl?: string;
+    /**
+     * The local Google domain to use to perform the search.
+     */
+    googlehost?: string;
+    /**
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append
+     * it to query
+     */
+    highRange?: string;
+    /**
+     * Sets the user interface language.
+     */
+    hl?: string;
+    /**
+     * Appends the extra query terms to the query.
+     */
+    hq?: string;
+    /**
+     * Returns black and white, grayscale, or color images: mono, gray, and
+     * color.
+     */
+    imgColorType?: string;
+    /**
+     * Returns images of a specific dominant color: yellow, green, teal, blue,
+     * purple, pink, white, gray, black and brown.
+     */
+    imgDominantColor?: string;
+    /**
+     * Returns images of a specified size, where size can be one of: icon,
+     * small, medium, large, xlarge, xxlarge, and huge.
+     */
+    imgSize?: string;
+    /**
+     * Returns images of a type, which can be one of: clipart, face, lineart,
+     * news, and photo.
+     */
+    imgType?: string;
+    /**
+     * Specifies that all search results should contain a link to a particular
+     * URL
+     */
+    linkSite?: string;
+    /**
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append
+     * it to query
+     */
+    lowRange?: string;
+    /**
+     * The language restriction for the search results
+     */
+    lr?: string;
+    /**
+     * Number of search results to return
+     */
+    num?: number;
+    /**
+     * Provides additional search terms to check for in a document, where each
+     * document in the search results must contain at least one of the
+     * additional search terms
+     */
+    orTerms?: string;
+    /**
+     * Query
+     */
+    q?: string;
+    /**
+     * Specifies that all search results should be pages that are related to the
+     * specified URL
+     */
+    relatedSite?: string;
+    /**
+     * Filters based on licensing. Supported values include: cc_publicdomain,
+     * cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and
+     * combinations of these.
+     */
+    rights?: string;
+    /**
+     * Search safety level
+     */
+    safe?: string;
+    /**
+     * Specifies the search type: image.
+     */
+    searchType?: string;
+    /**
+     * Specifies all search results should be pages from a given site
+     */
+    siteSearch?: string;
+    /**
+     * Controls whether to include or exclude results from the site named in the
+     * as_sitesearch parameter
+     */
+    siteSearchFilter?: string;
+    /**
+     * The sort expression to apply to the results
+     */
+    sort?: string;
+    /**
+     * The index of the first result to return
+     */
+    start?: number;
+  }
+
   export class Resource$Cse$Siterestrict {
     root: Customsearch;
     constructor(root: Customsearch) {
@@ -295,25 +458,38 @@ export namespace customsearch_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Search>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Search>,
-        callback?: BodyResponseCallback<Schema$Search>): void;
+        params?: Params$Resource$Cse$Siterestrict$List,
+        options?: MethodOptions): AxiosPromise<Schema$Search>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Search>,
+        params: Params$Resource$Cse$Siterestrict$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Search>,
+        callback: BodyResponseCallback<Schema$Search>): void;
+    list(
+        params: Params$Resource$Cse$Siterestrict$List,
+        callback: BodyResponseCallback<Schema$Search>): void;
+    list(callback: BodyResponseCallback<Schema$Search>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Cse$Siterestrict$List|
+        BodyResponseCallback<Schema$Search>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Search>,
         callback?: BodyResponseCallback<Schema$Search>):
         void|AxiosPromise<Schema$Search> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Cse$Siterestrict$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Cse$Siterestrict$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -334,5 +510,152 @@ export namespace customsearch_v1 {
         return createAPIRequest<Schema$Search>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Cse$Siterestrict$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Turns off the translation between zh-CN and zh-TW.
+     */
+    c2coff?: string;
+    /**
+     * Country restrict(s).
+     */
+    cr?: string;
+    /**
+     * The custom search engine ID to scope this search query
+     */
+    cx?: string;
+    /**
+     * Specifies all search results are from a time period
+     */
+    dateRestrict?: string;
+    /**
+     * Identifies a phrase that all documents in the search results must contain
+     */
+    exactTerms?: string;
+    /**
+     * Identifies a word or phrase that should not appear in any documents in
+     * the search results
+     */
+    excludeTerms?: string;
+    /**
+     * Returns images of a specified type. Some of the allowed values are: bmp,
+     * gif, png, jpg, svg, pdf, ...
+     */
+    fileType?: string;
+    /**
+     * Controls turning on or off the duplicate content filter.
+     */
+    filter?: string;
+    /**
+     * Geolocation of end user.
+     */
+    gl?: string;
+    /**
+     * The local Google domain to use to perform the search.
+     */
+    googlehost?: string;
+    /**
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append
+     * it to query
+     */
+    highRange?: string;
+    /**
+     * Sets the user interface language.
+     */
+    hl?: string;
+    /**
+     * Appends the extra query terms to the query.
+     */
+    hq?: string;
+    /**
+     * Returns black and white, grayscale, or color images: mono, gray, and
+     * color.
+     */
+    imgColorType?: string;
+    /**
+     * Returns images of a specific dominant color: yellow, green, teal, blue,
+     * purple, pink, white, gray, black and brown.
+     */
+    imgDominantColor?: string;
+    /**
+     * Returns images of a specified size, where size can be one of: icon,
+     * small, medium, large, xlarge, xxlarge, and huge.
+     */
+    imgSize?: string;
+    /**
+     * Returns images of a type, which can be one of: clipart, face, lineart,
+     * news, and photo.
+     */
+    imgType?: string;
+    /**
+     * Specifies that all search results should contain a link to a particular
+     * URL
+     */
+    linkSite?: string;
+    /**
+     * Creates a range in form as_nlo value..as_nhi value and attempts to append
+     * it to query
+     */
+    lowRange?: string;
+    /**
+     * The language restriction for the search results
+     */
+    lr?: string;
+    /**
+     * Number of search results to return
+     */
+    num?: number;
+    /**
+     * Provides additional search terms to check for in a document, where each
+     * document in the search results must contain at least one of the
+     * additional search terms
+     */
+    orTerms?: string;
+    /**
+     * Query
+     */
+    q?: string;
+    /**
+     * Specifies that all search results should be pages that are related to the
+     * specified URL
+     */
+    relatedSite?: string;
+    /**
+     * Filters based on licensing. Supported values include: cc_publicdomain,
+     * cc_attribute, cc_sharealike, cc_noncommercial, cc_nonderived and
+     * combinations of these.
+     */
+    rights?: string;
+    /**
+     * Search safety level
+     */
+    safe?: string;
+    /**
+     * Specifies the search type: image.
+     */
+    searchType?: string;
+    /**
+     * Specifies all search results should be pages from a given site
+     */
+    siteSearch?: string;
+    /**
+     * Controls whether to include or exclude results from the site named in the
+     * as_sitesearch parameter
+     */
+    siteSearchFilter?: string;
+    /**
+     * The sort expression to apply to the results
+     */
+    sort?: string;
+    /**
+     * The index of the first result to return
+     */
+    start?: number;
   }
 }

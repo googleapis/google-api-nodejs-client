@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace firebasedynamiclinks_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Firebase Dynamic Links API
    *
@@ -76,11 +79,11 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Google Play Campaign Measurements.
      */
-    googlePlayAnalytics: Schema$GooglePlayAnalytics;
+    googlePlayAnalytics?: Schema$GooglePlayAnalytics;
     /**
      * iTunes Connect App Analytics.
      */
-    itunesConnectAnalytics: Schema$ITunesConnectAnalytics;
+    itunesConnectAnalytics?: Schema$ITunesConnectAnalytics;
   }
   /**
    * Android related attributes to the Dynamic Link.
@@ -89,20 +92,20 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Link to open on Android if the app is not installed.
      */
-    androidFallbackLink: string;
+    androidFallbackLink?: string;
     /**
      * If specified, this overrides the ‘link’ parameter on Android.
      */
-    androidLink: string;
+    androidLink?: string;
     /**
      * Minimum version code for the Android app. If the installed app’s version
      * code is lower, then the user is taken to the Play Store.
      */
-    androidMinPackageVersionCode: string;
+    androidMinPackageVersionCode?: string;
     /**
      * Android package name of the app.
      */
-    androidPackageName: string;
+    androidPackageName?: string;
   }
   /**
    * Request to create a managed Short Dynamic Link.
@@ -112,7 +115,7 @@ export namespace firebasedynamiclinks_v1 {
      * Information about the Dynamic Link to be shortened. [Learn
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
-    dynamicLinkInfo: Schema$DynamicLinkInfo;
+    dynamicLinkInfo?: Schema$DynamicLinkInfo;
     /**
      * Full long Dynamic Link URL with desired query parameters specified. For
      * example,
@@ -120,18 +123,18 @@ export namespace firebasedynamiclinks_v1 {
      * [Learn
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
-    longDynamicLink: string;
+    longDynamicLink?: string;
     /**
      * Link name to associate with the link. It&#39;s used for marketer to
      * identify manually-created links in the Firebase console
      * (https://console.firebase.google.com/). Links must be named to be
      * tracked.
      */
-    name: string;
+    name?: string;
     /**
      * Short Dynamic Link suffix. Optional.
      */
-    suffix: Schema$Suffix;
+    suffix?: Schema$Suffix;
   }
   /**
    * Response to create a short Dynamic Link.
@@ -140,15 +143,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz
      */
-    managedShortLink: Schema$ManagedShortLink;
+    managedShortLink?: Schema$ManagedShortLink;
     /**
      * Preview link to show the link flow chart. (debug info.)
      */
-    previewLink: string;
+    previewLink?: string;
     /**
      * Information about potential warnings on link creation.
      */
-    warning: Schema$DynamicLinkWarning[];
+    warning?: Schema$DynamicLinkWarning[];
   }
   /**
    * Request to create a short Dynamic Link.
@@ -158,7 +161,7 @@ export namespace firebasedynamiclinks_v1 {
      * Information about the Dynamic Link to be shortened. [Learn
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
-    dynamicLinkInfo: Schema$DynamicLinkInfo;
+    dynamicLinkInfo?: Schema$DynamicLinkInfo;
     /**
      * Full long Dynamic Link URL with desired query parameters specified. For
      * example,
@@ -166,11 +169,11 @@ export namespace firebasedynamiclinks_v1 {
      * [Learn
      * more](https://firebase.google.com/docs/reference/dynamic-links/link-shortener).
      */
-    longDynamicLink: string;
+    longDynamicLink?: string;
     /**
      * Short Dynamic Link suffix. Optional.
      */
-    suffix: Schema$Suffix;
+    suffix?: Schema$Suffix;
   }
   /**
    * Response to create a short Dynamic Link.
@@ -179,15 +182,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Preview link to show the link flow chart. (debug info.)
      */
-    previewLink: string;
+    previewLink?: string;
     /**
      * Short Dynamic Link value. e.g. https://abcd.app.goo.gl/wxyz
      */
-    shortLink: string;
+    shortLink?: string;
     /**
      * Information about potential warnings on link creation.
      */
-    warning: Schema$DynamicLinkWarning[];
+    warning?: Schema$DynamicLinkWarning[];
   }
   /**
    * Desktop related attributes to the Dynamic Link.
@@ -196,7 +199,7 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Link to open on desktop.
      */
-    desktopFallbackLink: string;
+    desktopFallbackLink?: string;
   }
   /**
    * Signals associated with the device making the request.
@@ -205,34 +208,34 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Device model name.
      */
-    deviceModelName: string;
+    deviceModelName?: string;
     /**
      * Device language code setting.
      */
-    languageCode: string;
+    languageCode?: string;
     /**
      * Device language code setting obtained by executing JavaScript code in
      * WebView.
      */
-    languageCodeFromWebview: string;
+    languageCodeFromWebview?: string;
     /**
      * Device language code raw setting. iOS does returns language code in
      * different format than iOS WebView. For example WebView returns en_US, but
      * iOS returns en-US. Field below will return raw value returned by iOS.
      */
-    languageCodeRaw: string;
+    languageCodeRaw?: string;
     /**
      * Device display resolution height.
      */
-    screenResolutionHeight: string;
+    screenResolutionHeight?: string;
     /**
      * Device display resolution width.
      */
-    screenResolutionWidth: string;
+    screenResolutionWidth?: string;
     /**
      * Device timezone setting.
      */
-    timezone: string;
+    timezone?: string;
   }
   /**
    * Dynamic Link event stat.
@@ -241,15 +244,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * The number of times this event occurred.
      */
-    count: string;
+    count?: string;
     /**
      * Link event.
      */
-    event: string;
+    event?: string;
     /**
      * Requested platform.
      */
-    platform: string;
+    platform?: string;
   }
   /**
    * Information about a Dynamic Link.
@@ -259,35 +262,35 @@ export namespace firebasedynamiclinks_v1 {
      * Parameters used for tracking. See all tracking parameters in the
      * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
      */
-    analyticsInfo: Schema$AnalyticsInfo;
+    analyticsInfo?: Schema$AnalyticsInfo;
     /**
      * Android related information. See Android related parameters in the
      * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
      */
-    androidInfo: Schema$AndroidInfo;
+    androidInfo?: Schema$AndroidInfo;
     /**
      * Desktop related information. See desktop related parameters in the
      * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
      */
-    desktopInfo: Schema$DesktopInfo;
+    desktopInfo?: Schema$DesktopInfo;
     /**
      * E.g. https://maps.app.goo.gl, https://maps.page.link, https://g.co/maps
      * More examples can be found in description of getNormalizedUriPrefix in
      * j/c/g/firebase/dynamiclinks/uri/DdlDomain.java
      */
-    domainUriPrefix: string;
+    domainUriPrefix?: string;
     /**
      * Dynamic Links domain that the project owns, e.g. abcd.app.goo.gl [Learn
      * more](https://firebase.google.com/docs/dynamic-links/android/receive) on
      * how to set up Dynamic Link domain associated with your Firebase project.
      * Required.
      */
-    dynamicLinkDomain: string;
+    dynamicLinkDomain?: string;
     /**
      * iOS related information. See iOS related parameters in the
      * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
      */
-    iosInfo: Schema$IosInfo;
+    iosInfo?: Schema$IosInfo;
     /**
      * The link your app will open, You can specify any URL your app can handle.
      * This link must be a well-formatted URL, be properly URL-encoded, and use
@@ -295,16 +298,16 @@ export namespace firebasedynamiclinks_v1 {
      * [documentation](https://firebase.google.com/docs/dynamic-links/create-manually).
      * Required.
      */
-    link: string;
+    link?: string;
     /**
      * Information of navigation behavior of a Firebase Dynamic Links.
      */
-    navigationInfo: Schema$NavigationInfo;
+    navigationInfo?: Schema$NavigationInfo;
     /**
      * Parameters for social meta tag params. Used to set meta tag data for link
      * previews on social sites.
      */
-    socialMetaTagInfo: Schema$SocialMetaTagInfo;
+    socialMetaTagInfo?: Schema$SocialMetaTagInfo;
   }
   /**
    * Analytics stats of a Dynamic Link for a given timeframe.
@@ -313,7 +316,7 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Dynamic Link event stats.
      */
-    linkEventStats: Schema$DynamicLinkEventStat[];
+    linkEventStats?: Schema$DynamicLinkEventStat[];
   }
   /**
    * Dynamic Links warning messages.
@@ -322,15 +325,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * The warning code.
      */
-    warningCode: string;
+    warningCode?: string;
     /**
      * The document describing the warning, and helps resolve.
      */
-    warningDocumentLink: string;
+    warningDocumentLink?: string;
     /**
      * The warning message to help developers improve their requests.
      */
-    warningMessage: string;
+    warningMessage?: string;
   }
   /**
    * Request for iSDK to execute strong match flow for post-install attribution.
@@ -342,40 +345,40 @@ export namespace firebasedynamiclinks_v1 {
      * App installation epoch time (https://en.wikipedia.org/wiki/Unix_time).
      * This is a client signal for a more accurate weak match.
      */
-    appInstallationTime: string;
+    appInstallationTime?: string;
     /**
      * APP bundle ID.
      */
-    bundleId: string;
+    bundleId?: string;
     /**
      * Device information.
      */
-    device: Schema$DeviceInfo;
+    device?: Schema$DeviceInfo;
     /**
      * iOS version, ie: 9.3.5. Consider adding &quot;build&quot;.
      */
-    iosVersion: string;
+    iosVersion?: string;
     /**
      * App post install attribution retrieval information. Disambiguates
      * mechanism (iSDK or developer invoked) to retrieve payload from clicked
      * link.
      */
-    retrievalMethod: string;
+    retrievalMethod?: string;
     /**
      * Google SDK version.
      */
-    sdkVersion: string;
+    sdkVersion?: string;
     /**
      * Possible unique matched link that server need to check before performing
      * fingerprint match. If passed link is short server need to expand the
      * link. If link is long server need to vslidate the link.
      */
-    uniqueMatchLinkToCheck: string;
+    uniqueMatchLinkToCheck?: string;
     /**
      * Strong match page information. Disambiguates between default UI and
      * custom page to present when strong match succeeds/fails to find cookie.
      */
-    visualStyle: string;
+    visualStyle?: string;
   }
   /**
    * Response for iSDK to execute strong match flow for post-install
@@ -386,16 +389,16 @@ export namespace firebasedynamiclinks_v1 {
      * The minimum version for app, specified by dev through ?imv= parameter.
      * Return to iSDK to allow app to evaluate if current version meets this.
      */
-    appMinimumVersion: string;
+    appMinimumVersion?: string;
     /**
      * The confidence of the returned attribution.
      */
-    attributionConfidence: string;
+    attributionConfidence?: string;
     /**
      * The deep-link attributed post-install via one of several techniques
      * (fingerprint, copy unique).
      */
-    deepLink: string;
+    deepLink?: string;
     /**
      * User-agent specific custom-scheme URIs for iSDK to open. This will be set
      * according to the user-agent tha the click was originally made in. There
@@ -404,35 +407,35 @@ export namespace firebasedynamiclinks_v1 {
      * firefox://open-url?url=http://www.example.com ie:
      * opera-http://example.com
      */
-    externalBrowserDestinationLink: string;
+    externalBrowserDestinationLink?: string;
     /**
      * The link to navigate to update the app if min version is not met. This is
      * either (in order): 1) fallback link (from ?ifl= parameter, if specified
      * by developer) or 2) AppStore URL (from ?isi= parameter, if specified), or
      * 3) the payload link (from required link= parameter).
      */
-    fallbackLink: string;
+    fallbackLink?: string;
     /**
      * Invitation ID attributed post-install via one of several techniques
      * (fingerprint, copy unique).
      */
-    invitationId: string;
+    invitationId?: string;
     /**
      * Instruction for iSDK to attemmpt to perform strong match. For instance,
      * if browser does not support/allow cookie or outside of support browsers,
      * this will be false.
      */
-    isStrongMatchExecutable: boolean;
+    isStrongMatchExecutable?: boolean;
     /**
      * Describes why match failed, ie: &quot;discarded due to low
      * confidence&quot;. This message will be publicly visible.
      */
-    matchMessage: string;
+    matchMessage?: string;
     /**
      * Entire FDL (short or long) attributed post-install via one of several
      * techniques (fingerprint, copy unique).
      */
-    requestedLink: string;
+    requestedLink?: string;
     /**
      * The entire FDL, expanded from a short link. It is the same as the
      * requested_link, if it is long. Parameters from this should not be used
@@ -440,19 +443,19 @@ export namespace firebasedynamiclinks_v1 {
      * when requested_link lack them, server determine the best fallback_link
      * when requested_link specifies &gt;1 fallback links).
      */
-    resolvedLink: string;
+    resolvedLink?: string;
     /**
      * Scion campaign value to be propagated by iSDK to Scion at post-install.
      */
-    utmCampaign: string;
+    utmCampaign?: string;
     /**
      * Scion medium value to be propagated by iSDK to Scion at post-install.
      */
-    utmMedium: string;
+    utmMedium?: string;
     /**
      * Scion source value to be propagated by iSDK to Scion at post-install.
      */
-    utmSource: string;
+    utmSource?: string;
   }
   /**
    * Parameters for Google Play Campaign Measurements. [Learn
@@ -465,31 +468,31 @@ export namespace firebasedynamiclinks_v1 {
      * used to measure Google AdWords ads. This value is generated dynamically
      * and should never be modified.
      */
-    gclid: string;
+    gclid?: string;
     /**
      * Campaign name; used for keyword analysis to identify a specific product
      * promotion or strategic campaign.
      */
-    utmCampaign: string;
+    utmCampaign?: string;
     /**
      * Campaign content; used for A/B testing and content-targeted ads to
      * differentiate ads or links that point to the same URL.
      */
-    utmContent: string;
+    utmContent?: string;
     /**
      * Campaign medium; used to identify a medium such as email or
      * cost-per-click.
      */
-    utmMedium: string;
+    utmMedium?: string;
     /**
      * Campaign source; used to identify a search engine, newsletter, or other
      * source.
      */
-    utmSource: string;
+    utmSource?: string;
     /**
      * Campaign term; used with paid search to supply the keywords for ads.
      */
-    utmTerm: string;
+    utmTerm?: string;
   }
   /**
    * iOS related attributes to the Dynamic Link..
@@ -498,29 +501,29 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * iOS App Store ID.
      */
-    iosAppStoreId: string;
+    iosAppStoreId?: string;
     /**
      * iOS bundle ID of the app.
      */
-    iosBundleId: string;
+    iosBundleId?: string;
     /**
      * Custom (destination) scheme to use for iOS. By default, we’ll use the
      * bundle ID as the custom scheme. Developer can override this behavior
      * using this param.
      */
-    iosCustomScheme: string;
+    iosCustomScheme?: string;
     /**
      * Link to open on iOS if the app is not installed.
      */
-    iosFallbackLink: string;
+    iosFallbackLink?: string;
     /**
      * iPad bundle ID of the app.
      */
-    iosIpadBundleId: string;
+    iosIpadBundleId?: string;
     /**
      * If specified, this overrides the ios_fallback_link value on iPads.
      */
-    iosIpadFallbackLink: string;
+    iosIpadFallbackLink?: string;
   }
   /**
    * Parameters for iTunes Connect App Analytics.
@@ -529,21 +532,21 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Affiliate token used to create affiliate-coded links.
      */
-    at: string;
+    at?: string;
     /**
      * Campaign text that developers can optionally add to any link in order to
      * track sales from a specific marketing campaign.
      */
-    ct: string;
+    ct?: string;
     /**
      * iTune media types, including music, podcasts, audiobooks and so on.
      */
-    mt: string;
+    mt?: string;
     /**
      * Provider token that enables analytics for Dynamic Links from within
      * iTunes Connect.
      */
-    pt: string;
+    pt?: string;
   }
   /**
    * Managed Short Link.
@@ -552,28 +555,28 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Creation timestamp of the short link.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * Attributes that have been flagged about this short url.
      */
-    flaggedAttribute: string[];
+    flaggedAttribute?: string[];
     /**
      * Full Dyamic Link info
      */
-    info: Schema$DynamicLinkInfo;
+    info?: Schema$DynamicLinkInfo;
     /**
      * Short durable link url, for example,
      * &quot;https://sample.app.goo.gl/xyz123&quot;.  Required.
      */
-    link: string;
+    link?: string;
     /**
      * Link name defined by the creator.  Required.
      */
-    linkName: string;
+    linkName?: string;
     /**
      * Visibility status of link.
      */
-    visibility: string;
+    visibility?: string;
   }
   /**
    * Information of navigation behavior.
@@ -583,7 +586,7 @@ export namespace firebasedynamiclinks_v1 {
      * If this option is on, FDL click will be forced to redirect rather than
      * show an interstitial page.
      */
-    enableForcedRedirect: boolean;
+    enableForcedRedirect?: boolean;
   }
   /**
    * Parameters for social meta tag params. Used to set meta tag data for link
@@ -593,15 +596,15 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * A short description of the link. Optional.
      */
-    socialDescription: string;
+    socialDescription?: string;
     /**
      * An image url string. Optional.
      */
-    socialImageLink: string;
+    socialImageLink?: string;
     /**
      * Title to be displayed. Optional.
      */
-    socialTitle: string;
+    socialTitle?: string;
   }
   /**
    * Short Dynamic Link suffix.
@@ -610,12 +613,13 @@ export namespace firebasedynamiclinks_v1 {
     /**
      * Only applies to Option.CUSTOM.
      */
-    customSuffix: string;
+    customSuffix?: string;
     /**
      * Suffix option.
      */
-    option: string;
+    option?: string;
   }
+
 
   export class Resource$Managedshortlinks {
     root: Firebasedynamiclinks;
@@ -649,31 +653,47 @@ export namespace firebasedynamiclinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(
+        params?: Params$Resource$Managedshortlinks$Create,
+        options?: MethodOptions):
         AxiosPromise<Schema$CreateManagedShortLinkResponse>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedshortlinks$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
-        callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
+        callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
         void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Managedshortlinks$Create,
+        callback: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Managedshortlinks$Create|
+        BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateManagedShortLinkResponse>,
         callback?: BodyResponseCallback<Schema$CreateManagedShortLinkResponse>):
         void|AxiosPromise<Schema$CreateManagedShortLinkResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Managedshortlinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Managedshortlinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://firebasedynamiclinks-ipv6.googleapis.com/';
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -696,6 +716,19 @@ export namespace firebasedynamiclinks_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Managedshortlinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateManagedShortLinkRequest;
+  }
+
 
   export class Resource$Shortlinks {
     root: Firebasedynamiclinks;
@@ -726,31 +759,45 @@ export namespace firebasedynamiclinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
+    create(params?: Params$Resource$Shortlinks$Create, options?: MethodOptions):
         AxiosPromise<Schema$CreateShortDynamicLinkResponse>;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Shortlinks$Create,
+        options: MethodOptions|
         BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
-        callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
+        callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
         void;
     create(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Shortlinks$Create,
+        callback: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
+        void;
+    create(callback:
+               BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
+        void;
+    create(
+        paramsOrCallback?: Params$Resource$Shortlinks$Create|
+        BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>,
         callback?: BodyResponseCallback<Schema$CreateShortDynamicLinkResponse>):
         void|AxiosPromise<Schema$CreateShortDynamicLinkResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Shortlinks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shortlinks$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://firebasedynamiclinks-ipv6.googleapis.com/';
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -772,6 +819,19 @@ export namespace firebasedynamiclinks_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Shortlinks$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CreateShortDynamicLinkRequest;
+  }
+
 
   export class Resource$V1 {
     root: Firebasedynamiclinks;
@@ -800,28 +860,40 @@ export namespace firebasedynamiclinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    getLinkStats(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DynamicLinkStats>;
     getLinkStats(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
-        callback?: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+        params?: Params$Resource$V1$Getlinkstats,
+        options?: MethodOptions): AxiosPromise<Schema$DynamicLinkStats>;
     getLinkStats(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
+        params: Params$Resource$V1$Getlinkstats,
+        options: MethodOptions|BodyResponseCallback<Schema$DynamicLinkStats>,
+        callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+    getLinkStats(
+        params: Params$Resource$V1$Getlinkstats,
+        callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+    getLinkStats(callback: BodyResponseCallback<Schema$DynamicLinkStats>): void;
+    getLinkStats(
+        paramsOrCallback?: Params$Resource$V1$Getlinkstats|
+        BodyResponseCallback<Schema$DynamicLinkStats>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DynamicLinkStats>,
         callback?: BodyResponseCallback<Schema$DynamicLinkStats>):
         void|AxiosPromise<Schema$DynamicLinkStats> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Getlinkstats;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Getlinkstats;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://firebasedynamiclinks-ipv6.googleapis.com/';
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -855,33 +927,51 @@ export namespace firebasedynamiclinks_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    installAttribution(params?: any, options?: MethodOptions):
+    installAttribution(
+        params?: Params$Resource$V1$Installattribution,
+        options?: MethodOptions):
         AxiosPromise<Schema$GetIosPostInstallAttributionResponse>;
     installAttribution(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$V1$Installattribution,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-        callback?:
+        callback:
             BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
         void;
     installAttribution(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$V1$Installattribution,
+        callback:
+            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
+        void;
+    installAttribution(
+        callback:
+            BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
+        void;
+    installAttribution(
+        paramsOrCallback?: Params$Resource$V1$Installattribution|
+        BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
         callback?:
             BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>):
         void|AxiosPromise<Schema$GetIosPostInstallAttributionResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$V1$Installattribution;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Installattribution;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
-      const rootUrl = options.rootUrl ||
-          'https://firebasedynamiclinks-ipv6.googleapis.com/';
+
+      const rootUrl =
+          options.rootUrl || 'https://firebasedynamiclinks.googleapis.com/';
       const parameters = {
         options: Object.assign(
             {
@@ -903,5 +993,32 @@ export namespace firebasedynamiclinks_v1 {
             parameters);
       }
     }
+  }
+
+  export interface Params$Resource$V1$Getlinkstats {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The span of time requested in days.
+     */
+    durationDays?: string;
+    /**
+     * Dynamic Link URL. e.g. https://abcd.app.goo.gl/wxyz
+     */
+    dynamicLink?: string;
+  }
+  export interface Params$Resource$V1$Installattribution {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$GetIosPostInstallAttributionRequest;
   }
 }

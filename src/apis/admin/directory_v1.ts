@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace admin_directory_v1 {
+  export interface Options extends GlobalOptions { version: 'directory_v1'; }
+
   /**
    * Admin Directory API
    *
@@ -113,24 +116,24 @@ export namespace admin_directory_v1 {
     /**
      * A alias email
      */
-    alias: string;
+    alias?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Unique id of the group (Read-only) Unique id of the user (Read-only)
      */
-    id: string;
+    id?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Group&#39;s primary email (Read-only) User&#39;s primary email
      * (Read-only)
      */
-    primaryEmail: string;
+    primaryEmail?: string;
   }
   /**
    * JSON response template to list aliases in Directory API.
@@ -139,15 +142,15 @@ export namespace admin_directory_v1 {
     /**
      * List of alias objects.
      */
-    aliases: any[];
+    aliases?: any[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for App Access Collections Resource object in Directory API.
@@ -156,39 +159,39 @@ export namespace admin_directory_v1 {
     /**
      * List of blocked api access buckets.
      */
-    blockedApiAccessBuckets: string[];
+    blockedApiAccessBuckets?: string[];
     /**
      * Boolean to indicate whether to enforce app access settings on Android
      * Drive or not.
      */
-    enforceSettingsForAndroidDrive: boolean;
+    enforceSettingsForAndroidDrive?: boolean;
     /**
      * Error message provided by the Admin that will be shown to the user when
      * an app is blocked.
      */
-    errorMessage: string;
+    errorMessage?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Identifies the resource as an app access collection. Value:
      * admin#directory#appaccesscollection
      */
-    kind: string;
+    kind?: string;
     /**
      * Unique ID of app access collection. (Readonly)
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Resource name given by the customer while creating/updating. Should be
      * unique under given customer.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * Boolean that indicates whether to trust domain owned apps.
      */
-    trustDomainOwnedApps: boolean;
+    trustDomainOwnedApps?: boolean;
   }
   /**
    * The template that returns individual ASP (Access Code) data.
@@ -197,46 +200,46 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the ASP.
      */
-    codeId: number;
+    codeId?: number;
     /**
      * The time when the ASP was created. Expressed in Unix time format.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * ETag of the ASP.
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of the API resource. This is always admin#directory#asp.
      */
-    kind: string;
+    kind?: string;
     /**
      * The time when the ASP was last used. Expressed in Unix time format.
      */
-    lastTimeUsed: string;
+    lastTimeUsed?: string;
     /**
      * The name of the application that the user, represented by their userId,
      * entered when the ASP was created.
      */
-    name: string;
+    name?: string;
     /**
      * The unique ID of the user who issued the ASP.
      */
-    userKey: string;
+    userKey?: string;
   }
   export interface Schema$Asps {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of ASP resources.
      */
-    items: Schema$Asp[];
+    items?: Schema$Asp[];
     /**
      * The type of the API resource. This is always admin#directory#aspList.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for Building object in Directory API.
@@ -245,27 +248,27 @@ export namespace admin_directory_v1 {
     /**
      * Unique identifier for the building. The maximum length is 100 characters.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * The building name as seen by users in Calendar. Must be unique for the
      * customer. For example, &quot;NYC-CHEL&quot;. The maximum length is 100
      * characters.
      */
-    buildingName: string;
+    buildingName?: string;
     /**
      * The geographic coordinates of the center of the building, expressed as
      * latitude and longitude in decimal degrees.
      */
-    coordinates: Schema$BuildingCoordinates;
+    coordinates?: Schema$BuildingCoordinates;
     /**
      * A brief description of the building. For example, &quot;Chelsea
      * Market&quot;.
      */
-    description: string;
+    description?: string;
     /**
      * ETag of the resource.
      */
-    etags: string;
+    etags?: string;
     /**
      * The display names for all floors in this building. The floors are
      * expected to be sorted in ascending order, from lowest floor to highest
@@ -273,11 +276,11 @@ export namespace admin_directory_v1 {
      * &quot;1&quot;, &quot;2&quot;, &quot;2M&quot;, &quot;3&quot;,
      * &quot;PH&quot;] Must contain at least one entry.
      */
-    floorNames: string[];
+    floorNames?: string[];
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for coordinates of a building in Directory API.
@@ -286,11 +289,11 @@ export namespace admin_directory_v1 {
     /**
      * Latitude in decimal degrees.
      */
-    latitude: number;
+    latitude?: number;
     /**
      * Longitude in decimal degrees.
      */
-    longitude: number;
+    longitude?: number;
   }
   /**
    * JSON template for Building List Response object in Directory API.
@@ -299,20 +302,20 @@ export namespace admin_directory_v1 {
     /**
      * The Buildings in this page of results.
      */
-    buildings: Schema$Building[];
+    buildings?: Schema$Building[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * JSON template for Calendar Resource object in Directory API.
@@ -321,66 +324,66 @@ export namespace admin_directory_v1 {
     /**
      * Unique ID for the building a resource is located in.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * Capacity of a resource, number of seats in a room.
      */
-    capacity: number;
+    capacity?: number;
     /**
      * ETag of the resource.
      */
-    etags: string;
-    featureInstances: any;
+    etags?: string;
+    featureInstances?: any;
     /**
      * Name of the floor a resource is located on.
      */
-    floorName: string;
+    floorName?: string;
     /**
      * Name of the section within a floor a resource is located in.
      */
-    floorSection: string;
+    floorSection?: string;
     /**
      * The read-only auto-generated name of the calendar resource which includes
      * metadata about the resource such as building name, floor, capacity, etc.
      * For example, &quot;NYC-2-Training Room 1A (16)&quot;.
      */
-    generatedResourceName: string;
+    generatedResourceName?: string;
     /**
      * The type of the resource. For calendar resources, the value is
      * admin#directory#resources#calendars#CalendarResource.
      */
-    kind: string;
+    kind?: string;
     /**
      * The category of the calendar resource. Either CONFERENCE_ROOM or OTHER.
      * Legacy data is set to CATEGORY_UNKNOWN.
      */
-    resourceCategory: string;
+    resourceCategory?: string;
     /**
      * Description of the resource, visible only to admins.
      */
-    resourceDescription: string;
+    resourceDescription?: string;
     /**
      * The read-only email for the calendar resource. Generated as part of
      * creating a new calendar resource.
      */
-    resourceEmail: string;
+    resourceEmail?: string;
     /**
      * The unique ID for the calendar resource.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * The name of the calendar resource. For example, &quot;Training Room
      * 1A&quot;.
      */
-    resourceName: string;
+    resourceName?: string;
     /**
      * The type of the calendar resource, intended for non-room resources.
      */
-    resourceType: string;
+    resourceType?: string;
     /**
      * Description of the resource, visible to users and admins.
      */
-    userVisibleDescription: string;
+    userVisibleDescription?: string;
   }
   /**
    * JSON template for Calendar Resource List Response object in Directory API.
@@ -389,21 +392,21 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The CalendarResources in this page of results.
      */
-    items: Schema$CalendarResource[];
+    items?: Schema$CalendarResource[];
     /**
      * Identifies this as a collection of CalendarResources. This is always
      * admin#directory#resources#calendars#calendarResourcesList.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * An notification channel used to watch for resource changes.
@@ -412,47 +415,47 @@ export namespace admin_directory_v1 {
     /**
      * The address where notifications are delivered for this channel.
      */
-    address: string;
+    address?: string;
     /**
      * Date and time of notification channel expiration, expressed as a Unix
      * timestamp, in milliseconds. Optional.
      */
-    expiration: string;
+    expiration?: string;
     /**
      * A UUID or similar unique string that identifies this channel.
      */
-    id: string;
+    id?: string;
     /**
      * Identifies this as a notification channel used to watch for changes to a
      * resource. Value: the fixed string &quot;api#channel&quot;.
      */
-    kind: string;
+    kind?: string;
     /**
      * Additional parameters controlling delivery channel behavior. Optional.
      */
-    params: any;
+    params?: any;
     /**
      * A Boolean value to indicate whether payload is wanted. Optional.
      */
-    payload: boolean;
+    payload?: boolean;
     /**
      * An opaque ID that identifies the resource being watched on this channel.
      * Stable across different API versions.
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * A version-specific identifier for the watched resource.
      */
-    resourceUri: string;
+    resourceUri?: string;
     /**
      * An arbitrary string delivered to the target address with each
      * notification delivered over this channel. Optional.
      */
-    token: string;
+    token?: string;
     /**
      * The type of delivery mechanism used for this channel.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for Chrome Os Device resource in Directory API.
@@ -461,114 +464,114 @@ export namespace admin_directory_v1 {
     /**
      * List of active time ranges (Read-only)
      */
-    activeTimeRanges: any[];
+    activeTimeRanges?: any[];
     /**
      * AssetId specified during enrollment or through later annotation
      */
-    annotatedAssetId: string;
+    annotatedAssetId?: string;
     /**
      * Address or location of the device as noted by the administrator
      */
-    annotatedLocation: string;
+    annotatedLocation?: string;
     /**
      * User of the device
      */
-    annotatedUser: string;
+    annotatedUser?: string;
     /**
      * Chromebook boot mode (Read-only)
      */
-    bootMode: string;
+    bootMode?: string;
     /**
      * List of device files to download (Read-only)
      */
-    deviceFiles: any[];
+    deviceFiles?: any[];
     /**
      * Unique identifier of Chrome OS Device (Read-only)
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Chromebook Mac Address on ethernet network interface (Read-only)
      */
-    ethernetMacAddress: string;
+    ethernetMacAddress?: string;
     /**
      * Chromebook firmware version (Read-only)
      */
-    firmwareVersion: string;
+    firmwareVersion?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Date and time the device was last enrolled (Read-only)
      */
-    lastEnrollmentTime: string;
+    lastEnrollmentTime?: string;
     /**
      * Date and time the device was last synchronized with the policy settings
      * in the G Suite administrator control panel (Read-only)
      */
-    lastSync: string;
+    lastSync?: string;
     /**
      * Chromebook Mac Address on wifi network interface (Read-only)
      */
-    macAddress: string;
+    macAddress?: string;
     /**
      * Mobile Equipment identifier for the 3G mobile card in the Chromebook
      * (Read-only)
      */
-    meid: string;
+    meid?: string;
     /**
      * Chromebook Model (Read-only)
      */
-    model: string;
+    model?: string;
     /**
      * Notes added by the administrator
      */
-    notes: string;
+    notes?: string;
     /**
      * Chromebook order number (Read-only)
      */
-    orderNumber: string;
+    orderNumber?: string;
     /**
      * OrgUnit of the device
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * Chromebook Os Version (Read-only)
      */
-    osVersion: string;
+    osVersion?: string;
     /**
      * Chromebook platform version (Read-only)
      */
-    platformVersion: string;
+    platformVersion?: string;
     /**
      * List of recent device users, in descending order by last login time
      * (Read-only)
      */
-    recentUsers: any[];
+    recentUsers?: any[];
     /**
      * Chromebook serial number (Read-only)
      */
-    serialNumber: string;
+    serialNumber?: string;
     /**
      * status of the device (Read-only)
      */
-    status: string;
+    status?: string;
     /**
      * Final date the device will be supported (Read-only)
      */
-    supportEndDate: string;
+    supportEndDate?: string;
     /**
      * Trusted Platform Module (TPM) (Read-only)
      */
-    tpmVersionInfo: any;
+    tpmVersionInfo?: any;
     /**
      * Will Chromebook auto renew after support end date (Read-only)
      */
-    willAutoRenew: boolean;
+    willAutoRenew?: boolean;
   }
   /**
    * JSON request template for firing actions on ChromeOs Device in Directory
@@ -578,8 +581,8 @@ export namespace admin_directory_v1 {
     /**
      * Action to be taken on the ChromeOs Device
      */
-    action: string;
-    deprovisionReason: string;
+    action?: string;
+    deprovisionReason?: string;
   }
   /**
    * JSON response template for List Chrome OS Devices operation in Directory
@@ -589,19 +592,19 @@ export namespace admin_directory_v1 {
     /**
      * List of Chrome OS Device objects.
      */
-    chromeosdevices: Schema$ChromeOsDevice[];
+    chromeosdevices?: Schema$ChromeOsDevice[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token used to access next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * JSON request template for moving ChromeOs Device to given OU in Directory
@@ -611,7 +614,7 @@ export namespace admin_directory_v1 {
     /**
      * ChromeOs Devices to be moved to OU
      */
-    deviceIds: string[];
+    deviceIds?: string[];
   }
   /**
    * JSON template for Customer Resource object in Directory API.
@@ -621,40 +624,40 @@ export namespace admin_directory_v1 {
      * The customer&#39;s secondary contact email address. This email address
      * cannot be on the same domain as the customerDomain
      */
-    alternateEmail: string;
+    alternateEmail?: string;
     /**
      * The customer&#39;s creation time (Readonly)
      */
-    customerCreationTime: string;
+    customerCreationTime?: string;
     /**
      * The customer&#39;s primary domain name string. Do not include the www
      * prefix when creating a new customer.
      */
-    customerDomain: string;
+    customerDomain?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The unique ID for the customer&#39;s G Suite account. (Readonly)
      */
-    id: string;
+    id?: string;
     /**
      * Identifies the resource as a customer. Value: admin#directory#customer
      */
-    kind: string;
+    kind?: string;
     /**
      * The customer&#39;s ISO 639-2 language code. The default value is en-US
      */
-    language: string;
+    language?: string;
     /**
      * The customer&#39;s contact phone number in E.164 format.
      */
-    phoneNumber: string;
+    phoneNumber?: string;
     /**
      * The customer&#39;s postal address information.
      */
-    postalAddress: Schema$CustomerPostalAddress;
+    postalAddress?: Schema$CustomerPostalAddress;
   }
   /**
    * JSON template for postal address of a customer.
@@ -664,44 +667,44 @@ export namespace admin_directory_v1 {
      * A customer&#39;s physical address. The address can be composed of one to
      * three lines.
      */
-    addressLine1: string;
+    addressLine1?: string;
     /**
      * Address line 2 of the address.
      */
-    addressLine2: string;
+    addressLine2?: string;
     /**
      * Address line 3 of the address.
      */
-    addressLine3: string;
+    addressLine3?: string;
     /**
      * The customer contact&#39;s name.
      */
-    contactName: string;
+    contactName?: string;
     /**
      * This is a required property. For countryCode information see the ISO 3166
      * country code elements.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * Name of the locality. An example of a locality value is the city of San
      * Francisco.
      */
-    locality: string;
+    locality?: string;
     /**
      * The company or company division name.
      */
-    organizationName: string;
+    organizationName?: string;
     /**
      * The postal code. A postalCode example is a postal zip code such as 10009.
      * This is in accordance with -
      * http://portablecontacts.net/draft-spec.html#address_element.
      */
-    postalCode: string;
+    postalCode?: string;
     /**
      * Name of the region. An example of a region value is NY for the state of
      * New York.
      */
-    region: string;
+    region?: string;
   }
   /**
    * JSON template for Domain Alias object in Directory API.
@@ -710,28 +713,28 @@ export namespace admin_directory_v1 {
     /**
      * The creation time of the domain alias. (Read-only).
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * The domain alias name.
      */
-    domainAliasName: string;
+    domainAliasName?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The parent domain name that the domain alias is associated with. This can
      * either be a primary or secondary domain name within a customer.
      */
-    parentDomainName: string;
+    parentDomainName?: string;
     /**
      * Indicates the verification state of a domain alias. (Read-only)
      */
-    verified: boolean;
+    verified?: boolean;
   }
   /**
    * JSON response template to list domain aliases in Directory API.
@@ -740,15 +743,15 @@ export namespace admin_directory_v1 {
     /**
      * List of domain alias objects.
      */
-    domainAliases: Schema$DomainAlias[];
+    domainAliases?: Schema$DomainAlias[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for Domain object in Directory API.
@@ -757,31 +760,31 @@ export namespace admin_directory_v1 {
     /**
      * Creation time of the domain. (Read-only).
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * List of domain alias objects. (Read-only)
      */
-    domainAliases: Schema$DomainAlias[];
+    domainAliases?: Schema$DomainAlias[];
     /**
      * The domain name of the customer.
      */
-    domainName: string;
+    domainName?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Indicates if the domain is a primary domain (Read-only).
      */
-    isPrimary: boolean;
+    isPrimary?: boolean;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Indicates the verification state of a domain. (Read-only).
      */
-    verified: boolean;
+    verified?: boolean;
   }
   /**
    * JSON response template to list Domains in Directory API.
@@ -790,15 +793,15 @@ export namespace admin_directory_v1 {
     /**
      * List of domain objects.
      */
-    domains: Schema$Domains[];
+    domains?: Schema$Domains[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for Feature object in Directory API.
@@ -807,15 +810,15 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etags: string;
+    etags?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the feature.
      */
-    name: string;
+    name?: string;
   }
   /**
    * JSON template for a &quot;feature instance&quot;.
@@ -825,7 +828,7 @@ export namespace admin_directory_v1 {
      * The feature that this is an instance of. A calendar resource may have
      * multiple instances of a feature.
      */
-    feature: Schema$Feature;
+    feature?: Schema$Feature;
   }
   /**
    * JSON request template for renaming a feature.
@@ -834,7 +837,7 @@ export namespace admin_directory_v1 {
     /**
      * New name of the feature.
      */
-    newName: string;
+    newName?: string;
   }
   /**
    * JSON template for Feature List Response object in Directory API.
@@ -843,20 +846,20 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The Features in this page of results.
      */
-    features: Schema$Feature[];
+    features?: Schema$Feature[];
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * The continuation token, used to page through large result sets. Provide
      * this value in a subsequent request to return the next page of results.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * JSON template for Group resource in Directory API.
@@ -865,43 +868,43 @@ export namespace admin_directory_v1 {
     /**
      * Is the group created by admin (Read-only) *
      */
-    adminCreated: boolean;
+    adminCreated?: boolean;
     /**
      * List of aliases (Read-only)
      */
-    aliases: string[];
+    aliases?: string[];
     /**
      * Description of the group
      */
-    description: string;
+    description?: string;
     /**
      * Group direct members count
      */
-    directMembersCount: string;
+    directMembersCount?: string;
     /**
      * Email of Group
      */
-    email: string;
+    email?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Unique identifier of Group (Read-only)
      */
-    id: string;
+    id?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Group name
      */
-    name: string;
+    name?: string;
     /**
      * List of non editable aliases (Read-only)
      */
-    nonEditableAliases: string[];
+    nonEditableAliases?: string[];
   }
   /**
    * JSON response template for List Groups operation in Directory API.
@@ -910,19 +913,19 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * List of group objects.
      */
-    groups: Schema$Group[];
+    groups?: Schema$Group[];
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token used to access next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * JSON template for Member resource in Directory API.
@@ -931,32 +934,32 @@ export namespace admin_directory_v1 {
     /**
      * Email of member (Read-only)
      */
-    email: string;
+    email?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Unique identifier of customer member (Read-only) Unique identifier of
      * group (Read-only) Unique identifier of member (Read-only)
      */
-    id: string;
+    id?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Role of member
      */
-    role: string;
+    role?: string;
     /**
      * Status of member (Immutable)
      */
-    status: string;
+    status?: string;
     /**
      * Type of member (Immutable)
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON response template for List Members operation in Directory API.
@@ -965,19 +968,19 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of member objects.
      */
-    members: Schema$Member[];
+    members?: Schema$Member[];
     /**
      * Token used to access next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * JSON template for Has Member response in Directory API.
@@ -987,7 +990,7 @@ export namespace admin_directory_v1 {
      * Identifies whether the given user is a member of the group. Membership
      * can be direct or nested.
      */
-    isMember: boolean;
+    isMember?: boolean;
   }
   /**
    * JSON template for Mobile Device resource in Directory API.
@@ -996,166 +999,166 @@ export namespace admin_directory_v1 {
     /**
      * Adb (USB debugging) enabled or disabled on device (Read-only)
      */
-    adbStatus: boolean;
+    adbStatus?: boolean;
     /**
      * List of applications installed on Mobile Device
      */
-    applications: any[];
+    applications?: any[];
     /**
      * Mobile Device Baseband version (Read-only)
      */
-    basebandVersion: string;
+    basebandVersion?: string;
     /**
      * Mobile Device Bootloader version (Read-only)
      */
-    bootloaderVersion: string;
+    bootloaderVersion?: string;
     /**
      * Mobile Device Brand (Read-only)
      */
-    brand: string;
+    brand?: string;
     /**
      * Mobile Device Build number (Read-only)
      */
-    buildNumber: string;
+    buildNumber?: string;
     /**
      * The default locale used on the Mobile Device (Read-only)
      */
-    defaultLanguage: string;
+    defaultLanguage?: string;
     /**
      * Developer options enabled or disabled on device (Read-only)
      */
-    developerOptionsStatus: boolean;
+    developerOptionsStatus?: boolean;
     /**
      * Mobile Device compromised status (Read-only)
      */
-    deviceCompromisedStatus: string;
+    deviceCompromisedStatus?: string;
     /**
      * Mobile Device serial number (Read-only)
      */
-    deviceId: string;
+    deviceId?: string;
     /**
      * DevicePasswordStatus (Read-only)
      */
-    devicePasswordStatus: string;
+    devicePasswordStatus?: string;
     /**
      * List of owner user&#39;s email addresses (Read-only)
      */
-    email: string[];
+    email?: string[];
     /**
      * Mobile Device Encryption Status (Read-only)
      */
-    encryptionStatus: string;
+    encryptionStatus?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Date and time the device was first synchronized with the policy settings
      * in the G Suite administrator control panel (Read-only)
      */
-    firstSync: string;
+    firstSync?: string;
     /**
      * Mobile Device Hardware (Read-only)
      */
-    hardware: string;
+    hardware?: string;
     /**
      * Mobile Device Hardware Id (Read-only)
      */
-    hardwareId: string;
+    hardwareId?: string;
     /**
      * Mobile Device IMEI number (Read-only)
      */
-    imei: string;
+    imei?: string;
     /**
      * Mobile Device Kernel version (Read-only)
      */
-    kernelVersion: string;
+    kernelVersion?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Date and time the device was last synchronized with the policy settings
      * in the G Suite administrator control panel (Read-only)
      */
-    lastSync: string;
+    lastSync?: string;
     /**
      * Boolean indicating if this account is on owner/primary profile or not
      * (Read-only)
      */
-    managedAccountIsOnOwnerProfile: boolean;
+    managedAccountIsOnOwnerProfile?: boolean;
     /**
      * Mobile Device manufacturer (Read-only)
      */
-    manufacturer: string;
+    manufacturer?: string;
     /**
      * Mobile Device MEID number (Read-only)
      */
-    meid: string;
+    meid?: string;
     /**
      * Name of the model of the device
      */
-    model: string;
+    model?: string;
     /**
      * List of owner user&#39;s names (Read-only)
      */
-    name: string[];
+    name?: string[];
     /**
      * Mobile Device mobile or network operator (if available) (Read-only)
      */
-    networkOperator: string;
+    networkOperator?: string;
     /**
      * Name of the mobile operating system
      */
-    os: string;
+    os?: string;
     /**
      * List of accounts added on device (Read-only)
      */
-    otherAccountsInfo: string[];
+    otherAccountsInfo?: string[];
     /**
      * DMAgentPermission (Read-only)
      */
-    privilege: string;
+    privilege?: string;
     /**
      * Mobile Device release version version (Read-only)
      */
-    releaseVersion: string;
+    releaseVersion?: string;
     /**
      * Unique identifier of Mobile Device (Read-only)
      */
-    resourceId: string;
+    resourceId?: string;
     /**
      * Mobile Device Security patch level (Read-only)
      */
-    securityPatchLevel: string;
+    securityPatchLevel?: string;
     /**
      * Mobile Device SSN or Serial Number (Read-only)
      */
-    serialNumber: string;
+    serialNumber?: string;
     /**
      * Status of the device (Read-only)
      */
-    status: string;
+    status?: string;
     /**
      * Work profile supported on device (Read-only)
      */
-    supportsWorkProfile: boolean;
+    supportsWorkProfile?: boolean;
     /**
      * The type of device (Read-only)
      */
-    type: string;
+    type?: string;
     /**
      * Unknown sources enabled or disabled on device (Read-only)
      */
-    unknownSourcesStatus: boolean;
+    unknownSourcesStatus?: boolean;
     /**
      * Mobile Device user agent
      */
-    userAgent: string;
+    userAgent?: string;
     /**
      * Mobile Device WiFi MAC address (Read-only)
      */
-    wifiMacAddress: string;
+    wifiMacAddress?: string;
   }
   /**
    * JSON request template for firing commands on Mobile Device in Directory
@@ -1165,7 +1168,7 @@ export namespace admin_directory_v1 {
     /**
      * Action to be taken on the Mobile Device
      */
-    action: string;
+    action?: string;
   }
   /**
    * JSON response template for List Mobile Devices operation in Directory API.
@@ -1174,19 +1177,19 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of Mobile Device objects.
      */
-    mobiledevices: Schema$MobileDevice[];
+    mobiledevices?: Schema$MobileDevice[];
     /**
      * Token used to access next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * Template for a notification resource.
@@ -1195,32 +1198,32 @@ export namespace admin_directory_v1 {
     /**
      * Body of the notification (Read-only)
      */
-    body: string;
+    body?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Address from which the notification is received (Read-only)
      */
-    fromAddress: string;
+    fromAddress?: string;
     /**
      * Boolean indicating whether the notification is unread or not.
      */
-    isUnread: boolean;
+    isUnread?: boolean;
     /**
      * The type of the resource.
      */
-    kind: string;
-    notificationId: string;
+    kind?: string;
+    notificationId?: string;
     /**
      * Time at which notification was sent (Read-only)
      */
-    sendTime: string;
+    sendTime?: string;
     /**
      * Subject of the notification (Read-only)
      */
-    subject: string;
+    subject?: string;
   }
   /**
    * Template for notifications list response.
@@ -1229,23 +1232,23 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * List of notifications in this page.
      */
-    items: Schema$Notification[];
+    items?: Schema$Notification[];
     /**
      * The type of the resource.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token for fetching the next page of notifications.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Number of unread notification for the domain.
      */
-    unreadNotificationsCount: number;
+    unreadNotificationsCount?: number;
   }
   /**
    * JSON template for Org Unit resource in Directory API.
@@ -1254,39 +1257,39 @@ export namespace admin_directory_v1 {
     /**
      * Should block inheritance
      */
-    blockInheritance: boolean;
+    blockInheritance?: boolean;
     /**
      * Description of OrgUnit
      */
-    description: string;
+    description?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Name of OrgUnit
      */
-    name: string;
+    name?: string;
     /**
      * Id of OrgUnit
      */
-    orgUnitId: string;
+    orgUnitId?: string;
     /**
      * Path of OrgUnit
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * Id of parent OrgUnit
      */
-    parentOrgUnitId: string;
+    parentOrgUnitId?: string;
     /**
      * Path of parent OrgUnit
      */
-    parentOrgUnitPath: string;
+    parentOrgUnitPath?: string;
   }
   /**
    * JSON response template for List Organization Units operation in Directory
@@ -1296,15 +1299,15 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of user objects.
      */
-    organizationUnits: Schema$OrgUnit[];
+    organizationUnits?: Schema$OrgUnit[];
   }
   /**
    * JSON template for privilege resource in Directory API.
@@ -1315,31 +1318,31 @@ export namespace admin_directory_v1 {
      * privilege can have a list of child privileges; this list is empty for a
      * leaf privilege.
      */
-    childPrivileges: Schema$Privilege[];
+    childPrivileges?: Schema$Privilege[];
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * If the privilege can be restricted to an organization unit.
      */
-    isOuScopable: boolean;
+    isOuScopable?: boolean;
     /**
      * The type of the API resource. This is always admin#directory#privilege.
      */
-    kind: string;
+    kind?: string;
     /**
      * The name of the privilege.
      */
-    privilegeName: string;
+    privilegeName?: string;
     /**
      * The obfuscated ID of the service this privilege is for.
      */
-    serviceId: string;
+    serviceId?: string;
     /**
      * The name of the service this privilege is for.
      */
-    serviceName: string;
+    serviceName?: string;
   }
   /**
    * JSON response template for List privileges operation in Directory API.
@@ -1348,15 +1351,15 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of Privilege resources.
      */
-    items: Schema$Privilege[];
+    items?: Schema$Privilege[];
     /**
      * The type of the API resource. This is always admin#directory#privileges.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for role resource in Directory API.
@@ -1365,35 +1368,35 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Returns true if the role is a super admin role.
      */
-    isSuperAdminRole: boolean;
+    isSuperAdminRole?: boolean;
     /**
      * Returns true if this is a pre-defined system role.
      */
-    isSystemRole: boolean;
+    isSystemRole?: boolean;
     /**
      * The type of the API resource. This is always admin#directory#role.
      */
-    kind: string;
+    kind?: string;
     /**
      * A short description of the role.
      */
-    roleDescription: string;
+    roleDescription?: string;
     /**
      * ID of the role.
      */
-    roleId: string;
+    roleId?: string;
     /**
      * Name of the role.
      */
-    roleName: string;
+    roleName?: string;
     /**
      * The set of privileges that are granted to this role.
      */
-    rolePrivileges: any[];
+    rolePrivileges?: any[];
   }
   /**
    * JSON template for roleAssignment resource in Directory API.
@@ -1402,34 +1405,34 @@ export namespace admin_directory_v1 {
     /**
      * The unique ID of the user this role is assigned to.
      */
-    assignedTo: string;
+    assignedTo?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of the API resource. This is always
      * admin#directory#roleAssignment.
      */
-    kind: string;
+    kind?: string;
     /**
      * If the role is restricted to an organization unit, this contains the ID
      * for the organization unit the exercise of this role is restricted to.
      */
-    orgUnitId: string;
+    orgUnitId?: string;
     /**
      * ID of this roleAssignment.
      */
-    roleAssignmentId: string;
+    roleAssignmentId?: string;
     /**
      * The ID of the role that is assigned.
      */
-    roleId: string;
+    roleId?: string;
     /**
      * The scope in which this role is assigned. Possible values are:  -
      * CUSTOMER - ORG_UNIT
      */
-    scopeType: string;
+    scopeType?: string;
   }
   /**
    * JSON response template for List roleAssignments operation in Directory API.
@@ -1438,17 +1441,17 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of RoleAssignment resources.
      */
-    items: Schema$RoleAssignment[];
+    items?: Schema$RoleAssignment[];
     /**
      * The type of the API resource. This is always
      * admin#directory#roleAssignments.
      */
-    kind: string;
-    nextPageToken: string;
+    kind?: string;
+    nextPageToken?: string;
   }
   /**
    * JSON response template for List roles operation in Directory API.
@@ -1457,16 +1460,16 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of Role resources.
      */
-    items: Schema$Role[];
+    items?: Schema$Role[];
     /**
      * The type of the API resource. This is always admin#directory#roles.
      */
-    kind: string;
-    nextPageToken: string;
+    kind?: string;
+    nextPageToken?: string;
   }
   /**
    * JSON template for Schema resource in Directory API.
@@ -1475,23 +1478,23 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Fields of Schema
      */
-    fields: Schema$SchemaFieldSpec[];
+    fields?: Schema$SchemaFieldSpec[];
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Unique identifier of Schema (Read-only)
      */
-    schemaId: string;
+    schemaId?: string;
     /**
      * Schema name
      */
-    schemaName: string;
+    schemaName?: string;
   }
   /**
    * JSON template for FieldSpec resource for Schemas in Directory API.
@@ -1500,43 +1503,43 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Unique identifier of Field (Read-only)
      */
-    fieldId: string;
+    fieldId?: string;
     /**
      * Name of the field.
      */
-    fieldName: string;
+    fieldName?: string;
     /**
      * Type of the field.
      */
-    fieldType: string;
+    fieldType?: string;
     /**
      * Boolean specifying whether the field is indexed or not.
      */
-    indexed: boolean;
+    indexed?: boolean;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Boolean specifying whether this is a multi-valued field or not.
      */
-    multiValued: boolean;
+    multiValued?: boolean;
     /**
      * Indexing spec for a numeric field. By default, only exact match queries
      * will be supported for numeric fields. Setting the numericIndexingSpec
      * allows range queries to be supported.
      */
-    numericIndexingSpec: any;
+    numericIndexingSpec?: any;
     /**
      * Read ACLs on the field specifying who can view values of this field.
      * Valid values are &quot;ALL_DOMAIN_USERS&quot; and
      * &quot;ADMINS_AND_SELF&quot;.
      */
-    readAccessType: string;
+    readAccessType?: string;
   }
   /**
    * JSON response template for List Schema operation in Directory API.
@@ -1545,15 +1548,15 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * List of UserSchema objects.
      */
-    schemas: Schema$Schema[];
+    schemas?: Schema$Schema[];
   }
   /**
    * JSON template for token resource in Directory API.
@@ -1563,36 +1566,36 @@ export namespace admin_directory_v1 {
      * Whether the application is registered with Google. The value is true if
      * the application has an anonymous Client ID.
      */
-    anonymous: boolean;
+    anonymous?: boolean;
     /**
      * The Client ID of the application the token is issued to.
      */
-    clientId: string;
+    clientId?: string;
     /**
      * The displayable name of the application the token is issued to.
      */
-    displayText: string;
+    displayText?: string;
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of the API resource. This is always admin#directory#token.
      */
-    kind: string;
+    kind?: string;
     /**
      * Whether the token is issued to an installed application. The value is
      * true if the application is installed to a desktop or mobile device.
      */
-    nativeApp: boolean;
+    nativeApp?: boolean;
     /**
      * A list of authorization scopes the application is granted.
      */
-    scopes: string[];
+    scopes?: string[];
     /**
      * The unique ID of the user that issued the token.
      */
-    userKey: string;
+    userKey?: string;
   }
   /**
    * JSON response template for List tokens operation in Directory API.
@@ -1601,15 +1604,15 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of Token resources.
      */
-    items: Schema$Token[];
+    items?: Schema$Token[];
     /**
      * The type of the API resource. This is always admin#directory#tokenList.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for Trusted App Ids Resource object in Directory API.
@@ -1618,20 +1621,20 @@ export namespace admin_directory_v1 {
     /**
      * Android package name.
      */
-    androidPackageName: string;
+    androidPackageName?: string;
     /**
      * SHA1 signature of the app certificate.
      */
-    certificateHashSHA1: string;
+    certificateHashSHA1?: string;
     /**
      * SHA256 signature of the app certificate.
      */
-    certificateHashSHA256: string;
-    etag: string;
+    certificateHashSHA256?: string;
+    etag?: string;
     /**
      * Identifies the resource as a trusted AppId.
      */
-    kind: string;
+    kind?: string;
   }
   /**
    * JSON template for Trusted Apps response object of a user in Directory API.
@@ -1640,145 +1643,145 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Identifies the resource as trusted apps response.
      */
-    kind: string;
-    nextPageToken: string;
+    kind?: string;
+    nextPageToken?: string;
     /**
      * Trusted Apps list.
      */
-    trustedApps: Schema$TrustedAppId[];
+    trustedApps?: Schema$TrustedAppId[];
   }
   /**
    * JSON template for User object in Directory API.
    */
   export interface Schema$User {
-    addresses: any;
+    addresses?: any;
     /**
      * Indicates if user has agreed to terms (Read-only)
      */
-    agreedToTerms: boolean;
+    agreedToTerms?: boolean;
     /**
      * List of aliases (Read-only)
      */
-    aliases: string[];
+    aliases?: string[];
     /**
      * Boolean indicating if the user should change password in next login
      */
-    changePasswordAtNextLogin: boolean;
+    changePasswordAtNextLogin?: boolean;
     /**
      * User&#39;s G Suite account creation time. (Read-only)
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * CustomerId of User (Read-only)
      */
-    customerId: string;
+    customerId?: string;
     /**
      * Custom fields of the user.
      */
-    customSchemas: any;
-    deletionTime: string;
-    emails: any;
+    customSchemas?: any;
+    deletionTime?: string;
+    emails?: any;
     /**
      * ETag of the resource.
      */
-    etag: string;
-    externalIds: any;
-    gender: any;
+    etag?: string;
+    externalIds?: any;
+    gender?: any;
     /**
      * Hash function name for password. Supported are MD5, SHA-1 and crypt
      */
-    hashFunction: string;
+    hashFunction?: string;
     /**
      * Unique identifier of User (Read-only)
      */
-    id: string;
-    ims: any;
+    id?: string;
+    ims?: any;
     /**
      * Boolean indicating if user is included in Global Address List
      */
-    includeInGlobalAddressList: boolean;
+    includeInGlobalAddressList?: boolean;
     /**
      * Boolean indicating if ip is whitelisted
      */
-    ipWhitelisted: boolean;
+    ipWhitelisted?: boolean;
     /**
      * Boolean indicating if the user is admin (Read-only)
      */
-    isAdmin: boolean;
+    isAdmin?: boolean;
     /**
      * Boolean indicating if the user is delegated admin (Read-only)
      */
-    isDelegatedAdmin: boolean;
+    isDelegatedAdmin?: boolean;
     /**
      * Is 2-step verification enforced (Read-only)
      */
-    isEnforcedIn2Sv: boolean;
+    isEnforcedIn2Sv?: boolean;
     /**
      * Is enrolled in 2-step verification (Read-only)
      */
-    isEnrolledIn2Sv: boolean;
+    isEnrolledIn2Sv?: boolean;
     /**
      * Is mailbox setup (Read-only)
      */
-    isMailboxSetup: boolean;
-    keywords: any;
+    isMailboxSetup?: boolean;
+    keywords?: any;
     /**
      * Kind of resource this is.
      */
-    kind: string;
-    languages: any;
+    kind?: string;
+    languages?: any;
     /**
      * User&#39;s last login time. (Read-only)
      */
-    lastLoginTime: string;
-    locations: any;
+    lastLoginTime?: string;
+    locations?: any;
     /**
      * User&#39;s name
      */
-    name: Schema$UserName;
+    name?: Schema$UserName;
     /**
      * List of non editable aliases (Read-only)
      */
-    nonEditableAliases: string[];
-    notes: any;
-    organizations: any;
+    nonEditableAliases?: string[];
+    notes?: any;
+    organizations?: any;
     /**
      * OrgUnit of User
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
     /**
      * User&#39;s password
      */
-    password: string;
-    phones: any;
-    posixAccounts: any;
+    password?: string;
+    phones?: any;
+    posixAccounts?: any;
     /**
      * username of User
      */
-    primaryEmail: string;
-    relations: any;
-    sshPublicKeys: any;
+    primaryEmail?: string;
+    relations?: any;
+    sshPublicKeys?: any;
     /**
      * Indicates if user is suspended
      */
-    suspended: boolean;
+    suspended?: boolean;
     /**
      * Suspension reason if user is suspended (Read-only)
      */
-    suspensionReason: string;
+    suspensionReason?: string;
     /**
      * ETag of the user&#39;s photo (Read-only)
      */
-    thumbnailPhotoEtag: string;
+    thumbnailPhotoEtag?: string;
     /**
      * Photo Url of the user (Read-only)
      */
-    thumbnailPhotoUrl: string;
-    websites: any;
+    thumbnailPhotoUrl?: string;
+    websites?: any;
   }
   /**
    * JSON template for About (notes) of a user in Directory API.
@@ -1789,11 +1792,11 @@ export namespace admin_directory_v1 {
      * either be plain or html. By default, notes contents are assumed to
      * contain plain text.
      */
-    contentType: string;
+    contentType?: string;
     /**
      * Actual value of notes.
      */
-    value: string;
+    value?: string;
   }
   /**
    * JSON template for address.
@@ -1802,54 +1805,54 @@ export namespace admin_directory_v1 {
     /**
      * Country.
      */
-    country: string;
+    country?: string;
     /**
      * Country code.
      */
-    countryCode: string;
+    countryCode?: string;
     /**
      * Custom type.
      */
-    customType: string;
+    customType?: string;
     /**
      * Extended Address.
      */
-    extendedAddress: string;
+    extendedAddress?: string;
     /**
      * Formatted address.
      */
-    formatted: string;
+    formatted?: string;
     /**
      * Locality.
      */
-    locality: string;
+    locality?: string;
     /**
      * Other parts of address.
      */
-    poBox: string;
+    poBox?: string;
     /**
      * Postal code.
      */
-    postalCode: string;
+    postalCode?: string;
     /**
      * If this is user&#39;s primary address. Only one entry could be marked as
      * primary.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Region.
      */
-    region: string;
+    region?: string;
     /**
      * User supplied address was structured. Structured addresses are NOT
      * supported at this time. You might be able to write structured addresses,
      * but any values will eventually be clobbered.
      */
-    sourceIsStructured: boolean;
+    sourceIsStructured?: boolean;
     /**
      * Street.
      */
-    streetAddress: string;
+    streetAddress?: string;
     /**
      * Each entry can have a type which indicates standard values of that entry.
      * For example address could be of home, work etc. In addition to the
@@ -1857,7 +1860,7 @@ export namespace admin_directory_v1 {
      * Such type should have the CUSTOM value as type and also have a customType
      * value.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for a set of custom properties (i.e. all fields in a
@@ -1871,23 +1874,23 @@ export namespace admin_directory_v1 {
     /**
      * Email id of the user.
      */
-    address: string;
+    address?: string;
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * If this is user&#39;s primary email. Only one entry could be marked as
      * primary.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example email could be of home, work etc. In addition to the standard
      * type, an entry can have a custom type and can take any value Such types
      * should have the CUSTOM value as type and also have a customType value.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for an externalId entry.
@@ -1896,15 +1899,15 @@ export namespace admin_directory_v1 {
     /**
      * Custom type.
      */
-    customType: string;
+    customType?: string;
     /**
      * The type of the Id.
      */
-    type: string;
+    type?: string;
     /**
      * The value of the id.
      */
-    value: string;
+    value?: string;
   }
   export interface Schema$UserGender {
     /**
@@ -1912,15 +1915,15 @@ export namespace admin_directory_v1 {
      * to the profile owner by humans, for example &quot;he/him/his&quot; or
      * &quot;they/them/their&quot;.
      */
-    addressMeAs: string;
+    addressMeAs?: string;
     /**
      * Custom gender.
      */
-    customGender: string;
+    customGender?: string;
     /**
      * Gender.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for instant messenger of an user.
@@ -1929,26 +1932,26 @@ export namespace admin_directory_v1 {
     /**
      * Custom protocol.
      */
-    customProtocol: string;
+    customProtocol?: string;
     /**
      * Custom type.
      */
-    customType: string;
+    customType?: string;
     /**
      * Instant messenger id.
      */
-    im: string;
+    im?: string;
     /**
      * If this is user&#39;s primary im. Only one entry could be marked as
      * primary.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Protocol used in the instant messenger. It should be one of the values
      * from ImProtocolTypes map. Similar to type, it can take a CUSTOM value and
      * specify the custom name in customProtocol field.
      */
-    protocol: string;
+    protocol?: string;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example instant messengers could be of home, work etc. In addition to
@@ -1956,7 +1959,7 @@ export namespace admin_directory_v1 {
      * value. Such types should have the CUSTOM value as type and also have a
      * customType value.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for a keyword entry.
@@ -1965,7 +1968,7 @@ export namespace admin_directory_v1 {
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * Each entry can have a type which indicates standard type of that entry.
      * For example, keyword could be of type occupation or outlook. In addition
@@ -1973,11 +1976,11 @@ export namespace admin_directory_v1 {
      * name. Such types should have the CUSTOM value as type and also have a
      * customType value.
      */
-    type: string;
+    type?: string;
     /**
      * Keyword.
      */
-    value: string;
+    value?: string;
   }
   /**
    * JSON template for a language entry.
@@ -1988,12 +1991,12 @@ export namespace admin_directory_v1 {
      * corresponding Google III language code. If this is set LanguageCode
      * can&#39;t be set
      */
-    customLanguage: string;
+    customLanguage?: string;
     /**
      * Language Code. Should be used for storing Google III LanguageCode string
      * representation for language. Illegal values cause SchemaException.
      */
-    languageCode: string;
+    languageCode?: string;
   }
   /**
    * JSON template for a location entry.
@@ -2004,29 +2007,29 @@ export namespace admin_directory_v1 {
      * describe the location. For example, &quot;Mountain View, CA&quot;,
      * &quot;Near Seattle&quot;, &quot;US-NYC-9TH 9A209A&quot;.
      */
-    area: string;
+    area?: string;
     /**
      * Building Identifier.
      */
-    buildingId: string;
+    buildingId?: string;
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * Most specific textual code of individual desk location.
      */
-    deskCode: string;
+    deskCode?: string;
     /**
      * Floor name/number.
      */
-    floorName: string;
+    floorName?: string;
     /**
      * Floor section. More specific location within the floor. For example, if a
      * floor is divided into sections &quot;A&quot;, &quot;B&quot;, and
      * &quot;C&quot;, this field would identify one of those values.
      */
-    floorSection: string;
+    floorSection?: string;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example location could be of types default and desk. In addition to
@@ -2034,7 +2037,7 @@ export namespace admin_directory_v1 {
      * Such types should have &quot;custom&quot; as type and also have a
      * customType value.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON request template for setting/revoking admin status of a user in
@@ -2044,7 +2047,7 @@ export namespace admin_directory_v1 {
     /**
      * Boolean indicating new admin status of the user
      */
-    status: boolean;
+    status?: boolean;
   }
   /**
    * JSON template for name of a user in Directory API.
@@ -2053,15 +2056,15 @@ export namespace admin_directory_v1 {
     /**
      * Last Name
      */
-    familyName: string;
+    familyName?: string;
     /**
      * Full Name
      */
-    fullName: string;
+    fullName?: string;
     /**
      * First Name
      */
-    givenName: string;
+    givenName?: string;
   }
   /**
    * JSON template for an organization entry.
@@ -2070,47 +2073,47 @@ export namespace admin_directory_v1 {
     /**
      * The cost center of the users department.
      */
-    costCenter: string;
+    costCenter?: string;
     /**
      * Custom type.
      */
-    customType: string;
+    customType?: string;
     /**
      * Department within the organization.
      */
-    department: string;
+    department?: string;
     /**
      * Description of the organization.
      */
-    description: string;
+    description?: string;
     /**
      * The domain to which the organization belongs to.
      */
-    domain: string;
+    domain?: string;
     /**
      * The full-time equivalent percent within the organization (100000 = 100%).
      */
-    fullTimeEquivalent: number;
+    fullTimeEquivalent?: number;
     /**
      * Location of the organization. This need not be fully qualified address.
      */
-    location: string;
+    location?: string;
     /**
      * Name of the organization
      */
-    name: string;
+    name?: string;
     /**
      * If it user&#39;s primary organization.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Symbol of the organization.
      */
-    symbol: string;
+    symbol?: string;
     /**
      * Title (designation) of the user in the organization.
      */
-    title: string;
+    title?: string;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example organization could be of school, work etc. In addition to the
@@ -2118,7 +2121,7 @@ export namespace admin_directory_v1 {
      * Such types should have the CUSTOM value as type and also have a
      * CustomType value.
      */
-    type: string;
+    type?: string;
   }
   /**
    * JSON template for a phone entry.
@@ -2127,11 +2130,11 @@ export namespace admin_directory_v1 {
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * If this is user&#39;s primary phone or not.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example phone could be of home_fax, work, mobile etc. In addition to
@@ -2139,11 +2142,11 @@ export namespace admin_directory_v1 {
      * name. Such types should have the CUSTOM value as type and also have a
      * customType value.
      */
-    type: string;
+    type?: string;
     /**
      * Phone number.
      */
-    value: string;
+    value?: string;
   }
   /**
    * JSON template for Photo object in Directory API.
@@ -2152,35 +2155,35 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Height in pixels of the photo
      */
-    height: number;
+    height?: number;
     /**
      * Unique identifier of User (Read-only)
      */
-    id: string;
+    id?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Mime Type of the photo
      */
-    mimeType: string;
+    mimeType?: string;
     /**
      * Base64 encoded photo data
      */
-    photoData: string;
+    photoData?: string;
     /**
      * Primary email of User (Read-only)
      */
-    primaryEmail: string;
+    primaryEmail?: string;
     /**
      * Width in pixels of the photo
      */
-    width: number;
+    width?: number;
   }
   /**
    * JSON template for a POSIX account entry. Description of the field family:
@@ -2190,39 +2193,39 @@ export namespace admin_directory_v1 {
     /**
      * A POSIX account field identifier. (Read-only)
      */
-    accountId: string;
+    accountId?: string;
     /**
      * The GECOS (user information) for this account.
      */
-    gecos: string;
+    gecos?: string;
     /**
      * The default group ID.
      */
-    gid: string;
+    gid?: string;
     /**
      * The path to the home directory for this account.
      */
-    homeDirectory: string;
+    homeDirectory?: string;
     /**
      * If this is user&#39;s primary account within the SystemId.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * The path to the login shell for this account.
      */
-    shell: string;
+    shell?: string;
     /**
      * System identifier for which account Username or Uid apply to.
      */
-    systemId: string;
+    systemId?: string;
     /**
      * The POSIX compliant user ID.
      */
-    uid: string;
+    uid?: string;
     /**
      * The username of the account.
      */
-    username: string;
+    username?: string;
   }
   /**
    * JSON template for a relation entry.
@@ -2231,16 +2234,16 @@ export namespace admin_directory_v1 {
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * The relation of the user. Some of the possible values are mother, father,
      * sister, brother, manager, assistant, partner.
      */
-    type: string;
+    type?: string;
     /**
      * The name of the relation.
      */
-    value: string;
+    value?: string;
   }
   /**
    * JSON response template for List Users operation in Apps Directory API.
@@ -2249,23 +2252,23 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * Kind of resource this is.
      */
-    kind: string;
+    kind?: string;
     /**
      * Token used to access next page of this result.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * Event that triggered this response (only used in case of Push Response)
      */
-    trigger_event: string;
+    trigger_event?: string;
     /**
      * List of user objects.
      */
-    users: Schema$User[];
+    users?: Schema$User[];
   }
   /**
    * JSON template for a POSIX account entry.
@@ -2274,15 +2277,15 @@ export namespace admin_directory_v1 {
     /**
      * An expiration time in microseconds since epoch.
      */
-    expirationTimeUsec: string;
+    expirationTimeUsec?: string;
     /**
      * A SHA-256 fingerprint of the SSH public key. (Read-only)
      */
-    fingerprint: string;
+    fingerprint?: string;
     /**
      * An SSH public key.
      */
-    key: string;
+    key?: string;
   }
   /**
    * JSON request template to undelete a user in Directory API.
@@ -2291,7 +2294,7 @@ export namespace admin_directory_v1 {
     /**
      * OrgUnit of User
      */
-    orgUnitPath: string;
+    orgUnitPath?: string;
   }
   /**
    * JSON template for a website entry.
@@ -2300,11 +2303,11 @@ export namespace admin_directory_v1 {
     /**
      * Custom Type.
      */
-    customType: string;
+    customType?: string;
     /**
      * If this is user&#39;s primary website or not.
      */
-    primary: boolean;
+    primary?: boolean;
     /**
      * Each entry can have a type which indicates standard types of that entry.
      * For example website could be of home, work, blog etc. In addition to the
@@ -2312,11 +2315,11 @@ export namespace admin_directory_v1 {
      * Such types should have the CUSTOM value as type and also have a
      * customType value.
      */
-    type: string;
+    type?: string;
     /**
      * Website.
      */
-    value: string;
+    value?: string;
   }
   /**
    * JSON template for verification codes in Directory API.
@@ -2325,21 +2328,21 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * The type of the resource. This is always
      * admin#directory#verificationCode.
      */
-    kind: string;
+    kind?: string;
     /**
      * The obfuscated unique ID of the user.
      */
-    userId: string;
+    userId?: string;
     /**
      * A current verification code for the user. Invalidated or used
      * verification codes are not returned as part of the result.
      */
-    verificationCode: string;
+    verificationCode?: string;
   }
   /**
    * JSON response template for List verification codes operation in Directory
@@ -2349,17 +2352,18 @@ export namespace admin_directory_v1 {
     /**
      * ETag of the resource.
      */
-    etag: string;
+    etag?: string;
     /**
      * A list of verification code resources.
      */
-    items: Schema$VerificationCode[];
+    items?: Schema$VerificationCode[];
     /**
      * The type of the resource. This is always
      * admin#directory#verificationCodesList.
      */
-    kind: string;
+    kind?: string;
   }
+
 
   export class Resource$Asps {
     root: Admin;
@@ -2386,22 +2390,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Asps$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Asps$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Asps$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Asps$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Asps$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Asps$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2438,21 +2455,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Asp>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asp>,
-        callback?: BodyResponseCallback<Schema$Asp>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asp>,
+    get(params?: Params$Resource$Asps$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Asp>;
+    get(params: Params$Resource$Asps$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Asp>,
+        callback: BodyResponseCallback<Schema$Asp>): void;
+    get(params: Params$Resource$Asps$Get,
+        callback: BodyResponseCallback<Schema$Asp>): void;
+    get(callback: BodyResponseCallback<Schema$Asp>): void;
+    get(paramsOrCallback?: Params$Resource$Asps$Get|
+        BodyResponseCallback<Schema$Asp>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asp>,
         callback?: BodyResponseCallback<Schema$Asp>):
         void|AxiosPromise<Schema$Asp> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Asps$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Asps$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2488,23 +2517,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Asps>;
+    list(params?: Params$Resource$Asps$List, options?: MethodOptions):
+        AxiosPromise<Schema$Asps>;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asps>,
-        callback?: BodyResponseCallback<Schema$Asps>): void;
+        params: Params$Resource$Asps$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Asps>,
+        callback: BodyResponseCallback<Schema$Asps>): void;
     list(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Asps>,
+        params: Params$Resource$Asps$List,
+        callback: BodyResponseCallback<Schema$Asps>): void;
+    list(callback: BodyResponseCallback<Schema$Asps>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Asps$List|
+        BodyResponseCallback<Schema$Asps>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Asps>,
         callback?: BodyResponseCallback<Schema$Asps>):
         void|AxiosPromise<Schema$Asps> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Asps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Asps$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2526,6 +2568,52 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Asps$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the ASP to be deleted.
+     */
+    codeId?: number;
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Asps$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the ASP.
+     */
+    codeId?: number;
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Asps$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+
 
   export class Resource$Channels {
     root: Admin;
@@ -2551,22 +2639,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    stop(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    stop(params?: Params$Resource$Channels$Stop, options?: MethodOptions):
+        AxiosPromise<void>;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Channels$Stop,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     stop(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Channels$Stop,
+        callback: BodyResponseCallback<void>): void;
+    stop(callback: BodyResponseCallback<void>): void;
+    stop(
+        paramsOrCallback?: Params$Resource$Channels$Stop|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Channels$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Channels$Stop;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2589,6 +2690,14 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Channels$Stop {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
 
   export class Resource$Chromeosdevices {
     root: Admin;
@@ -2616,22 +2725,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action(params?: any, options?: MethodOptions): AxiosPromise<void>;
     action(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Chromeosdevices$Action,
+        options?: MethodOptions): AxiosPromise<void>;
     action(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Chromeosdevices$Action,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    action(
+        params: Params$Resource$Chromeosdevices$Action,
+        callback: BodyResponseCallback<void>): void;
+    action(callback: BodyResponseCallback<void>): void;
+    action(
+        paramsOrCallback?: Params$Resource$Chromeosdevices$Action|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Action;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$Action;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2670,24 +2794,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Chromeosdevices$Get,
         options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
-        callback?: BodyResponseCallback<Schema$ChromeOsDevice>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+    get(params: Params$Resource$Chromeosdevices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    get(params: Params$Resource$Chromeosdevices$Get,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    get(callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    get(paramsOrCallback?: Params$Resource$Chromeosdevices$Get|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
         void|AxiosPromise<Schema$ChromeOsDevice> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2731,26 +2866,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ChromeOsDevices>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevices>,
-        callback?: BodyResponseCallback<Schema$ChromeOsDevices>): void;
+        params?: Params$Resource$Chromeosdevices$List,
+        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevices>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevices>,
+        params: Params$Resource$Chromeosdevices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevices>,
+        callback: BodyResponseCallback<Schema$ChromeOsDevices>): void;
+    list(
+        params: Params$Resource$Chromeosdevices$List,
+        callback: BodyResponseCallback<Schema$ChromeOsDevices>): void;
+    list(callback: BodyResponseCallback<Schema$ChromeOsDevices>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Chromeosdevices$List|
+        BodyResponseCallback<Schema$ChromeOsDevices>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChromeOsDevices>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevices>):
         void|AxiosPromise<Schema$ChromeOsDevices> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2789,22 +2937,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    moveDevicesToOu(params?: any, options?: MethodOptions): AxiosPromise<void>;
     moveDevicesToOu(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Chromeosdevices$Movedevicestoou,
+        options?: MethodOptions): AxiosPromise<void>;
     moveDevicesToOu(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Chromeosdevices$Movedevicestoou,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    moveDevicesToOu(
+        params: Params$Resource$Chromeosdevices$Movedevicestoou,
+        callback: BodyResponseCallback<void>): void;
+    moveDevicesToOu(callback: BodyResponseCallback<void>): void;
+    moveDevicesToOu(
+        paramsOrCallback?: Params$Resource$Chromeosdevices$Movedevicestoou|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Chromeosdevices$Movedevicestoou;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$Movedevicestoou;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2844,26 +3007,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ChromeOsDevice>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
-        callback?: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+        params?: Params$Resource$Chromeosdevices$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+        params: Params$Resource$Chromeosdevices$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    patch(
+        params: Params$Resource$Chromeosdevices$Patch,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    patch(callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Chromeosdevices$Patch|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
         void|AxiosPromise<Schema$ChromeOsDevice> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2903,26 +3079,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ChromeOsDevice>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
-        callback?: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+        params?: Params$Resource$Chromeosdevices$Update,
+        options?: MethodOptions): AxiosPromise<Schema$ChromeOsDevice>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+        params: Params$Resource$Chromeosdevices$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$ChromeOsDevice>,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    update(
+        params: Params$Resource$Chromeosdevices$Update,
+        callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    update(callback: BodyResponseCallback<Schema$ChromeOsDevice>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Chromeosdevices$Update|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ChromeOsDevice>,
         callback?: BodyResponseCallback<Schema$ChromeOsDevice>):
         void|AxiosPromise<Schema$ChromeOsDevice> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Chromeosdevices$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Chromeosdevices$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2946,6 +3135,152 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Chromeosdevices$Action {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Chrome OS Device
+     */
+    resourceId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ChromeOsDeviceAction;
+  }
+  export interface Params$Resource$Chromeosdevices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Chrome OS Device
+     */
+    deviceId?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+  }
+  export interface Params$Resource$Chromeosdevices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Maximum number of results to return. Default is 100
+     */
+    maxResults?: number;
+    /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
+     * Full path of the organizational unit or its ID
+     */
+    orgUnitPath?: string;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+    /**
+     * Search string in the format given at
+     * http://support.google.com/chromeos/a/bin/answer.py?hl=en&answer=1698333
+     */
+    query?: string;
+    /**
+     * Whether to return results in ascending or descending order. Only of use
+     * when orderBy is also used
+     */
+    sortOrder?: string;
+  }
+  export interface Params$Resource$Chromeosdevices$Movedevicestoou {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Full path of the target organizational unit or its ID
+     */
+    orgUnitPath?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ChromeOsMoveDevicesToOu;
+  }
+  export interface Params$Resource$Chromeosdevices$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Chrome OS Device
+     */
+    deviceId?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ChromeOsDevice;
+  }
+  export interface Params$Resource$Chromeosdevices$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Chrome OS Device
+     */
+    deviceId?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ChromeOsDevice;
+  }
+
 
   export class Resource$Customers {
     root: Admin;
@@ -2971,23 +3306,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+    get(params?: Params$Resource$Customers$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Customer>;
+    get(params: Params$Resource$Customers$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+        callback: BodyResponseCallback<Schema$Customer>): void;
+    get(params: Params$Resource$Customers$Get,
+        callback: BodyResponseCallback<Schema$Customer>): void;
+    get(callback: BodyResponseCallback<Schema$Customer>): void;
+    get(paramsOrCallback?: Params$Resource$Customers$Get|
+        BodyResponseCallback<Schema$Customer>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
         void|AxiosPromise<Schema$Customer> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Customers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3023,25 +3368,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Customer>;
+    patch(params?: Params$Resource$Customers$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Customer>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>): void;
+        params: Params$Resource$Customers$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+        callback: BodyResponseCallback<Schema$Customer>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+        params: Params$Resource$Customers$Patch,
+        callback: BodyResponseCallback<Schema$Customer>): void;
+    patch(callback: BodyResponseCallback<Schema$Customer>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Customers$Patch|
+        BodyResponseCallback<Schema$Customer>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
         void|AxiosPromise<Schema$Customer> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Customers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3077,26 +3433,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
+    update(params?: Params$Resource$Customers$Update, options?: MethodOptions):
         AxiosPromise<Schema$Customer>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
-        callback?: BodyResponseCallback<Schema$Customer>): void;
+        params: Params$Resource$Customers$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Customer>,
+        callback: BodyResponseCallback<Schema$Customer>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Customer>,
+        params: Params$Resource$Customers$Update,
+        callback: BodyResponseCallback<Schema$Customer>): void;
+    update(callback: BodyResponseCallback<Schema$Customer>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Customers$Update|
+        BodyResponseCallback<Schema$Customer>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Customer>,
         callback?: BodyResponseCallback<Schema$Customer>):
         void|AxiosPromise<Schema$Customer> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Customers$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3118,6 +3484,49 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Customers$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Id of the customer to be retrieved
+     */
+    customerKey?: string;
+  }
+  export interface Params$Resource$Customers$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Id of the customer to be updated
+     */
+    customerKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Customer;
+  }
+  export interface Params$Resource$Customers$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Id of the customer to be updated
+     */
+    customerKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Customer;
+  }
+
 
   export class Resource$Domainaliases {
     root: Admin;
@@ -3144,22 +3553,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Domainaliases$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Domainaliases$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Domainaliases$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Domainaliases$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Domainaliases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domainaliases$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3197,24 +3621,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Domainaliases$Get,
         options?: MethodOptions): AxiosPromise<Schema$DomainAlias>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
-        callback?: BodyResponseCallback<Schema$DomainAlias>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
+    get(params: Params$Resource$Domainaliases$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
+        callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    get(params: Params$Resource$Domainaliases$Get,
+        callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    get(callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    get(paramsOrCallback?: Params$Resource$Domainaliases$Get|
+        BodyResponseCallback<Schema$DomainAlias>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DomainAlias>,
         callback?: BodyResponseCallback<Schema$DomainAlias>):
         void|AxiosPromise<Schema$DomainAlias> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Domainaliases$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domainaliases$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3252,26 +3687,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$DomainAlias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
-        callback?: BodyResponseCallback<Schema$DomainAlias>): void;
+        params?: Params$Resource$Domainaliases$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$DomainAlias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
+        params: Params$Resource$Domainaliases$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$DomainAlias>,
+        callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    insert(
+        params: Params$Resource$Domainaliases$Insert,
+        callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    insert(callback: BodyResponseCallback<Schema$DomainAlias>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Domainaliases$Insert|
+        BodyResponseCallback<Schema$DomainAlias>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DomainAlias>,
         callback?: BodyResponseCallback<Schema$DomainAlias>):
         void|AxiosPromise<Schema$DomainAlias> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Domainaliases$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domainaliases$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3308,26 +3756,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Domainaliases$List, options?: MethodOptions):
         AxiosPromise<Schema$DomainAliases>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAliases>,
-        callback?: BodyResponseCallback<Schema$DomainAliases>): void;
+        params: Params$Resource$Domainaliases$List,
+        options: MethodOptions|BodyResponseCallback<Schema$DomainAliases>,
+        callback: BodyResponseCallback<Schema$DomainAliases>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$DomainAliases>,
+        params: Params$Resource$Domainaliases$List,
+        callback: BodyResponseCallback<Schema$DomainAliases>): void;
+    list(callback: BodyResponseCallback<Schema$DomainAliases>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Domainaliases$List|
+        BodyResponseCallback<Schema$DomainAliases>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$DomainAliases>,
         callback?: BodyResponseCallback<Schema$DomainAliases>):
         void|AxiosPromise<Schema$DomainAliases> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Domainaliases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domainaliases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3350,6 +3810,68 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Domainaliases$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Name of domain alias to be retrieved.
+     */
+    domainAliasName?: string;
+  }
+  export interface Params$Resource$Domainaliases$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Name of domain alias to be retrieved.
+     */
+    domainAliasName?: string;
+  }
+  export interface Params$Resource$Domainaliases$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DomainAlias;
+  }
+  export interface Params$Resource$Domainaliases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Name of the parent domain for which domain aliases are to be fetched.
+     */
+    parentDomainName?: string;
+  }
+
 
   export class Resource$Domains {
     root: Admin;
@@ -3376,22 +3898,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Domains$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Domains$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Domains$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Domains$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3429,23 +3964,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Domains>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains>,
-        callback?: BodyResponseCallback<Schema$Domains>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains>,
+    get(params?: Params$Resource$Domains$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Domains>;
+    get(params: Params$Resource$Domains$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Domains>,
+        callback: BodyResponseCallback<Schema$Domains>): void;
+    get(params: Params$Resource$Domains$Get,
+        callback: BodyResponseCallback<Schema$Domains>): void;
+    get(callback: BodyResponseCallback<Schema$Domains>): void;
+    get(paramsOrCallback?: Params$Resource$Domains$Get|
+        BodyResponseCallback<Schema$Domains>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains>,
         callback?: BodyResponseCallback<Schema$Domains>):
         void|AxiosPromise<Schema$Domains> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3483,25 +4028,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Domains>;
+    insert(params?: Params$Resource$Domains$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Domains>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains>,
-        callback?: BodyResponseCallback<Schema$Domains>): void;
+        params: Params$Resource$Domains$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Domains>,
+        callback: BodyResponseCallback<Schema$Domains>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains>,
+        params: Params$Resource$Domains$Insert,
+        callback: BodyResponseCallback<Schema$Domains>): void;
+    insert(callback: BodyResponseCallback<Schema$Domains>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Domains$Insert|
+        BodyResponseCallback<Schema$Domains>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains>,
         callback?: BodyResponseCallback<Schema$Domains>):
         void|AxiosPromise<Schema$Domains> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3536,25 +4092,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Domains2>;
+    list(params?: Params$Resource$Domains$List, options?: MethodOptions):
+        AxiosPromise<Schema$Domains2>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains2>,
-        callback?: BodyResponseCallback<Schema$Domains2>): void;
+        params: Params$Resource$Domains$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Domains2>,
+        callback: BodyResponseCallback<Schema$Domains2>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Domains2>,
+        params: Params$Resource$Domains$List,
+        callback: BodyResponseCallback<Schema$Domains2>): void;
+    list(callback: BodyResponseCallback<Schema$Domains2>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Domains$List|
+        BodyResponseCallback<Schema$Domains2>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Domains2>,
         callback?: BodyResponseCallback<Schema$Domains2>):
         void|AxiosPromise<Schema$Domains2> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Domains$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Domains$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3576,6 +4143,64 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Domains$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Name of domain to be deleted
+     */
+    domainName?: string;
+  }
+  export interface Params$Resource$Domains$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Name of domain to be retrieved
+     */
+    domainName?: string;
+  }
+  export interface Params$Resource$Domains$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Domains;
+  }
+  export interface Params$Resource$Domains$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+  }
+
 
   export class Resource$Groups {
     root: Admin;
@@ -3603,22 +4228,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Groups$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Groups$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Groups$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Groups$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3653,23 +4291,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+    get(params?: Params$Resource$Groups$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Group>;
+    get(params: Params$Resource$Groups$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    get(params: Params$Resource$Groups$Get,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    get(callback: BodyResponseCallback<Schema$Group>): void;
+    get(paramsOrCallback?: Params$Resource$Groups$Get|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3704,25 +4352,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+    insert(params?: Params$Resource$Groups$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Group>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
+        params: Params$Resource$Groups$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+        params: Params$Resource$Groups$Insert,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    insert(callback: BodyResponseCallback<Schema$Group>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Groups$Insert|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3761,25 +4420,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Groups>;
+    list(params?: Params$Resource$Groups$List, options?: MethodOptions):
+        AxiosPromise<Schema$Groups>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
-        callback?: BodyResponseCallback<Schema$Groups>): void;
+        params: Params$Resource$Groups$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Groups>,
+        callback: BodyResponseCallback<Schema$Groups>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Groups>,
+        params: Params$Resource$Groups$List,
+        callback: BodyResponseCallback<Schema$Groups>): void;
+    list(callback: BodyResponseCallback<Schema$Groups>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Groups$List|
+        BodyResponseCallback<Schema$Groups>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Groups>,
         callback?: BodyResponseCallback<Schema$Groups>):
         void|AxiosPromise<Schema$Groups> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3815,25 +4485,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+    patch(params?: Params$Resource$Groups$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Group>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
+        params: Params$Resource$Groups$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+        params: Params$Resource$Groups$Patch,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    patch(callback: BodyResponseCallback<Schema$Group>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Groups$Patch|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3869,25 +4550,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Group>;
+    update(params?: Params$Resource$Groups$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Group>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
-        callback?: BodyResponseCallback<Schema$Group>): void;
+        params: Params$Resource$Groups$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Group>,
+        callback: BodyResponseCallback<Schema$Group>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Group>,
+        params: Params$Resource$Groups$Update,
+        callback: BodyResponseCallback<Schema$Group>): void;
+    update(callback: BodyResponseCallback<Schema$Group>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Groups$Update|
+        BodyResponseCallback<Schema$Group>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Group>,
         callback?: BodyResponseCallback<Schema$Group>):
         void|AxiosPromise<Schema$Group> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Groups$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3909,6 +4601,99 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Groups$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+  }
+  export interface Params$Resource$Groups$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+  }
+  export interface Params$Resource$Groups$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Groups$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
+     * all groups for a customer, fill this field instead of domain.
+     */
+    customer?: string;
+    /**
+     * Name of the domain. Fill this field to get groups from only this domain.
+     * To return all groups in a multi-domain fill customer field instead.
+     */
+    domain?: string;
+    /**
+     * Maximum number of results to return. Default is 200
+     */
+    maxResults?: number;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * Email or immutable ID of the user if only those groups are to be listed,
+     * the given user is a member of. If ID, it should match with id of user
+     * object
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Groups$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group. If ID, it should match with id of
+     * group object
+     */
+    groupKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Group;
+  }
+  export interface Params$Resource$Groups$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group. If ID, it should match with id of
+     * group object
+     */
+    groupKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Group;
+  }
+
   export class Resource$Groups$Aliases {
     root: Admin;
     constructor(root: Admin) {
@@ -3934,22 +4719,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Groups$Aliases$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Groups$Aliases$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Groups$Aliases$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Groups$Aliases$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Aliases$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3986,25 +4786,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Alias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Alias>,
-        callback?: BodyResponseCallback<Schema$Alias>): void;
+        params?: Params$Resource$Groups$Aliases$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Alias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Alias>,
+        params: Params$Resource$Groups$Aliases$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Alias>,
+        callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(
+        params: Params$Resource$Groups$Aliases$Insert,
+        callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Groups$Aliases$Insert|
+        BodyResponseCallback<Schema$Alias>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alias>,
         callback?: BodyResponseCallback<Schema$Alias>):
         void|AxiosPromise<Schema$Alias> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Aliases$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4039,25 +4852,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Aliases>;
+    list(params?: Params$Resource$Groups$Aliases$List, options?: MethodOptions):
+        AxiosPromise<Schema$Aliases>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
-        callback?: BodyResponseCallback<Schema$Aliases>): void;
+        params: Params$Resource$Groups$Aliases$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Aliases>,
+        callback: BodyResponseCallback<Schema$Aliases>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
+        params: Params$Resource$Groups$Aliases$List,
+        callback: BodyResponseCallback<Schema$Aliases>): void;
+    list(callback: BodyResponseCallback<Schema$Aliases>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Groups$Aliases$List|
+        BodyResponseCallback<Schema$Aliases>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
         callback?: BodyResponseCallback<Schema$Aliases>):
         void|AxiosPromise<Schema$Aliases> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Groups$Aliases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Aliases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4079,6 +4904,49 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Groups$Aliases$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alias to be removed
+     */
+    alias?: string;
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+  }
+  export interface Params$Resource$Groups$Aliases$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Alias;
+  }
+  export interface Params$Resource$Groups$Aliases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+  }
+
 
 
   export class Resource$Members {
@@ -4106,22 +4974,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Members$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Members$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Members$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Members$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4158,23 +5039,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Member>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
-        callback?: BodyResponseCallback<Schema$Member>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
+    get(params?: Params$Resource$Members$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Member>;
+    get(params: Params$Resource$Members$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Member>,
+        callback: BodyResponseCallback<Schema$Member>): void;
+    get(params: Params$Resource$Members$Get,
+        callback: BodyResponseCallback<Schema$Member>): void;
+    get(callback: BodyResponseCallback<Schema$Member>): void;
+    get(paramsOrCallback?: Params$Resource$Members$Get|
+        BodyResponseCallback<Schema$Member>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
         void|AxiosPromise<Schema$Member> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4212,26 +5103,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    hasMember(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$MembersHasMember>;
     hasMember(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MembersHasMember>,
-        callback?: BodyResponseCallback<Schema$MembersHasMember>): void;
+        params?: Params$Resource$Members$Hasmember,
+        options?: MethodOptions): AxiosPromise<Schema$MembersHasMember>;
     hasMember(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MembersHasMember>,
+        params: Params$Resource$Members$Hasmember,
+        options: MethodOptions|BodyResponseCallback<Schema$MembersHasMember>,
+        callback: BodyResponseCallback<Schema$MembersHasMember>): void;
+    hasMember(
+        params: Params$Resource$Members$Hasmember,
+        callback: BodyResponseCallback<Schema$MembersHasMember>): void;
+    hasMember(callback: BodyResponseCallback<Schema$MembersHasMember>): void;
+    hasMember(
+        paramsOrCallback?: Params$Resource$Members$Hasmember|
+        BodyResponseCallback<Schema$MembersHasMember>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MembersHasMember>,
         callback?: BodyResponseCallback<Schema$MembersHasMember>):
         void|AxiosPromise<Schema$MembersHasMember> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Members$Hasmember;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Hasmember;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4269,25 +5173,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Member>;
+    insert(params?: Params$Resource$Members$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Member>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
-        callback?: BodyResponseCallback<Schema$Member>): void;
+        params: Params$Resource$Members$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Member>,
+        callback: BodyResponseCallback<Schema$Member>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
+        params: Params$Resource$Members$Insert,
+        callback: BodyResponseCallback<Schema$Member>): void;
+    insert(callback: BodyResponseCallback<Schema$Member>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Members$Insert|
+        BodyResponseCallback<Schema$Member>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
         void|AxiosPromise<Schema$Member> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4325,25 +5240,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Members>;
+    list(params?: Params$Resource$Members$List, options?: MethodOptions):
+        AxiosPromise<Schema$Members>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Members>,
-        callback?: BodyResponseCallback<Schema$Members>): void;
+        params: Params$Resource$Members$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Members>,
+        callback: BodyResponseCallback<Schema$Members>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Members>,
+        params: Params$Resource$Members$List,
+        callback: BodyResponseCallback<Schema$Members>): void;
+    list(callback: BodyResponseCallback<Schema$Members>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Members$List|
+        BodyResponseCallback<Schema$Members>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Members>,
         callback?: BodyResponseCallback<Schema$Members>):
         void|AxiosPromise<Schema$Members> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4381,25 +5307,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Member>;
+    patch(params?: Params$Resource$Members$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Member>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
-        callback?: BodyResponseCallback<Schema$Member>): void;
+        params: Params$Resource$Members$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Member>,
+        callback: BodyResponseCallback<Schema$Member>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
+        params: Params$Resource$Members$Patch,
+        callback: BodyResponseCallback<Schema$Member>): void;
+    patch(callback: BodyResponseCallback<Schema$Member>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Members$Patch|
+        BodyResponseCallback<Schema$Member>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
         void|AxiosPromise<Schema$Member> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4437,25 +5374,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Member>;
+    update(params?: Params$Resource$Members$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Member>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
-        callback?: BodyResponseCallback<Schema$Member>): void;
+        params: Params$Resource$Members$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Member>,
+        callback: BodyResponseCallback<Schema$Member>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Member>,
+        params: Params$Resource$Members$Update,
+        callback: BodyResponseCallback<Schema$Member>): void;
+    update(callback: BodyResponseCallback<Schema$Member>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Members$Update|
+        BodyResponseCallback<Schema$Member>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Member>,
         callback?: BodyResponseCallback<Schema$Member>):
         void|AxiosPromise<Schema$Member> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Members$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Members$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4478,6 +5426,135 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Members$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+    /**
+     * Email or immutable ID of the member
+     */
+    memberKey?: string;
+  }
+  export interface Params$Resource$Members$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+    /**
+     * Email or immutable ID of the member
+     */
+    memberKey?: string;
+  }
+  export interface Params$Resource$Members$Hasmember {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the group in the API request. The value can be the group's
+     * email address, group alias, or the unique group ID.
+     */
+    groupKey?: string;
+    /**
+     * Identifies the user member in the API request. The value can be the
+     * user's primary email address, alias, or unique ID.
+     */
+    memberKey?: string;
+  }
+  export interface Params$Resource$Members$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Member;
+  }
+  export interface Params$Resource$Members$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group
+     */
+    groupKey?: string;
+    /**
+     * Maximum number of results to return. Default is 200
+     */
+    maxResults?: number;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * Comma separated role values to filter list results on.
+     */
+    roles?: string;
+  }
+  export interface Params$Resource$Members$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group. If ID, it should match with id of
+     * group object
+     */
+    groupKey?: string;
+    /**
+     * Email or immutable ID of the user. If ID, it should match with id of
+     * member object
+     */
+    memberKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Member;
+  }
+  export interface Params$Resource$Members$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the group. If ID, it should match with id of
+     * group object
+     */
+    groupKey?: string;
+    /**
+     * Email or immutable ID of the user. If ID, it should match with id of
+     * member object
+     */
+    memberKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Member;
+  }
+
 
   export class Resource$Mobiledevices {
     root: Admin;
@@ -4505,22 +5582,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    action(params?: any, options?: MethodOptions): AxiosPromise<void>;
     action(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Mobiledevices$Action,
+        options?: MethodOptions): AxiosPromise<void>;
     action(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Mobiledevices$Action,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    action(
+        params: Params$Resource$Mobiledevices$Action,
+        callback: BodyResponseCallback<void>): void;
+    action(callback: BodyResponseCallback<void>): void;
+    action(
+        paramsOrCallback?: Params$Resource$Mobiledevices$Action|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Action;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobiledevices$Action;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4558,22 +5650,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Mobiledevices$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Mobiledevices$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Mobiledevices$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Mobiledevices$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobiledevices$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4612,24 +5719,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Mobiledevices$Get,
         options?: MethodOptions): AxiosPromise<Schema$MobileDevice>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileDevice>,
-        callback?: BodyResponseCallback<Schema$MobileDevice>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileDevice>,
+    get(params: Params$Resource$Mobiledevices$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileDevice>,
+        callback: BodyResponseCallback<Schema$MobileDevice>): void;
+    get(params: Params$Resource$Mobiledevices$Get,
+        callback: BodyResponseCallback<Schema$MobileDevice>): void;
+    get(callback: BodyResponseCallback<Schema$MobileDevice>): void;
+    get(paramsOrCallback?: Params$Resource$Mobiledevices$Get|
+        BodyResponseCallback<Schema$MobileDevice>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileDevice>,
         callback?: BodyResponseCallback<Schema$MobileDevice>):
         void|AxiosPromise<Schema$MobileDevice> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobiledevices$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobiledevices$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4672,26 +5790,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Mobiledevices$List, options?: MethodOptions):
         AxiosPromise<Schema$MobileDevices>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileDevices>,
-        callback?: BodyResponseCallback<Schema$MobileDevices>): void;
+        params: Params$Resource$Mobiledevices$List,
+        options: MethodOptions|BodyResponseCallback<Schema$MobileDevices>,
+        callback: BodyResponseCallback<Schema$MobileDevices>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$MobileDevices>,
+        params: Params$Resource$Mobiledevices$List,
+        callback: BodyResponseCallback<Schema$MobileDevices>): void;
+    list(callback: BodyResponseCallback<Schema$MobileDevices>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Mobiledevices$List|
+        BodyResponseCallback<Schema$MobileDevices>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$MobileDevices>,
         callback?: BodyResponseCallback<Schema$MobileDevices>):
         void|AxiosPromise<Schema$MobileDevices> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Mobiledevices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Mobiledevices$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4714,6 +5844,98 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Mobiledevices$Action {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Mobile Device
+     */
+    resourceId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$MobileDeviceAction;
+  }
+  export interface Params$Resource$Mobiledevices$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Immutable ID of Mobile Device
+     */
+    resourceId?: string;
+  }
+  export interface Params$Resource$Mobiledevices$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+    /**
+     * Immutable ID of Mobile Device
+     */
+    resourceId?: string;
+  }
+  export interface Params$Resource$Mobiledevices$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Maximum number of results to return. Default is 100
+     */
+    maxResults?: number;
+    /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * Restrict information returned to a set of selected fields.
+     */
+    projection?: string;
+    /**
+     * Search string in the format given at
+     * http://support.google.com/a/bin/answer.py?hl=en&answer=1408863#search
+     */
+    query?: string;
+    /**
+     * Whether to return results in ascending or descending order. Only of use
+     * when orderBy is also used
+     */
+    sortOrder?: string;
+  }
+
 
   export class Resource$Notifications {
     root: Admin;
@@ -4740,22 +5962,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Notifications$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Notifications$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Notifications$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Notifications$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4793,24 +6030,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Notifications$Get,
         options?: MethodOptions): AxiosPromise<Schema$Notification>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+    get(params: Params$Resource$Notifications$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    get(params: Params$Resource$Notifications$Get,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    get(callback: BodyResponseCallback<Schema$Notification>): void;
+    get(paramsOrCallback?: Params$Resource$Notifications$Get|
+        BodyResponseCallback<Schema$Notification>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
         void|AxiosPromise<Schema$Notification> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4850,26 +6098,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Notifications$List, options?: MethodOptions):
         AxiosPromise<Schema$Notifications>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notifications>,
-        callback?: BodyResponseCallback<Schema$Notifications>): void;
+        params: Params$Resource$Notifications$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Notifications>,
+        callback: BodyResponseCallback<Schema$Notifications>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notifications>,
+        params: Params$Resource$Notifications$List,
+        callback: BodyResponseCallback<Schema$Notifications>): void;
+    list(callback: BodyResponseCallback<Schema$Notifications>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Notifications$List|
+        BodyResponseCallback<Schema$Notifications>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notifications>,
         callback?: BodyResponseCallback<Schema$Notifications>):
         void|AxiosPromise<Schema$Notifications> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4907,26 +6167,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Notification>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>): void;
+        params?: Params$Resource$Notifications$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Notification>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        params: Params$Resource$Notifications$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    patch(
+        params: Params$Resource$Notifications$Patch,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    patch(callback: BodyResponseCallback<Schema$Notification>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Notifications$Patch|
+        BodyResponseCallback<Schema$Notification>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
         void|AxiosPromise<Schema$Notification> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -4965,26 +6238,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Notification>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
-        callback?: BodyResponseCallback<Schema$Notification>): void;
+        params?: Params$Resource$Notifications$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Notification>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        params: Params$Resource$Notifications$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Notification>,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    update(
+        params: Params$Resource$Notifications$Update,
+        callback: BodyResponseCallback<Schema$Notification>): void;
+    update(callback: BodyResponseCallback<Schema$Notification>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Notifications$Update|
+        BodyResponseCallback<Schema$Notification>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Notification>,
         callback?: BodyResponseCallback<Schema$Notification>):
         void|AxiosPromise<Schema$Notification> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Notifications$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Notifications$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5008,6 +6294,102 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Notifications$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. The customerId is also
+     * returned as part of the Users resource.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the notification.
+     */
+    notificationId?: string;
+  }
+  export interface Params$Resource$Notifications$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. The customerId is also
+     * returned as part of the Users resource.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the notification.
+     */
+    notificationId?: string;
+  }
+  export interface Params$Resource$Notifications$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account.
+     */
+    customer?: string;
+    /**
+     * The ISO 639-1 code of the language notifications are returned in. The
+     * default is English (en).
+     */
+    language?: string;
+    /**
+     * Maximum number of notifications to return per page. The default is 100.
+     */
+    maxResults?: number;
+    /**
+     * The token to specify the page of results to retrieve.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Notifications$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the notification.
+     */
+    notificationId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Notification;
+  }
+  export interface Params$Resource$Notifications$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the notification.
+     */
+    notificationId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Notification;
+  }
+
 
   export class Resource$Orgunits {
     root: Admin;
@@ -5034,22 +6416,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Orgunits$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Orgunits$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Orgunits$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Orgunits$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5087,23 +6482,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
-        callback?: BodyResponseCallback<Schema$OrgUnit>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+    get(params?: Params$Resource$Orgunits$Get,
+        options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
+    get(params: Params$Resource$Orgunits$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    get(params: Params$Resource$Orgunits$Get,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    get(callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    get(paramsOrCallback?: Params$Resource$Orgunits$Get|
+        BodyResponseCallback<Schema$OrgUnit>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
         void|AxiosPromise<Schema$OrgUnit> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5141,25 +6546,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
+    insert(params?: Params$Resource$Orgunits$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$OrgUnit>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
-        callback?: BodyResponseCallback<Schema$OrgUnit>): void;
+        params: Params$Resource$Orgunits$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        params: Params$Resource$Orgunits$Insert,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    insert(callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Orgunits$Insert|
+        BodyResponseCallback<Schema$OrgUnit>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
         void|AxiosPromise<Schema$OrgUnit> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5197,25 +6613,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$OrgUnits>;
+    list(params?: Params$Resource$Orgunits$List, options?: MethodOptions):
+        AxiosPromise<Schema$OrgUnits>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
-        callback?: BodyResponseCallback<Schema$OrgUnits>): void;
+        params: Params$Resource$Orgunits$List,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
+        callback: BodyResponseCallback<Schema$OrgUnits>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
+        params: Params$Resource$Orgunits$List,
+        callback: BodyResponseCallback<Schema$OrgUnits>): void;
+    list(callback: BodyResponseCallback<Schema$OrgUnits>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Orgunits$List|
+        BodyResponseCallback<Schema$OrgUnits>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnits>,
         callback?: BodyResponseCallback<Schema$OrgUnits>):
         void|AxiosPromise<Schema$OrgUnits> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5253,25 +6680,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
+    patch(params?: Params$Resource$Orgunits$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$OrgUnit>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
-        callback?: BodyResponseCallback<Schema$OrgUnit>): void;
+        params: Params$Resource$Orgunits$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        params: Params$Resource$Orgunits$Patch,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    patch(callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Orgunits$Patch|
+        BodyResponseCallback<Schema$OrgUnit>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
         void|AxiosPromise<Schema$OrgUnit> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5310,25 +6748,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$OrgUnit>;
+    update(params?: Params$Resource$Orgunits$Update, options?: MethodOptions):
+        AxiosPromise<Schema$OrgUnit>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
-        callback?: BodyResponseCallback<Schema$OrgUnit>): void;
+        params: Params$Resource$Orgunits$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
+        params: Params$Resource$Orgunits$Update,
+        callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    update(callback: BodyResponseCallback<Schema$OrgUnit>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Orgunits$Update|
+        BodyResponseCallback<Schema$OrgUnit>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$OrgUnit>,
         callback?: BodyResponseCallback<Schema$OrgUnit>):
         void|AxiosPromise<Schema$OrgUnit> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Orgunits$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5352,6 +6801,110 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Orgunits$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Full path of the organizational unit or its ID
+     */
+    orgUnitPath?: string;
+  }
+  export interface Params$Resource$Orgunits$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Full path of the organizational unit or its ID
+     */
+    orgUnitPath?: string;
+  }
+  export interface Params$Resource$Orgunits$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$OrgUnit;
+  }
+  export interface Params$Resource$Orgunits$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * the URL-encoded organizational unit's path or its ID
+     */
+    orgUnitPath?: string;
+    /**
+     * Whether to return all sub-organizations or just immediate children
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Orgunits$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Full path of the organizational unit or its ID
+     */
+    orgUnitPath?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$OrgUnit;
+  }
+  export interface Params$Resource$Orgunits$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Full path of the organizational unit or its ID
+     */
+    orgUnitPath?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$OrgUnit;
+  }
+
 
   export class Resource$Privileges {
     root: Admin;
@@ -5377,26 +6930,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Privileges$List, options?: MethodOptions):
         AxiosPromise<Schema$Privileges>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Privileges>,
-        callback?: BodyResponseCallback<Schema$Privileges>): void;
+        params: Params$Resource$Privileges$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Privileges>,
+        callback: BodyResponseCallback<Schema$Privileges>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Privileges>,
+        params: Params$Resource$Privileges$List,
+        callback: BodyResponseCallback<Schema$Privileges>): void;
+    list(callback: BodyResponseCallback<Schema$Privileges>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Privileges$List|
+        BodyResponseCallback<Schema$Privileges>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Privileges>,
         callback?: BodyResponseCallback<Schema$Privileges>):
         void|AxiosPromise<Schema$Privileges> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Privileges$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Privileges$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5421,6 +6985,19 @@ export namespace admin_directory_v1 {
     }
   }
 
+  export interface Params$Resource$Privileges$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+  }
+
+
   export class Resource$Resolvedappaccesssettings {
     root: Admin;
     constructor(root: Admin) {
@@ -5444,28 +7021,42 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    GetSettings(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$AppAccessCollections>;
     GetSettings(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Resolvedappaccesssettings$Getsettings,
+        options?: MethodOptions): AxiosPromise<Schema$AppAccessCollections>;
+    GetSettings(
+        params: Params$Resource$Resolvedappaccesssettings$Getsettings,
+        options: MethodOptions|
         BodyResponseCallback<Schema$AppAccessCollections>,
-        callback?: BodyResponseCallback<Schema$AppAccessCollections>): void;
+        callback: BodyResponseCallback<Schema$AppAccessCollections>): void;
     GetSettings(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Resolvedappaccesssettings$Getsettings,
+        callback: BodyResponseCallback<Schema$AppAccessCollections>): void;
+    GetSettings(callback: BodyResponseCallback<Schema$AppAccessCollections>):
+        void;
+    GetSettings(
+        paramsOrCallback?:
+            Params$Resource$Resolvedappaccesssettings$Getsettings|
+        BodyResponseCallback<Schema$AppAccessCollections>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$AppAccessCollections>,
         callback?: BodyResponseCallback<Schema$AppAccessCollections>):
         void|AxiosPromise<Schema$AppAccessCollections> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resolvedappaccesssettings$Getsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resolvedappaccesssettings$Getsettings;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5500,26 +7091,41 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    ListTrustedApps(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TrustedApps>;
     ListTrustedApps(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TrustedApps>,
-        callback?: BodyResponseCallback<Schema$TrustedApps>): void;
+        params?: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
+        options?: MethodOptions): AxiosPromise<Schema$TrustedApps>;
     ListTrustedApps(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TrustedApps>,
+        params: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
+        options: MethodOptions|BodyResponseCallback<Schema$TrustedApps>,
+        callback: BodyResponseCallback<Schema$TrustedApps>): void;
+    ListTrustedApps(
+        params: Params$Resource$Resolvedappaccesssettings$Listtrustedapps,
+        callback: BodyResponseCallback<Schema$TrustedApps>): void;
+    ListTrustedApps(callback: BodyResponseCallback<Schema$TrustedApps>): void;
+    ListTrustedApps(
+        paramsOrCallback?:
+            Params$Resource$Resolvedappaccesssettings$Listtrustedapps|
+        BodyResponseCallback<Schema$TrustedApps>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TrustedApps>,
         callback?: BodyResponseCallback<Schema$TrustedApps>):
         void|AxiosPromise<Schema$TrustedApps> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resolvedappaccesssettings$Listtrustedapps;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as
+            Params$Resource$Resolvedappaccesssettings$Listtrustedapps;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5542,6 +7148,20 @@ export namespace admin_directory_v1 {
     }
   }
 
+  export interface Params$Resource$Resolvedappaccesssettings$Getsettings {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Resolvedappaccesssettings$Listtrustedapps {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+
+
   export class Resource$Resources {
     root: Admin;
     buildings: Resource$Resources$Buildings;
@@ -5559,6 +7179,8 @@ export namespace admin_directory_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Resources$Buildings {
     root: Admin;
     constructor(root: Admin) {
@@ -5584,22 +7206,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Resources$Buildings$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Resources$Buildings$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Resources$Buildings$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Resources$Buildings$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Buildings$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5637,23 +7274,34 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Building>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
-        callback?: BodyResponseCallback<Schema$Building>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
+    get(params?: Params$Resource$Resources$Buildings$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Building>;
+    get(params: Params$Resource$Resources$Buildings$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Building>,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    get(params: Params$Resource$Resources$Buildings$Get,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    get(callback: BodyResponseCallback<Schema$Building>): void;
+    get(paramsOrCallback?: Params$Resource$Resources$Buildings$Get|
+        BodyResponseCallback<Schema$Building>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
         void|AxiosPromise<Schema$Building> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5691,26 +7339,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Building>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
-        callback?: BodyResponseCallback<Schema$Building>): void;
+        params?: Params$Resource$Resources$Buildings$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Building>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
+        params: Params$Resource$Resources$Buildings$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Building>,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    insert(
+        params: Params$Resource$Resources$Buildings$Insert,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    insert(callback: BodyResponseCallback<Schema$Building>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Resources$Buildings$Insert|
+        BodyResponseCallback<Schema$Building>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
         void|AxiosPromise<Schema$Building> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Buildings$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5749,25 +7409,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Buildings>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Buildings>,
-        callback?: BodyResponseCallback<Schema$Buildings>): void;
+        params?: Params$Resource$Resources$Buildings$List,
+        options?: MethodOptions): AxiosPromise<Schema$Buildings>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Buildings>,
+        params: Params$Resource$Resources$Buildings$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Buildings>,
+        callback: BodyResponseCallback<Schema$Buildings>): void;
+    list(
+        params: Params$Resource$Resources$Buildings$List,
+        callback: BodyResponseCallback<Schema$Buildings>): void;
+    list(callback: BodyResponseCallback<Schema$Buildings>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Resources$Buildings$List|
+        BodyResponseCallback<Schema$Buildings>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Buildings>,
         callback?: BodyResponseCallback<Schema$Buildings>):
         void|AxiosPromise<Schema$Buildings> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5806,25 +7480,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Building>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
-        callback?: BodyResponseCallback<Schema$Building>): void;
+        params?: Params$Resource$Resources$Buildings$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Building>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
+        params: Params$Resource$Resources$Buildings$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Building>,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    patch(
+        params: Params$Resource$Resources$Buildings$Patch,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    patch(callback: BodyResponseCallback<Schema$Building>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Resources$Buildings$Patch|
+        BodyResponseCallback<Schema$Building>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
         void|AxiosPromise<Schema$Building> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Buildings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5863,26 +7550,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Building>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
-        callback?: BodyResponseCallback<Schema$Building>): void;
+        params?: Params$Resource$Resources$Buildings$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Building>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Building>,
+        params: Params$Resource$Resources$Buildings$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Building>,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    update(
+        params: Params$Resource$Resources$Buildings$Update,
+        callback: BodyResponseCallback<Schema$Building>): void;
+    update(callback: BodyResponseCallback<Schema$Building>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Resources$Buildings$Update|
+        BodyResponseCallback<Schema$Building>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Building>,
         callback?: BodyResponseCallback<Schema$Building>):
         void|AxiosPromise<Schema$Building> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Buildings$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Buildings$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5906,6 +7605,122 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Resources$Buildings$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the building to delete.
+     */
+    buildingId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+  }
+  export interface Params$Resource$Resources$Buildings$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the building to retrieve.
+     */
+    buildingId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+  }
+  export interface Params$Resource$Resources$Buildings$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Building;
+  }
+  export interface Params$Resource$Resources$Buildings$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Token to specify the next page in the list.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Resources$Buildings$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the building to update.
+     */
+    buildingId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Building;
+  }
+  export interface Params$Resource$Resources$Buildings$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the building to update.
+     */
+    buildingId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Building;
+  }
+
 
   export class Resource$Resources$Calendars {
     root: Admin;
@@ -5932,22 +7747,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Resources$Calendars$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Resources$Calendars$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Resources$Calendars$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Resources$Calendars$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Calendars$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -5985,24 +7815,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Resources$Calendars$Get,
         options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
-        callback?: BodyResponseCallback<Schema$CalendarResource>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+    get(params: Params$Resource$Resources$Calendars$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    get(params: Params$Resource$Resources$Calendars$Get,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    get(callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    get(paramsOrCallback?: Params$Resource$Resources$Calendars$Get|
+        BodyResponseCallback<Schema$CalendarResource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
         void|AxiosPromise<Schema$CalendarResource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6040,26 +7881,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarResource>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
-        callback?: BodyResponseCallback<Schema$CalendarResource>): void;
+        params?: Params$Resource$Resources$Calendars$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        params: Params$Resource$Resources$Calendars$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    insert(
+        params: Params$Resource$Resources$Calendars$Insert,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    insert(callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Resources$Calendars$Insert|
+        BodyResponseCallback<Schema$CalendarResource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
         void|AxiosPromise<Schema$CalendarResource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Calendars$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6100,26 +7954,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarResources>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResources>,
-        callback?: BodyResponseCallback<Schema$CalendarResources>): void;
+        params?: Params$Resource$Resources$Calendars$List,
+        options?: MethodOptions): AxiosPromise<Schema$CalendarResources>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResources>,
+        params: Params$Resource$Resources$Calendars$List,
+        options: MethodOptions|BodyResponseCallback<Schema$CalendarResources>,
+        callback: BodyResponseCallback<Schema$CalendarResources>): void;
+    list(
+        params: Params$Resource$Resources$Calendars$List,
+        callback: BodyResponseCallback<Schema$CalendarResources>): void;
+    list(callback: BodyResponseCallback<Schema$CalendarResources>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Resources$Calendars$List|
+        BodyResponseCallback<Schema$CalendarResources>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CalendarResources>,
         callback?: BodyResponseCallback<Schema$CalendarResources>):
         void|AxiosPromise<Schema$CalendarResources> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6161,26 +8028,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarResource>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
-        callback?: BodyResponseCallback<Schema$CalendarResource>): void;
+        params?: Params$Resource$Resources$Calendars$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        params: Params$Resource$Resources$Calendars$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    patch(
+        params: Params$Resource$Resources$Calendars$Patch,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    patch(callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Resources$Calendars$Patch|
+        BodyResponseCallback<Schema$CalendarResource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
         void|AxiosPromise<Schema$CalendarResource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Calendars$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6221,26 +8101,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$CalendarResource>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
-        callback?: BodyResponseCallback<Schema$CalendarResource>): void;
+        params?: Params$Resource$Resources$Calendars$Update,
+        options?: MethodOptions): AxiosPromise<Schema$CalendarResource>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        params: Params$Resource$Resources$Calendars$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$CalendarResource>,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    update(
+        params: Params$Resource$Resources$Calendars$Update,
+        callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    update(callback: BodyResponseCallback<Schema$CalendarResource>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Resources$Calendars$Update|
+        BodyResponseCallback<Schema$CalendarResource>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$CalendarResource>,
         callback?: BodyResponseCallback<Schema$CalendarResource>):
         void|AxiosPromise<Schema$CalendarResource> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Resources$Calendars$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Calendars$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6264,6 +8157,142 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Resources$Calendars$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the calendar resource to delete.
+     */
+    calendarResourceId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+  }
+  export interface Params$Resource$Resources$Calendars$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the calendar resource to retrieve.
+     */
+    calendarResourceId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+  }
+  export interface Params$Resource$Resources$Calendars$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CalendarResource;
+  }
+  export interface Params$Resource$Resources$Calendars$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Field(s) to sort results by in either ascending or descending order.
+     * Supported fields include resourceId, resourceName, capacity, buildingId,
+     * and floorName. If no order is specified, defaults to ascending. Should be
+     * of the form "field [asc|desc], field [asc|desc], ...". For example
+     * buildingId, capacity desc would return results sorted first by buildingId
+     * in ascending order then by capacity in descending order.
+     */
+    orderBy?: string;
+    /**
+     * Token to specify the next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * String query used to filter results. Should be of the form "field
+     * operator value" where field can be any of supported fields and operators
+     * can be any of supported operations. Operators include '=' for exact match
+     * and ':' for prefix match or HAS match where applicable. For prefix match,
+     * the value should always be followed by a *. Supported fields include
+     * generatedResourceName, name, buildingId, featureInstances.feature.name.
+     * For example buildingId=US-NYC-9TH AND
+     * featureInstances.feature.name:Phone.
+     */
+    query?: string;
+  }
+  export interface Params$Resource$Resources$Calendars$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the calendar resource to update.
+     */
+    calendarResourceId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CalendarResource;
+  }
+  export interface Params$Resource$Resources$Calendars$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID of the calendar resource to update.
+     */
+    calendarResourceId?: string;
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CalendarResource;
+  }
+
 
   export class Resource$Resources$Features {
     root: Admin;
@@ -6290,22 +8319,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Resources$Features$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Resources$Features$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Resources$Features$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Resources$Features$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6343,23 +8387,34 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Feature>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
-        callback?: BodyResponseCallback<Schema$Feature>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
+    get(params?: Params$Resource$Resources$Features$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Feature>;
+    get(params: Params$Resource$Resources$Features$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    get(params: Params$Resource$Resources$Features$Get,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    get(callback: BodyResponseCallback<Schema$Feature>): void;
+    get(paramsOrCallback?: Params$Resource$Resources$Features$Get|
+        BodyResponseCallback<Schema$Feature>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
         void|AxiosPromise<Schema$Feature> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6397,25 +8452,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Feature>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
-        callback?: BodyResponseCallback<Schema$Feature>): void;
+        params?: Params$Resource$Resources$Features$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Feature>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        params: Params$Resource$Resources$Features$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    insert(
+        params: Params$Resource$Resources$Features$Insert,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    insert(callback: BodyResponseCallback<Schema$Feature>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Resources$Features$Insert|
+        BodyResponseCallback<Schema$Feature>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
         void|AxiosPromise<Schema$Feature> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6454,25 +8522,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Features>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Features>,
-        callback?: BodyResponseCallback<Schema$Features>): void;
+        params?: Params$Resource$Resources$Features$List,
+        options?: MethodOptions): AxiosPromise<Schema$Features>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Features>,
+        params: Params$Resource$Resources$Features$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Features>,
+        callback: BodyResponseCallback<Schema$Features>): void;
+    list(
+        params: Params$Resource$Resources$Features$List,
+        callback: BodyResponseCallback<Schema$Features>): void;
+    list(callback: BodyResponseCallback<Schema$Features>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Resources$Features$List|
+        BodyResponseCallback<Schema$Features>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Features>,
         callback?: BodyResponseCallback<Schema$Features>):
         void|AxiosPromise<Schema$Features> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6511,25 +8592,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Feature>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
-        callback?: BodyResponseCallback<Schema$Feature>): void;
+        params?: Params$Resource$Resources$Features$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Feature>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        params: Params$Resource$Resources$Features$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    patch(
+        params: Params$Resource$Resources$Features$Patch,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    patch(callback: BodyResponseCallback<Schema$Feature>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Resources$Features$Patch|
+        BodyResponseCallback<Schema$Feature>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
         void|AxiosPromise<Schema$Feature> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6568,22 +8662,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    rename(params?: any, options?: MethodOptions): AxiosPromise<void>;
     rename(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Resources$Features$Rename,
+        options?: MethodOptions): AxiosPromise<void>;
     rename(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Resources$Features$Rename,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    rename(
+        params: Params$Resource$Resources$Features$Rename,
+        callback: BodyResponseCallback<void>): void;
+    rename(callback: BodyResponseCallback<void>): void;
+    rename(
+        paramsOrCallback?: Params$Resource$Resources$Features$Rename|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Rename;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Rename;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6622,25 +8731,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Feature>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
-        callback?: BodyResponseCallback<Schema$Feature>): void;
+        params?: Params$Resource$Resources$Features$Update,
+        options?: MethodOptions): AxiosPromise<Schema$Feature>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        params: Params$Resource$Resources$Features$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Feature>,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    update(
+        params: Params$Resource$Resources$Features$Update,
+        callback: BodyResponseCallback<Schema$Feature>): void;
+    update(callback: BodyResponseCallback<Schema$Feature>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Resources$Features$Update|
+        BodyResponseCallback<Schema$Feature>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Feature>,
         callback?: BodyResponseCallback<Schema$Feature>):
         void|AxiosPromise<Schema$Feature> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Resources$Features$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Resources$Features$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6664,6 +8786,143 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Resources$Features$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the feature to delete.
+     */
+    featureKey?: string;
+  }
+  export interface Params$Resource$Resources$Features$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the feature to retrieve.
+     */
+    featureKey?: string;
+  }
+  export interface Params$Resource$Resources$Features$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Feature;
+  }
+  export interface Params$Resource$Resources$Features$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Token to specify the next page in the list.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Resources$Features$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the feature to update.
+     */
+    featureKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Feature;
+  }
+  export interface Params$Resource$Resources$Features$Rename {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the feature to rename.
+     */
+    oldName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$FeatureRename;
+  }
+  export interface Params$Resource$Resources$Features$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The unique ID for the customer's G Suite account. As an account
+     * administrator, you can also use the my_customer alias to represent your
+     * account's customer ID.
+     */
+    customer?: string;
+    /**
+     * The unique ID of the feature to update.
+     */
+    featureKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Feature;
+  }
+
 
 
   export class Resource$Roleassignments {
@@ -6691,22 +8950,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Roleassignments$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Roleassignments$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Roleassignments$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Roleassignments$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Roleassignments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roleassignments$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6744,24 +9018,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Roleassignments$Get,
         options?: MethodOptions): AxiosPromise<Schema$RoleAssignment>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
-        callback?: BodyResponseCallback<Schema$RoleAssignment>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
+    get(params: Params$Resource$Roleassignments$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
+        callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    get(params: Params$Resource$Roleassignments$Get,
+        callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    get(callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    get(paramsOrCallback?: Params$Resource$Roleassignments$Get|
+        BodyResponseCallback<Schema$RoleAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RoleAssignment>,
         callback?: BodyResponseCallback<Schema$RoleAssignment>):
         void|AxiosPromise<Schema$RoleAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Roleassignments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roleassignments$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6799,26 +9084,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RoleAssignment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
-        callback?: BodyResponseCallback<Schema$RoleAssignment>): void;
+        params?: Params$Resource$Roleassignments$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$RoleAssignment>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
+        params: Params$Resource$Roleassignments$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$RoleAssignment>,
+        callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    insert(
+        params: Params$Resource$Roleassignments$Insert,
+        callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    insert(callback: BodyResponseCallback<Schema$RoleAssignment>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Roleassignments$Insert|
+        BodyResponseCallback<Schema$RoleAssignment>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RoleAssignment>,
         callback?: BodyResponseCallback<Schema$RoleAssignment>):
         void|AxiosPromise<Schema$RoleAssignment> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Roleassignments$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roleassignments$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6858,26 +9156,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$RoleAssignments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignments>,
-        callback?: BodyResponseCallback<Schema$RoleAssignments>): void;
+        params?: Params$Resource$Roleassignments$List,
+        options?: MethodOptions): AxiosPromise<Schema$RoleAssignments>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$RoleAssignments>,
+        params: Params$Resource$Roleassignments$List,
+        options: MethodOptions|BodyResponseCallback<Schema$RoleAssignments>,
+        callback: BodyResponseCallback<Schema$RoleAssignments>): void;
+    list(
+        params: Params$Resource$Roleassignments$List,
+        callback: BodyResponseCallback<Schema$RoleAssignments>): void;
+    list(callback: BodyResponseCallback<Schema$RoleAssignments>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Roleassignments$List|
+        BodyResponseCallback<Schema$RoleAssignments>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$RoleAssignments>,
         callback?: BodyResponseCallback<Schema$RoleAssignments>):
         void|AxiosPromise<Schema$RoleAssignments> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Roleassignments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roleassignments$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6900,6 +9211,82 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Roleassignments$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role assignment.
+     */
+    roleAssignmentId?: string;
+  }
+  export interface Params$Resource$Roleassignments$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role assignment.
+     */
+    roleAssignmentId?: string;
+  }
+  export interface Params$Resource$Roleassignments$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$RoleAssignment;
+  }
+  export interface Params$Resource$Roleassignments$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Token to specify the next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Immutable ID of a role. If included in the request, returns only role
+     * assignments containing this role ID.
+     */
+    roleId?: string;
+    /**
+     * The user's primary email address, alias email address, or unique user ID.
+     * If included in the request, returns role assignments only for this user.
+     */
+    userKey?: string;
+  }
+
 
   export class Resource$Roles {
     root: Admin;
@@ -6926,22 +9313,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Roles$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Roles$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Roles$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Roles$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -6978,21 +9378,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+    get(params?: Params$Resource$Roles$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Role>;
+    get(params: Params$Resource$Roles$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(params: Params$Resource$Roles$Get,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    get(callback: BodyResponseCallback<Schema$Role>): void;
+    get(paramsOrCallback?: Params$Resource$Roles$Get|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7029,23 +9441,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+    insert(params?: Params$Resource$Roles$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Role>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params: Params$Resource$Roles$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Roles$Insert,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    insert(callback: BodyResponseCallback<Schema$Role>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Roles$Insert|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7082,25 +9507,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Roles>;
+    list(params?: Params$Resource$Roles$List, options?: MethodOptions):
+        AxiosPromise<Schema$Roles>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Roles>,
-        callback?: BodyResponseCallback<Schema$Roles>): void;
+        params: Params$Resource$Roles$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Roles>,
+        callback: BodyResponseCallback<Schema$Roles>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Roles>,
+        params: Params$Resource$Roles$List,
+        callback: BodyResponseCallback<Schema$Roles>): void;
+    list(callback: BodyResponseCallback<Schema$Roles>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Roles$List|
+        BodyResponseCallback<Schema$Roles>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Roles>,
         callback?: BodyResponseCallback<Schema$Roles>):
         void|AxiosPromise<Schema$Roles> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7137,23 +9573,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+    patch(params?: Params$Resource$Roles$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Role>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params: Params$Resource$Roles$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Roles$Patch,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    patch(callback: BodyResponseCallback<Schema$Role>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Roles$Patch|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7191,23 +9640,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Role>;
+    update(params?: Params$Resource$Roles$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Role>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
-        callback?: BodyResponseCallback<Schema$Role>): void;
+        params: Params$Resource$Roles$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Role>,
+        callback: BodyResponseCallback<Schema$Role>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Role>,
+        params: Params$Resource$Roles$Update,
+        callback: BodyResponseCallback<Schema$Role>): void;
+    update(callback: BodyResponseCallback<Schema$Role>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Roles$Update|
+        BodyResponseCallback<Schema$Role>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Role>,
         callback?: BodyResponseCallback<Schema$Role>):
         void|AxiosPromise<Schema$Role> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Roles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Roles$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7230,6 +9692,110 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Roles$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role.
+     */
+    roleId?: string;
+  }
+  export interface Params$Resource$Roles$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role.
+     */
+    roleId?: string;
+  }
+  export interface Params$Resource$Roles$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Role;
+  }
+  export interface Params$Resource$Roles$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Maximum number of results to return.
+     */
+    maxResults?: number;
+    /**
+     * Token to specify the next page in the list.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Roles$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role.
+     */
+    roleId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Role;
+  }
+  export interface Params$Resource$Roles$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account.
+     */
+    customer?: string;
+    /**
+     * Immutable ID of the role.
+     */
+    roleId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Role;
+  }
+
 
   export class Resource$Schemas {
     root: Admin;
@@ -7256,22 +9822,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Schemas$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Schemas$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Schemas$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Schemas$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7309,23 +9888,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Schema>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback?: BodyResponseCallback<Schema$Schema>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
+    get(params?: Params$Resource$Schemas$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Schema>;
+    get(params: Params$Resource$Schemas$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        callback: BodyResponseCallback<Schema$Schema>): void;
+    get(params: Params$Resource$Schemas$Get,
+        callback: BodyResponseCallback<Schema$Schema>): void;
+    get(callback: BodyResponseCallback<Schema$Schema>): void;
+    get(paramsOrCallback?: Params$Resource$Schemas$Get|
+        BodyResponseCallback<Schema$Schema>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
         void|AxiosPromise<Schema$Schema> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7363,25 +9952,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Schema>;
+    insert(params?: Params$Resource$Schemas$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$Schema>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback?: BodyResponseCallback<Schema$Schema>): void;
+        params: Params$Resource$Schemas$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        callback: BodyResponseCallback<Schema$Schema>): void;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        params: Params$Resource$Schemas$Insert,
+        callback: BodyResponseCallback<Schema$Schema>): void;
+    insert(callback: BodyResponseCallback<Schema$Schema>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Schemas$Insert|
+        BodyResponseCallback<Schema$Schema>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
         void|AxiosPromise<Schema$Schema> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7417,25 +10017,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Schemas>;
+    list(params?: Params$Resource$Schemas$List, options?: MethodOptions):
+        AxiosPromise<Schema$Schemas>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schemas>,
-        callback?: BodyResponseCallback<Schema$Schemas>): void;
+        params: Params$Resource$Schemas$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Schemas>,
+        callback: BodyResponseCallback<Schema$Schemas>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schemas>,
+        params: Params$Resource$Schemas$List,
+        callback: BodyResponseCallback<Schema$Schemas>): void;
+    list(callback: BodyResponseCallback<Schema$Schemas>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Schemas$List|
+        BodyResponseCallback<Schema$Schemas>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schemas>,
         callback?: BodyResponseCallback<Schema$Schemas>):
         void|AxiosPromise<Schema$Schemas> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7473,25 +10084,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Schema>;
+    patch(params?: Params$Resource$Schemas$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$Schema>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback?: BodyResponseCallback<Schema$Schema>): void;
+        params: Params$Resource$Schemas$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        callback: BodyResponseCallback<Schema$Schema>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        params: Params$Resource$Schemas$Patch,
+        callback: BodyResponseCallback<Schema$Schema>): void;
+    patch(callback: BodyResponseCallback<Schema$Schema>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Schemas$Patch|
+        BodyResponseCallback<Schema$Schema>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
         void|AxiosPromise<Schema$Schema> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7530,25 +10152,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$Schema>;
+    update(params?: Params$Resource$Schemas$Update, options?: MethodOptions):
+        AxiosPromise<Schema$Schema>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
-        callback?: BodyResponseCallback<Schema$Schema>): void;
+        params: Params$Resource$Schemas$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        callback: BodyResponseCallback<Schema$Schema>): void;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Schema>,
+        params: Params$Resource$Schemas$Update,
+        callback: BodyResponseCallback<Schema$Schema>): void;
+    update(callback: BodyResponseCallback<Schema$Schema>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Schemas$Update|
+        BodyResponseCallback<Schema$Schema>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Schema>,
         callback?: BodyResponseCallback<Schema$Schema>):
         void|AxiosPromise<Schema$Schema> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Schemas$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Schemas$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7572,6 +10205,102 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Schemas$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Name or immutable ID of the schema
+     */
+    schemaKey?: string;
+  }
+  export interface Params$Resource$Schemas$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Name or immutable ID of the schema
+     */
+    schemaKey?: string;
+  }
+  export interface Params$Resource$Schemas$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Schema;
+  }
+  export interface Params$Resource$Schemas$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+  }
+  export interface Params$Resource$Schemas$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Name or immutable ID of the schema.
+     */
+    schemaKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Schema;
+  }
+  export interface Params$Resource$Schemas$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account
+     */
+    customerId?: string;
+    /**
+     * Name or immutable ID of the schema.
+     */
+    schemaKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Schema;
+  }
+
 
   export class Resource$Tokens {
     root: Admin;
@@ -7598,22 +10327,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Tokens$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Tokens$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Tokens$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Tokens$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tokens$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7650,23 +10392,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Token>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Token>,
-        callback?: BodyResponseCallback<Schema$Token>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Token>,
+    get(params?: Params$Resource$Tokens$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Token>;
+    get(params: Params$Resource$Tokens$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Token>,
+        callback: BodyResponseCallback<Schema$Token>): void;
+    get(params: Params$Resource$Tokens$Get,
+        callback: BodyResponseCallback<Schema$Token>): void;
+    get(callback: BodyResponseCallback<Schema$Token>): void;
+    get(paramsOrCallback?: Params$Resource$Tokens$Get|
+        BodyResponseCallback<Schema$Token>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Token>,
         callback?: BodyResponseCallback<Schema$Token>):
         void|AxiosPromise<Schema$Token> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tokens$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tokens$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7703,25 +10455,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Tokens>;
+    list(params?: Params$Resource$Tokens$List, options?: MethodOptions):
+        AxiosPromise<Schema$Tokens>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Tokens>,
-        callback?: BodyResponseCallback<Schema$Tokens>): void;
+        params: Params$Resource$Tokens$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Tokens>,
+        callback: BodyResponseCallback<Schema$Tokens>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Tokens>,
+        params: Params$Resource$Tokens$List,
+        callback: BodyResponseCallback<Schema$Tokens>): void;
+    list(callback: BodyResponseCallback<Schema$Tokens>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Tokens$List|
+        BodyResponseCallback<Schema$Tokens>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Tokens>,
         callback?: BodyResponseCallback<Schema$Tokens>):
         void|AxiosPromise<Schema$Tokens> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Tokens$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tokens$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7743,6 +10506,52 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Tokens$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Client ID of the application the token is issued to.
+     */
+    clientId?: string;
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Tokens$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The Client ID of the application the token is issued to.
+     */
+    clientId?: string;
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Tokens$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
+  }
+
 
   export class Resource$Users {
     root: Admin;
@@ -7772,22 +10581,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    delete(params?: Params$Resource$Users$Delete, options?: MethodOptions):
+        AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Users$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7825,21 +10647,33 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$User>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+    get(params?: Params$Resource$Users$Get,
+        options?: MethodOptions): AxiosPromise<Schema$User>;
+    get(params: Params$Resource$Users$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$User>,
+        callback: BodyResponseCallback<Schema$User>): void;
+    get(params: Params$Resource$Users$Get,
+        callback: BodyResponseCallback<Schema$User>): void;
+    get(callback: BodyResponseCallback<Schema$User>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Get|
+        BodyResponseCallback<Schema$User>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
         void|AxiosPromise<Schema$User> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7874,23 +10708,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$User>;
+    insert(params?: Params$Resource$Users$Insert, options?: MethodOptions):
+        AxiosPromise<Schema$User>;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>): void;
+        params: Params$Resource$Users$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$User>,
+        callback: BodyResponseCallback<Schema$User>): void;
     insert(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+        params: Params$Resource$Users$Insert,
+        callback: BodyResponseCallback<Schema$User>): void;
+    insert(callback: BodyResponseCallback<Schema$User>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Users$Insert|
+        BodyResponseCallback<Schema$User>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
         void|AxiosPromise<Schema$User> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7936,25 +10783,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Users>;
+    list(params?: Params$Resource$Users$List, options?: MethodOptions):
+        AxiosPromise<Schema$Users>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Users>,
-        callback?: BodyResponseCallback<Schema$Users>): void;
+        params: Params$Resource$Users$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Users>,
+        callback: BodyResponseCallback<Schema$Users>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Users>,
+        params: Params$Resource$Users$List,
+        callback: BodyResponseCallback<Schema$Users>): void;
+    list(callback: BodyResponseCallback<Schema$Users>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Users$List|
+        BodyResponseCallback<Schema$Users>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Users>,
         callback?: BodyResponseCallback<Schema$Users>):
         void|AxiosPromise<Schema$Users> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -7990,22 +10848,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    makeAdmin(params?: any, options?: MethodOptions): AxiosPromise<void>;
     makeAdmin(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Users$Makeadmin,
+        options?: MethodOptions): AxiosPromise<void>;
     makeAdmin(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Makeadmin,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    makeAdmin(
+        params: Params$Resource$Users$Makeadmin,
+        callback: BodyResponseCallback<void>): void;
+    makeAdmin(callback: BodyResponseCallback<void>): void;
+    makeAdmin(
+        paramsOrCallback?: Params$Resource$Users$Makeadmin|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Makeadmin;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Makeadmin;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8041,23 +10913,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$User>;
+    patch(params?: Params$Resource$Users$Patch, options?: MethodOptions):
+        AxiosPromise<Schema$User>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>): void;
+        params: Params$Resource$Users$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$User>,
+        callback: BodyResponseCallback<Schema$User>): void;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+        params: Params$Resource$Users$Patch,
+        callback: BodyResponseCallback<Schema$User>): void;
+    patch(callback: BodyResponseCallback<Schema$User>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Patch|
+        BodyResponseCallback<Schema$User>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
         void|AxiosPromise<Schema$User> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8093,22 +10978,35 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    undelete(params?: any, options?: MethodOptions): AxiosPromise<void>;
+    undelete(params?: Params$Resource$Users$Undelete, options?: MethodOptions):
+        AxiosPromise<void>;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params: Params$Resource$Users$Undelete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
     undelete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Undelete,
+        callback: BodyResponseCallback<void>): void;
+    undelete(callback: BodyResponseCallback<void>): void;
+    undelete(
+        paramsOrCallback?: Params$Resource$Users$Undelete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Undelete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8144,23 +11042,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions): AxiosPromise<Schema$User>;
+    update(params?: Params$Resource$Users$Update, options?: MethodOptions):
+        AxiosPromise<Schema$User>;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
-        callback?: BodyResponseCallback<Schema$User>): void;
+        params: Params$Resource$Users$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$User>,
+        callback: BodyResponseCallback<Schema$User>): void;
     update(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$User>,
+        params: Params$Resource$Users$Update,
+        callback: BodyResponseCallback<Schema$User>): void;
+    update(callback: BodyResponseCallback<Schema$User>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Users$Update|
+        BodyResponseCallback<Schema$User>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$User>,
         callback?: BodyResponseCallback<Schema$User>):
         void|AxiosPromise<Schema$User> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8207,25 +11118,36 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
+    watch(params?: Params$Resource$Users$Watch, options?: MethodOptions):
+        AxiosPromise<Schema$Channel>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>): void;
+        params: Params$Resource$Users$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        callback: BodyResponseCallback<Schema$Channel>): void;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        params: Params$Resource$Users$Watch,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Users$Watch|
+        BodyResponseCallback<Schema$Channel>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
         void|AxiosPromise<Schema$Channel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8247,6 +11169,235 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Users$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Comma-separated list of schema names. All fields from these schemas are
+     * fetched. This should only be set when projection=custom.
+     */
+    customFieldMask?: string;
+    /**
+     * What subset of fields to fetch for this user.
+     */
+    projection?: string;
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+    /**
+     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     */
+    viewType?: string;
+  }
+  export interface Params$Resource$Users$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+  }
+  export interface Params$Resource$Users$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
+     * all users for a customer, fill this field instead of domain.
+     */
+    customer?: string;
+    /**
+     * Comma-separated list of schema names. All fields from these schemas are
+     * fetched. This should only be set when projection=custom.
+     */
+    customFieldMask?: string;
+    /**
+     * Name of the domain. Fill this field to get users from only this domain.
+     * To return all users in a multi-domain fill customer field instead.
+     */
+    domain?: string;
+    /**
+     * Event on which subscription is intended (if subscribing)
+     */
+    event?: string;
+    /**
+     * Maximum number of results to return. Default is 100. Max allowed is 500
+     */
+    maxResults?: number;
+    /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * What subset of fields to fetch for this user.
+     */
+    projection?: string;
+    /**
+     * Query string search. Should be of the form "". Complete documentation is
+     * at
+     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     */
+    query?: string;
+    /**
+     * If set to true retrieves the list of deleted users. Default is false
+     */
+    showDeleted?: string;
+    /**
+     * Whether to return results in ascending or descending order.
+     */
+    sortOrder?: string;
+    /**
+     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     */
+    viewType?: string;
+  }
+  export interface Params$Resource$Users$Makeadmin {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user as admin
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserMakeAdmin;
+  }
+  export interface Params$Resource$Users$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user. If ID, it should match with id of user
+     * object
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$User;
+  }
+  export interface Params$Resource$Users$Undelete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The immutable id of the user
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserUndelete;
+  }
+  export interface Params$Resource$Users$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user. If ID, it should match with id of user
+     * object
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$User;
+  }
+  export interface Params$Resource$Users$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch
+     * all users for a customer, fill this field instead of domain.
+     */
+    customer?: string;
+    /**
+     * Comma-separated list of schema names. All fields from these schemas are
+     * fetched. This should only be set when projection=custom.
+     */
+    customFieldMask?: string;
+    /**
+     * Name of the domain. Fill this field to get users from only this domain.
+     * To return all users in a multi-domain fill customer field instead.
+     */
+    domain?: string;
+    /**
+     * Event on which subscription is intended (if subscribing)
+     */
+    event?: string;
+    /**
+     * Maximum number of results to return. Default is 100. Max allowed is 500
+     */
+    maxResults?: number;
+    /**
+     * Column to use for sorting results
+     */
+    orderBy?: string;
+    /**
+     * Token to specify next page in the list
+     */
+    pageToken?: string;
+    /**
+     * What subset of fields to fetch for this user.
+     */
+    projection?: string;
+    /**
+     * Query string search. Should be of the form "". Complete documentation is
+     * at
+     * https://developers.google.com/admin-sdk/directory/v1/guides/search-users
+     */
+    query?: string;
+    /**
+     * If set to true retrieves the list of deleted users. Default is false
+     */
+    showDeleted?: string;
+    /**
+     * Whether to return results in ascending or descending order.
+     */
+    sortOrder?: string;
+    /**
+     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     */
+    viewType?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Channel;
+  }
+
   export class Resource$Users$Aliases {
     root: Admin;
     constructor(root: Admin) {
@@ -8272,22 +11423,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Users$Aliases$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Aliases$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Users$Aliases$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Aliases$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Aliases$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8324,25 +11490,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    insert(params?: any, options?: MethodOptions): AxiosPromise<Schema$Alias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Alias>,
-        callback?: BodyResponseCallback<Schema$Alias>): void;
+        params?: Params$Resource$Users$Aliases$Insert,
+        options?: MethodOptions): AxiosPromise<Schema$Alias>;
     insert(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Alias>,
+        params: Params$Resource$Users$Aliases$Insert,
+        options: MethodOptions|BodyResponseCallback<Schema$Alias>,
+        callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(
+        params: Params$Resource$Users$Aliases$Insert,
+        callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(callback: BodyResponseCallback<Schema$Alias>): void;
+    insert(
+        paramsOrCallback?: Params$Resource$Users$Aliases$Insert|
+        BodyResponseCallback<Schema$Alias>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Alias>,
         callback?: BodyResponseCallback<Schema$Alias>):
         void|AxiosPromise<Schema$Alias> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Aliases$Insert;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8378,25 +11557,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions): AxiosPromise<Schema$Aliases>;
+    list(params?: Params$Resource$Users$Aliases$List, options?: MethodOptions):
+        AxiosPromise<Schema$Aliases>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
-        callback?: BodyResponseCallback<Schema$Aliases>): void;
+        params: Params$Resource$Users$Aliases$List,
+        options: MethodOptions|BodyResponseCallback<Schema$Aliases>,
+        callback: BodyResponseCallback<Schema$Aliases>): void;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
+        params: Params$Resource$Users$Aliases$List,
+        callback: BodyResponseCallback<Schema$Aliases>): void;
+    list(callback: BodyResponseCallback<Schema$Aliases>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Users$Aliases$List|
+        BodyResponseCallback<Schema$Aliases>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Aliases>,
         callback?: BodyResponseCallback<Schema$Aliases>):
         void|AxiosPromise<Schema$Aliases> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Aliases$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Aliases$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8433,25 +11624,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    watch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Channel>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
-        callback?: BodyResponseCallback<Schema$Channel>): void;
+        params?: Params$Resource$Users$Aliases$Watch,
+        options?: MethodOptions): AxiosPromise<Schema$Channel>;
     watch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        params: Params$Resource$Users$Aliases$Watch,
+        options: MethodOptions|BodyResponseCallback<Schema$Channel>,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(
+        params: Params$Resource$Users$Aliases$Watch,
+        callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(callback: BodyResponseCallback<Schema$Channel>): void;
+    watch(
+        paramsOrCallback?: Params$Resource$Users$Aliases$Watch|
+        BodyResponseCallback<Schema$Channel>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Channel>,
         callback?: BodyResponseCallback<Schema$Channel>):
         void|AxiosPromise<Schema$Channel> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Aliases$Watch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Aliases$Watch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8474,6 +11678,72 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Aliases$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The alias to be removed
+     */
+    alias?: string;
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Users$Aliases$Insert {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Alias;
+  }
+  export interface Params$Resource$Users$Aliases$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Event on which subscription is intended (if subscribing)
+     */
+    event?: string;
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Users$Aliases$Watch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Event on which subscription is intended (if subscribing)
+     */
+    event?: string;
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Channel;
+  }
+
 
   export class Resource$Users$Photos {
     root: Admin;
@@ -8499,22 +11769,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Users$Photos$Delete,
+        options?: MethodOptions): AxiosPromise<void>;
     delete(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Users$Photos$Delete,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    delete(
+        params: Params$Resource$Users$Photos$Delete,
+        callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Users$Photos$Delete|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Photos$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Photos$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8550,23 +11835,34 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$UserPhoto>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
-        callback?: BodyResponseCallback<Schema$UserPhoto>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+    get(params?: Params$Resource$Users$Photos$Get,
+        options?: MethodOptions): AxiosPromise<Schema$UserPhoto>;
+    get(params: Params$Resource$Users$Photos$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    get(params: Params$Resource$Users$Photos$Get,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    get(callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    get(paramsOrCallback?: Params$Resource$Users$Photos$Get|
+        BodyResponseCallback<Schema$UserPhoto>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
         void|AxiosPromise<Schema$UserPhoto> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Photos$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Photos$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8603,26 +11899,38 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Users$Photos$Patch, options?: MethodOptions):
         AxiosPromise<Schema$UserPhoto>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
-        callback?: BodyResponseCallback<Schema$UserPhoto>): void;
+        params: Params$Resource$Users$Photos$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+        params: Params$Resource$Users$Photos$Patch,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    patch(callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Users$Photos$Patch|
+        BodyResponseCallback<Schema$UserPhoto>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
         void|AxiosPromise<Schema$UserPhoto> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Photos$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Photos$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8659,26 +11967,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    update(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$UserPhoto>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
-        callback?: BodyResponseCallback<Schema$UserPhoto>): void;
+        params?: Params$Resource$Users$Photos$Update,
+        options?: MethodOptions): AxiosPromise<Schema$UserPhoto>;
     update(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+        params: Params$Resource$Users$Photos$Update,
+        options: MethodOptions|BodyResponseCallback<Schema$UserPhoto>,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    update(
+        params: Params$Resource$Users$Photos$Update,
+        callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    update(callback: BodyResponseCallback<Schema$UserPhoto>): void;
+    update(
+        paramsOrCallback?: Params$Resource$Users$Photos$Update|
+        BodyResponseCallback<Schema$UserPhoto>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$UserPhoto>,
         callback?: BodyResponseCallback<Schema$UserPhoto>):
         void|AxiosPromise<Schema$UserPhoto> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Users$Photos$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Photos$Update;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8701,6 +12022,60 @@ export namespace admin_directory_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Users$Photos$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Users$Photos$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Users$Photos$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserPhoto;
+  }
+  export interface Params$Resource$Users$Photos$Update {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UserPhoto;
+  }
+
 
 
   export class Resource$Verificationcodes {
@@ -8727,22 +12102,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    generate(params?: any, options?: MethodOptions): AxiosPromise<void>;
     generate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Verificationcodes$Generate,
+        options?: MethodOptions): AxiosPromise<void>;
     generate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Verificationcodes$Generate,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    generate(
+        params: Params$Resource$Verificationcodes$Generate,
+        callback: BodyResponseCallback<void>): void;
+    generate(callback: BodyResponseCallback<void>): void;
+    generate(
+        paramsOrCallback?: Params$Resource$Verificationcodes$Generate|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Verificationcodes$Generate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Verificationcodes$Generate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8779,22 +12169,37 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    invalidate(params?: any, options?: MethodOptions): AxiosPromise<void>;
     invalidate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
-        callback?: BodyResponseCallback<void>): void;
+        params?: Params$Resource$Verificationcodes$Invalidate,
+        options?: MethodOptions): AxiosPromise<void>;
     invalidate(
-        params?: any, options?: MethodOptions|BodyResponseCallback<void>,
+        params: Params$Resource$Verificationcodes$Invalidate,
+        options: MethodOptions|BodyResponseCallback<void>,
+        callback: BodyResponseCallback<void>): void;
+    invalidate(
+        params: Params$Resource$Verificationcodes$Invalidate,
+        callback: BodyResponseCallback<void>): void;
+    invalidate(callback: BodyResponseCallback<void>): void;
+    invalidate(
+        paramsOrCallback?: Params$Resource$Verificationcodes$Invalidate|
+        BodyResponseCallback<void>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<void>,
         callback?: BodyResponseCallback<void>): void|AxiosPromise<void> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Verificationcodes$Invalidate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Verificationcodes$Invalidate;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8832,26 +12237,39 @@ export namespace admin_directory_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$VerificationCodes>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VerificationCodes>,
-        callback?: BodyResponseCallback<Schema$VerificationCodes>): void;
+        params?: Params$Resource$Verificationcodes$List,
+        options?: MethodOptions): AxiosPromise<Schema$VerificationCodes>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$VerificationCodes>,
+        params: Params$Resource$Verificationcodes$List,
+        options: MethodOptions|BodyResponseCallback<Schema$VerificationCodes>,
+        callback: BodyResponseCallback<Schema$VerificationCodes>): void;
+    list(
+        params: Params$Resource$Verificationcodes$List,
+        callback: BodyResponseCallback<Schema$VerificationCodes>): void;
+    list(callback: BodyResponseCallback<Schema$VerificationCodes>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Verificationcodes$List|
+        BodyResponseCallback<Schema$VerificationCodes>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$VerificationCodes>,
         callback?: BodyResponseCallback<Schema$VerificationCodes>):
         void|AxiosPromise<Schema$VerificationCodes> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Verificationcodes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Verificationcodes$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -8873,5 +12291,40 @@ export namespace admin_directory_v1 {
         return createAPIRequest<Schema$VerificationCodes>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Verificationcodes$Generate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Verificationcodes$Invalidate {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Email or immutable ID of the user
+     */
+    userKey?: string;
+  }
+  export interface Params$Resource$Verificationcodes$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Identifies the user in the API request. The value can be the user's
+     * primary email address, alias email address, or unique user ID.
+     */
+    userKey?: string;
   }
 }

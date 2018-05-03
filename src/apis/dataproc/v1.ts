@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace dataproc_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Cloud Dataproc API
    *
@@ -74,7 +77,7 @@ export namespace dataproc_v1 {
      * The number of the accelerator cards of this type exposed to this
      * instance.
      */
-    acceleratorCount: number;
+    acceleratorCount?: number;
     /**
      * Full URL, partial URI, or short name of the accelerator type resource to
      * expose to this instance. See Compute Engine AcceleratorTypes.Examples:
@@ -84,7 +87,7 @@ export namespace dataproc_v1 {
      * Auto Zone Placement feature, you must use the short name of the
      * accelerator type resource, for example, nvidia-tesla-k80.
      */
-    acceleratorTypeUri: string;
+    acceleratorTypeUri?: string;
   }
   /**
    * A request to cancel a job.
@@ -99,17 +102,17 @@ export namespace dataproc_v1 {
      * Required. The cluster name. Cluster names within a project must be
      * unique. Names of deleted clusters can be reused.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. A cluster UUID (Unique Universal Identifier). Cloud Dataproc
      * generates this value when it creates the cluster.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
     /**
      * Required. The cluster config. Note that Cloud Dataproc may set default
      * values, and values may change when clusters are updated.
      */
-    config: Schema$ClusterConfig;
+    config?: Schema$ClusterConfig;
     /**
      * Optional. The labels to associate with this cluster. Label keys must
      * contain 1 to 63 characters, and must conform to RFC 1035
@@ -118,26 +121,26 @@ export namespace dataproc_v1 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a cluster.
      */
-    labels: any;
+    labels?: any;
     /**
      * Contains cluster daemon metrics such as HDFS and YARN stats.Beta Feature:
      * This report is available for testing purposes only. It may be changed
      * before final release.
      */
-    metrics: Schema$ClusterMetrics;
+    metrics?: Schema$ClusterMetrics;
     /**
      * Required. The Google Cloud Platform project ID that the cluster belongs
      * to.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Output only. Cluster status.
      */
-    status: Schema$ClusterStatus;
+    status?: Schema$ClusterStatus;
     /**
      * Output only. The previous cluster status.
      */
-    statusHistory: Schema$ClusterStatus[];
+    statusHistory?: Schema$ClusterStatus[];
   }
   /**
    * The cluster config.
@@ -151,12 +154,12 @@ export namespace dataproc_v1 {
      * Engine zone where your cluster is deployed, and then it will create and
      * manage this project-level, per-location bucket for you.
      */
-    configBucket: string;
+    configBucket?: string;
     /**
      * Required. The shared Compute Engine config settings for all instances in
      * a cluster.
      */
-    gceClusterConfig: Schema$GceClusterConfig;
+    gceClusterConfig?: Schema$GceClusterConfig;
     /**
      * Optional. Commands to execute on each node after config is completed. By
      * default, executables are run on master and all worker nodes. You can test
@@ -167,26 +170,26 @@ export namespace dataproc_v1 {
      * [[ &quot;${ROLE}&quot; == &#39;Master&#39; ]]; then   ... master specific
      * actions ... else   ... worker specific actions ... fi
      */
-    initializationActions: Schema$NodeInitializationAction[];
+    initializationActions?: Schema$NodeInitializationAction[];
     /**
      * Optional. The Compute Engine config settings for the master instance in a
      * cluster.
      */
-    masterConfig: Schema$InstanceGroupConfig;
+    masterConfig?: Schema$InstanceGroupConfig;
     /**
      * Optional. The Compute Engine config settings for additional worker
      * instances in a cluster.
      */
-    secondaryWorkerConfig: Schema$InstanceGroupConfig;
+    secondaryWorkerConfig?: Schema$InstanceGroupConfig;
     /**
      * Optional. The config settings for software inside the cluster.
      */
-    softwareConfig: Schema$SoftwareConfig;
+    softwareConfig?: Schema$SoftwareConfig;
     /**
      * Optional. The Compute Engine config settings for worker instances in a
      * cluster.
      */
-    workerConfig: Schema$InstanceGroupConfig;
+    workerConfig?: Schema$InstanceGroupConfig;
   }
   /**
    * Contains cluster daemon metrics, such as HDFS and YARN stats.Beta Feature:
@@ -197,11 +200,11 @@ export namespace dataproc_v1 {
     /**
      * The HDFS metrics.
      */
-    hdfsMetrics: any;
+    hdfsMetrics?: any;
     /**
      * The YARN metrics.
      */
-    yarnMetrics: any;
+    yarnMetrics?: any;
   }
   /**
    * Metadata describing the operation.
@@ -210,35 +213,35 @@ export namespace dataproc_v1 {
     /**
      * Output only. Name of the cluster for the operation.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. Cluster UUID for the operation.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
     /**
      * Output only. Short description of operation.
      */
-    description: string;
+    description?: string;
     /**
      * Output only. Labels associated with the operation
      */
-    labels: any;
+    labels?: any;
     /**
      * Output only. The operation type.
      */
-    operationType: string;
+    operationType?: string;
     /**
      * Output only. Current operation status.
      */
-    status: Schema$ClusterOperationStatus;
+    status?: Schema$ClusterOperationStatus;
     /**
      * Output only. The previous operation status.
      */
-    statusHistory: Schema$ClusterOperationStatus[];
+    statusHistory?: Schema$ClusterOperationStatus[];
     /**
      * Output only. Errors encountered during operation execution.
      */
-    warnings: string[];
+    warnings?: string[];
   }
   /**
    * The status of the operation.
@@ -247,19 +250,19 @@ export namespace dataproc_v1 {
     /**
      * Output only. A message containing any operation metadata details.
      */
-    details: string;
+    details?: string;
     /**
      * Output only. A message containing the detailed operation state.
      */
-    innerState: string;
+    innerState?: string;
     /**
      * Output only. A message containing the operation state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The time this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
   }
   /**
    * The status of a cluster and its instances.
@@ -268,20 +271,20 @@ export namespace dataproc_v1 {
     /**
      * Output only. Optional details of cluster&#39;s state.
      */
-    detail: string;
+    detail?: string;
     /**
      * Output only. The cluster&#39;s state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. Time when this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
     /**
      * Output only. Additional state information that includes status reported
      * by the agent.
      */
-    substate: string;
+    substate?: string;
   }
   /**
    * A request to collect cluster diagnostic information.
@@ -295,7 +298,7 @@ export namespace dataproc_v1 {
      * Output only. The Cloud Storage URI of the diagnostic output. The output
      * report is a plain text file with a summary of collected diagnostics.
      */
-    outputUri: string;
+    outputUri?: string;
   }
   /**
    * Specifies the config of disk options for a group of VM instances.
@@ -304,7 +307,7 @@ export namespace dataproc_v1 {
     /**
      * Optional. Size in GB of the boot disk (default is 500GB).
      */
-    bootDiskSizeGb: number;
+    bootDiskSizeGb?: number;
     /**
      * Optional. Number of attached SSDs, from 0 to 4 (default is 0). If SSDs
      * are not attached, the boot disk is used to store runtime logs and HDFS
@@ -312,7 +315,7 @@ export namespace dataproc_v1 {
      * or more SSDs are attached, this runtime bulk data is spread across them,
      * and the boot disk contains only basic config and installed binaries.
      */
-    numLocalSsds: number;
+    numLocalSsds?: number;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -335,13 +338,13 @@ export namespace dataproc_v1 {
      * subnetwork enabled networks, and all off-cluster dependencies must be
      * configured to be accessible without external IP addresses.
      */
-    internalIpOnly: boolean;
+    internalIpOnly?: boolean;
     /**
      * The Compute Engine metadata entries to add to all instances (see Project
      * and instance metadata
      * (https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
      */
-    metadata: any;
+    metadata?: any;
     /**
      * Optional. The Compute Engine network to be used for machine
      * communications. Cannot be specified with subnetwork_uri. If neither
@@ -352,7 +355,7 @@ export namespace dataproc_v1 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default
      * projects/[project_id]/regions/global/default default
      */
-    networkUri: string;
+    networkUri?: string;
     /**
      * Optional. The service account of the instances. Defaults to the default
      * Compute Engine service account. Custom service accounts need permissions
@@ -362,7 +365,7 @@ export namespace dataproc_v1 {
      * for more information). Example:
      * [account_id]@[project_id].iam.gserviceaccount.com
      */
-    serviceAccount: string;
+    serviceAccount?: string;
     /**
      * Optional. The URIs of service account scopes to be included in Compute
      * Engine instances. The following base set of scopes is always included:
@@ -375,7 +378,7 @@ export namespace dataproc_v1 {
      * https://www.googleapis.com/auth/bigtable.data
      * https://www.googleapis.com/auth/devstorage.full_control
      */
-    serviceAccountScopes: string[];
+    serviceAccountScopes?: string[];
     /**
      * Optional. The Compute Engine subnetwork to be used for machine
      * communications. Cannot be specified with network_uri.A full URL, partial
@@ -383,11 +386,11 @@ export namespace dataproc_v1 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/sub0
      * projects/[project_id]/regions/us-east1/sub0 sub0
      */
-    subnetworkUri: string;
+    subnetworkUri?: string;
     /**
      * The Compute Engine tags to add to all instances (see Tagging instances).
      */
-    tags: string[];
+    tags?: string[];
     /**
      * Optional. The zone where the Compute Engine cluster will be located. On a
      * create request, it is required in the &quot;global&quot; region. If
@@ -398,7 +401,7 @@ export namespace dataproc_v1 {
      * https://www.googleapis.com/compute/v1/projects/[project_id]/zones/[zone]
      * projects/[project_id]/zones/[zone] us-central1-f
      */
-    zoneUri: string;
+    zoneUri?: string;
   }
   /**
    * A Cloud Dataproc job for running Apache Hadoop MapReduce
@@ -412,47 +415,47 @@ export namespace dataproc_v1 {
      * of Hadoop drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
      * .tgz, or .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as -libjars or -Dfoo=bar, that can be set as job properties, since a
      * collision may occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS (Hadoop Compatible Filesystem) URIs of files to be copied
      * to the working directory of Hadoop drivers and distributed tasks. Useful
      * for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. Jar file URIs to add to the CLASSPATHs of the Hadoop driver and
      * tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * The name of the driver&#39;s main class. The jar file containing the
      * class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass: string;
+    mainClass?: string;
     /**
      * The HCFS URI of the jar file containing the main class. Examples:
      * &#39;gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar&#39;
      * &#39;hdfs:/tmp/test-samples/custom-wordcount.jar&#39;
      * &#39;file:///home/usr/lib/hadoop-mapreduce/hadoop-mapreduce-examples.jar&#39;
      */
-    mainJarFileUri: string;
+    mainJarFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure
      * Hadoop. Properties that conflict with values set by the Cloud Dataproc
      * API may be overwritten. Can include properties set in
      * /etc/hadoop/conf/*-site and classes in user code.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Hive (https://hive.apache.org/)
@@ -464,32 +467,32 @@ export namespace dataproc_v1 {
      * default value is false. Setting to true can be useful when executing
      * independent parallel queries.
      */
-    continueOnFailure: boolean;
+    continueOnFailure?: boolean;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Hive
      * server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes and UDFs.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. A mapping of property names and values, used to configure Hive.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/hive/conf/hive-site.xml, and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains Hive queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Hive command: SET name=&quot;value&quot;;).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * Optional. The config settings for Compute Engine resources in an instance
@@ -501,27 +504,26 @@ export namespace dataproc_v1 {
      * instances.Beta Feature: This feature is still under development. It may
      * be changed before final release.
      */
-    accelerators: Schema$AcceleratorConfig[];
+    accelerators?: Schema$AcceleratorConfig[];
     /**
      * Optional. Disk option config settings.
      */
-    diskConfig: Schema$DiskConfig;
+    diskConfig?: Schema$DiskConfig;
     /**
      * Output only. The Compute Engine image resource used for cluster
      * instances. Inferred from SoftwareConfig.image_version.
      */
-    imageUri: string;
+    imageUri?: string;
     /**
-     * Optional. The list of instance names. Cloud Dataproc derives the names
-     * from cluster_name, num_instances, and the instance group if not set by
-     * user (recommended practice is to let Cloud Dataproc derive the name).
+     * Output only. The list of instance names. Cloud Dataproc derives the names
+     * from cluster_name, num_instances, and the instance group.
      */
-    instanceNames: string[];
+    instanceNames?: string[];
     /**
      * Optional. Specifies that this instance group contains preemptible
      * instances.
      */
-    isPreemptible: boolean;
+    isPreemptible?: boolean;
     /**
      * Optional. The Compute Engine machine type used for cluster instances.A
      * full URL, partial URI, or short name are valid. Examples:
@@ -531,17 +533,17 @@ export namespace dataproc_v1 {
      * Auto Zone Placement feature, you must use the short name of the machine
      * type resource, for example, n1-standard-2.
      */
-    machineTypeUri: string;
+    machineTypeUri?: string;
     /**
      * Output only. The config for Compute Engine Instance Group Manager that
      * manages this group. This is only used for preemptible instance groups.
      */
-    managedGroupConfig: Schema$ManagedGroupConfig;
+    managedGroupConfig?: Schema$ManagedGroupConfig;
     /**
      * Optional. The number of VM instances in the instance group. For master
      * instance groups, must be set to 1.
      */
-    numInstances: number;
+    numInstances?: number;
   }
   /**
    * A Cloud Dataproc job resource.
@@ -552,20 +554,20 @@ export namespace dataproc_v1 {
      * which may be used as part of job setup and handling. If not present,
      * control files may be placed in the same location as driver_output_uri.
      */
-    driverControlFilesUri: string;
+    driverControlFilesUri?: string;
     /**
      * Output only. A URI pointing to the location of the stdout of the
      * job&#39;s driver program.
      */
-    driverOutputResourceUri: string;
+    driverOutputResourceUri?: string;
     /**
      * Job is a Hadoop job.
      */
-    hadoopJob: Schema$HadoopJob;
+    hadoopJob?: Schema$HadoopJob;
     /**
      * Job is a Hive job.
      */
-    hiveJob: Schema$HiveJob;
+    hiveJob?: Schema$HiveJob;
     /**
      * Optional. The labels to associate with this job. Label keys must contain
      * 1 to 63 characters, and must conform to RFC 1035
@@ -574,54 +576,54 @@ export namespace dataproc_v1 {
      * (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be
      * associated with a job.
      */
-    labels: any;
+    labels?: any;
     /**
      * Job is a Pig job.
      */
-    pigJob: Schema$PigJob;
+    pigJob?: Schema$PigJob;
     /**
      * Required. Job information, including how, when, and where to run the job.
      */
-    placement: Schema$JobPlacement;
+    placement?: Schema$JobPlacement;
     /**
      * Job is a Pyspark job.
      */
-    pysparkJob: Schema$PySparkJob;
+    pysparkJob?: Schema$PySparkJob;
     /**
      * Optional. The fully qualified reference to the job, which can be used to
      * obtain the equivalent REST path of the job resource. If this property is
      * not specified when a job is created, the server generates a
      * &lt;code&gt;job_id&lt;/code&gt;.
      */
-    reference: Schema$JobReference;
+    reference?: Schema$JobReference;
     /**
      * Optional. Job scheduling configuration.
      */
-    scheduling: Schema$JobScheduling;
+    scheduling?: Schema$JobScheduling;
     /**
      * Job is a Spark job.
      */
-    sparkJob: Schema$SparkJob;
+    sparkJob?: Schema$SparkJob;
     /**
      * Job is a SparkSql job.
      */
-    sparkSqlJob: Schema$SparkSqlJob;
+    sparkSqlJob?: Schema$SparkSqlJob;
     /**
      * Output only. The job status. Additional application-specific status
      * information may be contained in the &lt;code&gt;type_job&lt;/code&gt; and
      * &lt;code&gt;yarn_applications&lt;/code&gt; fields.
      */
-    status: Schema$JobStatus;
+    status?: Schema$JobStatus;
     /**
      * Output only. The previous job status.
      */
-    statusHistory: Schema$JobStatus[];
+    statusHistory?: Schema$JobStatus[];
     /**
      * Output only. The collection of YARN applications spun up by this job.Beta
      * Feature: This report is available for testing purposes only. It may be
      * changed before final release.
      */
-    yarnApplications: Schema$YarnApplication[];
+    yarnApplications?: Schema$YarnApplication[];
   }
   /**
    * Cloud Dataproc job config.
@@ -630,12 +632,12 @@ export namespace dataproc_v1 {
     /**
      * Required. The name of the cluster where the job will be submitted.
      */
-    clusterName: string;
+    clusterName?: string;
     /**
      * Output only. A cluster UUID generated by the Cloud Dataproc service when
      * the job is submitted.
      */
-    clusterUuid: string;
+    clusterUuid?: string;
   }
   /**
    * Encapsulates the full scoping used to reference a job.
@@ -648,12 +650,12 @@ export namespace dataproc_v1 {
      * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), or
      * hyphens (-). The maximum length is 100 characters.
      */
-    jobId: string;
+    jobId?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the job
      * belongs to.
      */
-    projectId: string;
+    projectId?: string;
   }
   /**
    * Job scheduling options.
@@ -665,7 +667,7 @@ export namespace dataproc_v1 {
      * failed.A job may be reported as thrashing if driver exits with non-zero
      * code 4 times within 10 minute window.Maximum value is 10.
      */
-    maxFailuresPerHour: number;
+    maxFailuresPerHour?: number;
   }
   /**
    * Cloud Dataproc job status.
@@ -675,20 +677,20 @@ export namespace dataproc_v1 {
      * Output only. Optional job state details, such as an error description if
      * the state is &lt;code&gt;ERROR&lt;/code&gt;.
      */
-    details: string;
+    details?: string;
     /**
      * Output only. A state message specifying the overall job state.
      */
-    state: string;
+    state?: string;
     /**
      * Output only. The time when this state was entered.
      */
-    stateStartTime: string;
+    stateStartTime?: string;
     /**
      * Output only. Additional state information, which includes status reported
      * by the agent.
      */
-    substate: string;
+    substate?: string;
   }
   /**
    * The list of all clusters in a project.
@@ -697,13 +699,13 @@ export namespace dataproc_v1 {
     /**
      * Output only. The clusters in the project.
      */
-    clusters: Schema$Cluster[];
+    clusters?: Schema$Cluster[];
     /**
      * Output only. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent ListClustersRequest.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * A list of jobs in a project.
@@ -712,13 +714,13 @@ export namespace dataproc_v1 {
     /**
      * Output only. Jobs list.
      */
-    jobs: Schema$Job[];
+    jobs?: Schema$Job[];
     /**
      * Optional. This token is included in the response if there are more
      * results to fetch. To fetch additional results, provide this value as the
      * page_token in a subsequent &lt;code&gt;ListJobsRequest&lt;/code&gt;.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -727,11 +729,11 @@ export namespace dataproc_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * The runtime logging config of the job.
@@ -743,7 +745,7 @@ export namespace dataproc_v1 {
      * &#39;com.google = FATAL&#39;, &#39;root = INFO&#39;, &#39;org.apache =
      * DEBUG&#39;
      */
-    driverLogLevels: any;
+    driverLogLevels?: any;
   }
   /**
    * Specifies the resources used to actively manage an instance group.
@@ -752,12 +754,12 @@ export namespace dataproc_v1 {
     /**
      * Output only. The name of the Instance Group Manager for this group.
      */
-    instanceGroupManagerName: string;
+    instanceGroupManagerName?: string;
     /**
      * Output only. The name of the Instance Template used for the Managed
      * Instance Group.
      */
-    instanceTemplateName: string;
+    instanceTemplateName?: string;
   }
   /**
    * Specifies an executable to run on a fully configured node and a timeout
@@ -767,14 +769,14 @@ export namespace dataproc_v1 {
     /**
      * Required. Cloud Storage URI of executable file.
      */
-    executableFile: string;
+    executableFile?: string;
     /**
      * Optional. Amount of time executable has to complete. Default is 10
      * minutes. Cluster creation fails with an explanatory error message (the
      * name of the executable that caused the error and the exceeded timeout
      * period) if the executable is not completed at end of the timeout period.
      */
-    executionTimeout: string;
+    executionTimeout?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -786,24 +788,24 @@ export namespace dataproc_v1 {
      * true, the operation is completed, and either error or response is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation. It typically
      * contains progress information and common metadata such as create time.
      * Some services might not provide such metadata. Any method that returns a
      * long-running operation should document the metadata type, if any.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the name
      * should have the format of operations/some/unique/name.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success. If the original
      * method returns no data on success, such as Delete, the response is
@@ -813,7 +815,7 @@ export namespace dataproc_v1 {
      * original method name. For example, if the original method name is
      * TakeSnapshot(), the inferred response type is TakeSnapshotResponse.
      */
-    response: any;
+    response?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Pig (https://pig.apache.org/)
@@ -825,36 +827,36 @@ export namespace dataproc_v1 {
      * default value is false. Setting to true can be useful when executing
      * independent parallel queries.
      */
-    continueOnFailure: boolean;
+    continueOnFailure?: boolean;
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATH of the Pig
      * Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Optional. A mapping of property names to values, used to configure Pig.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in /etc/hadoop/conf/*-site.xml,
      * /etc/pig/conf/pig.properties, and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains the Pig queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Pig command: name=[value]).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache PySpark
@@ -866,44 +868,44 @@ export namespace dataproc_v1 {
      * Optional. HCFS URIs of archives to be extracted in the working directory
      * of .jar, .tar, .tar.gz, .tgz, and .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as --conf, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Python drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Python
      * driver and tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Required. The HCFS URI of the main Python file to use as the driver. Must
      * be a .py file.
      */
-    mainPythonFileUri: string;
+    mainPythonFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure
      * PySpark. Properties that conflict with values set by the Cloud Dataproc
      * API may be overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties: any;
+    properties?: any;
     /**
      * Optional. HCFS file URIs of Python files to pass to the PySpark
      * framework. Supported file types: .py, .egg, and .zip.
      */
-    pythonFileUris: string[];
+    pythonFileUris?: string[];
   }
   /**
    * A list of queries to run on a cluster.
@@ -918,7 +920,7 @@ export namespace dataproc_v1 {
      * &quot;query1&quot;,       &quot;query2&quot;, &quot;query3;query4&quot;,
      * ]   } }
      */
-    queries: string[];
+    queries?: string[];
   }
   /**
    * Specifies the selection and config of software inside the cluster.
@@ -931,7 +933,7 @@ export namespace dataproc_v1 {
      * &quot;preview&quot; version. If unspecified, it defaults to the latest
      * version.
      */
-    imageVersion: string;
+    imageVersion?: string;
     /**
      * Optional. The properties to set on daemon config files.Property keys are
      * specified in prefix:property format, such as core:fs.defaultFS. The
@@ -941,7 +943,7 @@ export namespace dataproc_v1 {
      * pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more
      * information, see Cluster properties.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark (http://spark.apache.org/)
@@ -953,43 +955,43 @@ export namespace dataproc_v1 {
      * of Spark drivers and tasks. Supported file types: .jar, .tar, .tar.gz,
      * .tgz, and .zip.
      */
-    archiveUris: string[];
+    archiveUris?: string[];
     /**
      * Optional. The arguments to pass to the driver. Do not include arguments,
      * such as --conf, that can be set as job properties, since a collision may
      * occur that causes an incorrect job submission.
      */
-    args: string[];
+    args?: string[];
     /**
      * Optional. HCFS URIs of files to be copied to the working directory of
      * Spark drivers and distributed tasks. Useful for naively parallel tasks.
      */
-    fileUris: string[];
+    fileUris?: string[];
     /**
      * Optional. HCFS URIs of jar files to add to the CLASSPATHs of the Spark
      * driver and tasks.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * The name of the driver&#39;s main class. The jar file that contains the
      * class must be in the default CLASSPATH or specified in jar_file_uris.
      */
-    mainClass: string;
+    mainClass?: string;
     /**
      * The HCFS URI of the jar file that contains the main class.
      */
-    mainJarFileUri: string;
+    mainJarFileUri?: string;
     /**
      * Optional. A mapping of property names to values, used to configure Spark.
      * Properties that conflict with values set by the Cloud Dataproc API may be
      * overwritten. Can include properties set in
      * /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
-    properties: any;
+    properties?: any;
   }
   /**
    * A Cloud Dataproc job for running Apache Spark SQL
@@ -999,30 +1001,30 @@ export namespace dataproc_v1 {
     /**
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      */
-    jarFileUris: string[];
+    jarFileUris?: string[];
     /**
      * Optional. The runtime log config for job execution.
      */
-    loggingConfig: Schema$LoggingConfig;
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * Optional. A mapping of property names to values, used to configure Spark
      * SQL&#39;s SparkConf. Properties that conflict with values set by the
      * Cloud Dataproc API may be overwritten.
      */
-    properties: any;
+    properties?: any;
     /**
      * The HCFS URI of the script that contains SQL queries.
      */
-    queryFileUri: string;
+    queryFileUri?: string;
     /**
      * A list of queries.
      */
-    queryList: Schema$QueryList;
+    queryList?: Schema$QueryList;
     /**
      * Optional. Mapping of query variable names to values (equivalent to the
      * Spark SQL command: SET name=&quot;value&quot;;).
      */
-    scriptVariables: any;
+    scriptVariables?: any;
   }
   /**
    * The Status type defines a logical error model that is suitable for
@@ -1063,18 +1065,18 @@ export namespace dataproc_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details. There is a common set of
      * message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * A request to submit a job.
@@ -1083,7 +1085,7 @@ export namespace dataproc_v1 {
     /**
      * Required. The job resource.
      */
-    job: Schema$Job;
+    job?: Schema$Job;
     /**
      * Optional. A unique id used to identify the request. If the server
      * receives two SubmitJobRequest requests with the same id, then the second
@@ -1093,7 +1095,7 @@ export namespace dataproc_v1 {
      * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
      * hyphens (-). The maximum length is 40 characters.
      */
-    requestId: string;
+    requestId?: string;
   }
   /**
    * A YARN application created by a job. Application information is a subset of
@@ -1105,23 +1107,24 @@ export namespace dataproc_v1 {
     /**
      * Required. The application name.
      */
-    name: string;
+    name?: string;
     /**
      * Required. The numerical progress of the application, from 1 to 100.
      */
-    progress: number;
+    progress?: number;
     /**
      * Required. The application state.
      */
-    state: string;
+    state?: string;
     /**
      * Optional. The HTTP URL of the ApplicationMaster, HistoryServer, or
      * TimelineServer that provides application-specific information. The URL
      * uses the internal hostname, and requires a proxy server for resolution
      * and, possibly, access.
      */
-    trackingUrl: string;
+    trackingUrl?: string;
   }
+
 
   export class Resource$Projects {
     root: Dataproc;
@@ -1136,6 +1139,8 @@ export namespace dataproc_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Regions {
     root: Dataproc;
     clusters: Resource$Projects$Regions$Clusters;
@@ -1153,6 +1158,8 @@ export namespace dataproc_v1 {
       return this.root;
     }
   }
+
+
   export class Resource$Projects$Regions$Clusters {
     root: Dataproc;
     constructor(root: Dataproc) {
@@ -1239,26 +1246,39 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Create,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        params: Params$Resource$Projects$Regions$Clusters$Create,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Create|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1356,26 +1376,39 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Clusters$Delete,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Delete|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1478,26 +1511,39 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    diagnose(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     diagnose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     diagnose(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(
+        params: Params$Resource$Projects$Regions$Clusters$Diagnose,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(callback: BodyResponseCallback<Schema$Operation>): void;
+    diagnose(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Diagnose|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Diagnose;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Diagnose;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1594,23 +1640,34 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Cluster>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
-        callback?: BodyResponseCallback<Schema$Cluster>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+    get(params?: Params$Resource$Projects$Regions$Clusters$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Cluster>;
+    get(params: Params$Resource$Projects$Regions$Clusters$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Cluster>,
+        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(params: Params$Resource$Projects$Regions$Clusters$Get,
+        callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(callback: BodyResponseCallback<Schema$Cluster>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Get|
+        BodyResponseCallback<Schema$Cluster>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Cluster>,
         callback?: BodyResponseCallback<Schema$Cluster>):
         void|AxiosPromise<Schema$Cluster> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1721,28 +1778,40 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListClustersResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Regions$Clusters$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListClustersResponse>;
+    list(
+        params: Params$Resource$Projects$Regions$Clusters$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
-        callback?: BodyResponseCallback<Schema$ListClustersResponse>): void;
+        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Clusters$List,
+        callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListClustersResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$List|
+        BodyResponseCallback<Schema$ListClustersResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListClustersResponse>,
         callback?: BodyResponseCallback<Schema$ListClustersResponse>):
         void|AxiosPromise<Schema$ListClustersResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1848,26 +1917,39 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
+        params?: Params$Resource$Projects$Regions$Clusters$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        params: Params$Resource$Projects$Regions$Clusters$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        params: Params$Resource$Projects$Regions$Clusters$Patch,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Clusters$Patch|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Clusters$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -1891,6 +1973,224 @@ export namespace dataproc_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Regions$Clusters$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two CreateClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Cluster;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Optional. Specifying the cluster_uuid means the RPC should fail (with
+     * error NOT_FOUND) if cluster with specified UUID does not exist.
+     */
+    clusterUuid?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two DeleteClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Diagnose {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$DiagnoseClusterRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. A filter constraining the clusters to list. Filters are
+     * case-sensitive and have the following syntax:field = value AND field =
+     * value ...where field is one of status.state, clusterName, or
+     * labels.[KEY], and [KEY] is a label key. value can be * to match all
+     * values. status.state can be one of the following: ACTIVE, INACTIVE,
+     * CREATING, RUNNING, ERROR, DELETING, or UPDATING. ACTIVE contains the
+     * CREATING, UPDATING, and RUNNING states. INACTIVE contains the DELETING
+     * and ERROR states. clusterName is the name of the cluster provided at
+     * creation time. Only the logical AND operator is supported;
+     * space-separated items are treated as having an implicit AND
+     * operator.Example filter:status.state = ACTIVE AND clusterName = mycluster
+     * AND labels.env = staging AND labels.starred = *
+     */
+    filter?: string;
+    /**
+     * Optional. The standard List page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard List page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the cluster
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The cluster name.
+     */
+    clusterName?: string;
+    /**
+     * Optional. Timeout for graceful YARN decomissioning. Graceful
+     * decommissioning allows removing nodes from the cluster without
+     * interrupting jobs in progress. Timeout specifies how long to wait for
+     * jobs in progress to finish before forcefully removing nodes (and
+     * potentially interrupting jobs). Default timeout is 0 (for forceful
+     * decommission), and the maximum allowed timeout is 1 day.Only supported on
+     * Dataproc image versions 1.2 and higher.
+     */
+    gracefulDecommissionTimeout?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project the cluster belongs
+     * to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Optional. A unique id used to identify the request. If the server
+     * receives two UpdateClusterRequest requests with the same id, then the
+     * second request will be ignored and the first google.longrunning.Operation
+     * created and stored in the backend is returned.It is recommended to always
+     * set this value to a UUID
+     * (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must
+     * contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and
+     * hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+    /**
+     * Required. Specifies the path, relative to Cluster, of the field to
+     * update. For example, to change the number of workers in a cluster to 5,
+     * the update_mask parameter would be specified as
+     * config.worker_config.num_instances, and the PATCH request body would
+     * specify the new value, as follows: {   "config":{     "workerConfig":{
+     * "numInstances":"5"     }   } } Similarly, to change the number of
+     * preemptible workers in a cluster to 5, the update_mask parameter would be
+     * config.secondary_worker_config.num_instances, and the PATCH request body
+     * would be set as follows: {   "config":{     "secondaryWorkerConfig":{
+     * "numInstances":"5"     }   } } <strong>Note:</strong> Currently, only the
+     * following fields can be updated:<table>  <tbody>  <tr>
+     * <td><strong>Mask</strong></td>  <td><strong>Purpose</strong></td>  </tr>
+     * <tr>  <td><strong><em>labels</em></strong></td>  <td>Update labels</td>
+     * </tr>  <tr>
+     * <td><strong><em>config.worker_config.num_instances</em></strong></td>
+     * <td>Resize primary worker group</td>  </tr>  <tr>
+     * <td><strong><em>config.secondary_worker_config.num_instances</em></strong></td>
+     * <td>Resize secondary worker group</td>  </tr>  </tbody>  </table>
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Cluster;
+  }
+
 
   export class Resource$Projects$Regions$Jobs {
     root: Dataproc;
@@ -1983,23 +2283,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     cancel(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(
+        params: Params$Resource$Projects$Regions$Jobs$Cancel,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(callback: BodyResponseCallback<Schema$Job>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Cancel|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2096,25 +2411,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Jobs$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Jobs$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2212,21 +2540,34 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
-    get(params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+    get(params?: Params$Resource$Projects$Regions$Jobs$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
+    get(params: Params$Resource$Projects$Regions$Jobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(params: Params$Resource$Projects$Regions$Jobs$Get,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Get|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Projects$Regions$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2338,26 +2679,39 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListJobsResponse>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        params: Params$Resource$Projects$Regions$Jobs$List,
+        options: MethodOptions|BodyResponseCallback<Schema$ListJobsResponse>,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        params: Params$Resource$Projects$Regions$Jobs$List,
+        callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$List|
+        BodyResponseCallback<Schema$ListJobsResponse>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$ListJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListJobsResponse>):
         void|AxiosPromise<Schema$ListJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2462,23 +2816,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Patch,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     patch(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    patch(
+        params: Params$Resource$Projects$Regions$Jobs$Patch,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    patch(callback: BodyResponseCallback<Schema$Job>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Patch|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2575,23 +2944,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    submit(params?: any, options?: MethodOptions): AxiosPromise<Schema$Job>;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
-        callback?: BodyResponseCallback<Schema$Job>): void;
+        params?: Params$Resource$Projects$Regions$Jobs$Submit,
+        options?: MethodOptions): AxiosPromise<Schema$Job>;
     submit(
-        params?: any, options?: MethodOptions|BodyResponseCallback<Schema$Job>,
+        params: Params$Resource$Projects$Regions$Jobs$Submit,
+        options: MethodOptions|BodyResponseCallback<Schema$Job>,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    submit(
+        params: Params$Resource$Projects$Regions$Jobs$Submit,
+        callback: BodyResponseCallback<Schema$Job>): void;
+    submit(callback: BodyResponseCallback<Schema$Job>): void;
+    submit(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Jobs$Submit|
+        BodyResponseCallback<Schema$Job>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Job>,
         callback?: BodyResponseCallback<Schema$Job>):
         void|AxiosPromise<Schema$Job> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Jobs$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Jobs$Submit;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2614,6 +2998,171 @@ export namespace dataproc_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Projects$Regions$Jobs$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$CancelJobRequest;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Optional. If set, the returned jobs list includes only jobs that were
+     * submitted to the named cluster.
+     */
+    clusterName?: string;
+    /**
+     * Optional. A filter constraining the jobs to list. Filters are
+     * case-sensitive and have the following syntax:field = value AND field =
+     * value ...where field is status.state or labels.[KEY], and [KEY] is a
+     * label key. value can be * to match all values. status.state can be either
+     * ACTIVE or NON_ACTIVE. Only the logical AND operator is supported;
+     * space-separated items are treated as having an implicit AND
+     * operator.Example filter:status.state = ACTIVE AND labels.env = staging
+     * AND labels.starred = *
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies enumerated categories of jobs to list. (default =
+     * match ALL jobs).If filter is provided, jobStateMatcher will be ignored.
+     */
+    jobStateMatcher?: string;
+    /**
+     * Optional. The number of results to return in each response.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, returned by a previous call, to request the
+     * next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The job ID.
+     */
+    jobId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Required. Specifies the path, relative to <code>Job</code>, of the field
+     * to update. For example, to update the labels of a Job the
+     * <code>update_mask</code> parameter would be specified as
+     * <code>labels</code>, and the PATCH request body would specify the new
+     * value. <strong>Note:</strong> Currently, <code>labels</code> is the only
+     * field that can be updated.
+     */
+    updateMask?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$Job;
+  }
+  export interface Params$Resource$Projects$Regions$Jobs$Submit {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Required. The ID of the Google Cloud Platform project that the job
+     * belongs to.
+     */
+    projectId?: string;
+    /**
+     * Required. The Cloud Dataproc region in which to handle the request.
+     */
+    region?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$SubmitJobRequest;
+  }
+
 
   export class Resource$Projects$Regions$Operations {
     root: Dataproc;
@@ -2699,25 +3248,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Operations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Projects$Regions$Operations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2807,25 +3369,38 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Projects$Regions$Operations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Projects$Regions$Operations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Projects$Regions$Operations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -2914,23 +3489,35 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Projects$Regions$Operations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Projects$Regions$Operations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Projects$Regions$Operations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Projects$Regions$Operations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3043,28 +3630,40 @@ export namespace dataproc_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Projects$Regions$Operations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Projects$Regions$Operations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Projects$Regions$Operations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Projects$Regions$Operations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as
+          Params$Resource$Projects$Regions$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Operations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
       const parameters = {
         options: Object.assign(
@@ -3084,5 +3683,62 @@ export namespace dataproc_v1 {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Projects$Regions$Operations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Operations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 }

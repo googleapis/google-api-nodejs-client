@@ -15,6 +15,7 @@
  */
 
 import {AxiosPromise} from 'axios';
+import {Compute, JWT, OAuth2Client, UserRefreshClient} from 'google-auth-library';
 
 import {GoogleApis} from '../..';
 import {BodyResponseCallback, GlobalOptions, MethodOptions} from '../../lib/api';
@@ -30,6 +31,8 @@ import {createAPIRequest} from '../../lib/apirequest';
 // tslint:disable: no-namespace
 
 export namespace storagetransfer_v1 {
+  export interface Options extends GlobalOptions { version: 'v1'; }
+
   /**
    * Storage Transfer API
    *
@@ -78,12 +81,12 @@ export namespace storagetransfer_v1 {
     /**
      * AWS access key ID. Required.
      */
-    accessKeyId: string;
+    accessKeyId?: string;
     /**
      * AWS secret access key. This field is not returned in RPC responses.
      * Required.
      */
-    secretAccessKey: string;
+    secretAccessKey?: string;
   }
   /**
    * An AwsS3Data resource can be a data source, but not a data sink. In an
@@ -95,13 +98,13 @@ export namespace storagetransfer_v1 {
      * Permissions on the bucket must be granted to the access ID of the AWS
      * access key. Required.
      */
-    awsAccessKey: Schema$AwsAccessKey;
+    awsAccessKey?: Schema$AwsAccessKey;
     /**
      * S3 Bucket name (see [Creating a
      * bucket](http://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).
      * Required.
      */
-    bucketName: string;
+    bucketName?: string;
   }
   /**
    * Represents a whole calendar date, e.g. date of birth. The time of day and
@@ -117,17 +120,17 @@ export namespace storagetransfer_v1 {
      * Day of month. Must be from 1 to 31 and valid for the year and month, or 0
      * if specifying a year/month where the day is not significant.
      */
-    day: number;
+    day?: number;
     /**
      * Month of year. Must be from 1 to 12, or 0 if specifying a date without a
      * month.
      */
-    month: number;
+    month?: number;
     /**
      * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a
      * year.
      */
-    year: number;
+    year?: number;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated
@@ -144,12 +147,12 @@ export namespace storagetransfer_v1 {
     /**
      * A list of messages that carry the error details.
      */
-    errorDetails: string[];
+    errorDetails?: string[];
     /**
      * A URL that refers to the target (a data source, a data sink, or an
      * object) with which the error is associated. Required.
      */
-    url: string;
+    url?: string;
   }
   /**
    * A summary of errors by error code, plus a count and sample error log
@@ -159,15 +162,15 @@ export namespace storagetransfer_v1 {
     /**
      * Required.
      */
-    errorCode: string;
+    errorCode?: string;
     /**
      * Count of this type of error. Required.
      */
-    errorCount: string;
+    errorCount?: string;
     /**
      * Error samples.
      */
-    errorLogEntries: Schema$ErrorLogEntry[];
+    errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
    * In a GcsData resource, an object&#39;s name is the Google Cloud Storage
@@ -178,10 +181,10 @@ export namespace storagetransfer_v1 {
   export interface Schema$GcsData {
     /**
      * Google Cloud Storage bucket name (see [Bucket Name
-     * Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     * Requirements](https://cloud.google.com/storage/docs/naming#requirements)).
      * Required.
      */
-    bucketName: string;
+    bucketName?: string;
   }
   /**
    * Google service account
@@ -190,7 +193,7 @@ export namespace storagetransfer_v1 {
     /**
      * Required.
      */
-    accountEmail: string;
+    accountEmail?: string;
   }
   /**
    * An HttpData resource specifies a list of objects on the web to be
@@ -227,7 +230,7 @@ export namespace storagetransfer_v1 {
      * file must allow public access.  Currently, only URLs with HTTP and HTTPS
      * schemes are supported. Required.
      */
-    listUrl: string;
+    listUrl?: string;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -236,11 +239,11 @@ export namespace storagetransfer_v1 {
     /**
      * The standard List next-page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of operations that matches the specified filter in the request.
      */
-    operations: Schema$Operation[];
+    operations?: Schema$Operation[];
   }
   /**
    * Response from ListTransferJobs.
@@ -249,11 +252,11 @@ export namespace storagetransfer_v1 {
     /**
      * The list next page token.
      */
-    nextPageToken: string;
+    nextPageToken?: string;
     /**
      * A list of transfer jobs.
      */
-    transferJobs: Schema$TransferJob[];
+    transferJobs?: Schema$TransferJob[];
   }
   /**
    * Conditions that determine which objects will be transferred.
@@ -263,7 +266,7 @@ export namespace storagetransfer_v1 {
      * `excludePrefixes` must follow the requirements described for
      * `includePrefixes`.  The max size of `excludePrefixes` is 1000.
      */
-    excludePrefixes: string[];
+    excludePrefixes?: string[];
     /**
      * If `includePrefixes` is specified, objects that satisfy the object
      * conditions must have names that start with one of the `includePrefixes`
@@ -288,12 +291,12 @@ export namespace storagetransfer_v1 {
      * path explicitly included by `includePrefixes`.  The max size of
      * `includePrefixes` is 1000.
      */
-    includePrefixes: string[];
+    includePrefixes?: string[];
     /**
      * `maxTimeElapsedSinceLastModification` is the complement to
      * `minTimeElapsedSinceLastModification`.
      */
-    maxTimeElapsedSinceLastModification: string;
+    maxTimeElapsedSinceLastModification?: string;
     /**
      * If unspecified, `minTimeElapsedSinceLastModification` takes a zero value
      * and `maxTimeElapsedSinceLastModification` takes the maximum possible
@@ -303,7 +306,7 @@ export namespace storagetransfer_v1 {
      * `minTimeElapsedSinceLastModification`, or not have a
      * `lastModificationTime`.
      */
-    minTimeElapsedSinceLastModification: string;
+    minTimeElapsedSinceLastModification?: string;
   }
   /**
    * This resource represents a long-running operation that is the result of a
@@ -315,21 +318,21 @@ export namespace storagetransfer_v1 {
      * `true`, the operation is completed, and either `error` or `response` is
      * available.
      */
-    done: boolean;
+    done?: boolean;
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error: Schema$Status;
+    error?: Schema$Status;
     /**
      * Represents the transfer operation object.
      */
-    metadata: any;
+    metadata?: any;
     /**
      * The server-assigned name, which is only unique within the same service
      * that originally returns it. If you use the default HTTP mapping, the
      * `name` should have the format of `transferOperations/some/unique/name`.
      */
-    name: string;
+    name?: string;
     /**
      * The normal response of the operation in case of success.  If the original
      * method returns no data on success, such as `Delete`, the response is
@@ -339,7 +342,7 @@ export namespace storagetransfer_v1 {
      * the original method name.  For example, if the original method name is
      * `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
-    response: any;
+    response?: any;
   }
   /**
    * Request passed to PauseTransferOperation.
@@ -357,13 +360,13 @@ export namespace storagetransfer_v1 {
      * The last day the recurring transfer will be run. If `scheduleEndDate` is
      * the same as `scheduleStartDate`, the transfer will be executed only once.
      */
-    scheduleEndDate: Schema$Date;
+    scheduleEndDate?: Schema$Date;
     /**
      * The first day the recurring transfer is scheduled to run. If
      * `scheduleStartDate` is in the past, the transfer will run for the first
      * time on the following day. Required.
      */
-    scheduleStartDate: Schema$Date;
+    scheduleStartDate?: Schema$Date;
     /**
      * The time in UTC at which the transfer will be scheduled to start in a
      * day. Transfers may start later than this time. If not specified,
@@ -373,7 +376,7 @@ export namespace storagetransfer_v1 {
      * when configuring a transfer with the Cloud Platform Console, the
      * transfer&#39;s start time in a day is specified in your local timezone.
      */
-    startTimeOfDay: Schema$TimeOfDay;
+    startTimeOfDay?: Schema$TimeOfDay;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for
@@ -415,18 +418,18 @@ export namespace storagetransfer_v1 {
     /**
      * The status code, which should be an enum value of google.rpc.Code.
      */
-    code: number;
+    code?: number;
     /**
      * A list of messages that carry the error details.  There is a common set
      * of message types for APIs to use.
      */
-    details: any[];
+    details?: any[];
     /**
      * A developer-facing error message, which should be in English. Any
      * user-facing error message should be localized and sent in the
      * google.rpc.Status.details field, or localized by the client.
      */
-    message: string;
+    message?: string;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant
@@ -439,20 +442,20 @@ export namespace storagetransfer_v1 {
      * to allow the value &quot;24:00:00&quot; for scenarios like business
      * closing time.
      */
-    hours: number;
+    hours?: number;
     /**
      * Minutes of hour of day. Must be from 0 to 59.
      */
-    minutes: number;
+    minutes?: number;
     /**
      * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
      */
-    nanos: number;
+    nanos?: number;
     /**
      * Seconds of minutes of the time. Must normally be from 0 to 59. An API may
      * allow the value 60 if it allows leap-seconds.
      */
-    seconds: number;
+    seconds?: number;
   }
   /**
    * A collection of counters that report the progress of a transfer operation.
@@ -461,75 +464,75 @@ export namespace storagetransfer_v1 {
     /**
      * Bytes that are copied to the data sink.
      */
-    bytesCopiedToSink: string;
+    bytesCopiedToSink?: string;
     /**
      * Bytes that are deleted from the data sink.
      */
-    bytesDeletedFromSink: string;
+    bytesDeletedFromSink?: string;
     /**
      * Bytes that are deleted from the data source.
      */
-    bytesDeletedFromSource: string;
+    bytesDeletedFromSource?: string;
     /**
      * Bytes that failed to be deleted from the data sink.
      */
-    bytesFailedToDeleteFromSink: string;
+    bytesFailedToDeleteFromSink?: string;
     /**
      * Bytes found in the data source that are scheduled to be transferred,
      * excluding any that are filtered based on object conditions or skipped due
      * to sync.
      */
-    bytesFoundFromSource: string;
+    bytesFoundFromSource?: string;
     /**
      * Bytes found only in the data sink that are scheduled to be deleted.
      */
-    bytesFoundOnlyFromSink: string;
+    bytesFoundOnlyFromSink?: string;
     /**
      * Bytes in the data source that failed to be transferred or that failed to
      * be deleted after being transferred.
      */
-    bytesFromSourceFailed: string;
+    bytesFromSourceFailed?: string;
     /**
      * Bytes in the data source that are not transferred because they already
      * exist in the data sink.
      */
-    bytesFromSourceSkippedBySync: string;
+    bytesFromSourceSkippedBySync?: string;
     /**
      * Objects that are copied to the data sink.
      */
-    objectsCopiedToSink: string;
+    objectsCopiedToSink?: string;
     /**
      * Objects that are deleted from the data sink.
      */
-    objectsDeletedFromSink: string;
+    objectsDeletedFromSink?: string;
     /**
      * Objects that are deleted from the data source.
      */
-    objectsDeletedFromSource: string;
+    objectsDeletedFromSource?: string;
     /**
      * Objects that failed to be deleted from the data sink.
      */
-    objectsFailedToDeleteFromSink: string;
+    objectsFailedToDeleteFromSink?: string;
     /**
      * Objects found in the data source that are scheduled to be transferred,
      * excluding any that are filtered based on object conditions or skipped due
      * to sync.
      */
-    objectsFoundFromSource: string;
+    objectsFoundFromSource?: string;
     /**
      * Objects found only in the data sink that are scheduled to be deleted.
      */
-    objectsFoundOnlyFromSink: string;
+    objectsFoundOnlyFromSink?: string;
     /**
      * Objects in the data source that failed to be transferred or that failed
      * to be deleted after being transferred.
      */
-    objectsFromSourceFailed: string;
+    objectsFromSourceFailed?: string;
     /**
      * Objects in the data source that are not transferred because they already
      * exist in the data sink.
      */
-    objectsFromSourceSkippedBySync: string;
+    objectsFromSourceSkippedBySync?: string;
   }
   /**
    * This resource represents the configuration of a transfer job that runs
@@ -539,35 +542,35 @@ export namespace storagetransfer_v1 {
     /**
      * This field cannot be changed by user requests.
      */
-    creationTime: string;
+    creationTime?: string;
     /**
      * This field cannot be changed by user requests.
      */
-    deletionTime: string;
+    deletionTime?: string;
     /**
      * A description provided by the user for the job. Its max length is 1024
      * bytes when Unicode-encoded.
      */
-    description: string;
+    description?: string;
     /**
      * This field cannot be changed by user requests.
      */
-    lastModificationTime: string;
+    lastModificationTime?: string;
     /**
      * A globally unique name assigned by Storage Transfer Service when the job
      * is created. This field should be left empty in requests to create a new
      * transfer job; otherwise, the requests result in an `INVALID_ARGUMENT`
      * error.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the Google Cloud Platform Console project that owns the job.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Schedule specification.
      */
-    schedule: Schema$Schedule;
+    schedule?: Schema$Schedule;
     /**
      * Status of the job. This value MUST be specified for
      * `CreateTransferJobRequests`.  NOTE: The effect of the new job status
@@ -576,11 +579,11 @@ export namespace storagetransfer_v1 {
      * transfer is running, the status change would not affect the current
      * operation.
      */
-    status: string;
+    status?: string;
     /**
      * Transfer specification.
      */
-    transferSpec: Schema$TransferSpec;
+    transferSpec?: Schema$TransferSpec;
   }
   /**
    * A description of the execution of a transfer.
@@ -589,40 +592,40 @@ export namespace storagetransfer_v1 {
     /**
      * Information about the progress of the transfer operation.
      */
-    counters: Schema$TransferCounters;
+    counters?: Schema$TransferCounters;
     /**
      * End time of this transfer execution.
      */
-    endTime: string;
+    endTime?: string;
     /**
      * Summarizes errors encountered with sample error log entries.
      */
-    errorBreakdowns: Schema$ErrorSummary[];
+    errorBreakdowns?: Schema$ErrorSummary[];
     /**
      * A globally unique ID assigned by the system.
      */
-    name: string;
+    name?: string;
     /**
      * The ID of the Google Cloud Platform Console project that owns the
      * operation. Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * Start time of this transfer execution.
      */
-    startTime: string;
+    startTime?: string;
     /**
      * Status of the transfer operation.
      */
-    status: string;
+    status?: string;
     /**
      * The name of the transfer job that triggers this transfer operation.
      */
-    transferJobName: string;
+    transferJobName?: string;
     /**
      * Transfer specification. Required.
      */
-    transferSpec: Schema$TransferSpec;
+    transferSpec?: Schema$TransferSpec;
   }
   /**
    * TransferOptions uses three boolean parameters to define the actions to be
@@ -634,17 +637,17 @@ export namespace storagetransfer_v1 {
      * transferred to the sink.  Note that this option and
      * `deleteObjectsUniqueInSink` are mutually exclusive.
      */
-    deleteObjectsFromSourceAfterTransfer: boolean;
+    deleteObjectsFromSourceAfterTransfer?: boolean;
     /**
      * Whether objects that exist only in the sink should be deleted.  Note that
      * this option and `deleteObjectsFromSourceAfterTransfer` are mutually
      * exclusive.
      */
-    deleteObjectsUniqueInSink: boolean;
+    deleteObjectsUniqueInSink?: boolean;
     /**
      * Whether overwriting objects that already exist in the sink is allowed.
      */
-    overwriteObjectsAlreadyExistingInSink: boolean;
+    overwriteObjectsAlreadyExistingInSink?: boolean;
   }
   /**
    * Configuration for running a transfer.
@@ -653,32 +656,32 @@ export namespace storagetransfer_v1 {
     /**
      * An AWS S3 data source.
      */
-    awsS3DataSource: Schema$AwsS3Data;
+    awsS3DataSource?: Schema$AwsS3Data;
     /**
      * A Google Cloud Storage data sink.
      */
-    gcsDataSink: Schema$GcsData;
+    gcsDataSink?: Schema$GcsData;
     /**
      * A Google Cloud Storage data source.
      */
-    gcsDataSource: Schema$GcsData;
+    gcsDataSource?: Schema$GcsData;
     /**
      * An HTTP URL data source.
      */
-    httpDataSource: Schema$HttpData;
+    httpDataSource?: Schema$HttpData;
     /**
      * Only objects that satisfy these object conditions are included in the set
      * of data source and data sink objects.  Object conditions based on
      * objects&#39; `lastModificationTime` do not exclude objects in a data
      * sink.
      */
-    objectConditions: Schema$ObjectConditions;
+    objectConditions?: Schema$ObjectConditions;
     /**
      * If the option `deleteObjectsUniqueInSink` is `true`, object conditions
      * based on objects&#39; `lastModificationTime` are ignored and do not
      * exclude objects in a data source or a data sink.
      */
-    transferOptions: Schema$TransferOptions;
+    transferOptions?: Schema$TransferOptions;
   }
   /**
    * Request passed to UpdateTransferJob.
@@ -688,14 +691,14 @@ export namespace storagetransfer_v1 {
      * The ID of the Google Cloud Platform Console project that owns the job.
      * Required.
      */
-    projectId: string;
+    projectId?: string;
     /**
      * The job to update. `transferJob` is expected to specify only three
      * fields: `description`, `transferSpec`, and `status`.  An
      * UpdateTransferJobRequest that specifies other fields will be rejected
      * with an error `INVALID_ARGUMENT`. Required.
      */
-    transferJob: Schema$TransferJob;
+    transferJob?: Schema$TransferJob;
     /**
      * The field mask of the fields in `transferJob` that are to be updated in
      * this request.  Fields in `transferJob` that can be updated are:
@@ -704,8 +707,9 @@ export namespace storagetransfer_v1 {
      * provided. An incomplete specification which misses any required fields
      * will be rejected with the error `INVALID_ARGUMENT`.
      */
-    updateTransferJobFieldMask: string;
+    updateTransferJobFieldMask?: string;
   }
+
 
   export class Resource$Googleserviceaccounts {
     root: Storagetransfer;
@@ -791,26 +795,36 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Googleserviceaccounts$Get,
         options?: MethodOptions): AxiosPromise<Schema$GoogleServiceAccount>;
-    get(params?: any,
-        options?: MethodOptions|
+    get(params: Params$Resource$Googleserviceaccounts$Get,
+        options: MethodOptions|
         BodyResponseCallback<Schema$GoogleServiceAccount>,
-        callback?: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
-    get(params?: any,
-        options?: MethodOptions|
+        callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
+    get(params: Params$Resource$Googleserviceaccounts$Get,
+        callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleServiceAccount>): void;
+    get(paramsOrCallback?: Params$Resource$Googleserviceaccounts$Get|
+        BodyResponseCallback<Schema$GoogleServiceAccount>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$GoogleServiceAccount>,
         callback?: BodyResponseCallback<Schema$GoogleServiceAccount>):
         void|AxiosPromise<Schema$GoogleServiceAccount> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Googleserviceaccounts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Googleserviceaccounts$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -833,6 +847,20 @@ export namespace storagetransfer_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Googleserviceaccounts$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The ID of the Google Cloud Platform Console project that the Google
+     * service account is associated with. Required.
+     */
+    projectId?: string;
+  }
+
 
   export class Resource$Transferjobs {
     root: Storagetransfer;
@@ -912,26 +940,39 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    create(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$TransferJob>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>): void;
+        params?: Params$Resource$Transferjobs$Create,
+        options?: MethodOptions): AxiosPromise<Schema$TransferJob>;
     create(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+        params: Params$Resource$Transferjobs$Create,
+        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    create(
+        params: Params$Resource$Transferjobs$Create,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    create(callback: BodyResponseCallback<Schema$TransferJob>): void;
+    create(
+        paramsOrCallback?: Params$Resource$Transferjobs$Create|
+        BodyResponseCallback<Schema$TransferJob>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
         void|AxiosPromise<Schema$TransferJob> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferjobs$Create;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1022,24 +1063,34 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any,
+    get(params?: Params$Resource$Transferjobs$Get,
         options?: MethodOptions): AxiosPromise<Schema$TransferJob>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+    get(params: Params$Resource$Transferjobs$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    get(params: Params$Resource$Transferjobs$Get,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    get(callback: BodyResponseCallback<Schema$TransferJob>): void;
+    get(paramsOrCallback?: Params$Resource$Transferjobs$Get|
+        BodyResponseCallback<Schema$TransferJob>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
         void|AxiosPromise<Schema$TransferJob> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params = (paramsOrCallback || {}) as Params$Resource$Transferjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferjobs$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1140,28 +1191,39 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
+    list(params?: Params$Resource$Transferjobs$List, options?: MethodOptions):
         AxiosPromise<Schema$ListTransferJobsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Transferjobs$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListTransferJobsResponse>,
-        callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Transferjobs$List,
+        callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListTransferJobsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Transferjobs$List|
+        BodyResponseCallback<Schema$ListTransferJobsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListTransferJobsResponse>,
         callback?: BodyResponseCallback<Schema$ListTransferJobsResponse>):
         void|AxiosPromise<Schema$ListTransferJobsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferjobs$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1260,26 +1322,38 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    patch(params?: any, options?: MethodOptions):
+    patch(params?: Params$Resource$Transferjobs$Patch, options?: MethodOptions):
         AxiosPromise<Schema$TransferJob>;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
-        callback?: BodyResponseCallback<Schema$TransferJob>): void;
+        params: Params$Resource$Transferjobs$Patch,
+        options: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
     patch(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$TransferJob>,
+        params: Params$Resource$Transferjobs$Patch,
+        callback: BodyResponseCallback<Schema$TransferJob>): void;
+    patch(callback: BodyResponseCallback<Schema$TransferJob>): void;
+    patch(
+        paramsOrCallback?: Params$Resource$Transferjobs$Patch|
+        BodyResponseCallback<Schema$TransferJob>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$TransferJob>,
         callback?: BodyResponseCallback<Schema$TransferJob>):
         void|AxiosPromise<Schema$TransferJob> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferjobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferjobs$Patch;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1301,6 +1375,75 @@ export namespace storagetransfer_v1 {
       }
     }
   }
+
+  export interface Params$Resource$Transferjobs$Create {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$TransferJob;
+  }
+  export interface Params$Resource$Transferjobs$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The job to get. Required.
+     */
+    jobName?: string;
+    /**
+     * The ID of the Google Cloud Platform Console project that owns the job.
+     * Required.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Transferjobs$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A list of query parameters specified as JSON text in the form of
+     * {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...],
+     * "job_statuses":["status1","status2",...]}. Since `job_names` and
+     * `job_statuses` support multiple values, their values must be specified
+     * with array notation. `project_id` is required. `job_names` and
+     * `job_statuses` are optional.  The valid values for `job_statuses` are
+     * case-insensitive: `ENABLED`, `DISABLED`, and `DELETED`.
+     */
+    filter?: string;
+    /**
+     * The list page size. The max allowed value is 256.
+     */
+    pageSize?: number;
+    /**
+     * The list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Transferjobs$Patch {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of job to update. Required.
+     */
+    jobName?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$UpdateTransferJobRequest;
+  }
+
 
   export class Resource$Transferoperations {
     root: Storagetransfer;
@@ -1379,25 +1522,38 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    cancel(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Transferoperations$Cancel,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     cancel(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Transferoperations$Cancel,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        params: Params$Resource$Transferoperations$Cancel,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+        paramsOrCallback?: Params$Resource$Transferoperations$Cancel|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$Cancel;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1485,25 +1641,38 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    delete(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Transferoperations$Delete,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     delete(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Transferoperations$Delete,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        params: Params$Resource$Transferoperations$Delete,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+        paramsOrCallback?: Params$Resource$Transferoperations$Delete|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$Delete;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1592,23 +1761,35 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    get(params?: any, options?: MethodOptions): AxiosPromise<Schema$Operation>;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
-        callback?: BodyResponseCallback<Schema$Operation>): void;
-    get(params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Operation>,
+    get(params?: Params$Resource$Transferoperations$Get,
+        options?: MethodOptions): AxiosPromise<Schema$Operation>;
+    get(params: Params$Resource$Transferoperations$Get,
+        options: MethodOptions|BodyResponseCallback<Schema$Operation>,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(params: Params$Resource$Transferoperations$Get,
+        callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(paramsOrCallback?: Params$Resource$Transferoperations$Get|
+        BodyResponseCallback<Schema$Operation>,
+        optionsOrCallback?: MethodOptions|
+        BodyResponseCallback<Schema$Operation>,
         callback?: BodyResponseCallback<Schema$Operation>):
         void|AxiosPromise<Schema$Operation> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$Get;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1721,28 +1902,40 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    list(params?: any, options?: MethodOptions):
-        AxiosPromise<Schema$ListOperationsResponse>;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params?: Params$Resource$Transferoperations$List,
+        options?: MethodOptions): AxiosPromise<Schema$ListOperationsResponse>;
+    list(
+        params: Params$Resource$Transferoperations$List,
+        options: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
-        callback?: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
     list(
-        params?: any,
-        options?: MethodOptions|
+        params: Params$Resource$Transferoperations$List,
+        callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+        paramsOrCallback?: Params$Resource$Transferoperations$List|
+        BodyResponseCallback<Schema$ListOperationsResponse>,
+        optionsOrCallback?: MethodOptions|
         BodyResponseCallback<Schema$ListOperationsResponse>,
         callback?: BodyResponseCallback<Schema$ListOperationsResponse>):
         void|AxiosPromise<Schema$ListOperationsResponse> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$List;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1834,25 +2027,38 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    pause(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Transferoperations$Pause,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     pause(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Transferoperations$Pause,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    pause(
+        params: Params$Resource$Transferoperations$Pause,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    pause(callback: BodyResponseCallback<Schema$Empty>): void;
+    pause(
+        paramsOrCallback?: Params$Resource$Transferoperations$Pause|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$Pause;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1945,25 +2151,38 @@ export namespace storagetransfer_v1 {
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
      */
-    resume(params?: any, options?: MethodOptions): AxiosPromise<Schema$Empty>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
-        callback?: BodyResponseCallback<Schema$Empty>): void;
+        params?: Params$Resource$Transferoperations$Resume,
+        options?: MethodOptions): AxiosPromise<Schema$Empty>;
     resume(
-        params?: any,
-        options?: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        params: Params$Resource$Transferoperations$Resume,
+        options: MethodOptions|BodyResponseCallback<Schema$Empty>,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    resume(
+        params: Params$Resource$Transferoperations$Resume,
+        callback: BodyResponseCallback<Schema$Empty>): void;
+    resume(callback: BodyResponseCallback<Schema$Empty>): void;
+    resume(
+        paramsOrCallback?: Params$Resource$Transferoperations$Resume|
+        BodyResponseCallback<Schema$Empty>,
+        optionsOrCallback?: MethodOptions|BodyResponseCallback<Schema$Empty>,
         callback?: BodyResponseCallback<Schema$Empty>):
         void|AxiosPromise<Schema$Empty> {
-      if (typeof options === 'function') {
-        callback = options;
+      let params =
+          (paramsOrCallback || {}) as Params$Resource$Transferoperations$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Transferoperations$Resume;
         options = {};
       }
-      if (typeof params === 'function') {
-        callback = params;
-        params = {};
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
       }
-      options = options || {};
+
       const rootUrl =
           options.rootUrl || 'https://storagetransfer.googleapis.com/';
       const parameters = {
@@ -1985,5 +2204,98 @@ export namespace storagetransfer_v1 {
         return createAPIRequest<Schema$Empty>(parameters);
       }
     }
+  }
+
+  export interface Params$Resource$Transferoperations$Cancel {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Transferoperations$Delete {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Transferoperations$Get {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Transferoperations$List {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * A list of query parameters specified as JSON text in the form of
+     * {\"project_id\" : \"my_project_id\", \"job_names\" : [\"jobid1\",
+     * \"jobid2\",...], \"operation_names\" : [\"opid1\", \"opid2\",...],
+     * \"transfer_statuses\":[\"status1\", \"status2\",...]}. Since `job_names`,
+     * `operation_names`, and `transfer_statuses` support multiple values, they
+     * must be specified with array notation. `job_names`, `operation_names`,
+     * and `transfer_statuses` are optional.
+     */
+    filter?: string;
+    /**
+     * The value `transferOperations`.
+     */
+    name?: string;
+    /**
+     * The list page size. The max allowed value is 256.
+     */
+    pageSize?: number;
+    /**
+     * The list page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Transferoperations$Pause {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the transfer operation. Required.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$PauseTransferOperationRequest;
+  }
+  export interface Params$Resource$Transferoperations$Resume {
+    /**
+     * Auth client or API Key for the request
+     */
+    auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient;
+
+    /**
+     * The name of the transfer operation. Required.
+     */
+    name?: string;
+    /**
+     * Request body metadata
+     */
+    resource?: Schema$ResumeTransferOperationRequest;
   }
 }
